@@ -1,0 +1,2951 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="l1n6yun&#39;s Blog">
+<meta property="og:url" content="http://l1n6yun.github.io/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="l1n6yun&#39;s Blog">
+<meta name="twitter:description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2020/01/17/小程序之模型实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/17/小程序之模型实现/" class="post-title-link" itemprop="url">小程序之模型实现 </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-17 21:32:00" itemprop="dateCreated datePublished" datetime="2020-01-17T21:32:00+08:00">2020-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-14 21:38:22" itemprop="dateModified" datetime="2020-10-14T21:38:22+08:00">2020-10-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>model层就不用多说了，主要是把数据处理部分独立出来，便于统一服务和维护，这里重点强调下model内部的实现细节，这里有一个实现技巧可以用在其它别的地方。下面直接上代码部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">'../utils/cache.js'</span></span><br><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">'../utils/ajax.js'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一的接口地址，一般一个controller下面多个action是一致的</span></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化请求参数，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * @params params 键值对对象,形如&#123;&#125;</span></span><br><span class="line"><span class="comment"> * @return &#123;*&#125; 格式化后的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatParams = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化返回结果，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * @params data 对象 数组等任何合法的JS数据类型</span></span><br><span class="line"><span class="comment"> * @return &#123;*&#125; 格式化后的数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatResult = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 读取可用游戏业务列表</span></span><br><span class="line"><span class="comment">   * @params params 参数,本接口用不到</span></span><br><span class="line"><span class="comment">   * @return &#123;*&#125; 返回 Promise 对象</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  getList(params) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果接口地址不一致，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> url = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的参数处理逻辑，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatParams = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的格式处理，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatResult = <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果需要自己先判断缓存或者别的处理，这里手动使用Promise封装一下即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> goods_list = cache.get(<span class="string">"goods_list"</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">null</span> == goods_list) &#123;</span><br><span class="line">        resolve(goods_list)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ajax.get(&#123;</span><br><span class="line">          url: url,</span><br><span class="line">          data: formatParams(params),</span><br><span class="line">          login: <span class="literal">false</span>,</span><br><span class="line">          loading: <span class="literal">true</span>,</span><br><span class="line">        &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> data = formatResult(res.data)</span><br><span class="line">          cache.set(<span class="string">"goods_list"</span>, data, <span class="number">86400</span>)</span><br><span class="line">          resolve(data);</span><br><span class="line">        &#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> goods <span class="keyword">from</span> <span class="string">'../../models/goods.js'</span></span><br><span class="line"></span><br><span class="line">goods.getList().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"成功"</span>, res)</span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"失败"</span>, error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>把参数处理和返回结果处理拆出来放到单独的处理方法里，方法名称保持统一： <code>formatParams</code> ， <code>formatResult</code> </li>
+<li>同时最外层定义好默认的 <code>formatParams</code> ， <code>formatResult</code> ，如果不做特殊处理，直接使用默认即可（建议不处理也调用下默认方法，规范流程）</li>
+<li>还有一点，model里方法命令有统一规范都是已 <code>get</code> ， <code>add</code> ， <code>update</code> ， <code>del</code> 开头</li>
+</ol>
+<p>这个思路其实可以运用到任何场景，特别是在没有任何限定框架的场景，我们只需要按照这个模式去实现，代码一样很清晰漂亮。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2020/01/17/小程序之封装请求/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/17/小程序之封装请求/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-17T00:00:00+08:00">2020-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-14 21:38:56" itemprop="dateModified" datetime="2020-10-14T21:38:56+08:00">2020-10-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
+<ul>
+<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
+<li>直判断返回值在逻辑上是成功还是失败</li>
+<li>针对返回未登录的情况，自动跳转登录流程</li>
+</ul>
+<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">"http://www.baidu.com"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  HOST: host,</span><br><span class="line">  API_ROOT: host + <span class="string">'/api/'</span>,</span><br><span class="line">  API_VERSION: <span class="string">'1.0.0'</span>,</span><br><span class="line">  <span class="keyword">get</span>(options) &#123;</span><br><span class="line">    options.method = <span class="string">'GET'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  post(options) &#123;</span><br><span class="line">    options.method = <span class="string">'POST'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">delete</span>(options) &#123;</span><br><span class="line">    options.method = <span class="string">'DELETE'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  put(options) &#123;</span><br><span class="line">    options.method = <span class="string">'PUT'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  request(options) &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="keyword">this</span>.API_ROOT;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.getStorageSync(<span class="string">'token'</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.login == <span class="string">'undefined'</span> || options.login == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.loading != <span class="string">'undefined'</span> &amp;&amp; options.loading == <span class="literal">true</span>) &#123;</span><br><span class="line">      clearTimeout(showLoading)</span><br><span class="line">      showLoading = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">"加载中"</span>,</span><br><span class="line">          icon: <span class="string">"loading"</span>,</span><br><span class="line">          duration: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        url: apiRoot + options.url,</span><br><span class="line">        data: options.data,</span><br><span class="line">        method: options.method ? options.method : <span class="string">'POST'</span>,</span><br><span class="line">        header: &#123;</span><br><span class="line">          <span class="string">'Cache-Control'</span>: <span class="string">'no-cache'</span>,</span><br><span class="line">          <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">          <span class="string">'XX-Token'</span>: token,</span><br><span class="line">          <span class="string">'XX-Device-Type'</span>: <span class="string">'wxapp'</span>,</span><br><span class="line">          <span class="string">'XX-Api-Version'</span>: that.API_VERSION</span><br><span class="line">        &#125;,</span><br><span class="line">        success: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          clearTimeout(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          <span class="keyword">if</span> (res.data.code == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = getCurrentPages();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.pop()[<span class="string">'__route__'</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">'pages/login/login'</span>) &#123;</span><br><span class="line">              wx.navigateTo(&#123;</span><br><span class="line">                url: <span class="string">'/pages/login/login'</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          clearTimeout(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">'../utils/ajax.js'</span></span><br><span class="line"></span><br><span class="line">ajax.get(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  login: <span class="literal">false</span>,</span><br><span class="line">  loading: <span class="literal">true</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2020/01/17/小程序之缓存类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/17/小程序之缓存类/" class="post-title-link" itemprop="url">小程序之缓存类 </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-17T00:00:00+08:00">2020-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-14 21:38:15" itemprop="dateModified" datetime="2020-10-14T21:38:15+08:00">2020-10-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其实，小程序自带了缓存接口，有同步 <code>wx.setStorageSync</code> ，异步 <code>wx.setStorage</code> 的方法，但是实际在使用缓存的场景里，我们一般都是需要设置缓存有效时间的，本cache工具就是对小程序缓存接口的封装，实现了对缓存有效期的支持。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  test: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.setStorageSync(<span class="string">"JDC_TEST"</span>, <span class="string">"1"</span>);</span><br><span class="line">      wx.removeStorageSync(<span class="string">"JDC_TEST"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      wx.showModal(&#123;</span><br><span class="line">        title: <span class="string">"提示"</span>,</span><br><span class="line">        content: <span class="string">"小程序缓存出现问题,请稍后使用"</span>,</span><br><span class="line">        showCancel: !<span class="number">1</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(e.confirm)&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">"用户点击确定"</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>: function(name, value, expire) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expire == <span class="string">"number"</span>) &#123;</span><br><span class="line">      expire = expire * <span class="number">1e3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      expire = <span class="number">2592e5</span></span><br><span class="line">    &#125;</span><br><span class="line">    wx.removeStorageSync(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.setStorageSync(name, &#123;</span><br><span class="line">        _value: value,</span><br><span class="line">        _time: time,</span><br><span class="line">        _age: time + expire</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">get</span>: function(name) &#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="keyword">this</span>._isExpire(name);</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data._value</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  del: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.removeStorageSync(name);</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  _isExpire: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = wx.getStorageSync(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">if</span> (data &amp;&amp; time &lt; data._age) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">'../utils/cache.js'</span></span><br><span class="line"></span><br><span class="line">cache.set(<span class="string">"key"</span>,<span class="string">"value"</span>,<span class="number">7200</span>);</span><br><span class="line">cache.get(<span class="string">"key"</span>);</span><br><span class="line">cache.del(<span class="string">"key"</span>);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2020/01/13/git分支模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/13/git分支模型/" class="post-title-link" itemprop="url">GIT分支模型的策略与发布</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-13 13:50:08" itemprop="dateCreated datePublished" datetime="2020-01-13T13:50:08+08:00">2020-01-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文用于介绍 GIT分支模型的策略与发布。</p>
+<p><img src="https://nvie.com/img/git-model@2x.png" alt="img"></p>
+<p>在git分支模型中我们一般会用到如下四种分支:</p>
+<ul>
+<li><strong>主分支</strong></li>
+<li><strong>特性分支</strong></li>
+<li><strong>release分支</strong></li>
+<li><strong>hotFix分支</strong></li>
+</ul>
+<p>分别使用4个种类的分支来进行开发的。</p>
+<h2 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h2><p><img src="https://nvie.com/img/main-branches@2x.png" alt="img"></p>
+<p>主分支有两种：master分支和develop分支</p>
+<ul>
+<li><strong>master</strong><br>master分支只负责管理发布的状态。在提交时使用标签记录发布版本号。</li>
+<li><strong>develop</strong><br>develop分支是针对发布的日常开发分支。刚才我们已经讲解过有合并分支的功用。</li>
+</ul>
+<h2 id="特性分支"><a href="#特性分支" class="headerlink" title="特性分支"></a>特性分支</h2><p>特性分支就是我们在前面讲解过的topic分支的功用。</p>
+<p>这个分支是针对新功能的开发，在bug修正的时候从develop分支分叉出来的。基本上不需要共享特性分支的操作，所以不需要远端控制。完成开发后，把分支合并回develop分支后发布。</p>
+<p><img src="https://nvie.com/img/fb@2x.png" alt="img"></p>
+<h2 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h2><p>release分支是为release做准备的。通常会在分支名称的最前面加上release-。release前需要在这个分支进行最后的调整，而且为了下一版release开发用develop分支的上游分支。</p>
+<p>一般的开发是在develop分支上进行的，到了可以发布的状态时再创建release分支，为release做最后的bug修正。</p>
+<p>到了可以release的状态时，把release分支合并到master分支，并且在合并提交里添加release版本号的标签。</p>
+<p>要导入在release分支所作的修改，也要合并回develop分支。</p>
+<h2 id="hotFix分支"><a href="#hotFix分支" class="headerlink" title="hotFix分支"></a>hotFix分支</h2><p>hotFix分支是在发布的产品需要紧急修正时，从master分支创建的分支。通常会在分支名称的最前面加上 <code>hotfix-</code>。</p>
+<p>例如，在develop分支上的开发还不完整时，需要紧急修改。这个时候在develop分支创建可以发布的版本要花许多的时间，所以最好选择从master分支直接创建分支进行修改，然后合并分支。</p>
+<p>修改时创建的hotFix分支要合并回develop分支。</p>
+<p><img src="https://nvie.com/img/hotfix-branches@2x.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">A successful Git branching model</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2020/01/08/file-cache-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/08/file-cache-class/" class="post-title-link" itemprop="url">file cache class of php</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-08 18:00:31" itemprop="dateCreated datePublished" datetime="2020-01-08T18:00:31+08:00">2020-01-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Class Cache</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cache</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string 缓存目录</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $cache_path = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name 缓存变量名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $value 存储数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $expire 有效时间（秒）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setCache</span><span class="params">($name, $value, $expire = null)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (is_null($expire)) &#123;</span><br><span class="line">            $expire = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $file = <span class="keyword">self</span>::_getCacheName($name);</span><br><span class="line">        $data = serialize($value);</span><br><span class="line">        $data = <span class="string">"&lt;?php\n//"</span> . sprintf(<span class="string">'%012d'</span>, $expire) . <span class="string">"\n exit();?&gt;\n"</span> . $data;</span><br><span class="line">        file_put_contents($file, $data);</span><br><span class="line">        <span class="keyword">return</span> $file;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name 缓存变量名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $default 默认值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getCache</span><span class="params">($name,$default = false)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $file = <span class="keyword">self</span>::_getCacheName($name);</span><br><span class="line">        <span class="keyword">if</span> (file_exists($file) &amp;&amp; ($content = file_get_contents($file))) &#123;</span><br><span class="line">            $expire = (int)substr($content, <span class="number">8</span>, <span class="number">12</span>);</span><br><span class="line">            <span class="keyword">if</span> ($expire === <span class="number">0</span> || filemtime($file) + $expire &gt;= time()) &#123;</span><br><span class="line">                $content = unserialize(substr($content, <span class="number">32</span>));</span><br><span class="line">                <span class="keyword">return</span> $content;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">self</span>::delCache($name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $default;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 清楚缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">delCache</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $file = <span class="keyword">self</span>::_getCacheName($name);</span><br><span class="line">        <span class="keyword">return</span> file_exists($file) ? unlink($file) : <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 应用缓存目录</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">_getCacheName</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="keyword">self</span>::$cache_path)) &#123;</span><br><span class="line">            <span class="keyword">self</span>::$cache_path = dirname(dirname(<span class="keyword">__DIR__</span>)) . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>::$cache_path = rtrim(<span class="keyword">self</span>::$cache_path, <span class="string">'/\\'</span>) . DIRECTORY_SEPARATOR;</span><br><span class="line">        <span class="keyword">if</span> (!file_exists(<span class="keyword">self</span>::$cache_path)) &#123;</span><br><span class="line">            mkdir(<span class="keyword">self</span>::$cache_path, <span class="number">0755</span>, <span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::$cache_path . $name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置目录</span></span><br><span class="line">Cache::$cache_path = <span class="string">"./cache"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置缓存</span></span><br><span class="line">Cache::setCache(<span class="string">'key'</span>, <span class="string">'value'</span>,<span class="string">'7200'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取缓存</span></span><br><span class="line">$result = Cache::getCache(<span class="string">'key'</span>);</span><br><span class="line">print_r($result);</span><br><span class="line"></span><br><span class="line">Cache::delCache(<span class="string">'aaa'</span>);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2019/12/24/curl-multi实现并发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/24/curl-multi实现并发/" class="post-title-link" itemprop="url">curl_multi实现并发</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-24 09:46:19" itemprop="dateCreated datePublished" datetime="2019-12-24T09:46:19+08:00">2019-12-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="普通请求"><a href="#普通请求" class="headerlink" title="普通请求"></a>普通请求</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$result = [];</span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">10</span>; $i++) &#123;</span><br><span class="line">    $ch = curl_init();</span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, <span class="string">"http://www.example.com"</span>);</span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">    $result[] = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m22.526s</span><br><span class="line">user    0m0.030s</span><br><span class="line">sys     0m0.010s</span><br></pre></td></tr></table></figure>
+
+<h2 id="curl-multi-并发"><a href="#curl-multi-并发" class="headerlink" title="curl_multi 并发"></a>curl_multi 并发</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建cURL资源</span></span><br><span class="line">$chs = [];</span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">10</span>; $i++) &#123;</span><br><span class="line">    $chs[$i] = curl_init();</span><br><span class="line">    curl_setopt($chs[$i], CURLOPT_URL, <span class="string">"http://www.example.com"</span>);</span><br><span class="line">    curl_setopt($chs[$i], CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建批处理cURL句柄</span></span><br><span class="line">$multi = curl_multi_init();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 增加句柄</span></span><br><span class="line"><span class="keyword">foreach</span> ($chs <span class="keyword">as</span> $ch) &#123;</span><br><span class="line">    curl_multi_add_handle($multi, $ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行批处理句柄</span></span><br><span class="line">$running = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    usleep(<span class="number">10000</span>);</span><br><span class="line">    curl_multi_exec($multi, $running);</span><br><span class="line">&#125; <span class="keyword">while</span> ($running &gt; <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭全部句柄</span></span><br><span class="line">$result = [];</span><br><span class="line"><span class="keyword">foreach</span> ($chs <span class="keyword">as</span> $ch) &#123;</span><br><span class="line">    $result[] = curl_multi_getcontent($ch);</span><br><span class="line">    curl_multi_remove_handle($multi, $ch);</span><br><span class="line">&#125;</span><br><span class="line">curl_multi_close($multi);</span><br><span class="line"></span><br><span class="line"><span class="comment">//print_r($result);</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m2.517s</span><br><span class="line">user    0m0.060s</span><br><span class="line">sys     0m0.020s</span><br></pre></td></tr></table></figure>
+
+<h2 id="curl-multi-select"><a href="#curl-multi-select" class="headerlink" title="curl_multi_select"></a>curl_multi_select</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl_multi_select （ resource $multi [， float $timeout= <span class="number">1.0</span> ]）： int</span><br></pre></td></tr></table></figure>
+
+<p>阻塞直到 <code>cURL</code> 批处理连接中有活动连接。成功时返回描述符集合中描述符的数量。失败时，select失败时返回-1，否则返回超时(从底层的select系统调用).</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$active = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    $mrc = curl_multi_exec($multi, $active);</span><br><span class="line">&#125; <span class="keyword">while</span> ($mrc == CURLM_CALL_MULTI_PERFORM);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> ($active &amp;&amp; $mrc == CURLM_OK) &#123;</span><br><span class="line">    <span class="comment">// 等待任何curl连接上的活动</span></span><br><span class="line">    <span class="keyword">if</span> (curl_multi_select($multi) == <span class="number">-1</span>) &#123;</span><br><span class="line">        usleep(<span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 继续执行直到curl准备好为我们提供更多的数据</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        $mrc = curl_multi_exec($multi, $active);</span><br><span class="line">    &#125; <span class="keyword">while</span> ($mrc == CURLM_CALL_MULTI_PERFORM);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">real    0m2.470s</span><br><span class="line">user    0m0.030s</span><br><span class="line">sys     0m0.010s</span><br></pre></td></tr></table></figure>
+
+<p> 这样执行的好处是<code>$multi</code>批处理中的 <code>$ch</code> 句柄会在读取或写入数据结束后(<code>$mrc == CURLM_OK</code>),进入 <code>curl_multi_select($multi)</code> 的阻塞阶段，而不会在整个 <code>$multi</code> 批处理执行时不停地执行 <code>curl_multi_exec</code> ,白白浪费CPU资源.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2019/12/03/解决GitHub下载速度缓慢的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/03/解决GitHub下载速度缓慢的问题/" class="post-title-link" itemprop="url">解决GitHub下载速度缓慢的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-03 14:13:10" itemprop="dateCreated datePublished" datetime="2019-12-03T14:13:10+08:00">2019-12-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>众所周知国内访问 GitHub 总会遇到下载速度缓慢、链接意外终止的情况。</p>
+<p>为了更加愉快地使用<strong>全球最大同性交友网站</strong>上的优质资源，我们来做一些简单的本机上的调整。</p>
+<h2 id="第一步，打开本机上的-Hosts-文件"><a href="#第一步，打开本机上的-Hosts-文件" class="headerlink" title="第一步，打开本机上的 Hosts 文件"></a>第一步，打开本机上的 Hosts 文件</h2><p>首先，什么是 Hosts 文件?</p>
+<p>在互联网协议中，host 表示能够同其他机器互相访问的本地计算机。一台本地机有唯一标志代码，同网络掩码一起组成 ip 地址，如果通过点到点协议通过 ISP 访问互联网，那么在连接期间将会拥有唯一的 ip 地址，这段时间内，你的主机就是一个 host。</p>
+<p>在这种情况下，host 表示一个网络节点。host是根据TCP/IP for Windows 的标准来工作的，它的作用是包含IP地址和Host name(主机名)的映射关系，是一个映射IP地址和Host name(主机名)的规定，规定要求每段只能包括一个映射关系，IP 地址要放在每段的最前面，空格后再写上映射的Host name主机名 。对于这段的映射说明用“#”分割后用文字说明。<br>终端内输入:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>打开之后，我们就要向里面追加信息了。</p>
+<h2 id="第二步，追加域名的IP-地址"><a href="#第二步，追加域名的IP-地址" class="headerlink" title="第二步，追加域名的IP 地址"></a>第二步，追加域名的IP 地址</h2><p>我们可以利用 <a href="https://www.ipaddress.com/" target="_blank" rel="noopener">https://www.ipaddress.com/</a> 来获得以下两个GitHub域名的IP地址:</p>
+<ul>
+<li><p>github.com</p>
+</li>
+<li><p>github.global.ssl.fastly.net</p>
+</li>
+</ul>
+<p>打开网页后，利用输入框内分别查询两个域名:</p>
+<p>先试一下 <code>github.com</code></p>
+<p>在标注的IP地址中，任选一个记录下来。</p>
+<p>再来是 <code>github.global.ssl.fastly.net</code> :</p>
+<p>将以上两段IP写入Hosts文件中:</p>
+<p>保存。</p>
+<h2 id="第三步，刷新-DNS-缓存"><a href="#第三步，刷新-DNS-缓存" class="headerlink" title="第三步，刷新 DNS 缓存"></a>第三步，刷新 DNS 缓存</h2><p>在终端或 <code>CMD</code> 中，执行以下命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
+
+<p>现在再来试一下 git clone 命令，是不是可以轻松过百K了? :)</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2019/12/03/Hotkeys-捕获键盘输入和输入的组合键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/03/Hotkeys-捕获键盘输入和输入的组合键/" class="post-title-link" itemprop="url">Hotkeys - 捕获键盘输入和输入的组合键</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-03 11:00:18" itemprop="dateCreated datePublished" datetime="2019-12-03T11:00:18+08:00">2019-12-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>这是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键，它没有依赖，压缩只有(~3kb)，gzip:1.9k。<a href="http://jaywcjlove.github.io/hotkeys/?lang=cn" target="_blank" rel="noopener">官方文档DEMO预览</a>，<a href="https://github.com/jaywcjlove/hotkeys/issues?q=label%3ADemo+" target="_blank" rel="noopener">更多实例</a>.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">╭┈┈╮          ╭┈┈╮  ╭┈┈╮</span><br><span class="line">┆  ├┈┈..┈┈┈┈┈.┆  └┈╮┆  ├┈┈..┈┈┈┈┈..┈┈.┈┈..┈┈┈┈┈.</span><br><span class="line">┆     ┆┆  □  ┆┆   ┈┤┆    &lt; ┆  -__┘┆  ┆  ┆┆__ ┈┈┤</span><br><span class="line">╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈┈╯╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈  ┆╰┈┈┈┈┈╯</span><br><span class="line">                                  ╰┈┈┈┈┈╯</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>您将需要在您的系统上安装的 Node.js。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bower 安装</span></span><br><span class="line">$ bower install hotkeysjs</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm 安装</span></span><br><span class="line">$ npm install hotkeys-js</span><br><span class="line"></span><br><span class="line">$ npm run build <span class="comment"># 编译</span></span><br><span class="line">$ npm run watch <span class="comment"># 开发模式</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">'hotkeys-js'</span>;</span><br><span class="line"></span><br><span class="line">hotkeys(<span class="string">'f5'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event, handler</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Prevent the default refresh event under WINDOWS system</span></span><br><span class="line">  event.preventDefault() </span><br><span class="line">  alert(<span class="string">'you pressed F5!'</span>) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>或者在您的HTML中手动下载并引入 <strong>hotkeys.js</strong>，你也可以通过 <a href="https://unpkg.com/hotkeys-js/dist/" target="_blank" rel="noopener">UNPKG</a> 进行下载：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">hotkeys(<span class="string">'ctrl+a,ctrl+b,r,f'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event,handler</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">switch</span>(handler.key)&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">case</span> <span class="string">"ctrl+a"</span>:alert(<span class="string">'you pressed ctrl+a!'</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">case</span> <span class="string">"ctrl+b"</span>:alert(<span class="string">'you pressed ctrl+b!'</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">case</span> <span class="string">"r"</span>:alert(<span class="string">'you pressed r!'</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">case</span> <span class="string">"f"</span>:alert(<span class="string">'you pressed f!'</span>);<span class="keyword">break</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="React中使用"><a href="#React中使用" class="headerlink" title="React中使用"></a>React中使用</h2><p><a href="https://github.com/jaywcjlove/react-hotkeys" target="_blank" rel="noopener">react-hotkeys</a>，安装如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S react-hot-keys</span><br></pre></td></tr></table></figure>
+
+<p>详细使用方法请参考文档 <a href="https://github.com/jaywcjlove/react-hotkeys" target="_blank" rel="noopener">react-hotkeys</a>。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>传统调用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"./js/hotkeys.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>包加载</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">'hotkeys-js'</span>;</span><br><span class="line"></span><br><span class="line">hotkeys(<span class="string">'shift+a,alt+d, w'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'干点活儿'</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.shift) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 shift 键！'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.ctrl) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 ctrl 键！'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.alt) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 alt 键！'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="支持的键"><a href="#支持的键" class="headerlink" title="支持的键"></a>支持的键</h2><p><code>⇧</code>, <code>shift</code>, <code>option</code>, <code>⌥</code>, <code>alt</code>, <code>ctrl</code>, <code>control</code>, <code>command</code>, <code>⌘</code></p>
+<p><code>⌘</code> Command()<br><code>⌃</code> Control<br><code>⌥</code> Option(alt)<br><code>⇧</code> Shift<br><code>⇪</code> Caps Lock(大写)<br><del><code>fn</code> 功能键就是fn(不支持)</del><br><code>↩︎</code> return/enter<br><code>space</code> 空格键  </p>
+<h2 id="修饰键判断"><a href="#修饰键判断" class="headerlink" title="修饰键判断"></a>修饰键判断</h2><p>可以对下面的修饰键判断 <code>shift</code> <code>alt</code> <code>option</code> <code>ctrl</code> <code>control</code> <code>command</code>，特别注意<code>+</code>和<code>=</code>键值相同，组合键设置<code>⌘+=</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hotkeys(<span class="string">'shift+a,alt+d, w'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'干点活儿'</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.shift) <span class="built_in">console</span>.log(<span class="string">'您摁下了 shift 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.ctrl) <span class="built_in">console</span>.log(<span class="string">'您摁下了 ctrl 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.alt) <span class="built_in">console</span>.log(<span class="string">'您摁下了 alt 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.option) <span class="built_in">console</span>.log(<span class="string">'您摁下了 option 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.control) <span class="built_in">console</span>.log(<span class="string">'您摁下了 control 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.cmd) <span class="built_in">console</span>.log(<span class="string">'您摁下了 cmd 键!'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.command) <span class="built_in">console</span>.log(<span class="string">'您摁下了 command 键!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义快捷键"><a href="#定义快捷键" class="headerlink" title="定义快捷键"></a>定义快捷键</h2><blockquote>
+<p><code>hotkeys([keys:&lt;String&gt;], [option:[string|object|function]], [callback:&lt;function&gt;])</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 F5 快捷键</span></span><br><span class="line">hotkeys(<span class="string">'f5'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event,handler</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="comment">// 阻止WINDOWS系统下的默认刷新事件</span></span><br><span class="line">  event.preventDefault() </span><br><span class="line">  alert(<span class="string">'你按下了 F5 键!'</span>) </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 返回 false 将停止活动，并阻止默认浏览器事件</span></span><br><span class="line"><span class="comment">// Mac OS 系统 定义 `command+r` 为刷新快捷键</span></span><br><span class="line">hotkeys(<span class="string">'ctrl+r, command+r'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'停止刷新!'</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义a快捷键</span></span><br><span class="line">hotkeys(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event,handler</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="keyword">if</span>(event.target === <span class="string">"input"</span>)&#123;</span><br><span class="line">    alert(<span class="string">'你在输入框中按下了 a!'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  alert(<span class="string">'你按下了 a!'</span>) </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 ctrl+a、ctrl+b、r、f 四组快捷键</span></span><br><span class="line">hotkeys(<span class="string">'ctrl+a,ctrl+b,r,f'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event,handler</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">switch</span>(handler.key)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"ctrl+a"</span>: alert(<span class="string">'你按下了ctrl+a!'</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"ctrl+b"</span>: alert(<span class="string">'你按下了ctrl+b!'</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"r"</span>: alert(<span class="string">'你按下了r!'</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"f"</span>: alert(<span class="string">'你按下了f!'</span>); <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//handler.scope 范围</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个快捷方式做同样的事情</span></span><br><span class="line">hotkeys(<span class="string">'⌘+r, ctrl+r'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对所有摁键执行任务</span></span><br><span class="line">hotkeys(<span class="string">'*'</span>,<span class="string">'wcj'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'干点活儿'</span>,e);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"key.getScope()::"</span>,hotkeys.getScope());</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.shift) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 shift 键！'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.ctrl) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 ctrl 键！'</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.alt) <span class="built_in">console</span>.log(<span class="string">'大哥你摁下了 alt 键！'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以设置自定义的分割符</span></span><br><span class="line">hotkeys(<span class="string">'ctrl-y, ctrl-a'</span>, &#123;<span class="attr">splitKey</span>: <span class="string">'-'</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'you press bind keys'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="option"><a href="#option" class="headerlink" title="option"></a>option</h4><ul>
+<li><code>scope&lt;String&gt;</code></li>
+<li><code>element&lt;HTMLElement&gt;</code></li>
+<li><code>keyup&lt;Boolean&gt;</code></li>
+<li><code>keydown&lt;Boolean&gt;</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hotkeys(<span class="string">'o, enter'</span>, &#123;</span><br><span class="line">  scope: <span class="string">'wcj'</span>,</span><br><span class="line">  element: <span class="built_in">document</span>.getElementById(<span class="string">'warpper'</span>),</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'do something else'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换快捷键"><a href="#切换快捷键" class="headerlink" title="切换快捷键"></a>切换快捷键</h2><p>如果在单页面在不同的区域，相同的快捷键，干不同的事儿，之间来回切换。O(∩_∩)O ！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个快捷键，有可能干的活儿不一样哦</span></span><br><span class="line">hotkeys(<span class="string">'ctrl+o, ctrl+alt+enter'</span>, <span class="string">'scope1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'你好看'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">hotkeys(<span class="string">'ctrl+o, enter'</span>, <span class="string">'scope2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'你好丑陋啊！'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你摁 “ctrl+o”组合键</span></span><br><span class="line"><span class="comment">// 当scope等于 scope1 ，执行 回调事件打印出 “你好看”，</span></span><br><span class="line"><span class="comment">// 当scope等于 scope2 ，执行 回调事件打印出 “你好丑陋啊！”，</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过setScope设定范围scope</span></span><br><span class="line">hotkeys.setScope(<span class="string">'scope1'</span>); <span class="comment">// 默认所有事儿都干哦</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="标记快捷键范围"><a href="#标记快捷键范围" class="headerlink" title="标记快捷键范围"></a>标记快捷键范围</h2><p><strong>删除</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.deleteScope(<span class="string">'scope1'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.getScope();</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.setScope(<span class="string">'scope1'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="解除绑定"><a href="#解除绑定" class="headerlink" title="解除绑定"></a>解除绑定</h2><p><code>hotkeys.unbind()</code> 解除绑定的所有快捷键<br><code>hotkeys.unbind(&quot;ctrl+o, ctrl+alt+enter&quot;)</code> 解除绑定两组快捷键<br><code>hotkeys.unbind(&quot;ctrl+o&quot;,&quot;files&quot;)</code> 解除绑定名字叫files钟的一组快捷键  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解除绑定 'a' 程序函数</span></span><br><span class="line">hotkeys.unbind(<span class="string">'a'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅针对单个范围解除绑定快捷键</span></span><br><span class="line"><span class="comment">// 如果未指定范围，则默认为当前范围（hotkeys.getScope()）</span></span><br><span class="line">hotkeys.unbind(<span class="string">'o, enter'</span>, <span class="string">'issues'</span>);</span><br><span class="line">hotkeys.unbind(<span class="string">'o, enter'</span>, <span class="string">'files'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过函数来解除绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">hotkeys(<span class="string">'a'</span>, example);</span><br><span class="line">hotkeys.unbind(<span class="string">'a'</span>, example);</span><br><span class="line"></span><br><span class="line">hotkeys(<span class="string">'a'</span>, <span class="string">'issues'</span>, example);</span><br><span class="line">hotkeys.unbind(<span class="string">'a'</span>, <span class="string">'issues'</span>, example);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">可以通过传入对象解除绑定的快捷键</span><br><span class="line">hotkeys.unbind(&#123;</span><br><span class="line">  key: <span class="string">'ctrl-e,ctrl-u'</span>,</span><br><span class="line">  scope: <span class="string">'issues'</span>,</span><br><span class="line">  spitKey: <span class="string">'-'</span></span><br><span class="line">&#125;)</span><br><span class="line">传入数组可同时解除多个scope下绑定的快捷键</span><br><span class="line">hotkeys.unbind([</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'a, ctrl+r'</span>,</span><br><span class="line">    scope: <span class="string">'issues'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'+, ctrl-y'</span>,</span><br><span class="line">    scope: <span class="string">'test'</span>,</span><br><span class="line">    splitKey: <span class="string">'-'</span></span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="键判断"><a href="#键判断" class="headerlink" title="键判断"></a>键判断</h2><p>判断摁下的键是否为某个键</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hotkeys(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(hotkeys.isPressed(<span class="string">"a"</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="built_in">console</span>.log(hotkeys.isPressed(<span class="string">"A"</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="built_in">console</span>.log(hotkeys.isPressed(<span class="number">65</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取摁下键值"><a href="#获取摁下键值" class="headerlink" title="获取摁下键值"></a>获取摁下键值</h2><p>获取摁下绑定键的键值 <code>hotkeys.getPressedKeyCodes()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hotkeys(<span class="string">'command+ctrl+shift+a,f'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(hotkeys.getPressedKeyCodes()); <span class="comment">//=&gt; [17, 65] 或者 [70]</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="keyup"><a href="#keyup" class="headerlink" title="keyup"></a>keyup</h2><p><strong>key down</strong> 和 <strong>key up</strong> 将都执行回调事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hotkeys(<span class="string">'ctrl+a,alt+a+s'</span>, &#123; <span class="attr">keyup</span>: <span class="literal">true</span> &#125;, (evn, handler) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span>(evn.type === <span class="string">'keydown'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'keydown:'</span>, evn.type, handler, handler.key);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(evn.type === <span class="string">'keyup'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'keyup:'</span>, evn.type, handler, handler.key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p><code>INPUT</code>  <code>SELECT</code> <code>TEXTAREA</code> 默认不处理。<br><code>hotkeys.filter</code> 返回 <code>true</code> 快捷键设置才会起作用，<code>false</code> 快捷键设置失效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.filter = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如何增加过滤可编辑标签 &lt;div contentEditable="true"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">// contentEditable老浏览器不支持滴</span></span><br><span class="line">hotkeys.filter = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.target || event.srcElement).tagName;</span><br><span class="line">  <span class="keyword">return</span> !(tagName.isContentEditable ||</span><br><span class="line">  tagName == <span class="string">'INPUT'</span> ||</span><br><span class="line">  tagName == <span class="string">'SELECT'</span> ||</span><br><span class="line">  tagName == <span class="string">'TEXTAREA'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">hotkeys.filter = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.target || event.srcElement).tagName;</span><br><span class="line">  hotkeys.setScope(<span class="regexp">/^(INPUT|TEXTAREA|SELECT)$/</span>.test(tagName) ? <span class="string">'input'</span> : <span class="string">'other'</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="兼容模式"><a href="#兼容模式" class="headerlink" title="兼容模式"></a>兼容模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> k = hotkeys.noConflict();</span><br><span class="line">k(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"这里可以干一些事儿"</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">hotkeys()</span><br><span class="line"><span class="comment">// --&gt;Uncaught TypeError: hotkeys is not a function(anonymous function)</span></span><br><span class="line"><span class="comment">// @ VM2170:2InjectedScript._evaluateOn</span></span><br><span class="line"><span class="comment">// @ VM2165:883InjectedScript._evaluateAndWrap</span></span><br><span class="line"><span class="comment">// @ VM2165:816InjectedScript.evaluate @ VM2165:682</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>安装依赖，运行自重载构建，获取代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git https://github.com/jaywcjlove/hotkeys.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> hotkeys     <span class="comment"># 进入目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install    <span class="comment"># 或者使用 yarn install 安装依赖</span></span></span><br></pre></td></tr></table></figure>
+
+<p>运行下面命令自动重载构建：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run watch</span></span><br></pre></td></tr></table></figure>
+
+<p>运行稳定环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run doc:dev</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要贡献，请 fork <code>Hotkeys.js</code>, 并添加您的测试代码(在 test 目录中)，并提交一个 PR。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run <span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm run <span class="built_in">test</span>:watch <span class="comment"># Development model</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="./LICENSE">MIT © Kenny Wong</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2019/11/23/PHP-Redis-秒杀/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/23/PHP-Redis-秒杀/" class="post-title-link" itemprop="url">PHP Redis 秒杀</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-23 09:39:49" itemprop="dateCreated datePublished" datetime="2019-11-23T09:39:49+08:00">2019-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Redis 初始化</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $number 商品数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initRedis</span><span class="params">($goodsId, $number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $storeKey = <span class="string">"goods_&#123;$goodsId&#125;_store"</span>;</span><br><span class="line"></span><br><span class="line">    $redis = <span class="keyword">new</span> redis();</span><br><span class="line">    $redis-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    $redis-&gt;del($storeKey);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $number; $i++) &#123;</span><br><span class="line">        $redis-&gt;lpush($storeKey, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 秒杀入口</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kills</span><span class="params">($goodsId)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $storeKey = <span class="string">"goods_&#123;$goodsId&#125;_store"</span>;</span><br><span class="line"></span><br><span class="line">    $redis = <span class="keyword">new</span> redis();</span><br><span class="line">    $redis-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    $count = $redis-&gt;lpop($storeKey);</span><br><span class="line">    <span class="keyword">if</span> ($count) &#123;</span><br><span class="line">        $data = <span class="string">""</span>;</span><br><span class="line">        $data[<span class="string">"order_sn"</span>] = rand(<span class="number">1000</span>, <span class="number">9999</span>);	<span class="comment">// 测试订单号</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 直接进行数据库操作</span></span><br><span class="line">        $orderModel = <span class="keyword">new</span> orderModel();</span><br><span class="line">        $result = $orderModel-&gt;save($data);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($result !== <span class="keyword">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $redis-&gt;lpush($storeKey, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 添加队列后继操作</span></span><br><span class="line">        Queue::push($job, $data, <span class="string">'seckill'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2019/11/20/thinkphp-后台地址加密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/20/thinkphp-后台地址加密/" class="post-title-link" itemprop="url">thinkphp 后台地址加密</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-20 10:25:59" itemprop="dateCreated datePublished" datetime="2019-11-20T10:25:59+08:00">2019-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>route.php</code> 文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">array</span> (</span><br><span class="line">  <span class="string">'l1n6yun$'</span> =&gt; <span class="string">'admin/Index/index'</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>``app\admin\controller\AdminBaseController` 类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">parent</span>::initialize();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取登陆session</span></span><br><span class="line">    $sessionAdminId = session(<span class="string">'ADMIN_ID'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果没有登陆跳转到登陆页面</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($sessionAdminId)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirect(url(<span class="string">"admin/Public/login"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>app\admin\controller\IndexController</code> 类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 后台设置</span></span><br><span class="line">    $adminSettings = cmf_get_option(<span class="string">'admin_settings'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// $adminSettings['admin_password'] = "l1n6yun" 后台加密地址 </span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>($adminSettings[<span class="string">'admin_password'</span>]) || <span class="keyword">$this</span>-&gt;request-&gt;path() == $adminSettings[<span class="string">'admin_password'</span>]) &#123;</span><br><span class="line">        $adminId = cmf_get_current_admin_id();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>($adminId)) &#123;</span><br><span class="line">            session(<span class="string">"__LOGIN_BY_CMF_ADMIN_PW__"</span>, <span class="number">1</span>);<span class="comment">//设置后台登录加密码</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">parent</span>::initialize();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>app\admin\controller\PublicController</code> 类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PublicController</span> <span class="keyword">extends</span> <span class="title">AdminBaseController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="comment">// 设置后台登录加密码</span></span><br><span class="line">        $loginAllowed = session(<span class="string">"__LOGIN_BY_CMF_ADMIN_PW__"</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>($loginAllowed)) &#123;</span><br><span class="line">            <span class="keyword">return</span> redirect(cmf_get_root() . <span class="string">"/"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        session(<span class="string">"__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__"</span>, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;fetch(<span class="string">":login"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">doLogin</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       	<span class="comment">// 判断登录页面是否显示成功</span></span><br><span class="line">        $loginAllowed = session(<span class="string">"__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__"</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>($loginAllowed)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;error(<span class="string">'非法登录!'</span>, cmf_get_root() . <span class="string">'/'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 登陆逻辑 ...</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 登陆成功</span></span><br><span class="line">        <span class="keyword">if</span>($result)</span><br><span class="line">        &#123;</span><br><span class="line">            session(<span class="string">'ADMIN_ID'</span>, $result[<span class="string">"id"</span>]);</span><br><span class="line">            session(<span class="string">'name'</span>, $result[<span class="string">"user_login"</span>]);</span><br><span class="line">            </span><br><span class="line">            session(<span class="string">"__LOGIN_BY_CMF_ADMIN_PW__"</span>, <span class="keyword">null</span>);</span><br><span class="line">            session(<span class="string">"__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__"</span>, <span class="keyword">null</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">$this</span>-&gt;success(lang(<span class="string">'LOGIN_SUCCESS'</span>), url(<span class="string">"admin/Index/index"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

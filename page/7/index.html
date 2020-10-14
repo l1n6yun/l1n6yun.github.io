@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="l1n6yun&#39;s Blog">
+<meta property="og:url" content="http://l1n6yun.github.io/page/7/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="l1n6yun&#39;s Blog">
+<meta name="twitter:description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/page/7/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/06/07/MySQL使用For-Update锁表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/06/07/MySQL使用For-Update锁表/" class="post-title-link" itemprop="url">MySQL使用For Update锁表</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-07 21:53:51" itemprop="dateCreated datePublished" datetime="2017-06-07T21:53:51+08:00">2017-06-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有时为了保证数据的一致性，需要对数据库进行锁表操作，在Mysql中则可以使用 <code>FOR UPDATE</code> 命令锁表，出于对性能的考虑，则需要判断 Mysql 使用 <code>FOR UPDATE</code> 命令锁表到底是锁定的整个表，还是仅仅锁定查询记录行。</p>
+<ul>
+<li>首先测试主键过滤条件的情况，开始事务A：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select o.id,o.desc,o.action,o.create_time from oplog o <span class="built_in">where</span> o.id between 154950 and 154975;</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">| id     | desc | action | create_time         |</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">| 154950 | 9999 | 9      | 2017-06-07 10:46:40 |</span><br><span class="line">| 154952 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154953 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154954 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154955 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154956 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接着开始事务B，发现事务B能立刻执行，表明对where条件为主键的情况，是锁记录行，不是锁表：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select o.id,o.desc,o.action,o.create_time from oplog o <span class="built_in">where</span> o.id between 154890 and 154899 <span class="keyword">for</span> update;</span><br><span class="line">+--------+-------------------------------------------------------------------------------+--------+---------------------+</span><br><span class="line">| id     | desc                                                                          | action | create_time         |</span><br><span class="line">+--------+-------------------------------------------------------------------------------+--------+---------------------+</span><br><span class="line">| 154897 | 746db81780f0                                                                  | 1      | 2017-04-01 09:39:17 |</span><br><span class="line">| 154898 | 9999                                                                          | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154899 | 9                                                                             | 1      | 2017-04-01 09:40:13 |</span><br><span class="line">+--------+-------------------------------------------------------------------------------+--------+---------------------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提交上述两个事物，重新开始事务A：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select o.id,o.desc,o.action,o.create_time from oplog o <span class="built_in">where</span> o.desc=<span class="string">'9999'</span> <span class="keyword">for</span> update;</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">| id     | desc | action | create_time         |</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">| 154950 | 9999 | 9      | 2017-06-07 10:46:40 |</span><br><span class="line">| 154952 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154953 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154954 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154955 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">| 154956 | 9999 | 2      | 2017-06-07 10:18:56 |</span><br><span class="line">+--------+------+--------+---------------------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再开始事务B，查询和事务A不一样的条件，结果发现事务B发生了等待：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select o.id,o.desc,o.action,o.create_time from oplog o <span class="built_in">where</span> o.desc=<span class="string">'66666'</span> <span class="keyword">for</span> update;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再对UNIQUE字段(camp_offer_id)条件进行测试，开始事务A：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select g.id,g.camp_offer_id,g.create_time from group g <span class="built_in">where</span> g.camp_offer_id =<span class="string">'XX03'</span> <span class="keyword">for</span> update;</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">| id | camp_offer_id | create_time         |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">|  7 | XX03          | 2017-03-22 17:43:29 |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开始事务B，发现事务B能顺利执行：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select g.id,g.camp_offer_id,g.create_time from group g <span class="built_in">where</span> g.camp_offer_id =<span class="string">'XX04'</span> <span class="keyword">for</span> update;</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">| id | camp_offer_id | create_time         |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">|  8 | XX04          | 2017-03-22 17:43:39 |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再不能使用索引条件的语句进行测试，开启事务A：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt; select g.id,g.camp_offer_id,g.create_time from ra_customer_group g <span class="built_in">where</span> g.camp_offer_id like <span class="string">"%XX%"</span> <span class="keyword">for</span> update;</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">| id | camp_offer_id | create_time         |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">|  5 | XX01          | 2017-03-22 17:43:05 |</span><br><span class="line">|  6 | XX02          | 2017-03-22 17:43:18 |</span><br><span class="line">|  7 | XX03          | 2017-03-22 17:43:29 |</span><br><span class="line">+----+---------------+---------------------+</span><br><span class="line">3 rows <span class="keyword">in</span> <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开启查询事务B,发现发生了锁等待：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; begin;</span><br><span class="line">Query OK, 0 rows affected</span><br><span class="line">mysql&gt;  select g.id,g.camp_offer_id,g.create_time from ra_customer_group g where g.camp_offer_id = &quot;9000008&quot; for update;</span><br></pre></td></tr></table></figure>
+
+<p>通过对一系列的测试对比不难发现，SQL 条件中能使用索引进行数据检索时，则 <code>FOR UPDATE</code> 命令使用的是行级锁，当不能使用索引进行数据检索时，<code>FOR UPDATE</code> 命令使用的是表锁。</p>
+<blockquote>
+<p>MySQL 的 InnoDB 引擎只有通过索引条件检索数据，InnoDB 才使用行级锁，否则，InnoDB 将使用表锁！</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/05/27/Highlight.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/27/Highlight.js/" class="post-title-link" itemprop="url">Highlight.js</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-27 20:10:09" itemprop="dateCreated datePublished" datetime="2017-05-27T20:10:09+08:00">2017-05-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Highlight-js"><a href="#Highlight-js" class="headerlink" title="Highlight.js"></a>Highlight.js</h1><p><a href="https://travis-ci.org/isagalaev/highlight.js" target="_blank" rel="noopener"><img src="https://travis-ci.org/isagalaev/highlight.js.svg?branch=master" alt="Build Status"></a></p>
+<p>Highlight.js is a syntax highlighter written in JavaScript. It works in<br>the browser as well as on the server. It works with pretty much any<br>markup, doesn’t depend on any framework and has automatic language<br>detection.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>The bare minimum for using highlight.js on a web page is linking to the<br>library along with one of the styles and calling<br><a href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload" target="_blank" rel="noopener"><code>initHighlightingOnLoad</code></a>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/path/to/styles/default.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/path/to/highlight.pack.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>hljs.initHighlightingOnLoad();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This will find and highlight code inside of <code>&lt;pre&gt;&lt;code&gt;</code> tags; it tries<br>to detect the language automatically. If automatic detection doesn’t<br>work for you, you can specify the language in the <code>class</code> attribute:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">"html"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The list of supported language classes is available in the <a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="noopener">class<br>reference</a>.  Classes can also be prefixed with either <code>language-</code> or<br><code>lang-</code>.</p>
+<p>To disable highlighting altogether use the <code>nohighlight</code> class:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">"nohighlight"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Custom-Initialization"><a href="#Custom-Initialization" class="headerlink" title="Custom Initialization"></a>Custom Initialization</h2><p>When you need a bit more control over the initialization of<br>highlight.js, you can use the <a href="http://highlightjs.readthedocs.io/en/latest/api.html#highlightblock-block" target="_blank" rel="noopener"><code>highlightBlock</code></a> and <a href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options" target="_blank" rel="noopener"><code>configure</code></a><br>functions. This allows you to control <em>what</em> to highlight and <em>when</em>.</p>
+<p>Here’s an equivalent way to calling <a href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload" target="_blank" rel="noopener"><code>initHighlightingOnLoad</code></a> using<br>jQuery:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">'pre code'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">    hljs.highlightBlock(block);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>You can use any tags instead of <code>&lt;pre&gt;&lt;code&gt;</code> to mark up your code. If<br>you don’t use a container that preserve line breaks you will need to<br>configure highlight.js to use the <code>&lt;br&gt;</code> tag:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hljs.configure(&#123;<span class="attr">useBR</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">'div.code'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">  hljs.highlightBlock(block);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>For other options refer to the documentation for <a href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options" target="_blank" rel="noopener"><code>configure</code></a>.</p>
+<h2 id="Web-Workers"><a href="#Web-Workers" class="headerlink" title="Web Workers"></a>Web Workers</h2><p>You can run highlighting inside a web worker to avoid freezing the browser<br>window while dealing with very big chunks of code.</p>
+<p>In your main script:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> code = <span class="built_in">document</span>.querySelector(<span class="string">'#code'</span>);</span><br><span class="line">  <span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">'worker.js'</span>);</span><br><span class="line">  worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; code.innerHTML = event.data; &#125;</span><br><span class="line">  worker.postMessage(code.textContent);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>In worker.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  importScripts(<span class="string">'&lt;path&gt;/highlight.pack.js'</span>);</span><br><span class="line">  <span class="keyword">var</span> result = self.hljs.highlightAuto(event.data);</span><br><span class="line">  postMessage(result.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Getting-the-Library"><a href="#Getting-the-Library" class="headerlink" title="Getting the Library"></a>Getting the Library</h2><p>You can get highlight.js as a hosted, or custom-build, browser script or<br>as a server module. Right out of the box the browser script supports<br>both AMD and CommonJS, so if you wish you can use RequireJS or<br>Browserify without having to build from source. The server module also<br>works perfectly fine with Browserify, but there is the option to use a<br>build specific to browsers rather than something meant for a server.<br>Head over to the <a href="https://highlightjs.org/download/" target="_blank" rel="noopener">download page</a> for all the options.</p>
+<p><strong>Don’t link to GitHub directly.</strong> The library is not supposed to work straight<br>from the source, it requires building. If none of the pre-packaged options<br>work for you refer to the <a href="http://highlightjs.readthedocs.io/en/latest/building-testing.html" target="_blank" rel="noopener">building documentation</a>.</p>
+<p><strong>The CDN-hosted package doesn’t have all the languages.</strong> Otherwise it’d be<br>too big. If you don’t see the language you need in the <a href="https://highlightjs.org/download/" target="_blank" rel="noopener">“Common” section</a>,<br>it can be added manually:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>On Almond.</strong> You need to use the optimizer to give the module a name. For<br>example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Highlight.js is released under the BSD License. See <a href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE" target="_blank" rel="noopener">LICENSE</a> file<br>for details.</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p>The official site for the library is at <a href="https://highlightjs.org/" target="_blank" rel="noopener">https://highlightjs.org/</a>.</p>
+<p>Further in-depth documentation for the API and other topics is at<br><a href="http://highlightjs.readthedocs.io/" target="_blank" rel="noopener">http://highlightjs.readthedocs.io/</a>.</p>
+<p>Authors and contributors are listed in the <a href="https://github.com/isagalaev/highlight.js/blob/master/AUTHORS.en.txt" target="_blank" rel="noopener">AUTHORS.en.txt</a> file.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/05/22/CSS改变png图片颜色/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/22/CSS改变png图片颜色/" class="post-title-link" itemprop="url">CSS改变png图片颜色</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-22 22:30:06" itemprop="dateCreated datePublished" datetime="2017-05-22T22:30:06+08:00">2017-05-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.icon</span>&#123;<span class="attribute">height</span>:<span class="number">20px</span>;<span class="attribute">width</span>:<span class="number">20px</span>;<span class="attribute">overflow</span>: hidden;&#125;</span><br><span class="line"><span class="selector-class">.icon</span> <span class="selector-class">.icon</span>&#123;<span class="attribute">width</span>: <span class="number">20px</span>;<span class="attribute">height</span>: <span class="number">20px</span>;<span class="attribute">display</span>:block;<span class="attribute">position</span>: relative;<span class="attribute">left</span>: -<span class="number">20px</span>;<span class="attribute">border-right</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(img/icon.png) no-repeat;<span class="attribute">-webkit-filter</span>: <span class="built_in">drop-shadow</span>(#000 20px 0);<span class="attribute">filter</span>: <span class="built_in">drop-shadow</span>(#000 20px 0);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"icon"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">'icon'</span> <span class="attr">id</span>=<span class="string">'icon'</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span> <span class="attr">id</span>=<span class="string">'color'</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'color'</span>).onchange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> c = <span class="keyword">this</span>.value;</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'icon'</span>).style.webkitFilter = <span class="string">'drop-shadow('</span>+c+<span class="string">' 20px 0)'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在谷歌、火狐手机端、都是可以用的，使用的技术是 css 里滤镜里的投影。</p>
+<p>我要睡到下一个世界大战</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/05/22/HTML5滚屏特效/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/05/22/HTML5滚屏特效/" class="post-title-link" itemprop="url">HTML5滚屏特效</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-22 00:04:02" itemprop="dateCreated datePublished" datetime="2017-05-22T00:04:02+08:00">2017-05-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">*&#123;<span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">padding</span>: <span class="number">0px</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">overflow</span>: hidden;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">overflow</span>: visible;<span class="attribute">transition</span>:transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(0.86,0,0.03,1);<span class="attribute">-webkit-transition</span>:-webkit-transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(0.86,0,0.03,1);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span> <span class="selector-class">.section</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.section-1</span>&#123;<span class="attribute">background</span>: <span class="number">#0f0</span>&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-2</span>&#123;<span class="attribute">background</span>: <span class="number">#FF0</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-1</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(0);<span class="attribute">-webkit-transform</span>:<span class="built_in">translateY</span>(0);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-2</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(-100%);<span class="attribute">-webkit-transform</span>:<span class="built_in">translateY</span>(-100%);&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">position</span>:fixed;<span class="attribute">right</span>:<span class="number">4%</span>;<span class="attribute">top</span>:<span class="number">50%</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">height</span>:<span class="number">14px</span>;<span class="attribute">cursor</span>:pointer;<span class="attribute">text-indent</span>:-<span class="number">9999px</span>;<span class="attribute">border-radius</span>:<span class="number">50%</span>;<span class="attribute">-webkit-border-radius</span>:<span class="number">50%</span>;<span class="attribute">margin-bottom</span>:<span class="number">12px</span>; <span class="attribute">background</span>:<span class="number">#BD362F</span>;<span class="attribute">text-align</span>:center; <span class="attribute">color</span>:<span class="number">#fff</span>; <span class="attribute">onsor</span>:pointer;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span><span class="selector-class">.on</span>&#123; <span class="attribute">background</span>:<span class="number">#fff</span>&#125;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">'section-wrap put-section-1'</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section section-1"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'title'</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"tit"</span>&gt;</span>111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"section section-2"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'title'</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"tit"</span>&gt;</span>222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"section-btn"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"on"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">'jiaoben3135/js/jquery.min.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> i=<span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> $btn = $(<span class="string">'.section-btn li'</span>),</span></span><br><span class="line"><span class="javascript">		$wrap = $(<span class="string">'.section-wrap'</span>),</span></span><br><span class="line"><span class="javascript">		$arrow = $(<span class="string">'.arrow'</span>);</span></span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">/*当前页面赋值*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">up</span>(<span class="params"></span>)</span>&#123;i++;<span class="keyword">if</span>(i&gt;$btn.length)&#123;i=<span class="number">1</span>&#125;;&#125;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">down</span>(<span class="params"></span>)</span>&#123;i--;<span class="keyword">if</span>(i&lt;<span class="number">1</span>)&#123;i=$btn.length&#125;;&#125;</span></span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">// /*页面滑动*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		$btn.eq(i<span class="number">-1</span>).addClass(<span class="string">'on'</span>).siblings().removeClass(<span class="string">'on'</span>);	</span></span><br><span class="line"><span class="javascript">		$wrap.attr(<span class="string">"class"</span>,<span class="string">"section-wrap"</span>).addClass(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"put-section-"</span>+i; &#125;).find(<span class="string">'.section'</span>).eq(i).find(<span class="string">'.title'</span>).addClass(<span class="string">'active'</span>);</span></span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">// /*右侧按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$btn.each(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		$(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">			i=index+1;</span><br><span class="line">			run();</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">// /*翻页按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$arrow.one(<span class="string">'click'</span>,go);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">		up();run();	</span><br><span class="line"><span class="javascript">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$arrow.one(<span class="string">'click'</span>,go)&#125;,<span class="number">1000</span>)</span></span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应鼠标*/</span></span></span><br><span class="line"><span class="javascript">	$wrap.one(<span class="string">'mousewheel'</span>,mouse_);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">mouse_</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">if</span>(event.deltaY&lt;<span class="number">0</span>) &#123;up()&#125;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">else</span>&#123;down()&#125;</span></span><br><span class="line">		run();</span><br><span class="line"><span class="javascript">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$wrap.one(<span class="string">'mousewheel'</span>,mouse_)&#125;,<span class="number">1000</span>)</span></span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应键盘上下键*/</span></span></span><br><span class="line"><span class="javascript">	$(<span class="built_in">document</span>).one(<span class="string">'keydown'</span>,k);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">k</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> key=e.keyCode||e.which||e.charCode;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">switch</span>(key)	&#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">38</span>: down();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">40</span>: up();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line">		&#125;;</span><br><span class="line"><span class="javascript">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$(<span class="built_in">document</span>).one(<span class="string">'keydown'</span>,k)&#125;,<span class="number">1000</span>);</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/18/pthreads/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/18/pthreads/" class="post-title-link" itemprop="url">pthreads</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-18 06:28:41" itemprop="dateCreated datePublished" datetime="2017-04-18T06:28:41+08:00">2017-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Threading-for-PHP-Share-Nothing-Do-Everything"><a href="#Threading-for-PHP-Share-Nothing-Do-Everything" class="headerlink" title="Threading for PHP - Share Nothing, Do Everything :)"></a>Threading for PHP - Share Nothing, Do Everything :)</h1><p><a href="https://travis-ci.org/krakjoe/pthreads" target="_blank" rel="noopener"><img src="https://travis-ci.org/krakjoe/pthreads.svg?branch=master" alt="Build Status"></a><br><a href="https://ci.appveyor.com/project/krakjoe/pthreads/branch/master" target="_blank" rel="noopener"><img src="https://ci.appveyor.com/api/projects/status/5pyrhbrxcgenkpbk/branch/master?svg=true" alt="Build status"></a><br><a href="http://isitmaintained.com/project/krakjoe/pthreads" title="Average time to resolve an issue" target="_blank" rel="noopener"><img src="http://isitmaintained.com/badge/resolution/krakjoe/pthreads.svg" alt="Average time to resolve an issue"></a><br><a href="http://isitmaintained.com/project/krakjoe/pthreads" title="Percentage of issues still open" target="_blank" rel="noopener"><img src="http://isitmaintained.com/badge/open/krakjoe/pthreads.svg" alt="Percentage of issues still open"></a><br><a href="https://gitter.im/krakjoe/pthreads?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank" rel="noopener"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/krakjoe/pthreads"></a></p>
+<p>This project provides multi-threading that is compatible with PHP based on Posix Threads.</p>
+<h2 id="Highlights"><a href="#Highlights" class="headerlink" title="Highlights"></a>Highlights</h2><ul>
+<li>An easy to use, quick to learn OO Threading API for PHP7</li>
+<li>Execute any and all predefined and user declared methods and functions, including closures.</li>
+<li>Ready made synchronization included</li>
+<li>A world of possibilities …</li>
+</ul>
+<h2 id="Technical-Features"><a href="#Technical-Features" class="headerlink" title="Technical Features"></a>Technical Features</h2><ul>
+<li>High Level Threading</li>
+<li>Synchronization</li>
+<li>Worker Threads</li>
+<li>Thread Pools</li>
+<li>Complete Support for OO - ie. traits, interfaces, inheritance etc</li>
+<li>Full read/write/execute support for Threaded objects</li>
+</ul>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>PHP7+</li>
+<li>ZTS Enabled ( Thread Safety )</li>
+<li>Posix Threads Implementation</li>
+</ul>
+<p>Testing has been carried out on x86, x64 and ARM, in general you just need a compiler and pthread.h</p>
+<h2 id="PHP7"><a href="#PHP7" class="headerlink" title="PHP7"></a>PHP7</h2><p>For PHP7, pthreads has been almost completely rewritten to be more efficient, easier to use and more robust.</p>
+<p>While documentation on php.net is waiting to be updated and translated, I will give a brief changelog here:</p>
+<p>The API for v3 has changed, the following things have been removed:</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>```Cond```, and ```Stackable```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Threaded::lock``` and ```Threaded::unlock</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Threaded::from</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>(there be dragons)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Thread::detach</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> * ```Threaded::getTerminationInfo``` (this was unsafe, a better, safe impl can be done in userland)</span><br><span class="line"> * Special behaviour of ```protected``` and ```private``` methods on ```Threaded``` objects</span><br><span class="line"></span><br><span class="line">The following things have significant changes:</span><br><span class="line"> </span><br><span class="line"> * The method by which ```Threaded``` objects are stored as member properties of other ```Threaded``` objects.</span><br><span class="line"> * The structure used by a ```Worker``` for stack (```Collectable``` objects to execute inserted by ```Worker::stack```).</span><br><span class="line"> * The ```Pool::collect``` mechanism was moved from ```Pool``` to ```Worker``` for a more robust ```Worker``` and simpler ```Pool``` inheritance.</span><br><span class="line"> * The method by which iteration occurs on ```Threaded``` objects, such that it uses memory more efficiently.</span><br><span class="line"> * ```Threaded::synchronized``` provides true synchronization (state and properties lock).</span><br><span class="line"> * ```Worker``` objects no longer require that you retain a reference to ```Collectable``` objects on the stack.</span><br><span class="line"> * Unified monitor (cond/mutex/state) for ```Threaded``` objects</span><br><span class="line"> * ```Threaded``` members of ```Threaded``` objects are immutable</span><br><span class="line"> * ```Volatile``` objects, excempt from immutability</span><br><span class="line"> * ```array``` coerced to ```Volatile``` when set as member of ```Threaded</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>converted to interface, to make ```extends Volatile implements Collectable``` possible.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Some blog posts explaining these changes:</span><br><span class="line"></span><br><span class="line"> * [A Letter from the Future](http://blog.krakjoe.ninja/2015/08/a-letter-from-future.html)</span><br><span class="line"> * [Addendum to A Letter from the Future](http://blog.krakjoe.ninja/2015/09/addendum-letter-from-future.html)</span><br><span class="line"></span><br><span class="line">As of yet, documentation has not been updated to reflect these changes ... sorry about that ... one human ...</span><br><span class="line"></span><br><span class="line">More detail to come ...</span><br><span class="line"></span><br><span class="line">### Supported PHP Versions</span><br><span class="line"></span><br><span class="line">pthreads v3 requires PHP7 or above. PHP5 needs to use pthreads v2 which can be found in the PHP5 branch.</span><br><span class="line"></span><br><span class="line">### Windows Support</span><br><span class="line"></span><br><span class="line">Yes !! Windows support is offered thanks to the pthread-w32 library.</span><br><span class="line"></span><br><span class="line">Releases for Windows can be found: http://windows.php.net/downloads/pecl/releases/pthreads/</span><br><span class="line"></span><br><span class="line">##### Simple Windows Installation</span><br><span class="line"></span><br><span class="line">* Add `pthreadVC2.dll` (included with the Windows releases) to the same directory as `php.exe` eg. `C:\xampp\php`</span><br><span class="line">* Add `php_pthreads.dll` to PHP extention folder eg. `C:\xampp\php\ext`</span><br><span class="line"></span><br><span class="line">### Mac OSX Support</span><br><span class="line"></span><br><span class="line">Yes !! Users of Mac will be glad to hear that pthreads is now tested on OSX as part of the development process.</span><br><span class="line"></span><br><span class="line">### Hello World</span><br><span class="line"></span><br><span class="line">As is customary in our line of work:</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">&lt;?php</span><br><span class="line">$thread = new class extends Thread &#123;</span><br><span class="line">	public function run() &#123;</span><br><span class="line">		echo &quot;Hello World\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$thread-&gt;start() &amp;&amp; $thread-&gt;join();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Are-you-serious"><a href="#Are-you-serious" class="headerlink" title="Are you serious ?"></a>Are you serious ?</h3><p>Absolutely, this is not a hack, we <em>don’t</em> use forking or any other such nonsense, what you create are honest to goodness posix threads that are completely compatible with PHP and safe … this is true multi-threading :)</p>
+<h3 id="SAPI-Support"><a href="#SAPI-Support" class="headerlink" title="SAPI Support"></a>SAPI Support</h3><p>pthreads v3 is restricted to operating in CLI only: I have spent many years trying to explain that threads in a web server just don’t make sense, after 1,111 commits to pthreads I have realised that, my advice is going unheeded.</p>
+<p>So I’m promoting the advice to hard and fast fact: <em>you can’t use pthreads safely and sensibly anywhere but CLI.</em></p>
+<p>Thanks for listening ;)</p>
+<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p>Documentation can be found in the PHP manual: <a href="http://docs.php.net/manual/en/book.pthreads.php" target="_blank" rel="noopener">http://docs.php.net/manual/en/book.pthreads.php</a>, and some examples can be found in the “examples” folder in the master repository.</p>
+<p>Further insights and occasional announcements can be read at the <a href="http://pthreads.org" target="_blank" rel="noopener">http://pthreads.org</a> site where pthreads is developed and tested in the real world.</p>
+<p>Here are some links to articles I have prepared for users: everybody should read them before they do anything else:</p>
+<ul>
+<li><a href="https://gist.github.com/krakjoe/6437782" target="_blank" rel="noopener">https://gist.github.com/krakjoe/6437782</a></li>
+<li><a href="https://gist.github.com/krakjoe/9384409" target="_blank" rel="noopener">https://gist.github.com/krakjoe/9384409</a></li>
+</ul>
+<p>If you have had the time to put any cool demo’s together and would like them showcased on pthreads.org please get in touch.</p>
+<p><em>Note: the documentation in the manual and the documents above refer to pthreads v2, it has not yet been updated … anyone want to help ?</em></p>
+<h3 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h3><p>It’s possible to write code that optionally takes advantage of parallelism where the environment has <figure class="highlight plain"><figcaption><span>loaded.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">This is made possible by [pthreads-polyfill](http://github.com/krakjoe/pthreads-polyfill) which can be found on [packagist](https://packagist.org/packages/krakjoe/pthreads-polyfill).</span><br><span class="line"></span><br><span class="line">Having required the appropriate package in your composer.json, the following code is executable everywhere:</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">&lt;?php</span><br><span class="line">require_once(&quot;vendor/autoload.php&quot;);</span><br><span class="line"></span><br><span class="line">if (extension_loaded(&quot;pthreads&quot;)) &#123;</span><br><span class="line">	    echo &quot;Using pthreads\n&quot;;</span><br><span class="line">&#125; else  echo &quot;Using polyfill\n&quot;;</span><br><span class="line"></span><br><span class="line">$pool = new Pool(4);</span><br><span class="line"></span><br><span class="line">$pool-&gt;submit(new class extends Threaded &#123;</span><br><span class="line">        public function run() &#123;</span><br><span class="line">                echo &quot;Hello World\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">while ($pool-&gt;collect()) continue;</span><br><span class="line"></span><br><span class="line">$pool-&gt;shutdown();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Some guidance on getting started, and detail regarding how the polyfill came to exist can be found <a href="http://blog.krakjoe.ninja/2015/09/what-polly-really-wants.html" target="_blank" rel="noopener">here</a>.</p>
+<h3 id="Feedback"><a href="#Feedback" class="headerlink" title="Feedback"></a>Feedback</h3><p>Please submit issues, and send your feedback and suggestions as often as you have them.</p>
+<h3 id="Reporting-Bugs"><a href="#Reporting-Bugs" class="headerlink" title="Reporting Bugs"></a>Reporting Bugs</h3><p>If you believe you have found a bug in pthreads, please open an issue: Include in your report <em>minimal, executable, reproducing code</em>.</p>
+<p>Minimal:     reduce your problem to the smallest amount of code possible; This helps with hunting the bug, but also it helps with integration and regression testing once the bug is fixed.</p>
+<p>Executable:  include all the information required to execute the example code, code snippets are not helpful.</p>
+<p>Reproducing: some bugs don’t show themselves on every execution, that’s fine, mention that in the report and give an idea of how often you encounter the bug.</p>
+<p><strong>It is impossible to help without reproducing code, bugs that are opened without reproducing code will be closed.</strong></p>
+<p>Please include version and operating system information in your report.</p>
+<p><em>Please do not post requests to help with code on github; I spend a lot of time on Stackoverflow, a much better place for asking questions.</em></p>
+<p>Have patience; I am one human being.</p>
+<h3 id="Developers"><a href="#Developers" class="headerlink" title="Developers"></a>Developers</h3><p>There is no defined API for you to create your own threads in your extensions, this project aims to provide Userland threading, it does not aim to provide a threading API for extension developers. I suggest you allow users to decide what they thread and keep your own extension focused on your functionality.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/15/CSS3改变选中文本的默认样式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/15/CSS3改变选中文本的默认样式/" class="post-title-link" itemprop="url">CSS3改变选中文本的默认样式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-15 21:28:00" itemprop="dateCreated datePublished" datetime="2017-04-15T21:28:00+08:00">2017-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="浏览器选中文字的默认样式"><a href="#浏览器选中文字的默认样式" class="headerlink" title="浏览器选中文字的默认样式"></a>浏览器选中文字的默认样式</h2><p>每种浏览器的默认样式都不太一样，我用的是xp（我们就以xp 默认主题），当网页先中文后默认的背景色是一种蓝色，不同浏览器的颜色有些许差异，但大致相同，文字颜色也近乎白色，如下图所示：</p>
+<p>在CSS3来没出现的时候，要改变页面上选中文字的背景色以及文字颜色，是一件相当甚至无法做到的事情。但是，随着CSS3到来，越来越多的浏览器认可并支持，一切又显得那么自然而然。虽然有些顽固的糟老头（如IE浏览器）还不认可这个新生的CSS3，但是，丝毫不影响其在其他浏览器上对UI的又一次改进。</p>
+<p>目前Firefox、Safari、Chrome以及Opera浏览器都支持文本选择属性，如果浏览器不支持该属性，会直接忽略它，所以不会产生任何不良的影响。</p>
+<p>下面就简单展示下这个改进UI体验的小技巧。</p>
+<h2 id="改变默认选中颜色"><a href="#改变默认选中颜色" class="headerlink" title="改变默认选中颜色"></a>改变默认选中颜色</h2><p>首先，简单点的例子，我们可以设置整个页面文本选中的基本样式，如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:<span class="number">#d3d3d3</span>; </span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:<span class="number">#d3d3d3</span>;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-webkit-selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:<span class="number">#d3d3d3</span>;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#555</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>于是，文本选中的默认蓝色背景就此变成了淡灰色，如下图所示，截自Chrome浏览器：</p>
+<p>当然，我们可以使用CSS选择器指定特定标签内容文字选中后的样式状态，例如下面所展示的栗色选中状态：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.maroon</span><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:maroon; </span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.maroon</span><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:maroon;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.maroon</span><span class="selector-pseudo">::-webkit-selection</span> &#123;</span><br><span class="line">	<span class="attribute">background</span>:maroon;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"maroon"</span>&gt;</span>...文字内容。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>会得到类似下图的效果：</p>
+<p>同样的，你可以根据自己的需要，指定CSS选择器以及对应内容文字/图片等的选中样式，这里就不一一举例了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>老实讲，在实际的商业项目中，我是绝不会使用<code>:selection</code>来改变文本选中的样式的，要是个人网站或是设计类网站倒是很有可能使用此属性来让网站蓬荜生辉。当然，每个人在页面重构的过程中所注重的地方时不一样的，所以，对<code>:selection</code>的态度仅代表个人观点。</p>
+<p>本文其实没有什么内容，小技巧展示而已。如果文中有什么表述不准确的地方欢迎指正，也欢迎通过评论进行交流。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/14/ThinkPHP连接SQLite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/14/ThinkPHP连接SQLite/" class="post-title-link" itemprop="url">ThinkPHP连接SQLite</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-14 21:14:34" itemprop="dateCreated datePublished" datetime="2017-04-14T21:14:34+08:00">2017-04-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ThinkPHP/" itemprop="url" rel="index"><span itemprop="name">ThinkPHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>配置：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'DB_TYPE'</span> =&gt; <span class="string">'sqlite'</span>,</span><br><span class="line"><span class="string">'DB_NAME'</span> =&gt; DATA_PATH.<span class="string">'/test.db'</span>,</span><br></pre></td></tr></table></figure>
+
+<p>文件：\Library\Think\Db\Driver\Sqlite.class.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sqlite数据库驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sqlite</span> <span class="keyword">extends</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析pdo连接的dsn信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array $config 连接信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseDsn</span><span class="params">($config)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $dsn = <span class="string">'sqlite:'</span> . $config[<span class="string">'database'</span>];</span><br><span class="line">        <span class="keyword">return</span> $dsn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据表的字段信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFields</span><span class="params">($tableName)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>($tableName) = explode(<span class="string">' '</span>, $tableName);</span><br><span class="line">        $result          = <span class="keyword">$this</span>-&gt;query(<span class="string">'PRAGMA table_info( '</span> . $tableName . <span class="string">' )'</span>);</span><br><span class="line">        $info            = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">if</span> ($result) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> ($result <span class="keyword">as</span> $key =&gt; $val) &#123;</span><br><span class="line">                $info[$val[<span class="string">'name'</span>]] = <span class="keyword">array</span>(</span><br><span class="line">                    <span class="string">'name'</span>    =&gt; $val[<span class="string">'name'</span>],</span><br><span class="line">                    <span class="string">'type'</span>    =&gt; $val[<span class="string">'type'</span>],</span><br><span class="line">                    <span class="string">'notnull'</span> =&gt; (bool) (<span class="number">1</span> === $val[<span class="string">'notnull'</span>]),</span><br><span class="line">                    <span class="string">'default'</span> =&gt; $val[<span class="string">'dflt_value'</span>],</span><br><span class="line">                    <span class="string">'primary'</span> =&gt; <span class="string">'1'</span> == $val[<span class="string">'pk'</span>],</span><br><span class="line">                    <span class="string">'autoinc'</span> =&gt; <span class="keyword">false</span>,</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $info;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据库的表信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTables</span><span class="params">($dbName = <span class="string">''</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;query(<span class="string">"SELECT name FROM sqlite_master WHERE type='table' "</span></span><br><span class="line">            . <span class="string">"UNION ALL SELECT name FROM sqlite_temp_master "</span></span><br><span class="line">            . <span class="string">"WHERE type='table' ORDER BY name"</span>);</span><br><span class="line">        $info = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">foreach</span> ($result <span class="keyword">as</span> $key =&gt; $val) &#123;</span><br><span class="line">            $info[$key] = current($val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $info;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * SQL指令安全过滤</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $str  SQL指令</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">escapeString</span><span class="params">($str)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> str_ireplace(<span class="string">"'"</span>, <span class="string">"''"</span>, $str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * limit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">parseLimit</span><span class="params">($limit)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $limitStr = <span class="string">''</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>($limit)) &#123;</span><br><span class="line">            $limit = explode(<span class="string">','</span>, $limit);</span><br><span class="line">            <span class="keyword">if</span> (count($limit) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                $limitStr .= <span class="string">' LIMIT '</span> . $limit[<span class="number">1</span>] . <span class="string">' OFFSET '</span> . $limit[<span class="number">0</span>] . <span class="string">' '</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $limitStr .= <span class="string">' LIMIT '</span> . $limit[<span class="number">0</span>] . <span class="string">' '</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $limitStr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 随机排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseRand</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'RANDOM()'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/13/ThinkPHP邮件发送函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/13/ThinkPHP邮件发送函数/" class="post-title-link" itemprop="url">ThinkPHP邮件发送函数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-13 22:30:06" itemprop="dateCreated datePublished" datetime="2017-04-13T22:30:06+08:00">2017-04-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ThinkPHP/" itemprop="url" rel="index"><span itemprop="name">ThinkPHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 系统邮件发送函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $to		接收邮件者邮箱</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $name		接收邮件者名称</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $subject	邮件主题 </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $body		邮件内容</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $attachment	附件列表</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> boolean </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">think_send_mail</span><span class="params">($to, $name, $subject = <span class="string">''</span>, $body = <span class="string">''</span>, $attachment = null)</span></span>&#123;</span><br><span class="line">	$config = C(<span class="string">'THINK_EMAIL'</span>);</span><br><span class="line">	vendor(<span class="string">'PHPMailer.class#phpmailer'</span>);		<span class="comment">// 从PHPMailer目录导class.phpmailer.php类文件</span></span><br><span class="line">	vendor(<span class="string">'PHPMailer.class#smtp'</span>);			<span class="comment">// 从PHPMailer目录导class.smtp.php类文件</span></span><br><span class="line">	$mail             = <span class="keyword">new</span> PHPMailer();		<span class="comment">// PHPMailer对象</span></span><br><span class="line">	$mail-&gt;CharSet    = <span class="string">'UTF-8'</span>;			<span class="comment">// 设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码</span></span><br><span class="line">	$mail-&gt;IsSMTP();				<span class="comment">// 设定使用SMTP服务</span></span><br><span class="line">	$mail-&gt;SMTPDebug  = <span class="number">0</span>;				<span class="comment">// 关闭SMTP调试功能</span></span><br><span class="line">							<span class="comment">// 1 = errors and messages</span></span><br><span class="line">							<span class="comment">// 2 = messages only</span></span><br><span class="line">	$mail-&gt;SMTPAuth   = <span class="keyword">true</span>;			<span class="comment">// 启用 SMTP 验证功能</span></span><br><span class="line">	$mail-&gt;SMTPSecure = <span class="string">'ssl'</span>;			<span class="comment">// 使用安全协议</span></span><br><span class="line">	$mail-&gt;Host       = $config[<span class="string">'SMTP_HOST'</span>];	<span class="comment">// SMTP 服务器</span></span><br><span class="line">	$mail-&gt;Port       = $config[<span class="string">'SMTP_PORT'</span>];	<span class="comment">// SMTP服务器的端口号</span></span><br><span class="line">	$mail-&gt;Username   = $config[<span class="string">'SMTP_USER'</span>];	<span class="comment">// SMTP服务器用户名</span></span><br><span class="line">	$mail-&gt;Password   = $config[<span class="string">'SMTP_PASS'</span>];	<span class="comment">// SMTP服务器密码</span></span><br><span class="line">	$mail-&gt;SetFrom($config[<span class="string">'FROM_EMAIL'</span>], $config[<span class="string">'FROM_NAME'</span>]);</span><br><span class="line">	$replyEmail       = $config[<span class="string">'REPLY_EMAIL'</span>]?$config[<span class="string">'REPLY_EMAIL'</span>]:$config[<span class="string">'FROM_EMAIL'</span>];</span><br><span class="line">	$replyName        = $config[<span class="string">'REPLY_NAME'</span>]?$config[<span class="string">'REPLY_NAME'</span>]:$config[<span class="string">'FROM_NAME'</span>];</span><br><span class="line">	$mail-&gt;AddReplyTo($replyEmail, $replyName);</span><br><span class="line">	$mail-&gt;Subject    = $subject;</span><br><span class="line">	$mail-&gt;MsgHTML($body);</span><br><span class="line">	$mail-&gt;AddAddress($to, $name);</span><br><span class="line">	<span class="keyword">if</span>(is_array($attachment))&#123;	<span class="comment">// 添加附件</span></span><br><span class="line">		<span class="keyword">foreach</span> ($attachment <span class="keyword">as</span> $file)&#123;</span><br><span class="line">			is_file($file) &amp;&amp; $mail-&gt;AddAttachment($file);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> $mail-&gt;Send() ? <span class="keyword">true</span> : $mail-&gt;ErrorInfo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此函数只能在<code>ThinkPHP</code>中使用且需要<code>phpmailer</code>扩展的支持；</p>
+<p><code>phpmailer</code>扩展的放置目录为 <code>ThinkPHP/Library/Vendor/PHPMailer/class.phpmailer.php</code></p>
+<p><code>phpmail</code>的下载地址：</p>
+<p><a href="https://code.google.com/a/apache-extras.org/p/phpmailer" target="_blank" rel="noopener">https://code.google.com/a/apache-extras.org/p/phpmailer</a></p>
+<p>使用此函数 必须在项目中加入以下配置项</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//邮件配置</span></span><br><span class="line"><span class="string">'THINK_EMAIL'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">	<span class="string">'SMTP_HOST'</span>	=&gt; <span class="string">'smtp.qq.com'</span>,	<span class="comment">// SMTP服务器</span></span><br><span class="line">	<span class="string">'SMTP_PORT'</span>	=&gt; <span class="string">'465'</span>,		<span class="comment">// SMTP服务器端口</span></span><br><span class="line">	<span class="string">'SMTP_USER'</span>	=&gt; <span class="string">'mail@qq.com'</span>,	<span class="comment">// SMTP服务器用户名</span></span><br><span class="line">	<span class="string">'SMTP_PASS'</span>	=&gt; <span class="string">'password'</span>,		<span class="comment">// SMTP服务器密码</span></span><br><span class="line">	<span class="string">'FROM_EMAIL'</span>	=&gt; <span class="string">'mail@qq.com'</span>,	<span class="comment">// 发件人EMAIL</span></span><br><span class="line">	<span class="string">'FROM_NAME'</span>	=&gt; <span class="string">'ThinkPHP'</span>,		<span class="comment">// 发件人名称</span></span><br><span class="line">	<span class="string">'REPLY_EMAIL'</span>	=&gt; <span class="string">''</span>,			<span class="comment">// 回复EMAIL（留空则为发件人EMAIL）</span></span><br><span class="line">	<span class="string">'REPLY_NAME'</span>	=&gt; <span class="string">''</span>,			<span class="comment">// 回复名称（留空则为发件人名称）</span></span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/08/mysql 查询不重复数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/08/mysql 查询不重复数据/" class="post-title-link" itemprop="url">MySQL查询不重复数据</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-08 17:34:01" itemprop="dateCreated datePublished" datetime="2017-04-08T17:34:01+08:00">2017-04-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="查询不重复数据数量"><a href="#查询不重复数据数量" class="headerlink" title="查询不重复数据数量"></a>查询不重复数据数量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct([field name])) from [table name];</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/08/手机QQ内部接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/08/手机QQ内部接口/" class="post-title-link" itemprop="url">手机QQ内部接口</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-08 16:00:03" itemprop="dateCreated datePublished" datetime="2017-04-08T16:00:03+08:00">2017-04-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="分享接口"><a href="#分享接口" class="headerlink" title="分享接口"></a>分享接口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.parent.frames.location.href = <span class="string">"mqqapi://share/to_fri?file_type=news&amp;src_type=web&amp;version=1&amp;generalpastboard=1&amp;share_id=1105471055&amp;url=[baseurl]&amp;previewimageUrl=[baseimage]&amp;image_url=[baseimage]&amp;title=[basetitle]&amp;description=[basedesc]&amp;callback_type=scheme&amp;thirdAppDisplayName=UVE=&amp;app_name=UVE=&amp;cflag=0&amp;shareType=0"</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内部新窗打开"><a href="#内部新窗打开" class="headerlink" title="内部新窗打开"></a>内部新窗打开</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mqqapi:<span class="comment">//forward/url?version=1&amp;src_type=web&amp;url_prefix=[baseurl]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-amp-打开QQ群"><a href="#添加-amp-打开QQ群" class="headerlink" title="添加&amp;打开QQ群"></a>添加&amp;打开QQ群</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mqqapi:<span class="comment">//card/show_pslcard?src_type=internal&amp;version=1&amp;uin=5555530&amp;card_type=group&amp;source=qrcode</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="手机浏览器打开"><a href="#手机浏览器打开" class="headerlink" title="手机浏览器打开"></a>手机浏览器打开</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://open.mobile.qq.com/sdk/qqapi.js?_bid=152"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">		mqq.ui.openUrl(&#123;<span class="attr">target</span>: <span class="number">2</span>,<span class="attr">url</span>: <span class="built_in">window</span>.location.href&#125;);</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

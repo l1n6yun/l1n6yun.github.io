@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="dear imgui, (This library is free and will stay free, but needs your support to sustain its development. There are lots of desirable new features and maintenance to do. If you work for a company using">
+<meta name="keywords" content="C++,GUI引擎,IMGUI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dear imgui,">
+<meta property="og:url" content="http://l1n6yun.github.io/2017/03/16/dear imgui,/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="dear imgui, (This library is free and will stay free, but needs your support to sustain its development. There are lots of desirable new features and maintenance to do. If you work for a company using">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://travis-ci.org/ocornut/imgui.svg?branch=master">
+<meta property="og:image" content="https://scan.coverity.com/projects/4720/badge.svg">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/8225057/5990484/70413560-a9ab-11e4-8942-1a63607c0b00.png">
+<meta property="og:image" content="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/examples_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v149/gallery_TheDragonsTrap-01-thumb.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/examples_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/profiler-880.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/test_window_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/test_window_03.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v140/test_window_05_menus.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/skinning_sample_02.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/8225057/7903336/96f0fb7c-07d0-11e5-95d6-41c6a1595e5a.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v138/performance_01.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/8225057/13198792/92808c5c-d812-11e5-9507-16b63918b05b.jpg">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/8225057/5990484/70413560-a9ab-11e4-8942-1a63607c0b00.png">
+<meta property="og:image" content="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif">
+<meta property="og:updated_time" content="2020-06-15T14:13:55.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dear imgui,">
+<meta name="twitter:description" content="dear imgui, (This library is free and will stay free, but needs your support to sustain its development. There are lots of desirable new features and maintenance to do. If you work for a company using">
+<meta name="twitter:image" content="https://travis-ci.org/ocornut/imgui.svg?branch=master">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/2017/03/16/dear imgui,/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>dear imgui, | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/03/16/dear imgui,/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">dear imgui,
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-03-16 20:20:25" itemprop="dateCreated datePublished" datetime="2017-03-16T20:20:25+08:00">2017-03-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dear-imgui"><a href="#dear-imgui" class="headerlink" title="dear imgui,"></a>dear imgui,</h1><p><a href="https://travis-ci.org/ocornut/imgui" target="_blank" rel="noopener"><img src="https://travis-ci.org/ocornut/imgui.svg?branch=master" alt="Build Status"></a><br><a href="https://scan.coverity.com/projects/4720" target="_blank" rel="noopener"><img src="https://scan.coverity.com/projects/4720/badge.svg" alt="Coverity Status"></a></p>
+<p>(This library is free and will stay free, but needs your support to sustain its development. There are lots of desirable new features and maintenance to do. If you work for a company using ImGui or have the means to do so, please consider financial support)</p>
+<p><a href="http://www.patreon.com/imgui" target="_blank" rel="noopener"><img src="https://cloud.githubusercontent.com/assets/8225057/5990484/70413560-a9ab-11e4-8942-1a63607c0b00.png" alt="Patreon"></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5Q73FPZ9C526U" target="_blank" rel="noopener"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="PayPal"></a></p>
+<p>dear imgui (AKA ImGui), is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline enabled application. It is fast, portable, renderer agnostic and self-contained (no external dependencies).</p>
+<p>ImGui is designed to enable fast iteration and empower programmers to create content creation tools and visualization/ debug tools (as opposed to UI for the average end-user). It favors simplicity and productivity toward this goal, and thus lacks certain features normally found in more high-level libraries.</p>
+<p>ImGui is particularly suited to integration in realtime 3D applications, fullscreen applications, embedded applications, games, or any applications on consoles platforms where operating system features are non-standard. </p>
+<p>ImGui is self-contained within a few files that you can easily copy and compile into your application/engine:</p>
+<ul>
+<li>imgui.cpp</li>
+<li>imgui.h</li>
+<li>imgui_demo.cpp</li>
+<li>imgui_draw.cpp</li>
+<li>imgui_internal.h</li>
+<li>imconfig.h (empty by default, user-editable)</li>
+<li>stb_rect_pack.h</li>
+<li>stb_textedit.h</li>
+<li>stb_truetype.h</li>
+</ul>
+<p>No specific build process is required. You can add the .cpp files to your project or #include them from an existing file.</p>
+<p>Your code passes mouse/keyboard inputs and settings to ImGui (see example applications for more details). After ImGui is setup, you can use it like in this example:</p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01.png" alt="screenshot of sample code alongside its output with ImGui"></p>
+<p>ImGui outputs vertex buffers and simple command-lists that you can render in your application. The number of draw calls and state changes is typically very small. Because it doesn’t know or touch graphics state directly, you can call ImGui commands anywhere in your code (e.g. in the middle of a running algorithm, or in the middle of your own rendering process). Refer to the sample applications in the examples/ folder for instructions on how to integrate ImGui with your existing codebase. </p>
+<p><em>A common misunderstanding is to think that immediate mode gui == immediate mode rendering, which usually implies hammering your driver/GPU with a bunch of inefficient draw calls and state changes, as the gui functions as called by the user. This is NOT what Dear ImGui does. Dear ImGui outputs vertex buffers and a small list of draw calls batches. It never touches your GPU directly. The draw call batches are decently optimal and you can render them later, in your app or even remotely.</em></p>
+<p>ImGui allows you create elaborate tools as well as very short-lived ones. On the extreme side of short-liveness: using the Edit&amp;Continue feature of modern compilers you can add a few widgets to tweaks variables while your application is running, and remove the code a minute later! ImGui is not just for tweaking values. You can use it to trace a running algorithm by just emitting text commands. You can use it along with your own reflection data to browse your dataset live. You can use it to expose the internals of a subsystem in your engine, to create a logger, an inspection tool, a profiler, a debugger, etc.  </p>
+<h2 id="Binaries-Demo"><a href="#Binaries-Demo" class="headerlink" title="Binaries/Demo"></a>Binaries/Demo</h2><p>You should be able to build the examples from sources (tested on Windows/Mac/Linux). If you don’t, let me know! If you want to have a quick look at the features of ImGui, you can download Windows binaries of the demo app here.</p>
+<ul>
+<li><a href="http://www.miracleworld.net/imgui/binaries/imgui-demo-binaries-20161113.zip" target="_blank" rel="noopener">imgui-demo-binaries-20161113.zip</a> (Windows binaries, ImGui 1.49+ 2016/11/13, 5 executables, 588 KB)</li>
+</ul>
+<h2 id="Bindings"><a href="#Bindings" class="headerlink" title="Bindings"></a>Bindings</h2><p><em>NB: those third-party bindings may be more or less maintained, more or less close to the spirit of original API and therefore I cannot give much guarantee about them. People who create language bindings sometimes haven’t used the C++ API themselves (for the good reason that they aren’t C++ users). ImGui was designed with C++ in mind and some of the subtleties may be lost in translation with other languages. If your language supports it, I would suggest replicating the function overloading and default parameters used in the original, else the API may be harder to use. In doubt, please check the original C++ version first!</em></p>
+<p><em>Integrating Dear ImGui within your custom engine is a matter of wiring mouse/keyboard inputs and providing a render function that can bind a texture and render simple textured triangles. The examples/ folder is populated with applications doing just that. If you are an experienced programmer it should take you less than an hour to integrate Dear ImGui in your custom engine, but make sure to spend time reading the FAQ, the comments and other documentation!</em></p>
+<p>Languages:</p>
+<ul>
+<li>cimgui: thin c-api wrapper for ImGui <a href="https://github.com/Extrawurst/cimgui" target="_blank" rel="noopener">https://github.com/Extrawurst/cimgui</a></li>
+<li>ImGui.NET: An ImGui wrapper for .NET Core <a href="https://github.com/mellinoe/ImGui.NET" target="_blank" rel="noopener">https://github.com/mellinoe/ImGui.NET</a></li>
+<li>imgui-rs: Rust bindings for dear imgui <a href="https://github.com/Gekkio/imgui-rs" target="_blank" rel="noopener">https://github.com/Gekkio/imgui-rs</a></li>
+<li>DerelictImgui: Dynamic bindings for the D programming language: <a href="https://github.com/Extrawurst/DerelictImgui" target="_blank" rel="noopener">https://github.com/Extrawurst/DerelictImgui</a></li>
+<li>CyImGui: Python bindings for dear imgui using Cython: <a href="https://github.com/chromy/cyimgui" target="_blank" rel="noopener">https://github.com/chromy/cyimgui</a></li>
+<li>pyimgui: Another Python bindings for dear imgui: <a href="https://github.com/swistakm/pyimgui" target="_blank" rel="noopener">https://github.com/swistakm/pyimgui</a></li>
+<li>LUA: <a href="https://github.com/patrickriordan/imgui_lua_bindings" target="_blank" rel="noopener">https://github.com/patrickriordan/imgui_lua_bindings</a></li>
+</ul>
+<p>Frameworks:</p>
+<ul>
+<li>Main ImGui repository include examples for DirectX9, DirectX10, DirectX11, OpenGL2/3, Vulkan, Allegro 5, SDL+GL2/3, iOS and Marmalade: <a href="https://github.com/ocornut/imgui/tree/master/examples" target="_blank" rel="noopener">https://github.com/ocornut/imgui/tree/master/examples</a></li>
+<li>Unmerged PR: DirectX12 example (with issues) <a href="https://github.com/ocornut/imgui/pull/301" target="_blank" rel="noopener">https://github.com/ocornut/imgui/pull/301</a></li>
+<li>Unmerged PR: SDL2 + OpenGLES + Emscripten example <a href="https://github.com/ocornut/imgui/pull/336" target="_blank" rel="noopener">https://github.com/ocornut/imgui/pull/336</a></li>
+<li>Unmerged PR: FreeGlut + OpenGL2 example <a href="https://github.com/ocornut/imgui/pull/801" target="_blank" rel="noopener">https://github.com/ocornut/imgui/pull/801</a></li>
+<li>Unmerged PR: Native Win32 and OSX example <a href="https://github.com/ocornut/imgui/pull/281" target="_blank" rel="noopener">https://github.com/ocornut/imgui/pull/281</a></li>
+<li>Unmerged PR: Android Example <a href="https://github.com/ocornut/imgui/pull/421" target="_blank" rel="noopener">https://github.com/ocornut/imgui/pull/421</a></li>
+<li>Cinder backend for dear imgui <a href="https://github.com/simongeilfus/Cinder-ImGui" target="_blank" rel="noopener">https://github.com/simongeilfus/Cinder-ImGui</a></li>
+<li>FlexGUI: Flexium/SFML backend for dear imgui <a href="https://github.com/DXsmiley/FlexGUI" target="_blank" rel="noopener">https://github.com/DXsmiley/FlexGUI</a></li>
+<li>IrrIMGUI: Irrlicht backend for dear imgui <a href="https://github.com/ZahlGraf/IrrIMGUI" target="_blank" rel="noopener">https://github.com/ZahlGraf/IrrIMGUI</a></li>
+<li>LÖVE backend for dear imgui <a href="https://github.com/slages/love-imgui" target="_blank" rel="noopener">https://github.com/slages/love-imgui</a></li>
+<li>Ogre backend for dear imgui <a href="https://bitbucket.org/LMCrashy/ogreimgui/src" target="_blank" rel="noopener">https://bitbucket.org/LMCrashy/ogreimgui/src</a></li>
+<li>ofxImGui: openFrameworks backend for dear imgui <a href="https://github.com/jvcleave/ofxImGui" target="_blank" rel="noopener">https://github.com/jvcleave/ofxImGui</a></li>
+<li>SFML backend for dear imgui <a href="https://github.com/EliasD/imgui-sfml" target="_blank" rel="noopener">https://github.com/EliasD/imgui-sfml</a></li>
+<li>SFML backend for dear imgui <a href="https://github.com/Mischa-Alff/imgui-backends" target="_blank" rel="noopener">https://github.com/Mischa-Alff/imgui-backends</a></li>
+<li>cocos2d-x with imgui <a href="https://github.com/c0i/imguix" target="_blank" rel="noopener">https://github.com/c0i/imguix</a> <a href="https://github.com/ocornut/imgui/issues/551" target="_blank" rel="noopener">https://github.com/ocornut/imgui/issues/551</a></li>
+<li>NanoRT: software raytraced version <a href="https://github.com/syoyo/imgui/tree/nanort/examples/raytrace_example" target="_blank" rel="noopener">https://github.com/syoyo/imgui/tree/nanort/examples/raytrace_example</a></li>
+</ul>
+<p>For other bindings: see <a href="https://github.com/ocornut/imgui/wiki/Links/" target="_blank" rel="noopener">this page</a>.<br>Please contact me with the Issues tracker or Twitter to fix/update this list.</p>
+<h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><p>See the <a href="https://github.com/ocornut/imgui/issues/123" target="_blank" rel="noopener">Screenshots Thread</a> for some user creations.</p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/examples_01.png" alt="screenshot 1"><br><a href="https://cloud.githubusercontent.com/assets/8225057/20628927/33e14cac-b329-11e6-80f6-9524e93b048a.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v149/gallery_TheDragonsTrap-01-thumb.jpg" alt="screenshot game"></a><br><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/examples_02.png" alt="screenshot 2"></p>
+<p><a href="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/profiler.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v148/profiler-880.jpg" alt="screenshot profiler"></a></p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/test_window_01.png" alt="screenshot 3"><br><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/test_window_03.png" alt="screenshot 4"><br><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v140/test_window_05_menus.png" alt="screenshot 5"><br><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v143/skinning_sample_02.png" alt="screenshot 6"><br><img src="https://cloud.githubusercontent.com/assets/8225057/7903336/96f0fb7c-07d0-11e5-95d6-41c6a1595e5a.png" alt="screenshot 7"></p>
+<p>ImGui can load TTF fonts. UTF-8 is supported for text display and input. Here using Arial Unicode font to display Japanese. Initialize custom font with:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ImGuiIO&amp; io = ImGui::GetIO();</span><br><span class="line">io.Fonts-&gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL, io.Fonts-&gt;GetGlyphRangesJapanese());</span><br><span class="line"></span><br><span class="line">// For Microsoft IME, pass your HWND to enable IME positioning:</span><br><span class="line">io.ImeWindowHandle = my_hwnd;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png" alt="Japanese screenshot"></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>The Immediate Mode GUI paradigm may at first appear unusual to some users. This is mainly because “Retained Mode” GUIs have been so widespread and predominant. The following links can give you a better understanding about how Immediate Mode GUIs works. </p>
+<ul>
+<li><a href="http://www.johno.se/book/imgui.html" target="_blank" rel="noopener">Johannes ‘johno’ Norneby’s article</a>.</li>
+<li><a href="http://www.cse.chalmers.se/edu/year/2011/course/TDA361/Advanced%20Computer%20Graphics/IMGUI.pdf" target="_blank" rel="noopener">A presentation by Rickard Gustafsson and Johannes Algelind</a>.</li>
+<li><a href="http://iki.fi/sol/imgui/" target="_blank" rel="noopener">Jari Komppa’s tutorial on building an ImGui library</a>.</li>
+<li><a href="https://mollyrocket.com/861" target="_blank" rel="noopener">Casey Muratori’s original video that popularized the concept</a>.</li>
+</ul>
+<p>See the <a href="https://github.com/ocornut/imgui/wiki/Links" target="_blank" rel="noopener">Links page</a> for third-party bindings to different languages and frameworks.</p>
+<h2 id="Frequently-Asked-Question-FAQ"><a href="#Frequently-Asked-Question-FAQ" class="headerlink" title="Frequently Asked Question (FAQ)"></a>Frequently Asked Question (FAQ)</h2><p><b>Where is the documentation?</b></p>
+<ul>
+<li>The documentation is at the top of imgui.cpp + effectively imgui.h. </li>
+<li>Example code is in imgui_demo.cpp and particularly the ImGui::ShowTestWindow() function. It covers most features of ImGui so you can read the code and call the function itself to see its output. </li>
+<li>Standalone example applications using e.g. OpenGL/DirectX are provided in the examples/ folder. </li>
+<li>We obviously needs better documentation! Consider contributing or becoming a <a href="http://www.patreon.com/imgui" target="_blank" rel="noopener">Patron</a> to promote this effort.</li>
+</ul>
+<p><b>Why the odd dual naming, “dear imgui” vs “ImGui”?</b></p>
+<p>The library started its life and is best known as “ImGui” only due to the fact that I didn’t give it a proper name when I released it. However, the term IMGUI (immediate-mode graphical user interface) was coined before and is being used in variety of other situations. It seemed confusing and unfair to hog the name. To reduce the ambiguity without affecting existing codebases, I have decided on an alternate, longer name “dear imgui” that people can use to refer to this specific library in ambiguous situations.</p>
+<p><b>How do I update to a newer version of ImGui?</b><br><br><b>What is ImTextureID and how do I display an image?</b><br><br><b>I integrated ImGui in my engine and the text or lines are blurry..</b><br><br><b>I integrated ImGui in my engine and some elements are disappearing when I move windows around..</b><br><br><b>How can I have multiple widgets with the same label? Can I have widget without a label? (Yes). A primer on the purpose of labels/IDs.</b><br><br><b>How can I tell when ImGui wants my mouse/keyboard inputs and when I can pass them to my application?</b><br><br><b>How can I load a different font than the default?</b><br><br><b>How can I easily use icons in my application?</b><br><br><b>How can I load multiple fonts?</b><br><br><b>How can I display and input non-latin characters such as Chinese, Japanese, Korean, Cyrillic?</b><br><br><b>How can I use the drawing facilities without an ImGui window? (using ImDrawList API)</b></p>
+<p>See the FAQ in imgui.cpp for answers.</p>
+<p><b>How do you use ImGui on a platform that may not have a mouse or keyboard?</b></p>
+<p>I recommend using <a href="http://synergy-project.org" target="_blank" rel="noopener">Synergy</a> (<a href="https://github.com/symless/synergy" target="_blank" rel="noopener">sources</a>). In particular, the <em>src/micro/uSynergy.c</em> file contains a small client that you can use on any platform to connect to your host PC. You can seamlessly use your PC input devices from a video game console or a tablet. ImGui allows to increase the hit box of widgets (via the <em>TouchPadding</em> setting) to accommodate a little for the lack of precision of touch inputs, but it is recommended you use a mouse to allow optimising for screen real-estate.</p>
+<p><b>Can you create elaborate/serious tools with ImGui?</b></p>
+<p>Yes. I have written data browsers, debuggers, profilers and all sort of non-trivial tools with the library. In my experience the simplicity of the API is very empowering. Your UI runs close to your live data. Make the tools always-on and everybody in the team will be inclined to create new tools (as opposed to more “offline” UI toolkits where only a fraction of your team effectively creates tools).</p>
+<p>ImGui is very programmer centric and the immediate-mode GUI paradigm might requires you to readjust some habits before you can realize its full potential. Many programmers have unfortunately been taught by their environment to make unnecessarily complicated things. ImGui is about making things that are simple, efficient and powerful.</p>
+<p><b>Is ImGui fast?</b></p>
+<p>Probably fast enough for most uses. Down to the foundation of its visual design, ImGui is engineered to be fairly performant both in term of CPU and GPU usage. Running elaborate code and creating elaborate UI will of course have a cost but ImGui aims to minimize it.</p>
+<p>Mileage may vary but the following screenshot can give you a rough idea of the cost of running and rendering UI code (In the case of a trivial demo application like this one, your driver/os setup are likely to be the bottleneck. Testing performance as part of a real application is recommended).</p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v138/performance_01.png" alt="performance screenshot"></p>
+<p>This is showing framerate for the full application loop on my 2011 iMac running Windows 7, OpenGL, AMD Radeon HD 6700M with an optimized executable. In contrast, librairies featuring higher-quality rendering and layouting techniques may have a higher resources footprint.</p>
+<p>If you intend to display large lists of items (say, 1000+) it can be beneficial for your code to perform clipping manually - one way is using helpers such as ImGuiListClipper - in order to avoid submitting them to ImGui in the first place. Even though ImGui will discard your clipped items it still needs to calculate their size and that overhead will add up if you have thousands of items. If you can handle clipping and height positionning yourself then browsing a list with millions of items isn’t a problem.</p>
+<p><b>Can you reskin the look of ImGui?</b></p>
+<p>You can alter the look of the interface to some degree: changing colors, sizes, padding, rounding, fonts. However, as ImGui is designed and optimised to create debug tools, the amount of skinning you can apply is limited. There is only so much you can stray away from the default look and feel of the interface. </p>
+<p>This is <a href="https://github.com/nem0/LumixEngine" target="_blank" rel="noopener">LumixEngine</a> with a minor skinning hack + a docking/tabs extension (both of which you can find in the Issues section and will eventually be merged).</p>
+<p><a href="https://cloud.githubusercontent.com/assets/8225057/13044612/59f07aec-d3cf-11e5-8ccb-39adf2e13e69.png" target="_blank" rel="noopener"><img src="https://cloud.githubusercontent.com/assets/8225057/13198792/92808c5c-d812-11e5-9507-16b63918b05b.jpg" alt="Skinning in LumixEngine"></a></p>
+<p><b>Why using C++ (as opposed to C)?</b></p>
+<p>ImGui takes advantage of a few C++ features for convenience but nothing anywhere Boost-insanity/quagmire. In particular, function overloading and default parameters are used to make the API easier to use and code more terse. Doing so I believe the API is sitting on a sweet spot and giving up on those features would make the API more cumbersome. Other features such as namespace, constructors and templates (in the case of the ImVector&lt;&gt; class) are also relied on as a convenience but could be removed.</p>
+<p>There is an unofficial but reasonably maintained <a href="https://github.com/Extrawurst/cimgui" target="_blank" rel="noopener">c-api for ImGui</a> by Stephan Dilly. I would suggest using your target language functionality to try replicating the function overloading and default parameters used in C++ else the API may be harder to use. It was really designed with C++ in mind and may not make the same amount of sense with another language. Also see <a href="https://github.com/ocornut/imgui/wiki/Links" target="_blank" rel="noopener">Links</a> for third-party bindings to other languages.</p>
+<h2 id="Donate"><a href="#Donate" class="headerlink" title="Donate"></a>Donate</h2><p><b>Can I donate to support the development of ImGui?</b></p>
+<p><a href="http://www.patreon.com/imgui" target="_blank" rel="noopener"><img src="https://cloud.githubusercontent.com/assets/8225057/5990484/70413560-a9ab-11e4-8942-1a63607c0b00.png" alt="Patreon"></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5Q73FPZ9C526U" target="_blank" rel="noopener"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="PayPal"></a></p>
+<p>I’m currently an independent developer and your contributions are useful. I have setup an <a href="http://www.patreon.com/imgui" target="_blank" rel="noopener"><strong>ImGui Patreon page</strong></a> if you want to donate and enable me to spend more time improving the library. If your company uses ImGui please consider making a contribution. One-off donations are also greatly appreciated. I am available for hire to work on or with ImGui. Thanks!</p>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>Developed by <a href="http://www.miracleworld.net" target="_blank" rel="noopener">Omar Cornut</a> and every direct or indirect contributors to the GitHub. The early version of this library was developed with the support of <a href="http://www.mediamolecule.com" target="_blank" rel="noopener">Media Molecule</a> and first used internally on the game <a href="http://tearaway.mediamolecule.com" target="_blank" rel="noopener">Tearaway</a>. </p>
+<p>I first discovered imgui principles at <a href="http://www.q-games.com" target="_blank" rel="noopener">Q-Games</a> where Atman had dropped his own simple imgui implementation in the codebase, which I spent quite some time improving and thinking about. It turned out that Atman was exposed to the concept directly by working with Casey. When I moved to Media Molecule I rewrote a new library trying to overcome the flaws and limitations of the first one I’ve worked with. It became this library and since then I have spent an unreasonable amount of time iterating on it. </p>
+<p>Embeds <a href="http://upperbounds.net" target="_blank" rel="noopener">ProggyClean.ttf</a> font by Tristan Grimmer (MIT license).</p>
+<p>Embeds <a href="https://github.com/nothings/stb/" target="_blank" rel="noopener">stb_textedit.h, stb_truetype.h, stb_rectpack.h</a> by Sean Barrett (public domain).</p>
+<p>Inspiration, feedback, and testing for early versions: Casey Muratori, Atman Binstock, Mikko Mononen, Emmanuel Briney, Stefan Kamoda, Anton Mikhailov, Matt Willis. And everybody posting feedback, questions and patches on the GitHub.</p>
+<p>Ongoing ImGui development is financially supported on <a href="http://www.patreon.com/imgui" target="_blank" rel="noopener"><strong>Patreon</strong></a>.</p>
+<p>Double-chocolate sponsors:</p>
+<ul>
+<li>Media Molecule</li>
+<li>Mobigame</li>
+<li>Insomniac Games (sponsored the gamepad/keyboard navigation branch)</li>
+<li>Aras Pranckevičius</li>
+</ul>
+<p>Salty caramel supporters:</p>
+<ul>
+<li>Jetha Chan, Wild Sheep Studio, Pastagames, Mārtiņš Možeiko, Daniel Collin, Recognition Robotics, Chris Genova, ikrima, Glenn Fiedler, Geoffrey Evans, Dakko Dakko.</li>
+</ul>
+<p>Caramel supporters:</p>
+<ul>
+<li>Michel Courtine, César Leblic, Dale Kim, Alex Evans, Rui Figueira, Paul Patrashcu, Jerome Lanquetot, Ctrl Alt Ninja, Paul Fleming, Neil Henning, Stephan Dilly, Neil Blakey-Milner, Aleksei, NeiloGD, Justin Paver, FiniteSol, Vincent Pancaldi, James Billot, Robin Hübner, furrtek, Eric, Simon Barratt, Game Atelier, Julian Bosch, Simon Lundmark, Vincent Hamm, Farhan Wali, Jeff Roberts, Matt Reyer, Colin Riley, Victor Martins, Josh Simmons, Garrett Hoofman, Sergio Gonzales, Andrew Berridge, Roy Eltham, Game Preservation Society, <a href="http://svkonsult.se/kit" target="_blank" rel="noopener">Kit framework</a>, Josh Faust, Martin Donlon, Quinton, Felix.</li>
+</ul>
+<p>And other supporters; thanks!</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Dear ImGui is licensed under the MIT License, see LICENSE for more information.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/GUI引擎/" rel="tag"># GUI引擎</a>
+          
+            <a href="/tags/IMGUI/" rel="tag"># IMGUI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/windows mysql 自动备份的几种方法/" rel="next" title="windows mysql 自动备份的几种方法">
+                <i class="fa fa-chevron-left"></i> windows mysql 自动备份的几种方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/16/Simple Service Discovery Protocol/" rel="prev" title="SSDP">
+                SSDP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dear-imgui"><span class="nav-number">1.</span> <span class="nav-text">dear imgui,</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binaries-Demo"><span class="nav-number">1.1.</span> <span class="nav-text">Binaries/Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bindings"><span class="nav-number">1.2.</span> <span class="nav-text">Bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gallery"><span class="nav-number">1.3.</span> <span class="nav-text">Gallery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.4.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frequently-Asked-Question-FAQ"><span class="nav-number">1.5.</span> <span class="nav-text">Frequently Asked Question (FAQ)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Donate"><span class="nav-number">1.6.</span> <span class="nav-text">Donate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Credits"><span class="nav-number">1.7.</span> <span class="nav-text">Credits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">1.8.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

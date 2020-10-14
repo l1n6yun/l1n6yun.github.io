@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日志完美清理总结">
+<meta property="og:url" content="http://l1n6yun.github.io/2016/10/25/日志完美清理总结/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-15T14:13:55.488Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日志完美清理总结">
+<meta name="twitter:description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/2016/10/25/日志完美清理总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>日志完美清理总结 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2016/10/25/日志完美清理总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">日志完美清理总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-10-25 11:37:00" itemprop="dateCreated datePublished" datetime="2016-10-25T11:37:00+08:00">2016-10-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、事件查看器"><a href="#一、事件查看器" class="headerlink" title="一、事件查看器"></a>一、事件查看器</h2><p>开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。</p>
+<h2 id="二、日志文件"><a href="#二、日志文件" class="headerlink" title="二、日志文件"></a>二、日志文件</h2><p>Windows2000的日志文件通常有应用<code>程序日志</code>、<code>安全日志</code>、<code>系统日志</code>、<code>DNS服务器日志</code>、<code>FTP日志</code>、<code>WWW日志</code>等等。</p>
+<p>日志文件默认位置：</p>
+<p>应用程序日志、安全日志、系统日志、DNS日志默认位置：<code>%systemroot%\system32\config</code>，默认文件大小512KB，管理员都会改变这个默认大小。</p>
+<p>安全日志文件：<code>%systemroot%\system32\config\SecEvent.EVT</code>；</p>
+<p>系统日志文件：<code>%systemroot%\system32\config\SysEvent.EVT</code>；</p>
+<p>应用程序日志文件：<code>%systemroot%\system32\config\AppEvent.EVT</code>；</p>
+<p>Internet信息服务FTP日志默认位置：<code>%systemroot%\system32\log\filesmsftpsvc1</code>，默认每天一个日志；</p>
+<p>Internet信息服务WWW日志默认位置：<code>%systemroot%\system32\log\filesw3svc1</code>，默认每天一个日志；</p>
+<p>Scheduler服务日志默认位置：<code>%systemroot%\schedlgu.txt</code>；</p>
+<p>以上日志在注册表里的键：</p>
+<p>应用程序日志，安全日志，系统日志，DNS服务器日志，它们这些LOG文件在注册表中的：</p>
+<p>HKEY_LOCAL_MACHINE\system\Current\Control\Set\Services\Eventlog</p>
+<p>有的管理员很可能将这些日志重定位。其中EVENTLOG下面有很多的子表，里面可查到以上日志的定位目录。</p>
+<p>Schedluler服务日志在注册表中</p>
+<p>HKEY_LOCAL_MACHINESOFTWAREMicrosoftSchedulingAgent</p>
+<p>FTP和WWW日志详解：</p>
+<p>FTP日志和WWW日志默认情况，每天生成一个日志文件，包含了该日的一切记录，文件名通常为ex（年份）（月份）（日期），例如ex001023，就是2000年10月23日产生的日志，用记事本就可直接打开，如下例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0　　（微软IIS5.0）</span><br><span class="line">#Version: 1.0 （版本1.0）</span><br><span class="line">#Date: 20001023 0315 （服务启动时间日期）</span><br><span class="line">#Fields: time cip csmethod csuristem scstatus</span><br><span class="line">0315 127.0.0.1 [1]USER administator 331　（IP地址为127.0.0.1用户名为administator试图登录）</span><br><span class="line">0318 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:04 127.0.0.1 [1]USER nt 331　（IP地址为127.0.0.1用户名为nt的用户试图登录）</span><br><span class="line">032:06 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:09 127.0.0.1 [1]USER cyz 331　（IP地址为127.0.0.1用户名为cyz的用户试图登录）</span><br><span class="line">0322 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">0322 127.0.0.1 [1]USER administrator 331　（IP地址为127.0.0.1用户名为administrator试图登录）</span><br><span class="line">0324 127.0.0.1 [1]PASS –230　（登录成功）</span><br><span class="line">0321 127.0.0.1 [1]MKD nt 550　（新建目录失败）</span><br><span class="line">0325 127.0.0.1 [1]QUIT –550　（退出FTP程序）</span><br></pre></td></tr></table></figure>
+
+<p>从 日志里就能看出IP地址为127.0.0.1的用户一直试图登录系统，换了四次用户名和密码才成功，管理员立即就可以得知管理员的入侵时间、IP地址以及 探测的用户名，如上例入侵者最终是用administrator用户名进入的，那么就要考虑更换此用户名的密码，或者重命名administrator 用户。</p>
+<p>WWW日志：</p>
+<p>WWW服务同FTP服务一样，产生的日志也是在%sys temroot%sys tem32LogFilesW3SVC1目录下，默认是每天一个日志文件，下面是一个典型的WWW日志文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0</span><br><span class="line">#Version: 1.0</span><br><span class="line">#Date: 20001023 03:091</span><br><span class="line">#Fields: date time cip csusername sip sport csmethod csuristem csuriquery scstatus cs(UserAgent)</span><br><span class="line">20001023 03:091 192.168.1.26 192.168.1.37 80 GET /iisstart.asp 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br><span class="line">20001023 03:094 192.168.1.26 192.168.1.37 80 GET /pagerror.gif 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br></pre></td></tr></table></figure>
+
+<p>通 过分析第六行，可以看出2000年10月23日，IP地址为192.168.1.26的用户通过访问IP地址为192.168.1.37机器的80端口， 查看了一个页面iisstart.asp,这位用户的浏览器为compatible; MSIE 5.0; Windows 98 DigExt，有经验的管理员就可通过安全日志、FTP日志和WWW日志来确定入侵者的IP地址以及入侵时间。</p>
+<p>既使你删掉FTP和WWW日志，但是还是会在系统日志和安全日志里记录下来，但是较好的是只显示了你的机器名，并没有你的IP。</p>
+<p>属性里记录了出现警告的原因，是因为有人试图用administator用户名登录，出现一个错误，来源是FTP服务。</p>
+<p>这里有两种图标：钥匙（表示成功）和锁（表示当用户在做什么时被系统停止）。接连四个锁图标，表示四次失败审核，事件类型是帐户登录和登录、注销失败，日期为2000年10月18日，时间为1002，这就需要重点观察。</p>
+<p>双点第一个失败审核事件的，即得到此事件的详细描述。</p>
+<p>经过分析我们可以得知有个CYZ的工作站，用administator用户名登录本机，但是因为用户名未知或密码错误（实际为密码错误）未能成功。另外还有DNS服务器日志，不太重要，就此略过（其实是我没有看过它）。</p>
+<p>知道了Windows2000日志的详细情况，下面就要学会怎样删除这些日志：</p>
+<p>通 过上面，得知日志文件通常有某项服务在后台保护，除了系统日志、安全日志、应用程序日志等等，它们的服务是Windos2000的关键进程，而且与注册表 文件在一块，当Windows2000启动后，启动服务来保护这些文件，所以很难删除，而FTP日志和WWW日志以及Scedlgu日志都是可以轻易地删 除的。首先要取得Admnistrator密码或Administrators组成员之一， <a href="http://www.2cto.com" target="_blank" rel="noopener">www.2cto.com</a> 然后Telnet到远程主机，先来试着删除FTP日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;del schedlgu.txt</span><br><span class="line">D:SERVERSchedLgU.Txt</span><br></pre></td></tr></table></figure>
+
+
+<p>进程无法访问文件，因为另一个程序正在使用此文件。说过了，后台有服务保护，先把服务停掉！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;net stop &quot;task scheduler&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>下面的服务依赖于Task Scheduler 服务。停止Task Scheduler 服务也会停止这些服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Remote Storage Engine</span><br><span class="line">是否继续此操作? (Y/N) [N]: y</span><br><span class="line">Remote Storage Engine 服务正在停止….</span><br><span class="line">Remote Storage Engine 服务已成功停止。</span><br><span class="line">Task Scheduler 服务正在停止.</span><br><span class="line">Task Scheduler 服务已成功停止。</span><br></pre></td></tr></table></figure>
+
+
+<p>OK，它的服务停掉了，同时也停掉了与它有依赖关系的服务。再来试着删一下！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER&gt;del schedlgu.txt</span><br><span class="line">D:\SERVER&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>没有反应？成功了！下一个是FTP日志和WWW日志，原理都是一样，先停掉相关服务，然后再删日志！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;del ex*.log</span><br><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>以上操作成功删除FTP日志！再来WWW日志！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;del ex*.log</span><br><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>OK！恭喜，现在简单的日志都已成功删除。下面就是很难的安全日志和系统日志了，守护这些日志的服务是Event Log，试着停掉它！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;net stop eventlog</span><br></pre></td></tr></table></figure>
+
+
+<p>这 项服务无法接受请求的 “暂停” 或 “停止” 操作。没办法，它是关键服务。如果不用第三方工具，在命令行上根本没有删除安全日志和系统日志的可能！所以还是得用虽然简单但是速度慢得死机的办法：打开 “控制面板”的“管理工具”中的“事件查看器”（98没有，知道用Win2k的好处了吧），在菜单的“操作”项有一个名为“连接到另一台计算机”的菜单， 点击它，输入远程计算机的IP，然后等上数十分钟，接着选择远程计算机的安全性日志，右键选择它的属性：点击属性里的“清除日志”按钮，OK！安全日志清 除完毕！同样的忍受痛苦去清除系统日志！ 目前在不借助第三工具的情况下，能很快，很顺利地清除FTP、WWW还有Schedlgu日志，就是系统日志和安全日志属于Windows2000的严密守护，只能用本地的事件查看器来打开它，因为在图形界面下，加 之网速又慢，如果你银子多，时间闲，还是可以清除它的。综上所述，介绍了Windows2000的日志文件以及删除方法，但是你必须是Administrator，注意必须作为管理员或管理组的成员登录才能打开安全日志记录。该过程适用于Windows 2000 Professional 计算机，也适用于作为独立服务器或成员服务器运行的Windows 2000 Server 计算机。</p>
+<p>至 此，Windows2000安全知识基础讲座完毕，还有几句话要讲，大家也看出来了，虽然FTP等等日志可以很快清除，但是系统日志和安全日志却不是那么 快、那么顺利地能删除，如果遇到聪明的管理员，将日志文件转移到另一个地方，那更是难上加难，所以奉劝大家，千万不要拿国内的主机做试验，国内的法律很严 呀！今天吃饭时，听说有两个人开玩笑，一个人把另外一个人的东西藏起来了，结果那个人一急，报案了，于是藏东西那个人被判四年刑！！法官说法律是不开玩笑 的！！！所以大家一定要牢记这点！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/21/Standard Markdown/" rel="next" title="Standard Markdown">
+                <i class="fa fa-chevron-left"></i> Standard Markdown
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/编码规范 by @mdo/" rel="prev" title="编码规范 by @mdo">
+                编码规范 by @mdo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、事件查看器"><span class="nav-number">1.</span> <span class="nav-text">一、事件查看器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、日志文件"><span class="nav-number">2.</span> <span class="nav-text">二、日志文件</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

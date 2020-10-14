@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="此文档包含了用Chart.js创建漂亮图表的所有知识。起步引入Chart.js文件首先我们需要在页面中引入Chart.js文件。此工具库在全局命名空间中定义了Chart变量。 1&amp;lt;script src=&quot;Chart.js&quot;&amp;gt;&amp;lt;/script&amp;gt;  创建图表为了创建图表，我们要实例化一个Chart对象。为了完成前面的步骤，首先需要需要传入一个绘制图表的2d context。以下">
+<meta name="keywords" content="Chart.js,javascript,JS插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chart.js 中文文档">
+<meta property="og:url" content="http://l1n6yun.github.io/2016/11/22/Chart.js 中文文档/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="此文档包含了用Chart.js创建漂亮图表的所有知识。起步引入Chart.js文件首先我们需要在页面中引入Chart.js文件。此工具库在全局命名空间中定义了Chart变量。 1&amp;lt;script src=&quot;Chart.js&quot;&amp;gt;&amp;lt;/script&amp;gt;  创建图表为了创建图表，我们要实例化一个Chart对象。为了完成前面的步骤，首先需要需要传入一个绘制图表的2d context。以下">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-15T14:13:55.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chart.js 中文文档">
+<meta name="twitter:description" content="此文档包含了用Chart.js创建漂亮图表的所有知识。起步引入Chart.js文件首先我们需要在页面中引入Chart.js文件。此工具库在全局命名空间中定义了Chart变量。 1&amp;lt;script src=&quot;Chart.js&quot;&amp;gt;&amp;lt;/script&amp;gt;  创建图表为了创建图表，我们要实例化一个Chart对象。为了完成前面的步骤，首先需要需要传入一个绘制图表的2d context。以下">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/2016/11/22/Chart.js 中文文档/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Chart.js 中文文档 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2016/11/22/Chart.js 中文文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Chart.js 中文文档
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-11-22 10:14:35" itemprop="dateCreated datePublished" datetime="2016-11-22T10:14:35+08:00">2016-11-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="此文档包含了用Chart-js创建漂亮图表的所有知识。"><a href="#此文档包含了用Chart-js创建漂亮图表的所有知识。" class="headerlink" title="此文档包含了用Chart.js创建漂亮图表的所有知识。"></a>此文档包含了用Chart.js创建漂亮图表的所有知识。</h2><h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h4 id="引入Chart-js文件"><a href="#引入Chart-js文件" class="headerlink" title="引入Chart.js文件"></a>引入Chart.js文件</h4><p>首先我们需要在页面中引入Chart.js文件。此工具库在全局命名空间中定义了Chart变量。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"Chart.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建图表"><a href="#创建图表" class="headerlink" title="创建图表"></a>创建图表</h2><p>为了创建图表，我们要实例化一个Chart对象。为了完成前面的步骤，首先需要需要传入一个绘制图表的2d context。以下是案例。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"myChart"</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">height</span>=<span class="string">"400"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Get the context of the canvas element we want to select</span></span><br><span class="line"><span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">"myChart"</span>).getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="keyword">var</span> myNewChart = <span class="keyword">new</span> Chart(ctx).PolarArea(data);</span><br></pre></td></tr></table></figure>
+
+<p>我们还可以用jQuery获取canvas的context。首先从jQuery集合中获取我们需要的DOM节点，然后在这个DOM节点上调用 getContext(“2d”) 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Get context with jQuery - using jQuery's .get() method.</span></span><br><span class="line"><span class="keyword">var</span> ctx = $(<span class="string">"#myChart"</span>).get(<span class="number">0</span>).getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="comment">//This will get the first returned node in the jQuery collection.</span></span><br><span class="line"><span class="keyword">var</span> myNewChart = <span class="keyword">new</span> Chart(ctx);</span><br></pre></td></tr></table></figure>
+
+<p>当我们完成了在指定的canvas上实例化Chart对象之后，Chart.js会自动针对retina屏幕做缩放。</p>
+<p>Chart对象设置完成后，我们就可以继续创建Chart.js中提供的具体类型的图表了。下面这个案例中，我们将展示如何绘制一幅极地区域图（Polar area chart）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).PolarArea(data,options);</span><br></pre></td></tr></table></figure>
+
+<p>We call a method of the name of the chart we want to create. We pass in the data for that chart type, and the options for that chart as parameters. Chart.js will merge the options you pass in with the default options for that chart type.</p>
+<h2 id="曲线图（Line-chart）"><a href="#曲线图（Line-chart）" class="headerlink" title="曲线图（Line chart）"></a>曲线图（Line chart）</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>曲线图就是将数据标于曲线上的一种图表。</p>
+<p>一般用于展示趋势数据，和比较两组数据集。</p>
+<h4 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).Line(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    labels : [<span class="string">"January"</span>,<span class="string">"February"</span>,<span class="string">"March"</span>,<span class="string">"April"</span>,<span class="string">"May"</span>,<span class="string">"June"</span>,<span class="string">"July"</span>],</span><br><span class="line">	datasets : [</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(220,220,220,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(220,220,220,1)"</span>,</span><br><span class="line">			pointColor : <span class="string">"rgba(220,220,220,1)"</span>,</span><br><span class="line">			pointStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">			data : [<span class="number">65</span>,<span class="number">59</span>,<span class="number">90</span>,<span class="number">81</span>,<span class="number">56</span>,<span class="number">55</span>,<span class="number">40</span>]</span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(151,187,205,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(151,187,205,1)"</span>,</span><br><span class="line">			pointColor : <span class="string">"rgba(151,187,205,1)"</span>,</span><br><span class="line">			pointStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">			data : [<span class="number">28</span>,<span class="number">48</span>,<span class="number">40</span>,<span class="number">19</span>,<span class="number">96</span>,<span class="number">27</span>,<span class="number">100</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The line chart requires an array of labels for each of the data points. This is show on the X axis.</p>
+<p>The data for line charts is broken up into an array of datasets. Each dataset has a colour for the fill, a colour for the line and colours for the points and strokes of the points. These colours are strings just like CSS. You can use RGBA, RGB, HEX or HSL notation.</p>
+<h4 id="图表参数"><a href="#图表参数" class="headerlink" title="图表参数"></a>图表参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">Line.defaults = &#123;</span><br><span class="line">				</span><br><span class="line">	<span class="comment">//Boolean - If we show the scale above the chart data			</span></span><br><span class="line">	scaleOverlay : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - If we want to override with a hard coded scale</span></span><br><span class="line">	scaleOverride : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//** Required if scaleOverride is true **</span></span><br><span class="line">	<span class="comment">//Number - The number of steps in a hard coded scale</span></span><br><span class="line">	scaleSteps : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The value jump in the hard coded scale</span></span><br><span class="line">	scaleStepWidth : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The scale starting value</span></span><br><span class="line">	scaleStartValue : <span class="literal">null</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//String - Colour of the scale line	</span></span><br><span class="line">	scaleLineColor : <span class="string">"rgba(0,0,0,.1)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of the scale line	</span></span><br><span class="line">	scaleLineWidth : <span class="number">1</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether to show labels on the scale	</span></span><br><span class="line">	scaleShowLabels : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Interpolated JS string - can access value</span></span><br><span class="line">	scaleLabel : <span class="string">"&lt;%=value%&gt;"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font declaration for the scale label</span></span><br><span class="line">	scaleFontFamily : <span class="string">"'Arial'"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Scale label font size in pixels	</span></span><br><span class="line">	scaleFontSize : <span class="number">12</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font weight style	</span></span><br><span class="line">	scaleFontStyle : <span class="string">"normal"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font colour	</span></span><br><span class="line">	scaleFontColor : <span class="string">"#666"</span>,	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">///Boolean - Whether grid lines are shown across the chart</span></span><br><span class="line">	scaleShowGridLines : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Colour of the grid lines</span></span><br><span class="line">	scaleGridLineColor : <span class="string">"rgba(0,0,0,.05)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Width of the grid lines</span></span><br><span class="line">	scaleGridLineWidth : <span class="number">1</span>,	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether the line is curved between points</span></span><br><span class="line">	bezierCurve : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to show a dot for each point</span></span><br><span class="line">	pointDot : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Radius of each point dot in pixels</span></span><br><span class="line">	pointDotRadius : <span class="number">3</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of point dot stroke</span></span><br><span class="line">	pointDotStrokeWidth : <span class="number">1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to show a stroke for datasets</span></span><br><span class="line">	datasetStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of dataset stroke</span></span><br><span class="line">	datasetStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to fill the dataset with a colour</span></span><br><span class="line">	datasetFill : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to animate the chart</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Number - Number of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">60</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutQuart"</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Function - Fires when the animation is complete</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="柱状图（Bar-chart）"><a href="#柱状图（Bar-chart）" class="headerlink" title="柱状图（Bar chart）"></a>柱状图（Bar chart）</h2><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>A bar chart is a way of showing data as bars.</p>
+<p>It is sometimes used to show trend data, and the comparison of multiple data sets side by side.</p>
+<h4 id="使用案例-1"><a href="#使用案例-1" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).Bar(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">	labels : [<span class="string">"January"</span>,<span class="string">"February"</span>,<span class="string">"March"</span>,<span class="string">"April"</span>,<span class="string">"May"</span>,<span class="string">"June"</span>,<span class="string">"July"</span>],</span><br><span class="line">	datasets : [</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(220,220,220,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(220,220,220,1)"</span>,</span><br><span class="line">			data : [<span class="number">65</span>,<span class="number">59</span>,<span class="number">90</span>,<span class="number">81</span>,<span class="number">56</span>,<span class="number">55</span>,<span class="number">40</span>]</span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(151,187,205,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(151,187,205,1)"</span>,</span><br><span class="line">			data : [<span class="number">28</span>,<span class="number">48</span>,<span class="number">40</span>,<span class="number">19</span>,<span class="number">96</span>,<span class="number">27</span>,<span class="number">100</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The bar chart has the a very similar data structure to the line chart, and has an array of datasets, each with colours and an array of data. Again, colours are in CSS format.</p>
+<p>We have an array of labels too for display. In the example, we are showing the same data as the previous line chart example.</p>
+<h4 id="图表参数-1"><a href="#图表参数-1" class="headerlink" title="图表参数"></a>图表参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">Bar.defaults = &#123;</span><br><span class="line">				</span><br><span class="line">	<span class="comment">//Boolean - If we show the scale above the chart data			</span></span><br><span class="line">	scaleOverlay : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - If we want to override with a hard coded scale</span></span><br><span class="line">	scaleOverride : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//** Required if scaleOverride is true **</span></span><br><span class="line">	<span class="comment">//Number - The number of steps in a hard coded scale</span></span><br><span class="line">	scaleSteps : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The value jump in the hard coded scale</span></span><br><span class="line">	scaleStepWidth : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The scale starting value</span></span><br><span class="line">	scaleStartValue : <span class="literal">null</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//String - Colour of the scale line	</span></span><br><span class="line">	scaleLineColor : <span class="string">"rgba(0,0,0,.1)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of the scale line	</span></span><br><span class="line">	scaleLineWidth : <span class="number">1</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether to show labels on the scale	</span></span><br><span class="line">	scaleShowLabels : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Interpolated JS string - can access value</span></span><br><span class="line">	scaleLabel : <span class="string">"&lt;%=value%&gt;"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font declaration for the scale label</span></span><br><span class="line">	scaleFontFamily : <span class="string">"'Arial'"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Scale label font size in pixels	</span></span><br><span class="line">	scaleFontSize : <span class="number">12</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font weight style	</span></span><br><span class="line">	scaleFontStyle : <span class="string">"normal"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font colour	</span></span><br><span class="line">	scaleFontColor : <span class="string">"#666"</span>,	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">///Boolean - Whether grid lines are shown across the chart</span></span><br><span class="line">	scaleShowGridLines : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Colour of the grid lines</span></span><br><span class="line">	scaleGridLineColor : <span class="string">"rgba(0,0,0,.05)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Width of the grid lines</span></span><br><span class="line">	scaleGridLineWidth : <span class="number">1</span>,	</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - If there is a stroke on each bar	</span></span><br><span class="line">	barShowStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of the bar stroke	</span></span><br><span class="line">	barStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Spacing between each of the X value sets</span></span><br><span class="line">	barValueSpacing : <span class="number">5</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Spacing between data sets within X values</span></span><br><span class="line">	barDatasetSpacing : <span class="number">1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to animate the chart</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Number - Number of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">60</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutQuart"</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Function - Fires when the animation is complete</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="雷达图或蛛网图（Radar-chart）"><a href="#雷达图或蛛网图（Radar-chart）" class="headerlink" title="雷达图或蛛网图（Radar chart）"></a>雷达图或蛛网图（Radar chart）</h2><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><p>A radar chart is a way of showing multiple data points and the variation between them.</p>
+<p>They are often useful for comparing the points of two or more different data sets</p>
+<h4 id="使用案例-2"><a href="#使用案例-2" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).Radar(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构-2"><a href="#数据结构-2" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">	labels : [<span class="string">"Eating"</span>,<span class="string">"Drinking"</span>,<span class="string">"Sleeping"</span>,<span class="string">"Designing"</span>,<span class="string">"Coding"</span>,<span class="string">"Partying"</span>,<span class="string">"Running"</span>],</span><br><span class="line">	datasets : [</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(220,220,220,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(220,220,220,1)"</span>,</span><br><span class="line">			pointColor : <span class="string">"rgba(220,220,220,1)"</span>,</span><br><span class="line">			pointStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">			data : [<span class="number">65</span>,<span class="number">59</span>,<span class="number">90</span>,<span class="number">81</span>,<span class="number">56</span>,<span class="number">55</span>,<span class="number">40</span>]</span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;</span><br><span class="line">			fillColor : <span class="string">"rgba(151,187,205,0.5)"</span>,</span><br><span class="line">			strokeColor : <span class="string">"rgba(151,187,205,1)"</span>,</span><br><span class="line">			pointColor : <span class="string">"rgba(151,187,205,1)"</span>,</span><br><span class="line">			pointStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">			data : [<span class="number">28</span>,<span class="number">48</span>,<span class="number">40</span>,<span class="number">19</span>,<span class="number">96</span>,<span class="number">27</span>,<span class="number">100</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>For a radar chart, usually you will want to show a label on each point of the chart, so we include an array of strings that we show around each point in the chart. If you do not want this, you can either not include the array of labels, or choose to hide them in the chart options.</p>
+<p>For the radar chart data, we have an array of datasets. Each of these is an object, with a fill colour, a stroke colour, a colour for the fill of each point, and a colour for the stroke of each point. We also have an array of data values.</p>
+<h4 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">Radar.defaults = &#123;</span><br><span class="line">				</span><br><span class="line">	<span class="comment">//Boolean - If we show the scale above the chart data			</span></span><br><span class="line">	scaleOverlay : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - If we want to override with a hard coded scale</span></span><br><span class="line">	scaleOverride : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//** Required if scaleOverride is true **</span></span><br><span class="line">	<span class="comment">//Number - The number of steps in a hard coded scale</span></span><br><span class="line">	scaleSteps : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The value jump in the hard coded scale</span></span><br><span class="line">	scaleStepWidth : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The centre starting value</span></span><br><span class="line">	scaleStartValue : <span class="literal">null</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to show lines for each scale point</span></span><br><span class="line">	scaleShowLine : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//String - Colour of the scale line	</span></span><br><span class="line">	scaleLineColor : <span class="string">"rgba(0,0,0,.1)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of the scale line	</span></span><br><span class="line">	scaleLineWidth : <span class="number">1</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether to show labels on the scale	</span></span><br><span class="line">	scaleShowLabels : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Interpolated JS string - can access value</span></span><br><span class="line">	scaleLabel : <span class="string">"&lt;%=value%&gt;"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font declaration for the scale label</span></span><br><span class="line">	scaleFontFamily : <span class="string">"'Arial'"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Scale label font size in pixels	</span></span><br><span class="line">	scaleFontSize : <span class="number">12</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font weight style	</span></span><br><span class="line">	scaleFontStyle : <span class="string">"normal"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font colour	</span></span><br><span class="line">	scaleFontColor : <span class="string">"#666"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Show a backdrop to the scale label</span></span><br><span class="line">	scaleShowLabelBackdrop : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of the label backdrop	</span></span><br><span class="line">	scaleBackdropColor : <span class="string">"rgba(255,255,255,0.75)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The backdrop padding above &amp; below the label in pixels</span></span><br><span class="line">	scaleBackdropPaddingY : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The backdrop padding to the side of the label in pixels	</span></span><br><span class="line">	scaleBackdropPaddingX : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether we show the angle lines out of the radar</span></span><br><span class="line">	angleShowLineOut : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Colour of the angle line</span></span><br><span class="line">	angleLineColor : <span class="string">"rgba(0,0,0,.1)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of the angle line</span></span><br><span class="line">	angleLineWidth : <span class="number">1</span>,			</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Point label font declaration</span></span><br><span class="line">	pointLabelFontFamily : <span class="string">"'Arial'"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Point label font weight</span></span><br><span class="line">	pointLabelFontStyle : <span class="string">"normal"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Point label font size in pixels	</span></span><br><span class="line">	pointLabelFontSize : <span class="number">12</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Point label font colour	</span></span><br><span class="line">	pointLabelFontColor : <span class="string">"#666"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to show a dot for each point</span></span><br><span class="line">	pointDot : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Radius of each point dot in pixels</span></span><br><span class="line">	pointDotRadius : <span class="number">3</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of point dot stroke</span></span><br><span class="line">	pointDotStrokeWidth : <span class="number">1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to show a stroke for datasets</span></span><br><span class="line">	datasetStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Pixel width of dataset stroke</span></span><br><span class="line">	datasetStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to fill the dataset with a colour</span></span><br><span class="line">	datasetFill : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to animate the chart</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Number - Number of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">60</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutQuart"</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Function - Fires when the animation is complete</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="极地区域图（Polar-area-chart）"><a href="#极地区域图（Polar-area-chart）" class="headerlink" title="极地区域图（Polar area chart）"></a>极地区域图（Polar area chart）</h2><h4 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h4><p>Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.</p>
+<p>This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a scale of values for context.</p>
+<h4 id="使用案例-3"><a href="#使用案例-3" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).PolarArea(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构-3"><a href="#数据结构-3" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">30</span>,</span><br><span class="line">		color: <span class="string">"#D97041"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">90</span>,</span><br><span class="line">		color: <span class="string">"#C7604C"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">24</span>,</span><br><span class="line">		color: <span class="string">"#21323D"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">58</span>,</span><br><span class="line">		color: <span class="string">"#9D9B7F"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">82</span>,</span><br><span class="line">		color: <span class="string">"#7D4F6D"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">8</span>,</span><br><span class="line">		color: <span class="string">"#584A5E"</span></span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, for the chart data you pass in an array of objects, with a value and a colour. The value attribute should be a number, while the color attribute should be a string. Similar to CSS, for this string you can use HEX notation, RGB, RGBA or HSL.</p>
+<h2 id="图表-1"><a href="#图表-1" class="headerlink" title="图表"></a>图表</h2><p>These are the default chart options. By passing in an object with any of these attributes, Chart.js will merge these objects and the graph accordingly. Explanations of each option are commented in the code below.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">PolarArea.defaults = &#123;</span><br><span class="line">				</span><br><span class="line">	<span class="comment">//Boolean - Whether we show the scale above or below the chart segments</span></span><br><span class="line">	scaleOverlay : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - If we want to override with a hard coded scale</span></span><br><span class="line">	scaleOverride : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//** Required if scaleOverride is true **</span></span><br><span class="line">	<span class="comment">//Number - The number of steps in a hard coded scale</span></span><br><span class="line">	scaleSteps : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The value jump in the hard coded scale</span></span><br><span class="line">	scaleStepWidth : <span class="literal">null</span>,</span><br><span class="line">	<span class="comment">//Number - The centre starting value</span></span><br><span class="line">	scaleStartValue : <span class="literal">null</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Show line for each value in the scale</span></span><br><span class="line">	scaleShowLine : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of the scale line</span></span><br><span class="line">	scaleLineColor : <span class="string">"rgba(0,0,0,.1)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The width of the line - in pixels</span></span><br><span class="line">	scaleLineWidth : <span class="number">1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - whether we should show text labels</span></span><br><span class="line">	scaleShowLabels : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Interpolated JS string - can access value</span></span><br><span class="line">	scaleLabel : <span class="string">"&lt;%=value%&gt;"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font declaration for the scale label</span></span><br><span class="line">	scaleFontFamily : <span class="string">"'Arial'"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Scale label font size in pixels	</span></span><br><span class="line">	scaleFontSize : <span class="number">12</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font weight style	</span></span><br><span class="line">	scaleFontStyle : <span class="string">"normal"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Scale label font colour	</span></span><br><span class="line">	scaleFontColor : <span class="string">"#666"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Show a backdrop to the scale label</span></span><br><span class="line">	scaleShowLabelBackdrop : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of the label backdrop	</span></span><br><span class="line">	scaleBackdropColor : <span class="string">"rgba(255,255,255,0.75)"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The backdrop padding above &amp; below the label in pixels</span></span><br><span class="line">	scaleBackdropPaddingY : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The backdrop padding to the side of the label in pixels	</span></span><br><span class="line">	scaleBackdropPaddingX : <span class="number">2</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Stroke a line around each segment in the chart</span></span><br><span class="line">	segmentShowStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of the stroke on each segement.</span></span><br><span class="line">	segmentStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The width of the stroke value in pixels	</span></span><br><span class="line">	segmentStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to animate the chart or not</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Amount of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">100</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect.</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutBounce"</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether to animate the rotation of the chart</span></span><br><span class="line">	animateRotate : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether to animate scaling the chart from the centre</span></span><br><span class="line">	animateScale : <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Function - This will fire when the animation of the chart is complete.</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="饼图（Pie-chart）"><a href="#饼图（Pie-chart）" class="headerlink" title="饼图（Pie chart）"></a>饼图（Pie chart）</h2><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><p>Pie charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows a the proportional value of each piece of data.</p>
+<p>They are excellent at showing the relational proportions between data.</p>
+<h4 id="使用案例-4"><a href="#使用案例-4" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).Pie(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构-4"><a href="#数据结构-4" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [</span><br><span class="line">	&#123;</span><br><span class="line">		value: <span class="number">30</span>,</span><br><span class="line">		color:<span class="string">"#F38630"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">50</span>,</span><br><span class="line">		color : <span class="string">"#E0E4CC"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">100</span>,</span><br><span class="line">		color : <span class="string">"#69D2E7"</span></span><br><span class="line">	&#125;			</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>For a pie chart, you must pass in an array of objects with a value and a color property. The value attribute should be a number, Chart.js will total all of the numbers and calculate the relative proportion of each. The color attribute should be a string. Similar to CSS, for this string you can use HEX notation, RGB, RGBA or HSL.</p>
+<h4 id="图表-2"><a href="#图表-2" class="headerlink" title="图表"></a>图表</h4><p>These are the default options for the Pie chart. Pass in an object with any of these attributes to override them.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Pie.defaults = &#123;</span><br><span class="line">	<span class="comment">//Boolean - Whether we should show a stroke on each segment</span></span><br><span class="line">	segmentShowStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of each segment stroke</span></span><br><span class="line">	segmentStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The width of each segment stroke</span></span><br><span class="line">	segmentStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether we should animate the chart	</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Amount of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">100</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutBounce"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether we animate the rotation of the Pie</span></span><br><span class="line">	animateRotate : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether we animate scaling the Pie from the centre</span></span><br><span class="line">	animateScale : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Function - Will fire on animation completion.</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="环形图（Doughnut-chart）"><a href="#环形图（Doughnut-chart）" class="headerlink" title="环形图（Doughnut chart）"></a>环形图（Doughnut chart）</h2><h4 id="简介-5"><a href="#简介-5" class="headerlink" title="简介"></a>简介</h4><p>Doughnut charts are similar to pie charts, however they have the centre cut out, and are therefore shaped more like a doughnut than a pie!</p>
+<p>They are aso excellent at showing the relational proportions between data.</p>
+<h4 id="使用案例-5"><a href="#使用案例-5" class="headerlink" title="使用案例"></a>使用案例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Chart(ctx).Doughnut(data,options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据结构-5"><a href="#数据结构-5" class="headerlink" title="数据结构"></a>数据结构</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [</span><br><span class="line">	&#123;</span><br><span class="line">		value: <span class="number">30</span>,</span><br><span class="line">		color:<span class="string">"#F7464A"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">50</span>,</span><br><span class="line">		color : <span class="string">"#E2EAE9"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">100</span>,</span><br><span class="line">		color : <span class="string">"#D4CCC5"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">40</span>,</span><br><span class="line">		color : <span class="string">"#949FB1"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		value : <span class="number">120</span>,</span><br><span class="line">		color : <span class="string">"#4D5360"</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>For a doughnut chart, you must pass in an array of objects with a value and a color property. The value attribute should be a number, Chart.js will total all of the numbers and calculate the relative proportion of each. The color attribute should be a string. Similar to CSS, for this string you can use HEX notation, RGB, RGBA or HSL.</p>
+<h4 id="图表-3"><a href="#图表-3" class="headerlink" title="图表"></a>图表</h4><p>These are the default options for the doughnut chart. Pass in an object with any of these attributes to override them.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Doughnut.defaults = &#123;</span><br><span class="line">	<span class="comment">//Boolean - Whether we should show a stroke on each segment</span></span><br><span class="line">	segmentShowStroke : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - The colour of each segment stroke</span></span><br><span class="line">	segmentStrokeColor : <span class="string">"#fff"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - The width of each segment stroke</span></span><br><span class="line">	segmentStrokeWidth : <span class="number">2</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//The percentage of the chart that we cut out of the middle.</span></span><br><span class="line">	percentageInnerCutout : <span class="number">50</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether we should animate the chart	</span></span><br><span class="line">	animation : <span class="literal">true</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Number - Amount of animation steps</span></span><br><span class="line">	animationSteps : <span class="number">100</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//String - Animation easing effect</span></span><br><span class="line">	animationEasing : <span class="string">"easeOutBounce"</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Boolean - Whether we animate the rotation of the Doughnut</span></span><br><span class="line">	animateRotate : <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Boolean - Whether we animate scaling the Doughnut from the centre</span></span><br><span class="line">	animateScale : <span class="literal">false</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Function - Will fire on animation completion.</span></span><br><span class="line">	onAnimationComplete : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="General-issues"><a href="#General-issues" class="headerlink" title="General issues"></a>General issues</h2><h4 id="Chart-interactivity"><a href="#Chart-interactivity" class="headerlink" title="Chart interactivity"></a>Chart interactivity</h4><p>If you are looking to add interaction as a layer to charts, Chart.js is not the library for you. A better option would be using SVG, as this will let you attach event listeners to any of the elements in the chart, as these are all DOM nodes.</p>
+<p>Chart.js uses the canvas element, which is a single DOM node, similar in characteristics to a static image. This does mean that it has a wider scope for compatibility, and less memory implications than SVG based charting solutions. The canvas element also allows for saving the contents as a base 64 string, allowing saving the chart as an image.</p>
+<p>In SVG, all of the lines, data points and everything you see is a DOM node. As a result of this, complex charts with a lot of intricacies, or many charts on the page will often see dips in performance when scrolling or generating the chart, especially when there are multiple on the page. SVG also has relatively poor mobile support, with Android not supporting SVG at all before version 3.0, and iOS before 5.0. (<a href="http://caniuse.com/svg-html5" target="_blank" rel="noopener">caniuse.com/svg-html5</a>).</p>
+<h4 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h4><p>所有现代浏览器和大部分手机浏览器都支持canvas(<a href="http://caniuse.com/canvas" target="_blank" rel="noopener">caniuse.com/canvas</a>)。</p>
+<p>对于IE8及以下版本的浏览器，建议使用ExplorerCanvas - 见 <a href="https://code.google.com/p/explorercanvas/" target="_blank" rel="noopener">https://code.google.com/p/explorercanvas/</a>。对于不支持canvas的IE会自动降级为VML格式。使用方法:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--[if lte IE 8]&gt;</span></span><br><span class="line"><span class="comment">		&lt;script src="excanvas.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">	&lt;![endif]--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Usually I would recommend feature detection to choose whether or not to load a polyfill, rather than IE conditional comments, however in this case, VML is a Microsoft proprietary format, so it will only work in IE.</p>
+<p>Some important points to note in my experience using ExplorerCanvas as a fallback.</p>
+<ul>
+<li><p>Initialise charts on load rather than DOMContentReady when using the library, as sometimes a race condition will occur, and it will result in an error when trying to get the 2d context of a canvas.</p>
+</li>
+<li><p>New VML DOM elements are being created for each animation frame and there is no hardware acceleration. As a result animation is usually slow and jerky, with flashing text. It is a good idea to dynamically turn off animation based on canvas support. I recommend using the excellent <a href="http://modernizr.com/" target="_blank" rel="noopener">Modernizr</a> to do this.</p>
+</li>
+<li><p>When declaring fonts, the library explorercanvas requires the font name to be in single quotes inside the string. For example, instead of your scaleFontFamily property being simply “Arial”, explorercanvas support, use “‘Arial’” instead. Chart.js does this for default values.</p>
+</li>
+</ul>
+<h4 id="Bugs-amp-issues"><a href="#Bugs-amp-issues" class="headerlink" title="Bugs &amp; issues"></a>Bugs &amp; issues</h4><p>Please report these on the Github page - at <a href="https://github.com/nnnick/Chart.js" target="_blank" rel="noopener">github.com/nnnick/Chart.js</a>.</p>
+<p>New contributions to the library are welcome.</p>
+<h4 id="License"><a href="#License" class="headerlink" title="License"></a>License</h4><p>Chart.js is open source and available under the <a href="http://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT license</a>.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Chart-js/" rel="tag"># Chart.js</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/JS插件/" rel="tag"># JS插件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/编码规范 by @mdo/" rel="next" title="编码规范 by @mdo">
+                <i class="fa fa-chevron-left"></i> 编码规范 by @mdo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/windows7登陆界面背景修改/" rel="prev" title="windows7登陆界面背景修改">
+                windows7登陆界面背景修改 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#此文档包含了用Chart-js创建漂亮图表的所有知识。"><span class="nav-number">1.</span> <span class="nav-text">此文档包含了用Chart.js创建漂亮图表的所有知识。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#起步"><span class="nav-number">2.</span> <span class="nav-text">起步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引入Chart-js文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">引入Chart.js文件</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#创建图表"><span class="nav-number">3.</span> <span class="nav-text">创建图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#曲线图（Line-chart）"><span class="nav-number">4.</span> <span class="nav-text">曲线图（Line chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">4.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例"><span class="nav-number">4.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">4.0.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表参数"><span class="nav-number">4.0.4.</span> <span class="nav-text">图表参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柱状图（Bar-chart）"><span class="nav-number">5.</span> <span class="nav-text">柱状图（Bar chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-1"><span class="nav-number">5.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例-1"><span class="nav-number">5.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构-1"><span class="nav-number">5.0.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表参数-1"><span class="nav-number">5.0.4.</span> <span class="nav-text">图表参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#雷达图或蛛网图（Radar-chart）"><span class="nav-number">6.</span> <span class="nav-text">雷达图或蛛网图（Radar chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-2"><span class="nav-number">6.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例-2"><span class="nav-number">6.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构-2"><span class="nav-number">6.0.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表"><span class="nav-number">6.0.4.</span> <span class="nav-text">图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#极地区域图（Polar-area-chart）"><span class="nav-number">7.</span> <span class="nav-text">极地区域图（Polar area chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-3"><span class="nav-number">7.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例-3"><span class="nav-number">7.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构-3"><span class="nav-number">7.0.3.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图表-1"><span class="nav-number">8.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饼图（Pie-chart）"><span class="nav-number">9.</span> <span class="nav-text">饼图（Pie chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-4"><span class="nav-number">9.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例-4"><span class="nav-number">9.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构-4"><span class="nav-number">9.0.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表-2"><span class="nav-number">9.0.4.</span> <span class="nav-text">图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环形图（Doughnut-chart）"><span class="nav-number">10.</span> <span class="nav-text">环形图（Doughnut chart）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介-5"><span class="nav-number">10.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用案例-5"><span class="nav-number">10.0.2.</span> <span class="nav-text">使用案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构-5"><span class="nav-number">10.0.3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表-3"><span class="nav-number">10.0.4.</span> <span class="nav-text">图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-issues"><span class="nav-number">11.</span> <span class="nav-text">General issues</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Chart-interactivity"><span class="nav-number">11.0.1.</span> <span class="nav-text">Chart interactivity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器支持"><span class="nav-number">11.0.2.</span> <span class="nav-text">浏览器支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bugs-amp-issues"><span class="nav-number">11.0.3.</span> <span class="nav-text">Bugs &amp; issues</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#License"><span class="nav-number">11.0.4.</span> <span class="nav-text">License</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

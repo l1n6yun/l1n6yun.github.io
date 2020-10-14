@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Threading for PHP - Share Nothing, Do Everything :) This project provides multi-threading that is compatible with PHP based on Posix Threads. Highlights An easy to use, quick to learn OO Threading API">
+<meta name="keywords" content="php,pthreads,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pthreads">
+<meta property="og:url" content="http://l1n6yun.github.io/2017/04/18/pthreads/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="Threading for PHP - Share Nothing, Do Everything :) This project provides multi-threading that is compatible with PHP based on Posix Threads. Highlights An easy to use, quick to learn OO Threading API">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://travis-ci.org/krakjoe/pthreads.svg?branch=master">
+<meta property="og:image" content="https://ci.appveyor.com/api/projects/status/5pyrhbrxcgenkpbk/branch/master?svg=true">
+<meta property="og:image" content="http://isitmaintained.com/badge/resolution/krakjoe/pthreads.svg">
+<meta property="og:image" content="http://isitmaintained.com/badge/open/krakjoe/pthreads.svg">
+<meta property="og:image" content="https://badges.gitter.im/Join%20Chat.svg">
+<meta property="og:updated_time" content="2020-06-15T14:13:55.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pthreads">
+<meta name="twitter:description" content="Threading for PHP - Share Nothing, Do Everything :) This project provides multi-threading that is compatible with PHP based on Posix Threads. Highlights An easy to use, quick to learn OO Threading API">
+<meta name="twitter:image" content="https://travis-ci.org/krakjoe/pthreads.svg?branch=master">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://l1n6yun.github.io/2017/04/18/pthreads/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>pthreads | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">l1n6yun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录学习的技能和遇到的问题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/l1n6yun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/04/18/pthreads/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pthreads
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-18 06:28:41" itemprop="dateCreated datePublished" datetime="2017-04-18T06:28:41+08:00">2017-04-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Threading-for-PHP-Share-Nothing-Do-Everything"><a href="#Threading-for-PHP-Share-Nothing-Do-Everything" class="headerlink" title="Threading for PHP - Share Nothing, Do Everything :)"></a>Threading for PHP - Share Nothing, Do Everything :)</h1><p><a href="https://travis-ci.org/krakjoe/pthreads" target="_blank" rel="noopener"><img src="https://travis-ci.org/krakjoe/pthreads.svg?branch=master" alt="Build Status"></a><br><a href="https://ci.appveyor.com/project/krakjoe/pthreads/branch/master" target="_blank" rel="noopener"><img src="https://ci.appveyor.com/api/projects/status/5pyrhbrxcgenkpbk/branch/master?svg=true" alt="Build status"></a><br><a href="http://isitmaintained.com/project/krakjoe/pthreads" title="Average time to resolve an issue" target="_blank" rel="noopener"><img src="http://isitmaintained.com/badge/resolution/krakjoe/pthreads.svg" alt="Average time to resolve an issue"></a><br><a href="http://isitmaintained.com/project/krakjoe/pthreads" title="Percentage of issues still open" target="_blank" rel="noopener"><img src="http://isitmaintained.com/badge/open/krakjoe/pthreads.svg" alt="Percentage of issues still open"></a><br><a href="https://gitter.im/krakjoe/pthreads?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" target="_blank" rel="noopener"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/krakjoe/pthreads"></a></p>
+<p>This project provides multi-threading that is compatible with PHP based on Posix Threads.</p>
+<h2 id="Highlights"><a href="#Highlights" class="headerlink" title="Highlights"></a>Highlights</h2><ul>
+<li>An easy to use, quick to learn OO Threading API for PHP7</li>
+<li>Execute any and all predefined and user declared methods and functions, including closures.</li>
+<li>Ready made synchronization included</li>
+<li>A world of possibilities …</li>
+</ul>
+<h2 id="Technical-Features"><a href="#Technical-Features" class="headerlink" title="Technical Features"></a>Technical Features</h2><ul>
+<li>High Level Threading</li>
+<li>Synchronization</li>
+<li>Worker Threads</li>
+<li>Thread Pools</li>
+<li>Complete Support for OO - ie. traits, interfaces, inheritance etc</li>
+<li>Full read/write/execute support for Threaded objects</li>
+</ul>
+<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><ul>
+<li>PHP7+</li>
+<li>ZTS Enabled ( Thread Safety )</li>
+<li>Posix Threads Implementation</li>
+</ul>
+<p>Testing has been carried out on x86, x64 and ARM, in general you just need a compiler and pthread.h</p>
+<h2 id="PHP7"><a href="#PHP7" class="headerlink" title="PHP7"></a>PHP7</h2><p>For PHP7, pthreads has been almost completely rewritten to be more efficient, easier to use and more robust.</p>
+<p>While documentation on php.net is waiting to be updated and translated, I will give a brief changelog here:</p>
+<p>The API for v3 has changed, the following things have been removed:</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>```Cond```, and ```Stackable```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Threaded::lock``` and ```Threaded::unlock</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Threaded::from</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>(there be dragons)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```Thread::detach</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> * ```Threaded::getTerminationInfo``` (this was unsafe, a better, safe impl can be done in userland)</span><br><span class="line"> * Special behaviour of ```protected``` and ```private``` methods on ```Threaded``` objects</span><br><span class="line"></span><br><span class="line">The following things have significant changes:</span><br><span class="line"> </span><br><span class="line"> * The method by which ```Threaded``` objects are stored as member properties of other ```Threaded``` objects.</span><br><span class="line"> * The structure used by a ```Worker``` for stack (```Collectable``` objects to execute inserted by ```Worker::stack```).</span><br><span class="line"> * The ```Pool::collect``` mechanism was moved from ```Pool``` to ```Worker``` for a more robust ```Worker``` and simpler ```Pool``` inheritance.</span><br><span class="line"> * The method by which iteration occurs on ```Threaded``` objects, such that it uses memory more efficiently.</span><br><span class="line"> * ```Threaded::synchronized``` provides true synchronization (state and properties lock).</span><br><span class="line"> * ```Worker``` objects no longer require that you retain a reference to ```Collectable``` objects on the stack.</span><br><span class="line"> * Unified monitor (cond/mutex/state) for ```Threaded``` objects</span><br><span class="line"> * ```Threaded``` members of ```Threaded``` objects are immutable</span><br><span class="line"> * ```Volatile``` objects, excempt from immutability</span><br><span class="line"> * ```array``` coerced to ```Volatile``` when set as member of ```Threaded</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>converted to interface, to make ```extends Volatile implements Collectable``` possible.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Some blog posts explaining these changes:</span><br><span class="line"></span><br><span class="line"> * [A Letter from the Future](http://blog.krakjoe.ninja/2015/08/a-letter-from-future.html)</span><br><span class="line"> * [Addendum to A Letter from the Future](http://blog.krakjoe.ninja/2015/09/addendum-letter-from-future.html)</span><br><span class="line"></span><br><span class="line">As of yet, documentation has not been updated to reflect these changes ... sorry about that ... one human ...</span><br><span class="line"></span><br><span class="line">More detail to come ...</span><br><span class="line"></span><br><span class="line">### Supported PHP Versions</span><br><span class="line"></span><br><span class="line">pthreads v3 requires PHP7 or above. PHP5 needs to use pthreads v2 which can be found in the PHP5 branch.</span><br><span class="line"></span><br><span class="line">### Windows Support</span><br><span class="line"></span><br><span class="line">Yes !! Windows support is offered thanks to the pthread-w32 library.</span><br><span class="line"></span><br><span class="line">Releases for Windows can be found: http://windows.php.net/downloads/pecl/releases/pthreads/</span><br><span class="line"></span><br><span class="line">##### Simple Windows Installation</span><br><span class="line"></span><br><span class="line">* Add `pthreadVC2.dll` (included with the Windows releases) to the same directory as `php.exe` eg. `C:\xampp\php`</span><br><span class="line">* Add `php_pthreads.dll` to PHP extention folder eg. `C:\xampp\php\ext`</span><br><span class="line"></span><br><span class="line">### Mac OSX Support</span><br><span class="line"></span><br><span class="line">Yes !! Users of Mac will be glad to hear that pthreads is now tested on OSX as part of the development process.</span><br><span class="line"></span><br><span class="line">### Hello World</span><br><span class="line"></span><br><span class="line">As is customary in our line of work:</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">&lt;?php</span><br><span class="line">$thread = new class extends Thread &#123;</span><br><span class="line">	public function run() &#123;</span><br><span class="line">		echo &quot;Hello World\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$thread-&gt;start() &amp;&amp; $thread-&gt;join();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Are-you-serious"><a href="#Are-you-serious" class="headerlink" title="Are you serious ?"></a>Are you serious ?</h3><p>Absolutely, this is not a hack, we <em>don’t</em> use forking or any other such nonsense, what you create are honest to goodness posix threads that are completely compatible with PHP and safe … this is true multi-threading :)</p>
+<h3 id="SAPI-Support"><a href="#SAPI-Support" class="headerlink" title="SAPI Support"></a>SAPI Support</h3><p>pthreads v3 is restricted to operating in CLI only: I have spent many years trying to explain that threads in a web server just don’t make sense, after 1,111 commits to pthreads I have realised that, my advice is going unheeded.</p>
+<p>So I’m promoting the advice to hard and fast fact: <em>you can’t use pthreads safely and sensibly anywhere but CLI.</em></p>
+<p>Thanks for listening ;)</p>
+<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p>Documentation can be found in the PHP manual: <a href="http://docs.php.net/manual/en/book.pthreads.php" target="_blank" rel="noopener">http://docs.php.net/manual/en/book.pthreads.php</a>, and some examples can be found in the “examples” folder in the master repository.</p>
+<p>Further insights and occasional announcements can be read at the <a href="http://pthreads.org" target="_blank" rel="noopener">http://pthreads.org</a> site where pthreads is developed and tested in the real world.</p>
+<p>Here are some links to articles I have prepared for users: everybody should read them before they do anything else:</p>
+<ul>
+<li><a href="https://gist.github.com/krakjoe/6437782" target="_blank" rel="noopener">https://gist.github.com/krakjoe/6437782</a></li>
+<li><a href="https://gist.github.com/krakjoe/9384409" target="_blank" rel="noopener">https://gist.github.com/krakjoe/9384409</a></li>
+</ul>
+<p>If you have had the time to put any cool demo’s together and would like them showcased on pthreads.org please get in touch.</p>
+<p><em>Note: the documentation in the manual and the documents above refer to pthreads v2, it has not yet been updated … anyone want to help ?</em></p>
+<h3 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h3><p>It’s possible to write code that optionally takes advantage of parallelism where the environment has <figure class="highlight plain"><figcaption><span>loaded.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">This is made possible by [pthreads-polyfill](http://github.com/krakjoe/pthreads-polyfill) which can be found on [packagist](https://packagist.org/packages/krakjoe/pthreads-polyfill).</span><br><span class="line"></span><br><span class="line">Having required the appropriate package in your composer.json, the following code is executable everywhere:</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">&lt;?php</span><br><span class="line">require_once(&quot;vendor/autoload.php&quot;);</span><br><span class="line"></span><br><span class="line">if (extension_loaded(&quot;pthreads&quot;)) &#123;</span><br><span class="line">	    echo &quot;Using pthreads\n&quot;;</span><br><span class="line">&#125; else  echo &quot;Using polyfill\n&quot;;</span><br><span class="line"></span><br><span class="line">$pool = new Pool(4);</span><br><span class="line"></span><br><span class="line">$pool-&gt;submit(new class extends Threaded &#123;</span><br><span class="line">        public function run() &#123;</span><br><span class="line">                echo &quot;Hello World\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">while ($pool-&gt;collect()) continue;</span><br><span class="line"></span><br><span class="line">$pool-&gt;shutdown();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>Some guidance on getting started, and detail regarding how the polyfill came to exist can be found <a href="http://blog.krakjoe.ninja/2015/09/what-polly-really-wants.html" target="_blank" rel="noopener">here</a>.</p>
+<h3 id="Feedback"><a href="#Feedback" class="headerlink" title="Feedback"></a>Feedback</h3><p>Please submit issues, and send your feedback and suggestions as often as you have them.</p>
+<h3 id="Reporting-Bugs"><a href="#Reporting-Bugs" class="headerlink" title="Reporting Bugs"></a>Reporting Bugs</h3><p>If you believe you have found a bug in pthreads, please open an issue: Include in your report <em>minimal, executable, reproducing code</em>.</p>
+<p>Minimal:     reduce your problem to the smallest amount of code possible; This helps with hunting the bug, but also it helps with integration and regression testing once the bug is fixed.</p>
+<p>Executable:  include all the information required to execute the example code, code snippets are not helpful.</p>
+<p>Reproducing: some bugs don’t show themselves on every execution, that’s fine, mention that in the report and give an idea of how often you encounter the bug.</p>
+<p><strong>It is impossible to help without reproducing code, bugs that are opened without reproducing code will be closed.</strong></p>
+<p>Please include version and operating system information in your report.</p>
+<p><em>Please do not post requests to help with code on github; I spend a lot of time on Stackoverflow, a much better place for asking questions.</em></p>
+<p>Have patience; I am one human being.</p>
+<h3 id="Developers"><a href="#Developers" class="headerlink" title="Developers"></a>Developers</h3><p>There is no defined API for you to create your own threads in your extensions, this project aims to provide Userland threading, it does not aim to provide a threading API for extension developers. I suggest you allow users to decide what they thread and keep your own extension focused on your functionality.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/pthreads/" rel="tag"># pthreads</a>
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/CSS3改变选中文本的默认样式/" rel="next" title="CSS3改变选中文本的默认样式">
+                <i class="fa fa-chevron-left"></i> CSS3改变选中文本的默认样式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/22/HTML5滚屏特效/" rel="prev" title="HTML5滚屏特效">
+                HTML5滚屏特效 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="l1n6yun">
+            
+              <p class="site-author-name" itemprop="name">l1n6yun</p>
+              <div class="site-description motion-element" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/l1n6yun" title="GitHub &rarr; https://github.com/l1n6yun" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:l1n6yun@gmail.com" title="E-Mail &rarr; mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.phpenv.cn/" title="https://www.phpenv.cn/" rel="noopener" target="_blank">phpEnv</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Threading-for-PHP-Share-Nothing-Do-Everything"><span class="nav-number">1.</span> <span class="nav-text">Threading for PHP - Share Nothing, Do Everything :)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Highlights"><span class="nav-number">1.1.</span> <span class="nav-text">Highlights</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-Features"><span class="nav-number">1.2.</span> <span class="nav-text">Technical Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements"><span class="nav-number">1.3.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP7"><span class="nav-number">1.4.</span> <span class="nav-text">PHP7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Are-you-serious"><span class="nav-number">1.4.1.</span> <span class="nav-text">Are you serious ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAPI-Support"><span class="nav-number">1.4.2.</span> <span class="nav-text">SAPI Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Documentation"><span class="nav-number">1.4.3.</span> <span class="nav-text">Documentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Polyfill"><span class="nav-number">1.4.4.</span> <span class="nav-text">Polyfill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feedback"><span class="nav-number">1.4.5.</span> <span class="nav-text">Feedback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reporting-Bugs"><span class="nav-number">1.4.6.</span> <span class="nav-text">Reporting Bugs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Developers"><span class="nav-number">1.4.7.</span> <span class="nav-text">Developers</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
