@@ -363,6 +363,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/01/07/Web程序的桌面提醒/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/01/07/Web程序的桌面提醒/" class="post-title-link" itemprop="url">Web程序的桌面提醒</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-01-07 11:23:01" itemprop="dateCreated datePublished" datetime="2017-01-07T11:23:01+08:00">2017-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>做web开发常会面对的一个问题是，浏览器最小化的时候如何才能向用户发送通知。解决办法大概有三种：让用户有事没事儿搂两眼页面；开发一个桌面客户端；Html5的Notification API。</p>
+<p>目前没看到谁采用第一种方案；Yammer采用的是第二种，但仅仅为了这么个小功能，搞个客户端，还得让用户安装，不划算。</p>
+<p>Html5的Notification API各大浏览器所支持的程度不一样，使用的话需要考虑浏览器的兼容性。有人看到了这一点，折腾出了一个小巧的桌面提醒库：HTML5 Desktop Notifications。支持的浏览器有：IE9+、Safari6、Firefox、Chrome。</p>
+<p>值得一提的是，在IE中需要特殊处理一下才能使用桌面通知：打开链接 -&gt; 拖动地址栏中的图表附加到任务栏。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>引入js脚本：<script type="text/javascript" src="desktop-notify-min.js"></script></li>
+<li>验证浏览器是否支持桌面通知：notify.isSupported；<br> true:支持； false:不支持。</li>
+<li>验证浏览器是否允许桌面通知：notify.permissionLevel()；<br> 返回值：notify.PERMISSION_GRANTED ：没有开启，此时可以调用notify.requestPermission(callback)向用户请求桌面通知的权限。<br> notify.PERMISSION_DEFAULT：已经开启。<br> notify.PERMISSION_DEFAULT：不允许桌面通知。</li>
+<li>产生桌面提醒：notify.createNotification()<br> 此方法的第一个参数传递标题，第二个参数是一个json对象{body:”Body”, icon: “alert.ico”,tag:”tag”}.<br> 返回值是一个通知对象，可以调用该对象的close()方法，关闭桌面通知。</li>
+</ol>
+<h2 id="各个浏览器的显示效果"><a href="#各个浏览器的显示效果" class="headerlink" title="各个浏览器的显示效果"></a>各个浏览器的显示效果</h2><p>以下图片来自官方文档</p>
+<p>IE9</p>
+<p><img src="/images/Web%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A1%8C%E9%9D%A2%E6%8F%90%E9%86%92/IE9.png" alt="IE9"> </p>
+<p>chrome</p>
+<p><img src="/images/Web%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A1%8C%E9%9D%A2%E6%8F%90%E9%86%92/chrome.png" alt="chrome"> </p>
+<p>safari</p>
+<p><img src="/images/Web%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%A1%8C%E9%9D%A2%E6%8F%90%E9%86%92/safari.png" alt="safari"> </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2017/01/07/Duplicate entry for key/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2025,273 +2196,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://l1n6yun.github.io/2016/12/03/解除windows隐藏受保护的操作系统文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/12/03/解除windows隐藏受保护的操作系统文件/" class="post-title-link" itemprop="url">解除windows隐藏受保护的操作系统文件</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2016-12-03 20:35:03" itemprop="dateCreated datePublished" datetime="2016-12-03T20:35:03+08:00">2016-12-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-06-15 22:13:55" itemprop="dateModified" datetime="2020-06-15T22:13:55+08:00">2020-06-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对于文件夹：</p>
-<p>1、解除对某磁盘某个文件夹的强行隐藏(示例)：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">attrib</span> d:\"Program Files" -s -h /s /d</span><br></pre></td></tr></table></figure>
-
-<p>2、解除对某磁盘全部文件夹的强行隐藏(示例)：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">attrib</span> d:\"*" -s -h /s /d</span><br></pre></td></tr></table></figure>
-
-<p>——友情提示：以上示例中，d:为磁盘盘符；引号内为文件夹名称；相关命令参数：</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>+r</td>
-<td>设置只读文件属性。</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>清除只读文件属性。</td>
-</tr>
-<tr>
-<td>+a</td>
-<td>设置存档属性。</td>
-</tr>
-<tr>
-<td>-a</td>
-<td>清除存档属性。</td>
-</tr>
-<tr>
-<td>+s</td>
-<td>设置系统文件属性。</td>
-</tr>
-<tr>
-<td>-s</td>
-<td>清除系统文件属性。</td>
-</tr>
-<tr>
-<td>+h</td>
-<td>设置隐藏文件属性。</td>
-</tr>
-<tr>
-<td>-h</td>
-<td>清除隐藏文件属性。</td>
-</tr>
-<tr>
-<td>/s</td>
-<td>将attrib和任意命令行选项应用到当前目录及其所有子目录中的匹配文件。</td>
-</tr>
-<tr>
-<td>/d</td>
-<td>将attrib和任意命令行选项应用到目录。</td>
-</tr>
-<tr>
-<td>/?</td>
-<td>在命令提示符下显示帮助。</td>
-</tr>
-</tbody></table>
-<p>对于文件：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ATTRIB</span> [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [<span class="built_in">path</span>] filename] [/S [ /D]]</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>+</td>
-<td>设置属性。</td>
-</tr>
-<tr>
-<td>-</td>
-<td>清除属性。</td>
-</tr>
-<tr>
-<td>R</td>
-<td>只读文件属性。</td>
-</tr>
-<tr>
-<td>A</td>
-<td>存档文件属性。</td>
-</tr>
-<tr>
-<td>S</td>
-<td>系统文件属性。</td>
-</tr>
-<tr>
-<td>H</td>
-<td>隐藏文件属性。</td>
-</tr>
-<tr>
-<td>[drive:][path][filename]</td>
-<td>指定要处理的文件属性。</td>
-</tr>
-<tr>
-<td>/S</td>
-<td>处理当前文件夹及其子文件夹中的匹配文件。</td>
-</tr>
-<tr>
-<td>/D</td>
-<td>也处理文件夹。</td>
-</tr>
-</tbody></table>
-<p>例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attrib -s -h -r c:\*.*</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2335,7 +2244,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">101</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
