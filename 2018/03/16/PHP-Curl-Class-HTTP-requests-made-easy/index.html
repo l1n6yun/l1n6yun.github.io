@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https:&#x2F;&#x2F;www.phpcurlclass.com&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Curl Class: HTTP requests made easy">
+<meta property="og:url" content="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https:&#x2F;&#x2F;www.phpcurlclass.com&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/github/license/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/travis/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/packagist/dt/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/php-curl-class/php-curl-class/master/www/img/screencast.gif">
+<meta property="article:published_time" content="2018-03-16T04:47:18.000Z">
+<meta property="article:modified_time" content="2022-03-14T15:36:43.195Z">
+<meta property="article:author" content="l1n6yun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg">
+
+<link rel="canonical" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PHP Curl Class: HTTP requests made easy | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">l1n6yun's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-book fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP Curl Class: HTTP requests made easy
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-16 12:47:18" itemprop="dateCreated datePublished" datetime="2018-03-16T12:47:18+08:00">2018-03-16</time>
+            </span>
+
+          
+            <div class="post-description">PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https://www.phpcurlclass.com/</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="PHP-Curl-Class-HTTP-requests-made-easy"><a href="#PHP-Curl-Class-HTTP-requests-made-easy" class="headerlink" title="PHP Curl Class: HTTP requests made easy"></a>PHP Curl Class: HTTP requests made easy</h3><p><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/releases/"><img src="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/blob/master/LICENSE"><img src="https://img.shields.io/github/license/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://travis-ci.org/php-curl-class/php-curl-class/"><img src="https://img.shields.io/travis/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/releases/"><img src="https://img.shields.io/packagist/dt/php-curl-class/php-curl-class.svg"></a></p>
+<p>PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.</p>
+<p><img src="https://raw.githubusercontent.com/php-curl-class/php-curl-class/master/www/img/screencast.gif" alt="PHP Curl Class screencast"></p>
+<hr>
+<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>To install PHP Curl Class, simply:</p>
+<pre><code>$ composer require php-curl-class/php-curl-class
+</code></pre>
+<p>For latest commit version:</p>
+<pre><code>$ composer require php-curl-class/php-curl-class @dev
+</code></pre>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>PHP Curl Class works with PHP 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, and HHVM.</p>
+<h3 id="Quick-Start-and-Examples"><a href="#Quick-Start-and-Examples" class="headerlink" title="Quick Start and Examples"></a>Quick Start and Examples</h3><p>More examples are available under <a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/tree/master/examples">/examples</a>.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> \<span class="title">Curl</span>\<span class="title">Curl</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;get(<span class="string">&#x27;https://www.example.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$curl</span>-&gt;error) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Error: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorCode . <span class="string">&#x27;: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    var_dump(<span class="variable">$curl</span>-&gt;response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.example.com/search?q=keyword</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;get(<span class="string">&#x27;https://www.example.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;keyword&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;post(<span class="string">&#x27;https://www.example.com/login/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span> =&gt; <span class="string">&#x27;myusername&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;mypassword&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;setBasicAuthentication(<span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;password&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;setUserAgent(<span class="string">&#x27;MyUserAgent/0.0.1 (+https://www.example.com/bot.html)&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;setReferrer(<span class="string">&#x27;https://www.example.com/url?url=https%3A%2F%2Fwww.example.com%2F&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;setHeader(<span class="string">&#x27;X-Requested-With&#x27;</span>, <span class="string">&#x27;XMLHttpRequest&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;setCookie(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;get(<span class="string">&#x27;https://www.example.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$curl</span>-&gt;error) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Error: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorCode . <span class="string">&#x27;: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    var_dump(<span class="variable">$curl</span>-&gt;response);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var_dump(<span class="variable">$curl</span>-&gt;requestHeaders);</span><br><span class="line">var_dump(<span class="variable">$curl</span>-&gt;responseHeaders);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;setOpt(CURLOPT_FOLLOWLOCATION, <span class="literal">true</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;get(<span class="string">&#x27;https://shortn.example.com/bHbVsP&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;put(<span class="string">&#x27;https://api.example.com/user/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;Zach&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;last_name&#x27;</span> =&gt; <span class="string">&#x27;Borboa&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;patch(<span class="string">&#x27;https://api.example.com/profile/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;image&#x27;</span> =&gt; <span class="string">&#x27;@path/to/file.jpg&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;patch(<span class="string">&#x27;https://api.example.com/profile/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;image&#x27;</span> =&gt; <span class="keyword">new</span> CURLFile(<span class="string">&#x27;path/to/file.jpg&#x27;</span>),</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;delete(<span class="string">&#x27;https://api.example.com/user/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;id&#x27;</span> =&gt; <span class="string">&#x27;1234&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable all supported encoding types and download a file.</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;setOpt(CURLOPT_ENCODING , <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;download(<span class="string">&#x27;https://www.example.com/file.bin&#x27;</span>, <span class="string">&#x27;/tmp/myfile.bin&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Case-insensitive access to headers.</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> Curl();</span><br><span class="line"><span class="variable">$curl</span>-&gt;download(<span class="string">&#x27;https://www.example.com/image.png&#x27;</span>, <span class="string">&#x27;/tmp/myimage.png&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$curl</span>-&gt;responseHeaders[<span class="string">&#x27;Content-Type&#x27;</span>] . <span class="string">&quot;\n&quot;</span>; <span class="comment">// image/png</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$curl</span>-&gt;responseHeaders[<span class="string">&#x27;CoNTeNT-TyPE&#x27;</span>] . <span class="string">&quot;\n&quot;</span>; <span class="comment">// image/png</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Clean up.</span></span><br><span class="line"><span class="variable">$curl</span>-&gt;close();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example access to curl object.</span></span><br><span class="line">curl_set_opt(<span class="variable">$curl</span>-&gt;curl, CURLOPT_USERAGENT, <span class="string">&#x27;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1&#x27;</span>);</span><br><span class="line">curl_close(<span class="variable">$curl</span>-&gt;curl);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> \<span class="title">Curl</span>\<span class="title">MultiCurl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Requests in parallel with callback functions.</span></span><br><span class="line"><span class="variable">$multi_curl</span> = <span class="keyword">new</span> MultiCurl();</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;success(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$instance</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call to &quot;&#x27;</span> . <span class="variable">$instance</span>-&gt;url . <span class="string">&#x27;&quot; was successful.&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    var_dump(<span class="variable">$instance</span>-&gt;response);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;error(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$instance</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call to &quot;&#x27;</span> . <span class="variable">$instance</span>-&gt;url . <span class="string">&#x27;&quot; was unsuccessful.&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;error code: &#x27;</span> . <span class="variable">$instance</span>-&gt;errorCode . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;error message: &#x27;</span> . <span class="variable">$instance</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;complete(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$instance</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call completed&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;addGet(<span class="string">&#x27;https://www.google.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;addGet(<span class="string">&#x27;https://duckduckgo.com/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;addGet(<span class="string">&#x27;https://www.bing.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;start(); <span class="comment">// Blocks until all items in the queue have been processed.</span></span><br></pre></td></tr></table></figure>
+
+<p>More examples are available under <a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/tree/master/examples">/examples</a>.</p>
+<h3 id="Available-Methods"><a href="#Available-Methods" class="headerlink" title="Available Methods"></a>Available Methods</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">Curl::__construct(<span class="variable">$base_url</span> = <span class="literal">null</span>)</span><br><span class="line">Curl::__destruct()</span><br><span class="line">Curl::__get(<span class="variable">$name</span>)</span><br><span class="line">Curl::attemptRetry()</span><br><span class="line">Curl::beforeSend(<span class="variable">$callback</span>)</span><br><span class="line">Curl::buildPostData(<span class="variable">$data</span>)</span><br><span class="line">Curl::call()</span><br><span class="line">Curl::close()</span><br><span class="line">Curl::complete(<span class="variable">$callback</span>)</span><br><span class="line">Curl::delete(<span class="variable">$url</span>, <span class="variable">$query_parameters</span> = <span class="keyword">array</span>(), <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::download(<span class="variable">$url</span>, <span class="variable">$mixed_filename</span>)</span><br><span class="line">Curl::error(<span class="variable">$callback</span>)</span><br><span class="line">Curl::exec(<span class="variable">$ch</span> = <span class="literal">null</span>)</span><br><span class="line">Curl::execDone()</span><br><span class="line">Curl::get(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::getCookie(<span class="variable">$key</span>)</span><br><span class="line">Curl::getInfo(<span class="variable">$opt</span> = <span class="literal">null</span>)</span><br><span class="line">Curl::getOpt(<span class="variable">$option</span>)</span><br><span class="line">Curl::getResponseCookie(<span class="variable">$key</span>)</span><br><span class="line">Curl::getResponseCookies()</span><br><span class="line">Curl::head(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::options(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::patch(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::post(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>(), <span class="variable">$follow_303_with_post</span> = <span class="literal">false</span>)</span><br><span class="line">Curl::progress(<span class="variable">$callback</span>)</span><br><span class="line">Curl::put(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::removeHeader(<span class="variable">$key</span>)</span><br><span class="line">Curl::search(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">Curl::setBasicAuthentication(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">Curl::setConnectTimeout(<span class="variable">$seconds</span>)</span><br><span class="line">Curl::setCookie(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line">Curl::setCookieFile(<span class="variable">$cookie_file</span>)</span><br><span class="line">Curl::setCookieJar(<span class="variable">$cookie_jar</span>)</span><br><span class="line">Curl::setCookieString(<span class="variable">$string</span>)</span><br><span class="line">Curl::setCookies(<span class="variable">$cookies</span>)</span><br><span class="line">Curl::setDefaultDecoder(<span class="variable">$mixed</span> = <span class="string">&#x27;json&#x27;</span>)</span><br><span class="line">Curl::setDefaultJsonDecoder()</span><br><span class="line">Curl::setDefaultTimeout()</span><br><span class="line">Curl::setDefaultUserAgent()</span><br><span class="line">Curl::setDefaultXmlDecoder()</span><br><span class="line">Curl::setDigestAuthentication(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">Curl::setHeader(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line">Curl::setHeaders(<span class="variable">$headers</span>)</span><br><span class="line">Curl::setJsonDecoder(<span class="variable">$mixed</span>)</span><br><span class="line">Curl::setMaxFilesize(<span class="variable">$bytes</span>)</span><br><span class="line">Curl::setOpt(<span class="variable">$option</span>, <span class="variable">$value</span>)</span><br><span class="line">Curl::setOpts(<span class="variable">$options</span>)</span><br><span class="line">Curl::setPort(<span class="variable">$port</span>)</span><br><span class="line">Curl::setReferer(<span class="variable">$referer</span>)</span><br><span class="line">Curl::setReferrer(<span class="variable">$referrer</span>)</span><br><span class="line">Curl::setRetry(<span class="variable">$mixed</span>)</span><br><span class="line">Curl::setTimeout(<span class="variable">$seconds</span>)</span><br><span class="line">Curl::setUrl(<span class="variable">$url</span>, <span class="variable">$mixed_data</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">Curl::setUserAgent(<span class="variable">$user_agent</span>)</span><br><span class="line">Curl::setXmlDecoder(<span class="variable">$mixed</span>)</span><br><span class="line">Curl::success(<span class="variable">$callback</span>)</span><br><span class="line">Curl::unsetHeader(<span class="variable">$key</span>)</span><br><span class="line">Curl::verbose(<span class="variable">$on</span> = <span class="literal">true</span>, <span class="variable">$output</span> = STDERR)</span><br><span class="line">MultiCurl::__construct(<span class="variable">$base_url</span> = <span class="literal">null</span>)</span><br><span class="line">MultiCurl::__destruct()</span><br><span class="line">MultiCurl::addCurl(Curl <span class="variable">$curl</span>)</span><br><span class="line">MultiCurl::addDelete(<span class="variable">$url</span>, <span class="variable">$query_parameters</span> = <span class="keyword">array</span>(), <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addDownload(<span class="variable">$url</span>, <span class="variable">$mixed_filename</span>)</span><br><span class="line">MultiCurl::addGet(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addHead(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addOptions(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addPatch(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addPost(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>(), <span class="variable">$follow_303_with_post</span> = <span class="literal">false</span>)</span><br><span class="line">MultiCurl::addPut(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::addSearch(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line">MultiCurl::beforeSend(<span class="variable">$callback</span>)</span><br><span class="line">MultiCurl::close()</span><br><span class="line">MultiCurl::complete(<span class="variable">$callback</span>)</span><br><span class="line">MultiCurl::error(<span class="variable">$callback</span>)</span><br><span class="line">MultiCurl::getOpt(<span class="variable">$option</span>)</span><br><span class="line">MultiCurl::removeHeader(<span class="variable">$key</span>)</span><br><span class="line">MultiCurl::setBasicAuthentication(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">MultiCurl::setConcurrency(<span class="variable">$concurrency</span>)</span><br><span class="line">MultiCurl::setConnectTimeout(<span class="variable">$seconds</span>)</span><br><span class="line">MultiCurl::setCookie(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line">MultiCurl::setCookieFile(<span class="variable">$cookie_file</span>)</span><br><span class="line">MultiCurl::setCookieJar(<span class="variable">$cookie_jar</span>)</span><br><span class="line">MultiCurl::setCookieString(<span class="variable">$string</span>)</span><br><span class="line">MultiCurl::setCookies(<span class="variable">$cookies</span>)</span><br><span class="line">MultiCurl::setDigestAuthentication(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">MultiCurl::setHeader(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line">MultiCurl::setHeaders(<span class="variable">$headers</span>)</span><br><span class="line">MultiCurl::setJsonDecoder(<span class="variable">$mixed</span>)</span><br><span class="line">MultiCurl::setOpt(<span class="variable">$option</span>, <span class="variable">$value</span>)</span><br><span class="line">MultiCurl::setOpts(<span class="variable">$options</span>)</span><br><span class="line">MultiCurl::setPort(<span class="variable">$port</span>)</span><br><span class="line">MultiCurl::setReferer(<span class="variable">$referer</span>)</span><br><span class="line">MultiCurl::setReferrer(<span class="variable">$referrer</span>)</span><br><span class="line">MultiCurl::setRetry(<span class="variable">$mixed</span>)</span><br><span class="line">MultiCurl::setTimeout(<span class="variable">$seconds</span>)</span><br><span class="line">MultiCurl::setUrl(<span class="variable">$url</span>)</span><br><span class="line">MultiCurl::setUserAgent(<span class="variable">$user_agent</span>)</span><br><span class="line">MultiCurl::setXmlDecoder(<span class="variable">$mixed</span>)</span><br><span class="line">MultiCurl::start()</span><br><span class="line">MultiCurl::success(<span class="variable">$callback</span>)</span><br><span class="line">MultiCurl::unsetHeader(<span class="variable">$key</span>)</span><br><span class="line">MultiCurl::verbose(<span class="variable">$on</span> = <span class="literal">true</span>, <span class="variable">$output</span> = STDERR)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>See <a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/blob/master/SECURITY.md">SECURITY</a> for security considerations.</p>
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><p>See <a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/blob/master/TROUBLESHOOTING.md">TROUBLESHOOTING</a> for troubleshooting.</p>
+<h3 id="Run-Tests"><a href="#Run-Tests" class="headerlink" title="Run Tests"></a>Run Tests</h3><p>To run tests:</p>
+<pre><code>$ git clone https://github.com/php-curl-class/php-curl-class.git
+$ cd php-curl-class/
+$ composer update
+$ ./tests/run.sh
+</code></pre>
+<h3 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h3><ol>
+<li>Check for open issues or open a new issue to start a discussion around a bug or feature.</li>
+<li>Fork the repository on GitHub to start making your changes.</li>
+<li>Write one or more tests for the new feature or that expose the bug.</li>
+<li>Make code changes to implement the feature or fix the bug.</li>
+<li>Send a pull request to get your changes merged and published.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/" rel="prev" title="设置获取cookie，setCookie，getCookie">
+      <i class="fa fa-chevron-left"></i> 设置获取cookie，setCookie，getCookie
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/" rel="next" title="phpstorm连接mysql出错">
+      phpstorm连接mysql出错 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Curl-Class-HTTP-requests-made-easy"><span class="nav-number">1.</span> <span class="nav-text">PHP Curl Class: HTTP requests made easy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">3.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Start-and-Examples"><span class="nav-number">4.</span> <span class="nav-text">Quick Start and Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Available-Methods"><span class="nav-number">5.</span> <span class="nav-text">Available Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security"><span class="nav-number">6.</span> <span class="nav-text">Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Troubleshooting"><span class="nav-number">7.</span> <span class="nav-text">Troubleshooting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-Tests"><span class="nav-number">8.</span> <span class="nav-text">Run Tests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contribute"><span class="nav-number">9.</span> <span class="nav-text">Contribute</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/l1n6yun" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:l1n6yun@gmail.com" title="E-Mail → mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.phpenv.cn/" title="https:&#x2F;&#x2F;www.phpenv.cn&#x2F;" rel="noopener" target="_blank">phpEnv</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://workrave.org/" title="https:&#x2F;&#x2F;workrave.org&#x2F;" rel="noopener" target="_blank">Workrave</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dynwrapx.script-coding.com/dwx/pages/dynwrapx.php?lang=en" title="https:&#x2F;&#x2F;dynwrapx.script-coding.com&#x2F;dwx&#x2F;pages&#x2F;dynwrapx.php?lang&#x3D;en" rel="noopener" target="_blank">DynamicWrapperX</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

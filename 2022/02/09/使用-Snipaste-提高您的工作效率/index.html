@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Boost your productivity with SnipasteSnipaste is a simple but powerful snipping tool, and alsoallows you to pin the screenshot back onto the screen.Download and start the application, press F1 to star">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Snipaste 提高您的工作效率">
+<meta property="og:url" content="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="Boost your productivity with SnipasteSnipaste is a simple but powerful snipping tool, and alsoallows you to pin the screenshot back onto the screen.Download and start the application, press F1 to star">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/pasted-8.png">
+<meta property="og:image" content="http://example.com/images/pasted-9.png">
+<meta property="og:image" content="http://example.com/images/pasted-10.png">
+<meta property="og:image" content="http://example.com/images/pasted-11.png">
+<meta property="article:published_time" content="2022-02-09T15:25:00.000Z">
+<meta property="article:modified_time" content="2022-03-14T15:25:36.822Z">
+<meta property="article:author" content="l1n6yun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/pasted-8.png">
+
+<link rel="canonical" href="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用 Snipaste 提高您的工作效率 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">l1n6yun's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-book fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Snipaste 提高您的工作效率
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-09 23:25:00" itemprop="dateCreated datePublished" datetime="2022-02-09T23:25:00+08:00">2022-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" itemprop="url" rel="index"><span itemprop="name">软件推荐</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Boost-your-productivity-with-Snipaste"><a href="#Boost-your-productivity-with-Snipaste" class="headerlink" title="Boost your productivity with Snipaste"></a>Boost your productivity with Snipaste</h2><p>Snipaste is a simple but powerful snipping tool, and also<br>allows you to pin the screenshot back onto the screen.<br>Download and start the application, press <kbd>F1</kbd> to start snipping,<br>then press <kbd>F3</kbd> to paste it as a floating window. That’s it!</p>
+<p>You can also convert text or color info in the clipboard into a floating image window.<br>Such windows can be zoomed, rotated, flipped, made translucent, and even made click-through!<br>If you are a programmer, a designer or whoever works much time before the computer,<br>you will be surprised how it can help you get your work done more efficiently!</p>
+<p>Snipaste is easy and intuitive to use,<br>but there are also many hidden features that can make your life even more efficient.<br>Read the <a target="_blank" rel="noopener" href="https://docs.snipaste.com">manual</a><br>if you are interested.</p>
+<h3 id="Intuitive-snipping"><a href="#Intuitive-snipping" class="headerlink" title="Intuitive snipping"></a>Intuitive snipping</h3><p><img src="/images/pasted-8.png" alt="upload successful"></p>
+<ul>
+<li>Auto detect UI elements</li>
+<li>Pixel-level control</li>
+<li>Color picker (try <code>F1</code>, <code>C</code>, <code>F3</code>)</li>
+<li><strong>History play back</strong> (<code>,</code>/<code>.</code>)</li>
+<li>Multi-screen support</li>
+<li>HiDPI (retina display) support</li>
+</ul>
+<h3 id="Paste-images-as-topmost-floating-windows"><a href="#Paste-images-as-topmost-floating-windows" class="headerlink" title="Paste images as topmost floating windows"></a>Paste images as topmost floating windows</h3><p><img src="/images/pasted-9.png" alt="upload successful"></p>
+<ul>
+<li>The source (in the clipboard) could be                            <ul>
+<li>Image</li>
+<li>Plain text</li>
+<li>HTML text</li>
+<li>Color info text</li>
+<li>Image files: PNG, JPG, BMP, TGA, ICO, TIFF and <strong>GIF</strong></li>
+</ul>
+</li>
+<li>Supported operations<ul>
+<li>Zoom (<code>mouse scroll</code> or <code>+</code>/<code>-</code>) or set speed for GIF </li>
+<li>Rotate (<code>1</code>/<code>2</code>) or jump to previous/next frame for GIF</li>
+<li>Flip (<code>3</code>/<code>4</code>)</li>
+<li>Set transparency (<code>Ctrl</code> + <code>mouse scroll</code> or <code>Ctrl</code> + <code>+</code>/<code>-</code>)</li>
+<li>Mouse click-through (<code>X</code>, and use <code>F4</code> to cancel)</li>
+<li>Image editing (<code>Space</code>)</li>
+<li>Thumbnail mode (<code>Shift</code> + <code>Double click</code>)</li>
+<li>Hide (<code>Double click</code>)</li>
+<li>…</li>
+</ul>
+</li>
+<li>Color picker (<code>Alt</code>)</li>
+<li>Drag &amp; drop</li>
+<li><strong>Grouping</strong></li>
+<li><strong>Auto backup &amp; restore</strong></li>
+</ul>
+<h3 id="Easy-image-annotation"><a href="#Easy-image-annotation" class="headerlink" title="Easy image annotation"></a>Easy image annotation</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
+<ul>
+<li>Rich shapes                            <ul>
+<li>Rectangle</li>
+<li>Ellipse</li>
+<li>Linestrip</li>
+<li>Arrow</li>
+<li>Pencil</li>
+<li>Marker pen</li>
+<li>Text</li>
+</ul>
+</li>
+<li>Advanced annotation tools                            <ul>
+<li>Mosaic</li>
+<li>Gaussian blur</li>
+<li>Eraser</li>
+</ul>
+</li>
+<li>Undo &amp; redo</li>
+</ul>
+<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
+<ul>
+<li>Theme color, interface font, tray icon, and more</li>
+<li>Hot keys</li>
+<li>Detailed functionality options</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/08/Dark-Reader/" rel="prev" title="Dark Reader">
+      <i class="fa fa-chevron-left"></i> Dark Reader
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/11/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="next" title="Markdown基本语法">
+      Markdown基本语法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Boost-your-productivity-with-Snipaste"><span class="nav-number">1.</span> <span class="nav-text">Boost your productivity with Snipaste</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intuitive-snipping"><span class="nav-number">1.1.</span> <span class="nav-text">Intuitive snipping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paste-images-as-topmost-floating-windows"><span class="nav-number">1.2.</span> <span class="nav-text">Paste images as topmost floating windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-image-annotation"><span class="nav-number">1.3.</span> <span class="nav-text">Easy image annotation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customization"><span class="nav-number">1.4.</span> <span class="nav-text">Customization</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/l1n6yun" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:l1n6yun@gmail.com" title="E-Mail → mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.phpenv.cn/" title="https:&#x2F;&#x2F;www.phpenv.cn&#x2F;" rel="noopener" target="_blank">phpEnv</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://workrave.org/" title="https:&#x2F;&#x2F;workrave.org&#x2F;" rel="noopener" target="_blank">Workrave</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dynwrapx.script-coding.com/dwx/pages/dynwrapx.php?lang=en" title="https:&#x2F;&#x2F;dynwrapx.script-coding.com&#x2F;dwx&#x2F;pages&#x2F;dynwrapx.php?lang&#x3D;en" rel="noopener" target="_blank">DynamicWrapperX</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

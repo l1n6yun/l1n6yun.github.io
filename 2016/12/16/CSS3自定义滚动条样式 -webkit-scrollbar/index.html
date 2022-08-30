@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="有没有觉得浏览器自带的原始滚动条很不美观,同时也有看到很多网站的自定义滚动条显得高端,就连 chrome32.0 开发板都抛弃了原始的滚动条,美观多了。那 ** webkit浏览器 ** 是如何自定义滚动条的呢？  前言webkit 支持拥有 overflow 属性的区域,列表框,下拉菜单,textarea 的滚动条自定义样式,所以用处还是挺大的。当然,兼容所有浏览器的滚动条样式目前是不存在的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3自定义滚动条样式 -webkit-scrollbar">
+<meta property="og:url" content="http://example.com/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="有没有觉得浏览器自带的原始滚动条很不美观,同时也有看到很多网站的自定义滚动条显得高端,就连 chrome32.0 开发板都抛弃了原始的滚动条,美观多了。那 ** webkit浏览器 ** 是如何自定义滚动条的呢？  前言webkit 支持拥有 overflow 属性的区域,列表框,下拉菜单,textarea 的滚动条自定义样式,所以用处还是挺大的。当然,兼容所有浏览器的滚动条样式目前是不存在的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-16T07:39:00.000Z">
+<meta property="article:modified_time" content="2022-01-07T14:43:51.164Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="CSS3">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CSS3自定义滚动条样式 -webkit-scrollbar | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">l1n6yun's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-导航">
+
+    <a href="/navigation/" rel="section"><i class="fa fa-book fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS3自定义滚动条样式 -webkit-scrollbar
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-16 15:39:00" itemprop="dateCreated datePublished" datetime="2016-12-16T15:39:00+08:00">2016-12-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>有没有觉得浏览器自带的原始滚动条很不美观,同时也有看到很多网站的自定义滚动条显得高端,就连 <code>chrome32.0</code> 开发板都抛弃了原始的滚动条,美观多了。那 ** webkit浏览器 ** 是如何自定义滚动条的呢？</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webkit</code> 支持拥有 <code>overflow</code> 属性的区域,列表框,下拉菜单,<code>textarea</code> 的滚动条自定义样式,所以用处还是挺大的。当然,兼容所有浏览器的滚动条样式目前是不存在的。</p>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>来看看这2个滚动条demo： <a target="_blank" rel="noopener" href="http://www.xuanfengge.com/demo/201311/scroll/index.html">demo1(图片版)</a>、<a target="_blank" rel="noopener" href="http://www.xuanfengge.com/demo/201311/scroll/css3-scroll.html">demo2(纯CSS3版)</a></p>
+<h2 id="滚动条组成"><a href="#滚动条组成" class="headerlink" title="滚动条组成"></a>滚动条组成</h2><table>
+<thead>
+<tr>
+<th>样式名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>::-webkit-scrollbar</code></td>
+<td>滚动条整体部分</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-thumb</code></td>
+<td>滚动条里面的小方块,能向上向下移动(或往左往右移动,取决于是垂直滚动条还是水平滚动条)</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-track</code></td>
+<td>滚动条的轨道(里面装有<code>Thumb</code>)</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-button</code></td>
+<td>滚动条的轨道的两端按钮,允许通过点击微调小方块的位置。</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-track-piece</code></td>
+<td>内层轨道,滚动条中间部分(除去)</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-corner</code></td>
+<td>边角,即两个滚动条的交汇处</td>
+</tr>
+<tr>
+<td><code>::-webkit-resizer</code></td>
+<td>两个滚动条的交汇处上用于通过拖动调整元素大小的小控件</td>
+</tr>
+</tbody></table>
+<h2 id="简洁版"><a href="#简洁版" class="headerlink" title="简洁版"></a>简洁版</h2><p>这里就不贴出详细代码了, demo 里面可以通过查看源码寻找具体样式的设置。来看看 demo2 中第二个滚动条的样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/</span>  </span><br><span class="line">::-webkit-scrollbar  </span><br><span class="line">&#123;  </span><br><span class="line">    width: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">height</span>: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滚动条轨道 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-track  </span><br><span class="line">&#123;  </span><br><span class="line">    -webkit-box-shadow: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);  </span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滑块 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-thumb  </span><br><span class="line">&#123;  </span><br><span class="line">    border-radius: <span class="number">10px</span>;  </span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#555</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><p>定义滚动条就是利用伪元素与伪类,那什么是伪元素和伪类呢？</p>
+<p>伪类大家应该很熟悉 <code>:link</code> , <code>:focus</code> , <code>:hover</code> ,此外 <a target="_blank" rel="noopener" href="http://lib.csdn.net/base/css3">CSS3</a> 中又增加了许多伪类选择器,如 <code>:nth-child</code> , <code>:last-child</code> , <code>:nth-last-of-type()</code> 等。</p>
+<p><code>CSS</code> 中的伪元素大家以前看过： <code>:first-line</code> , <code>:first-letter</code> , <code>:before</code> , <code>:after</code> 。那么在 <code>CSS3</code> 中,伪元素进行了调整,在以前的基础上增加了一个 <code>:</code> 也就是现在变成了” <code>::first-letter</code> , <code>::first-line</code> , <code>::before</code> , <code>::after</code> “,另外 <code>CSS3</code> 还增加了一个 <code>::selection</code> 。两个 <code>::</code> 和一个 <code>:</code> 在 <code>CSS3</code> 中主要用来区分伪类和伪元素。</p>
+<p>webkit的伪类和伪元素的实现很强,可以把滚动条当成一个页面元素来定义,再结合一些高级的 <code>CSS3</code> 属性,比如渐变、圆角、RGBa等等。然后如果有些地方要用图片,可以把图片也可以转换成 <code>Base64</code> ,不然每次都得加载那个多个图片,增加请求数。</p>
+<p>任何对象都可以设置：边框、阴影、背景图片等等,创建的滚动条任然会按照<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/operatingsystem">操作系统</a>本身的设置来完成其交互的行为。下面的伪类可以应用到上面的伪元素中。有点小复杂,具体怎么写可以看第一个 demo ,那里也有注释。</p>
+<table>
+<thead>
+<tr>
+<th>样式名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:horizontal</code></td>
+<td><code>horizontal</code> 伪类适用于任何水平方向上的滚动条</td>
+</tr>
+<tr>
+<td><code>:vertical</code></td>
+<td><code>vertical</code> 伪类适用于任何垂直方向的滚动条</td>
+</tr>
+<tr>
+<td><code>:decrement</code></td>
+<td><code>decrement</code> 伪类适用于按钮和轨道碎片。表示递减的按钮或轨道碎片,例如可以使区域向上或者向右移动的区域和按钮</td>
+</tr>
+<tr>
+<td><code>:increment</code></td>
+<td><code>increment</code> 伪类适用于按钮和轨道碎片。表示递增的按钮或轨道碎片,例如可以使区域向下或者向左移动的区域和按钮</td>
+</tr>
+<tr>
+<td><code>:start</code></td>
+<td><code>start</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的前面</td>
+</tr>
+<tr>
+<td><code>:end</code></td>
+<td><code>end</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的后面</td>
+</tr>
+<tr>
+<td><code>:double-button</code></td>
+<td><code>double-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。</td>
+</tr>
+<tr>
+<td><code>:single-button</code></td>
+<td><code>single-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。</td>
+</tr>
+<tr>
+<td><code>:no-button</code></td>
+<td><code>no-button</code> 伪类表示轨道结束的位置没有按钮。</td>
+</tr>
+<tr>
+<td><code>:corner-present</code></td>
+<td><code>corner-present</code> 伪类表示滚动条的角落是否存在。</td>
+</tr>
+<tr>
+<td><code>:window-inactive</code></td>
+<td>适用于所有滚动条,表示包含滚动条的区域,焦点不在该窗口的时候。</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-track-piece:start</code></td>
+<td>滚动条上半边或左半边</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-thumb:window-inactive</code></td>
+<td>当焦点不在当前区域滑块的状态</td>
+</tr>
+<tr>
+<td><code>::-webkit-scrollbar-button:horizontal:decrement:hover</code></td>
+<td>当鼠标在水平滚动条下面的按钮上的状态</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS3/" rel="tag"># CSS3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/12/04/Markdown%E2%80%94%E2%80%94%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" rel="prev" title="Markdown——入门指南">
+      <i class="fa fa-chevron-left"></i> Markdown——入门指南
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/12/17/php%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="next" title="php 最简单的验证码">
+      php 最简单的验证码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%BB%84%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">滚动条组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E6%B4%81%E7%89%88"><span class="nav-number">4.</span> <span class="nav-text">简洁版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">详细设置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/l1n6yun" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:l1n6yun@gmail.com" title="E-Mail → mailto:l1n6yun@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.phpenv.cn/" title="https:&#x2F;&#x2F;www.phpenv.cn&#x2F;" rel="noopener" target="_blank">phpEnv</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://workrave.org/" title="https:&#x2F;&#x2F;workrave.org&#x2F;" rel="noopener" target="_blank">Workrave</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dynwrapx.script-coding.com/dwx/pages/dynwrapx.php?lang=en" title="https:&#x2F;&#x2F;dynwrapx.script-coding.com&#x2F;dwx&#x2F;pages&#x2F;dynwrapx.php?lang&#x3D;en" rel="noopener" target="_blank">DynamicWrapperX</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
