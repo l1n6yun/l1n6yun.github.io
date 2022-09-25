@@ -163,6 +163,71 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/" class="post-title-link" itemprop="url">layer打开自动最大化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-12 13:09:55" itemprop="dateCreated datePublished" datetime="2019-04-12T13:09:55+08:00">2019-04-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用layer时候 想在弹出层 在打开的时候默认就是最大值</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/25/VUE%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1031,97 +1096,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/" class="post-title-link" itemprop="url">Apache优化：修改最大并发连接数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-12-19 16:24:00" itemprop="dateCreated datePublished" datetime="2017-12-19T16:24:00+08:00">2017-12-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MPM(多路处理模块)</p>
-<p>常见:</p>
-<ol>
-<li>perfork 预处理进程方式</li>
-<li>worker 工作者模式</li>
-<li>winnt 在windows使用</li>
-</ol>
-<p>案例:把apache的最大并发数配置成1000个</p>
-<h2 id="首先确认apache的mpm方式"><a href="#首先确认apache的mpm方式" class="headerlink" title="首先确认apache的mpm方式"></a>首先确认apache的mpm方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd&gt;httpd.exe -l #可以看到是什么模式了</span><br></pre></td></tr></table></figure>
-
-<p>这里就看 <code>mpm_xxx.c</code> 这个 <code>xxx</code> 就是那个了</p>
-<h2 id="修改httpd-conf文件"><a href="#修改httpd-conf文件" class="headerlink" title="修改httpd.conf文件"></a>修改httpd.conf文件</h2><p>搜索 <code>mpm</code> ,找到 <code>Server-pool management(MPM specific)</code></p>
-<p>去掉 <code># Include conf/extra/httpd-mpm.conf</code></p>
-<h2 id="修改-conf-extra-httpd-mpm-conf-文件"><a href="#修改-conf-extra-httpd-mpm-conf-文件" class="headerlink" title="修改 conf/extra/httpd-mpm.conf 文件"></a>修改 <code>conf/extra/httpd-mpm.conf</code> 文件</h2><h3 id="prefork模式就修改这里"><a href="#prefork模式就修改这里" class="headerlink" title="prefork模式就修改这里"></a>prefork模式就修改这里</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先开启的进程</span><br><span class="line">	MinSpareServers 5 # 最小预留5个</span><br><span class="line">	MaxSpareServers 10 # 最大留10</span><br><span class="line">	MaxClients 150 # 最多并发多少个 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多请求多少次 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="winnt模式"><a href="#winnt模式" class="headerlink" title="winnt模式"></a>winnt模式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_winnt_module</span>&gt;</span></span><br><span class="line">	ThreadsPerChild 150 # 最大并发数 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多处理多少次请求 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>修改后面有*的那个字段的数值然后重新启动 <code>apache</code></p>
-<p>说明:配置到多大,不一定就可能支撑这么大的并发,考虑到本身 <code>apache</code> 所在的机器硬件性能(如:内存,CPU,硬盘IO)</p>
-<p>系统是 <code>linux/unix</code> ,配置 <code>perfork</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10</span><br><span class="line">	MaxClients 150 *#并发量</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>给大家一个合理的建议配置,对大部份网站,中型网站配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先启动</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10 # 最大空闲进程</span><br><span class="line">	ServerLimit 1500 *# 用于修改apache编程参数</span><br><span class="line">	MaxClients 1000 *# 最大并发数</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注:apache2.2以后才有的ServerLimit这个参数,其中ServerLimit数值大于MaxClients数值</p>
-<p>如果网站的pv值百万</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerLimit 2500 *# 用于修改apache编程参数</span><br><span class="line">MaxClients 2000 *# 最大并发数</span><br></pre></td></tr></table></figure>
-
-<p>注:调到这就是极限了,要是网站访问还是大,哪就要增加apache服务器了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1189,7 +1167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1202,7 +1180,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
