@@ -163,6 +163,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">一款开源指纹识别工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-07 17:00:22" itemprop="dateCreated datePublished" datetime="2017-07-07T17:00:22+08:00">2017-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一款开源指纹识别工具。</p>
+<hr>
+<hr>
+<p> 开源工具使用说明：<br>      -u 一个域名或IP,如果输入更多域名或IP使用‘,’分隔；<br>      -r  读取本地域名或IP文件地址；<br>      -t  输入一个线程数量，默认线程为50；<br>      -p  设置一个请求端口，默认端口为80；<br>      -s  设置一个请求协议，默认请求协议为http.(http、https)；<br>      -h  查看使用帮助；<br>      -o  输出识别结果到本地文件；<br>      -m  选择一个常规识别模式，默认使用模式为1；（1：快速识别一条指纹 2：获取命中率高的指纹 3：得到所有匹配的指纹）<br>      –http-request 设置一个自定义请求URL；<br>      –http-response 设置一个自定义关键字符。(支持正则表达式字符，自定义枚举指纹字符)<br>      注：自定义识别模式参数为 –http-request /robots.txt –http-response discuz；不能和-m 常规识别模式一起使用。-u和-r参数不能同时使用。</p>
+<pre><code>  1. 使用-m参数选择常规识别模式，有3种可选模式。下面具体说明：
+     -m 1：快速识别一条指纹，请求设置的url，获取相应识别方式的响应信息，进行数据库指纹遍历匹配，匹配到一条则跳出程序，显示识别结果。（速度较快）
+     -m 2: 获取命中率高的指纹，例如请求url,进行指纹库全部遍历匹配，比如一个网址，命中了1个dedecms，2个 phpcms，1个discuz，那么显示的识别结果为phpcms程序。
+     -m 3: 获取匹配识别所有的指纹信息，请求url获取响应信息，进行指纹库全部遍历匹配，最后获取指纹识别所有结果。（速度较慢、数据最全）
+  2. 使用--http-request、--http-response参数自定义识别模式，下面具体说明：
+     使用自定义识别模式应同时使用--http-request、--http-response两个参数，第一个参数设置为请求路径，第二个参数设置响应信息关键字符（支持正则表达式、不过注意大小写问题）
+  
+  例：java -jar Dayu.jar -r d:\\1.txt -t 100 --http-request / --http-response tomcat
+      java -jar Dayu.jar -u www.discuz.net,www.dedecms.com -o d:\\result.txt
+      java -jar Dayu.jar -u cn.wordpress.org -s https -p 443  -m 3
+      
+</code></pre>
+<p> Dayu.jar程序说明：<br>      Feature.json指纹文件放到D盘根目录(d:\Feature.json),如无D磁盘，请自行下载源码更改org.secbug.conf下Context.java文件中的currpath常量。</p>
+<p> 在此说明：<br>      指纹识别离不开指纹库的强大。希望用户多多在我们平台 <a target="_blank" rel="noopener" href="http://www.secbug.org:8080/">http://www.secbug.org:8080/</a> 提交指纹，我们一起进步。</p>
+<pre><code>  ☆☆ 本版本为第二版，第一版基于数据库sql文件，可保存指纹识别结果。如有需要，请联系QQ212125278所取。
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/Ms0x0/Dayu1">https://github.com/Ms0x0/Dayu1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/wget%E5%91%BD%E4%BB%A4%E6%95%B4%E7%AB%99%E4%B8%8B%E8%BD%BD%E5%81%9A%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -823,71 +901,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/" class="post-title-link" itemprop="url">js简单实现60秒倒计时</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-11 14:15:00" itemprop="dateCreated datePublished" datetime="2017-04-11T14:15:00+08:00">2017-04-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -959,7 +972,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
