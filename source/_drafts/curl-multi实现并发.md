@@ -26,6 +26,7 @@ sys     0m0.010s
 
 ##  curl_multi 并发
 
+
 ```php
 // 创建cURL资源
 $chs = [];
@@ -105,8 +106,5 @@ real    0m2.470s
 user    0m0.030s
 sys     0m0.010s
 ```
-![upload successful](/images/pasted-32.png)
 
  这样执行的好处是`$multi`批处理中的 `$ch` 句柄会在读取或写入数据结束后(`$mrc == CURLM_OK`),进入 `curl_multi_select($multi)` 的阻塞阶段，而不会在整个 `$multi` 批处理执行时不停地执行 `curl_multi_exec` ,白白浪费CPU资源.
- 
- 
