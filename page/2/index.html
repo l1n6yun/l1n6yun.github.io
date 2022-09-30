@@ -153,6 +153,205 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/Dark-Reader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/08/Dark-Reader/" class="post-title-link" itemprop="url">Dark Reader</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-08 20:47:00" itemprop="dateCreated datePublished" datetime="2022-02-08T20:47:00+08:00">2022-02-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="顶部选项"><a href="#顶部选项" class="headerlink" title="顶部选项"></a>顶部选项</h2><p><img src="/images/pasted-0.png" alt="Top section"></p>
+<ul>
+<li>“<strong>切换网站</strong>”可将目前网站加入忽略列表（或从忽略列表中移除）。</li>
+<li>“<strong>开启／关闭</strong>”可启用或停用扩展。</li>
+<li>点选按键下方的链接以<strong>修改快捷键</strong>。</li>
+<li>若切换按键为灰色，则表示浏览器限制脚本注入当前网页。</li>
+</ul>
+<h2 id="滤镜设置"><a href="#滤镜设置" class="headerlink" title="滤镜设置"></a>滤镜设置</h2><p><img src="/images/pasted-1.png" alt="Filter settings"></p>
+<p>可调整各项滤镜数值，以适应您的屏幕参数和室内环境亮度。</p>
+<h2 id="个别网站设置"><a href="#个别网站设置" class="headerlink" title="个别网站设置"></a>个别网站设置</h2><p><img src="/images/pasted-2.png" alt="Custom settings"></p>
+<p>点击“<strong>仅适用于</strong>”按键将设置值设为仅应用于当前网站。</p>
+<p>要使用该功能，请先单击按钮（该按钮将突出显示），然后根据当前网站的需要调整设置。 再次单击按钮以取消。</p>
+<h2 id="网站列表"><a href="#网站列表" class="headerlink" title="网站列表"></a>网站列表</h2><p><img src="/images/pasted-3.png" alt="Site list"></p>
+<ul>
+<li>使用“<strong>反色列表</strong>”让 Dark Reader 仅对列表中的网站生效。</li>
+<li>使用“<strong>不反色列表</strong>”避免扩展应用于列表中的网站。</li>
+<li>可填入 <code>google.com</code>、<code>mail.google.com</code>、<code>google.*</code>、<code>google.com/maps</code> 等等。</li>
+<li>点击“<strong>切换</strong>”按键将网站加入相应列表。</li>
+</ul>
+<h2 id="更多选项"><a href="#更多选项" class="headerlink" title="更多选项"></a>更多选项</h2><p><img src="/images/pasted-4.png" alt="More tab"></p>
+<ul>
+<li>从列表<strong>选择字体</strong>（或在 Firefox 输入字体名称），勾选方框。</li>
+<li>调整<strong>文字描边</strong>。</li>
+<li>选择<strong>主题生成模式</strong>。</li>
+</ul>
+<h2 id="主题生成模式"><a href="#主题生成模式" class="headerlink" title="主题生成模式"></a>主题生成模式</h2><p><img src="/images/pasted-5.png" alt="Filter+ vs. Static vs. Dynamic mode"></p>
+<p>过滤+、静态、动态模式比较</p>
+<ul>
+<li>“<strong>过滤</strong>”是 Dark Reader 最一开始的模式，基于 CSS 滤镜。 网页色彩会<strong>全部反转</strong>，再<strong>回复部分</strong>的颜色。 必须用到 GPU 的资源。 虽然渲染<strong>快速</strong>且有效，但有几个问题： 停用文字的子像素渲染（sub-pixel rendering）、 将已经是暗色的部分转成亮色、 大型页面会发生延迟、 Firefox 会无法渲染某些网页。</li>
+<li>“**过滤+**”效果和“过滤”一样，但是基于 SVG 滤镜，</li>
+</ul>
+<p><strong>色彩处理得更好</strong>，让图片不那么呆板。 在 Firefox 上效果不佳。</p>
+<ul>
+<li>“<strong>静态</strong>”会迅速生成基本样式表。</li>
+<li>“<strong>动态</strong>”会深入分析网站的样式表、背景图片、向量图形。 在网页载入时会占用一些资源， 但能产生<strong>最好</strong>的视觉效果。 虽然动态模式还在开发中， 但已能顺利应用于许多现代化的网站。</li>
+</ul>
+<h2 id="底部选项"><a href="#底部选项" class="headerlink" title="底部选项"></a>底部选项</h2><p><img src="/images/pasted-6.png" alt="Bottom section"></p>
+<ul>
+<li>阅读我们的<strong>隐私政策</strong>，关注我们的 <strong>Twitter</strong>。</li>
+<li>“<strong>捐赠</strong>”──若您喜欢这个扩展，请考虑支持活跃的 Dark Reader 开发团队。 群众募资由 Open Collective 主导，目前以 Stripe 处理帐款。</li>
+<li>“<strong>新闻</strong>”──版本资讯和重要活动的通知。</li>
+<li>“<strong>开发者工具</strong>”──对当前主题开启设置编辑器。</li>
+</ul>
+<h2 id="使用开发者工具"><a href="#使用开发者工具" class="headerlink" title="使用开发者工具"></a>使用开发者工具</h2><p>若您熟悉 CSS 选择器，欢迎对某些网站提供修正建议。 请阅读开发者工具的<a target="_blank" rel="noopener" href="https://github.com/darkreader/darkreader#how-to-contribute">使用说明</a>。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="为何扩展要求读取网站数据的权限"><a href="#为何扩展要求读取网站数据的权限" class="headerlink" title="为何扩展要求读取网站数据的权限"></a>为何扩展要求读取网站数据的权限</h4><p>扩展需要这些权限才能分析和修改网站的外观， 并判断是否要根据您的设置来停用或应用特殊规则。 我们不会插入广告，也不会搜集任何数据，或将数据送到任何地方。 该扩展是完全开源的，没有混淆的代码。 我们的获利是透明的——来自用户捐助。</p>
+<h4 id="网上应用店和设置的页面怎么还是白的"><a href="#网上应用店和设置的页面怎么还是白的" class="headerlink" title="网上应用店和设置的页面怎么还是白的"></a>网上应用店和设置的页面怎么还是白的</h4><p>本扩展对这些页面没有权限。</p>
+<h4 id="新标签页和浏览器主题怎么还是白的"><a href="#新标签页和浏览器主题怎么还是白的" class="headerlink" title="新标签页和浏览器主题怎么还是白的"></a>新标签页和浏览器主题怎么还是白的</h4><p>本扩展无法改变新标签页或浏览器外观（但 Firefox 60 以后可以）。 请从网上应用店下载其他暗色主题或新标签页扩展。</p>
+<h4 id="开启新标签页或浏览网站时屏幕会闪白光"><a href="#开启新标签页或浏览网站时屏幕会闪白光" class="headerlink" title="开启新标签页或浏览网站时屏幕会闪白光"></a>开启新标签页或浏览网站时屏幕会闪白光</h4><p>当载入网页时，Chrome 预设会呈现浏览器主题的背景色， 所以您应该从网上应用店安装暗色主题。</p>
+<h4 id="扩展完全无效"><a href="#扩展完全无效" class="headerlink" title="扩展完全无效"></a>扩展完全无效</h4><p>如果您有安装其他类似的扩展，请先停用它们，再重新载入标签页。 点击 Dark Reader 图标，检查右上角按键是否已<strong>开启</strong>。 打开“<strong>网站列表</strong>”，确认已选取“<strong>不反色列表</strong>”。 若依然无效，则存在问题，请发 Email 给我们。</p>
+<h4 id="网站呈现错误或运行缓慢"><a href="#网站呈现错误或运行缓慢" class="headerlink" title="网站呈现错误或运行缓慢"></a>网站呈现错误或运行缓慢</h4><p>请发 Email 告诉我们该网站网址、网页截图、您的操作系统和浏览器版本。 起码对知名网站，我们会试着调查原因。 也请试试看更改“<strong>主题生成模式</strong>”或使用“<strong>明亮模式</strong>”。 检查该网站是否不在“<strong>网站列表</strong>”选项下。</p>
+<h4 id="扩展在无痕模式下无效"><a href="#扩展在无痕模式下无效" class="headerlink" title="扩展在无痕模式下无效"></a>扩展在无痕模式下无效</h4><p>开启“<strong>chrome://extensions</strong>”页面，找到“<strong>Dark Reader</strong>”，点击“<strong>在无痕模式下启用</strong>”。</p>
+<h4 id="扩展对本地文件无效"><a href="#扩展对本地文件无效" class="headerlink" title="扩展对本地文件无效"></a>扩展对本地文件无效</h4><p>开启“<strong>chrome://extensions</strong>”页面，找到“<strong>Dark Reader</strong>”，点击“<strong>允许访问文件网址</strong>”。</p>
+<h4 id="在“过滤”模式下整个网站没有画面"><a href="#在“过滤”模式下整个网站没有画面" class="headerlink" title="在“过滤”模式下整个网站没有画面"></a>在“过滤”模式下整个网站没有画面</h4><p>若您是在 Mac OS 上使用 Chrome，请将 Mac OS 更新至 10.13，此举应该会更新显示驱动程序。 若您使用 Firefox，则很有可能是浏览器漏洞，请改用其他模式。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/Async-Await/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/08/Async-Await/" class="post-title-link" itemprop="url">Async-Await</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-08 00:22:00" itemprop="dateCreated datePublished" datetime="2022-02-08T00:22:00+08:00">2022-02-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async-Await"></a>Async-Await</h1><p>异步编程的最高境界，就是根本不用关心它异步。</p>
+<p>async 函数就是隧道尽头的亮光，很多人认为它是异步操作的终极解决方案。</p>
+<h1 id="async-await-与-promise-的关系"><a href="#async-await-与-promise-的关系" class="headerlink" title="async-await 与 promise 的关系"></a>async-await 与 promise 的关系</h1><p>不存在谁替代谁，因为 async-await 是寄生于 Promise。Generator 的语法糖。</p>
+<p><strong>async</strong> ：声明一个方法是异步的</p>
+<p><strong>await</strong> ：可以认为是 async wait 的简写，等待一个异步方法执行完成。</p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo()</span><br></pre></td></tr></table></figure>
+
+<p>async 函数返回的是一个 Promise 对象</p>
+<p>必须了解的 AsyncFunction <code>console.log(async function()&#123;&#125;.constructor)</code></p>
+<p>在 Chrome 里申明这样一个函数，可以在控制台看到返回的其实就是一个 Promise 对象。</p>
+<p>扩展需要了解的就是 Chrome 现在也支持 AsyncFunction , 可以在 Chrome 控制台测试：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;.constructor)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AsyncFunction</span>(<span class="params"></span>)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h1><ol>
+<li>async 表示这是一个 async 函数，await 只能用在这个函数里面。</li>
+<li>await 表示在这里等待 Promise 对象返回结果后，在继续执行。</li>
+<li>await 后面跟着的应该是一个 Promise 对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="number">123</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">demo();</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>Promise 虽然一方面解决了 <code>callback</code> 的回调地狱，但是相对的把回调“纵向发展”了，形成了一个回调链。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            res(wait)</span><br><span class="line">        &#125;, wait)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调地狱</span></span><br><span class="line">sleep(<span class="number">100</span>).then(<span class="function"><span class="params">result01</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> sleep(result01 + <span class="number">100</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="params">result02</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> sleep(result02 + <span class="number">100</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="params">result03</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result03); <span class="comment">// 300</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成async/await写法就是</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// await 是强制把异步变成了同步，这一句代码执行完，才会执行下一句</span></span><br><span class="line">    <span class="keyword">let</span> result01 = <span class="keyword">await</span> sleep(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">let</span> result02 = <span class="keyword">await</span> sleep(result01 + <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">let</span> result03 = <span class="keyword">await</span> sleep(result02 + <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> result03;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);	<span class="comment">// 300</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><p>既然 <code>.then(...)</code> 不用写了，那么 <code>.catch(...)</code> 也不用写，可以直接用标准的 <code>try catch</code> 语法捕捉错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        reject(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> p;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo();	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+
+<p>这是基本的错误处理，但是当内部出现错一些错误时，和上面Promise有点类似，demo() 函数不会报错，函数需要catch回调捕捉吗，这就是内部错误被‘静默’处理了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        reject(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo().catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="注意你的并行执行和循环"><a href="#注意你的并行执行和循环" class="headerlink" title="注意你的并行执行和循环"></a>注意你的并行执行和循环</h1><p>如果这你想异步发出AJAX请求，使用 await 代码会同步执行，所以 async/await 需要谨慎使用。</p>
+<p>await in for 循环：await 的执行上下文必须是 async 函数</p>
+<p>现在有一些 <code>.forEach</code> 或者 <code>.map</code> 的循环里，比如在 <code>.forEach</code> 里使用 await , 这时候的上下文就变成了 Array ,而不是 <code>async function</code> ,就会报错。这时候你就要想到是什么错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/28/Promise-%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -810,159 +1009,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-16 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-16T00:33:03+08:00">2020-01-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
-<ul>
-<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
-<li>直判断返回值在逻辑上是成功还是失败</li>
-<li>针对返回未登录的情况，自动跳转登录流程</li>
-</ul>
-<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">HOST</span>: host,</span><br><span class="line">  <span class="attr">API_ROOT</span>: host + <span class="string">&#x27;/api/&#x27;</span>,</span><br><span class="line">  <span class="attr">API_VERSION</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="title">get</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;GET&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">post</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;POST&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">delete</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;DELETE&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">put</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;PUT&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">request</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="built_in">this</span>.API_ROOT;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.getStorageSync(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.login == <span class="string">&#x27;undefined&#x27;</span> || options.login == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.loading != <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; options.loading == <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">      showLoading = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&quot;加载中&quot;</span>,</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;loading&quot;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        <span class="attr">url</span>: apiRoot + options.url,</span><br><span class="line">        <span class="attr">data</span>: options.data,</span><br><span class="line">        <span class="attr">method</span>: options.method ? options.method : <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Token&#x27;</span>: token,</span><br><span class="line">          <span class="string">&#x27;XX-Device-Type&#x27;</span>: <span class="string">&#x27;wxapp&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Api-Version&#x27;</span>: that.API_VERSION</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          <span class="keyword">if</span> (res.data.code == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = getCurrentPages();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.pop()[<span class="string">&#x27;__route__&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">&#x27;pages/login/login&#x27;</span>) &#123;</span><br><span class="line">              wx.navigateTo(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line">ajax.get(&#123;</span><br><span class="line">  <span class="attr">url</span>: url,</span><br><span class="line">  <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">GIT分支模型的策略与发布</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-13 13:50:00" itemprop="dateCreated datePublished" datetime="2020-01-13T13:50:00+08:00">2020-01-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文用于介绍 GIT分支模型的策略与发布。</p>
-<p><img src="https://nvie.com/img/git-model@2x.png" alt="img"></p>
-<p>在git分支模型中我们一般会用到如下四种分支:</p>
-<ul>
-<li><strong>主分支</strong></li>
-<li><strong>特性分支</strong></li>
-<li><strong>release分支</strong></li>
-<li><strong>hotFix分支</strong></li>
-</ul>
-<p>分别使用4个种类的分支来进行开发的。</p>
-<h2 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h2><p><img src="https://nvie.com/img/main-branches@2x.png" alt="img"></p>
-<p>主分支有两种：master分支和develop分支</p>
-<ul>
-<li><strong>master</strong><br>master分支只负责管理发布的状态。在提交时使用标签记录发布版本号。</li>
-<li><strong>develop</strong><br>develop分支是针对发布的日常开发分支。刚才我们已经讲解过有合并分支的功用。</li>
-</ul>
-<h2 id="特性分支"><a href="#特性分支" class="headerlink" title="特性分支"></a>特性分支</h2><p>特性分支就是我们在前面讲解过的topic分支的功用。</p>
-<p>这个分支是针对新功能的开发，在bug修正的时候从develop分支分叉出来的。基本上不需要共享特性分支的操作，所以不需要远端控制。完成开发后，把分支合并回develop分支后发布。</p>
-<p><img src="https://nvie.com/img/fb@2x.png" alt="img"></p>
-<h2 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h2><p>release分支是为release做准备的。通常会在分支名称的最前面加上release-。release前需要在这个分支进行最后的调整，而且为了下一版release开发用develop分支的上游分支。</p>
-<p>一般的开发是在develop分支上进行的，到了可以发布的状态时再创建release分支，为release做最后的bug修正。</p>
-<p>到了可以release的状态时，把release分支合并到master分支，并且在合并提交里添加release版本号的标签。</p>
-<p>要导入在release分支所作的修改，也要合并回develop分支。</p>
-<h2 id="hotFix分支"><a href="#hotFix分支" class="headerlink" title="hotFix分支"></a>hotFix分支</h2><p>hotFix分支是在发布的产品需要紧急修正时，从master分支创建的分支。通常会在分支名称的最前面加上 <code>hotfix-</code>。</p>
-<p>例如，在develop分支上的开发还不完整时，需要紧急修改。这个时候在develop分支创建可以发布的版本要花许多的时间，所以最好选择从master分支直接创建分支进行修改，然后合并分支。</p>
-<p>修改时创建的hotFix分支要合并回develop分支。</p>
-<p><img src="https://nvie.com/img/hotfix-branches@2x.png" alt="img"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1034,7 +1080,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

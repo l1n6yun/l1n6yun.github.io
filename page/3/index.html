@@ -153,6 +153,159 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-16 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-16T00:33:03+08:00">2020-01-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
+<ul>
+<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
+<li>直判断返回值在逻辑上是成功还是失败</li>
+<li>针对返回未登录的情况，自动跳转登录流程</li>
+</ul>
+<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">HOST</span>: host,</span><br><span class="line">  <span class="attr">API_ROOT</span>: host + <span class="string">&#x27;/api/&#x27;</span>,</span><br><span class="line">  <span class="attr">API_VERSION</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="title">get</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;GET&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">post</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;POST&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">delete</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;DELETE&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">put</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;PUT&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">request</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="built_in">this</span>.API_ROOT;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.getStorageSync(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.login == <span class="string">&#x27;undefined&#x27;</span> || options.login == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.loading != <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; options.loading == <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">      showLoading = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&quot;加载中&quot;</span>,</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;loading&quot;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        <span class="attr">url</span>: apiRoot + options.url,</span><br><span class="line">        <span class="attr">data</span>: options.data,</span><br><span class="line">        <span class="attr">method</span>: options.method ? options.method : <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Token&#x27;</span>: token,</span><br><span class="line">          <span class="string">&#x27;XX-Device-Type&#x27;</span>: <span class="string">&#x27;wxapp&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Api-Version&#x27;</span>: that.API_VERSION</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          <span class="keyword">if</span> (res.data.code == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = getCurrentPages();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.pop()[<span class="string">&#x27;__route__&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">&#x27;pages/login/login&#x27;</span>) &#123;</span><br><span class="line">              wx.navigateTo(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line">ajax.get(&#123;</span><br><span class="line">  <span class="attr">url</span>: url,</span><br><span class="line">  <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">GIT分支模型的策略与发布</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-13 13:50:00" itemprop="dateCreated datePublished" datetime="2020-01-13T13:50:00+08:00">2020-01-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文用于介绍 GIT分支模型的策略与发布。</p>
+<p><img src="https://nvie.com/img/git-model@2x.png" alt="img"></p>
+<p>在git分支模型中我们一般会用到如下四种分支:</p>
+<ul>
+<li><strong>主分支</strong></li>
+<li><strong>特性分支</strong></li>
+<li><strong>release分支</strong></li>
+<li><strong>hotFix分支</strong></li>
+</ul>
+<p>分别使用4个种类的分支来进行开发的。</p>
+<h2 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h2><p><img src="https://nvie.com/img/main-branches@2x.png" alt="img"></p>
+<p>主分支有两种：master分支和develop分支</p>
+<ul>
+<li><strong>master</strong><br>master分支只负责管理发布的状态。在提交时使用标签记录发布版本号。</li>
+<li><strong>develop</strong><br>develop分支是针对发布的日常开发分支。刚才我们已经讲解过有合并分支的功用。</li>
+</ul>
+<h2 id="特性分支"><a href="#特性分支" class="headerlink" title="特性分支"></a>特性分支</h2><p>特性分支就是我们在前面讲解过的topic分支的功用。</p>
+<p>这个分支是针对新功能的开发，在bug修正的时候从develop分支分叉出来的。基本上不需要共享特性分支的操作，所以不需要远端控制。完成开发后，把分支合并回develop分支后发布。</p>
+<p><img src="https://nvie.com/img/fb@2x.png" alt="img"></p>
+<h2 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h2><p>release分支是为release做准备的。通常会在分支名称的最前面加上release-。release前需要在这个分支进行最后的调整，而且为了下一版release开发用develop分支的上游分支。</p>
+<p>一般的开发是在develop分支上进行的，到了可以发布的状态时再创建release分支，为release做最后的bug修正。</p>
+<p>到了可以release的状态时，把release分支合并到master分支，并且在合并提交里添加release版本号的标签。</p>
+<p>要导入在release分支所作的修改，也要合并回develop分支。</p>
+<h2 id="hotFix分支"><a href="#hotFix分支" class="headerlink" title="hotFix分支"></a>hotFix分支</h2><p>hotFix分支是在发布的产品需要紧急修正时，从master分支创建的分支。通常会在分支名称的最前面加上 <code>hotfix-</code>。</p>
+<p>例如，在develop分支上的开发还不完整时，需要紧急修改。这个时候在develop分支创建可以发布的版本要花许多的时间，所以最好选择从master分支直接创建分支进行修改，然后合并分支。</p>
+<p>修改时创建的hotFix分支要合并回develop分支。</p>
+<p><img src="https://nvie.com/img/hotfix-branches@2x.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/08/file-cache-class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -751,159 +904,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/" class="post-title-link" itemprop="url">win10下右键菜单添加“打开cmd”</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-08 12:31:00" itemprop="dateCreated datePublished" datetime="2019-08-08T12:31:00+08:00">2019-08-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近使用cmd比较多，就想在某个文件夹下右键打开cmd，这样不用每次都在默认情况下切换目录。无奈win10 1703版本下shift+右键不能打开cmd，只能打开powershell。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/" class="post-title-link" itemprop="url">清除浮动的方法有哪些</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-04 15:19:43" itemprop="dateCreated datePublished" datetime="2019-08-04T15:19:43+08:00">2019-08-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在我们写代码的时候，有时因为使用了float浮动元素而导致页面中某些元素不能正确的显示，接下来在文章中将为大家详细介绍几种清除浮动的方法，具有一定的参考价值，希望对大家有所帮助。</p>
-<h2 id="浮动导致的后果"><a href="#浮动导致的后果" class="headerlink" title="浮动导致的后果"></a>浮动导致的后果</h2><ol>
-<li>由于浮动元素脱离了文档流，所以父元素的高度无法被撑开，影响了与父元素同级的元素</li>
-<li>与浮动元素同级的非浮动元素会跟随其后，因为浮动元素脱离文档流不占据原来的位置</li>
-<li>如果该浮动元素不是第一个浮动元素，则该元素之前的元素也需要浮动，否则容易影响页面的结构显示</li>
-</ol>
-<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><ol>
-<li>使用 <code>clear:both</code> 清除浮动</li>
-</ol>
-<p>在代码中在放一个空的div标签，然后给这个标签设置 <code>clear:both</code> 来清除浮动对页面的影响。它的优点是简单，方便兼容性好，但是一般情况下不建议使用该方法，因为会造成结构混乱，不利于后期维护</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear: both&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>利用伪元素 <code>clearfix</code> 来清除浮动</li>
-</ol>
-<p>给父级元素添加了一个 <code>:after</code> 伪元素，通过清除伪元素的浮动，达到撑起父元素高度的目的</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:after&#123;</span><br><span class="line">    content:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><code>overflow</code> 方法的使用</li>
-</ol>
-<p>当给父元素设置了 <code>overflow</code> 样式，不管是 <code>overflow:hidden</code> 或 <code>overflow:auto</code> 都可以清除浮动只要它的值不为 <code>visible</code> 就可以了，它的本质就是建构了一个BFC，这样使得达到撑起父元素高度的效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: auto</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>双伪元素方法的使用</li>
-</ol>
-<p>通过给父元素设置双伪元素来达到清除浮动的效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:before,.clearfix:after &#123;</span><br><span class="line">    content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>总结：以上就是本篇文章的全部内容了，希望通过这篇文章能够让大家对清除浮动的方法有所了解</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -975,7 +975,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
