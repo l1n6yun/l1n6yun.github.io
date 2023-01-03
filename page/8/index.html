@@ -153,6 +153,171 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/03/%E8%A7%A3%E9%99%A4windows%E9%9A%90%E8%97%8F%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/12/03/%E8%A7%A3%E9%99%A4windows%E9%9A%90%E8%97%8F%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">解除windows隐藏受保护的操作系统文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-03 20:35:03" itemprop="dateCreated datePublished" datetime="2016-12-03T20:35:03+08:00">2016-12-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>对于文件夹：</p>
+<p>1、解除对某磁盘某个文件夹的强行隐藏(示例)：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">attrib</span> d:\&quot;Program Files&quot; -s -h /s /d</span><br></pre></td></tr></table></figure>
+
+<p>2、解除对某磁盘全部文件夹的强行隐藏(示例)：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">attrib</span> d:\&quot;*&quot; -s -h /s /d</span><br></pre></td></tr></table></figure>
+
+<p>——友情提示：以上示例中，d:为磁盘盘符；引号内为文件夹名称；相关命令参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+r</td>
+<td>设置只读文件属性。</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>清除只读文件属性。</td>
+</tr>
+<tr>
+<td>+a</td>
+<td>设置存档属性。</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>清除存档属性。</td>
+</tr>
+<tr>
+<td>+s</td>
+<td>设置系统文件属性。</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>清除系统文件属性。</td>
+</tr>
+<tr>
+<td>+h</td>
+<td>设置隐藏文件属性。</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>清除隐藏文件属性。</td>
+</tr>
+<tr>
+<td>/s</td>
+<td>将attrib和任意命令行选项应用到当前目录及其所有子目录中的匹配文件。</td>
+</tr>
+<tr>
+<td>/d</td>
+<td>将attrib和任意命令行选项应用到目录。</td>
+</tr>
+<tr>
+<td>/?</td>
+<td>在命令提示符下显示帮助。</td>
+</tr>
+</tbody></table>
+<p>对于文件：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ATTRIB</span> [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [[drive:] [<span class="built_in">path</span>] filename] [/S [ /D]]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>设置属性。</td>
+</tr>
+<tr>
+<td>-</td>
+<td>清除属性。</td>
+</tr>
+<tr>
+<td>R</td>
+<td>只读文件属性。</td>
+</tr>
+<tr>
+<td>A</td>
+<td>存档文件属性。</td>
+</tr>
+<tr>
+<td>S</td>
+<td>系统文件属性。</td>
+</tr>
+<tr>
+<td>H</td>
+<td>隐藏文件属性。</td>
+</tr>
+<tr>
+<td>[drive:][path][filename]</td>
+<td>指定要处理的文件属性。</td>
+</tr>
+<tr>
+<td>/S</td>
+<td>处理当前文件夹及其子文件夹中的匹配文件。</td>
+</tr>
+<tr>
+<td>/D</td>
+<td>也处理文件夹。</td>
+</tr>
+</tbody></table>
+<p>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attrib -s -h -r c:\*.*</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2016/11/25/windows7%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E8%83%8C%E6%99%AF%E4%BF%AE%E6%94%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -868,7 +1033,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -926,7 +1091,7 @@
 <div class="copyright">
   
   &copy; 2015 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
