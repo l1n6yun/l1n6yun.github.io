@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
@@ -102,6 +102,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -126,11 +127,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -149,6 +177,64 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">WebSocket协议</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-04 15:48:33" itemprop="dateCreated datePublished" datetime="2017-07-04T15:48:33+08:00">2017-07-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WS</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$master</span>;  <span class="comment">// 连接 server 的 client</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$sockets</span> = <span class="keyword">array</span>(); <span class="comment">// 不同状态的 socket 管理</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$handshake</span> = <span class="literal">false</span>; <span class="comment">// 判断是否握手</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$address</span>, <span class="variable">$port</span></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 建立一个 socket 套接字</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)   </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_create() failed&quot;</span>);</span><br><span class="line">        socket_set_option(<span class="keyword">$this</span>-&gt;master, SOL_SOCKET, SO_REUSEADDR, <span class="number">1</span>)  </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_option() failed&quot;</span>);</span><br><span class="line">        socket_bind(<span class="keyword">$this</span>-&gt;master, <span class="variable">$address</span>, <span class="variable">$port</span>)                    </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_bind() failed&quot;</span>);</span><br><span class="line">        socket_listen(<span class="keyword">$this</span>-&gt;master, <span class="number">2</span>)                               </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_listen() failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;sockets[] = <span class="keyword">$this</span>-&gt;master;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// debug</span></span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">&quot;Master socket  : &quot;</span>.<span class="keyword">$this</span>-&gt;master.<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">//自动选择来消息的 socket 如果是握手 自动选择主机</span></span><br><span class="line">            <span class="variable">$write</span> = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="variable">$except</span> = <span class="literal">NULL</span>;</span><br><span class="line">            socket_select(<span class="keyword">$this</span>-&gt;sockets, <span class="variable">$write</span>, <span class="variable">$except</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;sockets <span class="keyword">as</span> <span class="variable">$socket</span>) &#123;</span><br><span class="line">                <span class="comment">//连接主机的 client </span></span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$socket</span> == <span class="keyword">$this</span>-&gt;master)&#123;</span><br><span class="line">                    <span class="variable">$client</span> = socket_accept(<span class="keyword">$this</span>-&gt;master);</span><br><span class="line">                    <span class="keyword">if</span> (<span class="variable">$client</span> &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// debug</span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;socket_accept() failed&quot;</span>;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//connect($client);</span></span><br><span class="line">                        array_push(<span class="keyword">$this</span>-&gt;sockets, <span class="variable">$client</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;connect client\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="variable">$bytes</span> = @socket_recv(<span class="variable">$socket</span>,<span class="variable">$buffer</span>,<span class="number">2048</span>,<span class="number">0</span>);</span><br><span class="line">                    print_r(<span class="variable">$buffer</span>);</span><br><span class="line">                    <span class="keyword">if</span>(<span class="variable">$bytes</span> == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">                    <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;handshake) &#123;</span><br><span class="line">                        <span class="comment">// 如果没有握手，先握手回应</span></span><br><span class="line">                        <span class="keyword">$this</span>-&gt;doHandShake(<span class="variable">$socket</span>, <span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;shakeHands\n&quot;</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    </span><br><span class="line">                        <span class="comment">// 如果已经握手，直接接受数据，并处理</span></span><br><span class="line">                        <span class="variable">$buffer</span> = <span class="keyword">$this</span>-&gt;decode(<span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="comment">//process($socket, $buffer); </span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;send file\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dohandshake</span>(<span class="params"><span class="variable">$socket</span>, <span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 获取加密key</span></span><br><span class="line">        <span class="variable">$acceptKey</span> = <span class="keyword">$this</span>-&gt;encry(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$upgrade</span> = <span class="string">&quot;HTTP/1.1 101 Switching Protocols\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Upgrade: websocket\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Connection: Upgrade\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Sec-WebSocket-Accept: &quot;</span> . <span class="variable">$acceptKey</span> . <span class="string">&quot;\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;dohandshake &quot;</span>.<span class="variable">$upgrade</span>.chr(<span class="number">0</span>);           </span><br><span class="line">        <span class="comment">// 写入socket</span></span><br><span class="line">        socket_write(<span class="variable">$socket</span>,<span class="variable">$upgrade</span>.chr(<span class="number">0</span>), strlen(<span class="variable">$upgrade</span>.chr(<span class="number">0</span>)));</span><br><span class="line">        <span class="comment">// 标记握手已经成功，下次接受数据采用数据帧格式</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;handshake = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">encry</span>(<span class="params"><span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="keyword">$this</span>-&gt;getKey(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$mask</span> = <span class="string">&quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> base64_encode(sha1(<span class="variable">$key</span> . <span class="string">&#x27;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#x27;</span>, <span class="literal">true</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"><span class="variable">$req</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">&quot;/Sec-WebSocket-Key: (.*)\r\n/&quot;</span>, <span class="variable">$req</span>, <span class="variable">$match</span>)) &#123; </span><br><span class="line">            <span class="variable">$key</span> = <span class="variable">$match</span>[<span class="number">1</span>]; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$key</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析数据帧</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">decode</span>(<span class="params"><span class="variable">$buffer</span></span>)  </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$len</span> = <span class="variable">$masks</span> = <span class="variable">$data</span> = <span class="variable">$decoded</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="variable">$len</span> = ord(<span class="variable">$buffer</span>[<span class="number">1</span>]) &amp; <span class="number">127</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">126</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">8</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">127</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">10</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">14</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">6</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$index</span> = <span class="number">0</span>; <span class="variable">$index</span> &lt; strlen(<span class="variable">$data</span>); <span class="variable">$index</span>++) &#123;</span><br><span class="line">            <span class="variable">$decoded</span> .= <span class="variable">$data</span>[<span class="variable">$index</span>] ^ <span class="variable">$masks</span>[<span class="variable">$index</span> % <span class="number">4</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$decoded</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回帧信息处理</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">frame</span>(<span class="params"><span class="variable">$s</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = str_split(<span class="variable">$s</span>, <span class="number">125</span>);</span><br><span class="line">        <span class="keyword">if</span> (count(<span class="variable">$a</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;\x81&quot;</span> . chr(strlen(<span class="variable">$a</span>[<span class="number">0</span>])) . <span class="variable">$a</span>[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$ns</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$o</span>) &#123;</span><br><span class="line">            <span class="variable">$ns</span> .= <span class="string">&quot;\x81&quot;</span> . chr(strlen(<span class="variable">$o</span>)) . <span class="variable">$o</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$ns</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回数据</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"><span class="variable">$client</span>, <span class="variable">$msg</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="keyword">$this</span>-&gt;frame(<span class="variable">$msg</span>);</span><br><span class="line">        socket_write(<span class="variable">$client</span>, <span class="variable">$msg</span>, strlen(<span class="variable">$msg</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试    </span></span><br><span class="line"><span class="variable">$ws</span> = <span class="keyword">new</span> WS(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -813,88 +899,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">windows mysql 自动备份的几种方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-02-07 15:13:29" itemprop="dateCreated datePublished" datetime="2017-02-07T15:13:29+08:00">2017-02-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>基于之前的文章方法，加入批处理命令即可实现自动备份。只是由于批处理命令中对于备份文件的名字按照时间命名比较特别，所以特别整理一文。</p>
-</blockquote>
-<h3 id="复制date文件夹备份"><a href="#复制date文件夹备份" class="headerlink" title="复制date文件夹备份"></a>复制date文件夹备份</h3><p>假想环境：<br>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>数据库备份目的地：C:\db_bak\</p>
-<p>新建db_bak.bat，写入以下代码</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="built_in">xcopy</span> c:\mysql\data\bbs\*.* c:\db_bak\bbs\<span class="variable">%date:~0,10%</span>\ /S /I</span><br><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> mysql</span><br></pre></td></tr></table></figure>
-
-<p>然后使用Windows的“计划任务”定时执行该批处理脚本即可。（例如：每天凌晨3点执行back_db.bat）</p>
-<p>解释：备份和恢复的操作都比较简单，完整性比较高，控制备份周期比较灵活，例如，用%date:<del>0,10%。此方法适合有独立主机但对mysql没有管理经验的用户。缺点是占用空间比较多，备份期间mysql会短时间断开（例如：针对30M左右的数据库耗时5s左右）,针对%date:</del>0,10%的用法参考           。</p>
-<h3 id="mysqldump备份成sql文件"><a href="#mysqldump备份成sql文件" class="headerlink" title="mysqldump备份成sql文件"></a>mysqldump备份成sql文件</h3><p>假想环境：</p>
-<p>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>MySQL root   密码：123456<br>数据库备份目的地：D:\db_backup\</p>
-<p>脚本：</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> &quot;Ymd=<span class="variable">%date:~,4%</span><span class="variable">%date:~5,2%</span><span class="variable">%date:~8,2%</span>&quot;</span><br><span class="line"><span class="function">C:\<span class="title">MySQL</span>\<span class="title">bin</span>\<span class="title">mysqldump</span> --<span class="title">opt</span> -<span class="title">u</span> <span class="title">root</span> --<span class="title">password</span>=123456 <span class="title">bbs</span> &gt; <span class="title">D</span>:\<span class="title">db_backup</span>\<span class="title">bbs_</span>%<span class="title">Ymd</span>%.<span class="title">sql</span></span></span><br><span class="line"><span class="function">@<span class="title">echo</span> <span class="title">on</span></span></span><br></pre></td></tr></table></figure>
-
-<p>将以上代码保存为backup_db.bat</p>
-<p>然后使用Windows的“计划任务”定时执行该脚本即可。（例如：每天凌晨5点执行back_db.bat）</p>
-<p>说明：此方法可以不用关闭数据库，并且可以按每一天的时间来名称备份文件。</p>
-<p>通过%date:<del>5,2%来组合得出当前日期，组合的效果为yyyymmdd,date命令得到的日期格式默认为yyyy-mm-dd(**如果不是此格式可以通过pause命令来暂停命令行窗口看通过%date:</del>,20%得到的当前计算机日期格式**)，所以通过%date:<del>5,2%即可得到日期中的第五个字符开始的两个字符，例如今天为2009-02-05,通过%date:</del>5,2%则可以得到02。（日期的字符串的下标是从0开始的）</p>
-<h3 id="利用WinRAR对MySQL数据库进行定时备份。"><a href="#利用WinRAR对MySQL数据库进行定时备份。" class="headerlink" title="利用WinRAR对MySQL数据库进行定时备份。"></a>利用WinRAR对MySQL数据库进行定时备份。</h3><p>对于MySQL的备份，最好的方法就是直接备份MySQL数据库的Data目录。下面提供了一个利用WinRAR来对Data目录进行定时备份的方法。</p>
-<p>首先当然要把WinRAR安装到计算机上。</p>
-<p>将下面的命令写入到一个文本文件里</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="function">c:\<span class="title">progra</span>~1\<span class="title">winrar</span>\<span class="title">winrar</span> <span class="title">a</span> -<span class="title">ag</span> -<span class="title">k</span> -<span class="title">r</span> -<span class="title">s</span> <span class="title">d</span>:\<span class="title">mysql.rar</span> <span class="title">d</span>:\<span class="title">mysql</span>\<span class="title">data</span></span></span><br><span class="line"><span class="function"><span class="title">net</span> <span class="title">start</span> <span class="title">mysql</span></span></span><br></pre></td></tr></table></figure>
-
-<p>保存，然后将文本文件的扩展名修改成CMD。进入控制面版，打开计划任务，双击“添加计划任务”。在计划任务向导中找到刚才的CMD文件，接着为这个任务指定一个运行时间和运行时使用的账号密码就可以了。</p>
-<p>这种方法缺点是占用时间比较多，备份期间压缩需要时间，mysql断开比第一种方法更多的时间，但是对于文件命名很好。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -966,7 +970,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1127,6 +1131,10 @@ window.addEventListener('pjax:success', () => {
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
