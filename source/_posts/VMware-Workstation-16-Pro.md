@@ -1,8 +1,7 @@
 title: VMware Workstation 16 Pro
 author: l1n6yun
 tags: []
-categories:
-  - 软件推荐
+categories: []
 date: 2022-01-01 00:00:00
 ---
 下载地址：https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html

@@ -1,6 +1,4 @@
 title: ThinkPHP连接SQLite
-categories:
-  - ThinkPHP
 tags:
   - ThinkPHP
   - SQLite
