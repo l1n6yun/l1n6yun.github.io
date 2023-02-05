@@ -153,6 +153,171 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/WSL2%E4%B8%8EDocker%E5%AE%B9%E5%99%A8%EF%BC%8C%E6%97%A0%E7%BC%9D%E4%BA%92%E7%9B%B8%E8%BF%81%E7%A7%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/05/WSL2%E4%B8%8EDocker%E5%AE%B9%E5%99%A8%EF%BC%8C%E6%97%A0%E7%BC%9D%E4%BA%92%E7%9B%B8%E8%BF%81%E7%A7%BB/" class="post-title-link" itemprop="url">WSL2与Docker容器，无缝互相迁移</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-05 17:04:00" itemprop="dateCreated datePublished" datetime="2023-02-05T17:04:00+08:00">2023-02-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p> 本文分享自华为云社区《<a href="https://link.zhihu.com/?target=https://bbs.huaweicloud.com/blogs/336923?utm_source=zhihu&utm_medium=bbs-ex&utm_campaign=other&utm_content=content">WSL2与Docker容器，无缝互相迁移</a>》，作者： tsjsdbd 。</p>
+</blockquote>
+<p> 注：本文提到的WSL都是指WSL2</p>
+<h1 id="WSL与Docker"><a href="#WSL与Docker" class="headerlink" title="WSL与Docker"></a>WSL与Docker</h1><p> WSL非常像windows版的Docker，可以直接启动“容器”（故意加引号，下面有解释），并且在容器世界里面，可以执行各种Linux操作。像下面这样，是不是和Docker很像？</p>
+<p><img src="/images/pasted-43.png" alt="upload successful"></p>
+<p> ps：上面提到的“容器”，实际是安全容器（即：虚机），WSL2内部架构如下：</p>
+<p><img src="/images/pasted-44.png" alt="upload successful"></p>
+<p>虽WSL和Docker很像，但是它对WSL镜像有要求，就是得从 MS的应用商店下载：</p>
+<p><img src="/images/pasted-45.png" alt="upload successful"></p>
+<p>这个就稍显不那么方便，毕竟你可能已经有很多现成的Docker容器了，这里又得重新安装一遍。</p>
+<p>我是Windows上有WSL，我的Linux开发机上有Docker，那我怎么在WSL里面跑Docker呢？</p>
+<h1 id="WSL运行Docker容器"><a href="#WSL运行Docker容器" class="headerlink" title="WSL运行Docker容器"></a>WSL运行Docker容器</h1><p>常见的WSL里面运行Docker，是这样子的：</p>
+<p><img src="/images/pasted-46.png" alt="upload successful"></p>
+<p>就是把WSL当做一台新的开发机，然后在WSL里面，安装Docker软件。</p>
+<p>这样子，也能解决问题。就是稍微麻烦了一点点。那能不能WSL直接运行Docker镜像呢？</p>
+<p>答案是可以的：</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro">https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro</a></p>
+<p>这种方法下，是类似这个样子的：</p>
+<p><img src="/images/pasted-47.png" alt="upload successful"></p>
+<p>具体操作如下：</p>
+<ol>
+<li>在Docker里面，将容器导出来</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//查看正在运行的容器</span><br><span class="line"></span><br><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">//根据容器ID，导出镜像包</span><br><span class="line"></span><br><span class="line">docker export $ContainerID &gt; ./tsjsdbd.tar</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>然后再WSL里面，将Docker镜像导入：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --import &lt;DistributionName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>比如，我这里用Docker运行了一个busybox容器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it busybox /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>然后查询容器ID：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">CONTAINER ID  IMAGE</span><br><span class="line">c1e9e8f77336  busybox</span><br></pre></td></tr></table></figure>
+
+<p>导出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export c1e9e8f77336 &gt; tsjsdbd_busybox.tar</span><br></pre></td></tr></table></figure>
+
+<p>然后我把这个 镜像文件，拷贝到我的windows电脑上。</p>
+<p>并在wsl里面导入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --import tsjsdbd_busybox ./busybox ./tsjsdbd_busybox.tar</span><br></pre></td></tr></table></figure>
+
+<p>导入后查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l</span><br></pre></td></tr></table></figure>
+
+<p>这时，我启动这个 busybox 镜像。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -d tsjsdbd_busybox</span><br></pre></td></tr></table></figure>
+
+<p>OK，这时我已经在WSL容器里面了，这是一个busybox的Docker容器镜像。</p>
+<h1 id="Docker运行WSL镜像"><a href="#Docker运行WSL镜像" class="headerlink" title="Docker运行WSL镜像"></a>Docker运行WSL镜像</h1><p>从上面的操作可以看出来，WSL和Docker的镜像是相通的。所以WSL系统，也可以导出给Docker直接运行。类似这个样子：</p>
+<p><img src="/images/pasted-48.png" alt="upload successful"></p>
+<p> 具体操作如下：</p>
+<p>先查看下当前跑了哪些wsl容器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br><span class="line"> NAME        STATE      VERSION</span><br><span class="line">* Ubuntu-18.04    Stopped     2</span><br><span class="line">  tsjsdbd_busybox  Running     2</span><br></pre></td></tr></table></figure>
+
+<p>导出指定的wsl镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --export tsjsdbd_busybox ./mybox.tar</span><br></pre></td></tr></table></figure>
+
+<p>其中 “<em>tsjsdbd_busybox</em>” 就是你希望导给Docker运行的WSL容器（里面可能安装了一些你需要的软件）。导出的tar包，就可以看做是WSL镜像了（可以直接导入给Docker）</p>
+<p>最后，在Docker里面，导入这个镜像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker import - mybox &lt; mybox.tar</span><br></pre></td></tr></table></figure>
+
+<p>可以查询此镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images |grep mybox</span><br></pre></td></tr></table></figure>
+
+<p>并启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it mybox /bin/sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="WSL镜像与Docker镜像"><a href="#WSL镜像与Docker镜像" class="headerlink" title="WSL镜像与Docker镜像"></a>WSL镜像与Docker镜像</h1><p>大体上，我给个示意：</p>
+<p><img src="/images/pasted-49.png" alt="upload successful"></p>
+<p>所以WSL确实挺香的。</p>
+<h1 id="WSL启动GUI界面"><a href="#WSL启动GUI界面" class="headerlink" title="WSL启动GUI界面"></a>WSL启动GUI界面</h1><p>整体方案是利用 X11 Server，原理参考：</p>
+<p>《Docker运行带UI界面的应用，并将它的界面投射到你的Windows电脑》</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/281862">https://bbs.huaweicloud.com/blogs/281862</a></p>
+<p><img src="/images/pasted-50.png" alt="upload successful"></p>
+<p>X11 Server，一般网上推荐 VcXsrv，我自己用下来，感觉 MobaXterm 更傻瓜一些。所以我都用 MobaXterm 的。</p>
+<h1 id="附：安装WSL"><a href="#附：安装WSL" class="headerlink" title="附：安装WSL"></a>附：安装WSL</h1><h2 id="1-系统要求"><a href="#1-系统要求" class="headerlink" title="1. 系统要求"></a>1. 系统要求</h2><p>Windows 10，版本 2004 以上。</p>
+<p>比如我的是 20H2，是OK的。</p>
+<p>点击：开始-设置-关于，查询自己的版本</p>
+<h2 id="2-判断wsl2是否已有"><a href="#2-判断wsl2是否已有" class="headerlink" title="2. 判断wsl2是否已有"></a>2. 判断wsl2是否已有</h2><p>打开 power shell，输入 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -o</span><br></pre></td></tr></table></figure>
+
+<p>如OK，则不用后续步骤了（说明你的windows版本已经比较高）。</p>
+<p>不行，则手动执行后续步骤</p>
+<h2 id="3-允许开发者模式"><a href="#3-允许开发者模式" class="headerlink" title="3. 允许开发者模式"></a>3. 允许开发者模式</h2><p><img src="/images/pasted-51.png" alt="upload successful"></p>
+<h2 id="4-启动WSL2功能"><a href="#4-启动WSL2功能" class="headerlink" title="4. 启动WSL2功能"></a>4. 启动WSL2功能</h2><p>启用WSL2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>启用虚拟机平台</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>启用Hyper-V</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>设置WSL2为默认</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-default-version 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-重启，安装wsl补丁"><a href="#5-重启，安装wsl补丁" class="headerlink" title="5. 重启，安装wsl补丁"></a>5. 重启，安装wsl补丁</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl_update_x64.msi</span><br></pre></td></tr></table></figure>
+
+<p>执行以上补丁包。</p>
+<p>补丁包下载地址：</p>
+<p><a target="_blank" rel="noopener" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
+<h1 id="附：高阶版-GPU，GUI界面"><a href="#附：高阶版-GPU，GUI界面" class="headerlink" title="附：高阶版 GPU，GUI界面"></a>附：高阶版 GPU，GUI界面</h1><p>Windows版本高的（win10 21H2），可以在WSL2里面跑CUDA</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl">https://docs.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl</a></p>
+<p>再高一点（win11），可以原生支持带GUI界面的Linux程序。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps">https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -947,114 +1112,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/" class="post-title-link" itemprop="url">如何搭建自己的 composer 包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-14 20:14:38" itemprop="dateCreated datePublished" datetime="2022-03-14T20:14:38+08:00">2022-03-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>composer 是 PHP 的依赖管理工具，本篇文章就来说明如何构建一个包，并提交到 Packagist ，这样别人就可以方便地通过 composer 使用你的包了。</p>
-</blockquote>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> composer init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This command will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [l1n6yun/hello]: l1n6yun/hello</span><br><span class="line">Description []: This is a demo package</span><br><span class="line">Author [l1n6yun &lt;l1n6yun@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []: dev</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []: library</span><br><span class="line">License []: MIT</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dependencies (require) interactively [yes]? no</span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line">Add PSR-4 autoload mapping? Maps namespace &quot;L1n6yun\Hello&quot; to the entered relative path. [src/, n to skip]:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;l1n6yun/hello&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;This is a demo package&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;L1n6yun\\Hello\\&quot;: &quot;src/&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;l1n6yun&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;l1n6yun@gmail.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;minimum-stability&quot;: &quot;dev&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]?</span><br><span class="line">Generating autoload files</span><br><span class="line">Generated autoload files</span><br><span class="line">PSR-4 autoloading configured. Use &quot;namespace L1n6yun\Hello;&quot; in src/</span><br><span class="line">Include the Composer autoloader with: require &#x27;vendor/autoload.php&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Package-name"><a href="#Package-name" class="headerlink" title="Package name"></a>Package name</h3><p>包的名称。它是由供应商名称和项目名称组成，由 <code>/</code> 隔开。</p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>包的简短描述。用来告诉使用者这个包是干什么用的。</p>
-<h3 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h3><p>包的作者名。</p>
-<h3 id="Minimum-Stability"><a href="#Minimum-Stability" class="headerlink" title="Minimum Stability"></a>Minimum Stability</h3><p>最小稳定版本。越往下，稳定性越高，BUG越少。</p>
-<ul>
-<li>dev</li>
-<li>alpha</li>
-<li>beta</li>
-<li>RC（补丁）</li>
-<li>stable</li>
-</ul>
-<h3 id="Package-Type"><a href="#Package-Type" class="headerlink" title="Package Type"></a>Package Type</h3><p>包的类型。用于自定义安装逻辑。</p>
-<ul>
-<li> <strong>library</strong>：这个是默认设置。它会将文件复制到 <code>vendor</code> 目录</li>
-<li><strong>project</strong>：项目。注意这里的项目不是库。</li>
-<li><strong>metapackage</strong>：一个包含需求的空包，会触发  他们的安装，但不包含文件，不会向  文件系统。 因此，它不需要 dist 或 source 键  可安装。 </li>
-<li><strong>composer-plugin</strong>：类型的包 <code>composer-plugin</code>可以提供一个  具有自定义类型的其他软件包的安装程序。</li>
-</ul>
-<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>包的许可证。  这可以是字符串或字符串数组。 </p>
-<p>最常见许可证</p>
-<ul>
-<li>Apache-2.0</li>
-<li>BSD-2-Clause</li>
-<li>BSD-3-Clause</li>
-<li>BSD-4-Clause</li>
-<li>GPL-2.0-only / GPL-2.0-or-later</li>
-<li>GPL-3.0-only / GPL-3.0-or-later</li>
-<li>LGPL-2.1-only / LGPL-2.1-or-later</li>
-<li>LGPL-3.0-only / LGPL-3.0-or-later</li>
-<li>MIT</li>
-</ul>
-<blockquote>
-<p>闭源项目可以使用 <code>proprietary</code></p>
-</blockquote>
-<h2 id="撸码"><a href="#撸码" class="headerlink" title="撸码"></a>撸码</h2><p>在项目的 <code>src</code> 目录下创建 <code>Tools</code> 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">L1n6yun</span>\<span class="title">Hello</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tools</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;Hello, World!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试一下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php -a</span></span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line">php &gt; L1n6yun\Hello\Tools::hello();</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="上传代码"><a href="#上传代码" class="headerlink" title="上传代码"></a>上传代码</h3><p>添加 <code>.gitignore</code> 文件，来忽略不需要的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.idea/</span><br><span class="line">/vendor/</span><br><span class="line">composer.lock</span><br></pre></td></tr></table></figure>
-
-<p>自行上传到自己的 GitHub 上</p>
-<h3 id="提交包"><a href="#提交包" class="headerlink" title="提交包"></a>提交包</h3><p>Packagist 上的 <a target="_blank" rel="noopener" href="https://packagist.org/packages/submit">提交页面</a> 填写自己的仓库地址，点击 <code>Check</code> ，然后点击 <code>Submit</code> 不出意外的话就发布成功了。</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1126,7 +1183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

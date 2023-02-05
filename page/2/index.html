@@ -153,6 +153,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/" class="post-title-link" itemprop="url">如何搭建自己的 composer 包</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-14 20:14:38" itemprop="dateCreated datePublished" datetime="2022-03-14T20:14:38+08:00">2022-03-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>composer 是 PHP 的依赖管理工具，本篇文章就来说明如何构建一个包，并提交到 Packagist ，这样别人就可以方便地通过 composer 使用你的包了。</p>
+</blockquote>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> composer init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This command will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [l1n6yun/hello]: l1n6yun/hello</span><br><span class="line">Description []: This is a demo package</span><br><span class="line">Author [l1n6yun &lt;l1n6yun@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []: dev</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []: library</span><br><span class="line">License []: MIT</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dependencies (require) interactively [yes]? no</span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line">Add PSR-4 autoload mapping? Maps namespace &quot;L1n6yun\Hello&quot; to the entered relative path. [src/, n to skip]:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;l1n6yun/hello&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;This is a demo package&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;L1n6yun\\Hello\\&quot;: &quot;src/&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;l1n6yun&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;l1n6yun@gmail.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;minimum-stability&quot;: &quot;dev&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]?</span><br><span class="line">Generating autoload files</span><br><span class="line">Generated autoload files</span><br><span class="line">PSR-4 autoloading configured. Use &quot;namespace L1n6yun\Hello;&quot; in src/</span><br><span class="line">Include the Composer autoloader with: require &#x27;vendor/autoload.php&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Package-name"><a href="#Package-name" class="headerlink" title="Package name"></a>Package name</h3><p>包的名称。它是由供应商名称和项目名称组成，由 <code>/</code> 隔开。</p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>包的简短描述。用来告诉使用者这个包是干什么用的。</p>
+<h3 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h3><p>包的作者名。</p>
+<h3 id="Minimum-Stability"><a href="#Minimum-Stability" class="headerlink" title="Minimum Stability"></a>Minimum Stability</h3><p>最小稳定版本。越往下，稳定性越高，BUG越少。</p>
+<ul>
+<li>dev</li>
+<li>alpha</li>
+<li>beta</li>
+<li>RC（补丁）</li>
+<li>stable</li>
+</ul>
+<h3 id="Package-Type"><a href="#Package-Type" class="headerlink" title="Package Type"></a>Package Type</h3><p>包的类型。用于自定义安装逻辑。</p>
+<ul>
+<li> <strong>library</strong>：这个是默认设置。它会将文件复制到 <code>vendor</code> 目录</li>
+<li><strong>project</strong>：项目。注意这里的项目不是库。</li>
+<li><strong>metapackage</strong>：一个包含需求的空包，会触发  他们的安装，但不包含文件，不会向  文件系统。 因此，它不需要 dist 或 source 键  可安装。 </li>
+<li><strong>composer-plugin</strong>：类型的包 <code>composer-plugin</code>可以提供一个  具有自定义类型的其他软件包的安装程序。</li>
+</ul>
+<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>包的许可证。  这可以是字符串或字符串数组。 </p>
+<p>最常见许可证</p>
+<ul>
+<li>Apache-2.0</li>
+<li>BSD-2-Clause</li>
+<li>BSD-3-Clause</li>
+<li>BSD-4-Clause</li>
+<li>GPL-2.0-only / GPL-2.0-or-later</li>
+<li>GPL-3.0-only / GPL-3.0-or-later</li>
+<li>LGPL-2.1-only / LGPL-2.1-or-later</li>
+<li>LGPL-3.0-only / LGPL-3.0-or-later</li>
+<li>MIT</li>
+</ul>
+<blockquote>
+<p>闭源项目可以使用 <code>proprietary</code></p>
+</blockquote>
+<h2 id="撸码"><a href="#撸码" class="headerlink" title="撸码"></a>撸码</h2><p>在项目的 <code>src</code> 目录下创建 <code>Tools</code> 类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">L1n6yun</span>\<span class="title">Hello</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tools</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;Hello, World!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php -a</span></span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line">php &gt; L1n6yun\Hello\Tools::hello();</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="上传代码"><a href="#上传代码" class="headerlink" title="上传代码"></a>上传代码</h3><p>添加 <code>.gitignore</code> 文件，来忽略不需要的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.idea/</span><br><span class="line">/vendor/</span><br><span class="line">composer.lock</span><br></pre></td></tr></table></figure>
+
+<p>自行上传到自己的 GitHub 上</p>
+<h3 id="提交包"><a href="#提交包" class="headerlink" title="提交包"></a>提交包</h3><p>Packagist 上的 <a target="_blank" rel="noopener" href="https://packagist.org/packages/submit">提交页面</a> 填写自己的仓库地址，点击 <code>Check</code> ，然后点击 <code>Submit</code> 不出意外的话就发布成功了。</p>
+<p><img src="/images/pasted-7.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/11/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1162,79 +1270,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Kali 汉化教程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-12 23:50:00" itemprop="dateCreated datePublished" datetime="2021-01-12T23:50:00+08:00">2021-01-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>在 Kali 的桌面按下 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd> 打开终端</p>
-</li>
-<li><p>使用 root 权限执行 <code>sudo dpkg-reconfigure locales</code><br><img src="/images/pasted-37.png" alt="upload successful"></p>
-</li>
-<li><p>选中 <strong>en_US.UTF-8 UTF-8</strong>  和  <strong>zh_CN.UTF-8 UTF-8</strong>  (注意:按下<strong>空格键</strong>选中,选好后按下<strong>TAB</strong>键退出编码格式选项,跳到<strong>OK选项</strong>)<br><img src="/images/pasted-38.png" alt="upload successful"></p>
-</li>
-<li><p>选择 <strong>zh_CN.UTF-8</strong>，选择OK<br><img src="/images/pasted-39.png" alt="upload successful"></p>
-</li>
-<li><p>在终端键入<code>reboot</code>, 重启Kali<br><img src="/images/pasted-40.png" alt="upload successful"></p>
-</li>
-<li><p>重启Kali后, 建议选择<strong>保留旧的名称</strong><br><img src="/images/pasted-41.png" alt="upload successful"></p>
-</li>
-<li><p>此时可以看到界面已经汉化完成了!<br><img src="/images/pasted-42.png" alt="upload successful"></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1306,7 +1341,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
