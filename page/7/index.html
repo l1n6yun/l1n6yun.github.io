@@ -153,6 +153,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/27/Highlight.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/27/Highlight.js/" class="post-title-link" itemprop="url">Highlight.js</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-05-27 20:10:09" itemprop="dateCreated datePublished" datetime="2017-05-27T20:10:09+08:00">2017-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Highlight-js"><a href="#Highlight-js" class="headerlink" title="Highlight.js"></a>Highlight.js</h1><p><a target="_blank" rel="noopener" href="https://travis-ci.org/isagalaev/highlight.js"><img src="https://travis-ci.org/isagalaev/highlight.js.svg?branch=master" alt="Build Status"></a></p>
+<p>Highlight.js is a syntax highlighter written in JavaScript. It works in<br>the browser as well as on the server. It works with pretty much any<br>markup, doesn’t depend on any framework and has automatic language<br>detection.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>The bare minimum for using highlight.js on a web page is linking to the<br>library along with one of the styles and calling<br><a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/styles/default.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/path/to/highlight.pack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>hljs.initHighlightingOnLoad();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This will find and highlight code inside of <code>&lt;pre&gt;&lt;code&gt;</code> tags; it tries<br>to detect the language automatically. If automatic detection doesn’t<br>work for you, you can specify the language in the <code>class</code> attribute:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;html&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The list of supported language classes is available in the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html">class<br>reference</a>.  Classes can also be prefixed with either <code>language-</code> or<br><code>lang-</code>.</p>
+<p>To disable highlighting altogether use the <code>nohighlight</code> class:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;nohighlight&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Custom-Initialization"><a href="#Custom-Initialization" class="headerlink" title="Custom Initialization"></a>Custom Initialization</h2><p>When you need a bit more control over the initialization of<br>highlight.js, you can use the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#highlightblock-block"><code>highlightBlock</code></a> and <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a><br>functions. This allows you to control <em>what</em> to highlight and <em>when</em>.</p>
+<p>Here’s an equivalent way to calling <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a> using<br>jQuery:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&#x27;pre code&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">    hljs.highlightBlock(block);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>You can use any tags instead of <code>&lt;pre&gt;&lt;code&gt;</code> to mark up your code. If<br>you don’t use a container that preserve line breaks you will need to<br>configure highlight.js to use the <code>&lt;br&gt;</code> tag:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hljs.configure(&#123;<span class="attr">useBR</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;div.code&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">  hljs.highlightBlock(block);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>For other options refer to the documentation for <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a>.</p>
+<h2 id="Web-Workers"><a href="#Web-Workers" class="headerlink" title="Web Workers"></a>Web Workers</h2><p>You can run highlighting inside a web worker to avoid freezing the browser<br>window while dealing with very big chunks of code.</p>
+<p>In your main script:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">&#x27;load&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> code = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#code&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">&#x27;worker.js&#x27;</span>);</span><br><span class="line">  worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; code.innerHTML = event.data; &#125;</span><br><span class="line">  worker.postMessage(code.textContent);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>In worker.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  importScripts(<span class="string">&#x27;&lt;path&gt;/highlight.pack.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> result = self.hljs.highlightAuto(event.data);</span><br><span class="line">  postMessage(result.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Getting-the-Library"><a href="#Getting-the-Library" class="headerlink" title="Getting the Library"></a>Getting the Library</h2><p>You can get highlight.js as a hosted, or custom-build, browser script or<br>as a server module. Right out of the box the browser script supports<br>both AMD and CommonJS, so if you wish you can use RequireJS or<br>Browserify without having to build from source. The server module also<br>works perfectly fine with Browserify, but there is the option to use a<br>build specific to browsers rather than something meant for a server.<br>Head over to the <a target="_blank" rel="noopener" href="https://highlightjs.org/download/">download page</a> for all the options.</p>
+<p><strong>Don’t link to GitHub directly.</strong> The library is not supposed to work straight<br>from the source, it requires building. If none of the pre-packaged options<br>work for you refer to the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/building-testing.html">building documentation</a>.</p>
+<p><strong>The CDN-hosted package doesn’t have all the languages.</strong> Otherwise it’d be<br>too big. If you don’t see the language you need in the <a target="_blank" rel="noopener" href="https://highlightjs.org/download/">“Common” section</a>,<br>it can be added manually:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>On Almond.</strong> You need to use the optimizer to give the module a name. For<br>example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Highlight.js is released under the BSD License. See <a target="_blank" rel="noopener" href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE">LICENSE</a> file<br>for details.</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p>The official site for the library is at <a target="_blank" rel="noopener" href="https://highlightjs.org/">https://highlightjs.org/</a>.</p>
+<p>Further in-depth documentation for the API and other topics is at<br><a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/">http://highlightjs.readthedocs.io/</a>.</p>
+<p>Authors and contributors are listed in the <a target="_blank" rel="noopener" href="https://github.com/isagalaev/highlight.js/blob/master/AUTHORS.en.txt">AUTHORS.en.txt</a> file.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/22/CSS%E6%94%B9%E5%8F%98png%E5%9B%BE%E7%89%87%E9%A2%9C%E8%89%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -740,176 +838,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/" class="post-title-link" itemprop="url">CSS3自定义滚动条样式 -webkit-scrollbar</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-16 15:39:00" itemprop="dateCreated datePublished" datetime="2016-12-16T15:39:00+08:00">2016-12-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>有没有觉得浏览器自带的原始滚动条很不美观,同时也有看到很多网站的自定义滚动条显得高端,就连 <code>chrome32.0</code> 开发板都抛弃了原始的滚动条,美观多了。那 ** webkit浏览器 ** 是如何自定义滚动条的呢？</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webkit</code> 支持拥有 <code>overflow</code> 属性的区域,列表框,下拉菜单,<code>textarea</code> 的滚动条自定义样式,所以用处还是挺大的。当然,兼容所有浏览器的滚动条样式目前是不存在的。</p>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>来看看这2个滚动条demo： <a target="_blank" rel="noopener" href="http://www.xuanfengge.com/demo/201311/scroll/index.html">demo1(图片版)</a>、<a target="_blank" rel="noopener" href="http://www.xuanfengge.com/demo/201311/scroll/css3-scroll.html">demo2(纯CSS3版)</a></p>
-<h2 id="滚动条组成"><a href="#滚动条组成" class="headerlink" title="滚动条组成"></a>滚动条组成</h2><table>
-<thead>
-<tr>
-<th>样式名</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>::-webkit-scrollbar</code></td>
-<td>滚动条整体部分</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-thumb</code></td>
-<td>滚动条里面的小方块,能向上向下移动(或往左往右移动,取决于是垂直滚动条还是水平滚动条)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track</code></td>
-<td>滚动条的轨道(里面装有<code>Thumb</code>)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-button</code></td>
-<td>滚动条的轨道的两端按钮,允许通过点击微调小方块的位置。</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track-piece</code></td>
-<td>内层轨道,滚动条中间部分(除去)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-corner</code></td>
-<td>边角,即两个滚动条的交汇处</td>
-</tr>
-<tr>
-<td><code>::-webkit-resizer</code></td>
-<td>两个滚动条的交汇处上用于通过拖动调整元素大小的小控件</td>
-</tr>
-</tbody></table>
-<h2 id="简洁版"><a href="#简洁版" class="headerlink" title="简洁版"></a>简洁版</h2><p>这里就不贴出详细代码了, demo 里面可以通过查看源码寻找具体样式的设置。来看看 demo2 中第二个滚动条的样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/</span>  </span><br><span class="line">::-webkit-scrollbar  </span><br><span class="line">&#123;  </span><br><span class="line">    width: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">height</span>: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滚动条轨道 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-track  </span><br><span class="line">&#123;  </span><br><span class="line">    -webkit-box-shadow: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);  </span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滑块 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-thumb  </span><br><span class="line">&#123;  </span><br><span class="line">    border-radius: <span class="number">10px</span>;  </span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#555</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><p>定义滚动条就是利用伪元素与伪类,那什么是伪元素和伪类呢？</p>
-<p>伪类大家应该很熟悉 <code>:link</code> , <code>:focus</code> , <code>:hover</code> ,此外 <a target="_blank" rel="noopener" href="http://lib.csdn.net/base/css3">CSS3</a> 中又增加了许多伪类选择器,如 <code>:nth-child</code> , <code>:last-child</code> , <code>:nth-last-of-type()</code> 等。</p>
-<p><code>CSS</code> 中的伪元素大家以前看过： <code>:first-line</code> , <code>:first-letter</code> , <code>:before</code> , <code>:after</code> 。那么在 <code>CSS3</code> 中,伪元素进行了调整,在以前的基础上增加了一个 <code>:</code> 也就是现在变成了” <code>::first-letter</code> , <code>::first-line</code> , <code>::before</code> , <code>::after</code> “,另外 <code>CSS3</code> 还增加了一个 <code>::selection</code> 。两个 <code>::</code> 和一个 <code>:</code> 在 <code>CSS3</code> 中主要用来区分伪类和伪元素。</p>
-<p>webkit的伪类和伪元素的实现很强,可以把滚动条当成一个页面元素来定义,再结合一些高级的 <code>CSS3</code> 属性,比如渐变、圆角、RGBa等等。然后如果有些地方要用图片,可以把图片也可以转换成 <code>Base64</code> ,不然每次都得加载那个多个图片,增加请求数。</p>
-<p>任何对象都可以设置：边框、阴影、背景图片等等,创建的滚动条任然会按照<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/operatingsystem">操作系统</a>本身的设置来完成其交互的行为。下面的伪类可以应用到上面的伪元素中。有点小复杂,具体怎么写可以看第一个 demo ,那里也有注释。</p>
-<table>
-<thead>
-<tr>
-<th>样式名</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>:horizontal</code></td>
-<td><code>horizontal</code> 伪类适用于任何水平方向上的滚动条</td>
-</tr>
-<tr>
-<td><code>:vertical</code></td>
-<td><code>vertical</code> 伪类适用于任何垂直方向的滚动条</td>
-</tr>
-<tr>
-<td><code>:decrement</code></td>
-<td><code>decrement</code> 伪类适用于按钮和轨道碎片。表示递减的按钮或轨道碎片,例如可以使区域向上或者向右移动的区域和按钮</td>
-</tr>
-<tr>
-<td><code>:increment</code></td>
-<td><code>increment</code> 伪类适用于按钮和轨道碎片。表示递增的按钮或轨道碎片,例如可以使区域向下或者向左移动的区域和按钮</td>
-</tr>
-<tr>
-<td><code>:start</code></td>
-<td><code>start</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的前面</td>
-</tr>
-<tr>
-<td><code>:end</code></td>
-<td><code>end</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的后面</td>
-</tr>
-<tr>
-<td><code>:double-button</code></td>
-<td><code>double-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。</td>
-</tr>
-<tr>
-<td><code>:single-button</code></td>
-<td><code>single-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。</td>
-</tr>
-<tr>
-<td><code>:no-button</code></td>
-<td><code>no-button</code> 伪类表示轨道结束的位置没有按钮。</td>
-</tr>
-<tr>
-<td><code>:corner-present</code></td>
-<td><code>corner-present</code> 伪类表示滚动条的角落是否存在。</td>
-</tr>
-<tr>
-<td><code>:window-inactive</code></td>
-<td>适用于所有滚动条,表示包含滚动条的区域,焦点不在该窗口的时候。</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track-piece:start</code></td>
-<td>滚动条上半边或左半边</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-thumb:window-inactive</code></td>
-<td>当焦点不在当前区域滑块的状态</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-button:horizontal:decrement:hover</code></td>
-<td>当鼠标在水平滚动条下面的按钮上的状态</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -981,7 +909,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
