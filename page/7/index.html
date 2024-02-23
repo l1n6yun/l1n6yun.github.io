@@ -181,6 +181,280 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/24/localResizeIMG-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/24/localResizeIMG-js/" class="post-title-link" itemprop="url">localResizeIMG.js</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-24 17:10:45" itemprop="dateCreated datePublished" datetime="2017-08-24T17:10:45+08:00">2017-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://travis-ci.org/think2011/localResizeIMG"><img src="https://travis-ci.org/think2011/localResizeIMG.svg?branch=master" alt="Build Status"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/lrz"><img src="https://img.shields.io/npm/v/lrz.svg" alt="npm version"></a><br><a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+<h1 id="🚨重要"><a href="#🚨重要" class="headerlink" title="🚨重要!!"></a>🚨重要!!</h1><p>很抱歉，这个项目已不再维护了，可能很长一段时间都不会更新了。<br>如果真的需要，请使用之前请一定留意 <a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues?q=is:issue+is:open+label:bug">Issues</a> 里已知的问题</p>
+<h1 id="演示一下"><a href="#演示一下" class="headerlink" title="演示一下"></a>演示一下</h1><p><img src="http://think2011.github.io/localResizeIMG/test/demo.gif"></p>
+<h1 id="自己试试"><a href="#自己试试" class="headerlink" title="自己试试"></a>自己试试</h1><p><img src="https://raw.github.com/think2011/localResizeIMG/master/test/qrcode.png"></p>
+<p><a target="_blank" rel="noopener" href="http://think2011.github.io/localResizeIMG/test/">点我直接进入演示页面</a></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用。</p>
+<h1 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h1><ol>
+<li><p>已踩过很多坑，经过几个版本迭代，以及很多很多网友的反馈帮助、机型测试</p>
+<ul>
+<li>图片扭曲、某些设备不自动旋转图片方向，没有jpeg压缩算法..</li>
+<li>不支持new Blob,formData构造的文件size为0..</li>
+<li>还有某些机型和浏览器（例如QQX5浏览器）莫名其妙的BUG..</li>
+</ul>
+</li>
+<li><p>按需加载（会根据对应设备自动异步载入JS文件，节省不必要带宽）</p>
+</li>
+<li><p>原生JS编写，不依赖例如<code>jquery</code>等第三方库，支持AMD or CMD规范。</p>
+</li>
+</ol>
+<blockquote>
+<p>尽管如此，在某些 <code>Android</code> 下依然有莫名其妙的问题，在您使用前，请一定大致浏览下 <a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues">issues</a></p>
+</blockquote>
+<h1 id="如何获取"><a href="#如何获取" class="headerlink" title="如何获取"></a>如何获取</h1><p>通过以下方式都可以下载：</p>
+<ol>
+<li>执行<code>npm i lrz</code>（推荐）</li>
+<li>执行<code>bower install lrz</code></li>
+</ol>
+<p>接着在页面中引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./dist/lrz.bundle.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1:"></a>方式1:</h3><p>如果您的图片来自用户拍摄或者上传的，您需要一个<code>input file</code>来获取图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接着通过change事件可以得到用户选择的图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">&#x27;#file&#x27;</span>).addEventListener(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	lrz(<span class="built_in">this</span>.files[<span class="number">0</span>])</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params">rst</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">            <span class="built_in">console</span>.log(rst);</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .always(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式2："><a href="#方式2：" class="headerlink" title="方式2："></a>方式2：</h3><p>如果您的图片不是来自用户上传的，那么也可以直接传入图片路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lrz(<span class="string">&#x27;./xxx/xx/x.png&#x27;</span>)</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params">rst</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .always(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="后端处理"><a href="#后端处理" class="headerlink" title="后端处理"></a>后端处理</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki">后端处理请查看WIKI。</a></p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki">具体参数说明请查看WIKI。</a></p>
+<h1 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h1><p>IE10以上及大部分非IE浏览器（chrome、微信什么的）</p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues">有疑问请直接在 issues 中提问</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请一定记得附上以下内容：💡</span><br><span class="line">请一定记得附上以下内容：🙈</span><br><span class="line">请一定记得附上以下内容：💡</span><br><span class="line"></span><br><span class="line">平台：微信..</span><br><span class="line">设备：iPhone5 IOS7..</span><br><span class="line">问题：问题描述呗..</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Q：能否提供完整的一套UI?</p>
+</li>
+<li><p>A：暂时定位是作为纯粹的处理插件，或许会考虑开发一整套UI。</p>
+</li>
+<li><p>Q：有时拍摄完照片后，页面自动刷新或闪退了。</p>
+</li>
+<li><p>A：虽然已作了优化处理，但内存似乎还是爆掉了，常见于低配android手机，建议每次只处理一张图片。</p>
+</li>
+<li><p>Q: 怎么批量上传图片?</p>
+</li>
+<li><p>A: 您可以自己写个循环来传入用户多选的图片，但在移动端上请谨慎处理，原因同上。</p>
+</li>
+<li><p>Q: 直接传入图片路径的无法生成图片</p>
+</li>
+<li><p>A: 可能是跨域的问题，具体请看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image">CORS_enabled_image</a></p>
+</li>
+<li><p>Q: 想要商用可以吗？</p>
+</li>
+<li><p>A: 没问题，但请留意issue里已知的问题。</p>
+</li>
+</ul>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki/3.-%E6%BA%90%E7%A0%81%E9%80%BB%E8%BE%91">想要参与 or 自己定制 or 了解源码请点击这里，逻辑和说明</a></p>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
+<li>@dwandw</li>
+<li>@yourlin</li>
+<li>@wxt2005</li>
+</ul>
+<p>以上在之前的版本帮忙参与维护的朋友，以及提出问题的朋友们，真的真的很感谢你们。：D</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/" class="post-title-link" itemprop="url">当script中的type等于text/html时，我们可以做很多事件！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-15 19:47:30" itemprop="dateCreated datePublished" datetime="2017-07-15T19:47:30+08:00">2017-07-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们可以在 <code>&lt;script&gt;</code> 片断中定义一个被JS调用的代码，但代码又不在页面上显示，这时，我们可以使用下面的方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;commentTemplate&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;photo&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;[UserImg]&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>[UserName]：<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span>[CreateDate]<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clear&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;comment_ul_2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;addFun&quot;</span> <span class="attr">value</span>=<span class="string">&quot;click me&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;\\[([^\\[\\]]*?)\\]&quot;</span>, <span class="string">&#x27;igm&#x27;</span>); <span class="comment">//i g m是指分别用于指定区分大小写的匹配、全局匹配和多行匹配。</span></span></span><br><span class="line"><span class="javascript">    $(<span class="string">&quot;#addFun&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> html = <span class="built_in">document</span>.getElementById(<span class="string">&quot;commentTemplate&quot;</span>).innerHTML;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> source = html.replace(reg, <span class="function"><span class="keyword">function</span> (<span class="params">node, key</span>) </span>&#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;UserImg&#x27;</span>: <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;UserName&#x27;</span>: <span class="string">&#x27;zhang&#x27;</span>, <span class="string">&#x27;CreateDate&#x27;</span>: <span class="string">&#x27;2011-1-1&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="javascript">        $(<span class="string">&quot;#comment_ul_2&quot;</span>).append(source);</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> zzl = <span class="string">&quot;name:[name]&quot;</span>;</span></span><br><span class="line"><span class="javascript">    zzl = zzl.replace(reg, <span class="function"><span class="keyword">function</span> (<span class="params">node, key</span>) </span>&#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;占占&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="javascript">    alert(zzl);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>OK，这个意思是说，当你单击按钮时，可以把 <code>commentTemplate</code> 的内容追到 <code>comment_ul_2</code> 里，这很有意思吧，呵呵！</p>
+<p>而其中有一个 <code>replace</code> ，也很有意思，向在替换时，可以接受一个 json 字符串，然后根据 json 的 <code>key</code> 来对比 js 模块里的 <code>key</code> ，进行赋值！</p>
+<p>真的很有意思！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">一款开源指纹识别工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-07 17:00:22" itemprop="dateCreated datePublished" datetime="2017-07-07T17:00:22+08:00">2017-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一款开源指纹识别工具。</p>
+<hr>
+<hr>
+<p> 开源工具使用说明：<br>      -u 一个域名或IP,如果输入更多域名或IP使用‘,’分隔；<br>      -r  读取本地域名或IP文件地址；<br>      -t  输入一个线程数量，默认线程为50；<br>      -p  设置一个请求端口，默认端口为80；<br>      -s  设置一个请求协议，默认请求协议为http.(http、https)；<br>      -h  查看使用帮助；<br>      -o  输出识别结果到本地文件；<br>      -m  选择一个常规识别模式，默认使用模式为1；（1：快速识别一条指纹 2：获取命中率高的指纹 3：得到所有匹配的指纹）<br>      –http-request 设置一个自定义请求URL；<br>      –http-response 设置一个自定义关键字符。(支持正则表达式字符，自定义枚举指纹字符)<br>      注：自定义识别模式参数为 –http-request /robots.txt –http-response discuz；不能和-m 常规识别模式一起使用。-u和-r参数不能同时使用。</p>
+<pre><code>  1. 使用-m参数选择常规识别模式，有3种可选模式。下面具体说明：
+     -m 1：快速识别一条指纹，请求设置的url，获取相应识别方式的响应信息，进行数据库指纹遍历匹配，匹配到一条则跳出程序，显示识别结果。（速度较快）
+     -m 2: 获取命中率高的指纹，例如请求url,进行指纹库全部遍历匹配，比如一个网址，命中了1个dedecms，2个 phpcms，1个discuz，那么显示的识别结果为phpcms程序。
+     -m 3: 获取匹配识别所有的指纹信息，请求url获取响应信息，进行指纹库全部遍历匹配，最后获取指纹识别所有结果。（速度较慢、数据最全）
+  2. 使用--http-request、--http-response参数自定义识别模式，下面具体说明：
+     使用自定义识别模式应同时使用--http-request、--http-response两个参数，第一个参数设置为请求路径，第二个参数设置响应信息关键字符（支持正则表达式、不过注意大小写问题）
+  
+  例：java -jar Dayu.jar -r d:\\1.txt -t 100 --http-request / --http-response tomcat
+      java -jar Dayu.jar -u www.discuz.net,www.dedecms.com -o d:\\result.txt
+      java -jar Dayu.jar -u cn.wordpress.org -s https -p 443  -m 3
+      
+</code></pre>
+<p> Dayu.jar程序说明：<br>      Feature.json指纹文件放到D盘根目录(d:\Feature.json),如无D磁盘，请自行下载源码更改org.secbug.conf下Context.java文件中的currpath常量。</p>
+<p> 在此说明：<br>      指纹识别离不开指纹库的强大。希望用户多多在我们平台 <a target="_blank" rel="noopener" href="http://www.secbug.org:8080/">http://www.secbug.org:8080/</a> 提交指纹，我们一起进步。</p>
+<pre><code>  ☆☆ 本版本为第二版，第一版基于数据库sql文件，可保存指纹识别结果。如有需要，请联系QQ212125278所取。
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/Ms0x0/Dayu1">https://github.com/Ms0x0/Dayu1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/wget%E5%91%BD%E4%BB%A4%E6%95%B4%E7%AB%99%E4%B8%8B%E8%BD%BD%E5%81%9A%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -708,195 +982,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/" class="post-title-link" itemprop="url">ThinkPHP连接SQLite</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-14 21:14:34" itemprop="dateCreated datePublished" datetime="2017-04-14T21:14:34+08:00">2017-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>配置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;DB_TYPE&#x27;</span> =&gt; <span class="string">&#x27;sqlite&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;DB_NAME&#x27;</span> =&gt; DATA_PATH.<span class="string">&#x27;/test.db&#x27;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>文件：\Library\Think\Db\Driver\Sqlite.class.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sqlite数据库驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sqlite</span> <span class="keyword">extends</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析pdo连接的dsn信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array $config 连接信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseDsn</span>(<span class="params"><span class="variable">$config</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$dsn</span> = <span class="string">&#x27;sqlite:&#x27;</span> . <span class="variable">$config</span>[<span class="string">&#x27;database&#x27;</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$dsn</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据表的字段信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFields</span>(<span class="params"><span class="variable">$tableName</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>(<span class="variable">$tableName</span>) = explode(<span class="string">&#x27; &#x27;</span>, <span class="variable">$tableName</span>);</span><br><span class="line">        <span class="variable">$result</span>          = <span class="keyword">$this</span>-&gt;query(<span class="string">&#x27;PRAGMA table_info( &#x27;</span> . <span class="variable">$tableName</span> . <span class="string">&#x27; )&#x27;</span>);</span><br><span class="line">        <span class="variable">$info</span>            = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">                <span class="variable">$info</span>[<span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>]] = <span class="keyword">array</span>(</span><br><span class="line">                    <span class="string">&#x27;name&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;type&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;type&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;notnull&#x27;</span> =&gt; (<span class="keyword">bool</span>) (<span class="number">1</span> === <span class="variable">$val</span>[<span class="string">&#x27;notnull&#x27;</span>]),</span><br><span class="line">                    <span class="string">&#x27;default&#x27;</span> =&gt; <span class="variable">$val</span>[<span class="string">&#x27;dflt_value&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;primary&#x27;</span> =&gt; <span class="string">&#x27;1&#x27;</span> == <span class="variable">$val</span>[<span class="string">&#x27;pk&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;autoinc&#x27;</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据库的表信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTables</span>(<span class="params"><span class="variable">$dbName</span> = <span class="string">&#x27;&#x27;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;query(<span class="string">&quot;SELECT name FROM sqlite_master WHERE type=&#x27;table&#x27; &quot;</span></span><br><span class="line">            . <span class="string">&quot;UNION ALL SELECT name FROM sqlite_temp_master &quot;</span></span><br><span class="line">            . <span class="string">&quot;WHERE type=&#x27;table&#x27; ORDER BY name&quot;</span>);</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">            <span class="variable">$info</span>[<span class="variable">$key</span>] = current(<span class="variable">$val</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * SQL指令安全过滤</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $str  SQL指令</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">escapeString</span>(<span class="params"><span class="variable">$str</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> str_ireplace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;&#x27;&#x27;&quot;</span>, <span class="variable">$str</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * limit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">parseLimit</span>(<span class="params"><span class="variable">$limit</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$limitStr</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$limit</span>)) &#123;</span><br><span class="line">            <span class="variable">$limit</span> = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$limit</span>);</span><br><span class="line">            <span class="keyword">if</span> (count(<span class="variable">$limit</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">1</span>] . <span class="string">&#x27; OFFSET &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$limitStr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 随机排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseRand</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;RANDOM()&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/" class="post-title-link" itemprop="url">一键批量ping任意ip段的存活主机</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-11 22:45:00" itemprop="dateCreated datePublished" datetime="2017-04-11T22:45:00+08:00">2017-04-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先来看下面写好的批处理代码，有木有眼花缭乱的感觉，不要害怕哦，其实核心代码只有一行而已！准确的说应该是将一些最基本的DOS命令组合在了一起。</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">color</span> e</span><br><span class="line"><span class="built_in">title</span> 批处理扫网段主机</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line">@<span class="keyword">for</span> /f &quot;tokens=<span class="number">1</span>-<span class="number">4</span> delims=.&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (ip.txt) <span class="keyword">do</span> (@<span class="keyword">for</span> /l <span class="variable">%%n</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">255</span>) <span class="keyword">do</span> @<span class="built_in">ping</span> -w <span class="number">600</span> -n <span class="number">1</span> -l <span class="number">1</span> <span class="variable">%%i</span>.<span class="variable">%%j</span>.<span class="variable">%%k</span>.<span class="variable">%%n</span>|<span class="built_in">find</span>  /i &quot;ttl&quot;)</span><br><span class="line"><span class="built_in">echo</span>.&amp;<span class="built_in">echo</span> 扫描完毕,按任意键退出...&amp;<span class="built_in">pause</span>&gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
-
-<p>复制以上代码粘贴到记事本文档里，然后另存为 <code>批量ping.bat</code> ，再新建一个空白的文本文档，重命名为 <code>ip.txt</code> 。一切准备完事儿，就可以将你要批量扫描的ip段的地址放入 <code>ip.txt</code> 里（比如要扫自己对应的内网IP段就可以在 <code>ip.txt</code> 里输入 <code>192.168.0.1</code> 后保存），然后双击一键运行 <code>批量ping.bat</code> 批处理脚本就可以看到返回的结果了。格式类似于：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">来自 192.168.0.1 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.101 的回复: 字节=1 时间=31ms TTL=64</span><br><span class="line">来自 192.168.0.103 的回复: 字节=1 时间=326ms TTL=64</span><br><span class="line">来自 192.168.0.104 的回复: 字节=1 时间=26ms TTL=64</span><br><span class="line">来自 192.168.0.108 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.162 的回复: 字节=1 时间&lt;1ms TTL=128</span><br><span class="line">……此处省略余下的所有可能的结果……</span><br></pre></td></tr></table></figure>
-<p>下面我就来解读一下介个看起来有点儿吃力的批处理命令吧。我们分拆来看一下，<code>ping -w 600 -n 1  -l 1</code> 表示对指定ip地址ping一次，等待超时的时间为600毫秒；<code>|find  /i &quot;ttl&quot;</code> 指的是仅显示ping返回结果中带“ttl”字符串的结果，也就是将指定网段内不存活的主机过滤掉了。而前面的 <code>@for /f &quot;tokens=1-4 delims=.&quot; %%i in (ip.txt)</code>  意思是将“ip.txt”里的字符串（也就是我们要查找的ip段的地址）以“.”为界分割为四部分，分别赋予后面的变量 %%i、%%j、%%k 。最后剩下的 <code>@for /l %%n in (1,1,255)</code> 则表示从1开始循环+1递增一直到255停止，然后赋予变量 %%n 。不知道这样说同学能否看懂呢？看不懂滴可以在cmd窗口里输入 <code>for /?</code> 查看一下命令详解吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/" class="post-title-link" itemprop="url">js简单实现60秒倒计时</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-11 14:15:00" itemprop="dateCreated datePublished" datetime="2017-04-11T14:15:00+08:00">2017-04-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -968,9 +1053,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -1026,7 +1116,7 @@
 <div class="copyright">
   
   &copy; 2015 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
