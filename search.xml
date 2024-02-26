@@ -404,6 +404,27 @@
     
     
     <entry>
+      <title>Aircrack-ng 爆破 wifi 密码</title>
+      <link href="/2020/06/04/aircrack-ng/"/>
+      <url>/2020/06/04/aircrack-ng/</url>
+      
+        <content type="html"><![CDATA[<p>Aircrack-ng是一个基于WiFi无线网络分析有关的安全软件，主要功能有网络侦测、数据包嗅探、WEP和WPA/WPA2-PSK破解等。<br>因为安全性的原因。现在，周围很少有用WEP算法来加密的WiFi密码，不过基本命令都很相似。</p><p>WiFi网络构成</p><ol><li>WiFi是一个建立于IEEE 802.11标准的无线局域网络（WLAN）设备。</li><li>WiFi工作原理AP(Access Point 例如：无线路由器)每100ms将SSID（Service Set Identifier）经由beacons（信号台）封包广播一次。</li></ol><h4 id="查看网卡信息"><a href="#查看网卡信息" class="headerlink" title="查看网卡信息"></a>查看网卡信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-57.png" alt="upload successful"></p><h4 id="启动监听模式"><a href="#启动监听模式" class="headerlink" title="启动监听模式"></a>启动监听模式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-58.png" alt="upload successful"></p><h4 id="准备抓取握手包"><a href="#准备抓取握手包" class="headerlink" title="准备抓取握手包"></a>准备抓取握手包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c 6 -bssid 64:6E:97:DA:39:5C -w thomas wlan0</span><br></pre></td></tr></table></figure><ul><li>-c：信道号</li><li>–bssid：apMAC</li><li>-w：保存的文件名</li></ul><p><img src="/images/pasted-59.png" alt="upload successful"></p><p>扫描到的WiFi热点信息</p><ul><li>BSSID：WiFi路由器的MAC地址</li><li>PWR：网卡报告信号水平，信号值越高说明离AP越近。（PWR=-1，网卡驱动不支持报告此项信息）</li><li>Beacons：无线AP发出的通告编号</li><li>#Data：被捕获到的数据分组的数量（一般数据量越大，抓取握手包更容易）</li><li>#/s：过去10秒钟内每秒捕获数据分组的数量</li><li>CH：信道号（从Beacon中获取）</li><li>MB：无线AP所支持的最大速率</li><li>ENC：加密算法体系</li><li>CIPHER：加密算法</li><li>AUTH：使用的认证协议</li><li>ESSID：wifi名称</li></ul><p>使已连接WiFi的用户A强制下线，之后A会向WiFi路由重新发送一个带密码的请求握手包</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 2 -a 64:6E:97:DA:39:5C -c C2:46:34:ED:48:4C wlan0</span><br></pre></td></tr></table></figure><ul><li>-0：攻击数据包数量</li><li>-a：WiFi MAC 地址</li><li>-c：用户 MAC 地址</li></ul><p><img src="/images/pasted-60.png" alt="upload successful"></p><p>出现 <code>WAP handshake</code> 表示已经获取到了握手包，下面就可以实现破解了</p><p><img src="/images/pasted-61.png" alt="upload successful"></p><h4 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng -w pass.txt thomas-01.cap</span><br></pre></td></tr></table></figure><ul><li>-w：字典文件路径</li></ul><p><img src="/images/pasted-62.png" alt="upload successful"></p><h4 id="hashcat"><a href="#hashcat" class="headerlink" title="hashcat"></a>hashcat</h4><p>关于密码破解，可以使用kali自带的hashcat使效率大大增加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng [抓取到的握手包文件名] -J [转换后的文件名]</span><br><span class="line">hashcat -m 2500 .hccap password.txt</span><br></pre></td></tr></table></figure><p>参数： -m 2500为破解的模式为WPA/PSK方式  hccap格式的文件是刚刚转化好的文件  字典文件 </p><p>注：最新版hashcat一般情况下不支持hccap格式，第一步需将握手包cap格式转换为hccapx</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> kali </tag>
+            
+            <tag> wifi </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小程序之模型实现 </title>
       <link href="/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/"/>
       <url>/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/</url>
