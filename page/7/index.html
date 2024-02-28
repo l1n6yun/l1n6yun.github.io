@@ -426,6 +426,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/" class="post-title-link" itemprop="url">PHP获取curl传输进度</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-21T00:00:00+08:00">2017-07-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>curl上传或者下载，有以下2个选项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CURLOPT_NOPROGRESS =&gt; <span class="literal">false</span>,</span><br><span class="line">CURLOPT_PROGRESSFUNCTION =&gt; <span class="string">&#x27;callback&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CURLOPT_NOPROGRESS：是否关闭传输进度，默认是true。</li>
+<li>CURLOPT_PROGRESSFUNCTION：回调函数，curl传输过程中，会每隔一段时间自动调用该函数。我测试过，间隔不到1秒，具体不知道。官方的注释是这样：设置一个回调函数，有五个参数，第一个是cURL的资源句柄，第二个是预计要下载的总字节（bytes）数。第三个是目前下载的字节数，第四个是预计传输中总上传字节数，第五个是目前上传的字节数。（注意回调函数的命名空间。如：CURLOPT_PROGRESSFUNCTION =&gt; ‘namespace_xxx\callback’）</li>
+</ul>
+<p>设置完成后，需要定义回调函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"><span class="variable">$resource</span>, <span class="variable">$downloadSize</span> = <span class="number">0</span>, <span class="variable">$downloaded</span> = <span class="number">0</span>, <span class="variable">$uploadSize</span> = <span class="number">0</span>, <span class="variable">$uploaded</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// php5.5之前的参数是不同的，所以要考虑到兼容性</span></span><br><span class="line">    <span class="keyword">if</span> (version_compare(PHP_VERSION, <span class="string">&#x27;5.5.0&#x27;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="variable">$downloadSize</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploaded</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    S(<span class="string">&#x27;file_upload_&#x27;</span> . session(<span class="string">&#x27;user_auth.uid&#x27;</span>), <span class="variable">$info</span>, <span class="number">300</span>); <span class="comment">// 可以将结果存放到缓存（这里是ThinkPHP例子）</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>重要：<br>在curl发起请求时，如果开启了 session，会独占 session ，阻塞其他的请求。所以如果框架默认启用了 session ，在 curl 之前可以用session_write_close() 函数关闭 session 阻塞。<br>参考：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html">http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html</a></p>
+<p>最后：在进行传输时，可以每隔1秒通过ajax来获取缓存信息，从而显示传输进度。</p>
+<p>补充：<br>传送大文件时，php会超时，注意设置 php-fpm.conf 中的 request_terminate_timeout 值，我设了1000（秒）。<br>还有个 max_children（进程数） ，进程不够用可改大。<br>在程序中，可以使用 set_time_limit() 临时增加 php 响应时间。<br>php.ini中还有 max_execution_time 设置，看攻略说是跟 set_time_limit 累加的，如果攻略是对的，那么这个不用管。</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/buer2202/article/details/75364939">https://blog.csdn.net/buer2202/article/details/75364939</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -973,64 +1044,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/" class="post-title-link" itemprop="url">HTML5滚屏特效</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-05-22 00:04:02" itemprop="dateCreated datePublished" datetime="2017-05-22T00:04:02+08:00">2017-05-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">*&#123;<span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">padding</span>: <span class="number">0px</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">overflow</span>: hidden;&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">overflow</span>: visible;<span class="attribute">transition</span>:transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);-webkit-<span class="attribute">transition</span>:-webkit-transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span> <span class="selector-class">.section</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-1</span>&#123;<span class="attribute">background</span>: <span class="number">#0f0</span>&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-2</span>&#123;<span class="attribute">background</span>: <span class="number">#FF0</span>&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-1</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-2</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">position</span>:fixed;<span class="attribute">right</span>:<span class="number">4%</span>;<span class="attribute">top</span>:<span class="number">50%</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">height</span>:<span class="number">14px</span>;<span class="attribute">cursor</span>:pointer;<span class="attribute">text-indent</span>:-<span class="number">9999px</span>;<span class="attribute">border-radius</span>:<span class="number">50%</span>;-webkit-<span class="attribute">border-radius</span>:<span class="number">50%</span>;<span class="attribute">margin-bottom</span>:<span class="number">12px</span>; <span class="attribute">background</span>:<span class="number">#BD362F</span>;<span class="attribute">text-align</span>:center; <span class="attribute">color</span>:<span class="number">#fff</span>; onsor:pointer;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span><span class="selector-class">.on</span>&#123; <span class="attribute">background</span>:<span class="number">#fff</span>&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&#x27;section-wrap put-section-1&#x27;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-1&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-2&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;section-btn&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;on&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&#x27;jiaoben3135/js/jquery.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> i=<span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> $btn = $(<span class="string">&#x27;.section-btn li&#x27;</span>),</span></span><br><span class="line"><span class="javascript">		$wrap = $(<span class="string">&#x27;.section-wrap&#x27;</span>),</span></span><br><span class="line"><span class="javascript">		$arrow = $(<span class="string">&#x27;.arrow&#x27;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">/*当前页面赋值*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">up</span>(<span class="params"></span>)</span>&#123;i++;<span class="keyword">if</span>(i&gt;$btn.length)&#123;i=<span class="number">1</span>&#125;;&#125;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">down</span>(<span class="params"></span>)</span>&#123;i--;<span class="keyword">if</span>(i&lt;<span class="number">1</span>)&#123;i=$btn.length&#125;;&#125;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*页面滑动*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		$btn.eq(i-<span class="number">1</span>).addClass(<span class="string">&#x27;on&#x27;</span>).siblings().removeClass(<span class="string">&#x27;on&#x27;</span>);	</span></span><br><span class="line"><span class="javascript">		$wrap.attr(<span class="string">&quot;class&quot;</span>,<span class="string">&quot;section-wrap&quot;</span>).addClass(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">&quot;put-section-&quot;</span>+i; &#125;).find(<span class="string">&#x27;.section&#x27;</span>).eq(i).find(<span class="string">&#x27;.title&#x27;</span>).addClass(<span class="string">&#x27;active&#x27;</span>);</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*右侧按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$btn.each(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		$(<span class="built_in">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">			i=index+<span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">			run();</span></span><br><span class="line"><span class="javascript">		&#125;)</span></span><br><span class="line"><span class="javascript">	&#125;);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*翻页按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$arrow.one(<span class="string">&#x27;click&#x27;</span>,go);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		up();run();	</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$arrow.one(<span class="string">&#x27;click&#x27;</span>,go)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应鼠标*/</span></span></span><br><span class="line"><span class="javascript">	$wrap.one(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">mouse_</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">if</span>(event.deltaY&lt;<span class="number">0</span>) &#123;up()&#125;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">else</span>&#123;down()&#125;</span></span><br><span class="line"><span class="javascript">		run();</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$wrap.one(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应键盘上下键*/</span></span></span><br><span class="line"><span class="javascript">	$(<span class="built_in">document</span>).one(<span class="string">&#x27;keydown&#x27;</span>,k);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">k</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> key=e.keyCode||e.which||e.charCode;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">switch</span>(key)	&#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">38</span>: down();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">40</span>: up();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">		&#125;;</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$(<span class="built_in">document</span>).one(<span class="string">&#x27;keydown&#x27;</span>,k)&#125;,<span class="number">1000</span>);</span></span><br><span class="line"><span class="javascript">	&#125;</span></span><br><span class="line"><span class="javascript">&#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1102,7 +1115,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
