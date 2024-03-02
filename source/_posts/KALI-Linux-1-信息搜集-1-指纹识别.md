@@ -1,7 +1,9 @@
 title: KALI Linux 1.信息搜集 1(指纹识别)
 author: l1n6yun
-date: 2022-10-03 22:28:17
-tags:
+tags: []
+categories:
+  - 渗透
+date: 2019-12-26 19:19:00
 ---
 ## 为什么要做信息搜集
 
