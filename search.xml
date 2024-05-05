@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>获取阿里云盘Token</title>
+      <link href="/2023/12/15/%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98Token/"/>
+      <url>/2023/12/15/%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98Token/</url>
+      
+        <content type="html"><![CDATA[<p>自动获取: Chrome登录 <a href="https://www.aliyundrive.com/drive/">阿里云盘</a> 后，控制台粘贴</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(<span class="built_in">localStorage</span>.token).refresh_token</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-68.png" alt="upload successful"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo增加搜索功能</title>
       <link href="/2023/02/05/Hexo%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"/>
       <url>/2023/02/05/Hexo%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
@@ -356,6 +369,19 @@
       <url>/2022/01/01/VMware-Workstation-16-Pro/</url>
       
         <content type="html"><![CDATA[<p>下载地址：<a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</a><br>产品秘钥：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ZF3R0-FHED2-M80TY-8QYGC-NPKYF</span><br><span class="line">YF390-0HF8P-M81RQ-2DXQE-M2UT6</span><br><span class="line">ZF71R-DMX85-08DQY-8YMNC-PPHV8</span><br><span class="line">FA1M0-89YE3-081TQ-AFNX9-NKUC0</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ARP欺骗工具arpspoof的用法</title>
+      <link href="/2021/09/11/ARP%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7arpspoof%E7%9A%84%E7%94%A8%E6%B3%95/"/>
+      <url>/2021/09/11/ARP%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7arpspoof%E7%9A%84%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="ARP工具"><a href="#ARP工具" class="headerlink" title="ARP工具"></a>ARP工具</h3><p>arpspoof 是一款进行arp欺骗的工具，攻击者可以通过它来毒化受害者arp缓存，将网关mac替换为攻击者mac，然后攻击者可截获受害者发送和收到的数据包，可获取受害者账户、密码等相关敏感信息。ARP欺骗，是让目标主机的流量经过主机的网卡，再从网关出去，而网关也会把原本流入目标机的流量经过我得电脑。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: arpspoof [-i interface] [-c own|host|both] [-t target] [-r] host</span><br></pre></td></tr></table></figure><h4 id="ARP断网攻击"><a href="#ARP断网攻击" class="headerlink" title="ARP断网攻击"></a>ARP断网攻击</h4><p>在实验之前我们首先要知道ARP断网攻击是局域网攻击，我们要保证目标主机必须和自己处于一个局域网内，且自己和目标主机网络应该是通的。</p><p>首先可以使用 nmap 扫描局域网中存活的地址,探测到的存活地址，就是我们的目标主机,然后使用 arpspoof 实施 ARP 欺骗。</p><p><img src="/images/pasted-63.png" alt="upload successful"></p><p>在使用arp欺骗前先开启Kali的IP转发</p><p><img src="/images/pasted-64.png" alt="upload successful"></p><p>链接目标机查看一下网络状态</p><p><img src="/images/pasted-65.png" alt="upload successful"></p><p>使用 ettercap 对数据进行抓取</p><p><img src="/images/pasted-66.png" alt="upload successful"></p><p><img src="/images/pasted-67.png" alt="upload successful"></p>]]></content>
       
       
       
