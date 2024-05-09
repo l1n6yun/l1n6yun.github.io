@@ -1331,6 +1331,19 @@
     
     
     <entry>
+      <title>去除快捷方式上面的小箭头</title>
+      <link href="/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/"/>
+      <url>/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/</url>
+      
+        <content type="html"><![CDATA[<p>一些代码保存为 <code>清除桌面快捷方式小箭头.reg</code> 文件运行后，重启 <code>explorer.exe</code> 进程</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]</span><br><span class="line">&quot;29&quot;=&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>js人民币转换大写</title>
       <link href="/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/"/>
       <url>/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/</url>
