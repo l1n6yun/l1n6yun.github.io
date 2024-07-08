@@ -181,6 +181,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">windows mysql 自动备份的几种方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-02-07 15:13:29" itemprop="dateCreated datePublished" datetime="2017-02-07T15:13:29+08:00">2017-02-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>基于之前的文章方法，加入批处理命令即可实现自动备份。只是由于批处理命令中对于备份文件的名字按照时间命名比较特别，所以特别整理一文。</p>
+</blockquote>
+<h3 id="复制date文件夹备份"><a href="#复制date文件夹备份" class="headerlink" title="复制date文件夹备份"></a>复制date文件夹备份</h3><p>假想环境：<br>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>数据库备份目的地：C:\db_bak\</p>
+<p>新建db_bak.bat，写入以下代码</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="built_in">xcopy</span> c:\mysql\data\bbs\*.* c:\db_bak\bbs\<span class="variable">%date:~0,10%</span>\ /S /I</span><br><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> mysql</span><br></pre></td></tr></table></figure>
+
+<p>然后使用Windows的“计划任务”定时执行该批处理脚本即可。（例如：每天凌晨3点执行back_db.bat）</p>
+<p>解释：备份和恢复的操作都比较简单，完整性比较高，控制备份周期比较灵活，例如，用%date:<del>0,10%。此方法适合有独立主机但对mysql没有管理经验的用户。缺点是占用空间比较多，备份期间mysql会短时间断开（例如：针对30M左右的数据库耗时5s左右）,针对%date:</del>0,10%的用法参考           。</p>
+<h3 id="mysqldump备份成sql文件"><a href="#mysqldump备份成sql文件" class="headerlink" title="mysqldump备份成sql文件"></a>mysqldump备份成sql文件</h3><p>假想环境：</p>
+<p>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>MySQL root   密码：123456<br>数据库备份目的地：D:\db_backup\</p>
+<p>脚本：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> &quot;Ymd=<span class="variable">%date:~,4%</span><span class="variable">%date:~5,2%</span><span class="variable">%date:~8,2%</span>&quot;</span><br><span class="line"><span class="function">C:\<span class="title">MySQL</span>\<span class="title">bin</span>\<span class="title">mysqldump</span> --<span class="title">opt</span> -<span class="title">u</span> <span class="title">root</span> --<span class="title">password</span>=123456 <span class="title">bbs</span> &gt; <span class="title">D</span>:\<span class="title">db_backup</span>\<span class="title">bbs_</span>%<span class="title">Ymd</span>%.<span class="title">sql</span></span></span><br><span class="line"><span class="function">@<span class="title">echo</span> <span class="title">on</span></span></span><br></pre></td></tr></table></figure>
+
+<p>将以上代码保存为backup_db.bat</p>
+<p>然后使用Windows的“计划任务”定时执行该脚本即可。（例如：每天凌晨5点执行back_db.bat）</p>
+<p>说明：此方法可以不用关闭数据库，并且可以按每一天的时间来名称备份文件。</p>
+<p>通过%date:<del>5,2%来组合得出当前日期，组合的效果为yyyymmdd,date命令得到的日期格式默认为yyyy-mm-dd(**如果不是此格式可以通过pause命令来暂停命令行窗口看通过%date:</del>,20%得到的当前计算机日期格式**)，所以通过%date:<del>5,2%即可得到日期中的第五个字符开始的两个字符，例如今天为2009-02-05,通过%date:</del>5,2%则可以得到02。（日期的字符串的下标是从0开始的）</p>
+<h3 id="利用WinRAR对MySQL数据库进行定时备份。"><a href="#利用WinRAR对MySQL数据库进行定时备份。" class="headerlink" title="利用WinRAR对MySQL数据库进行定时备份。"></a>利用WinRAR对MySQL数据库进行定时备份。</h3><p>对于MySQL的备份，最好的方法就是直接备份MySQL数据库的Data目录。下面提供了一个利用WinRAR来对Data目录进行定时备份的方法。</p>
+<p>首先当然要把WinRAR安装到计算机上。</p>
+<p>将下面的命令写入到一个文本文件里</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="function">c:\<span class="title">progra</span>~1\<span class="title">winrar</span>\<span class="title">winrar</span> <span class="title">a</span> -<span class="title">ag</span> -<span class="title">k</span> -<span class="title">r</span> -<span class="title">s</span> <span class="title">d</span>:\<span class="title">mysql.rar</span> <span class="title">d</span>:\<span class="title">mysql</span>\<span class="title">data</span></span></span><br><span class="line"><span class="function"><span class="title">net</span> <span class="title">start</span> <span class="title">mysql</span></span></span><br></pre></td></tr></table></figure>
+
+<p>保存，然后将文本文件的扩展名修改成CMD。进入控制面版，打开计划任务，双击“添加计划任务”。在计划任务向导中找到刚才的CMD文件，接着为这个任务指定一个运行时间和运行时使用的账号密码就可以了。</p>
+<p>这种方法缺点是占用时间比较多，备份期间压缩需要时间，mysql断开比第一种方法更多的时间，但是对于文件命名很好。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/" class="post-title-link" itemprop="url">去除快捷方式上面的小箭头</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-11 23:11:00" itemprop="dateCreated datePublished" datetime="2017-01-11T23:11:00+08:00">2017-01-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一些代码保存为 <code>清除桌面快捷方式小箭头.reg</code> 文件运行后，重启 <code>explorer.exe</code> 进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]</span><br><span class="line">&quot;29&quot;=&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1278,200 +1419,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">日志完美清理总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-25 11:37:00" itemprop="dateCreated datePublished" datetime="2016-10-25T11:37:00+08:00">2016-10-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、事件查看器"><a href="#一、事件查看器" class="headerlink" title="一、事件查看器"></a>一、事件查看器</h2><p>开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。</p>
-<h2 id="二、日志文件"><a href="#二、日志文件" class="headerlink" title="二、日志文件"></a>二、日志文件</h2><p>Windows2000的日志文件通常有应用<code>程序日志</code>、<code>安全日志</code>、<code>系统日志</code>、<code>DNS服务器日志</code>、<code>FTP日志</code>、<code>WWW日志</code>等等。</p>
-<p>日志文件默认位置：</p>
-<p>应用程序日志、安全日志、系统日志、DNS日志默认位置：<code>%systemroot%\system32\config</code>，默认文件大小512KB，管理员都会改变这个默认大小。</p>
-<p>安全日志文件：<code>%systemroot%\system32\config\SecEvent.EVT</code>；</p>
-<p>系统日志文件：<code>%systemroot%\system32\config\SysEvent.EVT</code>；</p>
-<p>应用程序日志文件：<code>%systemroot%\system32\config\AppEvent.EVT</code>；</p>
-<p>Internet信息服务FTP日志默认位置：<code>%systemroot%\system32\log\filesmsftpsvc1</code>，默认每天一个日志；</p>
-<p>Internet信息服务WWW日志默认位置：<code>%systemroot%\system32\log\filesw3svc1</code>，默认每天一个日志；</p>
-<p>Scheduler服务日志默认位置：<code>%systemroot%\schedlgu.txt</code>；</p>
-<p>以上日志在注册表里的键：</p>
-<p>应用程序日志，安全日志，系统日志，DNS服务器日志，它们这些LOG文件在注册表中的：</p>
-<p>HKEY_LOCAL_MACHINE\system\Current\Control\Set\Services\Eventlog</p>
-<p>有的管理员很可能将这些日志重定位。其中EVENTLOG下面有很多的子表，里面可查到以上日志的定位目录。</p>
-<p>Schedluler服务日志在注册表中</p>
-<p>HKEY_LOCAL_MACHINESOFTWAREMicrosoftSchedulingAgent</p>
-<p>FTP和WWW日志详解：</p>
-<p>FTP日志和WWW日志默认情况，每天生成一个日志文件，包含了该日的一切记录，文件名通常为ex（年份）（月份）（日期），例如ex001023，就是2000年10月23日产生的日志，用记事本就可直接打开，如下例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0　　（微软IIS5.0）</span><br><span class="line">#Version: 1.0 （版本1.0）</span><br><span class="line">#Date: 20001023 0315 （服务启动时间日期）</span><br><span class="line">#Fields: time cip csmethod csuristem scstatus</span><br><span class="line">0315 127.0.0.1 [1]USER administator 331　（IP地址为127.0.0.1用户名为administator试图登录）</span><br><span class="line">0318 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:04 127.0.0.1 [1]USER nt 331　（IP地址为127.0.0.1用户名为nt的用户试图登录）</span><br><span class="line">032:06 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:09 127.0.0.1 [1]USER cyz 331　（IP地址为127.0.0.1用户名为cyz的用户试图登录）</span><br><span class="line">0322 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">0322 127.0.0.1 [1]USER administrator 331　（IP地址为127.0.0.1用户名为administrator试图登录）</span><br><span class="line">0324 127.0.0.1 [1]PASS –230　（登录成功）</span><br><span class="line">0321 127.0.0.1 [1]MKD nt 550　（新建目录失败）</span><br><span class="line">0325 127.0.0.1 [1]QUIT –550　（退出FTP程序）</span><br></pre></td></tr></table></figure>
-<p>从 日志里就能看出IP地址为127.0.0.1的用户一直试图登录系统，换了四次用户名和密码才成功，管理员立即就可以得知管理员的入侵时间、IP地址以及 探测的用户名，如上例入侵者最终是用administrator用户名进入的，那么就要考虑更换此用户名的密码，或者重命名administrator 用户。</p>
-<p>WWW日志：</p>
-<p>WWW服务同FTP服务一样，产生的日志也是在%sys temroot%sys tem32LogFilesW3SVC1目录下，默认是每天一个日志文件，下面是一个典型的WWW日志文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0</span><br><span class="line">#Version: 1.0</span><br><span class="line">#Date: 20001023 03:091</span><br><span class="line">#Fields: date time cip csusername sip sport csmethod csuristem csuriquery scstatus cs(UserAgent)</span><br><span class="line">20001023 03:091 192.168.1.26 192.168.1.37 80 GET /iisstart.asp 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br><span class="line">20001023 03:094 192.168.1.26 192.168.1.37 80 GET /pagerror.gif 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br></pre></td></tr></table></figure>
-
-<p>通 过分析第六行，可以看出2000年10月23日，IP地址为192.168.1.26的用户通过访问IP地址为192.168.1.37机器的80端口， 查看了一个页面iisstart.asp,这位用户的浏览器为compatible; MSIE 5.0; Windows 98 DigExt，有经验的管理员就可通过安全日志、FTP日志和WWW日志来确定入侵者的IP地址以及入侵时间。</p>
-<p>既使你删掉FTP和WWW日志，但是还是会在系统日志和安全日志里记录下来，但是较好的是只显示了你的机器名，并没有你的IP。</p>
-<p>属性里记录了出现警告的原因，是因为有人试图用administator用户名登录，出现一个错误，来源是FTP服务。</p>
-<p>这里有两种图标：钥匙（表示成功）和锁（表示当用户在做什么时被系统停止）。接连四个锁图标，表示四次失败审核，事件类型是帐户登录和登录、注销失败，日期为2000年10月18日，时间为1002，这就需要重点观察。</p>
-<p>双点第一个失败审核事件的，即得到此事件的详细描述。</p>
-<p>经过分析我们可以得知有个CYZ的工作站，用administator用户名登录本机，但是因为用户名未知或密码错误（实际为密码错误）未能成功。另外还有DNS服务器日志，不太重要，就此略过（其实是我没有看过它）。</p>
-<p>知道了Windows2000日志的详细情况，下面就要学会怎样删除这些日志：</p>
-<p>通 过上面，得知日志文件通常有某项服务在后台保护，除了系统日志、安全日志、应用程序日志等等，它们的服务是Windos2000的关键进程，而且与注册表 文件在一块，当Windows2000启动后，启动服务来保护这些文件，所以很难删除，而FTP日志和WWW日志以及Scedlgu日志都是可以轻易地删 除的。首先要取得Admnistrator密码或Administrators组成员之一， <a target="_blank" rel="noopener" href="http://www.2cto.com/">www.2cto.com</a> 然后Telnet到远程主机，先来试着删除FTP日志：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;del schedlgu.txt</span><br><span class="line">D:SERVERSchedLgU.Txt</span><br></pre></td></tr></table></figure>
-<p>进程无法访问文件，因为另一个程序正在使用此文件。说过了，后台有服务保护，先把服务停掉！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;net stop &quot;task scheduler&quot;</span><br></pre></td></tr></table></figure>
-<p>下面的服务依赖于Task Scheduler 服务。停止Task Scheduler 服务也会停止这些服务。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Remote Storage Engine</span><br><span class="line">是否继续此操作? (Y/N) [N]: y</span><br><span class="line">Remote Storage Engine 服务正在停止….</span><br><span class="line">Remote Storage Engine 服务已成功停止。</span><br><span class="line">Task Scheduler 服务正在停止.</span><br><span class="line">Task Scheduler 服务已成功停止。</span><br></pre></td></tr></table></figure>
-<p>OK，它的服务停掉了，同时也停掉了与它有依赖关系的服务。再来试着删一下！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER&gt;del schedlgu.txt</span><br><span class="line">D:\SERVER&gt;</span><br></pre></td></tr></table></figure>
-<p>没有反应？成功了！下一个是FTP日志和WWW日志，原理都是一样，先停掉相关服务，然后再删日志！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;del ex*.log</span><br><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;</span><br></pre></td></tr></table></figure>
-<p>以上操作成功删除FTP日志！再来WWW日志！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;del ex*.log</span><br><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;</span><br></pre></td></tr></table></figure>
-<p>OK！恭喜，现在简单的日志都已成功删除。下面就是很难的安全日志和系统日志了，守护这些日志的服务是Event Log，试着停掉它！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;net stop eventlog</span><br></pre></td></tr></table></figure>
-<p>这 项服务无法接受请求的 “暂停” 或 “停止” 操作。没办法，它是关键服务。如果不用第三方工具，在命令行上根本没有删除安全日志和系统日志的可能！所以还是得用虽然简单但是速度慢得死机的办法：打开 “控制面板”的“管理工具”中的“事件查看器”（98没有，知道用Win2k的好处了吧），在菜单的“操作”项有一个名为“连接到另一台计算机”的菜单， 点击它，输入远程计算机的IP，然后等上数十分钟，接着选择远程计算机的安全性日志，右键选择它的属性：点击属性里的“清除日志”按钮，OK！安全日志清 除完毕！同样的忍受痛苦去清除系统日志！ 目前在不借助第三工具的情况下，能很快，很顺利地清除FTP、WWW还有Schedlgu日志，就是系统日志和安全日志属于Windows2000的严密守护，只能用本地的事件查看器来打开它，因为在图形界面下，加 之网速又慢，如果你银子多，时间闲，还是可以清除它的。综上所述，介绍了Windows2000的日志文件以及删除方法，但是你必须是Administrator，注意必须作为管理员或管理组的成员登录才能打开安全日志记录。该过程适用于Windows 2000 Professional 计算机，也适用于作为独立服务器或成员服务器运行的Windows 2000 Server 计算机。</p>
-<p>至 此，Windows2000安全知识基础讲座完毕，还有几句话要讲，大家也看出来了，虽然FTP等等日志可以很快清除，但是系统日志和安全日志却不是那么 快、那么顺利地能删除，如果遇到聪明的管理员，将日志文件转移到另一个地方，那更是难上加难，所以奉劝大家，千万不要拿国内的主机做试验，国内的法律很严 呀！今天吃饭时，听说有两个人开玩笑，一个人把另外一个人的东西藏起来了，结果那个人一急，报案了，于是藏东西那个人被判四年刑！！法官说法律是不开玩笑 的！！！所以大家一定要牢记这点！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/10/21/Standard%20Markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/21/Standard%20Markdown/" class="post-title-link" itemprop="url">Standard Markdown</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-21 13:02:00" itemprop="dateCreated datePublished" datetime="2016-10-21T13:02:00+08:00">2016-10-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Standard-Markdown"><a href="#Standard-Markdown" class="headerlink" title="Standard Markdown"></a>Standard Markdown</h1><h2 id="Strong-and-Emphasize"><a href="#Strong-and-Emphasize" class="headerlink" title="Strong and Emphasize"></a>Strong and Emphasize</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*emphasize*   **strong**</span><br><span class="line">_emphasize_   __strong__</span><br></pre></td></tr></table></figure>
-<h2 id="Links-and-Email"><a href="#Links-and-Email" class="headerlink" title="Links and Email"></a>Links and Email</h2><p>Inline:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">An [example](http://url.com/ &quot;Title&quot;)</span><br></pre></td></tr></table></figure>
-<p>Reference-style labels (titles are optional):</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">An [example][id]. Then, anywhere</span><br><span class="line">else in the doc, define the link:</span><br><span class="line"></span><br><span class="line">  [id]: http://example.com/  &quot;Title&quot;</span><br></pre></td></tr></table></figure>
-<p>Email:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">An email &lt;example@example.com&gt; link.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><p>Inline (titles are optional):</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![alt text](/path/img.jpg &quot;Title&quot;)</span><br></pre></td></tr></table></figure>
-<p>Reference-style:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![alt text][id]</span><br><span class="line"></span><br><span class="line">[id]: /url/to/img.jpg &quot;Title&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Setext-style:</span><br><span class="line"></span><br><span class="line">Header 1</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">Header 2</span><br><span class="line">--------</span><br></pre></td></tr></table></figure>
-<p>atx-style (closing #’s are optional):</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Header 1 #</span><br><span class="line"></span><br><span class="line">## Header 2 ##</span><br><span class="line"></span><br><span class="line">###### Header 6</span><br></pre></td></tr></table></figure>
-<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><p>Ordered, without paragraphs:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.  Foo</span><br><span class="line">2.  Bar</span><br></pre></td></tr></table></figure>
-<p>Unordered, with paragraphs:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*   A list item.</span><br><span class="line"></span><br><span class="line">    With multiple paragraphs.</span><br><span class="line"></span><br><span class="line">*   Bar</span><br></pre></td></tr></table></figure>
-<p>You can nest them:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">*   Abacus</span><br><span class="line">    * answer</span><br><span class="line">*   Bubbles</span><br><span class="line">    1.  bunk</span><br><span class="line">    2.  bupkis</span><br><span class="line">        * BELITTLER</span><br><span class="line">    3. burper</span><br><span class="line">*   Cunning</span><br></pre></td></tr></table></figure>
-<h2 id="Blockquotes"><a href="#Blockquotes" class="headerlink" title="Blockquotes"></a>Blockquotes</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; Email-style angle brackets</span><br><span class="line">&gt; are used for blockquotes.</span><br><span class="line"></span><br><span class="line">&gt; &gt; And, they can be nested.</span><br><span class="line"></span><br><span class="line">&gt; #### Headers in blockquotes</span><br><span class="line">&gt; </span><br><span class="line">&gt; * You can quote a list.</span><br><span class="line">&gt; * Etc.</span><br></pre></td></tr></table></figure>
-<h2 id="Inline-Code"><a href="#Inline-Code" class="headerlink" title="Inline Code"></a>Inline Code</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`&lt;code&gt;` spans are delimited</span><br><span class="line">by backticks.</span><br><span class="line"></span><br><span class="line">You can include literal backticks</span><br><span class="line">like `` `this` ``.</span><br></pre></td></tr></table></figure>
-<h2 id="Block-Code"><a href="#Block-Code" class="headerlink" title="Block Code"></a>Block Code</h2><p>Indent every line of a code block by at least 4 spaces or 1 tab.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This is a normal paragraph.</span><br><span class="line"></span><br><span class="line">    This is a preformatted</span><br><span class="line">    code block.</span><br></pre></td></tr></table></figure>
-<h2 id="Horizontal-Rules"><a href="#Horizontal-Rules" class="headerlink" title="Horizontal Rules"></a>Horizontal Rules</h2><p>Three or more dashes or asterisks:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">* * *</span><br><span class="line"></span><br><span class="line">- - - -</span><br></pre></td></tr></table></figure>
-<h2 id="Hard-Line-Breaks"><a href="#Hard-Line-Breaks" class="headerlink" title="Hard Line Breaks"></a>Hard Line Breaks</h2><p>End a line with two or more spaces:</p>
-<p><code> Roses are red,    Violets are blue.</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1539,7 +1490,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -181,6 +181,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">PHP 接受命令行参数的三种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-29 23:02:00" itemprop="dateCreated datePublished" datetime="2018-12-29T23:02:00+08:00">2018-12-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通常 PHP 都作为 HTTP 方式来请求，有些时候需要在 shell 命令写把 PHP 作为脚本来执行，比如定时任务。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/23/PHP-Redis-%E7%A7%92%E6%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/23/PHP-Redis-%E7%A7%92%E6%9D%80/" class="post-title-link" itemprop="url">PHP Redis 秒杀</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-23 09:39:00" itemprop="dateCreated datePublished" datetime="2018-11-23T09:39:00+08:00">2018-11-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Redis 初始化</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $number 商品数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initRedis</span>(<span class="params"><span class="variable">$goodsId</span>, <span class="variable">$number</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$storeKey</span> = <span class="string">&quot;goods_<span class="subst">&#123;$goodsId&#125;</span>_store&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> redis();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;connect(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span>-&gt;del(<span class="variable">$storeKey</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$number</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$redis</span>-&gt;lpush(<span class="variable">$storeKey</span>, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 秒杀入口</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kills</span>(<span class="params"><span class="variable">$goodsId</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$storeKey</span> = <span class="string">&quot;goods_<span class="subst">&#123;$goodsId&#125;</span>_store&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> redis();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;connect(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$count</span> = <span class="variable">$redis</span>-&gt;lpop(<span class="variable">$storeKey</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$count</span>) &#123;</span><br><span class="line">        <span class="variable">$data</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&quot;order_sn&quot;</span>] = rand(<span class="number">1000</span>, <span class="number">9999</span>);	<span class="comment">// 测试订单号</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 直接进行数据库操作</span></span><br><span class="line">        <span class="variable">$orderModel</span> = <span class="keyword">new</span> orderModel();</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$orderModel</span>-&gt;save(<span class="variable">$data</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span> !== <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$redis</span>-&gt;lpush(<span class="variable">$storeKey</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 添加队列后继操作</span></span><br><span class="line">        Queue::push(<span class="variable">$job</span>, <span class="variable">$data</span>, <span class="string">&#x27;seckill&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/05/CURL%E8%AF%81%E4%B9%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -986,149 +1112,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">mathjax数学公式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-22 16:16:00" itemprop="dateCreated datePublished" datetime="2017-11-22T16:16:00+08:00">2017-11-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有时候，我们还需要一些高级功能，比如在网页上显示数学公式。</p>
-<p>新建一个文件themes/pacman/layout/_partial/mathjax.ejs，找到mathjax的调用代码复制到文件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">  MathJax.Hub.Config(&#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">inlineMath</span>: [ [<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="javascript">      <span class="attr">processEscapes</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">  &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    MathJax.Hub.Config(&#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">skipTags</span>: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> all = MathJax.Hub.getAllJax(), i;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.length; i += <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="javascript">            all[i].SourceElement().parentNode.className += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在themes/pacman/layout/_partial/after_footer.ejs 的最后一行，增加对mathjax的引用，详细内容请查看源代码。</p>
-<p>我们修改文章：source/_posts/新的开始.md</p>
-<p>增加公式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 公式</span><br><span class="line">$$J\_\alpha(x)=\sum _&#123;m=0&#125;^\infty \frac&#123;(-1)^ m&#125;&#123;m! \, \Gamma (m + \alpha + 1)&#125;&#123;\left(&#123;\frac&#123;x&#125;&#123;2&#125;&#125;\right)&#125;^&#123;2 m + \alpha &#125;$$</span><br></pre></td></tr></table></figure>
-
-<p>查看效果:</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! , \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="post-title-link" itemprop="url">PHP生成excel表格文件并下载</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-26 11:46:34" itemprop="dateCreated datePublished" datetime="2017-10-26T11:46:34+08:00">2017-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    header(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    header(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$strexport</span>=<span class="string">&quot;编号\t姓名\t性别\t年龄\r&quot;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;sex&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>].<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="variable">$strexport</span>=iconv(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>基于这个我们可以将方法封装一下:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建(导出)Excel数据表格</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $list 要导出的数组格式的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $filename 导出的Excel表格数据表的文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $header Excel表格的表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $index $list数组中与Excel表格表头$header中每个项目对应的字段的名字(key值)</span></span><br><span class="line"><span class="comment"> * 比如: $header = array(&#x27;编号&#x27;,&#x27;姓名&#x27;,&#x27;性别&#x27;,&#x27;年龄&#x27;);</span></span><br><span class="line"><span class="comment"> *       $index = array(&#x27;id&#x27;,&#x27;username&#x27;,&#x27;sex&#x27;,&#x27;age&#x27;);</span></span><br><span class="line"><span class="comment"> *       $list = array(array(&#x27;id&#x27;=&gt;1,&#x27;username&#x27;=&gt;&#x27;YQJ&#x27;,&#x27;sex&#x27;=&gt;&#x27;男&#x27;,&#x27;age&#x27;=&gt;24));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> [array] [数组]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>=<span class="keyword">array</span>(<span class="params"></span>),<span class="variable">$index</span> = <span class="keyword">array</span>(<span class="params"></span>)</span>)</span>&#123;</span><br><span class="line">	header(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">	header(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line">	<span class="variable">$teble_header</span> = implode(<span class="string">&quot;\t&quot;</span>,<span class="variable">$header</span>);</span><br><span class="line">	<span class="variable">$strexport</span> = <span class="variable">$teble_header</span>.<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	<span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">		<span class="keyword">foreach</span>(<span class="variable">$index</span> <span class="keyword">as</span> <span class="variable">$val</span>)&#123;</span><br><span class="line">			<span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="variable">$val</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$strexport</span>.=<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$strexport</span>=iconv(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">	<span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法调用:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="string">&#x27;提现记录&#x27;</span>.date(<span class="string">&#x27;YmdHis&#x27;</span>);  </span><br><span class="line"><span class="variable">$header</span> = <span class="keyword">array</span>(<span class="string">&#x27;会员&#x27;</span>,<span class="string">&#x27;编号&#x27;</span>,<span class="string">&#x27;联系电话&#x27;</span>,<span class="string">&#x27;开户名&#x27;</span>,<span class="string">&#x27;开户行&#x27;</span>,<span class="string">&#x27;申请金额&#x27;</span>,<span class="string">&#x27;手续费&#x27;</span>,<span class="string">&#x27;实际金额&#x27;</span>,<span class="string">&#x27;申请时间&#x27;</span>);  </span><br><span class="line"><span class="variable">$index</span> = <span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;vipnum&#x27;</span>,<span class="string">&#x27;mobile&#x27;</span>,<span class="string">&#x27;checkname&#x27;</span>,<span class="string">&#x27;bank&#x27;</span>,<span class="string">&#x27;money&#x27;</span>,<span class="string">&#x27;handling_charge&#x27;</span>,<span class="string">&#x27;real_money&#x27;</span>,<span class="string">&#x27;applytime&#x27;</span>);  </span><br><span class="line"><span class="keyword">$this</span>-&gt;createtable(<span class="variable">$cash</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>,<span class="variable">$index</span>);  </span><br></pre></td></tr></table></figure>
-
-<p>这种方式生成Excel文件,生成速度很快,但是有缺点是:</p>
-<ol>
-<li>单纯的生成Excel文件,生成的文件没有样式,单元格属性(填充色,宽度,高度,边框颜色…)不能自定义。</li>
-<li>生成的文件虽然可以打开,但是兼容性很差,每次打开,都会报一个警告。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1196,7 +1183,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

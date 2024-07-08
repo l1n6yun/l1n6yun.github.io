@@ -181,6 +181,145 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">mathjax数学公式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-22 16:16:00" itemprop="dateCreated datePublished" datetime="2017-11-22T16:16:00+08:00">2017-11-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有时候，我们还需要一些高级功能，比如在网页上显示数学公式。</p>
+<p>新建一个文件themes/pacman/layout/_partial/mathjax.ejs，找到mathjax的调用代码复制到文件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">  MathJax.Hub.Config(&#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">inlineMath</span>: [ [<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="javascript">      <span class="attr">processEscapes</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">  &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    MathJax.Hub.Config(&#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">skipTags</span>: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> all = MathJax.Hub.getAllJax(), i;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.length; i += <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="javascript">            all[i].SourceElement().parentNode.className += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在themes/pacman/layout/_partial/after_footer.ejs 的最后一行，增加对mathjax的引用，详细内容请查看源代码。</p>
+<p>我们修改文章：source/_posts/新的开始.md</p>
+<p>增加公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 公式</span><br><span class="line">$$J\_\alpha(x)=\sum _&#123;m=0&#125;^\infty \frac&#123;(-1)^ m&#125;&#123;m! \, \Gamma (m + \alpha + 1)&#125;&#123;\left(&#123;\frac&#123;x&#125;&#123;2&#125;&#125;\right)&#125;^&#123;2 m + \alpha &#125;$$</span><br></pre></td></tr></table></figure>
+
+<p>查看效果:</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! , \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="post-title-link" itemprop="url">PHP生成excel表格文件并下载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-26 11:46:34" itemprop="dateCreated datePublished" datetime="2017-10-26T11:46:34+08:00">2017-10-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    header(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    header(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$strexport</span>=<span class="string">&quot;编号\t姓名\t性别\t年龄\r&quot;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;sex&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>].<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="variable">$strexport</span>=iconv(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于这个我们可以将方法封装一下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建(导出)Excel数据表格</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $list 要导出的数组格式的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $filename 导出的Excel表格数据表的文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $header Excel表格的表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $index $list数组中与Excel表格表头$header中每个项目对应的字段的名字(key值)</span></span><br><span class="line"><span class="comment"> * 比如: $header = array(&#x27;编号&#x27;,&#x27;姓名&#x27;,&#x27;性别&#x27;,&#x27;年龄&#x27;);</span></span><br><span class="line"><span class="comment"> *       $index = array(&#x27;id&#x27;,&#x27;username&#x27;,&#x27;sex&#x27;,&#x27;age&#x27;);</span></span><br><span class="line"><span class="comment"> *       $list = array(array(&#x27;id&#x27;=&gt;1,&#x27;username&#x27;=&gt;&#x27;YQJ&#x27;,&#x27;sex&#x27;=&gt;&#x27;男&#x27;,&#x27;age&#x27;=&gt;24));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> [array] [数组]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>=<span class="keyword">array</span>(<span class="params"></span>),<span class="variable">$index</span> = <span class="keyword">array</span>(<span class="params"></span>)</span>)</span>&#123;</span><br><span class="line">	header(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">	header(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line">	<span class="variable">$teble_header</span> = implode(<span class="string">&quot;\t&quot;</span>,<span class="variable">$header</span>);</span><br><span class="line">	<span class="variable">$strexport</span> = <span class="variable">$teble_header</span>.<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	<span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">		<span class="keyword">foreach</span>(<span class="variable">$index</span> <span class="keyword">as</span> <span class="variable">$val</span>)&#123;</span><br><span class="line">			<span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="variable">$val</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$strexport</span>.=<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$strexport</span>=iconv(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">	<span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法调用:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="string">&#x27;提现记录&#x27;</span>.date(<span class="string">&#x27;YmdHis&#x27;</span>);  </span><br><span class="line"><span class="variable">$header</span> = <span class="keyword">array</span>(<span class="string">&#x27;会员&#x27;</span>,<span class="string">&#x27;编号&#x27;</span>,<span class="string">&#x27;联系电话&#x27;</span>,<span class="string">&#x27;开户名&#x27;</span>,<span class="string">&#x27;开户行&#x27;</span>,<span class="string">&#x27;申请金额&#x27;</span>,<span class="string">&#x27;手续费&#x27;</span>,<span class="string">&#x27;实际金额&#x27;</span>,<span class="string">&#x27;申请时间&#x27;</span>);  </span><br><span class="line"><span class="variable">$index</span> = <span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;vipnum&#x27;</span>,<span class="string">&#x27;mobile&#x27;</span>,<span class="string">&#x27;checkname&#x27;</span>,<span class="string">&#x27;bank&#x27;</span>,<span class="string">&#x27;money&#x27;</span>,<span class="string">&#x27;handling_charge&#x27;</span>,<span class="string">&#x27;real_money&#x27;</span>,<span class="string">&#x27;applytime&#x27;</span>);  </span><br><span class="line"><span class="keyword">$this</span>-&gt;createtable(<span class="variable">$cash</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>,<span class="variable">$index</span>);  </span><br></pre></td></tr></table></figure>
+
+<p>这种方式生成Excel文件,生成速度很快,但是有缺点是:</p>
+<ol>
+<li>单纯的生成Excel文件,生成的文件没有样式,单元格属性(填充色,宽度,高度,边框颜色…)不能自定义。</li>
+<li>生成的文件虽然可以打开,但是兼容性很差,每次打开,都会报一个警告。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -893,189 +1032,10 @@ x86 则表示32位的
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">WebSocket协议</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-07-04 15:48:33" itemprop="dateCreated datePublished" datetime="2017-07-04T15:48:33+08:00">2017-07-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WS</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$master</span>;  <span class="comment">// 连接 server 的 client</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$sockets</span> = <span class="keyword">array</span>(); <span class="comment">// 不同状态的 socket 管理</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$handshake</span> = <span class="literal">false</span>; <span class="comment">// 判断是否握手</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$address</span>, <span class="variable">$port</span></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 建立一个 socket 套接字</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)   </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_create() failed&quot;</span>);</span><br><span class="line">        socket_set_option(<span class="keyword">$this</span>-&gt;master, SOL_SOCKET, SO_REUSEADDR, <span class="number">1</span>)  </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_option() failed&quot;</span>);</span><br><span class="line">        socket_bind(<span class="keyword">$this</span>-&gt;master, <span class="variable">$address</span>, <span class="variable">$port</span>)                    </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_bind() failed&quot;</span>);</span><br><span class="line">        socket_listen(<span class="keyword">$this</span>-&gt;master, <span class="number">2</span>)                               </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_listen() failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;sockets[] = <span class="keyword">$this</span>-&gt;master;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// debug</span></span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">&quot;Master socket  : &quot;</span>.<span class="keyword">$this</span>-&gt;master.<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">//自动选择来消息的 socket 如果是握手 自动选择主机</span></span><br><span class="line">            <span class="variable">$write</span> = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="variable">$except</span> = <span class="literal">NULL</span>;</span><br><span class="line">            socket_select(<span class="keyword">$this</span>-&gt;sockets, <span class="variable">$write</span>, <span class="variable">$except</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;sockets <span class="keyword">as</span> <span class="variable">$socket</span>) &#123;</span><br><span class="line">                <span class="comment">//连接主机的 client </span></span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$socket</span> == <span class="keyword">$this</span>-&gt;master)&#123;</span><br><span class="line">                    <span class="variable">$client</span> = socket_accept(<span class="keyword">$this</span>-&gt;master);</span><br><span class="line">                    <span class="keyword">if</span> (<span class="variable">$client</span> &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// debug</span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;socket_accept() failed&quot;</span>;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//connect($client);</span></span><br><span class="line">                        array_push(<span class="keyword">$this</span>-&gt;sockets, <span class="variable">$client</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;connect client\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="variable">$bytes</span> = @socket_recv(<span class="variable">$socket</span>,<span class="variable">$buffer</span>,<span class="number">2048</span>,<span class="number">0</span>);</span><br><span class="line">                    print_r(<span class="variable">$buffer</span>);</span><br><span class="line">                    <span class="keyword">if</span>(<span class="variable">$bytes</span> == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">                    <span class="keyword">if</span> (!<span class="keyword">$this</span>-&gt;handshake) &#123;</span><br><span class="line">                        <span class="comment">// 如果没有握手，先握手回应</span></span><br><span class="line">                        <span class="keyword">$this</span>-&gt;doHandShake(<span class="variable">$socket</span>, <span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;shakeHands\n&quot;</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    </span><br><span class="line">                        <span class="comment">// 如果已经握手，直接接受数据，并处理</span></span><br><span class="line">                        <span class="variable">$buffer</span> = <span class="keyword">$this</span>-&gt;decode(<span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="comment">//process($socket, $buffer); </span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;send file\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dohandshake</span>(<span class="params"><span class="variable">$socket</span>, <span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 获取加密key</span></span><br><span class="line">        <span class="variable">$acceptKey</span> = <span class="keyword">$this</span>-&gt;encry(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$upgrade</span> = <span class="string">&quot;HTTP/1.1 101 Switching Protocols\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Upgrade: websocket\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Connection: Upgrade\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Sec-WebSocket-Accept: &quot;</span> . <span class="variable">$acceptKey</span> . <span class="string">&quot;\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;dohandshake &quot;</span>.<span class="variable">$upgrade</span>.chr(<span class="number">0</span>);           </span><br><span class="line">        <span class="comment">// 写入socket</span></span><br><span class="line">        socket_write(<span class="variable">$socket</span>,<span class="variable">$upgrade</span>.chr(<span class="number">0</span>), strlen(<span class="variable">$upgrade</span>.chr(<span class="number">0</span>)));</span><br><span class="line">        <span class="comment">// 标记握手已经成功，下次接受数据采用数据帧格式</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;handshake = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">encry</span>(<span class="params"><span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="keyword">$this</span>-&gt;getKey(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$mask</span> = <span class="string">&quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> base64_encode(sha1(<span class="variable">$key</span> . <span class="string">&#x27;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#x27;</span>, <span class="literal">true</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"><span class="variable">$req</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">&quot;/Sec-WebSocket-Key: (.*)\r\n/&quot;</span>, <span class="variable">$req</span>, <span class="variable">$match</span>)) &#123; </span><br><span class="line">            <span class="variable">$key</span> = <span class="variable">$match</span>[<span class="number">1</span>]; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$key</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析数据帧</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">decode</span>(<span class="params"><span class="variable">$buffer</span></span>)  </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$len</span> = <span class="variable">$masks</span> = <span class="variable">$data</span> = <span class="variable">$decoded</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="variable">$len</span> = ord(<span class="variable">$buffer</span>[<span class="number">1</span>]) &amp; <span class="number">127</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">126</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">8</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">127</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">10</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">14</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = substr(<span class="variable">$buffer</span>, <span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = substr(<span class="variable">$buffer</span>, <span class="number">6</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$index</span> = <span class="number">0</span>; <span class="variable">$index</span> &lt; strlen(<span class="variable">$data</span>); <span class="variable">$index</span>++) &#123;</span><br><span class="line">            <span class="variable">$decoded</span> .= <span class="variable">$data</span>[<span class="variable">$index</span>] ^ <span class="variable">$masks</span>[<span class="variable">$index</span> % <span class="number">4</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$decoded</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回帧信息处理</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">frame</span>(<span class="params"><span class="variable">$s</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = str_split(<span class="variable">$s</span>, <span class="number">125</span>);</span><br><span class="line">        <span class="keyword">if</span> (count(<span class="variable">$a</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;\x81&quot;</span> . chr(strlen(<span class="variable">$a</span>[<span class="number">0</span>])) . <span class="variable">$a</span>[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$ns</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$o</span>) &#123;</span><br><span class="line">            <span class="variable">$ns</span> .= <span class="string">&quot;\x81&quot;</span> . chr(strlen(<span class="variable">$o</span>)) . <span class="variable">$o</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$ns</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回数据</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"><span class="variable">$client</span>, <span class="variable">$msg</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="keyword">$this</span>-&gt;frame(<span class="variable">$msg</span>);</span><br><span class="line">        socket_write(<span class="variable">$client</span>, <span class="variable">$msg</span>, strlen(<span class="variable">$msg</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试    </span></span><br><span class="line"><span class="variable">$ws</span> = <span class="keyword">new</span> WS(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/06/12/%E7%BA%AA%E5%BF%B5%E7%A2%91%E8%B0%B72%EF%BC%9A%E7%8E%B0%E8%B1%A1%E7%BA%A7%E7%A5%9E%E4%BD%9C%E8%83%8C%E5%90%8E%E6%9C%89%E7%9D%80%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/06/12/%E7%BA%AA%E5%BF%B5%E7%A2%91%E8%B0%B72%EF%BC%9A%E7%8E%B0%E8%B1%A1%E7%BA%A7%E7%A5%9E%E4%BD%9C%E8%83%8C%E5%90%8E%E6%9C%89%E7%9D%80%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9F/" class="post-title-link" itemprop="url">纪念碑谷2：现象级神作背后有着怎样的故事？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-06-12 23:04:34" itemprop="dateCreated datePublished" datetime="2017-06-12T23:04:34+08:00">2017-06-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>纪念碑谷 2 上线 App Store 过去一天了，有不少朋友也已经迫不及待地下载并通关了。当然，其中也包括了 AppSo。</p>
-<p>前天，AppSo（微信号 AppSo）简单地介绍了纪念碑谷 2，那么今天我们就为大家带来背后团队的采访和详细的评测吧。</p>
-<h3 id="它仍是我们喜欢的纪念碑谷"><a href="#它仍是我们喜欢的纪念碑谷" class="headerlink" title="它仍是我们喜欢的纪念碑谷"></a>它仍是我们喜欢的纪念碑谷</h3><p>纪念碑谷原来的设计师 Ken Wong 已经离开了团队，回到了澳洲，所以这次的设计团队也是一个完全不一样的团队，有不少人担心它的游戏内核会不会发生变化。</p>
-<p>纪念碑谷 2 延续了纪念碑谷 1 的玩法，你需要利用视错觉让主角走出迷宫。设计依旧以艺术家埃舍尔的创作为基础，利用了「潘洛斯三角」、「凹凸错觉」「二维三维的扭转变换」……画风延续之余，但剧情发生了较大的变化。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/monument-valley-2.jpg"></p>
-<p>相信大家都记得第一代的纪念碑谷有着相对阴郁的剧情，它的主题是「宽恕」。而纪念碑谷 2 的基调就变得轻快起来——它探讨的是一个「亲子关系」的故事。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/jinianbeigu.gif"></p>
-<p>继前作的「艾达公主」之后，此次带领我们踏上旅程的是「罗尔」和她的孩子。在旅途中，你将帮助主角罗尔教导她的小孩。</p>
-<p>极富想象力的场景，和无论色调、元素单一或复杂都至臻完美的画面，带来视听享受的同时，令我们倍感熟悉。</p>
-<p>不同的是，这趟旅途少了孤单，多了陪伴。目的也不再是寻觅，而是互相扶持着携手并进。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/Monument-Valley-24.jpg"></p>
-<p>孩子奔跑、跌倒，无力遥望坠落的母亲时，我们不免揪心。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/jinianbeigu-02.gif"></p>
-<p>当两人终于跨过险阻冲向终点时，我们深深感动。</p>
-<p>剧情已经足够丰富，「纪念碑谷 2」却未就此停下。</p>
-<p>关卡不断推进，冷静质朴的文字揭示了更为残忍的事实——孩子终将长大成人，伴随他们度过人生旅程的父母也将回归孤独，再度独自踏上旅程。</p>
-<blockquote>
-<p>顺逆相随，让她羽翼自丰。<br>面对生命进程，我们不乏勇气，而是放手的决心。<br>你，终将继续完成属于自己的旅程。</p>
-</blockquote>
-<p>这种安排无疑会令玩家怅然若失，却也成就了纪念碑谷 2 的超高人气。</p>
-<h3 id="然而，为什么会选择这样的故事？"><a href="#然而，为什么会选择这样的故事？" class="headerlink" title="然而，为什么会选择这样的故事？"></a>然而，为什么会选择这样的故事？</h3><p>见纪念碑谷团队的时候，是在一个布置温馨的小房间，游戏总监 Dan Gray 脸上带着轻松的笑容——纪念碑谷 2 如期成功上线，在 WWDC 上进行了一次短暂的亮相。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/cover.jpg"></p>
-<p>在采访前，我已经到达了第五章，而游戏总监 Dan Gray 看到则说：</p>
-<blockquote>
-<p>Aha, you go far.</p>
-</blockquote>
-<p>纪念碑谷 2 一共有 14 个关卡，耗费 15 个月完成，比起纪念碑谷少了 4 个关卡。而不少通关的朋友也表示，相对于纪念碑谷，纪念碑谷 2 的难度有所降低，但依旧精美。</p>
-<blockquote>
-<p>纪念碑谷艾达的故事已经完结了，它是一个完整的故事。</p>
-</blockquote>
-<p>纪念碑谷游戏制作人 Adrienne Law 告诉 AppSo（微信号 AppSo），团队不想为了续作而去专门设计情节去承接实际上已经完整的故事，而且有大约 1/3 的新人加入团队，对故事充满了激情，有很多新想法，需要一个全新剧本去承载。</p>
-<p>而 Dan Gray 也补充，希望通过开启一个新故事，让没有玩过纪念碑谷 1 的朋友，直接上手纪念碑谷 2 的时候，不会觉得错过了剧情。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/Monument-Valley-23.jpg"></p>
-<p>但其实纪念碑谷 1 和 2 之间有很微妙的连通，只是藏得比较深，需要玩家仔细留意。</p>
-<p>至于为什么选择了「亲子关系」这个主题，他们是这样看的：</p>
-<blockquote>
-<p>很少有游戏触及母子关系的主题，纪念碑谷的玩家也会长大，我们自己也为人子女，在长大的过程中对母亲的想法会有所改变，所以会尝试探索这个话题。随着孩子不断成长，母亲和孩子的关系会不断地变化。</p>
-</blockquote>
-<p>而我们在评测时也发现，这样的「探索」也反映在「双人关卡」的设计上。在部分关卡里，女儿会以母亲为「榜样」——我们控制罗尔移动，女儿也会进行相应的走位。需要两个人互相配合才能通关。</p>
-<blockquote>
-<p>纪念碑谷的成功能复制吗？</p>
-</blockquote>
-<p>像纪念碑谷这样现象级的独立游戏屈指可数，而能真正做到「叫好又叫座」的更是凤毛麟角。纪念碑谷的盈利模式很简单，就是单纯地买游戏，和国内靠卖装备卖金币真正赚钱的「氪金手游」不同。</p>
-<p>这种单纯卖游戏的商业模式，同样适用于别的独立应用/游戏吗？</p>
-<p>Dan Gray 给出了这样的回答：</p>
-<blockquote>
-<p>看目标是什么。有很多小公司其实能一直以这样的方式做下去。如果保持公司现有的规模，则能维持经营。不过，一旦公司做大了，就不得不选择其他商业模式保持运营。</p>
-</blockquote>
-<p>当然，纪念碑谷团队也会希望更多中国玩家接触这款游戏，同时让纪念碑谷这个 IP 有更多可能性的发展，他们选择了腾讯作为代理。</p>
-<p>腾讯游戏是国内最大的移动游戏平台，而且有庞大的社区和用户群体。因此无论是用户量还是游戏 IP 的包装，我们可以期待纪念碑谷能有更多新的可能：</p>
-<blockquote>
-<p>我们是个付费游戏，让更多的人知道我们，需要腾讯这样的公司来代理，扩大影响力。</p>
-</blockquote>
-<p>无论选择什么代理公司，也不会影响它作为独立游戏的本质。初次开启时你可选择微信或 QQ 登录，这能让你分享图片到朋友圈等平台。当然你也可以选择游客模式，这不会对后续的关卡造成任何影响。</p>
-<p>除此之外，纪念碑谷也会出自己的周边产品，让大家更立体地体验游戏世界。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/01-1.jpg"></p>
-<p>目前，纪念碑谷 2 已上线各区 App Store，售价 30 元，而 Android 平台暂时未有上线计划。</p>
-<p>因为大部分独立开发者都是开发付费游戏，而 iTunes 上付费 app 的推广效果最好。为了保持营收，所以大部分独立游戏都会先上 iOS 版本，或者干脆只有 iOS 版本。</p>
-<p>不同人的选择不同，而 iOS 用户更倾向为高质量的游戏付费。除此之外，苹果也会提供更好的支持（纪念碑谷 2 已经横扫 App Store 推广位了），所以也是纪念碑谷团队选择 iOS 平台原因。</p>
-<p>AppSo 当然知道，有很多愿意为优质 app 付费的 Android 用户，也有很多不愿意花钱的 iOS 用户，但平台给创作者的回馈不同，创作者自然会予以相应的选择。</p>
-<p>这也是为什么 AppSo 一直倡导正版的原因：</p>
-<blockquote>
-<p>你花的每一分钱，都在为你想要的世界买单。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1143,7 +1103,7 @@ x86 则表示32位的
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
