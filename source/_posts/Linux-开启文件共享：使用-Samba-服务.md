@@ -9,8 +9,6 @@ tags:
 
 首先，你需要确保你的 Linux 系统上安装了 Samba。在基于 Debian 的系统（如 Ubuntu）上，你可以使用以下命令来安装 Samba：
 
-bash
-
 ```bash
 sudo apt update
 sudo apt install samba
@@ -64,8 +62,6 @@ sudo vi /etc/samba/smb.conf
 ## 启动 Samba 服务
 
 配置完成后，你需要启动 Samba 服务以使更改生效：
-
-bash
 
 ```bash
 sudo service smbd start
