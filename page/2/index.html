@@ -181,6 +181,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/" class="post-title-link" itemprop="url">巧用 Dark Reader 破解阅读全文</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-30 23:53:00" itemprop="dateCreated datePublished" datetime="2022-09-30T23:53:00+08:00">2022-09-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在阅读一些网站文章时，时常会遇到文章内容只展示一部分，用户需要 关注博主、或者关注公众号 的一系列障碍。</p>
+<p><img src="/images/pasted-33.png" alt="upload successful"></p>
+<p><img src="/images/pasted-34.png" alt="upload successful"></p>
+<p>于是使用“开发者工具”分析了一下前端代码发现。大多数实现逻辑基本上都是将文章内容元素设置一个较小高度，超出的部分隐藏掉。再在后追加一个“查看全文”的元素。</p>
+<p>想起 Dark Reader （暗黑）插件的自定义CSS功能，因为在使用通用暗黑方案后不能满足所有网站，所以要对一些不能完美适配的网站添加亿点自定义代码。在这正好派到了用场。（当然你也可以使用其他插件）</p>
+<p>打开 Dark Reader 插件，点击开发者工具</p>
+<p><img src="/images/pasted-35.png" alt="upload successful"></p>
+<p>在 主题编辑器 中添加一下代码：（这里用了IT屋和CSDN做演示）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">================================</span><br><span class="line"></span><br><span class="line">it1352<span class="selector-class">.com</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.arc-body-main-more</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.arc-body-main</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">================================</span><br><span class="line"></span><br><span class="line">blog<span class="selector-class">.csdn</span><span class="selector-class">.net</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.article_content</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.hide-article-box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-36.png" alt="upload successful"></p>
+<p>点击 Apply，刷新网站，就可以清除全文阅读限制了</p>
+<p>实现原理很简单：隐藏关注元素，清除文章内容元素的高度限制。</p>
+<p>注：此方法只能用于前端限制，后端限制是不行的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/28/php-cs-fixer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/28/php-cs-fixer/" class="post-title-link" itemprop="url">php-cs-fixer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-28 23:52:41" itemprop="dateCreated datePublished" datetime="2022-09-28T23:52:41+08:00">2022-09-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>PHP CS Fixer (PHP Coding Standards Fixer)是一款通过编码标准来修复代码的工具。它支持 PSR 编码规范和其他社区驱动（如 Symfony），还可以根据自己（团队）的风格进行自定义配置。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装 PHP CS Fixer 推荐使用 Composer 来进行安装。可以进行全局安装或者直接安装到项目中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 全局安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> composer global require friendsofphp/php-cs-fixer</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 为项目安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> composer require --dev friendsofphp/php-cs-fixer</span> </span><br></pre></td></tr></table></figure>
+
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="describe-查看规则规则集"><a href="#describe-查看规则规则集" class="headerlink" title="describe 查看规则规则集"></a>describe 查看规则规则集</h3><p><img src="/images/pasted-30.png" alt="upload successful"></p>
+<h3 id="fix-修复一个文件或者目录"><a href="#fix-修复一个文件或者目录" class="headerlink" title="fix 修复一个文件或者目录"></a>fix 修复一个文件或者目录</h3><p>使用 <code>fix</code> 命令可以对文件或者目录进行修复</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix /path/to/dir</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix /path/to/file</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--path-mode</code> 输出格式选项，支持 txt、json、xml、checkstyle、junit 和 gitlab。（默认txt）</p>
+<p><code>--quiet</code> 不输出任何信息。</p>
+<p><code>-v --verbose</code> 选项将显示应用的规则。<br><code>-vv</code> 啰嗦<br><code>-vvv</code> 调试</p>
+<p><img src="/images/pasted-32.png" alt="upload successful"></p>
+<p>出现“修复后 linting 期间报告的错误”，可以使用它来更详细地进行调试</p>
+<p><img src="/images/pasted-31.png" alt="upload successful"></p>
+<p><code>--rules</code> 指定修复规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix ./ --rules=@PSR12</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix ./ --rules=line_ending,full_opening_tag,indentation_type</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix ./ --rules=-full_opening_tag,-indentation_type</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix ./ --rules=@Symfony,-@PSR1,-blank_line_before_statement,strict_comparison</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> php-cs-fixer fix ./ --rules=<span class="string">&#x27;&#123;&quot;concat_space&quot;: &#123;&quot;spacing&quot;: &quot;none&quot;&#125;&#125;&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>--dry-run</code> 运行修复程序但不修改文件</p>
+<p><code>--diff</code> 以 udiff 格式输出修改内容</p>
+<p><code>--allow-risky</code> 是否运行有风险的修改，传入参数（yes or no）</p>
+<p><code>--stop-on-violation</code> 修复一个文件后停止执行</p>
+<p><code>--show-progress</code> 显示处理进度</p>
+<h3 id="退出代码"><a href="#退出代码" class="headerlink" title="退出代码"></a>退出代码</h3><p>退出代码 fix命令是使用以下位标志构建的：</p>
+<ul>
+<li>0 - 好的。</li>
+<li>1 - 一般错误（或 PHP 最低要求不匹配）。</li>
+<li>4 - 某些文件的语法无效（仅在试运行模式下）。</li>
+<li>8 - 某些文件需要修复（仅在试运行模式下）。</li>
+<li>16 - 应用程序的配置错误。</li>
+<li>32 - Fixer 的配置错误。</li>
+<li>64 - 应用程序中出现异常。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/28/PhpStorm-%E9%85%8D%E7%BD%AE-PHP-CS-Fixer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1189,238 +1349,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/" class="post-title-link" itemprop="url">使用 Snipaste 提高您的工作效率</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-09 23:25:00" itemprop="dateCreated datePublished" datetime="2022-02-09T23:25:00+08:00">2022-02-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Boost-your-productivity-with-Snipaste"><a href="#Boost-your-productivity-with-Snipaste" class="headerlink" title="Boost your productivity with Snipaste"></a>Boost your productivity with Snipaste</h2><p>Snipaste is a simple but powerful snipping tool, and also<br>allows you to pin the screenshot back onto the screen.<br>Download and start the application, press <kbd>F1</kbd> to start snipping,<br>then press <kbd>F3</kbd> to paste it as a floating window. That’s it!</p>
-<p>You can also convert text or color info in the clipboard into a floating image window.<br>Such windows can be zoomed, rotated, flipped, made translucent, and even made click-through!<br>If you are a programmer, a designer or whoever works much time before the computer,<br>you will be surprised how it can help you get your work done more efficiently!</p>
-<p>Snipaste is easy and intuitive to use,<br>but there are also many hidden features that can make your life even more efficient.<br>Read the <a target="_blank" rel="noopener" href="https://docs.snipaste.com">manual</a><br>if you are interested.</p>
-<h3 id="Intuitive-snipping"><a href="#Intuitive-snipping" class="headerlink" title="Intuitive snipping"></a>Intuitive snipping</h3><p><img src="/images/pasted-8.png" alt="upload successful"></p>
-<ul>
-<li>Auto detect UI elements</li>
-<li>Pixel-level control</li>
-<li>Color picker (try <code>F1</code>, <code>C</code>, <code>F3</code>)</li>
-<li><strong>History play back</strong> (<code>,</code>/<code>.</code>)</li>
-<li>Multi-screen support</li>
-<li>HiDPI (retina display) support</li>
-</ul>
-<h3 id="Paste-images-as-topmost-floating-windows"><a href="#Paste-images-as-topmost-floating-windows" class="headerlink" title="Paste images as topmost floating windows"></a>Paste images as topmost floating windows</h3><p><img src="/images/pasted-9.png" alt="upload successful"></p>
-<ul>
-<li>The source (in the clipboard) could be                            <ul>
-<li>Image</li>
-<li>Plain text</li>
-<li>HTML text</li>
-<li>Color info text</li>
-<li>Image files: PNG, JPG, BMP, TGA, ICO, TIFF and <strong>GIF</strong></li>
-</ul>
-</li>
-<li>Supported operations<ul>
-<li>Zoom (<code>mouse scroll</code> or <code>+</code>/<code>-</code>) or set speed for GIF </li>
-<li>Rotate (<code>1</code>/<code>2</code>) or jump to previous/next frame for GIF</li>
-<li>Flip (<code>3</code>/<code>4</code>)</li>
-<li>Set transparency (<code>Ctrl</code> + <code>mouse scroll</code> or <code>Ctrl</code> + <code>+</code>/<code>-</code>)</li>
-<li>Mouse click-through (<code>X</code>, and use <code>F4</code> to cancel)</li>
-<li>Image editing (<code>Space</code>)</li>
-<li>Thumbnail mode (<code>Shift</code> + <code>Double click</code>)</li>
-<li>Hide (<code>Double click</code>)</li>
-<li>…</li>
-</ul>
-</li>
-<li>Color picker (<code>Alt</code>)</li>
-<li>Drag &amp; drop</li>
-<li><strong>Grouping</strong></li>
-<li><strong>Auto backup &amp; restore</strong></li>
-</ul>
-<h3 id="Easy-image-annotation"><a href="#Easy-image-annotation" class="headerlink" title="Easy image annotation"></a>Easy image annotation</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
-<ul>
-<li>Rich shapes                            <ul>
-<li>Rectangle</li>
-<li>Ellipse</li>
-<li>Linestrip</li>
-<li>Arrow</li>
-<li>Pencil</li>
-<li>Marker pen</li>
-<li>Text</li>
-</ul>
-</li>
-<li>Advanced annotation tools                            <ul>
-<li>Mosaic</li>
-<li>Gaussian blur</li>
-<li>Eraser</li>
-</ul>
-</li>
-<li>Undo &amp; redo</li>
-</ul>
-<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
-<ul>
-<li>Theme color, interface font, tray icon, and more</li>
-<li>Hot keys</li>
-<li>Detailed functionality options</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/Dark-Reader/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/08/Dark-Reader/" class="post-title-link" itemprop="url">Dark Reader</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-08 20:47:00" itemprop="dateCreated datePublished" datetime="2022-02-08T20:47:00+08:00">2022-02-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="顶部选项"><a href="#顶部选项" class="headerlink" title="顶部选项"></a>顶部选项</h2><p><img src="/images/pasted-0.png" alt="Top section"></p>
-<ul>
-<li>“<strong>切换网站</strong>”可将目前网站加入忽略列表（或从忽略列表中移除）。</li>
-<li>“<strong>开启／关闭</strong>”可启用或停用扩展。</li>
-<li>点选按键下方的链接以<strong>修改快捷键</strong>。</li>
-<li>若切换按键为灰色，则表示浏览器限制脚本注入当前网页。</li>
-</ul>
-<h2 id="滤镜设置"><a href="#滤镜设置" class="headerlink" title="滤镜设置"></a>滤镜设置</h2><p><img src="/images/pasted-1.png" alt="Filter settings"></p>
-<p>可调整各项滤镜数值，以适应您的屏幕参数和室内环境亮度。</p>
-<h2 id="个别网站设置"><a href="#个别网站设置" class="headerlink" title="个别网站设置"></a>个别网站设置</h2><p><img src="/images/pasted-2.png" alt="Custom settings"></p>
-<p>点击“<strong>仅适用于</strong>”按键将设置值设为仅应用于当前网站。</p>
-<p>要使用该功能，请先单击按钮（该按钮将突出显示），然后根据当前网站的需要调整设置。 再次单击按钮以取消。</p>
-<h2 id="网站列表"><a href="#网站列表" class="headerlink" title="网站列表"></a>网站列表</h2><p><img src="/images/pasted-3.png" alt="Site list"></p>
-<ul>
-<li>使用“<strong>反色列表</strong>”让 Dark Reader 仅对列表中的网站生效。</li>
-<li>使用“<strong>不反色列表</strong>”避免扩展应用于列表中的网站。</li>
-<li>可填入 <code>google.com</code>、<code>mail.google.com</code>、<code>google.*</code>、<code>google.com/maps</code> 等等。</li>
-<li>点击“<strong>切换</strong>”按键将网站加入相应列表。</li>
-</ul>
-<h2 id="更多选项"><a href="#更多选项" class="headerlink" title="更多选项"></a>更多选项</h2><p><img src="/images/pasted-4.png" alt="More tab"></p>
-<ul>
-<li>从列表<strong>选择字体</strong>（或在 Firefox 输入字体名称），勾选方框。</li>
-<li>调整<strong>文字描边</strong>。</li>
-<li>选择<strong>主题生成模式</strong>。</li>
-</ul>
-<h2 id="主题生成模式"><a href="#主题生成模式" class="headerlink" title="主题生成模式"></a>主题生成模式</h2><p><img src="/images/pasted-5.png" alt="Filter+ vs. Static vs. Dynamic mode"></p>
-<p>过滤+、静态、动态模式比较</p>
-<ul>
-<li>“<strong>过滤</strong>”是 Dark Reader 最一开始的模式，基于 CSS 滤镜。 网页色彩会<strong>全部反转</strong>，再<strong>回复部分</strong>的颜色。 必须用到 GPU 的资源。 虽然渲染<strong>快速</strong>且有效，但有几个问题： 停用文字的子像素渲染（sub-pixel rendering）、 将已经是暗色的部分转成亮色、 大型页面会发生延迟、 Firefox 会无法渲染某些网页。</li>
-<li>“**过滤+**”效果和“过滤”一样，但是基于 SVG 滤镜，</li>
-</ul>
-<p><strong>色彩处理得更好</strong>，让图片不那么呆板。 在 Firefox 上效果不佳。</p>
-<ul>
-<li>“<strong>静态</strong>”会迅速生成基本样式表。</li>
-<li>“<strong>动态</strong>”会深入分析网站的样式表、背景图片、向量图形。 在网页载入时会占用一些资源， 但能产生<strong>最好</strong>的视觉效果。 虽然动态模式还在开发中， 但已能顺利应用于许多现代化的网站。</li>
-</ul>
-<h2 id="底部选项"><a href="#底部选项" class="headerlink" title="底部选项"></a>底部选项</h2><p><img src="/images/pasted-6.png" alt="Bottom section"></p>
-<ul>
-<li>阅读我们的<strong>隐私政策</strong>，关注我们的 <strong>Twitter</strong>。</li>
-<li>“<strong>捐赠</strong>”──若您喜欢这个扩展，请考虑支持活跃的 Dark Reader 开发团队。 群众募资由 Open Collective 主导，目前以 Stripe 处理帐款。</li>
-<li>“<strong>新闻</strong>”──版本资讯和重要活动的通知。</li>
-<li>“<strong>开发者工具</strong>”──对当前主题开启设置编辑器。</li>
-</ul>
-<h2 id="使用开发者工具"><a href="#使用开发者工具" class="headerlink" title="使用开发者工具"></a>使用开发者工具</h2><p>若您熟悉 CSS 选择器，欢迎对某些网站提供修正建议。 请阅读开发者工具的<a target="_blank" rel="noopener" href="https://github.com/darkreader/darkreader#how-to-contribute">使用说明</a>。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="为何扩展要求读取网站数据的权限"><a href="#为何扩展要求读取网站数据的权限" class="headerlink" title="为何扩展要求读取网站数据的权限"></a>为何扩展要求读取网站数据的权限</h4><p>扩展需要这些权限才能分析和修改网站的外观， 并判断是否要根据您的设置来停用或应用特殊规则。 我们不会插入广告，也不会搜集任何数据，或将数据送到任何地方。 该扩展是完全开源的，没有混淆的代码。 我们的获利是透明的——来自用户捐助。</p>
-<h4 id="网上应用店和设置的页面怎么还是白的"><a href="#网上应用店和设置的页面怎么还是白的" class="headerlink" title="网上应用店和设置的页面怎么还是白的"></a>网上应用店和设置的页面怎么还是白的</h4><p>本扩展对这些页面没有权限。</p>
-<h4 id="新标签页和浏览器主题怎么还是白的"><a href="#新标签页和浏览器主题怎么还是白的" class="headerlink" title="新标签页和浏览器主题怎么还是白的"></a>新标签页和浏览器主题怎么还是白的</h4><p>本扩展无法改变新标签页或浏览器外观（但 Firefox 60 以后可以）。 请从网上应用店下载其他暗色主题或新标签页扩展。</p>
-<h4 id="开启新标签页或浏览网站时屏幕会闪白光"><a href="#开启新标签页或浏览网站时屏幕会闪白光" class="headerlink" title="开启新标签页或浏览网站时屏幕会闪白光"></a>开启新标签页或浏览网站时屏幕会闪白光</h4><p>当载入网页时，Chrome 预设会呈现浏览器主题的背景色， 所以您应该从网上应用店安装暗色主题。</p>
-<h4 id="扩展完全无效"><a href="#扩展完全无效" class="headerlink" title="扩展完全无效"></a>扩展完全无效</h4><p>如果您有安装其他类似的扩展，请先停用它们，再重新载入标签页。 点击 Dark Reader 图标，检查右上角按键是否已<strong>开启</strong>。 打开“<strong>网站列表</strong>”，确认已选取“<strong>不反色列表</strong>”。 若依然无效，则存在问题，请发 Email 给我们。</p>
-<h4 id="网站呈现错误或运行缓慢"><a href="#网站呈现错误或运行缓慢" class="headerlink" title="网站呈现错误或运行缓慢"></a>网站呈现错误或运行缓慢</h4><p>请发 Email 告诉我们该网站网址、网页截图、您的操作系统和浏览器版本。 起码对知名网站，我们会试着调查原因。 也请试试看更改“<strong>主题生成模式</strong>”或使用“<strong>明亮模式</strong>”。 检查该网站是否不在“<strong>网站列表</strong>”选项下。</p>
-<h4 id="扩展在无痕模式下无效"><a href="#扩展在无痕模式下无效" class="headerlink" title="扩展在无痕模式下无效"></a>扩展在无痕模式下无效</h4><p>开启“<strong>chrome://extensions</strong>”页面，找到“<strong>Dark Reader</strong>”，点击“<strong>在无痕模式下启用</strong>”。</p>
-<h4 id="扩展对本地文件无效"><a href="#扩展对本地文件无效" class="headerlink" title="扩展对本地文件无效"></a>扩展对本地文件无效</h4><p>开启“<strong>chrome://extensions</strong>”页面，找到“<strong>Dark Reader</strong>”，点击“<strong>允许访问文件网址</strong>”。</p>
-<h4 id="在“过滤”模式下整个网站没有画面"><a href="#在“过滤”模式下整个网站没有画面" class="headerlink" title="在“过滤”模式下整个网站没有画面"></a>在“过滤”模式下整个网站没有画面</h4><p>若您是在 Mac OS 上使用 Chrome，请将 Mac OS 更新至 10.13，此举应该会更新显示驱动程序。 若您使用 Firefox，则很有可能是浏览器漏洞，请改用其他模式。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1492,7 +1420,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
