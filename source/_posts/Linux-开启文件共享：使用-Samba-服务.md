@@ -3,8 +3,6 @@ author: l1n6yun
 date: 2024-10-24 13:43:48
 tags:
 ---
-# Linux 开启文件共享：使用 Samba 服务
-
 在 Linux 系统中，Samba 是一个功能强大的服务，它允许 Linux 和 Windows 系统之间进行文件共享。通过 Samba，你可以轻松地在不同操作系统之间共享文件和打印机。本文将详细介绍如何在 Linux 上配置 Samba 服务，以实现文件共享。
 
 ## 安装 Samba
