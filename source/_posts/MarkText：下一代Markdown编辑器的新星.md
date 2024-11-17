@@ -53,11 +53,3 @@ Linux用户则可以按照官方提供的安装指南进行操作。
 [MarkText GitHub Releases](https://github.com/marktext/marktext/releases/latest)
 
 在这里，你可以找到适用于不同操作系统的安装包，选择适合你的版本进行下载和安装。
-
-## 开发与贡献
-
-MarkText是一个活跃的开源项目，它的发展离不开社区的贡献。如果你想参与到MarkText的开发中来，可以查看官方的贡献指南，并在提出Pull Request之前确保阅读了它们。MarkText的官方网站和GitHub仓库是获取最新信息和参与讨论的好地方。
-
-## 结语
-
-MarkText以其简洁的设计、强大的功能和开源的精神，成为了Markdown编辑器领域的一个有力竞争者。无论你是Markdown的新手还是资深用户，MarkText都值得你一试。它不仅能提高你的写作效率，还能带给你愉悦的写作体验。赶紧下载MarkText，开启你的高效写作之旅吧！
