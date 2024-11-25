@@ -181,6 +181,322 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/" class="post-title-link" itemprop="url">clipboard.js 一键复制到剪切板</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-29 10:58:20" itemprop="dateCreated datePublished" datetime="2017-08-29T10:58:20+08:00">2017-08-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>Copying text to the clipboard shouldn’t be hard. It shouldn’t require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn’t depend on Flash or any bloated framework.</p>
+<p>That’s why clipboard.js exists.</p>
+<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>You can get it on npm.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install clipboard --save</span><br></pre></td></tr></table></figure>
+
+<p>Or if you’re not into package management, just <a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/archive/master.zip">download a ZIP</a> file.</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>First, include the script located on the <code>dist</code> folder or load it from <a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers">a third-party CDN provider</a>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;dist/clipboard.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, you need to instantiate it by <a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-selector.html#L18">passing a DOM selector</a>, <a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-node.html#L16-L17">HTML element</a>, or <a target="_blank" rel="noopener" href="https://github.com/zenorocha/clipboard.js/blob/master/demo/constructor-nodelist.html#L18-L19">list of HTML elements</a>.</p>
+<p>Internally, we need to fetch all elements that matches with your selector and attach event listeners for each one. But guess what? If you have hundreds of matches, this operation can consume a lot of memory.</p>
+<p>For this reason we use <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation">event delegation</a> which replaces multiple event listeners with just a single listener. After all, <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/perfmatters">#perfmatters</a>.</p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>We’re living a declarative renaissance, that’s why we decided to take advantage of <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes">HTML5 data attributes</a> for better usability.</p>
+<h2 id="Copy-text-from-another-element"><a href="#Copy-text-from-another-element" class="headerlink" title="Copy text from another element"></a>Copy text from another element</h2><p>A pretty common use case is to copy content from another element. You can do that by adding a <code>data-clipboard-target</code> attribute in your trigger element.</p>
+<p>The value you include on this attribute needs to match another’s element selector.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Target --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;foo&quot;</span> <span class="attr">value</span>=<span class="string">&quot;https://github.com/zenorocha/clipboard.js.git&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Trigger --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#foo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;assets/clippy.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Copy to clipboard&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Cut-text-from-another-element"><a href="#Cut-text-from-another-element" class="headerlink" title="Cut text from another element"></a>Cut text from another element</h2><p>Additionally, you can define a <code>data-clipboard-action</code> attribute to specify if you want to either <code>copy</code> or <code>cut</code> content.</p>
+<p>If you omit this attribute, <code>copy</code> will be used by default.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Target --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;bar&quot;</span>&gt;</span>Mussum ipsum cacilds...<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Trigger --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-action</span>=<span class="string">&quot;cut&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#bar&quot;</span>&gt;</span></span><br><span class="line">    Cut to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you may expect, the <code>cut</code> action only works on <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> elements.</p>
+<h2 id="Copy-text-from-attribute"><a href="#Copy-text-from-attribute" class="headerlink" title="Copy text from attribute"></a>Copy text from attribute</h2><p>Truth is, you don’t even need another element to copy its content from. You can just include a <code>data-clipboard-text</code> attribute in your trigger element.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Trigger --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-text</span>=<span class="string">&quot;Just because you can doesn&#x27;t mean you should — clipboard.js&quot;</span>&gt;</span></span><br><span class="line">    Copy to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h1><p>There are cases where you’d like to show some user feedback or capture what has been selected after a copy/cut operation.</p>
+<p>That’s why we fire custom events such as <code>success</code> and <code>error</code> for you to listen and implement your custom logic.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">clipboard.on(<span class="string">&#x27;success&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">&#x27;Action:&#x27;</span>, e.action);</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">&#x27;Text:&#x27;</span>, e.text);</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">&#x27;Trigger:&#x27;</span>, e.trigger);</span><br><span class="line"></span><br><span class="line">    e.clearSelection();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">clipboard.on(<span class="string">&#x27;error&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">&#x27;Action:&#x27;</span>, e.action);</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">&#x27;Trigger:&#x27;</span>, e.trigger);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Tooltips"><a href="#Tooltips" class="headerlink" title="Tooltips"></a>Tooltips</h1><p>Each application has different design needs, that’s why clipboard.js does not include any CSS or built-in tooltip solution.</p>
+<p>The tooltips you see on this demo site were built using <a target="_blank" rel="noopener" href="http://primercss.io/tooltips/">GitHub’s Primer</a> . You may want to check that out if you’re looking for a similar look and feel.</p>
+<h1 id="Advanced-Usage"><a href="#Advanced-Usage" class="headerlink" title="Advanced Usage"></a>Advanced Usage</h1><p>If you don’t want to modify your HTML, there’s a pretty handy imperative API for you to use. All you need to do is declare a function, do your thing, and return a value.</p>
+<p>For instance, if you want to dynamically set a <code>target</code>, you’ll need to return a Node.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Clipboard(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">target</span>: <span class="function"><span class="keyword">function</span>(<span class="params">trigger</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.nextElementSibling;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>If you want to dynamically set a <code>text</code>, you’ll return a String.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Clipboard(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="function"><span class="keyword">function</span>(<span class="params">trigger</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.getAttribute(<span class="string">&#x27;aria-label&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>For use in Bootstrap Modals or with any other library that changes the focus you’ll want to set the focused element as the <code>container</code> value.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Clipboard(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">container</span>: <span class="built_in">document</span>.getElementById(<span class="string">&#x27;modal&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Also, if you are working with single page apps, you may want to manage the lifecycle of the DOM more precisely. Here’s how you clean up the events and objects that we create.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">clipboard.destroy();</span><br></pre></td></tr></table></figure>
+
+<h1 id="Browser-Support"><a href="#Browser-Support" class="headerlink" title="Browser Support"></a>Browser Support</h1><p>This library relies on both <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Selection">Selection</a> and <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand">execCommand</a> APIs. The first one is <a target="_blank" rel="noopener" href="http://caniuse.com/#search=selection">supported by all browsers</a> while the second one is supported in the following browsers.</p>
+<ul>
+<li>Chrome 42+</li>
+<li>Edge 12+</li>
+<li>Firefox 41+</li>
+<li>IE 9+</li>
+<li>Opera 29+</li>
+<li>Safari 10+</li>
+</ul>
+<p>The good news is that clipboard.js gracefully degrades if you need to support older browsers. All you have to do is show a tooltip saying <code>Copied!</code> when <code>success</code> event is called and <code>Press Ctrl+C to copy</code> when <code>error</code> event is called because the text is already selected.</p>
+<p>You can also check if clipboard.js is supported or not by running <code>Clipboard.isSupported()</code>, that way you can hide copy/cut buttons from the UI.</p>
+<h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>A browser extension that adds a “copy to clipboard” button to every code block on <em>GitHub, MDN, Gist, StackOverflow, StackExchange, npm, and even Medium</em>.</p>
+<p>Install for <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/codecopy/fkbfebkcoelajmhanocgppanfoojcdmg">Chrome</a> and <a target="_blank" rel="noopener" href="https://addons.mozilla.org/en-US/firefox/addon/codecopy/">Firefox</a>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/24/localResizeIMG-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/24/localResizeIMG-js/" class="post-title-link" itemprop="url">localResizeIMG.js</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-24 17:10:45" itemprop="dateCreated datePublished" datetime="2017-08-24T17:10:45+08:00">2017-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://travis-ci.org/think2011/localResizeIMG"><img src="https://travis-ci.org/think2011/localResizeIMG.svg?branch=master" alt="Build Status"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/lrz"><img src="https://img.shields.io/npm/v/lrz.svg" alt="npm version"></a><br><a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+<h1 id="🚨重要"><a href="#🚨重要" class="headerlink" title="🚨重要!!"></a>🚨重要!!</h1><p>很抱歉，这个项目已不再维护了，可能很长一段时间都不会更新了。<br>如果真的需要，请使用之前请一定留意 <a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues?q=is:issue+is:open+label:bug">Issues</a> 里已知的问题</p>
+<h1 id="演示一下"><a href="#演示一下" class="headerlink" title="演示一下"></a>演示一下</h1><p><img src="http://think2011.github.io/localResizeIMG/test/demo.gif"></p>
+<h1 id="自己试试"><a href="#自己试试" class="headerlink" title="自己试试"></a>自己试试</h1><p><img src="https://raw.github.com/think2011/localResizeIMG/master/test/qrcode.png"></p>
+<p><a target="_blank" rel="noopener" href="http://think2011.github.io/localResizeIMG/test/">点我直接进入演示页面</a></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用。</p>
+<h1 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h1><ol>
+<li><p>已踩过很多坑，经过几个版本迭代，以及很多很多网友的反馈帮助、机型测试</p>
+<ul>
+<li>图片扭曲、某些设备不自动旋转图片方向，没有jpeg压缩算法..</li>
+<li>不支持new Blob,formData构造的文件size为0..</li>
+<li>还有某些机型和浏览器（例如QQX5浏览器）莫名其妙的BUG..</li>
+</ul>
+</li>
+<li><p>按需加载（会根据对应设备自动异步载入JS文件，节省不必要带宽）</p>
+</li>
+<li><p>原生JS编写，不依赖例如<code>jquery</code>等第三方库，支持AMD or CMD规范。</p>
+</li>
+</ol>
+<blockquote>
+<p>尽管如此，在某些 <code>Android</code> 下依然有莫名其妙的问题，在您使用前，请一定大致浏览下 <a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues">issues</a></p>
+</blockquote>
+<h1 id="如何获取"><a href="#如何获取" class="headerlink" title="如何获取"></a>如何获取</h1><p>通过以下方式都可以下载：</p>
+<ol>
+<li>执行<code>npm i lrz</code>（推荐）</li>
+<li>执行<code>bower install lrz</code></li>
+</ol>
+<p>接着在页面中引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./dist/lrz.bundle.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1:"></a>方式1:</h3><p>如果您的图片来自用户拍摄或者上传的，您需要一个<code>input file</code>来获取图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接着通过change事件可以得到用户选择的图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">&#x27;#file&#x27;</span>).addEventListener(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	lrz(<span class="built_in">this</span>.files[<span class="number">0</span>])</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params">rst</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">            <span class="built_in">console</span>.log(rst);</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .always(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式2："><a href="#方式2：" class="headerlink" title="方式2："></a>方式2：</h3><p>如果您的图片不是来自用户上传的，那么也可以直接传入图片路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lrz(<span class="string">&#x27;./xxx/xx/x.png&#x27;</span>)</span><br><span class="line">        .then(<span class="function"><span class="keyword">function</span> (<span class="params">rst</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .always(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="后端处理"><a href="#后端处理" class="headerlink" title="后端处理"></a>后端处理</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki">后端处理请查看WIKI。</a></p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki">具体参数说明请查看WIKI。</a></p>
+<h1 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h1><p>IE10以上及大部分非IE浏览器（chrome、微信什么的）</p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/issues">有疑问请直接在 issues 中提问</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请一定记得附上以下内容：💡</span><br><span class="line">请一定记得附上以下内容：🙈</span><br><span class="line">请一定记得附上以下内容：💡</span><br><span class="line"></span><br><span class="line">平台：微信..</span><br><span class="line">设备：iPhone5 IOS7..</span><br><span class="line">问题：问题描述呗..</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Q：能否提供完整的一套UI?</p>
+</li>
+<li><p>A：暂时定位是作为纯粹的处理插件，或许会考虑开发一整套UI。</p>
+</li>
+<li><p>Q：有时拍摄完照片后，页面自动刷新或闪退了。</p>
+</li>
+<li><p>A：虽然已作了优化处理，但内存似乎还是爆掉了，常见于低配android手机，建议每次只处理一张图片。</p>
+</li>
+<li><p>Q: 怎么批量上传图片?</p>
+</li>
+<li><p>A: 您可以自己写个循环来传入用户多选的图片，但在移动端上请谨慎处理，原因同上。</p>
+</li>
+<li><p>Q: 直接传入图片路径的无法生成图片</p>
+</li>
+<li><p>A: 可能是跨域的问题，具体请看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image">CORS_enabled_image</a></p>
+</li>
+<li><p>Q: 想要商用可以吗？</p>
+</li>
+<li><p>A: 没问题，但请留意issue里已知的问题。</p>
+</li>
+</ul>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><a target="_blank" rel="noopener" href="https://github.com/think2011/localResizeIMG/wiki/3.-%E6%BA%90%E7%A0%81%E9%80%BB%E8%BE%91">想要参与 or 自己定制 or 了解源码请点击这里，逻辑和说明</a></p>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
+<li>@dwandw</li>
+<li>@yourlin</li>
+<li>@wxt2005</li>
+</ul>
+<p>以上在之前的版本帮忙参与维护的朋友，以及提出问题的朋友们，真的真的很感谢你们。：D</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/" class="post-title-link" itemprop="url">PHP获取curl传输进度</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-21T00:00:00+08:00">2017-07-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>curl上传或者下载，有以下2个选项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CURLOPT_NOPROGRESS =&gt; <span class="literal">false</span>,</span><br><span class="line">CURLOPT_PROGRESSFUNCTION =&gt; <span class="string">&#x27;callback&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CURLOPT_NOPROGRESS：是否关闭传输进度，默认是true。</li>
+<li>CURLOPT_PROGRESSFUNCTION：回调函数，curl传输过程中，会每隔一段时间自动调用该函数。我测试过，间隔不到1秒，具体不知道。官方的注释是这样：设置一个回调函数，有五个参数，第一个是cURL的资源句柄，第二个是预计要下载的总字节（bytes）数。第三个是目前下载的字节数，第四个是预计传输中总上传字节数，第五个是目前上传的字节数。（注意回调函数的命名空间。如：CURLOPT_PROGRESSFUNCTION =&gt; ‘namespace_xxx\callback’）</li>
+</ul>
+<p>设置完成后，需要定义回调函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"><span class="variable">$resource</span>, <span class="variable">$downloadSize</span> = <span class="number">0</span>, <span class="variable">$downloaded</span> = <span class="number">0</span>, <span class="variable">$uploadSize</span> = <span class="number">0</span>, <span class="variable">$uploaded</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// php5.5之前的参数是不同的，所以要考虑到兼容性</span></span><br><span class="line">    <span class="keyword">if</span> (version_compare(PHP_VERSION, <span class="string">&#x27;5.5.0&#x27;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="variable">$downloadSize</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploaded</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    S(<span class="string">&#x27;file_upload_&#x27;</span> . session(<span class="string">&#x27;user_auth.uid&#x27;</span>), <span class="variable">$info</span>, <span class="number">300</span>); <span class="comment">// 可以将结果存放到缓存（这里是ThinkPHP例子）</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>重要：<br>在curl发起请求时，如果开启了 session，会独占 session ，阻塞其他的请求。所以如果框架默认启用了 session ，在 curl 之前可以用session_write_close() 函数关闭 session 阻塞。<br>参考：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html">http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html</a></p>
+<p>最后：在进行传输时，可以每隔1秒通过ajax来获取缓存信息，从而显示传输进度。</p>
+<p>补充：<br>传送大文件时，php会超时，注意设置 php-fpm.conf 中的 request_terminate_timeout 值，我设了1000（秒）。<br>还有个 max_children（进程数） ，进程不够用可改大。<br>在程序中，可以使用 set_time_limit() 临时增加 php 响应时间。<br>php.ini中还有 max_execution_time 设置，看攻略说是跟 set_time_limit 累加的，如果攻略是对的，那么这个不用管。</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/buer2202/article/details/75364939">https://blog.csdn.net/buer2202/article/details/75364939</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -728,190 +1044,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/" class="post-title-link" itemprop="url">HTML5滚屏特效</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-05-22 00:04:02" itemprop="dateCreated datePublished" datetime="2017-05-22T00:04:02+08:00">2017-05-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">*&#123;<span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">padding</span>: <span class="number">0px</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">overflow</span>: hidden;&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">overflow</span>: visible;<span class="attribute">transition</span>:transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);-webkit-<span class="attribute">transition</span>:-webkit-transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-wrap</span> <span class="selector-class">.section</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-1</span>&#123;<span class="attribute">background</span>: <span class="number">#0f0</span>&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-2</span>&#123;<span class="attribute">background</span>: <span class="number">#FF0</span>&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-1</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.put-section-2</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);&#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">position</span>:fixed;<span class="attribute">right</span>:<span class="number">4%</span>;<span class="attribute">top</span>:<span class="number">50%</span>;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">height</span>:<span class="number">14px</span>;<span class="attribute">cursor</span>:pointer;<span class="attribute">text-indent</span>:-<span class="number">9999px</span>;<span class="attribute">border-radius</span>:<span class="number">50%</span>;-webkit-<span class="attribute">border-radius</span>:<span class="number">50%</span>;<span class="attribute">margin-bottom</span>:<span class="number">12px</span>; <span class="attribute">background</span>:<span class="number">#BD362F</span>;<span class="attribute">text-align</span>:center; <span class="attribute">color</span>:<span class="number">#fff</span>; onsor:pointer;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span><span class="selector-class">.on</span>&#123; <span class="attribute">background</span>:<span class="number">#fff</span>&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&#x27;section-wrap put-section-1&#x27;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-1&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-2&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;section-btn&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;on&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&#x27;jiaoben3135/js/jquery.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> i=<span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> $btn = $(<span class="string">&#x27;.section-btn li&#x27;</span>),</span></span><br><span class="line"><span class="javascript">		$wrap = $(<span class="string">&#x27;.section-wrap&#x27;</span>),</span></span><br><span class="line"><span class="javascript">		$arrow = $(<span class="string">&#x27;.arrow&#x27;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">/*当前页面赋值*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">up</span>(<span class="params"></span>)</span>&#123;i++;<span class="keyword">if</span>(i&gt;$btn.length)&#123;i=<span class="number">1</span>&#125;;&#125;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">down</span>(<span class="params"></span>)</span>&#123;i--;<span class="keyword">if</span>(i&lt;<span class="number">1</span>)&#123;i=$btn.length&#125;;&#125;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*页面滑动*/</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		$btn.eq(i-<span class="number">1</span>).addClass(<span class="string">&#x27;on&#x27;</span>).siblings().removeClass(<span class="string">&#x27;on&#x27;</span>);	</span></span><br><span class="line"><span class="javascript">		$wrap.attr(<span class="string">&quot;class&quot;</span>,<span class="string">&quot;section-wrap&quot;</span>).addClass(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">&quot;put-section-&quot;</span>+i; &#125;).find(<span class="string">&#x27;.section&#x27;</span>).eq(i).find(<span class="string">&#x27;.title&#x27;</span>).addClass(<span class="string">&#x27;active&#x27;</span>);</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*右侧按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$btn.each(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		$(<span class="built_in">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">			i=index+<span class="number">1</span>;</span></span><br><span class="line"><span class="javascript">			run();</span></span><br><span class="line"><span class="javascript">		&#125;)</span></span><br><span class="line"><span class="javascript">	&#125;);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*翻页按钮点击*/</span></span></span><br><span class="line"><span class="javascript">	$arrow.one(<span class="string">&#x27;click&#x27;</span>,go);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		up();run();	</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$arrow.one(<span class="string">&#x27;click&#x27;</span>,go)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应鼠标*/</span></span></span><br><span class="line"><span class="javascript">	$wrap.one(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">mouse_</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">if</span>(event.deltaY&lt;<span class="number">0</span>) &#123;up()&#125;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">else</span>&#123;down()&#125;</span></span><br><span class="line"><span class="javascript">		run();</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$wrap.one(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript">	&#125;;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">// /*响应键盘上下键*/</span></span></span><br><span class="line"><span class="javascript">	$(<span class="built_in">document</span>).one(<span class="string">&#x27;keydown&#x27;</span>,k);</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">k</span>(<span class="params">event</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> key=e.keyCode||e.which||e.charCode;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">switch</span>(key)	&#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">38</span>: down();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">case</span> <span class="number">40</span>: up();run();	</span></span><br><span class="line"><span class="javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">		&#125;;</span></span><br><span class="line"><span class="javascript">		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;$(<span class="built_in">document</span>).one(<span class="string">&#x27;keydown&#x27;</span>,k)&#125;,<span class="number">1000</span>);</span></span><br><span class="line"><span class="javascript">	&#125;</span></span><br><span class="line"><span class="javascript">&#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">用js判断是否是微信浏览器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-24 10:47:00" itemprop="dateCreated datePublished" datetime="2017-04-24T10:47:00+08:00">2017-04-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/" class="post-title-link" itemprop="url">ThinkPHP连接SQLite</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-04-14 21:14:34" itemprop="dateCreated datePublished" datetime="2017-04-14T21:14:34+08:00">2017-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>配置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;DB_TYPE&#x27;</span> =&gt; <span class="string">&#x27;sqlite&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;DB_NAME&#x27;</span> =&gt; DATA_PATH.<span class="string">&#x27;/test.db&#x27;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>文件：\Library\Think\Db\Driver\Sqlite.class.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sqlite数据库驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sqlite</span> <span class="keyword">extends</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析pdo连接的dsn信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array $config 连接信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseDsn</span>(<span class="params"><span class="variable">$config</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$dsn</span> = <span class="string">&#x27;sqlite:&#x27;</span> . <span class="variable">$config</span>[<span class="string">&#x27;database&#x27;</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$dsn</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据表的字段信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFields</span>(<span class="params"><span class="variable">$tableName</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>(<span class="variable">$tableName</span>) = explode(<span class="string">&#x27; &#x27;</span>, <span class="variable">$tableName</span>);</span><br><span class="line">        <span class="variable">$result</span>          = <span class="keyword">$this</span>-&gt;query(<span class="string">&#x27;PRAGMA table_info( &#x27;</span> . <span class="variable">$tableName</span> . <span class="string">&#x27; )&#x27;</span>);</span><br><span class="line">        <span class="variable">$info</span>            = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">                <span class="variable">$info</span>[<span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>]] = <span class="keyword">array</span>(</span><br><span class="line">                    <span class="string">&#x27;name&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;type&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;type&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;notnull&#x27;</span> =&gt; (<span class="keyword">bool</span>) (<span class="number">1</span> === <span class="variable">$val</span>[<span class="string">&#x27;notnull&#x27;</span>]),</span><br><span class="line">                    <span class="string">&#x27;default&#x27;</span> =&gt; <span class="variable">$val</span>[<span class="string">&#x27;dflt_value&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;primary&#x27;</span> =&gt; <span class="string">&#x27;1&#x27;</span> == <span class="variable">$val</span>[<span class="string">&#x27;pk&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;autoinc&#x27;</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据库的表信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTables</span>(<span class="params"><span class="variable">$dbName</span> = <span class="string">&#x27;&#x27;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="keyword">$this</span>-&gt;query(<span class="string">&quot;SELECT name FROM sqlite_master WHERE type=&#x27;table&#x27; &quot;</span></span><br><span class="line">            . <span class="string">&quot;UNION ALL SELECT name FROM sqlite_temp_master &quot;</span></span><br><span class="line">            . <span class="string">&quot;WHERE type=&#x27;table&#x27; ORDER BY name&quot;</span>);</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">            <span class="variable">$info</span>[<span class="variable">$key</span>] = current(<span class="variable">$val</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * SQL指令安全过滤</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $str  SQL指令</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">escapeString</span>(<span class="params"><span class="variable">$str</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> str_ireplace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;&#x27;&#x27;&quot;</span>, <span class="variable">$str</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * limit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">parseLimit</span>(<span class="params"><span class="variable">$limit</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$limitStr</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$limit</span>)) &#123;</span><br><span class="line">            <span class="variable">$limit</span> = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$limit</span>);</span><br><span class="line">            <span class="keyword">if</span> (count(<span class="variable">$limit</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">1</span>] . <span class="string">&#x27; OFFSET &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$limitStr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 随机排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseRand</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;RANDOM()&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -983,7 +1115,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

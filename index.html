@@ -181,6 +181,278 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/16/Shell%E5%92%8CPerl%E8%84%9A%E6%9C%AC%E5%8A%A0%E5%AF%86%E4%B8%8E%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/11/16/Shell%E5%92%8CPerl%E8%84%9A%E6%9C%AC%E5%8A%A0%E5%AF%86%E4%B8%8E%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Shell和Perl脚本加密与编译技术详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-11-16 15:11:00" itemprop="dateCreated datePublished" datetime="2024-11-16T15:11:00+08:00">2024-11-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在数字化时代，脚本编程在软件开发和自动化任务中扮演着至关重要的角色。然而，未加密的脚本代码面临着潜在的盗用和篡改风险，甚至可能导致敏感信息泄露。本文将探讨多种有效的脚本加密与编译技术，涵盖了Shell和Perl脚本的保护方法，旨在帮助开发者保护自己的代码和敏感信息。</p>
+<h4 id="Shell脚本加密与编译方法"><a href="#Shell脚本加密与编译方法" class="headerlink" title="Shell脚本加密与编译方法"></a>Shell脚本加密与编译方法</h4><p><strong>使用shc工具</strong></p>
+<p>SHC（Shell Script Compiler）是一个开源工具，用于将Shell脚本编译成可执行文件。它将代码转换为C语言程序，然后再编译成二进制文件，以保护源代码。SHC的主要目的是提供一个简单的方式来保护Shell脚本代码，防止未经授权的访问和篡改。</p>
+<ul>
+<li><strong>SHC的功能</strong>：SHC将Shell脚本编译成二进制可执行文件，隐藏脚本的实现细节，并在编译过程中对脚本内容进行预处理和加密。</li>
+</ul>
+<p><strong>安装SHC</strong></p>
+<p>通过包管理器安装SHC（推荐）:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu/Debian：</span></span><br><span class="line">sudo apt-get install shc</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS/RHEL</span></span><br><span class="line">sudo yum install epel-release</span><br><span class="line">sudo yum install shc</span><br></pre></td></tr></table></figure>
+
+<p>从源代码编译安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装必要的编译工具和库。包括 `gcc`（GNU C编译器）和 `make` 工具：</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 访问 SHC 的 GitHub 仓库，下载最新的源代码压缩包，或通过 `git` 克隆仓库。</span></span><br><span class="line">git clone https://github.com/neurobin/shc.git</span><br><span class="line">cd shc</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译 SHC：</span></span><br><span class="line">make</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 SHC，将编译的二进制文件移动到 `/usr/<span class="built_in">local</span>/bin` 目录（或其他合适的目录）：</span></span><br><span class="line">sudo cp shc /usr/local/bin/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查 SHC 是否安装成功：</span></span><br><span class="line">shc -h</span><br></pre></td></tr></table></figure>
+
+<p><strong>编译示例</strong></p>
+<p>脚本（hello.sh）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line"># 检查是否为root用户</span><br><span class="line">if [ &quot;$EUID&quot; -ne 0 ]; then</span><br><span class="line">    echo &quot;请以管理员权限运行此脚本（使用sudo）!&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 显示系统信息</span><br><span class="line">echo &quot;-----------------------------&quot;</span><br><span class="line">echo &quot;系统信息&quot;</span><br><span class="line">echo &quot;-----------------------------&quot;</span><br><span class="line">echo &quot;当前用户: $(whoami)&quot;</span><br><span class="line">echo &quot;系统时间: $(date)&quot;</span><br><span class="line">echo &quot;操作系统版本: $(lsb_release -d | cut -f2)&quot;</span><br><span class="line"></span><br><span class="line"># 列出当前目录文件</span><br><span class="line">echo &quot;-----------------------------&quot;</span><br><span class="line">echo &quot;当前目录中的文件:&quot;</span><br><span class="line">ls -1</span><br><span class="line"></span><br><span class="line"># 用户选择文件</span><br><span class="line">read -p &quot;请选择一个文件以查看其内容 (输入文件名): &quot; file_name</span><br><span class="line"></span><br><span class="line"># 检查文件是否存在</span><br><span class="line">if [ -f &quot;$file_name&quot; ]; then</span><br><span class="line">    echo &quot;-----------------------------&quot;</span><br><span class="line">    echo &quot;文件内容: $file_name&quot;</span><br><span class="line">    cat &quot;$file_name&quot;</span><br><span class="line"></span><br><span class="line">    # 将输出重定向到日志文件</span><br><span class="line">    echo &quot;日志保存到 log.txt&quot;</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;文件内容: $file_name&quot;</span><br><span class="line">        cat &quot;$file_name&quot;</span><br><span class="line">    &#125; &gt; log.txt</span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">    echo &quot;文件不存在!&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>编译脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shc -f hello.sh</span><br></pre></td></tr></table></figure>
+
+<p>将生成两个文件：hello.sh.x（可执行文件）和hello.sh.x.c（C源文件）。</p>
+<p>执行编译文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello.sh.x</span><br></pre></td></tr></table></figure>
+
+<p><strong>加密与编码</strong></p>
+<p>除了使用shc工具，还可以使用base64编码或openssl加密来增加脚本的安全性。</p>
+<p>使用base64编码将脚本内容进行base64编码，并在运行时解码执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编码</span></span><br><span class="line">base64 hello.sh &gt; hello_base64.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码并执行</span></span><br><span class="line">base64 -d hello_base64.txt | bash</span><br></pre></td></tr></table></figure>
+
+<p>使用openssl工具对脚本进行对称或非对称加密，然后在运行时解密。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加密</span></span><br><span class="line">openssl aes-256-cbc -salt -<span class="keyword">in</span> hello.sh -out hello.sh.enc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密并执行</span></span><br><span class="line">openssl aes-256-cbc -d -<span class="keyword">in</span> hello.sh.enc | bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="Perl脚本加密与编译方法"><a href="#Perl脚本加密与编译方法" class="headerlink" title="Perl脚本加密与编译方法"></a>Perl脚本加密与编译方法</h4><p><strong>PAR::Packer工具</strong></p>
+<p>PAR::Packer是一个Perl模块，用于将Perl脚本及其所有依赖打包成可执行的二进制文件。它分析Perl脚本，自动识别所用到的模块，并将这些模块打包在内，确保在目标环境中运行时可以找到。</p>
+<ul>
+<li><strong>安装并使用</strong>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以使用 CPAN 安装：</span></span><br><span class="line">cpan PAR::Packer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包Perl脚本</span></span><br><span class="line">pp -o hello.pxf hello.pl</span><br></pre></td></tr></table></figure>
+
+<p><strong>perlcc编译器</strong></p>
+<p>perlcc是Perl语言的一个编译器，它可以将Perl脚本编译成C代码，然后进一步编译成可执行的二进制文件。然而，perlcc可能无法处理某些复杂的Perl特性或者特定模块，导致编译失败。</p>
+<ul>
+<li><strong>编译过程示例</strong>：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perlcc -o task_manager task_manager.pl</span><br></pre></td></tr></table></figure>
+
+<p>使用-d选项可以在编译时显示调试信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perlcc -d -o hello hello.pl</span><br></pre></td></tr></table></figure>
+
+<p>查看perlcc的更多选项和功能，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perlcc -h</span><br></pre></td></tr></table></figure>
+
+<p><strong>加密与解密技术</strong></p>
+<p>使用Crypt::CBC模块可以实现对数据的加密和解密。Crypt::CBC提供了基于块密码的加密和模式，常用的加密算法包括AES、DES等。</p>
+<ul>
+<li><strong>安装Crypt::CBC</strong>：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cpan Crypt::CBC</span><br></pre></td></tr></table></figure>
+
+<p>使用Crypt::CBC模块加密一个Perl脚本，涉及到定义一个加密的过程并将脚本本身保存为一个密文，然后可以在运行时解密并执行。这种做法只是为了保护源代码，这并不是一种绝对的安全措施，因为熟悉Perl的人仍然可以通过逆向工程等手段获取原始代码。</p>
+<p>以下是使用Crypt::CBC加密和解密Perl脚本的示例代码：</p>
+<p>加密脚本（encrypt_script.pl）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/perl</span></span><br><span class="line">use strict;</span><br><span class="line">use warnings;</span><br><span class="line">use Crypt::CBC;</span><br><span class="line">use MIME::Base64;</span><br><span class="line">use File::Slurp;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置加密参数</span></span><br><span class="line">my $key = &#x27;*********&#x27;;  # 选择一个合适的密钥</span><br><span class="line">my $cipher = Crypt::CBC-&gt;new(</span><br><span class="line">    -key    =&gt; $key,</span><br><span class="line">    -cipher =&gt; &#x27;Crypt::AES&#x27;,</span><br><span class="line">);</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 读取原始脚本</span></span><br><span class="line">my $script = read_file(&#x27;task_manager.pl&#x27;);</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 加密脚本</span></span><br><span class="line">my $ciphertext = $cipher-&gt;encrypt_hex($script);</span><br><span class="line">write_file(&#x27;hello_encrypted.pl&#x27;, $ciphertext);</span><br><span class="line"></span><br><span class="line">print &quot;Script encrypted and saved to hello_encrypted.pl\n&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>解密并执行脚本（run_encrypted.pl）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/perl</span></span><br><span class="line">use strict;</span><br><span class="line">use warnings;</span><br><span class="line">use Crypt::CBC;</span><br><span class="line">use MIME::Base64;</span><br><span class="line">use File::Slurp;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置加密参数</span></span><br><span class="line">my $key = &#x27;******&#x27;;  # 确保与加密时的密钥一致</span><br><span class="line">my $cipher = Crypt::CBC-&gt;new(</span><br><span class="line">    -key    =&gt; $key,</span><br><span class="line">    -cipher =&gt; &#x27;Crypt::AES&#x27;,</span><br><span class="line">);</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 读取加密脚本</span></span><br><span class="line">my $ciphertext = read_file(&#x27;hello_encrypted.pl&#x27;);</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解密</span></span><br><span class="line">my $decrypted = $cipher-&gt;decrypt_hex($ciphertext);</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行解密后的脚本</span></span><br><span class="line">eval $decrypted;</span><br><span class="line">if ($@) &#123;</span><br><span class="line">    die &quot;Error executing decrypted script: $@&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行解密并执行的脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl run_encrypted.pl</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>脚本加密和编译技术为确保源代码安全性提供了有效的手段。本文详细介绍了使用流行工具和方法对Shell脚本和Perl脚本进行加密和编译的步骤，旨在帮助开发者保护自己的代码和敏感信息。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">利用 Rust 构建轻量级多端桌面应用：Pake 介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-11-09 11:13:00" itemprop="dateCreated datePublished" datetime="2024-11-09T11:13:00+08:00">2024-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>Pake 是一个基于 Rust 的工具，它允许开发者轻松构建轻量级的多平台桌面应用。以其小巧的体积和卓越的性能，Pake 成为了许多开发者的首选工具。本文将详细介绍 Pake 的特性、安装方法、使用指南以及如何进行定制开发，并特别强调快捷键的使用。</p>
+</blockquote>
+<h2 id="Pake-的特性"><a href="#Pake-的特性" class="headerlink" title="Pake 的特性"></a>Pake 的特性</h2><p>Pake 的核心特性包括：</p>
+<ul>
+<li><strong>体积小</strong>：相比传统的 Electron 套壳打包，Pake 的体积小将近 20 倍，大约在 5M 左右。</li>
+<li><strong>性能优异</strong>：Pake 的底层使用的是 Rust Tauri 框架，相较于 JavaScript 框架，它提供了更轻快的性能体验和更小的内存占用。</li>
+<li><strong>功能丰富</strong>：Pake 不仅能打包应用，还实现了快捷键透传、沉浸式窗口、拖动、样式改写、去广告等功能，并支持产品的极简风格定制。</li>
+<li><strong>简单易用</strong>：Pake 被描述为一个简单的小玩具，使用 Tauri 替代了传统的套壳网页打包思路，同时推荐使用 PWA（Progressive Web Apps）。</li>
+</ul>
+<h2 id="开始使用-Pake"><a href="#开始使用-Pake" class="headerlink" title="开始使用 Pake"></a>开始使用 Pake</h2><h3 id="安装-Pake-CLI"><a href="#安装-Pake-CLI" class="headerlink" title="安装 Pake CLI"></a>安装 Pake CLI</h3><p>Pake 提供了命令行工具，可以通过 npm 进行安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pake-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行一键打包"><a href="#命令行一键打包" class="headerlink" title="命令行一键打包"></a>命令行一键打包</h3><p>使用 Pake 进行一键打包非常简单，以下是基本的命令使用示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pake url [OPTIONS]...</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你想打包 <a target="_blank" rel="noopener" href="https://weekly.tw93.fun/">Weekly</a> 应用，并隐藏标题栏，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pake https://weekly.tw93.fun --name Weekly --hide-title-bar</span><br></pre></td></tr></table></figure>
+
+<h3 id="快捷键说明"><a href="#快捷键说明" class="headerlink" title="快捷键说明"></a>快捷键说明</h3><p>Pake 支持快捷键，以提高用户的工作效率。以下是 Pake 支持的快捷键及其功能：</p>
+<table>
+<thead>
+<tr>
+<th>Mac</th>
+<th>Windows/Linux</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⌘ + [</td>
+<td>Ctrl + ←</td>
+<td>返回上一个页面</td>
+</tr>
+<tr>
+<td>⌘ + ]</td>
+<td>Ctrl + →</td>
+<td>去下一个页面</td>
+</tr>
+<tr>
+<td>⌘ + ↑</td>
+<td>Ctrl + ↑</td>
+<td>自动滚动到页面顶部</td>
+</tr>
+<tr>
+<td>⌘ + ↓</td>
+<td>Ctrl + ↓</td>
+<td>自动滚动到页面底部</td>
+</tr>
+<tr>
+<td>⌘ + r</td>
+<td>Ctrl + r</td>
+<td>刷新页面</td>
+</tr>
+<tr>
+<td>⌘ + w</td>
+<td>Ctrl + w</td>
+<td>隐藏窗口，非退出</td>
+</tr>
+<tr>
+<td>⌘ + -</td>
+<td>Ctrl + -</td>
+<td>缩小页面</td>
+</tr>
+<tr>
+<td>⌘ + +</td>
+<td>Ctrl + +</td>
+<td>放大页面</td>
+</tr>
+<tr>
+<td>⌘ + =</td>
+<td>Ctrl + =</td>
+<td>放大页面</td>
+</tr>
+<tr>
+<td>⌘ + 0</td>
+<td>Ctrl + 0</td>
+<td>重置页面缩放</td>
+</tr>
+</tbody></table>
+<h2 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h2><p>Pake 的代码结构和高级用法可以在其官方文档中找到。以下是一些关键点：</p>
+<ul>
+<li>修改 src-tauri 目录下的 pake.json 中的 url 和 productName 字段，并同步修改 tauri.config.json 中的 domain 字段。</li>
+<li>修改 tauri.xxx.conf.json 中的 icon 和 identifier 字段，图标可以从 icons 目录选择，或者从 macOSicons 下载。</li>
+<li>在 pake.json 中修改窗口属性，如 width/height、fullscreen、resizable 等。</li>
+<li>适配 Mac 沉浸式头部，可以将 hideTitleBar 设置为 true，并为 Header 元素添加 padding-top 样式。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Pake 是一个强大的工具，它让构建轻量级多端桌面应用变得简单快捷。无论是小白用户、开发用户还是折腾用户，都能在 Pake 中找到适合自己的使用方式。希望这篇文章能帮助你更好地了解和使用 Pake，享受构建桌面应用的乐趣。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/24/MarkText%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3Markdown%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E6%96%B0%E6%98%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -242,8 +514,6 @@
 <h3 id="最新版本下载"><a href="#最新版本下载" class="headerlink" title="最新版本下载"></a>最新版本下载</h3><p>想要获取MarkText的最新版本，你可以直接访问其GitHub发布页面：</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/marktext/marktext/releases/latest">MarkText GitHub Releases</a></p>
 <p>在这里，你可以找到适用于不同操作系统的安装包，选择适合你的版本进行下载和安装。</p>
-<h2 id="开发与贡献"><a href="#开发与贡献" class="headerlink" title="开发与贡献"></a>开发与贡献</h2><p>MarkText是一个活跃的开源项目，它的发展离不开社区的贡献。如果你想参与到MarkText的开发中来，可以查看官方的贡献指南，并在提出Pull Request之前确保阅读了它们。MarkText的官方网站和GitHub仓库是获取最新信息和参与讨论的好地方。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>MarkText以其简洁的设计、强大的功能和开源的精神，成为了Markdown编辑器领域的一个有力竞争者。无论你是Markdown的新手还是资深用户，MarkText都值得你一试。它不仅能提高你的写作效率，还能带给你愉悦的写作体验。赶紧下载MarkText，开启你的高效写作之旅吧！</p>
 
       
     </div>
@@ -334,7 +604,6 @@
 
 <p>这个命令将启动 Samba 守护进程，使你的共享目录在网络上可用。</p>
 <h2 id="测试共享"><a href="#测试共享" class="headerlink" title="测试共享"></a>测试共享</h2><p>在 Windows 系统上，你可以通过网络邻居访问这些共享，或者在文件资源管理器中输入共享的网络路径（例如 <code>\\&lt;Linux-Server-IP&gt;\mnt-rw</code>）来访问。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>通过上述步骤，你可以在 Linux 系统上轻松配置 Samba 服务，实现与 Windows 系统的文件共享。这不仅提高了文件访问的便利性，还增强了不同操作系统之间的互操作性。记得根据你的具体需求调整共享的权限和设置。</p>
 
       
     </div>
@@ -672,6 +941,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/" class="post-title-link" itemprop="url">提升开发效率的神器：it-tools</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-02 16:28:20" itemprop="dateCreated datePublished" datetime="2023-03-02T16:28:20+08:00">2023-03-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>在当今快节奏的开发环境中，拥有一个功能强大且易于使用的工具箱对于提升工作效率至关重要。今天，我们将介绍一个轻量级、开源的前端工具箱——<strong>it-tools</strong>。这个工具箱专为开发者设计，旨在简化日常开发任务，无论是普通用户还是资深开发者都能从中受益。</p>
+</blockquote>
+<p><img src="/images/pasted-72.png" alt="upload successful"></p>
+<h2 id="为什么选择-it-tools？"><a href="#为什么选择-it-tools？" class="headerlink" title="为什么选择 it-tools？"></a>为什么选择 it-tools？</h2><p><strong>it-tools</strong> 以其简洁高效、一站式解决方案、跨平台支持和开源特性脱颖而出：</p>
+<ul>
+<li><strong>简洁高效</strong>：提供众多常用小工具，降低学习和使用成本。</li>
+<li><strong>一站式解决方案</strong>：一个界面解决多种需求，简化工作流程。</li>
+<li><strong>跨平台支持</strong>：通过 web 端访问，支持多种操作系统和浏览器环境。</li>
+<li><strong>开源且持续更新</strong>：社区活跃，功能不断扩展和优化。</li>
+</ul>
+<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><p><strong>it-tools</strong> 作为一个基于 Web 的前端工具箱，提供了多种部署方式：</p>
+<h3 id="在线使用"><a href="#在线使用" class="headerlink" title="在线使用"></a>在线使用</h3><p>最简单的部署方式是直接在线使用，无需本地部署。访问 <a target="_blank" rel="noopener" href="https://it-tools.tech/">https://it-tools.tech/</a> 即可立即开始使用所有功能，所有操作都在浏览器中完成。如果访问的语言不正确，可以在右上角切换。</p>
+<h3 id="Docker-部署"><a href="#Docker-部署" class="headerlink" title="Docker 部署"></a>Docker 部署</h3><h4 id="使用-docker-命令"><a href="#使用-docker-命令" class="headerlink" title="使用 docker 命令"></a>使用 docker 命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name it-tools \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">corentinth/it-tools:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-docker-compose"><a href="#使用-docker-compose" class="headerlink" title="使用 docker-compose"></a>使用 docker-compose</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.3&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">it-tools:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">corentinth/it-tools:latest</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="本地编译部署"><a href="#本地编译部署" class="headerlink" title="本地编译部署"></a>本地编译部署</h3><p>如果你想将 <strong>it-tools</strong> 部署到线上服务器供团队使用，可以按照以下步骤进行：</p>
+<ol>
+<li><strong>构建项目</strong></li>
+</ol>
+<p>  首先生成项目的静态文件：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CorentinTh/it-tools.git</span><br><span class="line"><span class="built_in">cd</span> it-tools</span><br><span class="line">pnpm install</span><br><span class="line"><span class="comment"># 运行开发环境</span></span><br><span class="line">pnpm dev</span><br><span class="line"><span class="comment"># 编译上线环境</span></span><br><span class="line">pnpm build</span><br></pre></td></tr></table></figure>
+<p>  如果你想开发自己的工具，还可以运行：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm run script:create:tool my-tool-name</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>部署到服务器</strong></li>
+</ol>
+<p>  将生成的 dist 文件夹中的静态文件上传到你的 Web 服务器（如 Nginx、Apache 等）。</p>
+<ol start="3">
+<li><strong>配置服务器</strong></li>
+</ol>
+<p>  在你的服务器配置文件中，将根目录指向 /opt/dist 文件夹。以 Nginx 为例：</p>
+  <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span><span class="string">;</span></span><br><span class="line">    <span class="string">server_name</span> <span class="string">你的域名;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">location</span> <span class="string">/</span> &#123;</span><br><span class="line">        <span class="string">root</span> <span class="string">/opt/dist;</span></span><br><span class="line">        <span class="string">index</span> <span class="string">index.html;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  保存配置并重启服务器，即可通过域名访问。</p>
+<h2 id="工具详细介绍"><a href="#工具详细介绍" class="headerlink" title="工具详细介绍"></a>工具详细介绍</h2><p><strong>it-tools</strong> 涵盖了多个实用的前端工具，主要包括以下类别：</p>
+<ol>
+<li><strong>Crypto 加密工具类</strong>：Token生成、Hash函数、UUID生成和文本加解密等功能。</li>
+<li><strong>Converter 转换工具类</strong>：日期时间、数据格式（JSON、XML等）和颜色代码转换等工具。</li>
+<li><strong>Web 工具类</strong>：URL编码/解码、HTML实体转义、HTTP状态码查询等Web开发相关工具。</li>
+<li><strong>Images and videos 图片视频工具类</strong>：二维码生成、SVG占位符生成等功能。</li>
+<li><strong>Development 开发工具类</strong>：代码格式化、端口生成等工具，帮助开发者简化日常任务。</li>
+<li><strong>Network 网络工具类</strong>：IPv4子网计算器、MAC地址生成器等网络相关工具。</li>
+<li><strong>Math 数学工具类</strong>：数学表达式计算、百分比计算等常用数学工具。</li>
+<li><strong>Measurement 测量工具类</strong>：温度转换等测量单位转换工具。</li>
+<li><strong>Text 文本工具类</strong>：文本统计、字符串混淆器等文本处理工具。</li>
+<li><strong>Data 数据工具类</strong>：JSON转CSV、数据格式验证等数据处理工具。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>it-tools</strong> 已经提供了广泛的工具集合，帮助开发者在加密、格式转换、网络、开发辅助等领域提高工作效率。通过进一步扩展和细化每个工具的功能，可以增强其适用性和灵活性，满足更多复杂开发场景下的需求。这些扩展内容有助于让 <strong>it-tools</strong> 成为前端开发中更强大且实用的工具箱。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/Hexo%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -725,210 +1100,6 @@
 <li>hexo主题配置文件（\themes\next_config.yml），修改local_search的enable为true：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https://github.com/theme-next/hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/29/Navicat-Premium-16-%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/29/Navicat-Premium-16-%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Navicat Premium 16 永久激活工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-01-29 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-29T00:00:00+08:00">2023-01-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
-<li>打开破解工具</li>
-<li>选择 Navicat 安装目录，勾选 HOSTS 和 RSA key，点击 <strong>Patch</strong></li>
-<li>打开 Navicat Premium 输入许可证，点击 <strong>激活</strong> 按钮</li>
-</ol>
-<p> <img src="/images/pasted-52.png" alt="upload successful"></p>
-<ol start="4">
-<li>等待弹出服务器不可用窗口，点击 <strong>手动激活</strong> 按钮</li>
-</ol>
-<p> <img src="/images/pasted-53.png" alt="upload successful"></p>
-<ol start="5">
-<li><p>将 <strong>请求码</strong> 复制到激活工具中的 <strong>Request Code</strong> 输入框中</p>
-</li>
-<li><p>点击 <strong>Generate Activation Code!</strong> 按钮，生成激活码</p>
-</li>
-<li><p>生成好的 <strong>激活码</strong> 复制到 <strong>Navicat Premium</strong> 中，点击激活按钮</p>
-</li>
-</ol>
-<p> <img src="/images/pasted-54.png" alt="upload successful"></p>
-<p> <img src="/images/pasted-56.png" alt="upload successful"></p>
-<ol start="8">
-<li>预览一下破解结果</li>
-</ol>
-<p><img src="/images/pasted-55.png" alt="upload successful"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a target="_blank" rel="noopener" href="https://www.aliyundrive.com/">阿里云盘</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">使用 ffmpeg 下载 m3u8 视频</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-05 16:29:36" itemprop="dateCreated datePublished" datetime="2022-10-05T16:29:36+08:00">2022-10-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>下载视频，并将m3u8格式转为mp4格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 playlist.mp4</span><br><span class="line">或者</span><br><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy playlist.mp4</span><br></pre></td></tr></table></figure>
-
-<p>下载中。。。由于视频很大，下载需要很长长长时间(1个G的视频可能需下载几小时…)。<br> 可以通过如下指令进行下载提速（下载速度大约能提升到几到十几分钟，很棒了哦，起码比百度云快）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy -bsf:a aac_adtstoasc playlist_1.mp4</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">ffmpeg 合并视频</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-03 22:49:47" itemprop="dateCreated datePublished" datetime="2022-10-03T22:49:47+08:00">2022-10-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -i filelist.txt -c copy -y FBF73ED7.mp4</span><br></pre></td></tr></table></figure>
-
-<p>filelist.txt</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">file &#x27;FBF73ED7.p701.1.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.2.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.3.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.4.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.5.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.6.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.7.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.8.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.9.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.10.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.11.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.12.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.13.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.14.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.15.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.16.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.17.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.18.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.19.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.20.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.21.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.22.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.23.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.24.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.25.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.26.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.27.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.28.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.29.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.30.mp4&#x27;</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -1014,7 +1185,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

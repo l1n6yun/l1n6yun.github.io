@@ -181,6 +181,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/" class="post-title-link" itemprop="url">win10下右键菜单添加“打开cmd”</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-08 12:31:00" itemprop="dateCreated datePublished" datetime="2019-08-08T12:31:00+08:00">2019-08-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近使用cmd比较多，就想在某个文件夹下右键打开cmd，这样不用每次都在默认情况下切换目录。无奈win10 1703版本下shift+右键不能打开cmd，只能打开powershell。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/" class="post-title-link" itemprop="url">清除浮动的方法有哪些</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-08-04 15:19:43" itemprop="dateCreated datePublished" datetime="2019-08-04T15:19:43+08:00">2019-08-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在我们写代码的时候，有时因为使用了float浮动元素而导致页面中某些元素不能正确的显示，接下来在文章中将为大家详细介绍几种清除浮动的方法，具有一定的参考价值，希望对大家有所帮助。</p>
+<h2 id="浮动导致的后果"><a href="#浮动导致的后果" class="headerlink" title="浮动导致的后果"></a>浮动导致的后果</h2><ol>
+<li>由于浮动元素脱离了文档流，所以父元素的高度无法被撑开，影响了与父元素同级的元素</li>
+<li>与浮动元素同级的非浮动元素会跟随其后，因为浮动元素脱离文档流不占据原来的位置</li>
+<li>如果该浮动元素不是第一个浮动元素，则该元素之前的元素也需要浮动，否则容易影响页面的结构显示</li>
+</ol>
+<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><ol>
+<li>使用 <code>clear:both</code> 清除浮动</li>
+</ol>
+<p>在代码中在放一个空的div标签，然后给这个标签设置 <code>clear:both</code> 来清除浮动对页面的影响。它的优点是简单，方便兼容性好，但是一般情况下不建议使用该方法，因为会造成结构混乱，不利于后期维护</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear: both&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>利用伪元素 <code>clearfix</code> 来清除浮动</li>
+</ol>
+<p>给父级元素添加了一个 <code>:after</code> 伪元素，通过清除伪元素的浮动，达到撑起父元素高度的目的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:after&#123;</span><br><span class="line">    content:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>overflow</code> 方法的使用</li>
+</ol>
+<p>当给父元素设置了 <code>overflow</code> 样式，不管是 <code>overflow:hidden</code> 或 <code>overflow:auto</code> 都可以清除浮动只要它的值不为 <code>visible</code> 就可以了，它的本质就是建构了一个BFC，这样使得达到撑起父元素高度的效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: auto</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>双伪元素方法的使用</li>
+</ol>
+<p>通过给父元素设置双伪元素来达到清除浮动的效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>:before,.clearfix:after &#123;</span><br><span class="line">    content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：以上就是本篇文章的全部内容了，希望通过这篇文章能够让大家对清除浮动的方法有所了解</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/06/21/Code-Guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/21/Code-Guide/" class="post-title-link" itemprop="url">Code Guide</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-21 13:31:02" itemprop="dateCreated datePublished" datetime="2019-06-21T13:31:02+08:00">2019-06-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>编写一致、灵活和可持续的 HTML 和 CSS 代码的规范。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/21/Code-Guide/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/22/MAC%E4%B8%8B%E5%AE%89%E8%A3%85sqlmap%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,199 +848,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/" class="post-title-link" itemprop="url">phpstorm连接mysql出错</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-04-11 14:47:00" itemprop="dateCreated datePublished" datetime="2018-04-11T14:47:00+08:00">2018-04-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>错误代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">java.lang.RuntimeException: com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value &#x27;ÖÐ¹ú±ê×¼Ê±¼ä&#x27; is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.</span><br><span class="line">  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)</span><br><span class="line">  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)</span><br><span class="line">  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)</span><br><span class="line">  at java.lang.reflect.Constructor.newInstance(Constructor.java:423)</span><br><span class="line">  at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)</span><br><span class="line">  at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)</span><br><span class="line">  at com.mysql.cj.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:132)</span><br><span class="line">  at com.mysql.cj.protocol.a.NativeProtocol.configureTimezone(NativeProtocol.java:2241)</span><br><span class="line">  at com.mysql.cj.protocol.a.NativeProtocol.initServerSession(NativeProtocol.java:2265)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:1319)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:868)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:830)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.&amp;lt;init&amp;gt;(ConnectionImpl.java:455)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)</span><br><span class="line">  at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)</span><br><span class="line">  at com.intellij.database.remote.jdbc.impl.RemoteDriverImpl.connect(RemoteDriverImpl.java:41)</span><br><span class="line">  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">  at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">  at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:357)</span><br><span class="line">  at sun.rmi.transport.Transport$1.run(Transport.java:200)</span><br><span class="line">  at sun.rmi.transport.Transport$1.run(Transport.java:197)</span><br><span class="line">  at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">  at sun.rmi.transport.Transport.serviceCall(Transport.java:196)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:573)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:834)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:688)</span><br><span class="line">  at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:687)</span><br><span class="line">  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)</span><br><span class="line">  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)</span><br><span class="line">  at java.lang.Thread.run(Thread.java:748) (no stack trace).</span><br><span class="line">com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value &#x27;ÖÐ¹ú±ê×¼Ê±¼ä&#x27; is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.</span><br></pre></td></tr></table></figure>
-
-<p>解决方法</p>
-<p>在 <code>advanced</code> 选项中找到 <code>serverTimezone</code> 设置为 <code>UTC</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/" class="post-title-link" itemprop="url">PHP Curl Class: HTTP requests made easy</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-16 12:47:18" itemprop="dateCreated datePublished" datetime="2018-03-16T12:47:18+08:00">2018-03-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https://www.phpcurlclass.com/</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/" class="post-title-link" itemprop="url">设置获取cookie，setCookie，getCookie</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-15 21:34:14" itemprop="dateCreated datePublished" datetime="2018-03-15T21:34:14+08:00">2018-03-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name,value</span>) </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">var</span> Days = <span class="number">30</span>; </span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>(); </span><br><span class="line">    exp.setTime(exp.getTime() + Days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>); </span><br><span class="line">    <span class="built_in">document</span>.cookie = name + <span class="string">&quot;=&quot;</span>+ <span class="built_in">escape</span> (value) + <span class="string">&quot;;expires=&quot;</span> + exp.toGMTString(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取cookie</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>) </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">var</span> arr,reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;(^| )&quot;</span>+name+<span class="string">&quot;=([^;]*)(;|$)&quot;</span>); </span><br><span class="line">　　 <span class="keyword">return</span> (arr=<span class="built_in">document</span>.cookie.match(reg))?<span class="built_in">unescape</span>(arr[<span class="number">2</span>]):<span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除cookie（将cookie设置过期即可）"><a href="#删除cookie（将cookie设置过期即可）" class="headerlink" title="删除cookie（将cookie设置过期即可）"></a>删除cookie（将cookie设置过期即可）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name</span>) </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>(); </span><br><span class="line">    exp.setTime(exp.getTime() - <span class="number">1</span>); </span><br><span class="line">    <span class="keyword">var</span> cval=getCookie(name); </span><br><span class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>) </span><br><span class="line">        <span class="built_in">document</span>.cookie= name + <span class="string">&quot;=&quot;</span>+cval+<span class="string">&quot;;expires=&quot;</span>+exp.toGMTString(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>escape(string) 函数可对字符串进行编码，这样就可以在所有的计算机上读取该字符串。<br>unescape(string) 函数可对通过 escape() 编码的字符串进行解码。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -894,7 +919,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
