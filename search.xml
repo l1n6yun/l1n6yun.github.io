@@ -1106,6 +1106,19 @@
     
     
     <entry>
+      <title>Low Orbit Ion Cannon (LOIC)：网络攻击工具解析</title>
+      <link href="/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/"/>
+      <url>/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<p>在网络世界中，安全与攻击技术总是并存的。今天，我们将深入探讨一个名为Low Orbit Ion Cannon（LOIC）的网络攻击工具，它是一种开源的压力测试和拒绝服务（DoS或DDoS）攻击应用程序，用C#编写。本文将详细介绍LOIC的起源、功能、使用方法以及相关的法律风险。</p><h2 id="LOIC简介"><a href="#LOIC简介" class="headerlink" title="LOIC简介"></a>LOIC简介</h2><p>LOIC 最初由 Praetox Technologies 开发，并后来被发布到公共领域。其源代码现在可以自由获取，并且可以在多个开源平台上下载。LOIC能够执行基本的TCP、UDP或HTTP DoS攻击，当多个用户联合使用时，可以形成DDoS攻击。它的流行部分原因是因为有一个版本与Anonymous组织有关，通过IRC控制通道，允许人们加入自愿的僵尸网络并攻击单一目标。</p><p><img src="/images/pasted-73.png" alt="upload successful"></p><h2 id="LOIC的工作原理与使用"><a href="#LOIC的工作原理与使用" class="headerlink" title="LOIC的工作原理与使用"></a>LOIC的工作原理与使用</h2><p>LOIC 的操作相对简单。用户只需填写目标系统的URL或IP地址，选择攻击方法和端口，然后点击“IMMA CHARGIN MAH LAZER”按钮即可。以下是详细的使用步骤：</p><ol><li>运行工具。</li><li>在相关字段中输入网站的URL或IP，并点击“Lock On”。</li><li>如果你是高级用户，可以更改参数；否则，保持默认设置。</li><li>点击标有“IMMA CHARGIN MAH LAZER”的大按钮。</li><li>攻击开始，你可以在工具中看到攻击状态（例如发送的数据包数量）。</li></ol><h2 id="LOIC是否为病毒？"><a href="#LOIC是否为病毒？" class="headerlink" title="LOIC是否为病毒？"></a>LOIC是否为病毒？</h2><p>虽然LOIC不是病毒，但许多杀毒软件会将其检测为病毒（类似于trojan.agent/gen-msil flooder），因为它通常被用于恶意目的，并且许多用户在不知情的情况下安装了它。</p><h2 id="LOIC的法律风险"><a href="#LOIC的法律风险" class="headerlink" title="LOIC的法律风险"></a>LOIC的法律风险</h2><p>使用LOIC进行DoS或DDoS攻击在大多数国家是非法的。因此，我们强烈建议仅在你有权限访问的网络或进行压力测试时使用此工具，以展示DoS攻击的力量。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>clipboard.js 一键复制到剪切板</title>
       <link href="/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/"/>
       <url>/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/</url>
