@@ -181,6 +181,459 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/04/aircrack-ng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/04/aircrack-ng/" class="post-title-link" itemprop="url">Aircrack-ng 爆破 wifi 密码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-04T00:00:00+08:00">2020-06-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Aircrack-ng是一个基于WiFi无线网络分析有关的安全软件，主要功能有网络侦测、数据包嗅探、WEP和WPA/WPA2-PSK破解等。<br>因为安全性的原因。现在，周围很少有用WEP算法来加密的WiFi密码，不过基本命令都很相似。</p>
+<p>WiFi网络构成</p>
+<ol>
+<li>WiFi是一个建立于IEEE 802.11标准的无线局域网络（WLAN）设备。</li>
+<li>WiFi工作原理AP(Access Point 例如：无线路由器)每100ms将SSID（Service Set Identifier）经由beacons（信号台）封包广播一次。</li>
+</ol>
+<h4 id="查看网卡信息"><a href="#查看网卡信息" class="headerlink" title="查看网卡信息"></a>查看网卡信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-57.png" alt="upload successful"></p>
+<h4 id="启动监听模式"><a href="#启动监听模式" class="headerlink" title="启动监听模式"></a>启动监听模式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-58.png" alt="upload successful"></p>
+<h4 id="准备抓取握手包"><a href="#准备抓取握手包" class="headerlink" title="准备抓取握手包"></a>准备抓取握手包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c 6 -bssid 64:6E:97:DA:39:5C -w thomas wlan0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-c：信道号</li>
+<li>–bssid：apMAC</li>
+<li>-w：保存的文件名</li>
+</ul>
+<p><img src="/images/pasted-59.png" alt="upload successful"></p>
+<p>扫描到的WiFi热点信息</p>
+<ul>
+<li>BSSID：WiFi路由器的MAC地址</li>
+<li>PWR：网卡报告信号水平，信号值越高说明离AP越近。（PWR=-1，网卡驱动不支持报告此项信息）</li>
+<li>Beacons：无线AP发出的通告编号</li>
+<li>#Data：被捕获到的数据分组的数量（一般数据量越大，抓取握手包更容易）</li>
+<li>#/s：过去10秒钟内每秒捕获数据分组的数量</li>
+<li>CH：信道号（从Beacon中获取）</li>
+<li>MB：无线AP所支持的最大速率</li>
+<li>ENC：加密算法体系</li>
+<li>CIPHER：加密算法</li>
+<li>AUTH：使用的认证协议</li>
+<li>ESSID：wifi名称</li>
+</ul>
+<p>使已连接WiFi的用户A强制下线，之后A会向WiFi路由重新发送一个带密码的请求握手包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 2 -a 64:6E:97:DA:39:5C -c C2:46:34:ED:48:4C wlan0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-0：攻击数据包数量</li>
+<li>-a：WiFi MAC 地址</li>
+<li>-c：用户 MAC 地址</li>
+</ul>
+<p><img src="/images/pasted-60.png" alt="upload successful"></p>
+<p>出现 <code>WAP handshake</code> 表示已经获取到了握手包，下面就可以实现破解了</p>
+<p><img src="/images/pasted-61.png" alt="upload successful"></p>
+<h4 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng -w pass.txt thomas-01.cap</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-w：字典文件路径</li>
+</ul>
+<p><img src="/images/pasted-62.png" alt="upload successful"></p>
+<h4 id="hashcat"><a href="#hashcat" class="headerlink" title="hashcat"></a>hashcat</h4><p>关于密码破解，可以使用kali自带的hashcat使效率大大增加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng [抓取到的握手包文件名] -J [转换后的文件名]</span><br><span class="line">hashcat -m 2500 .hccap password.txt</span><br></pre></td></tr></table></figure>
+<p>参数： -m 2500为破解的模式为WPA/PSK方式  hccap格式的文件是刚刚转化好的文件  字典文件 </p>
+<p>注：最新版hashcat一般情况下不支持hccap格式，第一步需将握手包cap格式转换为hccapx</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">小程序之模型实现 </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-18 00:33:00" itemprop="dateCreated datePublished" datetime="2020-01-18T00:33:00+08:00">2020-01-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>model层就不用多说了，主要是把数据处理部分独立出来，便于统一服务和维护，这里重点强调下model内部的实现细节，这里有一个实现技巧可以用在其它别的地方。下面直接上代码部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一的接口地址，一般一个controller下面多个action是一致的</span></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化请求参数，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params </span>params 键值对对象,形如&#123;&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;*&#125;</span> </span>格式化后的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatParams = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化返回结果，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params </span>data 对象 数组等任何合法的JS数据类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;*&#125;</span> </span>格式化后的数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatResult = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 读取可用游戏业务列表</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@params </span>params 参数,本接口用不到</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return <span class="type">&#123;*&#125;</span> </span>返回 Promise 对象</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="title">getList</span>(<span class="params">params</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果接口地址不一致，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的参数处理逻辑，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatParams = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的格式处理，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatResult = <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果需要自己先判断缓存或者别的处理，这里手动使用Promise封装一下即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> goods_list = cache.get(<span class="string">&quot;goods_list&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">null</span> == goods_list) &#123;</span><br><span class="line">        resolve(goods_list)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ajax.get(&#123;</span><br><span class="line">          <span class="attr">url</span>: url,</span><br><span class="line">          <span class="attr">data</span>: formatParams(params),</span><br><span class="line">          <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> data = formatResult(res.data)</span><br><span class="line">          cache.set(<span class="string">&quot;goods_list&quot;</span>, data, <span class="number">86400</span>)</span><br><span class="line">          resolve(data);</span><br><span class="line">        &#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> goods <span class="keyword">from</span> <span class="string">&#x27;../../models/goods.js&#x27;</span></span><br><span class="line"></span><br><span class="line">goods.getList().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;成功&quot;</span>, res)</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;失败&quot;</span>, error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>把参数处理和返回结果处理拆出来放到单独的处理方法里，方法名称保持统一： <code>formatParams</code> ， <code>formatResult</code> </li>
+<li>同时最外层定义好默认的 <code>formatParams</code> ， <code>formatResult</code> ，如果不做特殊处理，直接使用默认即可（建议不处理也调用下默认方法，规范流程）</li>
+<li>还有一点，model里方法命令有统一规范都是已 <code>get</code> ， <code>add</code> ， <code>update</code> ， <code>del</code> 开头</li>
+</ol>
+<p>这个思路其实可以运用到任何场景，特别是在没有任何限定框架的场景，我们只需要按照这个模式去实现，代码一样很清晰漂亮。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/" class="post-title-link" itemprop="url">小程序之缓存类 </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-17 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-17T00:33:03+08:00">2020-01-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>其实，小程序自带了缓存接口，有同步 <code>wx.setStorageSync</code> ，异步 <code>wx.setStorage</code> 的方法，但是实际在使用缓存的场景里，我们一般都是需要设置缓存有效时间的，本cache工具就是对小程序缓存接口的封装，实现了对缓存有效期的支持。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.setStorageSync(<span class="string">&quot;JDC_TEST&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">      wx.removeStorageSync(<span class="string">&quot;JDC_TEST&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      wx.showModal(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&quot;提示&quot;</span>,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&quot;小程序缓存出现问题,请稍后使用&quot;</span>,</span><br><span class="line">        <span class="attr">showCancel</span>: !<span class="number">1</span>,</span><br><span class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(e.confirm)&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">&quot;用户点击确定&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">set</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name, value, expire</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expire == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      expire = expire * <span class="number">1e3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      expire = <span class="number">2592e5</span></span><br><span class="line">    &#125;</span><br><span class="line">    wx.removeStorageSync(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.setStorageSync(name, &#123;</span><br><span class="line">        <span class="attr">_value</span>: value,</span><br><span class="line">        <span class="attr">_time</span>: time,</span><br><span class="line">        <span class="attr">_age</span>: time + expire</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="built_in">this</span>._isExpire(name);</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data._value</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">del</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.removeStorageSync(name);</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">_isExpire</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data = wx.getStorageSync(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">if</span> (data &amp;&amp; time &lt; data._age) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"></span><br><span class="line">cache.set(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;value&quot;</span>,<span class="number">7200</span>);</span><br><span class="line">cache.get(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">cache.del(<span class="string">&quot;key&quot;</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-16 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-16T00:33:03+08:00">2020-01-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
+<ul>
+<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
+<li>直判断返回值在逻辑上是成功还是失败</li>
+<li>针对返回未登录的情况，自动跳转登录流程</li>
+</ul>
+<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">HOST</span>: host,</span><br><span class="line">  <span class="attr">API_ROOT</span>: host + <span class="string">&#x27;/api/&#x27;</span>,</span><br><span class="line">  <span class="attr">API_VERSION</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="function"><span class="title">get</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;GET&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">post</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;POST&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">delete</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;DELETE&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">put</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    options.method = <span class="string">&#x27;PUT&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.request(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="title">request</span>(<span class="params">options</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="built_in">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="built_in">this</span>.API_ROOT;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.getStorageSync(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.login == <span class="string">&#x27;undefined&#x27;</span> || options.login == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.loading != <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; options.loading == <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">      showLoading = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&quot;加载中&quot;</span>,</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;loading&quot;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        <span class="attr">url</span>: apiRoot + options.url,</span><br><span class="line">        <span class="attr">data</span>: options.data,</span><br><span class="line">        <span class="attr">method</span>: options.method ? options.method : <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Token&#x27;</span>: token,</span><br><span class="line">          <span class="string">&#x27;XX-Device-Type&#x27;</span>: <span class="string">&#x27;wxapp&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Api-Version&#x27;</span>: that.API_VERSION</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          <span class="keyword">if</span> (res.data.code == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = getCurrentPages();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.pop()[<span class="string">&#x27;__route__&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">&#x27;pages/login/login&#x27;</span>) &#123;</span><br><span class="line">              wx.navigateTo(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.hideToast()</span><br><span class="line">          reject(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line">ajax.get(&#123;</span><br><span class="line">  <span class="attr">url</span>: url,</span><br><span class="line">  <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">GIT分支模型的策略与发布</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-13 13:50:00" itemprop="dateCreated datePublished" datetime="2020-01-13T13:50:00+08:00">2020-01-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文用于介绍 GIT分支模型的策略与发布。</p>
+<p><img src="https://nvie.com/img/git-model@2x.png" alt="img"></p>
+<p>在git分支模型中我们一般会用到如下四种分支:</p>
+<ul>
+<li><strong>主分支</strong></li>
+<li><strong>特性分支</strong></li>
+<li><strong>release分支</strong></li>
+<li><strong>hotFix分支</strong></li>
+</ul>
+<p>分别使用4个种类的分支来进行开发的。</p>
+<h2 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h2><p><img src="https://nvie.com/img/main-branches@2x.png" alt="img"></p>
+<p>主分支有两种：master分支和develop分支</p>
+<ul>
+<li><strong>master</strong><br>master分支只负责管理发布的状态。在提交时使用标签记录发布版本号。</li>
+<li><strong>develop</strong><br>develop分支是针对发布的日常开发分支。刚才我们已经讲解过有合并分支的功用。</li>
+</ul>
+<h2 id="特性分支"><a href="#特性分支" class="headerlink" title="特性分支"></a>特性分支</h2><p>特性分支就是我们在前面讲解过的topic分支的功用。</p>
+<p>这个分支是针对新功能的开发，在bug修正的时候从develop分支分叉出来的。基本上不需要共享特性分支的操作，所以不需要远端控制。完成开发后，把分支合并回develop分支后发布。</p>
+<p><img src="https://nvie.com/img/fb@2x.png" alt="img"></p>
+<h2 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h2><p>release分支是为release做准备的。通常会在分支名称的最前面加上release-。release前需要在这个分支进行最后的调整，而且为了下一版release开发用develop分支的上游分支。</p>
+<p>一般的开发是在develop分支上进行的，到了可以发布的状态时再创建release分支，为release做最后的bug修正。</p>
+<p>到了可以release的状态时，把release分支合并到master分支，并且在合并提交里添加release版本号的标签。</p>
+<p>要导入在release分支所作的修改，也要合并回develop分支。</p>
+<h2 id="hotFix分支"><a href="#hotFix分支" class="headerlink" title="hotFix分支"></a>hotFix分支</h2><p>hotFix分支是在发布的产品需要紧急修正时，从master分支创建的分支。通常会在分支名称的最前面加上 <code>hotfix-</code>。</p>
+<p>例如，在develop分支上的开发还不完整时，需要紧急修改。这个时候在develop分支创建可以发布的版本要花许多的时间，所以最好选择从master分支直接创建分支进行修改，然后合并分支。</p>
+<p>修改时创建的hotFix分支要合并回develop分支。</p>
+<p><img src="https://nvie.com/img/hotfix-branches@2x.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/08/file-cache-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/08/file-cache-class/" class="post-title-link" itemprop="url">file cache class of php</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-08 18:00:31" itemprop="dateCreated datePublished" datetime="2020-01-08T18:00:31+08:00">2020-01-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Class Cache</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cache</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string 缓存目录</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="variable">$cache_path</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name 缓存变量名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $value 存储数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $expire 有效时间（秒）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setCache</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$value</span>, <span class="variable">$expire</span> = <span class="literal">null</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (is_null(<span class="variable">$expire</span>)) &#123;</span><br><span class="line">            <span class="variable">$expire</span> = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$file</span> = <span class="built_in">self</span>::_getCacheName(<span class="variable">$name</span>);</span><br><span class="line">        <span class="variable">$data</span> = serialize(<span class="variable">$value</span>);</span><br><span class="line">        <span class="variable">$data</span> = <span class="string">&quot;&lt;?php\n//&quot;</span> . sprintf(<span class="string">&#x27;%012d&#x27;</span>, <span class="variable">$expire</span>) . <span class="string">&quot;\n exit();?&gt;\n&quot;</span> . <span class="variable">$data</span>;</span><br><span class="line">        file_put_contents(<span class="variable">$file</span>, <span class="variable">$data</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$file</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name 缓存变量名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mixed $default 默认值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getCache</span>(<span class="params"><span class="variable">$name</span>,<span class="variable">$default</span> = <span class="literal">false</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="built_in">self</span>::_getCacheName(<span class="variable">$name</span>);</span><br><span class="line">        <span class="keyword">if</span> (file_exists(<span class="variable">$file</span>) &amp;&amp; (<span class="variable">$content</span> = file_get_contents(<span class="variable">$file</span>))) &#123;</span><br><span class="line">            <span class="variable">$expire</span> = (<span class="keyword">int</span>)substr(<span class="variable">$content</span>, <span class="number">8</span>, <span class="number">12</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$expire</span> === <span class="number">0</span> || filemtime(<span class="variable">$file</span>) + <span class="variable">$expire</span> &gt;= time()) &#123;</span><br><span class="line">                <span class="variable">$content</span> = unserialize(substr(<span class="variable">$content</span>, <span class="number">32</span>));</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$content</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">self</span>::delCache(<span class="variable">$name</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$default</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 清楚缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> $name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">delCache</span>(<span class="params"><span class="variable">$name</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="built_in">self</span>::_getCacheName(<span class="variable">$name</span>);</span><br><span class="line">        <span class="keyword">return</span> file_exists(<span class="variable">$file</span>) ? unlink(<span class="variable">$file</span>) : <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 应用缓存目录</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">_getCacheName</span>(<span class="params"><span class="variable">$name</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="built_in">self</span>::<span class="variable">$cache_path</span>)) &#123;</span><br><span class="line">            <span class="built_in">self</span>::<span class="variable">$cache_path</span> = dirname(dirname(<span class="keyword">__DIR__</span>)) . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">self</span>::<span class="variable">$cache_path</span> = rtrim(<span class="built_in">self</span>::<span class="variable">$cache_path</span>, <span class="string">&#x27;/\\&#x27;</span>) . DIRECTORY_SEPARATOR;</span><br><span class="line">        <span class="keyword">if</span> (!file_exists(<span class="built_in">self</span>::<span class="variable">$cache_path</span>)) &#123;</span><br><span class="line">            mkdir(<span class="built_in">self</span>::<span class="variable">$cache_path</span>, <span class="number">0755</span>, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">self</span>::<span class="variable">$cache_path</span> . <span class="variable">$name</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置目录</span></span><br><span class="line">Cache::<span class="variable">$cache_path</span> = <span class="string">&quot;./cache&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置缓存</span></span><br><span class="line">Cache::setCache(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>,<span class="string">&#x27;7200&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取缓存</span></span><br><span class="line"><span class="variable">$result</span> = Cache::getCache(<span class="string">&#x27;key&#x27;</span>);</span><br><span class="line">print_r(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">Cache::delCache(<span class="string">&#x27;aaa&#x27;</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/26/KALI-Linux-1-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86-1-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,410 +1011,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/16/Kali-%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/16/Kali-%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">Kali 修改为阿里云镜像</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-16T00:00:00+08:00">2019-11-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kali Linux is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security Ltd</p>
-<p>下载地址: <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/kali/">https://mirrors.aliyun.com/kali/</a></p>
-<p>相关仓库</p>
-<ul>
-<li>Kali安装源（kali-images）：<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/kali-images">https://developer.aliyun.com/mirror/kali-images</a></li>
-</ul>
-<h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><p>修改 <code>/etc/apt/sources.list</code> , 将相关 url 改成阿里云的源。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">#deb-src https://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li>官方主页: <a target="_blank" rel="noopener" href="https://www.kali.org/">https://www.kali.org/</a></li>
-<li>文档：<a target="_blank" rel="noopener" href="https://www.kali.org/docs/">https://www.kali.org/docs/</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/12/%E5%88%A9%E7%94%A8WebHook%E5%AE%9E%E7%8E%B0PHP%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2GIT%E4%BB%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/12/%E5%88%A9%E7%94%A8WebHook%E5%AE%9E%E7%8E%B0PHP%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2GIT%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">利用WebHook实现PHP自动部署git代码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-12 10:18:00" itemprop="dateCreated datePublished" datetime="2019-11-12T10:18:00+08:00">2019-11-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li><p>生成公钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www ssh-keygen -t rsa</span><br><span class="line">sudo cat /var/www/.ssh/id_rsa.pub </span><br></pre></td></tr></table></figure></li>
-<li><p>修改GIT配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www git config --global user.name &quot;l1n6yun&quot;</span><br><span class="line">sudo -Hu www git config --global user.email &quot;l1n6yun@gmail.com&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>初始化仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www git clone git@github.com:you/project.git /www/wwwroot/project --depth=1</span><br></pre></td></tr></table></figure></li>
-<li><p>添加钩子文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$target</span> = <span class="string">&#x27;/www/wwwroot/project&#x27;</span>;</span><br><span class="line"><span class="variable">$token</span> = <span class="string">&#x27;Your hook token&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$json</span> = json_decode(file_get_contents(<span class="string">&#x27;php://input&#x27;</span>), <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$json</span>[<span class="string">&#x27;token&#x27;</span>]) || <span class="variable">$json</span>[<span class="string">&#x27;token&#x27;</span>] !== <span class="variable">$token</span>) &#123;</span><br><span class="line">	<span class="keyword">exit</span>(<span class="string">&#x27;error request&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&quot;sudo -Hu www cd <span class="subst">$target</span> &amp;&amp; git pull&quot;</span>;</span><br><span class="line">shell_exec(<span class="variable">$cmd</span>);</span><br></pre></td></tr></table></figure></li>
-<li><p>在托管平台上添加 <code>hook</code></p>
-</li>
-<li><p>测试</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;test hook&quot; --allow-empty</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<p> OK，稍微一几秒，正常的话你在代码里配置的目标目录里就会有你的项目文件了。 </p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/11/HTML-5-Desktop-Notification/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/11/HTML-5-Desktop-Notification/" class="post-title-link" itemprop="url">HTML 5 Desktop Notification</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-11 14:34:00" itemprop="dateCreated datePublished" datetime="2019-11-11T14:34:00+08:00">2019-11-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/11/HTML-5-Desktop-Notification/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">windows 10 界面优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-09-19 10:52:00" itemprop="dateCreated datePublished" datetime="2019-09-19T10:52:00+08:00">2019-09-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="字体修改软件-noMeiryoUI"><a href="#字体修改软件-noMeiryoUI" class="headerlink" title="字体修改软件 - noMeiryoUI"></a>字体修改软件 - noMeiryoUI</h2><p>noMeiryoUI 官方版是Windows 7/8/8.1/10中画面的各部分的字体设定工具。<br>何故Windows 7/8/8.1/10上标准的画面的各部分的字体的设定是不行的事，所以作成了这个。<br>软件只是对主题字体风格设置进行修改，而不是对系统字体本身的渲染、修改，所以无风险，无占用。<br>软件可以修改不同的字体，辅助 win 10 第三方主题文件应用字体。</p>
-<h2 id="字体渲染软件-MacType"><a href="#字体渲染软件-MacType" class="headerlink" title="字体渲染软件 - MacType"></a>字体渲染软件 - MacType</h2><p>MacType 是一个开源项目，能接管Windows系统的 GDI 字体渲染功能，实现比Mac系统更华丽的字体渲染效果！ MacType 支持 WinXP 、Win7 、Win8 、Win10 等操作系统。安装过程十分简单，到最后，它才会让我们在四种加载方式之间进行选择，对于一般用户来说，最好选择 MacTray 方式加载（ MacTray 也有两种方式，建议采用独立加载模式）。这种方式会在系统托盘中显示一个控制图标，方便配置。</p>
-<h2 id="开始菜单程序-StartIsBack"><a href="#开始菜单程序-StartIsBack" class="headerlink" title="开始菜单程序 - StartIsBack"></a>开始菜单程序 - StartIsBack</h2><p>StartIsBack 是一款 Win8 和 Win10 开始菜单辅助工具,可以让 Win8 和 Win10 能够使用跟 Win7 中一样的经典开始菜单，此款软件小巧且不需要繁琐的设置，在同类软件中应该是最好的，推荐大家使用。</p>
-<h2 id="个性化桌面定制工具-Rainmeter"><a href="#个性化桌面定制工具-Rainmeter" class="headerlink" title="个性化桌面定制工具 - Rainmeter"></a>个性化桌面定制工具 - Rainmeter</h2><p>Rainmeter 可以在你的桌面上显示包含内存，电池，RSS，天气等信息的可定制皮肤,许多皮肤还具有一定的功能：它们能帮你记录下你即将要做的事，把你的微博发布出去，控制媒体播放器等。它还能美化你的桌面，你可以完全按照自己的意愿去定制一款你想要皮肤，让你的桌面与众不同。 Rainmeter 是一款能够发挥你想象力和创新力的工具.</p>
-<h2 id="资源管理器调整工具-OldNewExplorer"><a href="#资源管理器调整工具-OldNewExplorer" class="headerlink" title="资源管理器调整工具 - OldNewExplorer"></a>资源管理器调整工具 - OldNewExplorer</h2><p>OldNewExplorer 是一款资源管理器调整工具，可以在系统中调整资源管理器的软件，使用这款软件用户可以隐藏“这台电脑”中的菜单，按钮或文件夹。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">编写模块化的CSS:命名空间</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-29 16:41:00" itemprop="dateCreated datePublished" datetime="2019-08-29T16:41:00+08:00">2019-08-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/" class="post-title-link" itemprop="url">编写模块化CSS：BEM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-29 16:22:46" itemprop="dateCreated datePublished" datetime="2019-08-29T16:22:46+08:00">2019-08-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1029,7 +1082,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1092,7 +1145,7 @@
 <div class="copyright">
   
   &copy; 2015 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
