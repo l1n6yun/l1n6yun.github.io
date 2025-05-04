@@ -1,8 +1,5 @@
 title: 一键批量ping任意ip段的存活主机
-tags:
-  - BAT
-  - IP段
-  - 扫描
+tags: []
 categories: []
 date: 2017-04-11 22:45:00
 ---

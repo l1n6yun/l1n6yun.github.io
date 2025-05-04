@@ -1,7 +1,6 @@
 title: Promise 对象
 author: l1n6yun
-tags:
-  - Promise
+tags: []
 categories: []
 date: 2022-01-28 00:23:00
 ---

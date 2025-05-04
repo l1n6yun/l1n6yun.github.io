@@ -1,7 +1,6 @@
 title: phpstorm连接mysql出错
 categories: []
-tags:
-  - phpstorm
+tags: []
 date: 2018-04-11 14:47:00
 ---
 

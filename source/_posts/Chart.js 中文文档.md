@@ -1,8 +1,5 @@
 title: Chart.js 中文文档
-tags:
-  - Chart.js
-  - javascript
-  - JS插件
+tags: []
 date: 2016-11-22 10:14:35
 categories:
 ---

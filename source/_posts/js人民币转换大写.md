@@ -1,7 +1,6 @@
 title: js人民币转换大写
 author: l1n6yun
-tags:
-  - js
+tags: []
 categories: []
 date: 2016-12-23 00:00:00
 ---

@@ -1,9 +1,6 @@
 title: 使用 Snipaste 提高您的工作效率
 author: l1n6yun
-tags: 
- - 效率工具
- - 截图软件
- - 办公软件推荐
+tags: []
 categories: []
 date: 2022-02-09 23:25:00
 ---

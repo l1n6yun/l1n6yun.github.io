@@ -1,7 +1,7 @@
 title: 如何搭建自己的 composer 包
 author: l1n6yun
 date: 2022-03-14 20:14:38
-tags:
+tags: []
 ---
 > composer 是 PHP 的依赖管理工具，本篇文章就来说明如何构建一个包，并提交到 Packagist ，这样别人就可以方便地通过 composer 使用你的包了。
 

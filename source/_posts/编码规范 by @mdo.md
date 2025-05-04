@@ -1,8 +1,5 @@
 title: 编码规范 by @mdo
-tags:
-  - HTML
-  - CSS
-  - codeguide
+tags: []
 date: 2016-11-04 14:20:01
 categories:
 ---

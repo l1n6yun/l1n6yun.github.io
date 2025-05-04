@@ -1,7 +1,6 @@
 title: Async-Await
 author: l1n6yun
-tags:
-  - Promise
+tags: []
 categories: []
 date: 2022-02-08 00:22:00
 ---

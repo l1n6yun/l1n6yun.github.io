@@ -1,6 +1,6 @@
 title: Standard Markdown
 date: 2016-10-21 13:02:00
-tags:
+tags: []
 ---
 # Standard Markdown
 

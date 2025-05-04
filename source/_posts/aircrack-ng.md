@@ -1,8 +1,6 @@
 title: Aircrack-ng 爆破 wifi 密码
 author: l1n6yun
-tags:
-  - kali
-  - wifi
+tags: []
 categories: []
 date: 2020-06-04 00:00:00
 ---

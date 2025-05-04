@@ -1,7 +1,6 @@
 title: hexo-admin插件在windows系统插入图片地址错误
 author: l1n6yun
-tags:
-  - Hexo
+tags: []
 categories: []
 date: 2022-01-25 23:14:00
 ---

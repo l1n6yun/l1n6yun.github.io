@@ -1,9 +1,5 @@
 title: windows7登陆界面背景修改
-tags: 
- - windows7
- - 注册表
- - 登录界面
- - 界面优化
+tags: []
 categories: []
 date: 2016-11-25 10:53:00
 ---

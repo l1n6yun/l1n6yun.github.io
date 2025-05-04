@@ -1,8 +1,6 @@
 title: 用 PHP 进行 HTTP 认证的几种认证方式
 author: l1n6yun
-tags:
-  - PHP
-  - AUTH
+tags: []
 categories: []
 date: 2020-10-14 22:24:00
 ---

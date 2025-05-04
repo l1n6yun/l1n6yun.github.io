@@ -1,7 +1,5 @@
 title: 利用WebHook实现PHP自动部署git代码
-tags:
-  - git
-  - WebHook
+tags: []
 categories: []
 date: 2019-11-12 10:18:00
 ---

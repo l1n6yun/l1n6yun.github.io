@@ -1,8 +1,5 @@
 title: WebSocket协议
-tags:
-  - PHP
-  - WebSocket
-  - Server
+tags: []
 date: 2017-07-04 15:48:33
 categories:
 ---

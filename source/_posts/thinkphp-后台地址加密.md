@@ -1,6 +1,5 @@
 title: thinkphp 后台地址加密
-tags:
-  - thinkphp
+tags: []
 date: 2019-11-20 10:25:59
 categories:
 ---

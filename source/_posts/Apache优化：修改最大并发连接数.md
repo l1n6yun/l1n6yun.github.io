@@ -1,7 +1,6 @@
 title: Apache优化：修改最大并发连接数
 author: l1n6yun
-tags:
-  - Apache
+tags: []
 categories: []
 date: 2017-12-19 16:24:00
 ---

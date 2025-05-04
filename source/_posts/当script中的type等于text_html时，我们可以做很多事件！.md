@@ -1,6 +1,5 @@
 title: 当script中的type等于text/html时，我们可以做很多事件！
-tags:
-  - javascript
+tags: []
 date: 2017-07-15 19:47:30
 categories:
 ---

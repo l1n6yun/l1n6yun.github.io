@@ -1,7 +1,5 @@
 title: clipboard.js 一键复制到剪切板
-tags:
-  - js
-  - copy
+tags: []
 date: 2017-08-29 10:58:20
 categories:
 

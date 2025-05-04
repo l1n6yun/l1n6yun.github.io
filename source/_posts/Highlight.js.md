@@ -1,7 +1,7 @@
 title: Highlight.js
 date: 2017-05-27 20:10:09
 categories:
-tags:
+tags: []
 ---
 # Highlight.js
 

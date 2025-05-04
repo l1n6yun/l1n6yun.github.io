@@ -1,11 +1,6 @@
 title: php-cs-fixer
 author: l1n6yun
-tags: 
- - PHP CS Fixer
- - 开发工具
- - 代码规范
- - Composer
- - 命令行工具
+tags: []
 categories: []
 date: 2022-09-28 23:52:41
 ---

@@ -1,7 +1,6 @@
 title: Vue - 创建项目
 author: l1n6yun
-tags:
-  - Vue
+tags: []
 categories:
 date: 2019-01-25 22:38:00
 ---

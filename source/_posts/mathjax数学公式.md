@@ -1,9 +1,6 @@
 title: mathjax数学公式
 categories: []
-tags: 
- - MathJax
- - 数学公式
- - Hexo
+tags: []
 date: 2017-11-22 16:16:00
 ---
 有时候，我们还需要一些高级功能，比如在网页上显示数学公式。

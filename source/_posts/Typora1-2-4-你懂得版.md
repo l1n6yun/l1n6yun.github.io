@@ -1,8 +1,6 @@
 title: Typora1.2.4 你懂得版
 author: l1n6yun
-tags:
-  - 破解版
-  - ''
+tags: []
 categories: []
 date: 2022-05-05 22:37:00
 ---

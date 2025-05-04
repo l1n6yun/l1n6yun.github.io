@@ -1,7 +1,6 @@
 title: ab命令压力测试
 author: l1n6yun
-tags:
-  - ab
+tags: []
 categories: []
 date: 2022-03-28 20:29:00
 ---

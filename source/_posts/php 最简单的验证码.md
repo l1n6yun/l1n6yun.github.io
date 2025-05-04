@@ -1,8 +1,5 @@
 title: php 最简单的验证码
-tags:
-  - php
-  - 验证码
-  - 生成图片
+tags: []
 date: 2016-12-17 16:18:55
 categories:
 ---

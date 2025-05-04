@@ -1,8 +1,5 @@
 title: wget命令整站下载做网站镜像
-tags:
-  - linux
-  - wget
-  - 整站下载
+tags: []
 date: 2017-07-07 16:57:15
 categories:
 ---

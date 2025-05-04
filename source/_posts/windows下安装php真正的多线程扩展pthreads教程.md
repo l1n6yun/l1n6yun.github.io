@@ -1,6 +1,5 @@
 title: windows下安装php真正的多线程扩展pthreads教程
-tags:
-  - php
+tags: []
 date: 2017-10-16 17:44:51
 categories:
 ---

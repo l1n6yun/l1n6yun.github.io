@@ -1,9 +1,6 @@
 title: Low Orbit Ion Cannon (LOIC)：网络攻击工具解析
 author: l1n6yun
-tags: 
- - Low Orbit Ion Cannon (LOIC)
- - 拒绝服务攻击（DoS/DDoS）
- - github
+tags: []
 categories: []
 date: 2017-10-04 00:00:00
 ---

@@ -1,7 +1,6 @@
 title: Kali 修改为阿里云镜像
 author: l1n6yun
-tags:
-  - kali
+tags: []
 categories: []
 date: 2019-11-16 00:00:00
 ---

@@ -1,7 +1,6 @@
 title: Markdown基本语法
 author: l1n6yun
-tags:
-  - markdown
+tags: []
 categories: []
 date: 2022-03-11 00:00:00
 ---

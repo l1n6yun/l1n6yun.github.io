@@ -1,6 +1,5 @@
 title: localResizeIMG.js
-tags:
-  - js
+tags: []
 date: 2017-08-24 17:10:45
 categories:
 ---

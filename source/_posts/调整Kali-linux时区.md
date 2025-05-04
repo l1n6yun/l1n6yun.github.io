@@ -1,7 +1,6 @@
 title: 调整Kali linux时区
 author: l1n6yun
-tags:
-  - kali
+tags: []
 categories: []
 date: 2019-11-17 00:00:00
 ---

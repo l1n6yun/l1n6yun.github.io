@@ -1,7 +1,6 @@
 title: Dark Reader
 author: l1n6yun
-tags:
-  - 浏览器扩展
+tags: []
 categories: []
 date: 2022-02-08 20:47:00
 ---

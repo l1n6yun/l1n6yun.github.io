@@ -1,7 +1,5 @@
 title: ThinkPHP连接SQLite
-tags:
-  - ThinkPHP
-  - SQLite
+tags: []
 date: 2017-04-14 21:14:34
 ---
 配置：
