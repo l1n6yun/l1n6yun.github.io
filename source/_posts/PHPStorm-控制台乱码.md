@@ -1,6 +1,9 @@
 title: PHPStorm 控制台乱码
 author: l1n6yun
-tags: []
+tags: 
+ - PHPStorm
+ - 控制台乱码
+ - 字符编码
 categories: []
 date: 2024-07-06 13:29:00
 ---

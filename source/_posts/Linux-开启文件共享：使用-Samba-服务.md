@@ -1,6 +1,9 @@
 title: Linux 开启文件共享：使用 Samba 服务
 author: l1n6yun
-tags: []
+tags: 
+ - Linux
+ - Samba
+ - 文件共享
 categories: []
 date: 2024-07-20 22:19:54
 ---

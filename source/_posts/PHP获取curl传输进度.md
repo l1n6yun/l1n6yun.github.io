@@ -1,6 +1,11 @@
 title: PHP获取curl传输进度
 author: l1n6yun
-tags: []
+tags: 
+ - PHP
+ - cURL
+ - 上传下载
+ - 进度回调
+ - 会话管理
 categories: []
 date: 2017-07-21 00:00:00
 ---

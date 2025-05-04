@@ -1,7 +1,10 @@
 title: MarkText：下一代Markdown编辑器的新星
 author: l1n6yun
 date: 2024-10-24 17:19:00
-tags:
+tags: 
+ - MarkText
+ - Markdown编辑器
+ - GitHub
 ---
 在数字时代，我们每天都在产生和消费大量的文本内容。无论是撰写报告、编写文档、还是记录个人笔记，一个高效、简洁且功能丰富的文本编辑器都是我们不可或缺的工具。今天，我要向大家介绍一款名为MarkText的开源Markdown编辑器，它以其出色的性能和优雅的设计，成为了文本编辑领域的一颗新星。
 

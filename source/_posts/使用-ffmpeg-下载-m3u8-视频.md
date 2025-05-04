@@ -1,6 +1,10 @@
 title: 使用 ffmpeg 下载 m3u8 视频
 author: l1n6yun
-tags: []
+tags: 
+ - ffmpeg
+ - m3u8
+ - mp4
+ - 视频下载
 categories: []
 date: 2022-10-05 16:29:36
 ---

@@ -1,6 +1,9 @@
 title: PHP Redis 秒杀
 categories: []
-tags: []
+tags: 
+ - PHP
+ - Redis
+ - 秒杀
 date: 2018-11-23 09:39:00
 ---
 

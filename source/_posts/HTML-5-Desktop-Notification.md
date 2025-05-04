@@ -1,7 +1,10 @@
 title: HTML 5 Desktop Notification
 description: 生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。
 categories: []
-tags: []
+tags: 
+ - HTML5 Notification
+ - 浏览器兼容性
+ - 桌面通知
 date: 2019-11-11 14:34:00
 ---
 

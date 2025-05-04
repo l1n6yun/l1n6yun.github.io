@@ -1,6 +1,10 @@
 title: 巧用 Dark Reader 破解阅读全文
 author: l1n6yun
-tags: []
+tags: 
+ - Dark Reader
+ - 全文阅读
+ - 前端破解
+ - 自定义 CSS
 categories: []
 date: 2022-09-30 23:53:00
 ---

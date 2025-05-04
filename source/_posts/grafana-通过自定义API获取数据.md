@@ -1,6 +1,9 @@
 title: grafana 通过自定义API获取数据
 author: l1n6yun
-tags: []
+tags: 
+ - grafana
+ - 自定义API
+ - infinity插件
 categories: []
 date: 2025-04-30 14:30:00
 ---

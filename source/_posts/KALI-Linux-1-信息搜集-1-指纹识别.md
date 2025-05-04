@@ -1,6 +1,11 @@
 title: KALI Linux 1.信息搜集 1(指纹识别)
 author: l1n6yun
-tags: []
+tags: 
+ - 信息搜集
+ - curl命令
+ - nmap
+ - 操作系统识别
+ - 渗透测试
 categories:
   - 渗透
 date: 2019-12-26 19:19:00

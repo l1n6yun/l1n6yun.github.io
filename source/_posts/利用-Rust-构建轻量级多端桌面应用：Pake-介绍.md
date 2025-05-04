@@ -1,6 +1,10 @@
 title: 利用 Rust 构建轻量级多端桌面应用：Pake 介绍
 author: l1n6yun
-tags: []
+tags: 
+ - Rust
+ - 桌面应用
+ - 构建工具
+ - 应用打包
 categories: []
 date: 2024-11-09 11:13:00
 ---
