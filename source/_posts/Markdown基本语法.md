@@ -1,6 +1,9 @@
 title: Markdown基本语法
 author: l1n6yun
-tags: []
+tags: 
+ - markdown
+ - mermaid图表
+ - 技术文档编写
 categories: []
 date: 2022-03-11 00:00:00
 ---

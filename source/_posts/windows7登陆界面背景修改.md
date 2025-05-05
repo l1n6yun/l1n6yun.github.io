@@ -1,5 +1,8 @@
 title: windows7登陆界面背景修改
-tags: []
+tags: 
+ - 界面优化
+ - 系统配置
+ - Windows自定义
 categories: []
 date: 2016-11-25 10:53:00
 ---

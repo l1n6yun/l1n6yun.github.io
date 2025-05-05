@@ -1,5 +1,10 @@
 title: Chart.js 中文文档
-tags: []
+tags: 
+ - JavaScript
+ - 数据可视化
+ - 前端开发
+ - 浏览器兼容性
+ - 性能优化
 date: 2016-11-22 10:14:35
 categories:
 ---

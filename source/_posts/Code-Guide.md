@@ -2,7 +2,10 @@ title: Code Guide
 description: 编写一致、灵活和可持续的 HTML 和 CSS 代码的规范。
 date: 2019-06-21 13:31:02
 categories:
-tags: []
+tags: 
+ - github
+ - 前端
+ - 代码规范
 ---
 # 黄金定律
 永远遵循同一套编码规范 -- 可以是这里列出的，也可以是你自己总结的。如果你发现本规范中有任何错误，敬请指正。通过 [在 GitHub 上提交 issue](https://github.com/mdo/code-guide/issues/new) 为本规范贡献力量。

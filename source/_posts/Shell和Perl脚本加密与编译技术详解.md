@@ -1,6 +1,11 @@
 title: Shell和Perl脚本加密与编译技术详解
 author: l1n6yun
-tags: []
+tags: 
+ - 加密技术
+ - Shell脚本
+ - Perl编程
+ - 脚本编译
+ - 软件安全
 categories: []
 date: 2024-11-16 15:11:00
 ---

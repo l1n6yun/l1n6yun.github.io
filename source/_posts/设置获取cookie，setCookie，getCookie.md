@@ -2,7 +2,10 @@ title: 设置获取cookie，setCookie，getCookie
 categories: []
 date: 2018-03-15 21:34:14
 description:
-tags: []
+tags: 
+ - JavaScript
+ - 前端开发
+ - Web开发
 ---
 
 ## 设置cookie

@@ -1,6 +1,9 @@
 title: Hotkeys - 捕获键盘输入和输入的组合键
 categories: []
-tags: []
+tags: 
+ - JavaScript
+ - 前端开发
+ - GitHub
 date: 2019-12-03 11:00:00
 ---
 

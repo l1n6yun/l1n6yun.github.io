@@ -2,7 +2,11 @@ title: oh-my-zsh
 description: >-
   Oh My Zsh is an open source, community-driven framework for managing your
   [zsh](http://www.zsh.org/) configuration.
-tags: []
+tags: 
+ - zsh
+ - github
+ - 界面优化
+ - 系统管理
 date: 2017-12-12 13:16:38
 categories:
 ---

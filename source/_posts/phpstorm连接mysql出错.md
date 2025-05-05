@@ -1,6 +1,11 @@
 title: phpstorm连接mysql出错
 categories: []
-tags: []
+tags: 
+ - PHPStorm
+ - MySQL
+ - JDBC
+ - 配置
+ - 时区支持
 date: 2018-04-11 14:47:00
 ---
 

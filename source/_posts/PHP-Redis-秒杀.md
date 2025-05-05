@@ -1,6 +1,11 @@
 title: PHP Redis 秒杀
 categories: []
-tags: []
+tags: 
+ - PHP
+ - Redis
+ - 秒杀系统
+ - 高并发处理
+ - 数据结构
 date: 2018-11-23 09:39:00
 ---
 

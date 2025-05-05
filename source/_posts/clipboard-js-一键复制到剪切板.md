@@ -1,5 +1,8 @@
 title: clipboard.js 一键复制到剪切板
-tags: []
+tags: 
+ - JavaScript
+ - 前端开发
+ - npm
 date: 2017-08-29 10:58:20
 categories:
 

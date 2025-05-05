@@ -1,6 +1,11 @@
 title: WSL2与Docker容器，无缝互相迁移
 author: l1n6yun
-tags: []
+tags: 
+ - WSL2
+ - Docker
+ - 容器迁移
+ - X11 Server
+ - GPU加速
 categories: []
 date: 2022-04-04 17:23:54
 ---

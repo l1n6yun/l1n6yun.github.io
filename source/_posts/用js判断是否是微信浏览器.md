@@ -1,7 +1,11 @@
 title: 用js判断是否是微信浏览器
 description: 生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。
 categories: []
-tags: []
+tags: 
+ - JavaScript
+ - 前端开发
+ - 客户端
+ - 浏览器检测
 date: 2017-04-24 10:47:00
 ---
 

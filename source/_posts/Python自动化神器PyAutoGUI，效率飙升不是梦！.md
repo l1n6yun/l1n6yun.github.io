@@ -1,6 +1,8 @@
 title: Python自动化神器PyAutoGUI，效率飙升不是梦！
 author: l1n6yun
-tags: []
+tags: 
+ - Python
+ - GUI自动化
 categories: []
 date: 2024-12-14 13:00:00
 ---

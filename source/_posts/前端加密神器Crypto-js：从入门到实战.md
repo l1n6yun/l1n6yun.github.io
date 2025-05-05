@@ -1,6 +1,11 @@
 title: 前端加密神器Crypto.js：从入门到实战
 author: l1n6yun
-tags: []
+tags: 
+ - JavaScript
+ - 加密
+ - 网络安全
+ - 数据保护
+ - 隐私
 categories: []
 date: 2019-03-12 15:11:00
 ---

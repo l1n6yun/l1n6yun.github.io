@@ -1,6 +1,10 @@
 title: 自签名ssl证书
 author: l1n6yun
-tags: []
+tags: 
+- OpenSSL
+- SSL/TLS
+- 证书管理
+- 公钥基础设施 (PKI)
 categories: []
 date: 2024-07-13 22:24:00
 ---

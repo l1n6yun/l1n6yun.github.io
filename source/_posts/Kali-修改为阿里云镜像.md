@@ -1,6 +1,10 @@
 title: Kali 修改为阿里云镜像
 author: l1n6yun
-tags: []
+tags: 
+ - 系统配置
+ - Kali Linux
+ - 镜像加速
+ - DevOps 工具
 categories: []
 date: 2019-11-16 00:00:00
 ---
