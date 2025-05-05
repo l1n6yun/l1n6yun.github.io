@@ -1,6 +1,9 @@
 title: 调整Kali linux时区
 author: l1n6yun
-tags: []
+tags: 
+ - kali-linux
+ - 时区设置
+ - timedatectl
 categories: []
 date: 2019-11-17 00:00:00
 ---

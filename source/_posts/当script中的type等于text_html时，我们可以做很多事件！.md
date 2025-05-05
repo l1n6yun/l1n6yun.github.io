@@ -1,5 +1,10 @@
 title: 当script中的type等于text/html时，我们可以做很多事件！
-tags: []
+tags: 
+ - text/html
+ - jQuery
+ - 正则表达式
+ - 模板引擎
+ - Javascript
 date: 2017-07-15 19:47:30
 categories:
 ---

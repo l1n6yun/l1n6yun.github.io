@@ -1,6 +1,10 @@
 title: PhpStorm 破解与配置
 author: l1n6yun
-tags: []
+tags: 
+ - PhpStorm
+ - 破解激活
+ - 开发效率
+ - 界面优化
 categories: []
 date: 2022-09-25 23:59:00
 ---

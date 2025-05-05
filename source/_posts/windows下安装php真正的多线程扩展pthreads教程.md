@@ -1,5 +1,10 @@
 title: windows下安装php真正的多线程扩展pthreads教程
-tags: []
+tags: 
+ - PHP
+ - 多线程
+ - Windows
+ - PECL
+ - pthreads
 date: 2017-10-16 17:44:51
 categories:
 ---

@@ -1,6 +1,9 @@
 title: Kali 汉化教程
 author: l1n6yun
-tags: []
+tags: 
+ - Kali Linux
+ - 系统汉化
+ - 英文切换到中文
 categories: []
 date: 2021-01-12 23:50:00
 ---

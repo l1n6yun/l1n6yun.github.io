@@ -1,6 +1,11 @@
 title: grafana 通过自定义API获取数据
 author: l1n6yun
-tags: []
+tags: 
+ - grafana
+ - plugins
+ - api集成
+ - data source
+ - 监控
 categories: []
 date: 2025-04-30 14:30:00
 ---

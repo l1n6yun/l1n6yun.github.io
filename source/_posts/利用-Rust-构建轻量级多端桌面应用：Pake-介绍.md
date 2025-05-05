@@ -1,6 +1,11 @@
 title: 利用 Rust 构建轻量级多端桌面应用：Pake 介绍
 author: l1n6yun
-tags: []
+tags: 
+ - Rust
+ - 桌面应用
+ - Tauri
+ - PWA
+ - 轻量级
 categories: []
 date: 2024-11-09 11:13:00
 ---

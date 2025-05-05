@@ -1,6 +1,9 @@
 title: Vue - 创建项目
 author: l1n6yun
-tags: []
+tags: 
+ - Vue
+ - 前端开发
+ - SPA
 categories:
 date: 2019-01-25 22:38:00
 ---

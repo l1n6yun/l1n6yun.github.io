@@ -1,6 +1,9 @@
 title: Burp Suite 中文乱码解决
 author: l1n6yun
-tags: []
+tags: 
+ - Burp Suite
+ - 字符编码
+ - 中文支持
 categories: []
 date: 2025-03-21 15:15:00
 ---

@@ -1,5 +1,10 @@
 title: localResizeIMG.js
-tags: []
+tags: 
+ - javascript
+ - 图片处理
+ - 前端开发
+ - 模块化加载
+ - npm包
 date: 2017-08-24 17:10:45
 categories:
 ---

@@ -3,7 +3,11 @@ description: >-
   最近使用cmd比较多，就想在某个文件夹下右键打开cmd，这样不用每次都在默认情况下切换目录。无奈win10
   1703版本下shift+右键不能打开cmd，只能打开powershell。
 categories: []
-tags: []
+tags: 
+ - Windows 10
+ - Registry编辑
+ - 右键菜单
+ - CMD
 date: 2019-08-08 12:31:00
 ---
 > 最近使用cmd比较多，就想在某个文件夹下右键打开cmd，这样不用每次都在默认情况下切换目录。无奈win10 1703版本下shift+右键不能打开cmd，只能打开powershell。

@@ -1,6 +1,9 @@
 title: 修复 PHP 文件中的 Shebang 行错误
 author: l1n6yun
-tags: []
+tags: 
+ - PHP
+ - Shebang
+ - Linux-shell
 categories: []
 date: 2024-11-02 14:22:20
 ---

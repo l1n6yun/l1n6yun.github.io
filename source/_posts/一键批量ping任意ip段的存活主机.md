@@ -1,5 +1,11 @@
 title: 一键批量ping任意ip段的存活主机
-tags: []
+tags: 
+ - 批处理脚本
+ - 系统管理员工具
+ - IP扫描
+ - Windows批处理
+ - CMD技巧
+ - Network诊断工具
 categories: []
 date: 2017-04-11 22:45:00
 ---

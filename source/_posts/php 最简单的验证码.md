@@ -1,5 +1,10 @@
 title: php 最简单的验证码
-tags: []
+tags: 
+ - PHP
+ - 验证码
+ - 图像处理
+ - 会话管理
+ - Web安全
 date: 2016-12-17 16:18:55
 categories:
 ---

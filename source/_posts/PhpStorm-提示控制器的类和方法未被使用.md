@@ -1,6 +1,10 @@
 title: PhpStorm 提示控制器的类和方法未被使用
 author: l1n6yun
-tags: []
+tags: 
+ - PhpStorm
+ - Inspection configuration
+ - Unused code detection
+ - Code optimization
 categories: []
 date: 2022-09-26 22:35:00
 ---

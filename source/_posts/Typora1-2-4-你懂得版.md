@@ -1,6 +1,10 @@
 title: Typora1.2.4 你懂得版
 author: l1n6yun
-tags: []
+tags: 
+ - Markdown编辑器
+ - Typora
+ - 安装教程
+ - 破解版
 categories: []
 date: 2022-05-05 22:37:00
 ---

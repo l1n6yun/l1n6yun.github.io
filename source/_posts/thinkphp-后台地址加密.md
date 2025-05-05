@@ -1,5 +1,10 @@
 title: thinkphp 后台地址加密
-tags: []
+tags: 
+ - 加密
+ - 后端开发
+ - ThinkPHP
+ - 会话管理
+ - MVC
 date: 2019-11-20 10:25:59
 categories:
 ---

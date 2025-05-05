@@ -1,6 +1,10 @@
 title: CURL证书
 description: 'curl: (60) SSL certificate : unable to get local issuer certificate'
-tags: []
+tags: 
+ - curl
+ - ssl certificate
+ - ca证书
+ - php配置
 categories: []
 date: 2018-07-05 16:19:00
 ---

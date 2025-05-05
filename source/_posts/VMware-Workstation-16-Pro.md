@@ -1,6 +1,11 @@
 title: VMware Workstation 16 Pro
 author: l1n6yun
-tags: []
+tags: 
+ - VMware Workstation 16 Pro
+ - 虚拟化
+ - 序列号
+ - 虚拟机关键
+ - 安装配置
 categories: []
 date: 2022-01-01 00:00:00
 ---

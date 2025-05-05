@@ -2,7 +2,11 @@ title: MAC下安装sqlmap及环境配置
 description: 生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。
 date: 2019-04-22 10:27:14
 categories:
-tags: []
+tags: 
+ - MAC
+ - Git
+ - Shell命令
+ - 开发环境配置
 ---
 # 1、首先上 git 下 `sqlmap`
 

@@ -1,6 +1,11 @@
 title: GIT分支模型的策略与发布
 categories: []
-tags: []
+tags: 
+ - GIT分支模型
+ - 主分支
+ - 特性分支
+ - release分支
+ - hotFix分支
 date: 2020-01-13 13:50:00
 ---
 本文用于介绍 GIT分支模型的策略与发布。

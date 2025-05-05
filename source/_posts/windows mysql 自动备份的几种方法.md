@@ -1,5 +1,8 @@
 title: windows mysql 自动备份的几种方法
-tags: []
+tags: 
+ - github
+ - mysql
+ - 界面优化
 date: 2017-02-07 15:13:29
 categories:
 ---

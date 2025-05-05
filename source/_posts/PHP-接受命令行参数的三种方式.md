@@ -1,7 +1,10 @@
 title: PHP 接受命令行参数的三种方式
 description: 通常 PHP 都作为 HTTP 方式来请求，有些时候需要在 shell 命令写把 PHP 作为脚本来执行，比如定时任务。
 categories: []
-tags: []
+tags: 
+ - PHP
+ - 命令行参数
+ - 脚本编写
 date: 2018-12-29 23:02:00
 ---
 > 通常 PHP 都作为 HTTP 方式来请求，有些时候需要在 shell 命令写把 PHP 作为脚本来执行，比如定时任务。这样和涉及到在 shell 命令下如何给 PHP 传参的问题，通常有三种方式传参。

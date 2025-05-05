@@ -1,6 +1,11 @@
 title: mathjax数学公式
 categories: []
-tags: []
+tags: 
+ - MathJax
+ - LaTeX
+ - Hexo
+ - Node.js
+ - JavaScript
 date: 2017-11-22 16:16:00
 ---
 有时候，我们还需要一些高级功能，比如在网页上显示数学公式。

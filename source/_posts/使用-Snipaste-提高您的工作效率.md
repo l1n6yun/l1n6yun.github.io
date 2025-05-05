@@ -1,6 +1,11 @@
 title: 使用 Snipaste 提高您的工作效率
 author: l1n6yun
-tags: []
+tags: 
+ - Snipaste
+ - 效率工具
+ - 颜色选择器
+ - 界面优化
+ - 截图工具
 categories: []
 date: 2022-02-09 23:25:00
 ---

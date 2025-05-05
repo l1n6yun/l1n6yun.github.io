@@ -1,6 +1,10 @@
 title: PhpStorm 配置 PHP CS Fixer
 author: l1n6yun
-tags: []
+tags: 
+ - PHP CS Fixer
+ - PhpStorm
+ - Composer
+ - 代码规范
 categories: []
 date: 2022-09-28 00:23:00
 ---

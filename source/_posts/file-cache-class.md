@@ -1,7 +1,9 @@
 title: file cache class of php
 date: 2020-01-08 18:00:31
 categories:
-tags: []
+tags: 
+ - PHP
+ - 文件缓存
 ---
 
 ```php

@@ -1,6 +1,9 @@
 title: ffmpeg 合并视频
 author: l1n6yun
-tags: []
+tags: 
+ - ffmpeg
+ - 视频合并
+ - 命令行工具
 categories: []
 date: 2022-10-03 22:49:47
 ---
