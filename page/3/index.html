@@ -181,6 +181,199 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">使用 ffmpeg 下载 m3u8 视频</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-05 16:29:36" itemprop="dateCreated datePublished" datetime="2022-10-05T16:29:36+08:00">2022-10-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>下载视频，并将m3u8格式转为mp4格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 playlist.mp4</span><br><span class="line">或者</span><br><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy playlist.mp4</span><br></pre></td></tr></table></figure>
+
+<p>下载中。。。由于视频很大，下载需要很长长长时间(1个G的视频可能需下载几小时…)。<br> 可以通过如下指令进行下载提速（下载速度大约能提升到几到十几分钟，很棒了哦，起码比百度云快）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy -bsf:a aac_adtstoasc playlist_1.mp4</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">ffmpeg 合并视频</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-03 22:49:47" itemprop="dateCreated datePublished" datetime="2022-10-03T22:49:47+08:00">2022-10-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -i filelist.txt -c copy -y FBF73ED7.mp4</span><br></pre></td></tr></table></figure>
+
+<p>filelist.txt</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">file &#x27;FBF73ED7.p701.1.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.2.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.3.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.4.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.5.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.6.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.7.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.8.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.9.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.10.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.11.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.12.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.13.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.14.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.15.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.16.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.17.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.18.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.19.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.20.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.21.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.22.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.23.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.24.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.25.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.26.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.27.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.28.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.29.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.30.mp4&#x27;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/" class="post-title-link" itemprop="url">巧用 Dark Reader 破解阅读全文</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-30 23:53:00" itemprop="dateCreated datePublished" datetime="2022-09-30T23:53:00+08:00">2022-09-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在阅读一些网站文章时，时常会遇到文章内容只展示一部分，用户需要 关注博主、或者关注公众号 的一系列障碍。</p>
+<p><img src="/images/pasted-33.png" alt="upload successful"></p>
+<p><img src="/images/pasted-34.png" alt="upload successful"></p>
+<p>于是使用“开发者工具”分析了一下前端代码发现。大多数实现逻辑基本上都是将文章内容元素设置一个较小高度，超出的部分隐藏掉。再在后追加一个“查看全文”的元素。</p>
+<p>想起 Dark Reader （暗黑）插件的自定义CSS功能，因为在使用通用暗黑方案后不能满足所有网站，所以要对一些不能完美适配的网站添加亿点自定义代码。在这正好派到了用场。（当然你也可以使用其他插件）</p>
+<p>打开 Dark Reader 插件，点击开发者工具</p>
+<p><img src="/images/pasted-35.png" alt="upload successful"></p>
+<p>在 主题编辑器 中添加一下代码：（这里用了IT屋和CSDN做演示）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">================================</span><br><span class="line"></span><br><span class="line">it1352<span class="selector-class">.com</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.arc-body-main-more</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.arc-body-main</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">================================</span><br><span class="line"></span><br><span class="line">blog<span class="selector-class">.csdn</span><span class="selector-class">.net</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.article_content</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.hide-article-box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-36.png" alt="upload successful"></p>
+<p>点击 Apply，刷新网站，就可以清除全文阅读限制了</p>
+<p>实现原理很简单：隐藏关注元素，清除文章内容元素的高度限制。</p>
+<p>注：此方法只能用于前端限制，后端限制是不行的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/28/php-cs-fixer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -947,459 +1140,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/" class="post-title-link" itemprop="url">如何搭建自己的 composer 包</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-14 20:14:38" itemprop="dateCreated datePublished" datetime="2022-03-14T20:14:38+08:00">2022-03-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>composer 是 PHP 的依赖管理工具，本篇文章就来说明如何构建一个包，并提交到 Packagist ，这样别人就可以方便地通过 composer 使用你的包了。</p>
-</blockquote>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> composer init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This command will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [l1n6yun/hello]: l1n6yun/hello</span><br><span class="line">Description []: This is a demo package</span><br><span class="line">Author [l1n6yun &lt;l1n6yun@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []: dev</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []: library</span><br><span class="line">License []: MIT</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dependencies (require) interactively [yes]? no</span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line">Add PSR-4 autoload mapping? Maps namespace &quot;L1n6yun\Hello&quot; to the entered relative path. [src/, n to skip]:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;l1n6yun/hello&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;This is a demo package&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;L1n6yun\\Hello\\&quot;: &quot;src/&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;l1n6yun&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;l1n6yun@gmail.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;minimum-stability&quot;: &quot;dev&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]?</span><br><span class="line">Generating autoload files</span><br><span class="line">Generated autoload files</span><br><span class="line">PSR-4 autoloading configured. Use &quot;namespace L1n6yun\Hello;&quot; in src/</span><br><span class="line">Include the Composer autoloader with: require &#x27;vendor/autoload.php&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Package-name"><a href="#Package-name" class="headerlink" title="Package name"></a>Package name</h3><p>包的名称。它是由供应商名称和项目名称组成，由 <code>/</code> 隔开。</p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>包的简短描述。用来告诉使用者这个包是干什么用的。</p>
-<h3 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h3><p>包的作者名。</p>
-<h3 id="Minimum-Stability"><a href="#Minimum-Stability" class="headerlink" title="Minimum Stability"></a>Minimum Stability</h3><p>最小稳定版本。越往下，稳定性越高，BUG越少。</p>
-<ul>
-<li>dev</li>
-<li>alpha</li>
-<li>beta</li>
-<li>RC（补丁）</li>
-<li>stable</li>
-</ul>
-<h3 id="Package-Type"><a href="#Package-Type" class="headerlink" title="Package Type"></a>Package Type</h3><p>包的类型。用于自定义安装逻辑。</p>
-<ul>
-<li> <strong>library</strong>：这个是默认设置。它会将文件复制到 <code>vendor</code> 目录</li>
-<li><strong>project</strong>：项目。注意这里的项目不是库。</li>
-<li><strong>metapackage</strong>：一个包含需求的空包，会触发  他们的安装，但不包含文件，不会向  文件系统。 因此，它不需要 dist 或 source 键  可安装。 </li>
-<li><strong>composer-plugin</strong>：类型的包 <code>composer-plugin</code>可以提供一个  具有自定义类型的其他软件包的安装程序。</li>
-</ul>
-<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>包的许可证。  这可以是字符串或字符串数组。 </p>
-<p>最常见许可证</p>
-<ul>
-<li>Apache-2.0</li>
-<li>BSD-2-Clause</li>
-<li>BSD-3-Clause</li>
-<li>BSD-4-Clause</li>
-<li>GPL-2.0-only / GPL-2.0-or-later</li>
-<li>GPL-3.0-only / GPL-3.0-or-later</li>
-<li>LGPL-2.1-only / LGPL-2.1-or-later</li>
-<li>LGPL-3.0-only / LGPL-3.0-or-later</li>
-<li>MIT</li>
-</ul>
-<blockquote>
-<p>闭源项目可以使用 <code>proprietary</code></p>
-</blockquote>
-<h2 id="撸码"><a href="#撸码" class="headerlink" title="撸码"></a>撸码</h2><p>在项目的 <code>src</code> 目录下创建 <code>Tools</code> 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">L1n6yun</span>\<span class="title">Hello</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tools</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;Hello, World!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试一下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php -a</span></span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line">php &gt; L1n6yun\Hello\Tools::hello();</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="上传代码"><a href="#上传代码" class="headerlink" title="上传代码"></a>上传代码</h3><p>添加 <code>.gitignore</code> 文件，来忽略不需要的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.idea/</span><br><span class="line">/vendor/</span><br><span class="line">composer.lock</span><br></pre></td></tr></table></figure>
-
-<p>自行上传到自己的 GitHub 上</p>
-<h3 id="提交包"><a href="#提交包" class="headerlink" title="提交包"></a>提交包</h3><p>Packagist 上的 <a target="_blank" rel="noopener" href="https://packagist.org/packages/submit">提交页面</a> 填写自己的仓库地址，点击 <code>Check</code> ，然后点击 <code>Submit</code> 不出意外的话就发布成功了。</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/11/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/11/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown基本语法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-11T00:00:00+08:00">2022-03-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>Markdown是一种轻量级标记语言，创始人为约翰·格鲁伯。 它允许人们使用易读易写的<strong>纯文本格式</strong>编写文档，然后转换成有效的<strong>HTML</strong>文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。</p>
-<p>由于Markdown的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用Markdown来撰写帮助文档或是用于论坛上发表消息。 </p>
-</blockquote>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>轻量化</li>
-<li>跨平台</li>
-<li>易读易写</li>
-</ul>
-<h3 id="文件后缀名"><a href="#文件后缀名" class="headerlink" title="文件后缀名"></a>文件后缀名</h3><ul>
-<li>.md</li>
-<li>.markdown</li>
-</ul>
-<h2 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h2><h3 id="文字样式"><a href="#文字样式" class="headerlink" title="文字样式"></a>文字样式</h3><table>
-<thead>
-<tr>
-<th>描述</th>
-<th>代码</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>斜体</td>
-<td>*斜体*<br>_斜体_</td>
-<td><em>斜体</em><br><em>斜体</em></td>
-</tr>
-<tr>
-<td>粗体</td>
-<td>**粗体**</td>
-<td><strong>粗体</strong></td>
-</tr>
-<tr>
-<td>斜粗体</td>
-<td>***斜粗体***</td>
-<td><em><strong>斜粗体</strong></em></td>
-</tr>
-<tr>
-<td>删除线</td>
-<td>~~删除线~~</td>
-<td><del>删除线</del></td>
-</tr>
-<tr>
-<td>插入链接</td>
-<td>[链接名称](链接地址 “标题”)</td>
-<td><a href="%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80" title="标题">链接名称</a></td>
-</tr>
-<tr>
-<td>插入图片</td>
-<td>![alt](图片地址 “标题”)</td>
-<td><img src="/images/avatar.gif" alt="alt text" title="avatar"></td>
-</tr>
-<tr>
-<td>代码行</td>
-<td>`print()`</td>
-<td><code>print()</code></td>
-</tr>
-<tr>
-<td>HTML 元素</td>
-<td>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt;</td>
-<td>使用 <kbd>Ctrl</kbd>+<kbd>C</kbd> 复制</td>
-</tr>
-<tr>
-<td>emoji</td>
-<td>:hammer:</td>
-<td>:hammer:</td>
-</tr>
-</tbody></table>
-<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">一级标题</span><br><span class="line">======</span><br><span class="line"></span><br><span class="line">二级标题</span><br><span class="line">-------</span><br><span class="line"></span><br><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
-
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 列表条目1</span><br><span class="line"><span class="bullet">2.</span> 列表条目2</span><br><span class="line"><span class="bullet">   1.</span> 列表条目2.1</span><br><span class="line"><span class="bullet">      1.</span> 列表条目2.1.1</span><br><span class="line"><span class="bullet">      2.</span> 列表条目2.1.2</span><br><span class="line"><span class="bullet">3.</span> 列表条目2.2</span><br><span class="line"><span class="bullet">4.</span> 列表条目3</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>列表条目1</li>
-<li>列表条目2<ol>
-<li>列表条目2.1</li>
-<li>列表条目2.2<ol>
-<li>列表条目2.2.1</li>
-<li>列表条目2.2.2</li>
-<li>列表条目2.2.3</li>
-</ol>
-</li>
-<li>列表条目2.3</li>
-</ol>
-</li>
-<li>列表条目3</li>
-</ol>
-<h3 id="无需列表"><a href="#无需列表" class="headerlink" title="无需列表"></a>无需列表</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 列表条目1</span><br><span class="line"><span class="bullet">-</span> 列表条目2</span><br><span class="line"><span class="bullet">  -</span> 列表条目2.1</span><br><span class="line"><span class="bullet">    -</span> 列表条目2.1.1</span><br><span class="line"><span class="bullet">    -</span> 列表条目2.1.2</span><br><span class="line"><span class="bullet">  -</span> 列表条目2.2</span><br><span class="line"><span class="bullet">-</span> 列表条目3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>列表条目1</li>
-<li>列表条目2<ul>
-<li>列表条目2.1<ul>
-<li>列表条目2.1.1</li>
-<li>列表条目2.1.2</li>
-</ul>
-</li>
-<li>列表条目2.2</li>
-</ul>
-</li>
-<li>列表条目3</li>
-</ul>
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```[语言]</span></span><br><span class="line"><span class="code">代码块</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> (<span class="string">&quot;hello,world&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 引用内容</span></span><br><span class="line">&gt;&gt; 引用内容</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>引用内容</p>
-<blockquote>
-<p>引用内容</p>
-</blockquote>
-</blockquote>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">*</span> <span class="emphasis">* *</span></span></span><br><span class="line"><span class="strong">**</span><span class="strong">**<span class="emphasis">*</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">- - -</span></span></span><br><span class="line"><span class="emphasis"><span class="strong">----------</span></span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table>
-<thead>
-<tr>
-<th align="left">左对齐</th>
-<th align="center">右对齐</th>
-<th align="right">居中对齐</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">单元格</td>
-<td align="center">单元格</td>
-<td align="right">单元格</td>
-</tr>
-<tr>
-<td align="left">单元格</td>
-<td align="center">单元格</td>
-<td align="right">单元格</td>
-</tr>
-</tbody></table>
-<h3 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h3><p>[toc]</p>
-<h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><p>$$<br>f(x)=sin(x)+12<br>$$</p>
-<p>$$<br>\begin{Bmatrix}<br>   a &amp; b \<br>   c &amp; d<br>\end{Bmatrix}<br>$$</p>
-<p>$$<br>\begin{CD}<br>   A @&gt;a&gt;&gt; B \<br>@VbVV @AAcA \<br>   C @= D<br>\end{CD}<br>$$</p>
-<h3 id="流程图、时序图、甘特图"><a href="#流程图、时序图、甘特图" class="headerlink" title="流程图、时序图、甘特图"></a>流程图、时序图、甘特图</h3><p>1、横向流程图源码格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[方形] --&gt;B(圆角)</span><br><span class="line">B --&gt; C&#123;条件a&#125;</span><br><span class="line">C --&gt;|a=1| D[结果1]</span><br><span class="line">C --&gt;|a=2| E[结果2]</span><br><span class="line">    F[横向流程图]</span><br></pre></td></tr></table></figure>
-
-<p>2、竖向流程图源码格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[方形] --&gt; B(圆角)</span><br><span class="line">    B --&gt; C&#123;条件a&#125;</span><br><span class="line">    C --&gt; |a=1| D[结果1]</span><br><span class="line">    C --&gt; |a=2| E[结果2]</span><br><span class="line">    F[竖向流程图]</span><br></pre></td></tr></table></figure>
-
-<p>3、标准流程图源码格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始框</span><br><span class="line">op=&gt;operation: 处理框</span><br><span class="line">cond=&gt;condition: 判断框(是或否?)</span><br><span class="line">sub1=&gt;subroutine: 子流程</span><br><span class="line">io=&gt;inputoutput: 输入输出框</span><br><span class="line">e=&gt;end: 结束框</span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;io-&gt;e</span><br><span class="line">cond(no)-&gt;sub1(right)-&gt;op</span><br></pre></td></tr></table></figure>
-
-<p>4、标准流程图源码格式（横向）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始框</span><br><span class="line">op=&gt;operation: 处理框</span><br><span class="line">cond=&gt;condition: 判断框(是或否?)</span><br><span class="line">sub1=&gt;subroutine: 子流程</span><br><span class="line">io=&gt;inputoutput: 输入输出框</span><br><span class="line">e=&gt;end: 结束框</span><br><span class="line">st(right)-&gt;op(right)-&gt;cond</span><br><span class="line">cond(yes)-&gt;io(bottom)-&gt;e</span><br><span class="line">cond(no)-&gt;sub1(right)-&gt;op</span><br></pre></td></tr></table></figure>
-
-<p>5、UML时序图源码样例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对象A-&gt;对象B: 对象B你好吗?（请求）</span><br><span class="line">Note right of 对象B: 对象B的描述</span><br><span class="line">Note left of 对象A: 对象A的描述(提示)</span><br><span class="line">对象B--&gt;对象A: 我很好(响应)</span><br><span class="line">对象A-&gt;对象B: 你真的好吗？</span><br></pre></td></tr></table></figure>
-
-<p>6、UML时序图源码复杂样例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Title: 标题：复杂使用</span><br><span class="line">对象A-&gt;对象B: 对象B你好吗?（请求）</span><br><span class="line">Note right of 对象B: 对象B的描述</span><br><span class="line">Note left of 对象A: 对象A的描述(提示)</span><br><span class="line">对象B--&gt;对象A: 我很好(响应)</span><br><span class="line">对象B-&gt;小三: 你好吗</span><br><span class="line">小三--&gt;&gt;对象A: 对象B找我了</span><br><span class="line">对象A-&gt;对象B: 你真的好吗？</span><br><span class="line">Note over 小三,对象B: 我们是朋友</span><br><span class="line">participant C</span><br><span class="line">Note right of C: 没人陪我玩</span><br></pre></td></tr></table></figure>
-
-<p>7、UML标准时序图样例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%% 时序图例子,-&gt; 直线，--&gt;虚线，-&gt;&gt;实线箭头</span><br><span class="line">  sequenceDiagram</span><br><span class="line">    participant 张三</span><br><span class="line">    participant 李四</span><br><span class="line">    张三-&gt;王五: 王五你好吗？</span><br><span class="line">    loop 健康检查</span><br><span class="line">        王五-&gt;王五: 与疾病战斗</span><br><span class="line">    end</span><br><span class="line">    Note right of 王五: 合理 食物 &lt;br/&gt;看医生...</span><br><span class="line">    李四--&gt;&gt;张三: 很好!</span><br><span class="line">    王五-&gt;李四: 你怎么样?</span><br><span class="line">    李四--&gt;王五: 很好!</span><br></pre></td></tr></table></figure>
-
-<p>8、甘特图样例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">%% 语法示例</span><br><span class="line">	gantt</span><br><span class="line">	dateFormat  YYYY-MM-DD</span><br><span class="line">	title 软件开发甘特图</span><br><span class="line">	section 设计</span><br><span class="line">	需求              :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">	原型              :active,  des2, 2014-01-09, 3d</span><br><span class="line">	UI设计            :         des3, after des2, 5d</span><br><span class="line">	未来任务          :         des4, after des3, 5d</span><br><span class="line">	section 开发</span><br><span class="line">	学习准备理解需求  :crit, done, 2014-01-06,24h</span><br><span class="line">	设计框架          :crit, done, after des2, 2d</span><br><span class="line">	开发              :crit, active, 3d</span><br><span class="line">	未来任务          :crit, 5d</span><br><span class="line">	耍                :2d</span><br><span class="line">	section 测试</span><br><span class="line">	功能测试          :active, a1, after des3, 3d</span><br><span class="line">	压力测试          :after a1  , 20h</span><br><span class="line">	测试报告          :48h</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/" class="post-title-link" itemprop="url">使用 Snipaste 提高您的工作效率</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-09 23:25:00" itemprop="dateCreated datePublished" datetime="2022-02-09T23:25:00+08:00">2022-02-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Boost-your-productivity-with-Snipaste"><a href="#Boost-your-productivity-with-Snipaste" class="headerlink" title="Boost your productivity with Snipaste"></a>Boost your productivity with Snipaste</h2><p>Snipaste is a simple but powerful snipping tool, and also<br>allows you to pin the screenshot back onto the screen.<br>Download and start the application, press <kbd>F1</kbd> to start snipping,<br>then press <kbd>F3</kbd> to paste it as a floating window. That’s it!</p>
-<p>You can also convert text or color info in the clipboard into a floating image window.<br>Such windows can be zoomed, rotated, flipped, made translucent, and even made click-through!<br>If you are a programmer, a designer or whoever works much time before the computer,<br>you will be surprised how it can help you get your work done more efficiently!</p>
-<p>Snipaste is easy and intuitive to use,<br>but there are also many hidden features that can make your life even more efficient.<br>Read the <a target="_blank" rel="noopener" href="https://docs.snipaste.com">manual</a><br>if you are interested.</p>
-<h3 id="Intuitive-snipping"><a href="#Intuitive-snipping" class="headerlink" title="Intuitive snipping"></a>Intuitive snipping</h3><p><img src="/images/pasted-8.png" alt="upload successful"></p>
-<ul>
-<li>Auto detect UI elements</li>
-<li>Pixel-level control</li>
-<li>Color picker (try <code>F1</code>, <code>C</code>, <code>F3</code>)</li>
-<li><strong>History play back</strong> (<code>,</code>/<code>.</code>)</li>
-<li>Multi-screen support</li>
-<li>HiDPI (retina display) support</li>
-</ul>
-<h3 id="Paste-images-as-topmost-floating-windows"><a href="#Paste-images-as-topmost-floating-windows" class="headerlink" title="Paste images as topmost floating windows"></a>Paste images as topmost floating windows</h3><p><img src="/images/pasted-9.png" alt="upload successful"></p>
-<ul>
-<li>The source (in the clipboard) could be                            <ul>
-<li>Image</li>
-<li>Plain text</li>
-<li>HTML text</li>
-<li>Color info text</li>
-<li>Image files: PNG, JPG, BMP, TGA, ICO, TIFF and <strong>GIF</strong></li>
-</ul>
-</li>
-<li>Supported operations<ul>
-<li>Zoom (<code>mouse scroll</code> or <code>+</code>/<code>-</code>) or set speed for GIF </li>
-<li>Rotate (<code>1</code>/<code>2</code>) or jump to previous/next frame for GIF</li>
-<li>Flip (<code>3</code>/<code>4</code>)</li>
-<li>Set transparency (<code>Ctrl</code> + <code>mouse scroll</code> or <code>Ctrl</code> + <code>+</code>/<code>-</code>)</li>
-<li>Mouse click-through (<code>X</code>, and use <code>F4</code> to cancel)</li>
-<li>Image editing (<code>Space</code>)</li>
-<li>Thumbnail mode (<code>Shift</code> + <code>Double click</code>)</li>
-<li>Hide (<code>Double click</code>)</li>
-<li>…</li>
-</ul>
-</li>
-<li>Color picker (<code>Alt</code>)</li>
-<li>Drag &amp; drop</li>
-<li><strong>Grouping</strong></li>
-<li><strong>Auto backup &amp; restore</strong></li>
-</ul>
-<h3 id="Easy-image-annotation"><a href="#Easy-image-annotation" class="headerlink" title="Easy image annotation"></a>Easy image annotation</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
-<ul>
-<li>Rich shapes                            <ul>
-<li>Rectangle</li>
-<li>Ellipse</li>
-<li>Linestrip</li>
-<li>Arrow</li>
-<li>Pencil</li>
-<li>Marker pen</li>
-<li>Text</li>
-</ul>
-</li>
-<li>Advanced annotation tools                            <ul>
-<li>Mosaic</li>
-<li>Gaussian blur</li>
-<li>Eraser</li>
-</ul>
-</li>
-<li>Undo &amp; redo</li>
-</ul>
-<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
-<ul>
-<li>Theme color, interface font, tray icon, and more</li>
-<li>Hot keys</li>
-<li>Detailed functionality options</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1471,7 +1211,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1483,7 +1223,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">329</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

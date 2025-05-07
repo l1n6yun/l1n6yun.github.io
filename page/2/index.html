@@ -181,6 +181,276 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">Linux 开启文件共享：使用 Samba 服务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-20 22:19:54" itemprop="dateCreated datePublished" datetime="2024-07-20T22:19:54+08:00">2024-07-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在 Linux 系统中，Samba 是一个功能强大的服务，它允许 Linux 和 Windows 系统之间进行文件共享。通过 Samba，你可以轻松地在不同操作系统之间共享文件和打印机。本文将详细介绍如何在 Linux 上配置 Samba 服务，以实现文件共享。</p>
+<h2 id="安装-Samba"><a href="#安装-Samba" class="headerlink" title="安装 Samba"></a>安装 Samba</h2><p>首先，你需要确保你的 Linux 系统上安装了 Samba。在基于 Debian 的系统（如 Ubuntu）上，你可以使用以下命令来安装 Samba：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install samba</span><br></pre></td></tr></table></figure>
+
+<p>这将安装 Samba 服务及其依赖项。</p>
+<h2 id="配置-Samba"><a href="#配置-Samba" class="headerlink" title="配置 Samba"></a>配置 Samba</h2><p>安装完成后，你需要配置 Samba 以便它知道你想要共享哪些目录。这涉及到编辑 Samba 的配置文件 <code>smb.conf</code>。</p>
+<ol start="2">
+<li> 使用文本编辑器打开 <code>smb.conf</code> 文件。这里我们使用 <code>vi</code> 编辑器，但你也可以使用 <code>nano</code> 或其他你喜欢的编辑器：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li> 在 <code>smb.conf</code> 文件中，你可以定义多个共享部分，每个部分对应一个共享目录。以下是两个示例共享部分的配置：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mnt-rw]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-Write Mount Point</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  force <span class="attr">user</span> = root</span><br><span class="line">  create <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  directory <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">No</span></span><br><span class="line"></span><br><span class="line"><span class="section">[onecloud-share]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-<span class="literal">On</span>ly <span class="literal">On</span>eCloud Share</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>  <code>[mnt-rw]</code> 部分定义了一个名为 <code>mnt-rw</code> 的共享，它指向 <code>/mnt</code> 目录。这个共享允许读写访问，并且对所有用户（包括匿名用户）开放。</li>
+<li>  <code>[onecloud-share]</code> 部分定义了另一个共享，它同样指向 <code>/mnt</code> 目录，但这个共享只允许读访问。</li>
+</ul>
+<h3 id="配置选项解释"><a href="#配置选项解释" class="headerlink" title="配置选项解释"></a>配置选项解释</h3><ul>
+<li>  <code>browseable = yes</code>：这个选项使得共享在网络浏览器中可见。</li>
+<li>  <code>path = /mnt</code>：指定共享的文件系统路径。</li>
+<li>  <code>force user = root</code>：强制所有连接到此共享的用户以 root 用户身份访问。</li>
+<li>  <code>create mask = 0775</code> 和 <code>directory mask = 0775</code>：设置文件和目录的默认权限。</li>
+<li>  <code>guest ok = Yes</code>：允许匿名访问。</li>
+<li>  <code>read only = No</code>：对于 <code>[mnt-rw]</code> 共享，这个选项允许写入操作；对于 <code>[onecloud-share]</code> 共享，这个选项设置为 <code>yes</code>，表示只读。</li>
+</ul>
+<h2 id="启动-Samba-服务"><a href="#启动-Samba-服务" class="headerlink" title="启动 Samba 服务"></a>启动 Samba 服务</h2><p>配置完成后，你需要启动 Samba 服务以使更改生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service smbd start</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将启动 Samba 守护进程，使你的共享目录在网络上可用。</p>
+<h2 id="测试共享"><a href="#测试共享" class="headerlink" title="测试共享"></a>测试共享</h2><p>在 Windows 系统上，你可以通过网络邻居访问这些共享，或者在文件资源管理器中输入共享的网络路径（例如 <code>\\&lt;Linux-Server-IP&gt;\mnt-rw</code>）来访问。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">自签名ssl证书</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-13 22:24:00" itemprop="dateCreated datePublished" datetime="2024-07-13T22:24:00+08:00">2024-07-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>使用 OpenSSL 工具生成自签名 SSL 证书，为内网环境中的网站安全保驾护航</strong></p>
+<p>在内网环境中，使用 OpenSSL 工具进行自签名 SSL 证书的创建，能够为您的网站提供有效的安全保障。</p>
+<p><strong>自签证书流程</strong>：</p>
+<ol>
+<li>创建 ca 私钥。</li>
+<li>基于 ca 私钥生成 ca 根证书。</li>
+<li>构建 ssl 私钥。</li>
+<li>生成 ssl 证书 csr。</li>
+<li>运用 ca 根证书签署以获得 ssl 证书。</li>
+</ol>
+<p><strong>操作方法</strong></p>
+<ol>
+<li>创建 ca 私钥（强烈建议设置密码以增强安全性）：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl genrsa -des3 -out root.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">..............................................................+++</span><br><span class="line">................+++</span><br><span class="line">e is 65537 (0x010001)</span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">Verifying - Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>生成 ca 证书，自签 20 年有效期，并将此 ca 证书导入需要访问的 PC 的“受信任的根证书颁发机构”中，后续用此 ca 签署的证书均可正常使用：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl req -x509 -new -nodes -key root.key -sha256 -days 7300 -out root.crt</span></span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN    # 国家</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan   # 省份</span><br><span class="line">Locality Name (eg, city) []:ChengDu   # 城市</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD  # 组织</span><br><span class="line">Organizational Unit Name (eg, section) []: # 部门</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD # 公司</span><br><span class="line">Email Address []: # 邮箱</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>完成上述步骤后，创建 ssl 证书私钥：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl genrsa -out server.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">...................................................................................+++</span><br><span class="line">..........+++</span><br><span class="line">e is 65537 (0x010001)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>随后创建 ssl 证书 csr：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl req -new -key server.key -out server.csr</span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan</span><br><span class="line">Locality Name (eg, city) []:ChengDu</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Organizational Unit Name (eg, section) []:</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Email Address []:</span><br><span class="line"></span><br><span class="line">Please enter the following &#x27;extra&#x27; attributes</span><br><span class="line">to be sent with your certificate request</span><br><span class="line">A challenge password []:</span><br><span class="line">An optional company name []:</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>创建域名附加配置信息，新建一个文件，通过 vim cert.ext ，将以下代码粘贴后保存：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = localhost</span><br><span class="line">IP.2 = 192.168.0.10</span><br><span class="line">IP.3 = 192.168.1.200</span><br><span class="line">DNS.4 = xa.it.com</span><br><span class="line">DNS.5 = xiykj.com</span><br><span class="line">DNS.6 = *.xa.com</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，IP.2 = 192.168.11.100 表示 https 要访问的 IP 地址，IP.3 同理也是 IP 地址，ssl 证书允许自签多个 IP 地址，这便是自签 IP 的证书。而 DNS.4 = <a target="_blank" rel="noopener" href="https://xa.it.com/">https://xa.it.com/</a> 则表示 https 要访问的域名，DNS.5、DNS.6 同理均为域名，ssl 证书也支持自签多个域名，此为自签域名的证书。</p>
+<ol start="6">
+<li>使用CA根证书签署ssl证书，自签ssl证书有效期20年：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl x509 -req -<span class="keyword">in</span> server.csr -out server.crt -days 7300 -CAcreateserial -CA root.crt -CAkey root.key -CAserial serial -extfile cert.ext</span></span><br><span class="line">Signature ok</span><br><span class="line">subject=C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">Getting CA Private Key</span><br><span class="line">Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>查看文件，通过执行“ls -al”命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ls -al</span></span><br><span class="line">cert.ext          #ssl证书附加配置信息</span><br><span class="line">serial            #证书序列号</span><br><span class="line">server.crt        #ssl证书文件，包含公钥信息</span><br><span class="line">server.csr        #ssl证书签名文件</span><br><span class="line">server.key        #ssl证书私钥</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>查看签署的证书信息：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl x509 -<span class="keyword">in</span> server.crt -noout -text</span></span><br><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: 3 (0x2)</span><br><span class="line">        Serial Number:</span><br><span class="line">            cd:ae:a9:3e:b7:bb:93:e1</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Jul 18 06:26:05 2024 GMT</span><br><span class="line">            Not After : Jul 13 06:26:05 2044 GMT</span><br><span class="line">        Subject: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">                Public-Key: (2048 bit)</span><br><span class="line">                Modulus:</span><br><span class="line">                    00:aa:4e:ca:f5:0d:51:e7:b4:ba:3c:0b:6e:a5:4a:</span><br><span class="line">                    d8:b4:0d:ad:19:54:3d:11:02:14:29:41:45:76:fc:</span><br><span class="line">                    4a:b0:6c:5c:76:46:91:ff:8d:89:7a:f2:a8:62:73:</span><br><span class="line">                    1d:c4:3a:96:8c:74:82:0a:e9:58:55:73:4a:4e:ec:</span><br><span class="line">                    17:23:43:90:39:69:0e:aa:ac:ec:71:3e:60:e5:6b:</span><br><span class="line">                    0c:e7:7b:f9:8f:93:db:a8:45:ae:d9:43:6f:f1:a1:</span><br><span class="line">                    1c:01:0a:14:33:ce:4f:8c:81:f0:34:b5:cc:7c:81:</span><br><span class="line">                    f6:91:1a:69:31:dc:8a:d1:c1:cc:34:6f:96:71:e0:</span><br><span class="line">                    c2:86:79:37:47:a7:e4:c8:71:3f:44:82:38:7e:11:</span><br><span class="line">                    4d:05:96:fd:01:d8:8c:8b:75:0b:bc:6e:ad:37:1d:</span><br><span class="line">                    77:94:0b:2a:15:1a:43:3c:f6:59:61:eb:ea:8a:73:</span><br><span class="line">                    54:06:b0:ed:70:11:77:42:57:59:e1:80:df:eb:0b:</span><br><span class="line">                    36:d7:7b:d6:c8:53:20:e7:3a:cb:7c:95:67:ea:ff:</span><br><span class="line">                    25:06:80:e9:93:b2:1d:a0:58:9f:ec:60:65:76:e8:</span><br><span class="line">                    24:2c:14:9d:86:47:83:3b:b9:66:59:7d:69:b5:bd:</span><br><span class="line">                    46:af:4f:15:a7:21:45:d1:8c:a1:9b:8b:73:20:94:</span><br><span class="line">                    17:0e:1b:da:d2:e3:93:fb:98:d8:db:13:2b:ed:ff:</span><br><span class="line">                    f5:95</span><br><span class="line">                Exponent: 65537 (0x10001)</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Authority Key Identifier:</span><br><span class="line">                keyid:8D:FB:23:BD:1D:AA:3B:C0:12:62:2A:15:8F:27:BF:81:EB:94:15:42</span><br><span class="line"></span><br><span class="line">            X509v3 Basic Constraints:</span><br><span class="line">                CA:FALSE</span><br><span class="line">            X509v3 Key Usage:</span><br><span class="line">                Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment</span><br><span class="line">            X509v3 Subject Alternative Name:</span><br><span class="line">                DNS:localhost, IP Address:192.168.11.100, IP Address:192.168.10.200, DNS:xa.it.com, DNS:xiykj.com, DNS:*.xa.com</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">         74:0f:a7:56:97:66:e1:8d:7a:5e:4e:7b:6f:b0:da:26:31:5c:</span><br><span class="line">         a3:77:9d:7f:25:19:1c:e2:cd:6a:ee:b3:9e:1f:55:3e:ea:8c:</span><br><span class="line">         05:5b:0f:9e:ac:f7:0f:72:8b:4c:6e:eb:20:4c:c3:d4:7b:d1:</span><br><span class="line">         63:79:54:dc:8d:46:f5:2e:73:fe:4f:5e:8f:d2:3c:54:47:90:</span><br><span class="line">         ae:cd:20:28:31:19:88:26:ec:46:86:1c:1e:ab:8b:67:77:d6:</span><br><span class="line">         81:1d:62:1b:59:7c:d6:4d:52:fe:44:b7:18:ce:6d:47:d3:34:</span><br><span class="line">         48:c8:59:c9:f9:3a:2a:41:9a:7c:50:c0:43:b0:6a:f4:3c:b1:</span><br><span class="line">         d5:49:f1:be:21:ae:b9:d8:72:48:19:f8:20:8c:3b:03:c5:c7:</span><br><span class="line">         26:0d:27:08:4d:0b:9e:27:ea:3c:bf:c3:09:07:fe:b0:68:9c:</span><br><span class="line">         76:1a:3f:49:44:af:67:9f:47:af:88:9f:50:25:1c:f4:a3:05:</span><br><span class="line">         b6:fb:1c:04:16:3d:6d:d3:ac:99:92:73:05:2f:c8:08:9a:e4:</span><br><span class="line">         88:e4:12:4d:f3:d0:aa:47:3c:eb:cf:9b:20:3a:88:e5:33:1b:</span><br><span class="line">         32:65:14:78:1d:c4:24:e8:63:e7:8e:18:b3:2b:bb:e2:94:38:</span><br><span class="line">         1d:dd:1f:f5:13:a2:db:ef:65:bc:12:a9:66:4f:48:15:57:e8:</span><br><span class="line">         82:79:24:a0</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>使用 CA 验证 ssl 证书状态，若显示“OK”则表示通过验证：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl verify -CAfile root.crt server.crt</span></span><br><span class="line">server.crt: OK</span><br></pre></td></tr></table></figure>
+
+<p>最后，将 root.crt 导入到需要访问的客户端 PC 的“受信任的根证书颁发机构”中，同时将 server.crt、server.key 文件部署在服务器上即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/06/PHPStorm-%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B9%B1%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/06/PHPStorm-%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B9%B1%E7%A0%81/" class="post-title-link" itemprop="url">PHPStorm 控制台乱码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-06 13:29:00" itemprop="dateCreated datePublished" datetime="2024-07-06T13:29:00+08:00">2024-07-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>PHPStorm 控制台出现乱码的情况，往往是由于控制台所采用的字符编码和输出内容的编码存在差异所致。比如说，控制台或许默认运用的是 GBK 编码，然而您的 PHP 代码输出的却是 UTF-8 编码的内容，抑或是其他的编码形式。</p>
+</blockquote>
+<p><img src="/images/pasted-69.png" alt="upload successful"></p>
+<p>开启 PHPStorm 的设置页面，在其中进行搜索“Console Encoding”，接着选中“Default Encoding”这一选项，并将“UTF-8”设定为默认编码。</p>
+<p><img src="/images/pasted-70.png" alt="upload successful"></p>
+<p>再次执行相关命令，此时控制台理应能够正常显示内容。</p>
+<p><img src="/images/pasted-71.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/29/RDPWrap%EF%BC%9A%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E7%A5%9E%E5%99%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -720,199 +990,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">使用 ffmpeg 下载 m3u8 视频</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-05 16:29:36" itemprop="dateCreated datePublished" datetime="2022-10-05T16:29:36+08:00">2022-10-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>下载视频，并将m3u8格式转为mp4格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 playlist.mp4</span><br><span class="line">或者</span><br><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy playlist.mp4</span><br></pre></td></tr></table></figure>
-
-<p>下载中。。。由于视频很大，下载需要很长长长时间(1个G的视频可能需下载几小时…)。<br> 可以通过如下指令进行下载提速（下载速度大约能提升到几到十几分钟，很棒了哦，起码比百度云快）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy -bsf:a aac_adtstoasc playlist_1.mp4</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">ffmpeg 合并视频</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-03 22:49:47" itemprop="dateCreated datePublished" datetime="2022-10-03T22:49:47+08:00">2022-10-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -i filelist.txt -c copy -y FBF73ED7.mp4</span><br></pre></td></tr></table></figure>
-
-<p>filelist.txt</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">file &#x27;FBF73ED7.p701.1.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.2.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.3.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.4.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.5.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.6.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.7.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.8.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.9.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.10.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.11.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.12.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.13.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.14.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.15.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.16.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.17.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.18.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.19.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.20.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.21.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.22.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.23.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.24.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.25.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.26.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.27.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.28.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.29.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.30.mp4&#x27;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/" class="post-title-link" itemprop="url">巧用 Dark Reader 破解阅读全文</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-30 23:53:00" itemprop="dateCreated datePublished" datetime="2022-09-30T23:53:00+08:00">2022-09-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在阅读一些网站文章时，时常会遇到文章内容只展示一部分，用户需要 关注博主、或者关注公众号 的一系列障碍。</p>
-<p><img src="/images/pasted-33.png" alt="upload successful"></p>
-<p><img src="/images/pasted-34.png" alt="upload successful"></p>
-<p>于是使用“开发者工具”分析了一下前端代码发现。大多数实现逻辑基本上都是将文章内容元素设置一个较小高度，超出的部分隐藏掉。再在后追加一个“查看全文”的元素。</p>
-<p>想起 Dark Reader （暗黑）插件的自定义CSS功能，因为在使用通用暗黑方案后不能满足所有网站，所以要对一些不能完美适配的网站添加亿点自定义代码。在这正好派到了用场。（当然你也可以使用其他插件）</p>
-<p>打开 Dark Reader 插件，点击开发者工具</p>
-<p><img src="/images/pasted-35.png" alt="upload successful"></p>
-<p>在 主题编辑器 中添加一下代码：（这里用了IT屋和CSDN做演示）</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">================================</span><br><span class="line"></span><br><span class="line">it1352<span class="selector-class">.com</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.arc-body-main-more</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.arc-body-main</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">================================</span><br><span class="line"></span><br><span class="line">blog<span class="selector-class">.csdn</span><span class="selector-class">.net</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.article_content</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.hide-article-box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/pasted-36.png" alt="upload successful"></p>
-<p>点击 Apply，刷新网站，就可以清除全文阅读限制了</p>
-<p>实现原理很简单：隐藏关注元素，清除文章内容元素的高度限制。</p>
-<p>注：此方法只能用于前端限制，后端限制是不行的。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -984,7 +1061,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -996,7 +1073,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">329</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
