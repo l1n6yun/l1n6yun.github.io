@@ -181,6 +181,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">windows下安装php真正的多线程扩展pthreads教程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-16 17:44:51" itemprop="dateCreated datePublished" datetime="2017-10-16T17:44:51+08:00">2017-10-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>扩展地址：<a target="_blank" rel="noopener" href="http://docs.php.net/manual/zh/book.pthreads.php">http://docs.php.net/manual/zh/book.pthreads.php</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>php5.3 或以上，且为线程安全版本。apache 和 php 使用的编译器必须一致。</p>
+<p>通过 <code>phpinfo()</code> 查看 <code>Thread Safety</code> 为 <code>enabled</code> 则为线程安全版。</p>
+<p>通过 <code>phpinfo()</code> 查看 <code>Compiler</code> 项可以知道使用的编译器。本人的为：MSVC9 (Visual C++ 2008)。</p>
+<h2 id="本人使用环境"><a href="#本人使用环境" class="headerlink" title="本人使用环境"></a>本人使用环境</h2><p>32位 windows xp sp3 ，wampserver2.2d（php5.3.10-vc9 + apache2.2.21-vc9）。</p>
+<h2 id="一、下载-pthreads-扩展"><a href="#一、下载-pthreads-扩展" class="headerlink" title="一、下载 pthreads 扩展"></a>一、下载 pthreads 扩展</h2><p>下载地址：<a target="_blank" rel="noopener" href="http://windows.php.net/downloads/pecl/releases/pthreads">http://windows.php.net/downloads/pecl/releases/pthreads</a></p>
+<p>根据本人环境，我下载的是 pthreads-2.0.8-5.3-ts-vc9-x86 。</p>
+<pre><code>2.0.8 代表 pthreads 的版本。
+5.3 代表 php 的版本。
+ts 表示 php 要线程安全版本的。
+vc9 表示 php 要 Visual C++ 2008 编译器编译的。
+x86 则表示32位的
+</code></pre>
+<h2 id="二、安装-pthreads-扩展"><a href="#二、安装-pthreads-扩展" class="headerlink" title="二、安装 pthreads 扩展"></a>二、安装 pthreads 扩展</h2><p>复制 <code>php_pthreads.dll</code> 到目录 <code>bin\php\ext\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10\ext）</p>
+<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>bin\php\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10）</p>
+<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>C:\windows\system32</code> 下面。</p>
+<p>打开 php 配置文件 <code>php.ini</code>。在后面加上 <code>extension=php_pthreads.dll</code></p>
+<p>提示！Windows系统需要将 <code>pthreadVC2.dll</code> 所在路径加入到 <code>PATH</code> 环境变量中。</p>
+<p>我的电脑—&gt;鼠标右键—&gt;属性—&gt;高级—&gt;环境变量—&gt;系统变量—&gt;找到名称为 Path 的—&gt;编辑—&gt;在变量值最后面加上 pthreadVC2.dll 的完整路径（本人的为C:\WINDOWS\system32\pthreadVC2.dll）。</p>
+<h2 id="三、测试-pthreads-扩展"><a href="#三、测试-pthreads-扩展" class="headerlink" title="三、测试 pthreads 扩展"></a>三、测试 pthreads 扩展</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncOperation</span> <span class="keyword">extends</span> \<span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;arg = <span class="variable">$arg</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;arg)&#123;</span><br><span class="line">            printf(<span class="string">&quot;Hello %s\n&quot;</span>, <span class="keyword">$this</span>-&gt;arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$thread</span> = <span class="keyword">new</span> AsyncOperation(<span class="string">&quot;World&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$thread</span>-&gt;start())</span><br><span class="line">    <span class="variable">$thread</span>-&gt;join();</span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码出现 Hello World ，说明 pthreads 扩展安装成功！ </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -948,104 +1027,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/27/Highlight.js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/05/27/Highlight.js/" class="post-title-link" itemprop="url">Highlight.js</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-05-27 20:10:09" itemprop="dateCreated datePublished" datetime="2017-05-27T20:10:09+08:00">2017-05-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Highlight-js"><a href="#Highlight-js" class="headerlink" title="Highlight.js"></a>Highlight.js</h1><p><a target="_blank" rel="noopener" href="https://travis-ci.org/isagalaev/highlight.js"><img src="https://travis-ci.org/isagalaev/highlight.js.svg?branch=master" alt="Build Status"></a></p>
-<p>Highlight.js is a syntax highlighter written in JavaScript. It works in<br>the browser as well as on the server. It works with pretty much any<br>markup, doesn’t depend on any framework and has automatic language<br>detection.</p>
-<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>The bare minimum for using highlight.js on a web page is linking to the<br>library along with one of the styles and calling<br><a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a>:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/styles/default.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/path/to/highlight.pack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>hljs.initHighlightingOnLoad();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This will find and highlight code inside of <code>&lt;pre&gt;&lt;code&gt;</code> tags; it tries<br>to detect the language automatically. If automatic detection doesn’t<br>work for you, you can specify the language in the <code>class</code> attribute:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;html&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>The list of supported language classes is available in the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html">class<br>reference</a>.  Classes can also be prefixed with either <code>language-</code> or<br><code>lang-</code>.</p>
-<p>To disable highlighting altogether use the <code>nohighlight</code> class:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;nohighlight&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Custom-Initialization"><a href="#Custom-Initialization" class="headerlink" title="Custom Initialization"></a>Custom Initialization</h2><p>When you need a bit more control over the initialization of<br>highlight.js, you can use the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#highlightblock-block"><code>highlightBlock</code></a> and <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a><br>functions. This allows you to control <em>what</em> to highlight and <em>when</em>.</p>
-<p>Here’s an equivalent way to calling <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a> using<br>jQuery:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&#x27;pre code&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">    hljs.highlightBlock(block);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>You can use any tags instead of <code>&lt;pre&gt;&lt;code&gt;</code> to mark up your code. If<br>you don’t use a container that preserve line breaks you will need to<br>configure highlight.js to use the <code>&lt;br&gt;</code> tag:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hljs.configure(&#123;<span class="attr">useBR</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;div.code&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, block</span>) </span>&#123;</span><br><span class="line">  hljs.highlightBlock(block);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>For other options refer to the documentation for <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a>.</p>
-<h2 id="Web-Workers"><a href="#Web-Workers" class="headerlink" title="Web Workers"></a>Web Workers</h2><p>You can run highlighting inside a web worker to avoid freezing the browser<br>window while dealing with very big chunks of code.</p>
-<p>In your main script:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">&#x27;load&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> code = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#code&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">&#x27;worker.js&#x27;</span>);</span><br><span class="line">  worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123; code.innerHTML = event.data; &#125;</span><br><span class="line">  worker.postMessage(code.textContent);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>In worker.js:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  importScripts(<span class="string">&#x27;&lt;path&gt;/highlight.pack.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> result = self.hljs.highlightAuto(event.data);</span><br><span class="line">  postMessage(result.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Getting-the-Library"><a href="#Getting-the-Library" class="headerlink" title="Getting the Library"></a>Getting the Library</h2><p>You can get highlight.js as a hosted, or custom-build, browser script or<br>as a server module. Right out of the box the browser script supports<br>both AMD and CommonJS, so if you wish you can use RequireJS or<br>Browserify without having to build from source. The server module also<br>works perfectly fine with Browserify, but there is the option to use a<br>build specific to browsers rather than something meant for a server.<br>Head over to the <a target="_blank" rel="noopener" href="https://highlightjs.org/download/">download page</a> for all the options.</p>
-<p><strong>Don’t link to GitHub directly.</strong> The library is not supposed to work straight<br>from the source, it requires building. If none of the pre-packaged options<br>work for you refer to the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/building-testing.html">building documentation</a>.</p>
-<p><strong>The CDN-hosted package doesn’t have all the languages.</strong> Otherwise it’d be<br>too big. If you don’t see the language you need in the <a target="_blank" rel="noopener" href="https://highlightjs.org/download/">“Common” section</a>,<br>it can be added manually:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>On Almond.</strong> You need to use the optimizer to give the module a name. For<br>example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Highlight.js is released under the BSD License. See <a target="_blank" rel="noopener" href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE">LICENSE</a> file<br>for details.</p>
-<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p>The official site for the library is at <a target="_blank" rel="noopener" href="https://highlightjs.org/">https://highlightjs.org/</a>.</p>
-<p>Further in-depth documentation for the API and other topics is at<br><a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/">http://highlightjs.readthedocs.io/</a>.</p>
-<p>Authors and contributors are listed in the <a target="_blank" rel="noopener" href="https://github.com/isagalaev/highlight.js/blob/master/AUTHORS.en.txt">AUTHORS.en.txt</a> file.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1117,7 +1098,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
