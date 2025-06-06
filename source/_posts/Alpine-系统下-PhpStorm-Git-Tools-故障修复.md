@@ -62,6 +62,8 @@ mv setsid setsid2
 Alpine 默认仓库中的`coreutils`包提供 GNU 版本的工具集，执行以下命令安装并复制`setsid`：
 
 
+下载地址：[setsid](/files/setsid)
+
 ```
 cp setsid /usr/bin/setsid
 ```
