@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写模块化的CSS:命名空间">
+<meta property="og:url" content="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-2.png">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-3.png">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-4.png">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-5.png">
+<meta property="article:published_time" content="2019-08-29T08:41:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:43:49.563Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="BEM">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="前端开发">
+<meta property="article:tag" content="命名空间">
+<meta property="article:tag" content="软件架构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-2.png">
+
+
+<link rel="canonical" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/","path":"2019/08/29/编写模块化的CSS-命名空间/","title":"编写模块化的CSS:命名空间"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>编写模块化的CSS:命名空间 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88BEM%E4%B8%8D%E8%83%BD%E6%BB%A1%E8%B6%B3%E6%88%91%E4%BB%AC"><span class="nav-number">1.</span> <span class="nav-text">为什么BEM不能满足我们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">我使用的命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-l-%E2%80%9D-%E2%80%94%E2%80%94-%E5%B8%83%E5%B1%80-layouts"><span class="nav-number">3.</span> <span class="nav-text">“.l-” —— 布局(layouts)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%B8%83%E5%B1%80"><span class="nav-number">3.1.</span> <span class="nav-text">全局布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E7%BA%A7%E5%B8%83%E5%B1%80"><span class="nav-number">3.2.</span> <span class="nav-text">块级布局</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-o-%E2%80%9D%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1-Objects"><span class="nav-number">4.</span> <span class="nav-text">“.o-”——对象(Objects)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%8D%E8%83%BD%E5%8C%85%E5%90%AB%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%E6%88%96%E7%BB%84%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">对象不能包含其他对象或组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%8B%AC%E7%AB%8B%E4%BA%8E%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">4.2.</span> <span class="nav-text">对象独立于上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E7%90%86%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%9F%90%E4%BA%9B%E5%AF%B9%E8%B1%A1%E5%8F%AF%E4%BB%A5%E5%BF%BD%E7%95%A5-o-%E5%89%8D%E7%BC%80"><span class="nav-number">4.3.</span> <span class="nav-text">合理情况下，某些对象可以忽略 .o- 前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93"><span class="nav-number">4.4.</span> <span class="nav-text">对象使用总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-c-%E2%80%9D%E2%80%94%E2%80%94%E7%BB%84%E4%BB%B6-Components"><span class="nav-number">5.</span> <span class="nav-text">“.c-”——组件(Components)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%BB%84%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">组件可以包含其他对象和组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E6%98%AF%E4%B8%8A%E4%B8%8B%E6%96%87%E6%84%9F%E7%9F%A5%E7%9A%84%EF%BC%88%E4%B8%80%E8%88%AC%E8%80%8C%E8%A8%80%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">组件是上下文感知的（一般而言）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93"><span class="nav-number">5.3.</span> <span class="nav-text">组件的总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-js%E2%80%9D%E2%80%94%E2%80%94JavaScript%E7%9A%84%E9%92%A9%E5%AD%90"><span class="nav-number">6.</span> <span class="nav-text">“.js”——JavaScript的钩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-is-has-%E2%80%9D-%E2%80%94%E2%80%94%E7%8A%B6%E6%80%81%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">“.is-&#x2F;.has-” ——状态类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-t%E2%80%9D%E6%88%96%E2%80%9C-s%E2%80%9D%E2%80%94%E2%80%94%E6%8E%92%E7%89%88%E7%B1%BB-Typography"><span class="nav-number">8.</span> <span class="nav-text">“.t”或“.s”——排版类(Typography)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%9C-u-%E2%80%9D-%E2%80%94%E2%80%94%E5%AE%9E%E7%94%A8%E7%B1%BB-Utility"><span class="nav-number">9.</span> <span class="nav-text">“.u-” ——实用类(Utility)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">10.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="编写模块化的CSS:命名空间 | l1n6yun's Blog">
+      <meta itemprop="description" content="上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编写模块化的CSS:命名空间
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-29 16:41:00" itemprop="dateCreated datePublished" datetime="2019-08-29T16:41:00+08:00">2019-08-29</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— <strong>命名空间</strong>。</p>
+</blockquote>
+<p>在今天的这篇文章中，我想与大家分享一下为什么只用BEM还是不够的，以及如何使用命名空间来弥补一些不足。</p>
+<h2 id="为什么BEM不能满足我们"><a href="#为什么BEM不能满足我们" class="headerlink" title="为什么BEM不能满足我们"></a>为什么BEM不能满足我们</h2><p>我<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjcGx1cy5jb20vY3NzL2Nzcy1hcmNoaXRlY3R1cmUtMS5odG1s">上周<i class="fa fa-external-link-alt"></i></span>给大家展示的例子很简单。 我只向大家展示了如何处理单个块中不同的修饰符和子代（或孙子代）元素。 但是如果有多个区块咱怎么办呐？</p>
+<p>事情有点复杂。 我们使用一个网站范围的导航来说明两个块之间的关系。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;main-nav&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;button&quot;</span>&gt;</span>Menu<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>好啦。 现在有两个区块。 一个叫<code>.main-nav</code>，另一个叫<code>.button</code>。 <code>.button</code>存在于<code>.main-nav</code>内。</p>
+<p>然后现在你想把这个<code>button</code>的颜色从<code>blue</code>变成<code>green</code>。同时你也想给<code>.button</code>加些左边距来和<code>home</code>链接分开。</p>
+<p>那么问题来了，你应该怎样书写CSS代码呢？这下面有几种可能的答案：</p>
+<ul>
+<li>给<code>.main-nav .button</code>添加<code>margin</code>和<code>background-color</code></li>
+<li>给<code>button--modifier</code>添加<code>margin</code>和<code>background-color</code></li>
+<li>给<code>.main-nav .button</code>添加<code>margin</code>，给<code>button--modifier</code>添加<code>background-color</code></li>
+<li>给<code>.main-nav a</code>添加<code>margin</code>，给<code>.main-nav .button</code>添加<code>background-color</code></li>
+<li>给<code>.main-nav a</code>添加<code>margin</code>，给<code>button--modifier</code>添加<code>background-color</code></li>
+</ul>
+<p>哪一种方式最能引起你的情感共鸣呢？ 你又如何能确保您的项目中的每个开发人员都以同样的方式来接受呢？</p>
+<p>即使您的所有开发人员都拷贝了这个方案（因此也是以同样的方式），您如何知道您是否没有引入副作用（破坏了网站的另一部分）？</p>
+<p>老实说，很难保证！如果我们只有BEM，有太多可能的因素导致。</p>
+<p>这就是之所以引入命名空间。它可以帮助你创建一个结构来控制CSS属性的写入。 如果您遵循惯例，您将能够无惧副作用地编写CSS。</p>
+<p>这里是一个示例。</p>
+<p>假设我把上面的代码转换成一个带有命名空间的代码。HTML将完全相同（只加了少数的class前缀）。 在这个例子中要特别注意<code>.o</code>和<code>.c</code>前缀：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;c-main-nav&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;o-button&quot;</span>&gt;</span>Menu<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>.o-</code>和<code>.c-</code>是什么意思呢？从这个代码来看，我知道如果我想，我可以改变<code>.o-button</code>的颜色，但我不应该添加任何边距到<code>.o-button</code>。</p>
+<p>啥！？ 那么我必须来解释这些命名空间，gogogo~ :)</p>
+<h2 id="我使用的命名空间"><a href="#我使用的命名空间" class="headerlink" title="我使用的命名空间"></a>我使用的命名空间</h2><p>以下是我使用的命名空间列表：</p>
+<ul>
+<li><code>.l-</code>: 布局(layouts)</li>
+<li><code>.o-</code>: 对象(objects)</li>
+<li><code>.c-</code>: 组件(components)</li>
+<li><code>.js</code>: js的钩子(JavaScript hooks)</li>
+<li><code>.is-</code>|<code>.has-</code>: 状态类(state classes)</li>
+<li><code>.t1</code>|<code>.s1</code>: 排版大小(typography sizes)</li>
+<li><code>.u-</code>: 实用类(utility classes)</li>
+</ul>
+<p>我们来看看具体每个命名空间是什么，以及咱应该怎么用。</p>
+<p>在继续之前，如果您对命名空间不了解，我强烈建议您查看Harry Robert的<span class="exturl" data-url="aHR0cHM6Ly9jc3N3aXphcmRyeS5jb20vMjAxNS8wMy9tb3JlLXRyYW5zcGFyZW50LXVpLWNvZGUtd2l0aC1uYW1lc3BhY2VzLw==">具有命名空间的更透明的ui代码<i class="fa fa-external-link-alt"></i></span>。（有趣的事实：Harry启发我使用命名空间）。</p>
+<p>如果你阅读Harry的文章，要注意一下我的命名空间不同于他的。（待会儿我会分享有哪些不同的内容）。</p>
+<p>以上，让我们先进入第一个命名空间 —— 布局（layouts）</p>
+<h2 id="“-l-”-——-布局-layouts"><a href="#“-l-”-——-布局-layouts" class="headerlink" title="“.l-” —— 布局(layouts)"></a>“.l-” —— 布局(layouts)</h2><p>我很确定你听说过<span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9zdHViYm9ybmVsbGE=">@Nicole Sullivan<i class="fa fa-external-link-alt"></i></span>的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0dWJib3JuZWxsYS9vb2Nzcy93aWtp">Object Oriented CSS(面向对象的CSS)<i class="fa fa-external-link-alt"></i></span>(OOCSS)。 如果您还没有深入了解，那得知道OOCSS背后的主要思想是表层和结构的分离。 换句话说，影响块或其元素的位置的<strong>属性应该被抽象为一个单独的类用于重复利用</strong>。</p>
+<p>在CSS中，定位块的行为也称为布局块。 在一般意义上，定位是<strong>布局</strong>。</p>
+<p>也许这只是一个快乐的巧合（也许），但<span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9zbm9va2Nh">@Jonathan Snook<i class="fa fa-external-link-alt"></i></span>在<span class="exturl" data-url="aHR0cHM6Ly9zbWFjc3MuY29tLw==">SMACSS<i class="fa fa-external-link-alt"></i></span>中为布局规则建议一个<code>.l-</code>前缀。这两个范例在布局方面有着相同的原则。 因此，我很高兴地从SMACSS中窃取<code>.l-</code>作为布局命名空间。</p>
+<p>既然你已经了解了命名空间的起源了，它可能会帮助你了解它的使用方式。 当涉及到布局时，我将布局分为两个不同的类别 —— <strong>全局布局</strong>和<strong>块级布局</strong>。</p>
+<h3 id="全局布局"><a href="#全局布局" class="headerlink" title="全局布局"></a>全局布局</h3><p>全局布局是应用于所有页面的布局。在我的用例中，它们通常是在任何地方都使用的大型网格容器。 一个例子是<code>.l-wrap</code> 类：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// <span class="selector-tag">I</span> like <span class="selector-tag">to</span> write in Sass :)</span><br><span class="line">.l-wrap &#123;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">1em</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">1000px</span>) &#123;</span><br><span class="line">        <span class="attribute">max-width</span>: <span class="number">800px</span>;</span><br><span class="line">        <span class="attribute">margin-left</span>: auto;</span><br><span class="line">        <span class="attribute">margin-right</span>: auto;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我将在每个地方都使用<code>.l-wrap</code>类，比如在<code>header</code>和<code>footer</code>里来对齐内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;site-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;l-wrap&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment"><!-- stuff --></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;site-footer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;l-wrap&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment"><!-- stuff --></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>由于这些<code>class</code>在全局使用，所以我更喜欢把它们写在<code>_layouts.scss</code>部分。</p>
+<h3 id="块级布局"><a href="#块级布局" class="headerlink" title="块级布局"></a>块级布局</h3><p>每个块（对象或组件，我们将在后面讨论）可能有自己的布局。 通过个人经验，我发现这些布局通常独立于全局布局。</p>
+<p>让我来举个栗子。</p>
+<p>当我为<span class="exturl" data-url="aHR0cHM6Ly9tYXN0ZXJpbmctcmVzcG9uc2l2ZS10eXBvZ3JhcGh5LmNvbS8=">Mastering Responsive Typography<i class="fa fa-external-link-alt"></i></span>建站后，我添加了一个如下所示的付款表单：</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-2.png" alt="Payment form on Mastering Responsive Typography"></p>
+<p>响应式排版的付款表单</p>
+<p>在上面的设计中，您可以看到该表单包含两行输入元素。 第一行中有两个相等大小的输入框，第二行中有两个不同大小的输入框。</p>
+<p>为了区分这三个不同大小的输入框，我选择了布局前缀：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form l-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item--large&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item--small&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... --></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>你注意到了我是怎样同时保持BEM的实现还有布局的？ 这种实现对我来说使我更加清楚了。 你瞄一眼就可以看到我的CSS将写些啥。 清晰明了。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.l-form</span> &#123;</span><br><span class="line">    <span class="comment">/* container styles */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.l-form__item</span> &#123;</span><br><span class="line">    <span class="comment">/* half-width styles */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.l-form__item--large</span> &#123;</span><br><span class="line">    <span class="comment">/* larger-width styles */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.l-form__item--small</span> &#123;</span><br><span class="line">    <span class="comment">/* smaller-width styles */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为<code>.l-form</code>，<code>.l-form__item</code>，<code>.l-form__item - small</code>和<code>.l-form__item - large</code>与其他块无关，我在<code>_form.scss</code>中写这些<code>class</code>来保持上下文。</p>
+<p>顺便说一句，有些人不同意我在<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjcGx1cy5jb20vY3NzL2Nzcy1hcmNoaXRlY3R1cmUtMS5odG1s">前一篇文章<i class="fa fa-external-link-alt"></i></span>里讲到当出现<code>.block - modifier</code>时删除<code>.block</code>这一观点。 那么，看看在这种情况下插入所有“必需”BEM class的情况下会发生什么，你会注意到“HTML开始膨胀”：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form l-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment"><!-- 这段HTML开始变得太太太太长了 --></span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item l-form__item--large&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item l-form__item--small&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... --></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后一点：Harry使用对象命名空间（<code>.o-</code>）来表示这样的结构布局。 我只是将它们分组成<code>.l-</code>，并使用<code>.o-</code>来代替别的东西。</p>
+<p>以上，让我们转移到对象（objects）上(我的版本)。</p>
+<h2 id="“-o-”——对象-Objects"><a href="#“-o-”——对象-Objects" class="headerlink" title="“.o-”——对象(Objects)"></a>“.o-”——对象(Objects)</h2><p><strong>Objects</strong>(<code>.o-</code>)<strong>是Website</strong>的最小构建块。可以把它们想成是可以在网站各个地方拼凑的【乐高】块（译者注：‘乐高’玩具，没玩过的可以淘宝搜看看）。 如果您曾听过<span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9icmFkX2Zyb3N0">@Brad Frost<i class="fa fa-external-link-alt"></i></span>的<span class="exturl" data-url="aHR0cHM6Ly9hdG9taWNkZXNpZ24uYnJhZGZyb3N0LmNvbS8=">Atomic Design<i class="fa fa-external-link-alt"></i></span>，也可以将对象视为元素和分子的混合物。</p>
+<p>对象物们都有着以下的属性：</p>
+<ul>
+<li>对象使用<code>.o-</code>前缀</li>
+<li>它们的里面不能包含其他对象或组件</li>
+<li>它们之于上下文是独立的</li>
+<li>某些对象可以在有意义的情况下忽略<code>.o-</code>前缀。</li>
+</ul>
+<h3 id="对象不能包含其他对象或组件"><a href="#对象不能包含其他对象或组件" class="headerlink" title="对象不能包含其他对象或组件"></a>对象不能包含其他对象或组件</h3><p>对象可大可小。对象中的HTML元素的数量是不相关的。 解释以下。</p>
+<p>举个例子,<code>buttons</code>就是对象。它们是很小的而且可以放到任何地方。这是不言而喻的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;o-button&quot;</span>&gt;</span>A button<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个较大的对象的例子是我为Mastering Responsive Typography构建的倒计时器：</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-3.png" alt="Example of a large object"></p>
+<p>一个大对象的例子。仍然被认为是一个对象，因为它不包含对象和组件。</p>
+<p>倒计时器的HTML结构如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown jsCountdown&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;days&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>day<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;hours&quot;</span>&gt;</span>21<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>hours<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;minutes&quot;</span>&gt;</span>41<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>minutes<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;seconds&quot;</span>&gt;</span>50<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>seconds<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意<code>.o-countdown</code>包含三层HTML元素。虽然它很大了，但它仍然是一个对象，因为它不包含任何其他对象或组件。<code>.o-countdown</code>中的元素的实际数量是无关紧要的，因为所有内部元素只能在<code>.o-countdown</code>里存在。</p>
+<h3 id="对象独立于上下文"><a href="#对象独立于上下文" class="headerlink" title="对象独立于上下文"></a>对象独立于上下文</h3><p>当我说对象是上下文独立的时候，我的意思是他们不知道在哪里会被使用。 你可以选择任何的对象，并把它放在你喜欢的地方，而且并不会破坏你的网站的结构。</p>
+<p>这也意味着对象不应该更改外部任何结构。 因此，对象块不能包含任何这些属性&#x2F;值：</p>
+<ul>
+<li><code>absolute</code> 和 <code>fixed</code> 定位。</li>
+<li><code>margin</code></li>
+<li><code>padding</code> (除非你用了<code>background-color</code>。 在这种情况下，它不会中断对象外部的对齐)。</li>
+<li><code>float</code>.</li>
+<li>等等…</li>
+</ul>
+<p>既然你知道对象需要与上下文无关，你马上知道我们站点范围的导航示例中的<code>.button</code>不能包含任何边距。</p>
+<p>以下是我的样式表中典型的<code>.o-button</code>对象的示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 如果您不明白这个棘手的选择器，请返回上一篇文章理解 */</span></span><br><span class="line"><span class="selector-attr">[class*=<span class="string">&#x27;o-button&#x27;</span>]</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[class*=<span class="string">&#x27;o-button__&#x27;</span>]</span>) &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.75em</span> <span class="number">1.25em</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">line-height</span>: inherit;</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">0.15s</span> ease-in-out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然对象不能影响外部结构，但它改变其内部结构是很合理的。 例如，我提到的<code>.o-countdown</code>计时器可以具有以下HTML和CSS：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown l-countdown jsCountdown&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner l-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;days&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>days<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner l-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;hours&quot;</span>&gt;</span>20<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>hours<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner l-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;minutes&quot;</span>&gt;</span>57<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>minutes<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown__inner l-countdown__inner&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-token</span>=<span class="string">&quot;seconds&quot;</span>&gt;</span>33<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>seconds<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.l-countdown</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.l-countdown__inner</span> &#123;</span><br><span class="line">    <span class="comment">/* 大概你想咋整就咋整? */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以自由地设计一个对象，底线是只要它不影响任何外面的东西。（另外，请确保您不要意外添加’padding’使其看起来不规整）。</p>
+<h3 id="合理情况下，某些对象可以忽略-o-前缀"><a href="#合理情况下，某些对象可以忽略-o-前缀" class="headerlink" title="合理情况下，某些对象可以忽略 .o- 前缀"></a>合理情况下，某些对象可以忽略 .o- 前缀</h3><p>哇，我们是否已经违反了规定？ 哎是呀！。</p>
+<p>一些对象包含<code>.o-</code>前缀（甚至是一个类）本身就没有意义，因为它们被使用得太多了。 举一个这样的例子——输入元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然，如果你喜欢的话，你可以将一个<code>class</code>标记给<code>input</code>，但是如果你不能访问</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> input &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="selector-tag">line</span>-<span class="attribute">height</span>: inherit;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">&quot;text&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">&quot;email&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">&quot;textarea&quot;</span>]</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> input;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>我觉得另一个对象不应该使用<code>.o-</code>前缀的例子是字体。 他们得到特别待遇（我稍后会解释）。 在这一点上，你可以自由地反对。</p>
+<h3 id="对象使用总结"><a href="#对象使用总结" class="headerlink" title="对象使用总结"></a>对象使用总结</h3><p>对象（<code>.o-</code>）是一个网站的最小的构建块。</p>
+<p>对象物们都有着以下的属性：</p>
+<ul>
+<li>对象使用<code>.o-</code>前缀</li>
+<li>它们的里面不能包含其他对象或组件</li>
+<li>它们之于上下文是独立的</li>
+<li>某些对象可以在有意义的情况下忽略<code>.o-</code>前缀。</li>
+</ul>
+<p>接下来我们转移到组件上</p>
+<h2 id="“-c-”——组件-Components"><a href="#“-c-”——组件-Components" class="headerlink" title="“.c-”——组件(Components)"></a>“.c-”——组件(Components)</h2><p>如果对象是最小的构建块，则组件是您可以在整个站点中使用的更大的构建块。 如果您已阅读《原子设计》，请将组件视为有机体。 （除了这种生物体可以含有其他生物体 )。</p>
+<p>组件有着以下属性：</p>
+<ul>
+<li>组件使用’.c-‘前缀</li>
+<li>组件可以包含其他对象和组件。</li>
+<li>组件是<strong>上下文感知</strong>的</li>
+</ul>
+<p>让我们来看看这些属性，我会补充你所需要的例子。</p>
+<h3 id="组件可以包含其他对象和组件"><a href="#组件可以包含其他对象和组件" class="headerlink" title="组件可以包含其他对象和组件"></a>组件可以包含其他对象和组件</h3><p>让我们回到我所说的关于布局的形式。 下是组件的完美示例。</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-4.png" alt="Payment form on Mastering Responsive Typography"></p>
+<p>响应式排版的付款表单之前我提到过这段HTML:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form l-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item--large&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__item l-form__item--small&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... --></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我实际上省略了很多代码，使其在布局部分中看起来合理。 如果我们深入挖掘，你会看到有<code>input</code>和<code>.o-button</code>对象。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;c-form l-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__item l-form__item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;fname&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fname&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fname&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment"><!-- ... the email input item --></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... other form_rows --></span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;o-button c-form__button&quot;</span>&gt;</span>Buy Mastering Responsive Typography!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看看<code>.c-form</code>现在是否包含其他对象？ :)</p>
+<h3 id="组件是上下文感知的（一般而言）"><a href="#组件是上下文感知的（一般而言）" class="headerlink" title="组件是上下文感知的（一般而言）"></a>组件是上下文感知的（一般而言）</h3><p>组件是相当大的，所以您需要特别注意将它们放置在不同的地方。 例如，这个<code>.c-form</code>组件可以放在<strong>整个宽度栏中</strong>或<strong>侧边栏</strong>中。</p>
+<p>以下是放在侧栏上下文中的表单：</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-5.png" alt="Form component in a sidebar context"></p>
+<p>表单组件放在侧边栏上</p>
+<p>马上就可以看到三件事情改变了：</p>
+<ul>
+<li>标签被隐藏</li>
+<li><code>input</code>和<code>o-button</code>对象的布局变为百分百宽度</li>
+<li>文本的<code>Font-size</code>和<code>line-height</code>在按钮对象上变小。</li>
+</ul>
+<p>此更改表单的HTML可能是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;c-form--sidebar l-form--sidebar&quot;</span> <span class="attr">action</span>=<span class="string">&quot;#&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__item l-form__item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;fname&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;fname&quot;</span> <span class="attr">name</span>=<span class="string">&quot;fname&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... the email input row --></span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c-form__row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;o-button c-form__button&quot;</span>&gt;</span>Buy Mastering Responsive Typography!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>并且各自的（S）CSS更改是：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.l-from--sidebar</span> &#123;</span><br><span class="line">    <span class="selector-class">.l-form__item</span> &#123; </span><br><span class="line">        <span class="comment">/* change to full width style */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c-form--sidebar</span> &#123;</span><br><span class="line">    <span class="selector-tag">label</span> &#123;</span><br><span class="line">        <span class="comment">// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility</span></span><br><span class="line">        <span class="keyword">@include</span> is-invisible;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.c__button</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">        <span class="selector-tag">line</span>-<span class="attribute">height</span>: <span class="number">1.25</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有一件事。 注意到了我混合了一个对象和组件类在<code>.c-form__button</code>里么？ 这被称为<span class="exturl" data-url="aHR0cHM6Ly9lbi5iZW0uaW5mby9tZXRob2RvbG9neS9rZXktY29uY2VwdHMvI21peA==">BEM混合<i class="fa fa-external-link-alt"></i></span>，它允许我使用组件的类来创建一个对象，而不影响原始按钮。</p>
+<h3 id="组件的总结"><a href="#组件的总结" class="headerlink" title="组件的总结"></a>组件的总结</h3><p>组件（<code>.c-</code>）是您可以在整个站点中使用的<strong>更大的构建块</strong>。</p>
+<p>组件有着以下属性：</p>
+<ul>
+<li>组件使用’.c-‘前缀</li>
+<li>组件可以包含其他对象和组件。</li>
+<li>组件是<strong>上下文感知</strong>的</li>
+</ul>
+<p>接下来我们来说下一个命名空间。</p>
+<h2 id="“-js”——JavaScript的钩子"><a href="#“-js”——JavaScript的钩子" class="headerlink" title="“.js”——JavaScript的钩子"></a>“.js”——JavaScript的钩子</h2><p><strong>Javascript 钩子</strong>（<code>.js</code>）<strong>表示对象&#x2F;组件是否需要JavaScript</strong>。 举个栗子，我之前提到的倒计时器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;o-countdown jsCountdown&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment"><!-- ... --></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用JavaScript命名空间的好处是可以将JS功能与样式分开，这使得它们更易于维护。</p>
+<p>例如，您刚刚看到<code>.jsCountdown</code>类就可以立即知道，<code>.o-countdown</code>需要JavaScript才能正常工作。 如果将来有需要将<code>o-countdown</code>更改为<code>c-countdown</code>，我也不必担心破坏任何JS功能。</p>
+<p>JavaScript钩子很简单，所以让我们继续吧。</p>
+<h2 id="“-is-has-”-——状态类"><a href="#“-is-has-”-——状态类" class="headerlink" title="“.is-&#x2F;.has-” ——状态类"></a>“.is-&#x2F;.has-” ——状态类</h2><p><strong>状态类表示对象&#x2F;组件的当前状态</strong>。当应用状态类时，您可以立即知道对象&#x2F;组件是否具有下拉（<code>.has-dropdown</code>）或当前处于打开状态（<code>.is-open</code>）。 这些可爱的课程来自SMACSS（如果你想知道的话）。</p>
+<p>当您在CSS中设计状态类时，建议您尽可能保持样式接近所讨论的对象&#x2F;组件。 例如：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sass</span></span><br><span class="line"><span class="selector-class">.object</span> &#123;</span><br><span class="line">    &amp;<span class="selector-class">.is-animating</span> &#123; <span class="comment">/* styles */</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果您不用Sass,你可以用这种方式来书写CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.object</span><span class="selector-class">.is-animating</span> &#123; </span><br><span class="line">    <span class="comment">/* styles */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于@Jonathan早已介绍了这点，所以你可能会了解状态类。 所以我不再多说:)</p>
+<p>让我们继续。</p>
+<h2 id="“-t”或“-s”——排版类-Typography"><a href="#“-t”或“-s”——排版类-Typography" class="headerlink" title="“.t”或“.s”——排版类(Typography)"></a>“.t”或“.s”——排版类(Typography)</h2><p>在排版中最好的做法是在网页上只使用少数样式（大小，字体等）。 现在，你可能会在标题<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>中写出这样的排版风格：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br><span class="line"><span class="selector-tag">h2</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br><span class="line"><span class="selector-tag">h3</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br><span class="line"><span class="selector-tag">h4</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br><span class="line"><span class="selector-tag">h5</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br><span class="line"><span class="selector-tag">h6</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果您的网站很简单，那么这是一个很好的开始，并且不需要为多个对象&#x2F;组件使用相同的标题样式。</p>
+<p>但是举个栗子哈，如果你有一个带链接的导航样式和你的h5样式一致怎么办？</p>
+<p>你会这样做吗？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- 哎呀，千万别这么做！--></span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;c-nav&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>显然咱不能这么干。那么更好的方式就是改变我们的CSS样式。所以或许这么改？</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.25</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然改动CSS的版本稍微好一点，但是在排版风格方面，解决问题方式定不会只有一种。你能找出30种不同的组合也只是一个时间的问题。</p>
+<p>下面是一个潜在的解决方案。</p>
+<p>你可以分别创建<code>.h1</code>到<code>.h6</code>的样式来应用到你的HTML，而不是利用<code>-</code>样式，像这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;c-nav&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;h5&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;h5&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;h5&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我喜欢这种解决方案的简单性，其中有一个排版真理的来源。 您只需访问一个<code>_typography.scss</code>文件即可在网站上显示不同排版大小的数量。</p>
+<p>现在，虽然<code>.h1</code> - <code>.h6</code>类的解决方案很棒，但我强烈建议不要用<code>.h1</code> - <code>.h6</code>为你的类，只是因为它们被隐含地绑在<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>对象上。</p>
+<p>如果你有一个<code>&lt;h2&gt;</code>元素，但决定用<code>.h3</code>来写样式它会发生什么？ 接管你的代码库的另一个开发人员可能会遇到一个最初的不和他们去“为什么是<code>.h3</code> 和<code>&lt;h2&gt;</code>写在一起了？</p>
+<p>所以，不是写<code>.h1</code>到<code>.h6</code>的样式，我给排版类<strong>不同的前缀</strong>，这取决于它们是比我的基本<code>font-size</code>大或更小。 以下是一个例子：</p>
+<ul>
+<li><code>.t1</code> - 最大的字体大小。</li>
+<li><code>.t2</code> - 第二大字体大小。</li>
+<li><code>.t3</code> - 第三大字体大小。</li>
+<li><code>.s1</code> - 第一字体大小较小的基本字体大小。</li>
+<li><code>.s2</code> - 第二字体大小较小的基本字体大小。</li>
+<li>…</li>
+</ul>
+<p>这五个<code>class</code>通常是我每个项目所需的一切（到目前为止）。 这样一个惯例的好处就是能够一目了然地告诉元素的大小。 在下面的例子中，我确定这个链接的尺寸小于我的基本字体大小。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;s1&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> &gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>现在，如果您无法控制HTML，但想要控制排版类的大小呢？</p>
+<p>对于这种情况，我建议您创建和使用mixins，如下所示：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> s1 &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="selector-tag">line</span>-<span class="attribute">height</span>: <span class="number">1.25</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="keyword">@include</span> s1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在我们进入下个话题的最后一件事。 要特别注意这一点。</p>
+<p>排版类是对象的<strong>子集</strong>。您应该<strong>像排列对象那样将相同的一套规则应用于排版类</strong>。 这意味着你不应该在排版类中添加<code>margin</code>或<code>padding</code>。而这些<code>margin</code>或<code>padding</code>应该直接添加到组件。（阅读Harry的<span class="exturl" data-url="aHR0cHM6Ly9jc3N3aXphcmRyeS5jb20vMjAxNi8wMi9tYW5hZ2luZy10eXBvZ3JhcGh5LW9uLWxhcmdlLWFwcHMv">在大型应用上管理排版<i class="fa fa-external-link-alt"></i></span>了解为什么我推荐这个）。</p>
+<p>让我们继续。</p>
+<h2 id="“-u-”-——实用类-Utility"><a href="#“-u-”-——实用类-Utility" class="headerlink" title="“.u-” ——实用类(Utility)"></a>“.u-” ——实用类(Utility)</h2><p><strong>实用类是用来表现样式的一个非常好的辅助类</strong>。它们做得很好，并且其优先级高超过了其他样式。 因此，它们通常只包含一个属性，并且包含<code>!important</code>声明。</p>
+<p>例子如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.u-text-left</span> &#123; </span><br><span class="line">    <span class="attribute">text-align</span>: left <span class="meta">!important</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.u-text-center</span> &#123; </span><br><span class="line">    <span class="attribute">text-align</span>: center <span class="meta">!important</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.u-text-right</span> &#123; </span><br><span class="line">    <span class="attribute">text-align</span>: right <span class="meta">!important</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.u-hide-st-med</span> &#123;</span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">man-width</span>: <span class="number">599px</span>) &#123;</span><br><span class="line">        <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.u-hide-bp-med</span> &#123;</span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">600px</span>) &#123;</span><br><span class="line">        <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我刚才在这里说的几乎是我用于实用类的一切。 我从来没有发现有了这些类还有做不好的事。</p>
+<p>唷。闲话不说，咱回到工作&#x2F;玩耍&#x2F;学习或任何你正在做的事情，所以让我们来回顾一下。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>在本文中，我向您展示了如何使用命名空间填补BEM的遗憾。通过包含命名空间，我终于实现了一个好的架构中寻找的所有四个标准：</p>
+<ul>
+<li>类必须<strong>尽量少地添加避免HTML膨胀</strong>。</li>
+<li>我必须<strong>立即知道组件是否使用JavaScript</strong>。</li>
+<li>我必须<strong>立即知道是否可以安全地编辑一个类而不会影响其他任何其他CSS</strong>。</li>
+<li>我必须<strong>立即知道每个class是适合于什么</strong>，以防止大脑过载。</li>
+</ul>
+<p>总之，我总共使用了七个不同的命名空间。 他们是：</p>
+<ul>
+<li><code>.l-</code>: 布局(layouts)</li>
+<li><code>.o-</code>: 对象(objects)</li>
+<li><code>.c-</code>: 组件(components)</li>
+<li><code>.js</code>: js的钩子(JavaScript hooks)</li>
+<li><code>.is-</code>|<code>.has-</code>: 状态类(state classes)</li>
+<li><code>.t1</code>|<code>.s1</code>: 排版大小(typography sizes)</li>
+<li><code>.u-</code>: 实用类(utility classes)</li>
+</ul>
+<p>每个命名空间都有一个功能，可以在整个事物的宏伟计划中进行，进一步加强了样式表中的层次结构。</p>
+<p>接下来，我将与大家分享一下如何打破这些我刚才设置的规则（<strong>“嗯，再次?!你真的喜欢打破规则吗？”</strong>）以及我如何组织我的CSS文件。</p>
+<p>现在，我好奇的听到你的想法。你觉得我使用的命名空间如何？我的“违背专家命名空间”的使用<code>.o-</code>和<code>.c-</code>对你有帮助&#x2F;有用吗？还是更让你迷糊呢？我很想听到你在下面的评论中的想法:)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 前端开发</a>
+              <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+              <a href="/tags/BEM/" rel="tag"><i class="fa fa-tag"></i> BEM</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 软件架构</a>
+              <a href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag"><i class="fa fa-tag"></i> 命名空间</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/" rel="prev" title="编写模块化CSS：BEM">
+                  <i class="fa fa-angle-left"></i> 编写模块化CSS：BEM
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" rel="next" title="windows 10 界面优化">
+                  windows 10 界面优化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

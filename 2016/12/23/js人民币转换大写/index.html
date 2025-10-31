@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js人民币转换大写">
+<meta property="og:url" content="http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-04T10:29:42.204Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Chinese Characters">
+<meta property="article:tag" content="Currency Conversion">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Number Formatting">
+<meta property="article:tag" content="String Manipulation">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/","path":"2016/12/23/js人民币转换大写/","title":"js人民币转换大写"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>js人民币转换大写 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="js人民币转换大写 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js人民币转换大写
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-12-23 00:00:00" itemprop="dateCreated datePublished" datetime="2016-12-23T00:00:00+08:00">2016-12-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">     Copyright (c) 2004, Laser Lu      </span></span><br><span class="line"><span class="comment">          http://www.idow.net           </span></span><br><span class="line"><span class="comment"> *****************************************/</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convertCurrency</span>(<span class="params">currencyDigits</span>) &#123;</span><br><span class="line"><span class="comment">// Constants:</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">MAXIMUM_NUMBER</span> = <span class="number">99999999999.99</span>;</span><br><span class="line">    <span class="comment">// Predefine the radix characters and currency symbols for output:</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_ZERO</span> = <span class="string">&quot;零&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_ONE</span> = <span class="string">&quot;壹&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TWO</span> = <span class="string">&quot;贰&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_THREE</span> = <span class="string">&quot;叁&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_FOUR</span> = <span class="string">&quot;肆&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_FIVE</span> = <span class="string">&quot;伍&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SIX</span> = <span class="string">&quot;陆&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SEVEN</span> = <span class="string">&quot;柒&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_EIGHT</span> = <span class="string">&quot;捌&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_NINE</span> = <span class="string">&quot;玖&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN</span> = <span class="string">&quot;拾&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_HUNDRED</span> = <span class="string">&quot;佰&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_THOUSAND</span> = <span class="string">&quot;仟&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN_THOUSAND</span> = <span class="string">&quot;万&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_HUNDRED_MILLION</span> = <span class="string">&quot;亿&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SYMBOL</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_DOLLAR</span> = <span class="string">&quot;元&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN_CENT</span> = <span class="string">&quot;角&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_CENT</span> = <span class="string">&quot;分&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_INTEGER</span> = <span class="string">&quot;整&quot;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Variables:</span></span><br><span class="line">    <span class="keyword">var</span> integral;    <span class="comment">// Represent integral part of digit number.</span></span><br><span class="line">    <span class="keyword">var</span> decimal;    <span class="comment">// Represent decimal part of digit number.</span></span><br><span class="line">    <span class="keyword">var</span> outputCharacters;    <span class="comment">// The output result.</span></span><br><span class="line">    <span class="keyword">var</span> parts;</span><br><span class="line">    <span class="keyword">var</span> digits, radices, bigRadices, decimals;</span><br><span class="line">    <span class="keyword">var</span> zeroCount;</span><br><span class="line">    <span class="keyword">var</span> i, p, d;</span><br><span class="line">    <span class="keyword">var</span> quotient, modulus;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Validate input string:</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span> (currencyDigits == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;不能为空。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (currencyDigits.<span class="title function_">match</span>(<span class="regexp">/[^,.\d]/</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;请输入数字。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ((currencyDigits).<span class="title function_">match</span>(<span class="regexp">/^((\d&#123;1,3&#125;(,\d&#123;3&#125;)*(.((\d&#123;3&#125;,)*\d&#123;1,3&#125;))?)|(\d+(.\d+)?))$/</span>) == <span class="literal">null</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;请输入正确数字。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Normalize the format of input digits:</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">replace</span>(<span class="regexp">/,/g</span>, <span class="string">&quot;&quot;</span>);    <span class="comment">// Remove comma delimiters.</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">replace</span>(<span class="regexp">/^0+/</span>, <span class="string">&quot;&quot;</span>);    <span class="comment">// Trim zeros at the beginning.</span></span><br><span class="line">    <span class="comment">// Assert the number is not greater than the maximum number.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Number</span>(currencyDigits) &gt; <span class="variable constant_">MAXIMUM_NUMBER</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;超出了最大数字转换。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Process the coversion from currency digits to characters:</span></span><br><span class="line">    <span class="comment">// Separate integral and decimal parts before processing coversion:</span></span><br><span class="line">    parts = currencyDigits.<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (parts.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        integral = parts[<span class="number">0</span>];</span><br><span class="line">        decimal = parts[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// Cut down redundant decimal digits that are after the second.</span></span><br><span class="line">        decimal = decimal.<span class="title function_">substr</span>(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        integral = parts[<span class="number">0</span>];</span><br><span class="line">        decimal = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Prepare the characters corresponding to the digits:</span></span><br><span class="line">    digits = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="variable constant_">CN_ZERO</span>, <span class="variable constant_">CN_ONE</span>, <span class="variable constant_">CN_TWO</span>, <span class="variable constant_">CN_THREE</span>, <span class="variable constant_">CN_FOUR</span>, <span class="variable constant_">CN_FIVE</span>, <span class="variable constant_">CN_SIX</span>, <span class="variable constant_">CN_SEVEN</span>, <span class="variable constant_">CN_EIGHT</span>, <span class="variable constant_">CN_NINE</span>);</span><br><span class="line">    radices = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;&quot;</span>, <span class="variable constant_">CN_TEN</span>, <span class="variable constant_">CN_HUNDRED</span>, <span class="variable constant_">CN_THOUSAND</span>);</span><br><span class="line">    bigRadices = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;&quot;</span>, <span class="variable constant_">CN_TEN_THOUSAND</span>, <span class="variable constant_">CN_HUNDRED_MILLION</span>);</span><br><span class="line">    decimals = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="variable constant_">CN_TEN_CENT</span>, <span class="variable constant_">CN_CENT</span>);</span><br><span class="line">    <span class="comment">// Start processing:</span></span><br><span class="line">    outputCharacters = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">// Process integral part if it is larger than 0:</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Number</span>(integral) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        zeroCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; integral.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            p = integral.<span class="property">length</span> - i - <span class="number">1</span>;</span><br><span class="line">            d = integral.<span class="title function_">substr</span>(i, <span class="number">1</span>);</span><br><span class="line">            quotient = p / <span class="number">4</span>;</span><br><span class="line">            modulus = p % <span class="number">4</span>;</span><br><span class="line">            <span class="keyword">if</span> (d == <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">                zeroCount++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (zeroCount &gt; <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    outputCharacters += digits[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                zeroCount = <span class="number">0</span>;</span><br><span class="line">                outputCharacters += digits[<span class="title class_">Number</span>(d)] + radices[modulus];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (modulus == <span class="number">0</span> &amp;&amp; zeroCount &lt; <span class="number">4</span>) &#123;</span><br><span class="line">                outputCharacters += bigRadices[quotient];</span><br><span class="line">                zeroCount = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        outputCharacters += <span class="variable constant_">CN_DOLLAR</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Process decimal part if there is:</span></span><br><span class="line">    <span class="keyword">if</span> (decimal != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; decimal.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            d = decimal.<span class="title function_">substr</span>(i, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (d != <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">                outputCharacters += digits[<span class="title class_">Number</span>(d)] + decimals[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Confirm and return the final output string:</span></span><br><span class="line">    <span class="keyword">if</span> (outputCharacters == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        outputCharacters = <span class="variable constant_">CN_ZERO</span> + <span class="variable constant_">CN_DOLLAR</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (decimal == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        outputCharacters += <span class="variable constant_">CN_INTEGER</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    outputCharacters = <span class="variable constant_">CN_SYMBOL</span> + outputCharacters;</span><br><span class="line">    <span class="keyword">return</span> outputCharacters;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用方法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123.45</span>)</span><br><span class="line"><span class="string">&quot;壹佰贰拾叁元肆角伍分&quot;</span></span><br><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123000.45</span>)</span><br><span class="line"><span class="string">&quot;壹拾贰万叁仟元肆角伍分&quot;</span></span><br><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123456.78</span>)</span><br><span class="line"><span class="string">&quot;壹拾贰万叁仟肆佰伍拾陆元柒角捌分&quot;</span> </span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/Currency-Conversion/" rel="tag"><i class="fa fa-tag"></i> Currency Conversion</a>
+              <a href="/tags/Number-Formatting/" rel="tag"><i class="fa fa-tag"></i> Number Formatting</a>
+              <a href="/tags/Chinese-Characters/" rel="tag"><i class="fa fa-tag"></i> Chinese Characters</a>
+              <a href="/tags/String-Manipulation/" rel="tag"><i class="fa fa-tag"></i> String Manipulation</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/12/17/php%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="prev" title="php 最简单的验证码">
+                  <i class="fa fa-angle-left"></i> php 最简单的验证码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/" rel="next" title="去除快捷方式上面的小箭头">
+                  去除快捷方式上面的小箭头 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

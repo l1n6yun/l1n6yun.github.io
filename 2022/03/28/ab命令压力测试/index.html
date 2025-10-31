@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="网站性能压力测试是服务器网站性能调优过程中必不可缺少的一环。只有让服务器处在高压情况下，才能真正体现出软件、硬件等各种设置不当所暴露出的问题。 性能测试工具目前最常见的有以下几种：ab、http_load、webbench、siege。今天我们专门来介绍ab。 ab是apache自带的压力测试工具。ab非常实用，它不仅可以对apache服务器进行网站访问压力测试，也可以对或其它类型的服务器进行压力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ab命令压力测试">
+<meta property="og:url" content="http://example.com/2022/03/28/ab%E5%91%BD%E4%BB%A4%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="网站性能压力测试是服务器网站性能调优过程中必不可缺少的一环。只有让服务器处在高压情况下，才能真正体现出软件、硬件等各种设置不当所暴露出的问题。 性能测试工具目前最常见的有以下几种：ab、http_load、webbench、siege。今天我们专门来介绍ab。 ab是apache自带的压力测试工具。ab非常实用，它不仅可以对apache服务器进行网站访问压力测试，也可以对或其它类型的服务器进行压力">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-28T12:29:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:39:08.213Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Webbench">
+<meta property="article:tag" content="Web性能优化">
+<meta property="article:tag" content="ab工具">
+<meta property="article:tag" content="服务器性能测试">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/03/28/ab%E5%91%BD%E4%BB%A4%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/28/ab%E5%91%BD%E4%BB%A4%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/","path":"2022/03/28/ab命令压力测试/","title":"ab命令压力测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ab命令压力测试 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ab%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">ab的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">ab的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">ab参数说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">4.</span> <span class="nav-text">ab性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ab%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">ab实际使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BA%AC%E4%B8%9C%E6%80%A7%E8%83%BD"><span class="nav-number">6.</span> <span class="nav-text">测试京东性能</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/28/ab%E5%91%BD%E4%BB%A4%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ab命令压力测试 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ab命令压力测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-28 20:29:00" itemprop="dateCreated datePublished" datetime="2022-03-28T20:29:00+08:00">2022-03-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>网站性能压力测试是服务器网站性能调优过程中必不可缺少的一环。只有让服务器处在高压情况下，才能真正体现出软件、硬件等各种设置不当所暴露出的问题。</p>
+<p>性能测试工具目前最常见的有以下几种：ab、http_load、webbench、siege。今天我们专门来介绍ab。</p>
+<p>ab是apache自带的压力测试工具。ab非常实用，它不仅可以对apache服务器进行网站访问压力测试，也可以对或其它类型的服务器进行压力测试。比如nginx、tomcat、IIS等。</p>
+<h2 id="ab的原理"><a href="#ab的原理" class="headerlink" title="ab的原理"></a>ab的原理</h2><p>ab是apachebench命令的缩写。</p>
+<p>ab的原理：ab命令会创建多个并发访问线程，模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的，因此，它既可以用来测试apache的负载压力，也可以测试nginx、lighthttp、tomcat、IIS等其它Web服务器的压力。</p>
+<p>ab命令对发出负载的计算机要求很低，它既不会占用很高CPU，也不会占用很多内存。但却会给目标服务器造成巨大的负载，其原理类似CC攻击。自己测试使用也需要注意，否则一次上太多的负载。可能造成目标服务器资源耗完，严重时甚至导致死机。</p>
+<h2 id="ab的安装"><a href="#ab的安装" class="headerlink" title="ab的安装"></a>ab的安装</h2><p>ab的安装非常简单，如果是源码安装apache的话，那就更简单了。apache安装完毕后ab命令存放在apache安装目录的bin目录下。如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache2/bin</span><br></pre></td></tr></table></figure>
+
+<p>如果apache 是通过yum的RPM包方式安装的话，ab命令默认存放在&#x2F;usr&#x2F;bin目录下。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">which</span> ab</span></span><br><span class="line">/usr/bin/ab</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果不想安装apache但是又想使用ab命令的话，我们可以直接安装apache的工具包httpd-tools。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">yum -y install httpd-tools</span></span><br></pre></td></tr></table></figure>
+
+<p>查看ab是否安装成功，可以切换到上述目录下，使用ab –V命令进行检测。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ab -V</span></span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br></pre></td></tr></table></figure>
+
+<p>如果ab安装成功，通过 <code>ab –V</code> 命令则会显示ab的相迎版本。</p>
+<h2 id="ab参数说明"><a href="#ab参数说明" class="headerlink" title="ab参数说明"></a>ab参数说明</h2><p>有关ab命令的使用，我们可以通过帮助命令进行查看。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ab --<span class="built_in">help</span></span></span><br><span class="line">ab: wrong number of arguments</span><br><span class="line">Usage: ab [options] [http://]hostname[:port]/path</span><br><span class="line">Options are:</span><br><span class="line">    -n requests     Number of requests to perform</span><br><span class="line">    -c concurrency  Number of multiple requests to make at a time</span><br><span class="line">    -t timelimit    Seconds to max. to spend on benchmarking</span><br><span class="line">                    This implies -n 50000</span><br><span class="line">    -s timeout      Seconds to max. wait for each response</span><br><span class="line">                    Default is 30 seconds</span><br><span class="line">    -b windowsize   Size of TCP send/receive buffer, in bytes</span><br><span class="line">    -B address      Address to bind to when making outgoing connections</span><br><span class="line">    -p postfile     File containing data to POST. Remember also to set -T</span><br><span class="line">    -u putfile      File containing data to PUT. Remember also to set -T</span><br><span class="line">    -T content-type Content-type header to use for POST/PUT data, eg.</span><br><span class="line">                    &#x27;application/x-www-form-urlencoded&#x27;</span><br><span class="line">                    Default is &#x27;text/plain&#x27;</span><br><span class="line">    -v verbosity    How much troubleshooting info to print</span><br><span class="line">    -w              Print out results in HTML tables</span><br><span class="line">    -i              Use HEAD instead of GET</span><br><span class="line">    -x attributes   String to insert as table attributes</span><br><span class="line">    -y attributes   String to insert as tr attributes</span><br><span class="line">    -z attributes   String to insert as td or th attributes</span><br><span class="line">    -C attribute    Add cookie, eg. &#x27;Apache=1234&#x27;. (repeatable)</span><br><span class="line">    -H attribute    Add Arbitrary header line, eg. &#x27;Accept-Encoding: gzip&#x27;</span><br><span class="line">                    Inserted after all normal header lines. (repeatable)</span><br><span class="line">    -A attribute    Add Basic WWW Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -P attribute    Add Basic Proxy Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -X proxy:port   Proxyserver and port number to use</span><br><span class="line">    -V              Print version number and exit</span><br><span class="line">    -k              Use HTTP KeepAlive feature</span><br><span class="line">    -d              Do not show percentiles served table.</span><br><span class="line">    -S              Do not show confidence estimators and warnings.</span><br><span class="line">    -q              Do not show progress when doing more than 150 requests</span><br><span class="line">    -l              Accept variable document length (use this for dynamic pages)</span><br><span class="line">    -g filename     Output collected data to gnuplot format file.</span><br><span class="line">    -e filename     Output CSV file with percentages served</span><br><span class="line">    -r              Don&#x27;t exit on socket receive errors.</span><br><span class="line">    -m method       Method name</span><br><span class="line">    -h              Display usage information (this message)</span><br></pre></td></tr></table></figure>
+
+<p>下面我们对这些参数，进行相关说明。如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-n</td>
+<td>在测试会话中所执行的请求个数。默认时，仅执行一个请求。</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>一次产生的请求个数。默认是一次一个。</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>测试所进行的最大秒数。其内部隐含值是-n 50000，它可以使对服务器的测试限制在一个固定的总时间以内。默认时，没有时间限制。</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>包含了需要POST的数据的文件。</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>对一个中转代理提供BASIC认证信任。用户名和密码由一个:隔开，并以base64编码形式发送。无论服务器是否需要(即, 是否发送了401认证需求代码)，此字符串都会被发送。</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>POST数据所使用的Content-type头信息。</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>设置显示信息的详细程度-4或更大值会显示头信息，3或更大值可以显示响应代码(404,200等),2或更大值可以显示警告和其他信息。</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>显示版本号并退出。</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>以HTML表的格式输出结果。默认时，它是白色背景的两列宽度的一张表。</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>执行HEAD请求，而不是GET。</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>设置&lt;table&gt;属性的字符串。</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>对请求使用代理服务器。</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>设置&lt;tr&gt;属性的字符串。</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>设置&lt;td&gt;属性的字符串。</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>对请求附加一个Cookie:行。其典型形式是name&#x3D;value的一个参数对，此参数可以重复。</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>对请求附加额外的头信息。此参数的典型形式是一个有效的头信息行，其中包含了以冒号分隔的字段和值的对(如,”Accept-Encoding:zip&#x2F;zop;8bit”)。</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>对服务器提供BASIC认证信任。用户名和密码由一个:隔开，并以base64编码形式发送。无论服务器是否需要(即,是否发送了401认证需求代码)，此字符串都会被发送。</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>显示使用方法。</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>不显示”percentage served within XX [ms] table”的消息(为以前的版本提供支持)。</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>产生一个以逗号分隔的(CSV)文件，其中包含了处理每个相应百分比的请求所需要(从1%到100%)的相应百分比的(以微妙为单位)时间。由于这种格式已经“二进制化”，所以比’gnuplot’格式更有用。</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>把所有测试结果写入一个’gnuplot’或者TSV(以Tab分隔的)文件。此文件可以方便地导入到Gnuplot,IDL,Mathematica,Igor甚至Excel中。其中的第一行为标题。</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>执行HEAD请求，而不是GET。</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>启用HTTP KeepAlive功能，即在一个HTTP会话中执行多个请求。默认时，不启用KeepAlive功能。</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>如果处理的请求数大于150，ab每处理大约10%或者100个请求时，会在stderr输出一个进度计数。此-q标记可以抑制这些信息。</td>
+</tr>
+</tbody></table>
+<h2 id="ab性能指标"><a href="#ab性能指标" class="headerlink" title="ab性能指标"></a>ab性能指标</h2><p>在进行性能测试过程中有几个指标比较重要：</p>
+<ol>
+<li><p>吞吐率（Requests per second）</p>
+<p>服务器并发处理能力的量化描述，单位是reqs&#x2F;s，指的是在某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。<br>记住：吞吐率是基于并发用户数的。这句话代表了两个含义：</p>
+<ol>
+<li>吞吐率和并发用户数相关</li>
+<li>不同的并发用户数下，吞吐率一般是不同的</li>
+</ol>
+<p>计算公式：总请求数&#x2F;处理完成这些请求数所花费的时间，即<br>Request per second&#x3D;Complete requests&#x2F;Time taken for tests<br>必须要说明的是，这个数值表示当前机器的整体性能，值越大越好。</p>
+</li>
+<li><p>并发连接数（The number of concurrent connections）</p>
+<p>并发连接数指的是某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
+</li>
+<li><p>并发用户数（Concurrency Level）</p>
+<p>要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。在HTTP&#x2F;1.1下，IE7支持两个并发连接，IE8支持6个并发连接，FireFox3支持4个并发连接，所以相应的，我们的并发用户数就得除以这个基数。</p>
+</li>
+<li><p>用户平均请求等待时间（Time per request）</p>
+<p>计算公式：处理完成所有请求数所花费的时间&#x2F;（总请求数&#x2F;并发用户数），即：<br>Time per request&#x3D;Time taken for tests&#x2F;（Complete requests&#x2F;Concurrency Level）</p>
+</li>
+<li><p>服务器平均请求等待时间（Time per request:across all concurrent requests）</p>
+<p>计算公式：处理完成所有请求数所花费的时间&#x2F;总请求数，即：<br>Time taken for&#x2F;testsComplete requests<br>可以看到，它是吞吐率的倒数。<br>同时，它也等于用户平均请求等待时间&#x2F;并发用户数，即<br>Time per request&#x2F;Concurrency Level</p>
+</li>
+</ol>
+<h2 id="ab实际使用"><a href="#ab实际使用" class="headerlink" title="ab实际使用"></a>ab实际使用</h2><p>ab的命令参数比较多，我们经常使用的是-c和-n参数。</p>
+<p>下面我们就实际进行操作下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ab -c 10 -n 100 http://www.baidu.com/</span></span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking www.baidu.com (be patient).....done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:        BWS/1.1</span><br><span class="line">Server Hostname:        www.baidu.com</span><br><span class="line">Server Port:            80</span><br><span class="line"></span><br><span class="line">Document Path:          /</span><br><span class="line">Document Length:        347961 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      10</span><br><span class="line">Time taken for tests:   4.771 seconds</span><br><span class="line">Complete requests:      100</span><br><span class="line">Failed requests:        97</span><br><span class="line">   (Connect: 0, Receive: 0, Length: 97, Exceptions: 0)</span><br><span class="line">Total transferred:      34933333 bytes</span><br><span class="line">HTML transferred:       34811246 bytes</span><br><span class="line">Requests per second:    20.96 [#/sec] (mean)</span><br><span class="line">Time per request:       477.127 [ms] (mean)</span><br><span class="line">Time per request:       47.713 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          7150.00 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:       36   44   5.5     43      66</span><br><span class="line">Processing:   181  396  65.9    399     589</span><br><span class="line">Waiting:       39   91  48.2     85     330</span><br><span class="line">Total:        223  440  66.3    443     629</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line"><span class="meta prompt_">  50% </span><span class="language-bash">   443</span></span><br><span class="line"><span class="meta prompt_">  66% </span><span class="language-bash">   462</span></span><br><span class="line"><span class="meta prompt_">  75% </span><span class="language-bash">   469</span></span><br><span class="line"><span class="meta prompt_">  80% </span><span class="language-bash">   475</span></span><br><span class="line"><span class="meta prompt_">  90% </span><span class="language-bash">   509</span></span><br><span class="line"><span class="meta prompt_">  95% </span><span class="language-bash">   551</span></span><br><span class="line"><span class="meta prompt_">  98% </span><span class="language-bash">   608</span></span><br><span class="line"><span class="meta prompt_">  99% </span><span class="language-bash">   629</span></span><br><span class="line"><span class="meta prompt_"> 100% </span><span class="language-bash">   629 (longest request)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>-c 10</code> 表示并发用户数为10</p>
+<p>&#96;-n100 表示请求总数为100</p>
+<p><code>http://www.baidu.com/</code> 表示请求的目标URL</p>
+<p>这行表示同时处理100个请求并运行10次。</p>
+<p>测试结果也一目了然，apache测试出的吞吐率为：<code>Requests per second: 20.96 [#/sec] (mean)</code></p>
+<p>除此之外还有其他一些信息，需要说明下，如下：</p>
+<p><code>Server Software</code> 表示被测试的Web服务器软件名称。</p>
+<p><code>Server Hostname</code> 表示请求的URL主机名。</p>
+<p><code>Server Port</code> 表示被测试的Web服务器软件的监听端口。</p>
+<p><code>Document Path</code> 表示请求的URL中的根绝对路径，通过该文件的后缀名，我们一般可以了解该请求的类型。</p>
+<p><code>Document Length</code> 表示HTTP响应数据的正文长度。</p>
+<p><code>Concurrency Level</code> 表示并发用户数，这是我们设置的参数之一。</p>
+<p><code>Time taken for tests</code> 表示所有这些请求被处理完成所花费的总时间。</p>
+<p><code>Complete requests</code> 表示总请求数量，这是我们设置的参数之一。</p>
+<p><code>Failed requests</code> 表示失败的请求数量，这里的失败是指请求在连接服务器、发送数据等环节发生异常，以及无响应后超时的情况。如果接收到的HTTP响应数据的头信息中含有2XX以外的状态码，则会在测试结果中显示另一个名为“Non-2xx responses”的统计项，用于统计这部分请求数，这些请求并不算在失败的请求中。</p>
+<p><code>Total transferred</code> 表示所有请求的响应数据长度总和，包括每个HTTP响应数据的头信息和正文数据的长度。注意这里不包括HTTP请求数据的长度，仅仅为web服务器流向用户PC的应用层数据总长度。</p>
+<p><code>HTML transferred</code> 表示所有请求的响应数据中正文数据的总和，也就是减去了Total transferred中HTTP响应数据中的头信息的长度。</p>
+<p><code>Requests per second</code> 吞吐率，计算公式：Complete requests&#x2F;Time taken for tests</p>
+<p><code>Time per request</code> 用户平均请求等待时间，计算公式：Time token for tests&#x2F;（Complete requests&#x2F;Concurrency Level）。</p>
+<p><code>Time per requet</code> (across all concurrent request)服务器平均请求等待时间，计算公式：Time taken for tests&#x2F;Complete requests，正好是吞吐率的倒数。也可以这么统计：Time per request&#x2F;Concurrency Level。</p>
+<p><code>Transfer rate</code> 表示这些请求在单位时间内从服务器获取的数据长度，计算公式：Total trnasferred&#x2F; Time taken for tests，这个统计很好的说明服务器的处理能力达到极限时，其出口宽带的需求量。</p>
+<p><code>Percentage of the requests served within a certain time (ms)</code>这部分数据用于描述每个请求处理时间的分布情况，比如以上测试，80%的请求处理时间都不超过6ms，这个处理时间是指前面的Time per request，即对于单个用户而言，平均每个请求的处理时间。</p>
+<h2 id="测试京东性能"><a href="#测试京东性能" class="headerlink" title="测试京东性能"></a>测试京东性能</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ab -c 10 -n 100 http://www.jd.com/</span></span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking www.jd.com (be patient).....done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:        nginx</span><br><span class="line">Server Hostname:        www.jd.com</span><br><span class="line">Server Port:            80</span><br><span class="line"></span><br><span class="line">Document Path:          /</span><br><span class="line">Document Length:        138 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      10</span><br><span class="line">Time taken for tests:   1.734 seconds</span><br><span class="line">Complete requests:      100</span><br><span class="line">Failed requests:        0</span><br><span class="line">Non-2xx responses:      100</span><br><span class="line">Total transferred:      42300 bytes</span><br><span class="line">HTML transferred:       13800 bytes</span><br><span class="line">Requests per second:    57.66 [#/sec] (mean)</span><br><span class="line">Time per request:       173.433 [ms] (mean)</span><br><span class="line">Time per request:       17.343 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          23.82 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:       13   17   2.8     16      23</span><br><span class="line">Processing:    15  146  30.4    150     189</span><br><span class="line">Waiting:       15   88  44.5     91     182</span><br><span class="line">Total:         29  163  30.8    168     206</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line"><span class="meta prompt_">  50% </span><span class="language-bash">   168</span></span><br><span class="line"><span class="meta prompt_">  66% </span><span class="language-bash">   176</span></span><br><span class="line"><span class="meta prompt_">  75% </span><span class="language-bash">   179</span></span><br><span class="line"><span class="meta prompt_">  80% </span><span class="language-bash">   182</span></span><br><span class="line"><span class="meta prompt_">  90% </span><span class="language-bash">   189</span></span><br><span class="line"><span class="meta prompt_">  95% </span><span class="language-bash">   195</span></span><br><span class="line"><span class="meta prompt_">  98% </span><span class="language-bash">   204</span></span><br><span class="line"><span class="meta prompt_">  99% </span><span class="language-bash">   206</span></span><br><span class="line"><span class="meta prompt_"> 100% </span><span class="language-bash">   206 (longest request)</span></span><br></pre></td></tr></table></figure>
+
+<p>通过上图，测试结果也一目了然，京东测试出的吞吐率为：<code>Requests per second:57.66 [#/sec] (mean)</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 服务器性能测试</a>
+              <a href="/tags/Web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> Web性能优化</a>
+              <a href="/tags/ab%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> ab工具</a>
+              <a href="/tags/Webbench/" rel="tag"><i class="fa fa-tag"></i> Webbench</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/" rel="prev" title="如何搭建自己的 composer 包">
+                  <i class="fa fa-angle-left"></i> 如何搭建自己的 composer 包
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/04/WSL2%E4%B8%8EDocker%E5%AE%B9%E5%99%A8%EF%BC%8C%E6%97%A0%E7%BC%9D%E4%BA%92%E7%9B%B8%E8%BF%81%E7%A7%BB/" rel="next" title="WSL2与Docker容器，无缝互相迁移">
+                  WSL2与Docker容器，无缝互相迁移 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

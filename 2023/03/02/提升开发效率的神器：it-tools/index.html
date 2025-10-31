@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="在当今快节奏的开发环境中，拥有一个功能强大且易于使用的工具箱对于提升工作效率至关重要。今天，我们将介绍一个轻量级、开源的前端工具箱——it-tools。这个工具箱专为开发者设计，旨在简化日常开发任务，无论是普通用户还是资深开发者都能从中受益。   为什么选择 it-tools？it-tools 以其简洁高效、一站式解决方案、跨平台支持和开源特性脱颖而出：  简洁高效：提供众多常用小工具，降低学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提升开发效率的神器：it-tools">
+<meta property="og:url" content="http://example.com/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="在当今快节奏的开发环境中，拥有一个功能强大且易于使用的工具箱对于提升工作效率至关重要。今天，我们将介绍一个轻量级、开源的前端工具箱——it-tools。这个工具箱专为开发者设计，旨在简化日常开发任务，无论是普通用户还是资深开发者都能从中受益。   为什么选择 it-tools？it-tools 以其简洁高效、一站式解决方案、跨平台支持和开源特性脱颖而出：  简洁高效：提供众多常用小工具，降低学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/pasted-72.png">
+<meta property="article:published_time" content="2023-03-02T08:28:20.000Z">
+<meta property="article:modified_time" content="2025-05-04T10:40:02.945Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Docker部署">
+<meta property="article:tag" content="Web开发">
+<meta property="article:tag" content="前端工具">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="软件效率优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/pasted-72.png">
+
+
+<link rel="canonical" href="http://example.com/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/","path":"2023/03/02/提升开发效率的神器：it-tools/","title":"提升开发效率的神器：it-tools"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>提升开发效率的神器：it-tools | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-it-tools%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么选择 it-tools？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">部署方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">在线使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Docker 部署</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-docker-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用 docker 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-docker-compose"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用 docker-compose</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%AF%91%E9%83%A8%E7%BD%B2"><span class="nav-number">2.3.</span> <span class="nav-text">本地编译部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">工具详细介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/02/%E6%8F%90%E5%8D%87%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8%EF%BC%9Ait-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="提升开发效率的神器：it-tools | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          提升开发效率的神器：it-tools
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-02 16:28:20" itemprop="dateCreated datePublished" datetime="2023-03-02T16:28:20+08:00">2023-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>在当今快节奏的开发环境中，拥有一个功能强大且易于使用的工具箱对于提升工作效率至关重要。今天，我们将介绍一个轻量级、开源的前端工具箱——<strong>it-tools</strong>。这个工具箱专为开发者设计，旨在简化日常开发任务，无论是普通用户还是资深开发者都能从中受益。</p>
+</blockquote>
+<p><img src="/images/pasted-72.png" alt="upload successful"></p>
+<h2 id="为什么选择-it-tools？"><a href="#为什么选择-it-tools？" class="headerlink" title="为什么选择 it-tools？"></a>为什么选择 it-tools？</h2><p><strong>it-tools</strong> 以其简洁高效、一站式解决方案、跨平台支持和开源特性脱颖而出：</p>
+<ul>
+<li><strong>简洁高效</strong>：提供众多常用小工具，降低学习和使用成本。</li>
+<li><strong>一站式解决方案</strong>：一个界面解决多种需求，简化工作流程。</li>
+<li><strong>跨平台支持</strong>：通过 web 端访问，支持多种操作系统和浏览器环境。</li>
+<li><strong>开源且持续更新</strong>：社区活跃，功能不断扩展和优化。</li>
+</ul>
+<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><p><strong>it-tools</strong> 作为一个基于 Web 的前端工具箱，提供了多种部署方式：</p>
+<h3 id="在线使用"><a href="#在线使用" class="headerlink" title="在线使用"></a>在线使用</h3><p>最简单的部署方式是直接在线使用，无需本地部署。访问 <span class="exturl" data-url="aHR0cHM6Ly9pdC10b29scy50ZWNoLw==">https://it-tools.tech/<i class="fa fa-external-link-alt"></i></span> 即可立即开始使用所有功能，所有操作都在浏览器中完成。如果访问的语言不正确，可以在右上角切换。</p>
+<h3 id="Docker-部署"><a href="#Docker-部署" class="headerlink" title="Docker 部署"></a>Docker 部署</h3><h4 id="使用-docker-命令"><a href="#使用-docker-命令" class="headerlink" title="使用 docker 命令"></a>使用 docker 命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name it-tools \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">corentinth/it-tools:latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-docker-compose"><a href="#使用-docker-compose" class="headerlink" title="使用 docker-compose"></a>使用 docker-compose</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.3&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">it-tools:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">corentinth/it-tools:latest</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="本地编译部署"><a href="#本地编译部署" class="headerlink" title="本地编译部署"></a>本地编译部署</h3><p>如果你想将 <strong>it-tools</strong> 部署到线上服务器供团队使用，可以按照以下步骤进行：</p>
+<ol>
+<li><strong>构建项目</strong></li>
+</ol>
+<p>  首先生成项目的静态文件：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CorentinTh/it-tools.git</span><br><span class="line"><span class="built_in">cd</span> it-tools</span><br><span class="line">pnpm install</span><br><span class="line"><span class="comment"># 运行开发环境</span></span><br><span class="line">pnpm dev</span><br><span class="line"><span class="comment"># 编译上线环境</span></span><br><span class="line">pnpm build</span><br></pre></td></tr></table></figure>
+<p>  如果你想开发自己的工具，还可以运行：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm run script:create:tool my-tool-name</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>部署到服务器</strong></li>
+</ol>
+<p>  将生成的 dist 文件夹中的静态文件上传到你的 Web 服务器（如 Nginx、Apache 等）。</p>
+<ol start="3">
+<li><strong>配置服务器</strong></li>
+</ol>
+<p>  在你的服务器配置文件中，将根目录指向 &#x2F;opt&#x2F;dist 文件夹。以 Nginx 为例：</p>
+  <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span><span class="string">;</span></span><br><span class="line">    <span class="string">server_name</span> <span class="string">你的域名;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">location</span> <span class="string">/</span> &#123;</span><br><span class="line">        <span class="string">root</span> <span class="string">/opt/dist;</span></span><br><span class="line">        <span class="string">index</span> <span class="string">index.html;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  保存配置并重启服务器，即可通过域名访问。</p>
+<h2 id="工具详细介绍"><a href="#工具详细介绍" class="headerlink" title="工具详细介绍"></a>工具详细介绍</h2><p><strong>it-tools</strong> 涵盖了多个实用的前端工具，主要包括以下类别：</p>
+<ol>
+<li><strong>Crypto 加密工具类</strong>：Token生成、Hash函数、UUID生成和文本加解密等功能。</li>
+<li><strong>Converter 转换工具类</strong>：日期时间、数据格式（JSON、XML等）和颜色代码转换等工具。</li>
+<li><strong>Web 工具类</strong>：URL编码&#x2F;解码、HTML实体转义、HTTP状态码查询等Web开发相关工具。</li>
+<li><strong>Images and videos 图片视频工具类</strong>：二维码生成、SVG占位符生成等功能。</li>
+<li><strong>Development 开发工具类</strong>：代码格式化、端口生成等工具，帮助开发者简化日常任务。</li>
+<li><strong>Network 网络工具类</strong>：IPv4子网计算器、MAC地址生成器等网络相关工具。</li>
+<li><strong>Math 数学工具类</strong>：数学表达式计算、百分比计算等常用数学工具。</li>
+<li><strong>Measurement 测量工具类</strong>：温度转换等测量单位转换工具。</li>
+<li><strong>Text 文本工具类</strong>：文本统计、字符串混淆器等文本处理工具。</li>
+<li><strong>Data 数据工具类</strong>：JSON转CSV、数据格式验证等数据处理工具。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>it-tools</strong> 已经提供了广泛的工具集合，帮助开发者在加密、格式转换、网络、开发辅助等领域提高工作效率。通过进一步扩展和细化每个工具的功能，可以增强其适用性和灵活性，满足更多复杂开发场景下的需求。这些扩展内容有助于让 <strong>it-tools</strong> 成为前端开发中更强大且实用的工具箱。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 开发工具</a>
+              <a href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> Web开发</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 前端工具</a>
+              <a href="/tags/Docker%E9%83%A8%E7%BD%B2/" rel="tag"><i class="fa fa-tag"></i> Docker部署</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%95%88%E7%8E%87%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 软件效率优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/05/Hexo%E5%A2%9E%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="prev" title="Hexo增加搜索功能">
+                  <i class="fa fa-angle-left"></i> Hexo增加搜索功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/10/14/%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%A6%E7%AD%BE%E8%AE%BE%E7%BD%AE%EF%BC%9A%E5%8D%95%E5%87%BB%E4%B9%A6%E7%AD%BE%E5%9C%A8%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80%E7%9A%84%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B/" rel="next" title="火狐浏览器书签设置：单击书签在新标签页打开的实用教程">
+                  火狐浏览器书签设置：单击书签在新标签页打开的实用教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

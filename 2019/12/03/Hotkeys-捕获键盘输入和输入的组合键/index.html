@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="这是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键，它没有依赖，压缩只有(~3kb)，gzip:1.9k。官方文档DEMO预览，更多实例.  12345╭┈┈╮          ╭┈┈╮  ╭┈┈╮┆  ├┈┈..┈┈┈┈┈.┆  └┈╮┆  ├┈┈..┈┈┈┈┈..┈┈.┈┈..┈┈┈┈┈.┆     ┆┆  □  ┆┆   ┈┤┆    &lt; ┆  -__┘┆  ┆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hotkeys - 捕获键盘输入和输入的组合键">
+<meta property="og:url" content="http://example.com/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="这是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键，它没有依赖，压缩只有(~3kb)，gzip:1.9k。官方文档DEMO预览，更多实例.  12345╭┈┈╮          ╭┈┈╮  ╭┈┈╮┆  ├┈┈..┈┈┈┈┈.┆  └┈╮┆  ├┈┈..┈┈┈┈┈..┈┈.┈┈..┈┈┈┈┈.┆     ┆┆  □  ┆┆   ┈┤┆    &lt; ┆  -__┘┆  ┆">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-03T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:47:10.217Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="前端开发">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/","path":"2019/12/03/Hotkeys-捕获键盘输入和输入的组合键/","title":"Hotkeys - 捕获键盘输入和输入的组合键"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hotkeys - 捕获键盘输入和输入的组合键 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">React中使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E9%94%AE"><span class="nav-number">4.</span> <span class="nav-text">支持的键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E9%94%AE%E5%88%A4%E6%96%AD"><span class="nav-number">5.</span> <span class="nav-text">修饰键判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">6.</span> <span class="nav-text">定义快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#option"><span class="nav-number">6.1.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">7.</span> <span class="nav-text">切换快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%8C%83%E5%9B%B4"><span class="nav-number">8.</span> <span class="nav-text">标记快捷键范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%99%A4%E7%BB%91%E5%AE%9A"><span class="nav-number">9.</span> <span class="nav-text">解除绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%AE%E5%88%A4%E6%96%AD"><span class="nav-number">10.</span> <span class="nav-text">键判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%91%81%E4%B8%8B%E9%94%AE%E5%80%BC"><span class="nav-number">11.</span> <span class="nav-text">获取摁下键值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keyup"><span class="nav-number">12.</span> <span class="nav-text">keyup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4"><span class="nav-number">13.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F"><span class="nav-number">14.</span> <span class="nav-text">兼容模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91"><span class="nav-number">15.</span> <span class="nav-text">开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">16.</span> <span class="nav-text">License</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hotkeys - 捕获键盘输入和输入的组合键 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hotkeys - 捕获键盘输入和输入的组合键
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-03 11:00:00" itemprop="dateCreated datePublished" datetime="2019-12-03T11:00:00+08:00">2019-12-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>这是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键，它没有依赖，压缩只有(~3kb)，gzip:1.9k。<span class="exturl" data-url="aHR0cDovL2pheXdjamxvdmUuZ2l0aHViLmlvL2hvdGtleXMvP2xhbmc9Y24=">官方文档DEMO预览<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvaG90a2V5cy9pc3N1ZXM/cT1sYWJlbDpEZW1vKw==">更多实例<i class="fa fa-external-link-alt"></i></span>.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">╭┈┈╮          ╭┈┈╮  ╭┈┈╮</span><br><span class="line">┆  ├┈┈..┈┈┈┈┈.┆  └┈╮┆  ├┈┈..┈┈┈┈┈..┈┈.┈┈..┈┈┈┈┈.</span><br><span class="line">┆     ┆┆  □  ┆┆   ┈┤┆    &lt; ┆  -__┘┆  ┆  ┆┆__ ┈┈┤</span><br><span class="line">╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈┈╯╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈  ┆╰┈┈┈┈┈╯</span><br><span class="line">                                  ╰┈┈┈┈┈╯</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>您将需要在您的系统上安装的 Node.js。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bower 安装</span></span><br><span class="line">$ bower install hotkeysjs</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm 安装</span></span><br><span class="line">$ npm install hotkeys-js</span><br><span class="line"></span><br><span class="line">$ npm run build <span class="comment"># 编译</span></span><br><span class="line">$ npm run watch <span class="comment"># 开发模式</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">&#x27;hotkeys-js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;f5&#x27;</span>, <span class="keyword">function</span>(<span class="params">event, handler</span>)&#123;</span><br><span class="line">  <span class="comment">// Prevent the default refresh event under WINDOWS system</span></span><br><span class="line">  event.<span class="title function_">preventDefault</span>() </span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;you pressed F5!&#x27;</span>) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>或者在您的HTML中手动下载并引入 <strong>hotkeys.js</strong>，你也可以通过 <span class="exturl" data-url="aHR0cHM6Ly91bnBrZy5jb20vaG90a2V5cy1qcy9kaXN0Lw==">UNPKG<i class="fa fa-external-link-alt"></i></span> 进行下载：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/hotkeys-js/dist/hotkeys.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,ctrl+b,r,f&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">switch</span>(handler.<span class="property">key</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;ctrl+a&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed ctrl+a!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;ctrl+b&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed ctrl+b!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;r&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed r!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;f&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed f!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="React中使用"><a href="#React中使用" class="headerlink" title="React中使用"></a>React中使用</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvcmVhY3QtaG90a2V5cw==">react-hotkeys<i class="fa fa-external-link-alt"></i></span>，安装如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S react-hot-keys</span><br></pre></td></tr></table></figure>
+
+<p>详细使用方法请参考文档 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvcmVhY3QtaG90a2V5cw==">react-hotkeys<i class="fa fa-external-link-alt"></i></span>。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>传统调用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./js/hotkeys.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>包加载</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">&#x27;hotkeys-js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;shift+a,alt+d, w&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 shift 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 ctrl 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 alt 键！&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="支持的键"><a href="#支持的键" class="headerlink" title="支持的键"></a>支持的键</h2><p><code>⇧</code>, <code>shift</code>, <code>option</code>, <code>⌥</code>, <code>alt</code>, <code>ctrl</code>, <code>control</code>, <code>command</code>, <code>⌘</code></p>
+<p><code>⌘</code> Command()<br><code>⌃</code> Control<br><code>⌥</code> Option(alt)<br><code>⇧</code> Shift<br><code>⇪</code> Caps Lock(大写)<br><del><code>fn</code> 功能键就是fn(不支持)</del><br><code>↩︎</code> return&#x2F;enter<br><code>space</code> 空格键  </p>
+<h2 id="修饰键判断"><a href="#修饰键判断" class="headerlink" title="修饰键判断"></a>修饰键判断</h2><p>可以对下面的修饰键判断 <code>shift</code> <code>alt</code> <code>option</code> <code>ctrl</code> <code>control</code> <code>command</code>，特别注意<code>+</code>和<code>=</code>键值相同，组合键设置<code>⌘+=</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;shift+a,alt+d, w&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 shift 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 ctrl 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 alt 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">option</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 option 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">control</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 control 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">cmd</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 cmd 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">command</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 command 键!&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义快捷键"><a href="#定义快捷键" class="headerlink" title="定义快捷键"></a>定义快捷键</h2><blockquote>
+<p><code>hotkeys([keys:&lt;String&gt;], [option:[string|object|function]], [callback:&lt;function&gt;])</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 F5 快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;f5&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="comment">// 阻止WINDOWS系统下的默认刷新事件</span></span><br><span class="line">  event.<span class="title function_">preventDefault</span>() </span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你按下了 F5 键!&#x27;</span>) </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 返回 false 将停止活动，并阻止默认浏览器事件</span></span><br><span class="line"><span class="comment">// Mac OS 系统 定义 `command+r` 为刷新快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+r, command+r&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;停止刷新!&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义a快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="keyword">if</span>(event.<span class="property">target</span> === <span class="string">&quot;input&quot;</span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;你在输入框中按下了 a!&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你按下了 a!&#x27;</span>) </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 ctrl+a、ctrl+b、r、f 四组快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,ctrl+b,r,f&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="keyword">switch</span>(handler.<span class="property">key</span>)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ctrl+a&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了ctrl+a!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ctrl+b&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了ctrl+b!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;r&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了r!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;f&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了f!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//handler.scope 范围</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个快捷方式做同样的事情</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;⌘+r, ctrl+r&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对所有摁键执行任务</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;*&#x27;</span>,<span class="string">&#x27;wcj&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;key.getScope()::&quot;</span>,hotkeys.<span class="title function_">getScope</span>());</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 shift 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 ctrl 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 alt 键！&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以设置自定义的分割符</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl-y, ctrl-a&#x27;</span>, &#123;<span class="attr">splitKey</span>: <span class="string">&#x27;-&#x27;</span>&#125;, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;you press bind keys&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="option"><a href="#option" class="headerlink" title="option"></a>option</h4><ul>
+<li><code>scope&lt;String&gt;</code></li>
+<li><code>element&lt;HTMLElement&gt;</code></li>
+<li><code>keyup&lt;Boolean&gt;</code></li>
+<li><code>keydown&lt;Boolean&gt;</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;o, enter&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">scope</span>: <span class="string">&#x27;wcj&#x27;</span>,</span><br><span class="line">  <span class="attr">element</span>: <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;warpper&#x27;</span>),</span><br><span class="line">&#125;, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do something else&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换快捷键"><a href="#切换快捷键" class="headerlink" title="切换快捷键"></a>切换快捷键</h2><p>如果在单页面在不同的区域，相同的快捷键，干不同的事儿，之间来回切换。O(∩_∩)O ！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个快捷键，有可能干的活儿不一样哦</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+o, ctrl+alt+enter&#x27;</span>, <span class="string">&#x27;scope1&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好看&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+o, enter&#x27;</span>, <span class="string">&#x27;scope2&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好丑陋啊！&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你摁 “ctrl+o”组合键</span></span><br><span class="line"><span class="comment">// 当scope等于 scope1 ，执行 回调事件打印出 “你好看”，</span></span><br><span class="line"><span class="comment">// 当scope等于 scope2 ，执行 回调事件打印出 “你好丑陋啊！”，</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过setScope设定范围scope</span></span><br><span class="line">hotkeys.<span class="title function_">setScope</span>(<span class="string">&#x27;scope1&#x27;</span>); <span class="comment">// 默认所有事儿都干哦</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="标记快捷键范围"><a href="#标记快捷键范围" class="headerlink" title="标记快捷键范围"></a>标记快捷键范围</h2><p><strong>删除</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">deleteScope</span>(<span class="string">&#x27;scope1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">getScope</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置</strong> 区域范围标记</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">setScope</span>(<span class="string">&#x27;scope1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="解除绑定"><a href="#解除绑定" class="headerlink" title="解除绑定"></a>解除绑定</h2><p><code>hotkeys.unbind()</code> 解除绑定的所有快捷键<br><code>hotkeys.unbind(&quot;ctrl+o, ctrl+alt+enter&quot;)</code> 解除绑定两组快捷键<br><code>hotkeys.unbind(&quot;ctrl+o&quot;,&quot;files&quot;)</code> 解除绑定名字叫files钟的一组快捷键  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解除绑定 &#x27;a&#x27; 程序函数</span></span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅针对单个范围解除绑定快捷键</span></span><br><span class="line"><span class="comment">// 如果未指定范围，则默认为当前范围（hotkeys.getScope()）</span></span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;o, enter&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;o, enter&#x27;</span>, <span class="string">&#x27;files&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过函数来解除绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">example</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, example);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>, example);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>, example);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>, example);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">可以通过传入对象解除绑定的快捷键</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;ctrl-e,ctrl-u&#x27;</span>,</span><br><span class="line">  <span class="attr">scope</span>: <span class="string">&#x27;issues&#x27;</span>,</span><br><span class="line">  <span class="attr">spitKey</span>: <span class="string">&#x27;-&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line">传入数组可同时解除多个scope下绑定的快捷键</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;a, ctrl+r&#x27;</span>,</span><br><span class="line">    <span class="attr">scope</span>: <span class="string">&#x27;issues&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;+, ctrl-y&#x27;</span>,</span><br><span class="line">    <span class="attr">scope</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="attr">splitKey</span>: <span class="string">&#x27;-&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="键判断"><a href="#键判断" class="headerlink" title="键判断"></a>键判断</h2><p>判断摁下的键是否为某个键</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="string">&quot;a&quot;</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="string">&quot;A&quot;</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="number">65</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取摁下键值"><a href="#获取摁下键值" class="headerlink" title="获取摁下键值"></a>获取摁下键值</h2><p>获取摁下绑定键的键值 <code>hotkeys.getPressedKeyCodes()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;command+ctrl+shift+a,f&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">getPressedKeyCodes</span>()); <span class="comment">//=&gt; [17, 65] 或者 [70]</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="keyup"><a href="#keyup" class="headerlink" title="keyup"></a>keyup</h2><p><strong>key down</strong> 和 <strong>key up</strong> 将都执行回调事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,alt+a+s&#x27;</span>, &#123; <span class="attr">keyup</span>: <span class="literal">true</span> &#125;, <span class="function">(<span class="params">evn, handler</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(evn.<span class="property">type</span> === <span class="string">&#x27;keydown&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;keydown:&#x27;</span>, evn.<span class="property">type</span>, handler, handler.<span class="property">key</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(evn.<span class="property">type</span> === <span class="string">&#x27;keyup&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;keyup:&#x27;</span>, evn.<span class="property">type</span>, handler, handler.<span class="property">key</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p><code>INPUT</code>  <code>SELECT</code> <code>TEXTAREA</code> 默认不处理。<br><code>hotkeys.filter</code> 返回 <code>true</code> 快捷键设置才会起作用，<code>false</code> 快捷键设置失效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如何增加过滤可编辑标签 &lt;div contentEditable=&quot;true&quot;&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">// contentEditable老浏览器不支持滴</span></span><br><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.<span class="property">target</span> || event.<span class="property">srcElement</span>).<span class="property">tagName</span>;</span><br><span class="line">  <span class="keyword">return</span> !(tagName.<span class="property">isContentEditable</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;INPUT&#x27;</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;SELECT&#x27;</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;TEXTAREA&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.<span class="property">target</span> || event.<span class="property">srcElement</span>).<span class="property">tagName</span>;</span><br><span class="line">  hotkeys.<span class="title function_">setScope</span>(<span class="regexp">/^(INPUT|TEXTAREA|SELECT)$/</span>.<span class="title function_">test</span>(tagName) ? <span class="string">&#x27;input&#x27;</span> : <span class="string">&#x27;other&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="兼容模式"><a href="#兼容模式" class="headerlink" title="兼容模式"></a>兼容模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> k = hotkeys.<span class="title function_">noConflict</span>();</span><br><span class="line"><span class="title function_">k</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;这里可以干一些事儿&quot;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>()</span><br><span class="line"><span class="comment">// --&gt;Uncaught TypeError: hotkeys is not a function(anonymous function)</span></span><br><span class="line"><span class="comment">// @ VM2170:2InjectedScript._evaluateOn</span></span><br><span class="line"><span class="comment">// @ VM2165:883InjectedScript._evaluateAndWrap</span></span><br><span class="line"><span class="comment">// @ VM2165:816InjectedScript.evaluate @ VM2165:682</span></span><br></pre></td></tr></table></figure>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>安装依赖，运行自重载构建，获取代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git https://github.com/jaywcjlove/hotkeys.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hotkeys     <span class="comment"># 进入目录</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install    <span class="comment"># 或者使用 yarn install 安装依赖</span></span></span><br></pre></td></tr></table></figure>
+
+<p>运行下面命令自动重载构建：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run watch</span></span><br></pre></td></tr></table></figure>
+
+<p>运行稳定环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run doc:dev</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要贡献，请 fork <code>Hotkeys.js</code>, 并添加您的测试代码(在 test 目录中)，并提交一个 PR。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run <span class="built_in">test</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run <span class="built_in">test</span>:watch <span class="comment"># Development model</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="./LICENSE">MIT © Kenny Wong</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 前端开发</a>
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/11/20/thinkphp-%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80%E5%8A%A0%E5%AF%86/" rel="prev" title="thinkphp 后台地址加密">
+                  <i class="fa fa-angle-left"></i> thinkphp 后台地址加密
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/12/26/KALI-Linux-1-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86-1-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/" rel="next" title="KALI Linux 1.信息搜集 1(指纹识别)">
+                  KALI Linux 1.信息搜集 1(指纹识别) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

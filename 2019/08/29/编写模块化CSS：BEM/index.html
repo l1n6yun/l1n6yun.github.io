@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写模块化CSS：BEM">
+<meta property="og:url" content="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-1.png">
+<meta property="article:published_time" content="2019-08-29T08:22:46.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:43:33.316Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="BEM">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Web开发">
+<meta property="article:tag" content="界面设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-1.png">
+
+
+<link rel="canonical" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/","path":"2019/08/29/编写模块化CSS：BEM/","title":"编写模块化CSS：BEM"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>编写模块化CSS：BEM | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%93%E6%88%91%E5%9C%A8%E5%AF%BB%E6%89%BE%E4%B8%80%E4%B8%AA%E5%87%BA%E8%89%B2%E7%9A%84-CSS-%E6%9E%B6%E6%9E%84%E6%97%B6%E6%88%91%E7%A9%B6%E7%AB%9F%E5%9C%A8%E6%89%BE%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">当我在寻找一个出色的 CSS 架构时我究竟在找什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E-BEM-%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">从 BEM 开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E4%BD%BF%E7%94%A8-mixin"><span class="nav-number">4.1.</span> <span class="nav-text">方法 1：使用 mixin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-CSS-%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">4.2.</span> <span class="nav-text">方法 2：使用 CSS 属性选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0"><span class="nav-number">5.</span> <span class="nav-text">元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%AD%99%E5%85%83%E7%B4%A0%E5%88%B0%E5%9D%97"><span class="nav-number">5.1.</span> <span class="nav-text">链接孙元素到块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%9D%97%E6%9D%A5%E4%BF%9D%E5%AD%98%E5%AD%99%E5%85%83%E7%B4%A0"><span class="nav-number">5.2.</span> <span class="nav-text">创建新的块来保存孙元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="编写模块化CSS：BEM | l1n6yun's Blog">
+      <meta itemprop="description" content="你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编写模块化CSS：BEM
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-29 16:22:46" itemprop="dateCreated datePublished" datetime="2019-08-29T16:22:46+08:00">2019-08-29</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。</p>
+</blockquote>
+<p>由于我们的行业很棒，我们有很多推荐的解决方案。因为专家们的纷纷加入，于是我们有 BEM，OOCSS，SMACSS，Atomic Design 等许多选择。</p>
+<p>现在，问题不是痛苦 <strong>“我不知道该怎么办”</strong>，而是： <strong>“有这么多的方法，我应该尝试哪个？”我是不是应该把所有的都用一遍，是不是只有一种方法才适合我，或者我是不是应该参考它们做一个自己的架构？</strong>。</p>
+<p>我开始只用一种方法。然后，当我尝试不同的方法时，我开始把我认为有意义的东西包含在我的探索过程中。 在这篇文章中，我想和大家分享一下我如何构建 CSS 以及为什么我这样做。 希望它可以帮助你找到你喜欢的方法。</p>
+<h2 id="当我在寻找一个出色的-CSS-架构时我究竟在找什么"><a href="#当我在寻找一个出色的-CSS-架构时我究竟在找什么" class="headerlink" title="当我在寻找一个出色的 CSS 架构时我究竟在找什么"></a>当我在寻找一个出色的 CSS 架构时我究竟在找什么</h2><p>当我将不同的方法拼凑在一起以形成我自己的习惯时，我会寻找以下四个特点：</p>
+<ul>
+<li>我必须 <strong>立即知道编辑一个 class 是否安全</strong>，会不会干扰其他 CSS。这是最重要的，特别是当我需要在短时间内进行修改时。我不想因为改变一处而破坏别的东西。</li>
+<li>我必须<strong>立即知道一个 class 放在这个伟大工程中的什么地方</strong>，以防止大脑过载。这样我就可以快速修改 <code>style</code>，而不必在整个工程里前后引用。</li>
+<li><code>class</code> 必须 <strong>尽可能少</strong>，因为看到一长串的 <code>class</code> 时我头很晕。</li>
+<li>我必须 <strong>立即知道一个组件是否使用了 JavaScript</strong>，所以如果我改变了它的 CSS，我不会意外地破坏任何组件。</li>
+</ul>
+<p>在我的探索中，我发现 <strong>BEM</strong> 和 <strong>命名空间</strong> 符合我寻找的标准。</p>
+<h2 id="从-BEM-开始"><a href="#从-BEM-开始" class="headerlink" title="从 BEM 开始"></a>从 BEM 开始</h2><p>BEM 是我的方法的基础。如果你以前从未听说过 BEM，它代表 <code>block</code> ， <code>element</code> 和 <code>modifier</code>。当你第一次接触它时，它看起来是那么的难看。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.block</span> &#123; <span class="comment">/* styles */</span> &#125; </span><br><span class="line"><span class="selector-class">.block__element</span> &#123; <span class="comment">/* styles */</span> &#125; </span><br><span class="line"><span class="selector-class">.block--modifier</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我第一次看见 BEM 的时候，我就很讨厌它，甚至没有给它一个机会。我不记得是什么驱使我尝试 BEM 的，但我现在深深的知道它有多么的强大。让我来完整地解释一下 BEM 是什么（当然，加入了我自己的理解）。</p>
+<h2 id="块"><a href="#块" class="headerlink" title="块"></a>块</h2><p>一个块就是一个组件。这有点抽象，所以让我们用示例来学习。</p>
+<p>假设您正在建立一个联系表单。在这种情况下，这个表单可以是一个块。在 BEM 中，块被写为像 <code>class</code> 的名字一样，如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.form</span> &#123; <span class="comment">/* styles */</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>BEM 使用 <code>.form</code> 而不是 <code>&lt;form&gt;</code> 元素的原因是因为 <strong>类允许无限的可重用性</strong>，而即使是最基本的元素也可能改变样式。</p>
+<p>按钮很好地阐释了可以包含不同样式的块。如果将 <code>&lt;button&gt;</code> 元素的背景颜色设置为红色，则所有 <code>&lt;buttons&gt;</code> 都将被强制继承红色背景。接下来，你必须通过覆盖你的 <code>&lt;button&gt;</code> 元素来修复代码（并且可能会在修复中“伤及无辜” 🤕）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: red; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="selector-class">.something</span> <span class="selector-tag">button</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: blue; <span class="comment">/* 😱 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果设置了一个 <code>.button</code> 类的按钮，则可以在任何 <code>&lt;button&gt;</code> 元素上选择是否使用 <code>.button</code> 类。那么，如果你需要一个不同的背景颜色，你所做的就是改成一个新的 <code>class</code>，比如说 <code>.button--secondary</code>，很舒服吧！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: red; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.button--secondary</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: blue; <span class="comment">/* 😄 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这给我们引入了 BEM 的下一部分 —— 修饰符。</p>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>修饰符是改变某个块的外观的标志。要使用修饰符，可以将 <code>--modifier</code> 添加到块中。</p>
+<p>从上面的按钮示例继续，修改的按钮将被命名为 <code>.button--secondary</code>。</p>
+<p>在传统的 BEM 中，当你使用修饰符时，你应该 <strong>将块和修饰符添加</strong> 到 HTML 中，以便在新的 <code>.button--secondary</code> 中不重写 <code>.button</code> 样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;button&quot;</span>&gt;</span>Primary button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;button button--secondary&quot;</span>&gt;</span>Secondary button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">.button &#123; </span><br><span class="line">    padding: 0.5em 0.75em; </span><br><span class="line">    background-color: red; </span><br><span class="line">&#125; </span><br><span class="line">.button--secondary &#123; </span><br><span class="line">    background-color: green; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意为什么没有必要在 <code>.button--secondary</code> 中重新声明 <code>padding</code>，因为它已经在 <code>.button</code> 中声明了。这很棒，因为 BEM 确保你编写简洁的 CSS，而不需要付出大量的工作。</p>
+<p>但是，我并不喜欢在HTML中再加一个 <code>.button</code>，因为 <code>.button--modifier</code> 已经告诉我，它是一个带有 <code>--secondary</code> 标志的 <code>.button</code> 。理想情况下，我的 HTML 应该是这样的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;button&quot;</span>&gt;</span>Primary button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;button--secondary&quot;</span>&gt;</span>Secondary button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这更简洁，不是吗？</p>
+<p>不幸的是，如果 HTML 中没有 <code>.button</code>，我们必须回到非简洁的 CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span> &#123; </span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>; </span><br><span class="line">    <span class="attribute">background-color</span>: red; </span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-class">.button--secondary</span> &#123; </span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>;  <span class="comment">/* 😱 */</span></span><br><span class="line">    <span class="attribute">background-color</span>: green; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>呃，这么繁琐的东西好恶心 😢。 但是有两种方法可以编写简洁的 CSS，而不需要额外的 <code>class</code>！</p>
+<h3 id="方法-1：使用-mixin"><a href="#方法-1：使用-mixin" class="headerlink" title="方法 1：使用 mixin"></a>方法 1：使用 mixin</h3><p>第一种方式，如果使用 Sass 或任何其他预处理器，则 <strong>使用mixin来封装</strong> 需要重用的 <strong>所有代码</strong>。在我们的按钮示例中，我们只需要将 <code>padding</code> 写入 mixin。 在这里，我在块中调用这个 mixin：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> button &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-class">.button</span> &#123; </span><br><span class="line">    <span class="keyword">@include</span> button;</span><br><span class="line">    <span class="attribute">background-color</span>: red; <span class="comment">// 😄</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="selector-class">.button--secondary</span> &#123; </span><br><span class="line">    <span class="keyword">@include</span> button;</span><br><span class="line">    <span class="attribute">background-color</span>: green; <span class="comment">// 😄</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>万岁！现在世界静好!🎉🎉🎉</p>
+<p><strong>但是…如果我不使用 Sass 怎么办？</strong></p>
+<p>放轻松！😄即将分享的第二种方法是使用普通的 CSS，所以你也可以使用它！</p>
+<h3 id="方法-2：使用-CSS-属性选择器"><a href="#方法-2：使用-CSS-属性选择器" class="headerlink" title="方法 2：使用 CSS 属性选择器"></a>方法 2：使用 CSS 属性选择器</h3><p>第二种方法 <strong>使用CSS属性选择</strong> 器执行稍微更复杂的选择。我会告诉你它是什么，然后解释为什么这样做：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 😄 */</span><br><span class="line">[class*=&#x27;button&#x27;]:not([class*=&#x27;button__&#x27;]) &#123; </span><br><span class="line">    padding: 0.5em 0.75em; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，这不是你通常看到的选择器，所以我来解释一下。</p>
+<p>第一部分（ <code>[class*=&#39;button&#39;]</code> ）告诉解析器查找包含文本 <code>button</code> 的所有 <code>class</code>。（ <code>*=</code> 搜索与确切字符串匹配的任何内容）。当然，这意味着 CSS 的目标是 <code>.button</code> 和 <code>.button--modifier</code>。不幸的是，这也意味着选择器也是针对 BEM 元素，这就是为什么引入第二部分的原因。</p>
+<p>第二部分（ <code>:not([class*=&#39;button__&#39;])</code> ）告诉解析器将包含<code>.button__</code>任何东西排除在外，于是排除了 BEM 元素。 （BEM 元素具有 <code>.block__element</code> 语法）。</p>
+<p>在这一点上，你仍然可能不喜欢 BEM 丑陋的 <code>--modifier</code> 语法。我知道为什么，但我爱上这个语法是因为<strong>我很讨厌命名</strong>。有时，我发现需要使用很多单词来命名一个 BEM 块或元素。举个例子 <code>inner-section</code> 。</p>
+<p>因此如果我使用 <code>-modifier</code> （如某些方法建议的），我将无法一眼看出 <code>-section</code> 是否是修饰符。所以这是一个馊主意。同样，我也不能立即知道<code>.button-secondary</code>是否也是修饰符！</p>
+<p>很具有讽刺意味，但是这个丑陋的语法让我的代码更简洁，更易于维护。所以强烈推荐你尝试它:)</p>
+<p>我们来看看 BEM 的第三个重要部分 —— 元素。</p>
+<h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><p>元素是块的子节点。为了表明某个东西是一个元素，你需要在块名后添加 <code>__element</code>。所以，如果你看到一个像那样的名字，比如 <code>form__row</code> ，你将立即知道 <code>.form</code> 块中有一个 <code>row</code> 元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form__row&quot;</span>&gt;</span> </span><br><span class="line">        <span class="comment"><!-- ... --></span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">.form__row &#123; </span><br><span class="line">    /* styles */ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>BEM 元素有两个优点</strong> ：</p>
+<ul>
+<li>你可以让 CSS 的优先级保持相对扁平。</li>
+<li>你能立即知道哪些东西是一个子元素。</li>
+</ul>
+<p>为了解释以上两点，考虑使用两个单独的 <code>class</code> 的替代方法（许多框架这么做的）。你可能会用这样的东西：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span> </span><br><span class="line">        <span class="comment"><!-- ... --></span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.form</span> <span class="selector-class">.row</span> &#123; </span><br><span class="line">    <span class="comment">/* styles */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用 BEM 元素，则可以使用优先级为 <code>10</code> 而不是 <code>20</code> 的的选择器来为 <code>.form__row</code> 提供样式。此外，你可以立即分辨出（不论是在 HTML 还是 CSS 中）<code>.form__row</code> 是 <code>.form</code>的子节点。</p>
+<p>（顺便说一句，如果你还没有克服 <code>__element</code> 语法的丑陋，等到你使用第三方插件看到像蛇一样的 <code>class</code> 名的时候， 你就懂了😛）</p>
+<p>继续，有一件事你需要了解。<strong>永远不应该链式命名 BEM 元素</strong>。 如果你的 <code>class</code> 最终像这样 <code>.form__row__input</code>，你做的事情是非常错误的。（我开始时这样做过，所以你也不要对自己感到太糟糕！🤗）。</p>
+<p>有两种方法可以绕过长长的 BEM 链式命名。 他们是：</p>
+<ol>
+<li>只把子子元素链接到有意义的块</li>
+<li>创建新的块来保存元素</li>
+</ol>
+<h3 id="链接孙元素到块"><a href="#链接孙元素到块" class="headerlink" title="链接孙元素到块"></a>链接孙元素到块</h3><p>虽然 BEM 建议你将 BEM 元素写作 <code>.block__element</code> ，但它不会规定你的 HTML 应如何。所以，只要有意义的话，你可以把你的孙元素连在一起。</p>
+<p>接下来是一个例子。在下面的代码中，你将看到 <code>.article__header</code> 是 <code>.article</code> 的子元素。<code>.article__title</code> 是 <code>article</code> 的孙元素（或者说是 <code>.article__header</code> 的子元素，如果你将它们同时表示为 <code>.article</code> 的子元素，就没有冲突，因为这个表单同时只有他们存在。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;article&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">&quot;article__header&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;article__title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然这样有效，你也会遇到无意义的链接孙元素的情况。举个例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;comments&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;comments__title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;comments__comment&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;comments__comment-title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;comments__comment&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;comments__comment-title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line">    <span class="comment"><!-- ... --></span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>呃？</p>
+<p>此时你需要创建新块来保存孙元素。</p>
+<h3 id="创建新的块来保存孙元素"><a href="#创建新的块来保存孙元素" class="headerlink" title="创建新的块来保存孙元素"></a>创建新的块来保存孙元素</h3><p>在上述情况下，你可以轻松地将 <code>.comments__comment</code> 拆为 <code>.comments</code> 和 <code>.comment</code> ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;comments&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;comments__title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;comment&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;comment-title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;comment&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;comment-title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line">    <span class="comment"><!-- ... --></span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这更有意义，不是吗？如果你这样做，请确保将 <code>.comments</code> 和 <code>.comment</code>块放在同一个文件中，以方便参考。</p>
+<p>不幸的是，有时候它不像 <code>.comments__comment</code> 那么简单。例如，假设在块中有一个列表元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;block__list&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;block__item&quot;</span>&gt;</span> </span><br><span class="line">            <span class="comment"><!-- how would you name this class? --></span> </span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;???????&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line">        <span class="comment"><!-- ... --></span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你注意到，我已经链接了<code>.block__item</code> ，这是一个 <code>.block</code> 的孙元素。 将 <code>.block__item</code> 中的元素链接到 <code>.block</code> 没有意义，或可能最终会遇到一些糟糕的局面。</p>
+<p>然而，同时由于它们被一起使用，所以为 <code>.block__list</code> 或 <code>.block__item</code> 创建一个新的块是没有意义的 。你会命名什么来保持在上下文中有意义？</p>
+<p>在这种情况下，我一般会为 <code>block__item</code> 创建一个名为 <code>.item</code> 的伪块。看下面的HTML。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;block__title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;block__list&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;block__item&quot;</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;item__title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span> </span><br><span class="line">        <span class="comment"><!-- ... --></span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>伪块，正如名字所示，是伪的。上面的 HTML 中没有 <code>.item</code> 的实际声明。但是，在<code>.block__item</code>中有连接到 <code>.item</code> 的元素中。</p>
+<p>在我的 CSS（Sass）中，我在 <code>.block__item</code> 中嵌套 <code>.item</code> 元素，赋予了它所需的上下文。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.block__item &#123;</span><br><span class="line">    .item__title &#123;</span><br><span class="line">        /* styles... */ </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可能会说，**“但这是违反 BEM 惯例的！”**是的，但请阅读<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjcGx1cy5jb20vY3NzL2Nzcy1hcmNoaXRlY3R1cmUtMi5odG1s">下一篇文章<i class="fa fa-external-link-alt"></i></span> 。你会知道为什么我这样做😉。</p>
+<p>接下来，还有一件事，在我的用例中添加为 BEM 添加的 —— 容器。</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>有时（实际上经常），我会遇到这样的情况，我必须在确定其它元素都对齐的同时扩散一个区域的背景色，就像这样：</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1708/css-architecture-1.png" alt="Image of a block that contains a background that bleeds out of it"></p>
+<p>浅灰色的背景扩散到了对齐的区域的外面</p>
+<p>如果你熟悉构建布局，会使用以下方式构建 HTML ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;l-wrap&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;block&quot;</span>&gt;</span> </span><br><span class="line">            <span class="comment"><!-- ... --></span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>问题是，你应该怎么命名块容器？ 或者在这种情况下，怎么命名 <code>&lt;section&gt;</code> 元素。我习惯的方法是命名为 <code>block-container</code> 。我只在这种情况下使用<code>-container</code>，所以我觉得它仍然可以接受。你有更好的主意吗？</p>
+<p>（顺便说一下，看见<code>.l-wrap</code> 中的 <code>.l-</code>了没，这是命名空间，我将<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjcGx1cy5jb20vY3NzL2Nzcy1hcmNoaXRlY3R1cmUtMi5odG1s">在下一篇文章中<i class="fa fa-external-link-alt"></i></span>分享更多的内容。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>所以，这就是我简单地使用 BEM 的方法。如果你注意到我上面设置的标准，你会注意到我只考虑了两个方面：</p>
+<ul>
+<li><code>class</code> 的数量必须<em>尽可能少</em> 。</li>
+<li>我必须<strong>立即知道一个 class 放在这个伟大工程中的什么地方</strong>，以防止大脑过载。</li>
+</ul>
+<p>其他两个方面尚未考虑：</p>
+<ul>
+<li>我必须 <strong>立即知道组件是否使用 JavaScript</strong> 。</li>
+<li>我必须 <strong>立即知道编辑一个 class 是否安全</strong>,会不会干扰其他 CSS。</li>
+</ul>
+<p>我将<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjcGx1cy5jb20vY3NzL2Nzcy1hcmNoaXRlY3R1cmUtMi5odG1s">在下一篇文章中<i class="fa fa-external-link-alt"></i></span>讨论<strong>命名空间</strong> 时考虑这两个方面 。</p>
+<p>你怎么看？你有没有学到新的东西？我分享了我的学习过程有用吗？我很想在下面的评论中看到你的想法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+              <a href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> Web开发</a>
+              <a href="/tags/BEM/" rel="tag"><i class="fa fa-tag"></i> BEM</a>
+              <a href="/tags/%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 界面设计</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/" rel="prev" title="win10下右键菜单添加“打开cmd”">
+                  <i class="fa fa-angle-left"></i> win10下右键菜单添加“打开cmd”
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="next" title="编写模块化的CSS:命名空间">
+                  编写模块化的CSS:命名空间 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

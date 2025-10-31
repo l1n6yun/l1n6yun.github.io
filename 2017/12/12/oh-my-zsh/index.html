@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Oh My Zsh is an open source, community-driven framework for managing your [zsh](http:&#x2F;&#x2F;www.zsh.org&#x2F;) configuration.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oh-my-zsh">
+<meta property="og:url" content="http://example.com/2017/12/12/oh-my-zsh/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="Oh My Zsh is an open source, community-driven framework for managing your [zsh](http:&#x2F;&#x2F;www.zsh.org&#x2F;) configuration.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.amazonaws.com/ohmyzsh/oh-my-zsh-logo.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
+<meta property="og:image" content="https://pa-github-assets.s3.amazonaws.com/PARGON_logo_digital_COL-small.jpg">
+<meta property="article:published_time" content="2017-12-12T05:16:38.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:39:59.543Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="zsh">
+<meta property="article:tag" content="界面优化">
+<meta property="article:tag" content="系统管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.amazonaws.com/ohmyzsh/oh-my-zsh-logo.png">
+
+
+<link rel="canonical" href="http://example.com/2017/12/12/oh-my-zsh/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2017/12/12/oh-my-zsh/","path":"2017/12/12/oh-my-zsh/","title":"oh-my-zsh"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>oh-my-zsh | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prerequisites"><span class="nav-number">1.1.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Installation"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#via-curl"><span class="nav-number">1.2.1.</span> <span class="nav-text">via curl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#via-wget"><span class="nav-number">1.2.2.</span> <span class="nav-text">via wget</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Oh-My-Zsh"><span class="nav-number">2.</span> <span class="nav-text">Using Oh My Zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Plugins"><span class="nav-number">2.1.</span> <span class="nav-text">Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Enabling-Plugins"><span class="nav-number">2.1.1.</span> <span class="nav-text">Enabling Plugins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-Plugins"><span class="nav-number">2.1.2.</span> <span class="nav-text">Using Plugins</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Themes"><span class="nav-number">2.2.</span> <span class="nav-text">Themes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Selecting-a-Theme"><span class="nav-number">2.2.1.</span> <span class="nav-text">Selecting a Theme</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Topics"><span class="nav-number">3.</span> <span class="nav-text">Advanced Topics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Installation"><span class="nav-number">3.1.</span> <span class="nav-text">Advanced Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-Directory"><span class="nav-number">3.1.1.</span> <span class="nav-text">Custom Directory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Manual-Installation"><span class="nav-number">3.1.2.</span> <span class="nav-text">Manual Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Clone-the-repository"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">1. Clone the repository:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Optionally-backup-your-existing-zshrc-file"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">2. Optionally, backup your existing ~&#x2F;.zshrc file:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Create-a-new-zsh-configuration-file"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">3. Create a new zsh configuration file</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Change-your-default-shell"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">4. Change your default shell</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Initialize-your-new-zsh-configuration"><span class="nav-number">3.1.2.5.</span> <span class="nav-text">5. Initialize your new zsh configuration</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-Problems"><span class="nav-number">3.2.</span> <span class="nav-text">Installation Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Plugins-and-Themes"><span class="nav-number">3.3.</span> <span class="nav-text">Custom Plugins and Themes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Updates"><span class="nav-number">4.</span> <span class="nav-text">Getting Updates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Manual-Updates"><span class="nav-number">4.1.</span> <span class="nav-text">Manual Updates</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Uninstalling-Oh-My-Zsh"><span class="nav-number">5.</span> <span class="nav-text">Uninstalling Oh My Zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contributing"><span class="nav-number">6.</span> <span class="nav-text">Contributing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Do-NOT-send-us-themes"><span class="nav-number">6.1.</span> <span class="nav-text">Do NOT send us themes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contributors"><span class="nav-number">7.</span> <span class="nav-text">Contributors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Follow-Us"><span class="nav-number">8.</span> <span class="nav-text">Follow Us</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merchandise"><span class="nav-number">9.</span> <span class="nav-text">Merchandise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">10.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Planet-Argon"><span class="nav-number">11.</span> <span class="nav-text">About Planet Argon</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/12/oh-my-zsh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="oh-my-zsh | l1n6yun's Blog">
+      <meta itemprop="description" content="Oh My Zsh is an open source, community-driven framework for managing your [zsh](http:&#x2F;&#x2F;www.zsh.org&#x2F;) configuration.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          oh-my-zsh
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-12-12 13:16:38" itemprop="dateCreated datePublished" datetime="2017-12-12T13:16:38+08:00">2017-12-12</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Oh My Zsh is an open source, community-driven framework for managing your [zsh](http://www.zsh.org/) configuration.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p align="center">
+  <img src="https://s3.amazonaws.com/ohmyzsh/oh-my-zsh-logo.png" alt="Oh My Zsh">
+</p>
+
+<p>Oh My Zsh is an open source, community-driven framework for managing your <span class="exturl" data-url="aHR0cDovL3d3dy56c2gub3JnLw==">zsh<i class="fa fa-external-link-alt"></i></span> configuration.</p>
+<p>Sounds boring. Let’s try again.</p>
+<p><strong>Oh My Zsh will not make you a 10x developer…but you might feel like one.</strong></p>
+<p>Once installed, your terminal shell will become the talk of the town <em>or your money back!</em> With each keystroke in your command prompt, you’ll take advantage of the hundreds of powerful plugins and beautiful themes. Strangers will come up to you in cafés and ask you, <em>“that is amazing! are you some sort of genius?”</em></p>
+<p>Finally, you’ll begin to get the sort of attention that you have always felt you deserved. …or maybe you’ll use the time that you’re saving to start flossing more often. 😬</p>
+<p>To learn more, visit <span class="exturl" data-url="aHR0cDovL29obXl6LnNoLw==">ohmyz.sh<i class="fa fa-external-link-alt"></i></span> and follow <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9vaG15enNo">@ohmyzsh<i class="fa fa-external-link-alt"></i></span> on Twitter.</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p><strong>Disclaimer:</strong> <em>Oh My Zsh works best on macOS and Linux.</em></p>
+<ul>
+<li>Unix-like operating system (macOS or Linux)</li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy56c2gub3JnLw==">Zsh<i class="fa fa-external-link-alt"></i></span> should be installed (v4.3.9 or more recent). If not pre-installed (<code>zsh --version</code> to confirm), check the following instruction here: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS9JbnN0YWxsaW5nLVpTSA==">Installing ZSH<i class="fa fa-external-link-alt"></i></span></li>
+<li><code>curl</code> or <code>wget</code> should be installed</li>
+<li><code>git</code> should be installed</li>
+</ul>
+<h3 id="Basic-Installation"><a href="#Basic-Installation" class="headerlink" title="Basic Installation"></a>Basic Installation</h3><p>Oh My Zsh is installed by running one of the following commands in your terminal. You can install this via the command-line with either <code>curl</code> or <code>wget</code>.</p>
+<h4 id="via-curl"><a href="#via-curl" class="headerlink" title="via curl"></a>via curl</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="via-wget"><a href="#via-wget" class="headerlink" title="via wget"></a>via wget</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-Oh-My-Zsh"><a href="#Using-Oh-My-Zsh" class="headerlink" title="Using Oh My Zsh"></a>Using Oh My Zsh</h2><h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>Oh My Zsh comes with a shitload of plugins to take advantage of. You can take a look in the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvdHJlZS9tYXN0ZXIvcGx1Z2lucw==">plugins<i class="fa fa-external-link-alt"></i></span> directory and&#x2F;or the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS9QbHVnaW5z">wiki<i class="fa fa-external-link-alt"></i></span> to see what’s currently available.</p>
+<h4 id="Enabling-Plugins"><a href="#Enabling-Plugins" class="headerlink" title="Enabling Plugins"></a>Enabling Plugins</h4><p>Once you spot a plugin (or several) that you’d like to use with Oh My Zsh, you’ll need to enable them in the <code>.zshrc</code> file. You’ll find the zshrc file in your <code>$HOME</code> directory. Open it with your favorite text editor and you’ll see a spot to list all the plugins you want to load.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>For example, this might begin to look like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  bundler</span><br><span class="line">  dotenv</span><br><span class="line">  osx</span><br><span class="line">  rake</span><br><span class="line">  rbenv</span><br><span class="line">  ruby</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Using-Plugins"><a href="#Using-Plugins" class="headerlink" title="Using Plugins"></a>Using Plugins</h4><p>Most plugins (should! we’re working on this) include a <strong>README</strong>, which documents how to use them.</p>
+<h3 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h3><p>We’ll admit it. Early in the Oh My Zsh world, we may have gotten a bit too theme happy. We have over one hundred themes now bundled. Most of them have <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmdpdGh1Yi5jb20vcm9iYnlydXNzZWxsL29oLW15LXpzaC90aGVtZXM=">screenshots<i class="fa fa-external-link-alt"></i></span> on the wiki. Check them out!</p>
+<h4 id="Selecting-a-Theme"><a href="#Selecting-a-Theme" class="headerlink" title="Selecting a Theme"></a>Selecting a Theme</h4><p><em>Robby’s theme is the default one. It’s not the fanciest one. It’s not the simplest one. It’s just the right one (for him).</em></p>
+<p>Once you find a theme that you’d like to use, you will need to edit the <code>~/.zshrc</code> file. You’ll see an environment variable (all caps) in there that looks like:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=&quot;robbyrussell&quot;</span><br></pre></td></tr></table></figure>
+
+<p>To use a different theme, simply change the value to match the name of your desired theme. For example:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=&quot;agnoster&quot; # (this is one of the fancy ones)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">see https://github.com/robbyrussell/oh-my-zsh/wiki/Themes#agnoster</span></span><br></pre></td></tr></table></figure>
+
+<p><em>Note: many themes require installing the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Bvd2VybGluZS9mb250cw==">Powerline Fonts<i class="fa fa-external-link-alt"></i></span> in order to render properly.</em></p>
+<p>Open up a new terminal window and your prompt should look something like this:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt="Agnoster theme"></p>
+<p>In case you did not find a suitable theme for your needs, please have a look at the wiki for <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS9FeHRlcm5hbC10aGVtZXM=">more of them<i class="fa fa-external-link-alt"></i></span>.</p>
+<p>If you’re feeling feisty, you can let the computer select one randomly for you each time you open a new terminal window.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=&quot;random&quot; # (...please let it be pie... please be some pie..)</span><br></pre></td></tr></table></figure>
+
+<p>And if you want to pick random theme from a list of your favorite themes:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME_RANDOM_CANDIDATES=(</span><br><span class="line">  &quot;robbyrussell&quot;</span><br><span class="line">  &quot;agnoster&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h2><p>If you’re the type that likes to get their hands dirty, these sections might resonate.</p>
+<h3 id="Advanced-Installation"><a href="#Advanced-Installation" class="headerlink" title="Advanced Installation"></a>Advanced Installation</h3><p>Some users may want to change the default path, or manually install Oh My Zsh.</p>
+<h4 id="Custom-Directory"><a href="#Custom-Directory" class="headerlink" title="Custom Directory"></a>Custom Directory</h4><p>The default location is <code>~/.oh-my-zsh</code> (hidden in your home directory)</p>
+<p>If you’d like to change the install directory with the <code>ZSH</code> environment variable, either by running <code>export ZSH=/your/path</code> before installing, or by setting it before the end of the install pipeline like this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export ZSH=&quot;$HOME/.dotfiles/oh-my-zsh&quot;; sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Manual-Installation"><a href="#Manual-Installation" class="headerlink" title="Manual Installation"></a>Manual Installation</h4><h5 id="1-Clone-the-repository"><a href="#1-Clone-the-repository" class="headerlink" title="1. Clone the repository:"></a>1. Clone the repository:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-Optionally-backup-your-existing-zshrc-file"><a href="#2-Optionally-backup-your-existing-zshrc-file" class="headerlink" title="2. Optionally, backup your existing ~/.zshrc file:"></a>2. <em>Optionally</em>, backup your existing <code>~/.zshrc</code> file:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.zshrc ~/.zshrc.orig</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-Create-a-new-zsh-configuration-file"><a href="#3-Create-a-new-zsh-configuration-file" class="headerlink" title="3. Create a new zsh configuration file"></a>3. Create a new zsh configuration file</h5><p>You can create a new zsh config file by copying the template that we have included for you.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-Change-your-default-shell"><a href="#4-Change-your-default-shell" class="headerlink" title="4. Change your default shell"></a>4. Change your default shell</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-Initialize-your-new-zsh-configuration"><a href="#5-Initialize-your-new-zsh-configuration" class="headerlink" title="5. Initialize your new zsh configuration"></a>5. Initialize your new zsh configuration</h5><p>Once you open up a new terminal window, it should load zsh with Oh My Zsh’s configuration.</p>
+<h3 id="Installation-Problems"><a href="#Installation-Problems" class="headerlink" title="Installation Problems"></a>Installation Problems</h3><p>If you have any hiccups installing, here are a few common fixes.</p>
+<ul>
+<li>You <em>might</em> need to modify your <code>PATH</code> in <code>~/.zshrc</code> if you’re not able to find some commands after switching to <code>oh-my-zsh</code>.</li>
+<li>If you installed manually or changed the install location, check the <code>ZSH</code> environment variable in <code>~/.zshrc</code>.</li>
+</ul>
+<h3 id="Custom-Plugins-and-Themes"><a href="#Custom-Plugins-and-Themes" class="headerlink" title="Custom Plugins and Themes"></a>Custom Plugins and Themes</h3><p>If you want to override any of the default behaviors, just add a new file (ending in <code>.zsh</code>) in the <code>custom/</code> directory.</p>
+<p>If you have many functions that go well together, you can put them as a <code>XYZ.plugin.zsh</code> file in the <code>custom/plugins/</code> directory and then enable this plugin.</p>
+<p>If you would like to override the functionality of a plugin distributed with Oh My Zsh, create a plugin of the same name in the <code>custom/plugins/</code> directory and it will be loaded instead of the one in <code>plugins/</code>.</p>
+<h2 id="Getting-Updates"><a href="#Getting-Updates" class="headerlink" title="Getting Updates"></a>Getting Updates</h2><p>By default, you will be prompted to check for upgrades every few weeks. If you would like <code>oh-my-zsh</code> to automatically upgrade itself without prompting you, set the following in your <code>~/.zshrc</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISABLE_UPDATE_PROMPT=true</span><br></pre></td></tr></table></figure>
+
+<p>To disable automatic upgrades, set the following in your <code>~/.zshrc</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISABLE_AUTO_UPDATE=true</span><br></pre></td></tr></table></figure>
+
+<h3 id="Manual-Updates"><a href="#Manual-Updates" class="headerlink" title="Manual Updates"></a>Manual Updates</h3><p>If you’d like to upgrade at any point in time (maybe someone just released a new plugin and you don’t want to wait a week?) you just need to run:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upgrade_oh_my_zsh</span><br></pre></td></tr></table></figure>
+
+<p>Magic! 🎉</p>
+<h2 id="Uninstalling-Oh-My-Zsh"><a href="#Uninstalling-Oh-My-Zsh" class="headerlink" title="Uninstalling Oh My Zsh"></a>Uninstalling Oh My Zsh</h2><p>Oh My Zsh isn’t for everyone. We’ll miss you, but we want to make this an easy breakup.</p>
+<p>If you want to uninstall <code>oh-my-zsh</code>, just run <code>uninstall_oh_my_zsh</code> from the command-line. It will remove itself and revert your previous <code>bash</code> or <code>zsh</code> configuration.</p>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>I’m far from being a <span class="exturl" data-url="aHR0cDovL3d3dy56c2gub3JnLw==">Zsh<i class="fa fa-external-link-alt"></i></span> expert and suspect there are many ways to improve – if you have ideas on how to make the configuration easier to maintain (and faster), don’t hesitate to fork and send pull requests!</p>
+<p>We also need people to test out pull-requests. So take a look through <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvaXNzdWVz">the open issues<i class="fa fa-external-link-alt"></i></span> and help where you can.</p>
+<h3 id="Do-NOT-send-us-themes"><a href="#Do-NOT-send-us-themes" class="headerlink" title="Do NOT send us themes"></a>Do NOT send us themes</h3><p>We have (more than) enough themes for the time being. Please add your theme to the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvYmJ5cnVzc2VsbC9vaC1teS16c2gvd2lraS9FeHRlcm5hbC10aGVtZXM=">external themes<i class="fa fa-external-link-alt"></i></span> wiki page.</p>
+<h2 id="Contributors"><a href="#Contributors" class="headerlink" title="Contributors"></a>Contributors</h2><p>Oh My Zsh has a vibrant community of happy users and delightful contributors. Without all the time and help from our contributors, it wouldn’t be so awesome.</p>
+<p>Thank you so much!</p>
+<h2 id="Follow-Us"><a href="#Follow-Us" class="headerlink" title="Follow Us"></a>Follow Us</h2><p>We’re on the social media.</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9vaG15enNo">@ohmyzsh<i class="fa fa-external-link-alt"></i></span> on Twitter. You should follow it.</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL09oLU15LVpzaC0yOTY2MTYyNjM4MTkyOTAv">Oh My Zsh<i class="fa fa-external-link-alt"></i></span> on Facebook.</li>
+</ul>
+<h2 id="Merchandise"><a href="#Merchandise" class="headerlink" title="Merchandise"></a>Merchandise</h2><p>We have <span class="exturl" data-url="aHR0cHM6Ly9zaG9wLnBsYW5ldGFyZ29uLmNvbS9wcm9kdWN0cy9vaG15enNoLXN0aWNrZXJzLXNldC1vZi0zLXN0aWNrZXJz">stickers<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cDovL3Nob3AucGxhbmV0YXJnb24uY29tL3Byb2R1Y3RzL29obXl6c2gtdC1zaGlydHM=">shirts<i class="fa fa-external-link-alt"></i></span> for you to show off your love of Oh My Zsh. Again, this will help you become the talk of the town!</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Oh My Zsh is released under the <a href="LICENSE.txt">MIT license</a>.</p>
+<h2 id="About-Planet-Argon"><a href="#About-Planet-Argon" class="headerlink" title="About Planet Argon"></a>About Planet Argon</h2><p><img src="https://pa-github-assets.s3.amazonaws.com/PARGON_logo_digital_COL-small.jpg" alt="Planet Argon"></p>
+<p>Oh My Zsh was started by the team at <span class="exturl" data-url="aHR0cHM6Ly93d3cucGxhbmV0YXJnb24uY29tLz91dG1fc291cmNlPWdpdGh1Yg==">Planet Argon<i class="fa fa-external-link-alt"></i></span>, a <span class="exturl" data-url="aHR0cHM6Ly93d3cucGxhbmV0YXJnb24uY29tL3NraWxscy9ydWJ5LW9uLXJhaWxzLWRldmVsb3BtZW50P3V0bV9zb3VyY2U9Z2l0aHVi">Ruby on Rails development agency<i class="fa fa-external-link-alt"></i></span>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 界面优化</a>
+              <a href="/tags/github/" rel="tag"><i class="fa fa-tag"></i> github</a>
+              <a href="/tags/zsh/" rel="tag"><i class="fa fa-tag"></i> zsh</a>
+              <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 系统管理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" rel="prev" title="mathjax数学公式">
+                  <i class="fa fa-angle-left"></i> mathjax数学公式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/" rel="next" title="Apache优化：修改最大并发连接数">
+                  Apache优化：修改最大并发连接数 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

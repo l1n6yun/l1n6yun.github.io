@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Pake 是一个基于 Rust 的工具，它允许开发者轻松构建轻量级的多平台桌面应用。以其小巧的体积和卓越的性能，Pake 成为了许多开发者的首选工具。本文将详细介绍 Pake 的特性、安装方法、使用指南以及如何进行定制开发，并特别强调快捷键的使用。  Pake 的特性Pake 的核心特性包括：  体积小：相比传统的 Electron 套壳打包，Pake 的体积小将近 20 倍，大约在 5M 左右">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 Rust 构建轻量级多端桌面应用：Pake 介绍">
+<meta property="og:url" content="http://example.com/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="Pake 是一个基于 Rust 的工具，它允许开发者轻松构建轻量级的多平台桌面应用。以其小巧的体积和卓越的性能，Pake 成为了许多开发者的首选工具。本文将详细介绍 Pake 的特性、安装方法、使用指南以及如何进行定制开发，并特别强调快捷键的使用。  Pake 的特性Pake 的核心特性包括：  体积小：相比传统的 Electron 套壳打包，Pake 的体积小将近 20 倍，大约在 5M 左右">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-09T03:13:00.000Z">
+<meta property="article:modified_time" content="2025-05-04T10:37:20.164Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="PWA">
+<meta property="article:tag" content="Rust">
+<meta property="article:tag" content="Tauri">
+<meta property="article:tag" content="桌面应用">
+<meta property="article:tag" content="轻量级">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/","path":"2024/11/09/利用-Rust-构建轻量级多端桌面应用：Pake-介绍/","title":"利用 Rust 构建轻量级多端桌面应用：Pake 介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>利用 Rust 构建轻量级多端桌面应用：Pake 介绍 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pake-%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">Pake 的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8-Pake"><span class="nav-number">2.</span> <span class="nav-text">开始使用 Pake</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Pake-CLI"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Pake CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">命令行一键打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.</span> <span class="nav-text">快捷键说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">高级使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/09/%E5%88%A9%E7%94%A8-Rust-%E6%9E%84%E5%BB%BA%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%A4%9A%E7%AB%AF%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%EF%BC%9APake-%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="利用 Rust 构建轻量级多端桌面应用：Pake 介绍 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          利用 Rust 构建轻量级多端桌面应用：Pake 介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-09 11:13:00" itemprop="dateCreated datePublished" datetime="2024-11-09T11:13:00+08:00">2024-11-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>Pake 是一个基于 Rust 的工具，它允许开发者轻松构建轻量级的多平台桌面应用。以其小巧的体积和卓越的性能，Pake 成为了许多开发者的首选工具。本文将详细介绍 Pake 的特性、安装方法、使用指南以及如何进行定制开发，并特别强调快捷键的使用。</p>
+</blockquote>
+<h2 id="Pake-的特性"><a href="#Pake-的特性" class="headerlink" title="Pake 的特性"></a>Pake 的特性</h2><p>Pake 的核心特性包括：</p>
+<ul>
+<li><strong>体积小</strong>：相比传统的 Electron 套壳打包，Pake 的体积小将近 20 倍，大约在 5M 左右。</li>
+<li><strong>性能优异</strong>：Pake 的底层使用的是 Rust Tauri 框架，相较于 JavaScript 框架，它提供了更轻快的性能体验和更小的内存占用。</li>
+<li><strong>功能丰富</strong>：Pake 不仅能打包应用，还实现了快捷键透传、沉浸式窗口、拖动、样式改写、去广告等功能，并支持产品的极简风格定制。</li>
+<li><strong>简单易用</strong>：Pake 被描述为一个简单的小玩具，使用 Tauri 替代了传统的套壳网页打包思路，同时推荐使用 PWA（Progressive Web Apps）。</li>
+</ul>
+<h2 id="开始使用-Pake"><a href="#开始使用-Pake" class="headerlink" title="开始使用 Pake"></a>开始使用 Pake</h2><h3 id="安装-Pake-CLI"><a href="#安装-Pake-CLI" class="headerlink" title="安装 Pake CLI"></a>安装 Pake CLI</h3><p>Pake 提供了命令行工具，可以通过 npm 进行安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pake-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行一键打包"><a href="#命令行一键打包" class="headerlink" title="命令行一键打包"></a>命令行一键打包</h3><p>使用 Pake 进行一键打包非常简单，以下是基本的命令使用示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pake url [OPTIONS]...</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你想打包 <span class="exturl" data-url="aHR0cHM6Ly93ZWVrbHkudHc5My5mdW4v">Weekly<i class="fa fa-external-link-alt"></i></span> 应用，并隐藏标题栏，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pake https://weekly.tw93.fun --name Weekly --hide-title-bar</span><br></pre></td></tr></table></figure>
+
+<h3 id="快捷键说明"><a href="#快捷键说明" class="headerlink" title="快捷键说明"></a>快捷键说明</h3><p>Pake 支持快捷键，以提高用户的工作效率。以下是 Pake 支持的快捷键及其功能：</p>
+<table>
+<thead>
+<tr>
+<th>Mac</th>
+<th>Windows&#x2F;Linux</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⌘ + [</td>
+<td>Ctrl + ←</td>
+<td>返回上一个页面</td>
+</tr>
+<tr>
+<td>⌘ + ]</td>
+<td>Ctrl + →</td>
+<td>去下一个页面</td>
+</tr>
+<tr>
+<td>⌘ + ↑</td>
+<td>Ctrl + ↑</td>
+<td>自动滚动到页面顶部</td>
+</tr>
+<tr>
+<td>⌘ + ↓</td>
+<td>Ctrl + ↓</td>
+<td>自动滚动到页面底部</td>
+</tr>
+<tr>
+<td>⌘ + r</td>
+<td>Ctrl + r</td>
+<td>刷新页面</td>
+</tr>
+<tr>
+<td>⌘ + w</td>
+<td>Ctrl + w</td>
+<td>隐藏窗口，非退出</td>
+</tr>
+<tr>
+<td>⌘ + -</td>
+<td>Ctrl + -</td>
+<td>缩小页面</td>
+</tr>
+<tr>
+<td>⌘ + +</td>
+<td>Ctrl + +</td>
+<td>放大页面</td>
+</tr>
+<tr>
+<td>⌘ + &#x3D;</td>
+<td>Ctrl + &#x3D;</td>
+<td>放大页面</td>
+</tr>
+<tr>
+<td>⌘ + 0</td>
+<td>Ctrl + 0</td>
+<td>重置页面缩放</td>
+</tr>
+</tbody></table>
+<h2 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h2><p>Pake 的代码结构和高级用法可以在其官方文档中找到。以下是一些关键点：</p>
+<ul>
+<li>修改 src-tauri 目录下的 pake.json 中的 url 和 productName 字段，并同步修改 tauri.config.json 中的 domain 字段。</li>
+<li>修改 tauri.xxx.conf.json 中的 icon 和 identifier 字段，图标可以从 icons 目录选择，或者从 macOSicons 下载。</li>
+<li>在 pake.json 中修改窗口属性，如 width&#x2F;height、fullscreen、resizable 等。</li>
+<li>适配 Mac 沉浸式头部，可以将 hideTitleBar 设置为 true，并为 Header 元素添加 padding-top 样式。</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Pake 是一个强大的工具，它让构建轻量级多端桌面应用变得简单快捷。无论是小白用户、开发用户还是折腾用户，都能在 Pake 中找到适合自己的使用方式。希望这篇文章能帮助你更好地了解和使用 Pake，享受构建桌面应用的乐趣。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Rust/" rel="tag"><i class="fa fa-tag"></i> Rust</a>
+              <a href="/tags/%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/" rel="tag"><i class="fa fa-tag"></i> 桌面应用</a>
+              <a href="/tags/Tauri/" rel="tag"><i class="fa fa-tag"></i> Tauri</a>
+              <a href="/tags/PWA/" rel="tag"><i class="fa fa-tag"></i> PWA</a>
+              <a href="/tags/%E8%BD%BB%E9%87%8F%E7%BA%A7/" rel="tag"><i class="fa fa-tag"></i> 轻量级</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/02/%E4%BF%AE%E5%A4%8D-PHP-%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84-Shebang-%E8%A1%8C%E9%94%99%E8%AF%AF/" rel="prev" title="修复 PHP 文件中的 Shebang 行错误">
+                  <i class="fa fa-angle-left"></i> 修复 PHP 文件中的 Shebang 行错误
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/11/16/Shell%E5%92%8CPerl%E8%84%9A%E6%9C%AC%E5%8A%A0%E5%AF%86%E4%B8%8E%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/" rel="next" title="Shell和Perl脚本加密与编译技术详解">
+                  Shell和Perl脚本加密与编译技术详解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。 123456789101112131415function createtable($list,$filename)&#123;    header(&quot;Content-type:application&#x2F;vnd.ms-excel&quot;);    header(&quot;Content-Disposition:f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP生成excel表格文件并下载">
+<meta property="og:url" content="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。 123456789101112131415function createtable($list,$filename)&#123;    header(&quot;Content-type:application&#x2F;vnd.ms-excel&quot;);    header(&quot;Content-Disposition:f">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-26T03:46:34.000Z">
+<meta property="article:modified_time" content="2025-05-04T10:19:04.005Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Excel">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="文件下载">
+<meta property="article:tag" content="软件开发">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/","path":"2017/10/26/PHP生成excel表格文件并下载/","title":"PHP生成excel表格文件并下载"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PHP生成excel表格文件并下载 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PHP生成excel表格文件并下载 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP生成excel表格文件并下载
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-26 11:46:34" itemprop="dateCreated datePublished" datetime="2017-10-26T11:46:34+08:00">2017-10-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$strexport</span>=<span class="string">&quot;编号\t姓名\t性别\t年龄\r&quot;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;sex&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>].<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于这个我们可以将方法封装一下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建(导出)Excel数据表格</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $list 要导出的数组格式的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $filename 导出的Excel表格数据表的文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $header Excel表格的表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $index $list数组中与Excel表格表头$header中每个项目对应的字段的名字(key值)</span></span><br><span class="line"><span class="comment"> * 比如: $header = array(&#x27;编号&#x27;,&#x27;姓名&#x27;,&#x27;性别&#x27;,&#x27;年龄&#x27;);</span></span><br><span class="line"><span class="comment"> *       $index = array(&#x27;id&#x27;,&#x27;username&#x27;,&#x27;sex&#x27;,&#x27;age&#x27;);</span></span><br><span class="line"><span class="comment"> *       $list = array(array(&#x27;id&#x27;=&gt;1,&#x27;username&#x27;=&gt;&#x27;YQJ&#x27;,&#x27;sex&#x27;=&gt;&#x27;男&#x27;,&#x27;age&#x27;=&gt;24));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> [array] [数组]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>=<span class="keyword">array</span>(<span class="params"></span>),<span class="variable">$index</span> = <span class="keyword">array</span>(<span class="params"></span>)</span>)</span>&#123;</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line">	<span class="variable">$teble_header</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&quot;\t&quot;</span>,<span class="variable">$header</span>);</span><br><span class="line">	<span class="variable">$strexport</span> = <span class="variable">$teble_header</span>.<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	<span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">		<span class="keyword">foreach</span>(<span class="variable">$index</span> <span class="keyword">as</span> <span class="variable">$val</span>)&#123;</span><br><span class="line">			<span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="variable">$val</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$strexport</span>.=<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">	<span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法调用:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="string">&#x27;提现记录&#x27;</span>.<span class="title function_ invoke__">date</span>(<span class="string">&#x27;YmdHis&#x27;</span>);  </span><br><span class="line"><span class="variable">$header</span> = <span class="keyword">array</span>(<span class="string">&#x27;会员&#x27;</span>,<span class="string">&#x27;编号&#x27;</span>,<span class="string">&#x27;联系电话&#x27;</span>,<span class="string">&#x27;开户名&#x27;</span>,<span class="string">&#x27;开户行&#x27;</span>,<span class="string">&#x27;申请金额&#x27;</span>,<span class="string">&#x27;手续费&#x27;</span>,<span class="string">&#x27;实际金额&#x27;</span>,<span class="string">&#x27;申请时间&#x27;</span>);  </span><br><span class="line"><span class="variable">$index</span> = <span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;vipnum&#x27;</span>,<span class="string">&#x27;mobile&#x27;</span>,<span class="string">&#x27;checkname&#x27;</span>,<span class="string">&#x27;bank&#x27;</span>,<span class="string">&#x27;money&#x27;</span>,<span class="string">&#x27;handling_charge&#x27;</span>,<span class="string">&#x27;real_money&#x27;</span>,<span class="string">&#x27;applytime&#x27;</span>);  </span><br><span class="line"><span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createtable</span>(<span class="variable">$cash</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>,<span class="variable">$index</span>);  </span><br></pre></td></tr></table></figure>
+
+<p>这种方式生成Excel文件,生成速度很快,但是有缺点是:</p>
+<ol>
+<li>单纯的生成Excel文件,生成的文件没有样式,单元格属性(填充色,宽度,高度,边框颜色…)不能自定义。</li>
+<li>生成的文件虽然可以打开,但是兼容性很差,每次打开,都会报一个警告。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 软件开发</a>
+              <a href="/tags/Excel/" rel="tag"><i class="fa fa-tag"></i> Excel</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag"><i class="fa fa-tag"></i> 文件下载</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/" rel="prev" title="搭建服务器上的GIT并实现自动同步到站点目录（www）">
+                  <i class="fa fa-angle-left"></i> 搭建服务器上的GIT并实现自动同步到站点目录（www）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" rel="next" title="mathjax数学公式">
+                  mathjax数学公式 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

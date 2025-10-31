@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日志完美清理总结">
+<meta property="og:url" content="http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-25T03:37:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:42:30.538Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Windows系统">
+<meta property="article:tag" content="日志管理">
+<meta property="article:tag" content="权限管理">
+<meta property="article:tag" content="网络伦理">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/","path":"2016/10/25/日志完美清理总结/","title":"日志完美清理总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>日志完美清理总结 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">一、事件查看器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">二、日志文件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="日志完美清理总结 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          日志完美清理总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-10-25 11:37:00" itemprop="dateCreated datePublished" datetime="2016-10-25T11:37:00+08:00">2016-10-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一、事件查看器"><a href="#一、事件查看器" class="headerlink" title="一、事件查看器"></a>一、事件查看器</h2><p>开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。</p>
+<h2 id="二、日志文件"><a href="#二、日志文件" class="headerlink" title="二、日志文件"></a>二、日志文件</h2><p>Windows2000的日志文件通常有应用<code>程序日志</code>、<code>安全日志</code>、<code>系统日志</code>、<code>DNS服务器日志</code>、<code>FTP日志</code>、<code>WWW日志</code>等等。</p>
+<p>日志文件默认位置：</p>
+<p>应用程序日志、安全日志、系统日志、DNS日志默认位置：<code>%systemroot%\system32\config</code>，默认文件大小512KB，管理员都会改变这个默认大小。</p>
+<p>安全日志文件：<code>%systemroot%\system32\config\SecEvent.EVT</code>；</p>
+<p>系统日志文件：<code>%systemroot%\system32\config\SysEvent.EVT</code>；</p>
+<p>应用程序日志文件：<code>%systemroot%\system32\config\AppEvent.EVT</code>；</p>
+<p>Internet信息服务FTP日志默认位置：<code>%systemroot%\system32\log\filesmsftpsvc1</code>，默认每天一个日志；</p>
+<p>Internet信息服务WWW日志默认位置：<code>%systemroot%\system32\log\filesw3svc1</code>，默认每天一个日志；</p>
+<p>Scheduler服务日志默认位置：<code>%systemroot%\schedlgu.txt</code>；</p>
+<p>以上日志在注册表里的键：</p>
+<p>应用程序日志，安全日志，系统日志，DNS服务器日志，它们这些LOG文件在注册表中的：</p>
+<p>HKEY_LOCAL_MACHINE\system\Current\Control\Set\Services\Eventlog</p>
+<p>有的管理员很可能将这些日志重定位。其中EVENTLOG下面有很多的子表，里面可查到以上日志的定位目录。</p>
+<p>Schedluler服务日志在注册表中</p>
+<p>HKEY_LOCAL_MACHINESOFTWAREMicrosoftSchedulingAgent</p>
+<p>FTP和WWW日志详解：</p>
+<p>FTP日志和WWW日志默认情况，每天生成一个日志文件，包含了该日的一切记录，文件名通常为ex（年份）（月份）（日期），例如ex001023，就是2000年10月23日产生的日志，用记事本就可直接打开，如下例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0　　（微软IIS5.0）</span><br><span class="line">#Version: 1.0 （版本1.0）</span><br><span class="line">#Date: 20001023 0315 （服务启动时间日期）</span><br><span class="line">#Fields: time cip csmethod csuristem scstatus</span><br><span class="line">0315 127.0.0.1 [1]USER administator 331　（IP地址为127.0.0.1用户名为administator试图登录）</span><br><span class="line">0318 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:04 127.0.0.1 [1]USER nt 331　（IP地址为127.0.0.1用户名为nt的用户试图登录）</span><br><span class="line">032:06 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">032:09 127.0.0.1 [1]USER cyz 331　（IP地址为127.0.0.1用户名为cyz的用户试图登录）</span><br><span class="line">0322 127.0.0.1 [1]PASS –530　（登录失败）</span><br><span class="line">0322 127.0.0.1 [1]USER administrator 331　（IP地址为127.0.0.1用户名为administrator试图登录）</span><br><span class="line">0324 127.0.0.1 [1]PASS –230　（登录成功）</span><br><span class="line">0321 127.0.0.1 [1]MKD nt 550　（新建目录失败）</span><br><span class="line">0325 127.0.0.1 [1]QUIT –550　（退出FTP程序）</span><br></pre></td></tr></table></figure>
+<p>从 日志里就能看出IP地址为127.0.0.1的用户一直试图登录系统，换了四次用户名和密码才成功，管理员立即就可以得知管理员的入侵时间、IP地址以及 探测的用户名，如上例入侵者最终是用administrator用户名进入的，那么就要考虑更换此用户名的密码，或者重命名administrator 用户。</p>
+<p>WWW日志：</p>
+<p>WWW服务同FTP服务一样，产生的日志也是在%sys temroot%sys tem32LogFilesW3SVC1目录下，默认是每天一个日志文件，下面是一个典型的WWW日志文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Software: Microsoft Internet Information Services 5.0</span><br><span class="line">#Version: 1.0</span><br><span class="line">#Date: 20001023 03:091</span><br><span class="line">#Fields: date time cip csusername sip sport csmethod csuristem csuriquery scstatus cs(UserAgent)</span><br><span class="line">20001023 03:091 192.168.1.26 192.168.1.37 80 GET /iisstart.asp 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br><span class="line">20001023 03:094 192.168.1.26 192.168.1.37 80 GET /pagerror.gif 200 Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)</span><br></pre></td></tr></table></figure>
+
+<p>通 过分析第六行，可以看出2000年10月23日，IP地址为192.168.1.26的用户通过访问IP地址为192.168.1.37机器的80端口， 查看了一个页面iisstart.asp,这位用户的浏览器为compatible; MSIE 5.0; Windows 98 DigExt，有经验的管理员就可通过安全日志、FTP日志和WWW日志来确定入侵者的IP地址以及入侵时间。</p>
+<p>既使你删掉FTP和WWW日志，但是还是会在系统日志和安全日志里记录下来，但是较好的是只显示了你的机器名，并没有你的IP。</p>
+<p>属性里记录了出现警告的原因，是因为有人试图用administator用户名登录，出现一个错误，来源是FTP服务。</p>
+<p>这里有两种图标：钥匙（表示成功）和锁（表示当用户在做什么时被系统停止）。接连四个锁图标，表示四次失败审核，事件类型是帐户登录和登录、注销失败，日期为2000年10月18日，时间为1002，这就需要重点观察。</p>
+<p>双点第一个失败审核事件的，即得到此事件的详细描述。</p>
+<p>经过分析我们可以得知有个CYZ的工作站，用administator用户名登录本机，但是因为用户名未知或密码错误（实际为密码错误）未能成功。另外还有DNS服务器日志，不太重要，就此略过（其实是我没有看过它）。</p>
+<p>知道了Windows2000日志的详细情况，下面就要学会怎样删除这些日志：</p>
+<p>通 过上面，得知日志文件通常有某项服务在后台保护，除了系统日志、安全日志、应用程序日志等等，它们的服务是Windos2000的关键进程，而且与注册表 文件在一块，当Windows2000启动后，启动服务来保护这些文件，所以很难删除，而FTP日志和WWW日志以及Scedlgu日志都是可以轻易地删 除的。首先要取得Admnistrator密码或Administrators组成员之一， <span class="exturl" data-url="aHR0cDovL3d3dy4yY3RvLmNvbS8=">www.2cto.com<i class="fa fa-external-link-alt"></i></span> 然后Telnet到远程主机，先来试着删除FTP日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;del schedlgu.txt</span><br><span class="line">D:SERVERSchedLgU.Txt</span><br></pre></td></tr></table></figure>
+<p>进程无法访问文件，因为另一个程序正在使用此文件。说过了，后台有服务保护，先把服务停掉！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVER&gt;net stop &quot;task scheduler&quot;</span><br></pre></td></tr></table></figure>
+<p>下面的服务依赖于Task Scheduler 服务。停止Task Scheduler 服务也会停止这些服务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Remote Storage Engine</span><br><span class="line">是否继续此操作? (Y/N) [N]: y</span><br><span class="line">Remote Storage Engine 服务正在停止….</span><br><span class="line">Remote Storage Engine 服务已成功停止。</span><br><span class="line">Task Scheduler 服务正在停止.</span><br><span class="line">Task Scheduler 服务已成功停止。</span><br></pre></td></tr></table></figure>
+<p>OK，它的服务停掉了，同时也停掉了与它有依赖关系的服务。再来试着删一下！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER&gt;del schedlgu.txt</span><br><span class="line">D:\SERVER&gt;</span><br></pre></td></tr></table></figure>
+<p>没有反应？成功了！下一个是FTP日志和WWW日志，原理都是一样，先停掉相关服务，然后再删日志！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;del ex*.log</span><br><span class="line">D:\SERVER\system32\LogFiles\MSFTPSVC1&gt;</span><br></pre></td></tr></table></figure>
+<p>以上操作成功删除FTP日志！再来WWW日志！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;del ex*.log</span><br><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;</span><br></pre></td></tr></table></figure>
+<p>OK！恭喜，现在简单的日志都已成功删除。下面就是很难的安全日志和系统日志了，守护这些日志的服务是Event Log，试着停掉它！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:SERVERsystem32LogFilesW3SVC1&gt;net stop eventlog</span><br></pre></td></tr></table></figure>
+<p>这 项服务无法接受请求的 “暂停” 或 “停止” 操作。没办法，它是关键服务。如果不用第三方工具，在命令行上根本没有删除安全日志和系统日志的可能！所以还是得用虽然简单但是速度慢得死机的办法：打开 “控制面板”的“管理工具”中的“事件查看器”（98没有，知道用Win2k的好处了吧），在菜单的“操作”项有一个名为“连接到另一台计算机”的菜单， 点击它，输入远程计算机的IP，然后等上数十分钟，接着选择远程计算机的安全性日志，右键选择它的属性：点击属性里的“清除日志”按钮，OK！安全日志清 除完毕！同样的忍受痛苦去清除系统日志！ 目前在不借助第三工具的情况下，能很快，很顺利地清除FTP、WWW还有Schedlgu日志，就是系统日志和安全日志属于Windows2000的严密守护，只能用本地的事件查看器来打开它，因为在图形界面下，加 之网速又慢，如果你银子多，时间闲，还是可以清除它的。综上所述，介绍了Windows2000的日志文件以及删除方法，但是你必须是Administrator，注意必须作为管理员或管理组的成员登录才能打开安全日志记录。该过程适用于Windows 2000 Professional 计算机，也适用于作为独立服务器或成员服务器运行的Windows 2000 Server 计算机。</p>
+<p>至 此，Windows2000安全知识基础讲座完毕，还有几句话要讲，大家也看出来了，虽然FTP等等日志可以很快清除，但是系统日志和安全日志却不是那么 快、那么顺利地能删除，如果遇到聪明的管理员，将日志文件转移到另一个地方，那更是难上加难，所以奉劝大家，千万不要拿国内的主机做试验，国内的法律很严 呀！今天吃饭时，听说有两个人开玩笑，一个人把另外一个人的东西藏起来了，结果那个人一急，报案了，于是藏东西那个人被判四年刑！！法官说法律是不开玩笑 的！！！所以大家一定要牢记这点！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 网络安全</a>
+              <a href="/tags/Windows%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> Windows系统</a>
+              <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 权限管理</a>
+              <a href="/tags/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 日志管理</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E4%BC%A6%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 网络伦理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/10/21/Standard%20Markdown/" rel="prev" title="Standard Markdown">
+                  <i class="fa fa-angle-left"></i> Standard Markdown
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/11/04/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%20by%20@mdo/" rel="next" title="编码规范 by @mdo">
+                  编码规范 by @mdo <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

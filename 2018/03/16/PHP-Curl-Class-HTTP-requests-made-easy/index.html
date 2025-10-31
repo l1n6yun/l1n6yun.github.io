@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https:&#x2F;&#x2F;www.phpcurlclass.com&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Curl Class: HTTP requests made easy">
+<meta property="og:url" content="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https:&#x2F;&#x2F;www.phpcurlclass.com&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/github/license/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/travis/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://img.shields.io/packagist/dt/php-curl-class/php-curl-class.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/php-curl-class/php-curl-class/master/www/img/screencast.gif">
+<meta property="article:published_time" content="2018-03-16T04:47:18.000Z">
+<meta property="article:modified_time" content="2025-05-05T09:36:52.781Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="单元测试">
+<meta property="article:tag" content="软件开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg">
+
+
+<link rel="canonical" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/","path":"2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/","title":"PHP Curl Class: HTTP requests made easy"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PHP Curl Class: HTTP requests made easy | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Curl-Class-HTTP-requests-made-easy"><span class="nav-number">1.</span> <span class="nav-text">PHP Curl Class: HTTP requests made easy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">3.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Start-and-Examples"><span class="nav-number">4.</span> <span class="nav-text">Quick Start and Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Available-Methods"><span class="nav-number">5.</span> <span class="nav-text">Available Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security"><span class="nav-number">6.</span> <span class="nav-text">Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Troubleshooting"><span class="nav-number">7.</span> <span class="nav-text">Troubleshooting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-Tests"><span class="nav-number">8.</span> <span class="nav-text">Run Tests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contribute"><span class="nav-number">9.</span> <span class="nav-text">Contribute</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PHP Curl Class: HTTP requests made easy | l1n6yun's Blog">
+      <meta itemprop="description" content="PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https:&#x2F;&#x2F;www.phpcurlclass.com&#x2F;">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP Curl Class: HTTP requests made easy
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-16 12:47:18" itemprop="dateCreated datePublished" datetime="2018-03-16T12:47:18+08:00">2018-03-16</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https://www.phpcurlclass.com/</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="PHP-Curl-Class-HTTP-requests-made-easy"><a href="#PHP-Curl-Class-HTTP-requests-made-easy" class="headerlink" title="PHP Curl Class: HTTP requests made easy"></a>PHP Curl Class: HTTP requests made easy</h3><p><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/releases/"><img src="https://img.shields.io/github/release/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/blob/master/LICENSE"><img src="https://img.shields.io/github/license/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://travis-ci.org/php-curl-class/php-curl-class/"><img src="https://img.shields.io/travis/php-curl-class/php-curl-class.svg"></a><br><a target="_blank" rel="noopener" href="https://github.com/php-curl-class/php-curl-class/releases/"><img src="https://img.shields.io/packagist/dt/php-curl-class/php-curl-class.svg"></a></p>
+<p>PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.</p>
+<p><img src="https://raw.githubusercontent.com/php-curl-class/php-curl-class/master/www/img/screencast.gif" alt="PHP Curl Class screencast"></p>
+<hr>
+<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><p>To install PHP Curl Class, simply:</p>
+<pre><code>$ composer require php-curl-class/php-curl-class
+</code></pre>
+<p>For latest commit version:</p>
+<pre><code>$ composer require php-curl-class/php-curl-class @dev
+</code></pre>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>PHP Curl Class works with PHP 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, and HHVM.</p>
+<h3 id="Quick-Start-and-Examples"><a href="#Quick-Start-and-Examples" class="headerlink" title="Quick Start and Examples"></a>Quick Start and Examples</h3><p>More examples are available under <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BocC1jdXJsLWNsYXNzL3BocC1jdXJsLWNsYXNzL3RyZWUvbWFzdGVyL2V4YW1wbGVz">&#x2F;examples<i class="fa fa-external-link-alt"></i></span>.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> \<span class="title">Curl</span>\<span class="title">Curl</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;https://www.example.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$curl</span>-&gt;error) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Error: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorCode . <span class="string">&#x27;: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$curl</span>-&gt;response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.example.com/search?q=keyword</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;https://www.example.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;keyword&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;https://www.example.com/login/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span> =&gt; <span class="string">&#x27;myusername&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;mypassword&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setBasicAuthentication</span>(<span class="string">&#x27;username&#x27;</span>, <span class="string">&#x27;password&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setUserAgent</span>(<span class="string">&#x27;MyUserAgent/0.0.1 (+https://www.example.com/bot.html)&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setReferrer</span>(<span class="string">&#x27;https://www.example.com/url?url=https%3A%2F%2Fwww.example.com%2F&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setHeader</span>(<span class="string">&#x27;X-Requested-With&#x27;</span>, <span class="string">&#x27;XMLHttpRequest&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setCookie</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;https://www.example.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$curl</span>-&gt;error) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Error: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorCode . <span class="string">&#x27;: &#x27;</span> . <span class="variable">$curl</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$curl</span>-&gt;response);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$curl</span>-&gt;requestHeaders);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$curl</span>-&gt;responseHeaders);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setOpt</span>(CURLOPT_FOLLOWLOCATION, <span class="literal">true</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;https://shortn.example.com/bHbVsP&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">put</span>(<span class="string">&#x27;https://api.example.com/user/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;first_name&#x27;</span> =&gt; <span class="string">&#x27;Zach&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;last_name&#x27;</span> =&gt; <span class="string">&#x27;Borboa&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">patch</span>(<span class="string">&#x27;https://api.example.com/profile/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;image&#x27;</span> =&gt; <span class="string">&#x27;@path/to/file.jpg&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">patch</span>(<span class="string">&#x27;https://api.example.com/profile/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;image&#x27;</span> =&gt; <span class="keyword">new</span> <span class="title class_">CURLFile</span>(<span class="string">&#x27;path/to/file.jpg&#x27;</span>),</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">delete</span>(<span class="string">&#x27;https://api.example.com/user/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;id&#x27;</span> =&gt; <span class="string">&#x27;1234&#x27;</span>,</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable all supported encoding types and download a file.</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">setOpt</span>(CURLOPT_ENCODING , <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">download</span>(<span class="string">&#x27;https://www.example.com/file.bin&#x27;</span>, <span class="string">&#x27;/tmp/myfile.bin&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Case-insensitive access to headers.</span></span><br><span class="line"><span class="variable">$curl</span> = <span class="keyword">new</span> <span class="title class_">Curl</span>();</span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">download</span>(<span class="string">&#x27;https://www.example.com/image.png&#x27;</span>, <span class="string">&#x27;/tmp/myimage.png&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$curl</span>-&gt;responseHeaders[<span class="string">&#x27;Content-Type&#x27;</span>] . <span class="string">&quot;\n&quot;</span>; <span class="comment">// image/png</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$curl</span>-&gt;responseHeaders[<span class="string">&#x27;CoNTeNT-TyPE&#x27;</span>] . <span class="string">&quot;\n&quot;</span>; <span class="comment">// image/png</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Clean up.</span></span><br><span class="line"><span class="variable">$curl</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example access to curl object.</span></span><br><span class="line"><span class="title function_ invoke__">curl_set_opt</span>(<span class="variable">$curl</span>-&gt;curl, CURLOPT_USERAGENT, <span class="string">&#x27;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">curl_close</span>(<span class="variable">$curl</span>-&gt;curl);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> \<span class="title">Curl</span>\<span class="title">MultiCurl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Requests in parallel with callback functions.</span></span><br><span class="line"><span class="variable">$multi_curl</span> = <span class="keyword">new</span> <span class="title class_">MultiCurl</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">success</span>(function(<span class="variable">$instance</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call to &quot;&#x27;</span> . <span class="variable">$instance</span>-&gt;url . <span class="string">&#x27;&quot; was successful.&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;response:&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$instance</span>-&gt;response);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">error</span>(function(<span class="variable">$instance</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call to &quot;&#x27;</span> . <span class="variable">$instance</span>-&gt;url . <span class="string">&#x27;&quot; was unsuccessful.&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;error code: &#x27;</span> . <span class="variable">$instance</span>-&gt;errorCode . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;error message: &#x27;</span> . <span class="variable">$instance</span>-&gt;errorMessage . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">complete</span>(function(<span class="variable">$instance</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;call completed&#x27;</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">addGet</span>(<span class="string">&#x27;https://www.google.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">addGet</span>(<span class="string">&#x27;https://duckduckgo.com/&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">addGet</span>(<span class="string">&#x27;https://www.bing.com/search&#x27;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;q&#x27;</span> =&gt; <span class="string">&#x27;hello world&#x27;</span>,</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line"><span class="variable">$multi_curl</span>-&gt;<span class="title function_ invoke__">start</span>(); <span class="comment">// Blocks until all items in the queue have been processed.</span></span><br></pre></td></tr></table></figure>
+
+<p>More examples are available under <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BocC1jdXJsLWNsYXNzL3BocC1jdXJsLWNsYXNzL3RyZWUvbWFzdGVyL2V4YW1wbGVz">&#x2F;examples<i class="fa fa-external-link-alt"></i></span>.</p>
+<h3 id="Available-Methods"><a href="#Available-Methods" class="headerlink" title="Available Methods"></a>Available Methods</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">__construct</span>(<span class="variable">$base_url</span> = <span class="literal">null</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">__destruct</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">__get</span>(<span class="variable">$name</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">attemptRetry</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">beforeSend</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">buildPostData</span>(<span class="variable">$data</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">call</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">close</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">complete</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">delete</span>(<span class="variable">$url</span>, <span class="variable">$query_parameters</span> = <span class="keyword">array</span>(), <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">download</span>(<span class="variable">$url</span>, <span class="variable">$mixed_filename</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">error</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">exec</span>(<span class="variable">$ch</span> = <span class="literal">null</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">execDone</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">get</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">getCookie</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">getInfo</span>(<span class="variable">$opt</span> = <span class="literal">null</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">getOpt</span>(<span class="variable">$option</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">getResponseCookie</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">getResponseCookies</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">head</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">options</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">patch</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">post</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>(), <span class="variable">$follow_303_with_post</span> = <span class="literal">false</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">progress</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">put</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">removeHeader</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">search</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setBasicAuthentication</span>(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setConnectTimeout</span>(<span class="variable">$seconds</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setCookie</span>(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setCookieFile</span>(<span class="variable">$cookie_file</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setCookieJar</span>(<span class="variable">$cookie_jar</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setCookieString</span>(<span class="variable">$string</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setCookies</span>(<span class="variable">$cookies</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDefaultDecoder</span>(<span class="variable">$mixed</span> = <span class="string">&#x27;json&#x27;</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDefaultJsonDecoder</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDefaultTimeout</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDefaultUserAgent</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDefaultXmlDecoder</span>()</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setDigestAuthentication</span>(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setHeader</span>(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setHeaders</span>(<span class="variable">$headers</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setJsonDecoder</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setMaxFilesize</span>(<span class="variable">$bytes</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setOpt</span>(<span class="variable">$option</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setOpts</span>(<span class="variable">$options</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setPort</span>(<span class="variable">$port</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setReferer</span>(<span class="variable">$referer</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setReferrer</span>(<span class="variable">$referrer</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setRetry</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setTimeout</span>(<span class="variable">$seconds</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setUrl</span>(<span class="variable">$url</span>, <span class="variable">$mixed_data</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setUserAgent</span>(<span class="variable">$user_agent</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">setXmlDecoder</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">success</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">unsetHeader</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">Curl</span>::<span class="title function_ invoke__">verbose</span>(<span class="variable">$on</span> = <span class="literal">true</span>, <span class="variable">$output</span> = STDERR)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">__construct</span>(<span class="variable">$base_url</span> = <span class="literal">null</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">__destruct</span>()</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addCurl</span>(Curl <span class="variable">$curl</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addDelete</span>(<span class="variable">$url</span>, <span class="variable">$query_parameters</span> = <span class="keyword">array</span>(), <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addDownload</span>(<span class="variable">$url</span>, <span class="variable">$mixed_filename</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addGet</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addHead</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addOptions</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addPatch</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addPost</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>(), <span class="variable">$follow_303_with_post</span> = <span class="literal">false</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addPut</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">addSearch</span>(<span class="variable">$url</span>, <span class="variable">$data</span> = <span class="keyword">array</span>())</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">beforeSend</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">close</span>()</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">complete</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">error</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">getOpt</span>(<span class="variable">$option</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">removeHeader</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setBasicAuthentication</span>(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setConcurrency</span>(<span class="variable">$concurrency</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setConnectTimeout</span>(<span class="variable">$seconds</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setCookie</span>(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setCookieFile</span>(<span class="variable">$cookie_file</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setCookieJar</span>(<span class="variable">$cookie_jar</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setCookieString</span>(<span class="variable">$string</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setCookies</span>(<span class="variable">$cookies</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setDigestAuthentication</span>(<span class="variable">$username</span>, <span class="variable">$password</span> = <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setHeader</span>(<span class="variable">$key</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setHeaders</span>(<span class="variable">$headers</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setJsonDecoder</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setOpt</span>(<span class="variable">$option</span>, <span class="variable">$value</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setOpts</span>(<span class="variable">$options</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setPort</span>(<span class="variable">$port</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setReferer</span>(<span class="variable">$referer</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setReferrer</span>(<span class="variable">$referrer</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setRetry</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setTimeout</span>(<span class="variable">$seconds</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setUrl</span>(<span class="variable">$url</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setUserAgent</span>(<span class="variable">$user_agent</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">setXmlDecoder</span>(<span class="variable">$mixed</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">start</span>()</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">success</span>(<span class="variable">$callback</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">unsetHeader</span>(<span class="variable">$key</span>)</span><br><span class="line"><span class="title class_">MultiCurl</span>::<span class="title function_ invoke__">verbose</span>(<span class="variable">$on</span> = <span class="literal">true</span>, <span class="variable">$output</span> = STDERR)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>See <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BocC1jdXJsLWNsYXNzL3BocC1jdXJsLWNsYXNzL2Jsb2IvbWFzdGVyL1NFQ1VSSVRZLm1k">SECURITY<i class="fa fa-external-link-alt"></i></span> for security considerations.</p>
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><p>See <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BocC1jdXJsLWNsYXNzL3BocC1jdXJsLWNsYXNzL2Jsb2IvbWFzdGVyL1RST1VCTEVTSE9PVElORy5tZA==">TROUBLESHOOTING<i class="fa fa-external-link-alt"></i></span> for troubleshooting.</p>
+<h3 id="Run-Tests"><a href="#Run-Tests" class="headerlink" title="Run Tests"></a>Run Tests</h3><p>To run tests:</p>
+<pre><code>$ git clone https://github.com/php-curl-class/php-curl-class.git
+$ cd php-curl-class/
+$ composer update
+$ ./tests/run.sh
+</code></pre>
+<h3 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h3><ol>
+<li>Check for open issues or open a new issue to start a discussion around a bug or feature.</li>
+<li>Fork the repository on GitHub to start making your changes.</li>
+<li>Write one or more tests for the new feature or that expose the bug.</li>
+<li>Make code changes to implement the feature or fix the bug.</li>
+<li>Send a pull request to get your changes merged and published.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+              <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 软件开发</a>
+              <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 单元测试</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/" rel="prev" title="设置获取cookie，setCookie，getCookie">
+                  <i class="fa fa-angle-left"></i> 设置获取cookie，setCookie，getCookie
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/" rel="next" title="phpstorm连接mysql出错">
+                  phpstorm连接mysql出错 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
