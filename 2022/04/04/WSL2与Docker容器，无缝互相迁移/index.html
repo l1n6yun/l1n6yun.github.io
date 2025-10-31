@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://example.com/images/pasted-50.png">
 <meta property="og:image" content="http://example.com/images/pasted-51.png">
 <meta property="article:published_time" content="2022-04-04T09:23:54.000Z">
-<meta property="article:modified_time" content="2025-05-05T09:38:53.109Z">
+<meta property="article:modified_time" content="2025-10-31T06:03:47.473Z">
 <meta property="article:author" content="l1n6yun">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="GPU加速">
@@ -291,7 +291,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><blockquote>
-<p> 本文分享自华为云社区《<span class="exturl" data-url="aHR0cHM6Ly9iYnMuaHVhd2VpY2xvdWQuY29tL2Jsb2dzLzMzNjkyMw==">WSL2与Docker容器，无缝互相迁移<i class="fa fa-external-link-alt"></i></span>》，作者： tsjsdbd 。</p>
+<p> 本文分享自华为云社区《<a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/336923">WSL2与Docker容器，无缝互相迁移</a>》，作者： tsjsdbd 。</p>
 </blockquote>
 <p> 注：本文提到的WSL都是指WSL2</p>
 <h1 id="WSL与Docker"><a href="#WSL与Docker" class="headerlink" title="WSL与Docker"></a>WSL与Docker</h1><p> WSL非常像windows版的Docker，可以直接启动“容器”（故意加引号，下面有解释），并且在容器世界里面，可以执行各种Linux操作。像下面这样，是不是和Docker很像？</p>
@@ -307,7 +307,7 @@
 <p>就是把WSL当做一台新的开发机，然后在WSL里面，安装Docker软件。</p>
 <p>这样子，也能解决问题。就是稍微麻烦了一点点。那能不能WSL直接运行Docker镜像呢？</p>
 <p>答案是可以的：</p>
-<p>参考：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvd2luZG93cy93c2wvdXNlLWN1c3RvbS1kaXN0cm8=">https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro<i class="fa fa-external-link-alt"></i></span></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro">https://docs.microsoft.com/en-us/windows/wsl/use-custom-distro</a></p>
 <p>这种方法下，是类似这个样子的：</p>
 <p><img src="/images/pasted-47.png" alt="upload successful"></p>
 <p>具体操作如下：</p>
@@ -365,7 +365,7 @@
 <p>所以WSL确实挺香的。</p>
 <h1 id="WSL启动GUI界面"><a href="#WSL启动GUI界面" class="headerlink" title="WSL启动GUI界面"></a>WSL启动GUI界面</h1><p>整体方案是利用 X11 Server，原理参考：</p>
 <p>《Docker运行带UI界面的应用，并将它的界面投射到你的Windows电脑》</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9iYnMuaHVhd2VpY2xvdWQuY29tL2Jsb2dzLzI4MTg2Mg==">https://bbs.huaweicloud.com/blogs/281862<i class="fa fa-external-link-alt"></i></span></p>
+<p><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/281862">https://bbs.huaweicloud.com/blogs/281862</a></p>
 <p><img src="/images/pasted-50.png" alt="upload successful"></p>
 <p>X11 Server，一般网上推荐 VcXsrv，我自己用下来，感觉 MobaXterm 更傻瓜一些。所以我都用 MobaXterm 的。</p>
 <h1 id="附：安装WSL"><a href="#附：安装WSL" class="headerlink" title="附：安装WSL"></a>附：安装WSL</h1><h2 id="1-系统要求"><a href="#1-系统要求" class="headerlink" title="1. 系统要求"></a>1. 系统要求</h2><p>Windows 10，版本 2004 以上。</p>
@@ -393,11 +393,11 @@
 
 <p>执行以上补丁包。</p>
 <p>补丁包下载地址：</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93c2xzdG9yZXN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L3dzbGJsb2Ivd3NsX3VwZGF0ZV94NjQubXNp">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi<i class="fa fa-external-link-alt"></i></span></p>
+<p><a target="_blank" rel="noopener" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
 <h1 id="附：高阶版-GPU，GUI界面"><a href="#附：高阶版-GPU，GUI界面" class="headerlink" title="附：高阶版 GPU，GUI界面"></a>附：高阶版 GPU，GUI界面</h1><p>Windows版本高的（win10 21H2），可以在WSL2里面跑CUDA</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvd2luZG93cy9haS9kaXJlY3RtbC9ncHUtY3VkYS1pbi13c2w=">https://docs.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl<i class="fa fa-external-link-alt"></i></span></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl">https://docs.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl</a></p>
 <p>再高一点（win11），可以原生支持带GUI界面的Linux程序。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvd2luZG93cy93c2wvdHV0b3JpYWxzL2d1aS1hcHBz">https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps<i class="fa fa-external-link-alt"></i></span></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps">https://docs.microsoft.com/en-us/windows/wsl/tutorials/gui-apps</a></p>
 
     </div>
 

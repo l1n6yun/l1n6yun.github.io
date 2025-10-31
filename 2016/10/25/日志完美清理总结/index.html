@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+    <meta name="description" content="事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员都会改变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="日志完美清理总结">
 <meta property="og:url" content="http://example.com/2016/10/25/%E6%97%A5%E5%BF%97%E5%AE%8C%E7%BE%8E%E6%B8%85%E7%90%86%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="l1n6yun&#39;s Blog">
-<meta property="og:description" content="一、事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 二、日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员">
+<meta property="og:description" content="事件查看器开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。 日志文件Windows2000的日志文件通常有应用程序日志、安全日志、系统日志、DNS服务器日志、FTP日志、WWW日志等等。 日志文件默认位置： 应用程序日志、安全日志、系统日志、DNS日志默认位置：%systemroot%\system32\config，默认文件大小512KB，管理员都会改变">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-25T03:37:00.000Z">
-<meta property="article:modified_time" content="2025-05-05T09:42:30.538Z">
+<meta property="article:modified_time" content="2025-10-31T03:58:20.248Z">
 <meta property="article:author" content="l1n6yun">
 <meta property="article:tag" content="Windows系统">
 <meta property="article:tag" content="日志管理">
@@ -178,7 +178,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">一、事件查看器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">二、日志文件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">事件查看器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">日志文件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -280,8 +280,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="一、事件查看器"><a href="#一、事件查看器" class="headerlink" title="一、事件查看器"></a>一、事件查看器</h2><p>开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。</p>
-<h2 id="二、日志文件"><a href="#二、日志文件" class="headerlink" title="二、日志文件"></a>二、日志文件</h2><p>Windows2000的日志文件通常有应用<code>程序日志</code>、<code>安全日志</code>、<code>系统日志</code>、<code>DNS服务器日志</code>、<code>FTP日志</code>、<code>WWW日志</code>等等。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="事件查看器"><a href="#事件查看器" class="headerlink" title="事件查看器"></a>事件查看器</h2><p>开始 → 程序 → 管理工具 → 计算机管理 → 系统工具 → 事件查看器 → 清除日志。</p>
+<h2 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h2><p>Windows2000的日志文件通常有应用<code>程序日志</code>、<code>安全日志</code>、<code>系统日志</code>、<code>DNS服务器日志</code>、<code>FTP日志</code>、<code>WWW日志</code>等等。</p>
 <p>日志文件默认位置：</p>
 <p>应用程序日志、安全日志、系统日志、DNS日志默认位置：<code>%systemroot%\system32\config</code>，默认文件大小512KB，管理员都会改变这个默认大小。</p>
 <p>安全日志文件：<code>%systemroot%\system32\config\SecEvent.EVT</code>；</p>
