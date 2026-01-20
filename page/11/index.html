@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,80 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/" class="post-title-link" itemprop="url">一键批量ping任意ip段的存活主机</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-11 22:45:00" itemprop="dateCreated datePublished" datetime="2017-04-11T22:45:00+08:00">2017-04-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>先来看下面写好的批处理代码，有木有眼花缭乱的感觉，不要害怕哦，其实核心代码只有一行而已！准确的说应该是将一些最基本的DOS命令组合在了一起。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">color</span> e</span><br><span class="line"><span class="built_in">title</span> 批处理扫网段主机</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line">@<span class="keyword">for</span> /f &quot;tokens=<span class="number">1</span>-<span class="number">4</span> delims=.&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (ip.txt) <span class="keyword">do</span> (@<span class="keyword">for</span> /l <span class="variable">%%n</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">255</span>) <span class="keyword">do</span> @<span class="built_in">ping</span> -w <span class="number">600</span> -n <span class="number">1</span> -l <span class="number">1</span> <span class="variable">%%i</span>.<span class="variable">%%j</span>.<span class="variable">%%k</span>.<span class="variable">%%n</span>|<span class="built_in">find</span>  /i &quot;ttl&quot;)</span><br><span class="line"><span class="built_in">echo</span>.&amp;<span class="built_in">echo</span> 扫描完毕,按任意键退出...&amp;<span class="built_in">pause</span>&gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
+
+<p>复制以上代码粘贴到记事本文档里，然后另存为 <code>批量ping.bat</code> ，再新建一个空白的文本文档，重命名为 <code>ip.txt</code> 。一切准备完事儿，就可以将你要批量扫描的ip段的地址放入 <code>ip.txt</code> 里（比如要扫自己对应的内网IP段就可以在 <code>ip.txt</code> 里输入 <code>192.168.0.1</code> 后保存），然后双击一键运行 <code>批量ping.bat</code> 批处理脚本就可以看到返回的结果了。格式类似于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">来自 192.168.0.1 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.101 的回复: 字节=1 时间=31ms TTL=64</span><br><span class="line">来自 192.168.0.103 的回复: 字节=1 时间=326ms TTL=64</span><br><span class="line">来自 192.168.0.104 的回复: 字节=1 时间=26ms TTL=64</span><br><span class="line">来自 192.168.0.108 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.162 的回复: 字节=1 时间&lt;1ms TTL=128</span><br><span class="line">……此处省略余下的所有可能的结果……</span><br></pre></td></tr></table></figure>
+<p>下面我就来解读一下介个看起来有点儿吃力的批处理命令吧。我们分拆来看一下，<code>ping -w 600 -n 1  -l 1</code> 表示对指定ip地址ping一次，等待超时的时间为600毫秒；<code>|find  /i &quot;ttl&quot;</code> 指的是仅显示ping返回结果中带“ttl”字符串的结果，也就是将指定网段内不存活的主机过滤掉了。而前面的 <code>@for /f &quot;tokens=1-4 delims=.&quot; %%i in (ip.txt)</code>  意思是将“ip.txt”里的字符串（也就是我们要查找的ip段的地址）以“.”为界分割为四部分，分别赋予后面的变量 %%i、%%j、%%k 。最后剩下的 <code>@for /l %%n in (1,1,255)</code> 则表示从1开始循环+1递增一直到255停止，然后赋予变量 %%n 。不知道这样说同学能否看懂呢？看不懂滴可以在cmd窗口里输入 <code>for /?</code> 查看一下命令详解吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1238,78 +1312,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/11/25/windows7%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E8%83%8C%E6%99%AF%E4%BF%AE%E6%94%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/11/25/windows7%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E8%83%8C%E6%99%AF%E4%BF%AE%E6%94%B9/" class="post-title-link" itemprop="url">windows7登陆界面背景修改</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-11-25 10:53:00" itemprop="dateCreated datePublished" datetime="2016-11-25T10:53:00+08:00">2016-11-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="执行reg"><a href="#执行reg" class="headerlink" title="执行reg"></a>执行reg</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\Background]</span><br><span class="line">&quot;OEMBackground&quot;=dword:00000001</span><br></pre></td></tr></table></figure>
-<h3 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h3><p>打开文件夹<code>C:\Windows\System32\oobe\info\backgrounds</code>(如果没有这个文件夹的请自行创建)。</p>
-<p>添加自己选择好的图片，文件名修改成<code>backgroundDefault.jpg</code>.</p>
-<p><strong>注：我们编辑好的登录界面的背景图片<code>backgroundDefault.jpg</code>，其体积一定控制在250KB以内；否则，我们修改后的登录界面的背景图片就无法了.</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1322,7 +1324,7 @@
 
   <div class="copyright">
     &copy; 2015 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

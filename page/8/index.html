@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1179,7 +1179,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1197,7 +1197,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/" class="post-title-link" itemprop="url">Apache优化：修改最大并发连接数</a>
+          <a href="/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/" class="post-title-link" itemprop="url">Git 提交空目录：3 种实用方案，轻松搞定目录跟踪难题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1208,7 +1208,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-12-19 16:24:00" itemprop="dateCreated datePublished" datetime="2017-12-19T16:24:00+08:00">2017-12-19</time>
+      <time title="创建时间：2018-01-20 03:06:12" itemprop="dateCreated datePublished" datetime="2018-01-20T03:06:12+08:00">2018-01-20</time>
     </span>
 
   
@@ -1221,36 +1221,106 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>MPM(多路处理模块)</p>
-<p>常见:</p>
-<ol>
-<li>perfork 预处理进程方式</li>
-<li>worker 工作者模式</li>
-<li>winnt 在windows使用</li>
+          <p>在使用 Git 进行版本控制时，很多开发者都会遇到一个常见问题：<strong>空目录无法被 Git 直接跟踪和提交</strong>。这是因为 Git 的设计理念是跟踪文件的变更，而非目录本身 —— 如果一个目录下没有任何文件，Git 会默认忽略它，导致团队协作时目录结构无法同步。别担心，本文将分享 3 种经过实践验证的解决方案，帮你优雅解决空目录提交问题。</p>
+<h2 id="一、推荐方案：使用-gitkeep-文件（最通用）"><a href="#一、推荐方案：使用-gitkeep-文件（最通用）" class="headerlink" title="一、推荐方案：使用.gitkeep 文件（最通用）"></a>一、推荐方案：使用.gitkeep 文件（最通用）</h2><p>这是开发中最常用的方法，虽然<code>.gitkeep</code>并非 Git 官方定义的标准文件，但已被 Laravel、Vue 等主流框架广泛采用，成为行业惯例。</p>
+<h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h3><p>Git 会跟踪包含文件的目录结构。通过在空目录中创建一个名为<code>.gitkeep</code>的占位文件，就能强制 Git 识别并保留该目录，且不会影响目录的后续使用。</p>
+<h3 id="操作步骤（含示例）"><a href="#操作步骤（含示例）" class="headerlink" title="操作步骤（含示例）"></a>操作步骤（含示例）</h3><ol>
+<li><p><strong>创建空目录及占位文件</strong></p>
+<p>无论是单个空目录还是多级空目录，都可以通过简单命令创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建单个空目录并添加.gitkeep</span><br><span class="line">mkdir -p project/logs/</span><br><span class="line">touch project/logs/.gitkeep</span><br><span class="line"></span><br><span class="line"># 创建多级空目录并添加.gitkeep</span><br><span class="line">mkdir -p src/utils/temp/</span><br><span class="line">touch src/utils/temp/.gitkeep</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交到 Git 仓库</strong></p>
+<p>常规的<code>add</code>和<code>commit</code>操作即可完成跟踪：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add project/logs/.gitkeep</span><br><span class="line">git commit -m &quot;Track logs directory with .gitkeep&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>批量处理所有空目录（高效技巧）</strong></p>
+<p>如果项目中有多个空目录，手动创建太繁琐，可通过<code>find</code>命令批量处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -empty -exec touch &#123;&#125;/.gitkeep \;</span><br></pre></td></tr></table></figure>
+
+<p>这条命令会自动查找项目中所有空目录，并在每个目录下创建<code>.gitkeep</code>文件。</p>
+</li>
 </ol>
-<p>案例:把apache的最大并发数配置成1000个</p>
-<h2 id="首先确认apache的mpm方式"><a href="#首先确认apache的mpm方式" class="headerlink" title="首先确认apache的mpm方式"></a>首先确认apache的mpm方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd&gt;httpd.exe -l #可以看到是什么模式了</span><br></pre></td></tr></table></figure>
-
-<p>这里就看 <code>mpm_xxx.c</code> 这个 <code>xxx</code> 就是那个了</p>
-<h2 id="修改httpd-conf文件"><a href="#修改httpd-conf文件" class="headerlink" title="修改httpd.conf文件"></a>修改httpd.conf文件</h2><p>搜索 <code>mpm</code> ,找到 <code>Server-pool management(MPM specific)</code></p>
-<p>去掉 <code># Include conf/extra/httpd-mpm.conf</code></p>
-<h2 id="修改-conf-extra-httpd-mpm-conf-文件"><a href="#修改-conf-extra-httpd-mpm-conf-文件" class="headerlink" title="修改 conf/extra/httpd-mpm.conf 文件"></a>修改 <code>conf/extra/httpd-mpm.conf</code> 文件</h2><h3 id="prefork模式就修改这里"><a href="#prefork模式就修改这里" class="headerlink" title="prefork模式就修改这里"></a>prefork模式就修改这里</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先开启的进程</span><br><span class="line">	MinSpareServers 5 # 最小预留5个</span><br><span class="line">	MaxSpareServers 10 # 最大留10</span><br><span class="line">	MaxClients 150 # 最多并发多少个 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多请求多少次 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="winnt模式"><a href="#winnt模式" class="headerlink" title="winnt模式"></a>winnt模式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_winnt_module</span>&gt;</span></span><br><span class="line">	ThreadsPerChild 150 # 最大并发数 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多处理多少次请求 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>修改后面有*的那个字段的数值然后重新启动 <code>apache</code></p>
-<p>说明:配置到多大,不一定就可能支撑这么大的并发,考虑到本身 <code>apache</code> 所在的机器硬件性能(如:内存,CPU,硬盘IO)</p>
-<p>系统是 <code>linux/unix</code> ,配置 <code>perfork</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10</span><br><span class="line">	MaxClients 150 *#并发量</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>给大家一个合理的建议配置,对大部份网站,中型网站配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先启动</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10 # 最大空闲进程</span><br><span class="line">	ServerLimit 1500 *# 用于修改apache编程参数</span><br><span class="line">	MaxClients 1000 *# 最大并发数</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注:apache2.2以后才有的ServerLimit这个参数,其中ServerLimit数值大于MaxClients数值</p>
-<p>如果网站的pv值百万</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerLimit 2500 *# 用于修改apache编程参数</span><br><span class="line">MaxClients 2000 *# 最大并发数</span><br></pre></td></tr></table></figure>
-
-<p>注:调到这就是极限了,要是网站访问还是大,哪就要增加apache服务器了</p>
+<h3 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>命名直观：看到<code>.gitkeep</code>就知道是用于保留目录的占位文件</li>
+<li>无副作用：仅作为占位符，不影响目录后续文件的添加和跟踪</li>
+<li>兼容性强：所有 Git 版本均支持，团队协作无门槛</li>
+</ul>
+<h2 id="二、灵活方案：-gitignore-反向配置"><a href="#二、灵活方案：-gitignore-反向配置" class="headerlink" title="二、灵活方案：.gitignore 反向配置"></a>二、灵活方案：.gitignore 反向配置</h2><p>如果你的空目录未来需要添加文件，但又想提前保留目录结构，同时避免误跟踪无关文件，这种方法再合适不过。</p>
+<h3 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h3><p>利用<code>.gitignore</code>的忽略规则：先配置忽略目录内所有文件（<code>*</code>），再通过反向规则（<code>!.gitignore</code>）排除自身，让 Git 仅跟踪<code>.gitignore</code>文件，从而间接保留目录结构。</p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p><strong>创建特殊配置的.gitignore 文件</strong></p>
+<p>在需要跟踪的空目录下创建<code>.gitignore</code>，并写入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 忽略当前目录下所有文件</span><br><span class="line">*</span><br><span class="line"># 不忽略.gitignore文件本身</span><br><span class="line">!.gitignore</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交配置文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/.gitignore</span><br><span class="line">git commit -m &quot;Track empty directory via .gitignore&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>目录未来会添加文件，但需要明确忽略规则（如日志目录、缓存目录）</li>
+<li>避免团队成员误提交目录内的临时文件</li>
+</ul>
+<h3 id="核心优势-1"><a href="#核心优势-1" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>规则清晰：通过配置文件明确目录的忽略策略</li>
+<li>一劳永逸：后续添加符合规则的文件时，无需修改配置</li>
+</ul>
+<h2 id="三、语义化方案：添加-README-文档"><a href="#三、语义化方案：添加-README-文档" class="headerlink" title="三、语义化方案：添加 README 文档"></a>三、语义化方案：添加 README 文档</h2><p>如果空目录的用途需要向团队说明（比如 “预留目录”“临时文件目录”），这种方法既能保留目录，又能提供文档价值，一举两得。</p>
+<h3 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h3><p>在空目录中放置<code>README.md</code>文件，Git 会跟踪该文档，从而保留目录结构。同时，README 文件可以详细说明目录的用途、使用规范等，提升项目可维护性。</p>
+<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p><strong>创建带说明的 README 文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 写入目录说明（可根据实际需求修改内容）</span><br><span class="line">echo &quot;This directory is reserved for future cache files. Do not delete it.&quot; &gt; path/to/empty_dir/README.md</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交文档文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/README.md</span><br><span class="line">git commit -m &quot;Add README to explain empty directory purpose&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>开源项目中的预留目录（需向贡献者说明用途）</li>
+<li>团队协作中需要明确目录职责的场景</li>
+<li>需长期保留且用途固定的空目录</li>
+</ul>
+<h3 id="核心优势-2"><a href="#核心优势-2" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>语义化强：通过文档直接说明目录用途，减少沟通成本</li>
+<li>附加价值：提升项目文档完整性，便于新人快速上手</li>
+</ul>
+<h2 id="三种方案对比：怎么选？"><a href="#三种方案对比：怎么选？" class="headerlink" title="三种方案对比：怎么选？"></a>三种方案对比：怎么选？</h2><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">核心文件</th>
+<th align="center">适用场景</th>
+<th align="center">核心优点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>.gitkeep</code>占位文件</td>
+<td align="center"><code>.gitkeep</code></td>
+<td align="center">通用场景、快速保留目录</td>
+<td align="center">操作简单、兼容性强、无副作用</td>
+</tr>
+<tr>
+<td align="center"><code>.gitignore</code>反向配置</td>
+<td align="center"><code>.gitignore</code></td>
+<td align="center">需忽略未来文件的目录</td>
+<td align="center">规则明确、一劳永逸</td>
+</tr>
+<tr>
+<td align="center"><code>README</code>文档</td>
+<td align="center"><code>README.md</code></td>
+<td align="center">需说明用途的目录</td>
+<td align="center">语义化清晰、提供文档价值</td>
+</tr>
+</tbody></table>
+<h2 id="注意事项（避坑指南）"><a href="#注意事项（避坑指南）" class="headerlink" title="注意事项（避坑指南）"></a>注意事项（避坑指南）</h2><ol>
+<li><strong>命名规范</strong>：<code>.gitkeep</code>是行业惯例，不建议自定义名称（如<code>.keep</code>），避免团队认知不一致</li>
+<li><strong>前缀禁忌</strong>：除<code>.gitignore</code>外，不要使用<code>.git</code>前缀命名文件（Git 会默认忽略此类文件，导致配置失效）</li>
+<li><strong>目录删除</strong>：如果后续需要删除已跟踪的空目录，需先删除目录内的占位文件（.gitkeep&#x2F;.gitignore&#x2F;README），再删除目录并提交</li>
+<li><strong>批量处理</strong>：使用<code>find</code>命令批量创建<code>.gitkeep</code>时，注意目录权限（避免无写入权限导致命令执行失败）</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Git 不直接支持空目录跟踪，但通过 “添加占位文件” 的核心思路，我们可以根据实际需求选择不同方案：</p>
+<ul>
+<li>快速解决、通用场景：优先选<code>.gitkeep</code></li>
+<li>需忽略规则、未来加文件：选<code>.gitignore</code>反向配置</li>
+<li>需说明用途、提升可维护性：选<code>README</code>文档</li>
+</ul>
 
       
     </div>
@@ -1281,7 +1351,7 @@
 
   <div class="copyright">
     &copy; 2015 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
