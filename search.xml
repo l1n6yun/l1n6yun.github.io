@@ -6209,4 +6209,16 @@ x86 则表示32位的
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>调试 Firefox 浏览器发起的网络请求</title>
+    <url>/2026/03/23/%E8%B0%83%E8%AF%95-Firefox-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E8%B5%B7%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<ol>
+<li>在地址栏输入 <code>about:debugging</code></li>
+<li>点击 <code>This Firefox</code></li>
+<li>找到目标扩展 → 点击 <code>Inspect</code>（调试）</li>
+<li>在新打开的开发者工具中，切换到 Network 面板，即可看到该扩展发起的请求</li>
+</ol>
+<p><img data-src="/images/pasted-87.png" alt="upload successful"></p>
+]]></content>
+  </entry>
 </search>

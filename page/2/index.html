@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">116</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -221,6 +221,89 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/30/Docker-%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/30/Docker-%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Docker 国内镜像源配置指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-30 15:16:30" itemprop="dateCreated datePublished" datetime="2024-11-30T15:16:30+08:00">2024-11-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>随着 Docker 的广泛应用，越来越多的开发者和企业开始使用 Docker 来构建和部署应用。然而，由于网络原因，直接从 Docker Hub 拉取镜像可能会遇到速度慢或者不稳定的问题。为了解决这一问题，本文将介绍如何配置国内镜像源，以加速 Docker 镜像的拉取速度。</p>
+</blockquote>
+<h2 id="为什么需要配置国内镜像源？"><a href="#为什么需要配置国内镜像源？" class="headerlink" title="为什么需要配置国内镜像源？"></a>为什么需要配置国内镜像源？</h2><p>直接从 Docker Hub 拉取镜像可能会受到网络限制的影响，导致速度慢或者失败。配置国内镜像源可以有效地解决这一问题，提高镜像拉取的速度和稳定性。</p>
+<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>以下是配置国内 Docker 镜像源的具体步骤：</p>
+<h3 id="1-创建或修改-Docker-配置文件"><a href="#1-创建或修改-Docker-配置文件" class="headerlink" title="1. 创建或修改 Docker 配置文件"></a>1. 创建或修改 Docker 配置文件</h3><p>在 Linux 系统中，你需要修改或创建 <code>/etc/docker/daemon.json</code> 文件。如果文件不存在，你可以使用以下命令创建它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;https://docker.1ms.run&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://doublezonline.cloud&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dislabaiot.xyz&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.fxxk.dedyn.io&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dockerpull.org&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.unsee.tech&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://hub.rat.dev&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.1panel.live&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.nastool.de&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.zhai.cm&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.5z5f.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://a.ussh.net&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.udayun.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://hub.geekery.cn&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-重启-Docker-服务"><a href="#2-重启-Docker-服务" class="headerlink" title="2. 重启 Docker 服务"></a>2. 重启 Docker 服务</h3><p>修改配置文件后，需要重启 Docker 服务以使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-验证配置是否成功"><a href="#3-验证配置是否成功" class="headerlink" title="3. 验证配置是否成功"></a>3. 验证配置是否成功</h4><p>使用以下命令检查 Docker 信息，确认镜像源是否已经更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p>以上步骤可以帮助你配置国内镜像源，以加速 Docker 镜像的拉取速度。请根据实际情况选择可用的镜像源进行配置。这些镜像源均来自最新的搜索结果，确保了时效性。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1194,98 +1277,6 @@
 <h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>在使用RDPWrap之前，请确保已理解其工作方式并做好数据备份，因为任何对系统核心组件的操作都可能存在风险。另外，尊重他人的版权，合法使用远程桌面服务，切勿用于非法目的。</p>
 <p>总结来说，RDPWrap是一个强大且实用的工具，尤其适合需要高效远程管理Windows系统的用户。只要合理使用，它就能为你带来极大的便利。希望这篇介绍能够帮助你更好地理解和利用RDPWrap，享受更灵活的远程桌面体验。</p>
 <p>项目地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXNjb3JwL3JkcHdyYXA=">https://github.com/stascorp/rdpwrap<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/25/%E6%AF%AB%E7%A7%92%E9%95%9C%E5%83%8F%EF%BC%9A%E6%8F%90%E5%8D%87Docker%E4%BD%93%E9%AA%8C%E7%9A%84%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/25/%E6%AF%AB%E7%A7%92%E9%95%9C%E5%83%8F%EF%BC%9A%E6%8F%90%E5%8D%87Docker%E4%BD%93%E9%AA%8C%E7%9A%84%E5%8A%A0%E9%80%9F%E7%A5%9E%E5%99%A8/" class="post-title-link" itemprop="url">毫秒镜像：提升Docker体验的加速神器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-25 16:42:00" itemprop="dateCreated datePublished" datetime="2024-05-25T16:42:00+08:00">2024-05-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在使用Docker的过程中，镜像下载速度一直是许多开发者面临的痛点。尤其是在网络环境不佳的情况下，等待镜像下载完成可能会耗费大量的时间和耐心。不过，今天我要为大家介绍一个能够显著提升Docker镜像下载速度的工具——毫秒镜像。</p>
-<h2 id="什么是毫秒镜像？"><a href="#什么是毫秒镜像？" class="headerlink" title="什么是毫秒镜像？"></a>什么是毫秒镜像？</h2><p>毫秒镜像（<a target="_blank" rel="noopener" href="https://docker.1ms.run/">https://docker.1ms.run</a>）是由合肥木雷坞信息技术有限公司提供的Docker镜像加速服务。它通过在国内部署高速的镜像代理服务器，帮助用户快速获取Docker Hub上的镜像资源，从而大大缩短了镜像下载时间。</p>
-<h2 id="如何使用毫秒镜像？"><a href="#如何使用毫秒镜像？" class="headerlink" title="如何使用毫秒镜像？"></a>如何使用毫秒镜像？</h2><p>使用毫秒镜像非常简单，主要有两种方式：全局配置和临时配置。</p>
-<h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><p>全局配置可以让毫秒镜像永久生效，适用于大多数用户。以下是具体的配置步骤：</p>
-<ol>
-<li><strong>编辑Docker配置文件</strong><br>  打开终端，运行以下命令，将毫秒镜像的地址添加到Docker的配置文件中：</li>
-</ol>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&#123;&quot;registry-mirrors&quot;: [&quot;https://docker.1ms.run&quot;]&#125;&#x27; | sudo tee /etc/docker/daemon.json &gt; /dev/null</span><br></pre></td></tr></table></figure>
-<p>  这一步会将镜像加速地址写入&#x2F;etc&#x2F;docker&#x2F;daemon.json文件中。</p>
-<ol start="2">
-<li><strong>重启Docker服务</strong><br>  配置完成后，需要重启Docker服务以使配置生效：</li>
-</ol>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload systemctl restart docker</span><br></pre></td></tr></table></figure>
-<p>完成以上步骤后，毫秒镜像就会自动为你的Docker镜像下载提供加速服务。</p>
-<h3 id="临时配置"><a href="#临时配置" class="headerlink" title="临时配置"></a>临时配置</h3><p>如果你不想修改全局配置，也可以在拉取镜像时临时使用毫秒镜像。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.1ms.run/library/nginx</span><br></pre></td></tr></table></figure>
-
-<p>这种方式会在本次拉取操作中使用毫秒镜像加速，而不会影响其他镜像的拉取。</p>
-<h2 id="登录毫秒镜像"><a href="#登录毫秒镜像" class="headerlink" title="登录毫秒镜像"></a>登录毫秒镜像</h2><p>如果需要使用更高级的功能，比如VIP加速通道，可以注册并登录毫秒镜像。登录命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login docker.1ms.run</span><br></pre></td></tr></table></figure>
-
-<p>登录后，你将享受更快速、更稳定的镜像下载体验。</p>
-<h2 id="赞助商与合作伙伴"><a href="#赞助商与合作伙伴" class="headerlink" title="赞助商与合作伙伴"></a>赞助商与合作伙伴</h2><p>毫秒镜像背后有强大的赞助商和合作伙伴支持。例如，腾讯CODING团队提供的免费Git托管和CI&#x2F;CD全流程研发能效平台，以及宝塔Linux面板、雷池WAF社区版、耗子面板和林枫云等合作伙伴，都为用户提供了丰富的服务器管理和安全防护解决方案。</p>
-<h2 id="使用协议与免责声明"><a href="#使用协议与免责声明" class="headerlink" title="使用协议与免责声明"></a>使用协议与免责声明</h2><p>在使用毫秒镜像时，用户需要遵守相关法律法规，并自行承担使用风险。开发者不对因使用本程序而导致的任何直接或间接损失承担责任。使用本程序即视为同意免责声明的所有条款。</p>
 
       
     </div>
