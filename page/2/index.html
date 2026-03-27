@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">116</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-count">334</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,150 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/07/frp%EF%BC%9A%E4%B8%80%E6%AC%BE%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/07/frp%EF%BC%9A%E4%B8%80%E6%AC%BE%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">frp：一款强大的内网穿透代理工具</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-07 16:05:00" itemprop="dateCreated datePublished" datetime="2024-12-07T16:05:00+08:00">2024-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>frp（Fast Reverse Proxy）是一款开源的高性能内网穿透代理工具，它允许你将位于NAT或防火墙后面的本地服务器暴露到公网上。frp支持TCP、UDP、HTTP和HTTPS协议，使得内部服务可以通过域名被外部访问。此外，frp还提供了P2P连接模式，进一步增强了其灵活性和可用性。</p>
+</blockquote>
+<h2 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h2><p>frp以其简洁的设计和丰富的功能而闻名，以下是一些核心特性：</p>
+<ol>
+<li><strong>协议支持</strong>：支持TCP、UDP、HTTP和HTTPS协议，适用于多种网络环境。</li>
+<li><strong>P2P连接</strong>：提供P2P连接模式，实现客户端间的直接通信，无需经过服务器。</li>
+<li><strong>配置灵活</strong>：支持TOML、YAML和JSON格式的配置文件，方便不同用户的需求。</li>
+<li><strong>安全性</strong>：支持Token和OIDC认证，增强连接的安全性。</li>
+<li><strong>性能优化</strong>：提供TLS加密和数据压缩，保障数据传输的安全和效率。</li>
+<li><strong>监控与日志</strong>：集成Prometheus监控，支持实时监控代理状态和流量。</li>
+<li><strong>负载均衡</strong>：支持通过分组实现简单的负载均衡。</li>
+<li><strong>健康检查</strong>：提供TCP和HTTP健康检查，确保服务的高可用性。</li>
+<li><strong>自定义域名</strong>：支持自定义子域名，方便在共享服务器上区分不同用户的服务。</li>
+<li><strong>插件系统</strong>：支持客户端和服务器端的插件扩展，增加了功能的灵活性和多样性。</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="步骤1：访问GitHub-Releases页面"><a href="#步骤1：访问GitHub-Releases页面" class="headerlink" title="步骤1：访问GitHub Releases页面"></a>步骤1：访问GitHub Releases页面</h3><p>打开浏览器，访问frp的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhdGVkaWVyL2ZycC9yZWxlYXNlcw==">GitHub Releases页面<i class="fa fa-external-link-alt"></i></span>。<br>在页面中，找到最新发布的版本，这通常会被标记为“Latest”或有相应的版本号。</p>
+<h3 id="步骤2：下载二进制文件"><a href="#步骤2：下载二进制文件" class="headerlink" title="步骤2：下载二进制文件"></a>步骤2：下载二进制文件</h3><p>根据你的操作系统（Windows、Linux或macOS）和架构（如x86_64、arm等），选择相应的预编译二进制文件。</p>
+<ul>
+<li>对于Linux用户，你会找到以<code>linux_amd64</code>或<code>linux_arm64</code>等命名的压缩文件。</li>
+<li>对于macOS用户，文件名通常包含<code>darwin</code>。</li>
+<li>对于Windows用户，文件名会包含<code>windows_4.0</code>。<br>点击相应的文件名，下载到你的计算机上。</li>
+</ul>
+<h3 id="步骤3：解压缩文件"><a href="#步骤3：解压缩文件" class="headerlink" title="步骤3：解压缩文件"></a>步骤3：解压缩文件</h3><p>解压缩下载的文件。对于Linux和macOS用户，可以使用<code>tar</code>命令：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf frp_0.39.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>  对于Windows用户，可以使用文件资源管理器或第三方解压缩软件解压<code>.zip</code>文件。</p>
+<h3 id="步骤4：移动到合适的目录"><a href="#步骤4：移动到合适的目录" class="headerlink" title="步骤4：移动到合适的目录"></a>步骤4：移动到合适的目录</h3><p>在解压缩的目录中，你会找到<code>frps</code>和<code>frpc</code>两个可执行文件，分别对应服务器端和客户端。</p>
+<p>将<code>frps</code>和<code>frpc</code>移动到合适的目录，例如<code>/usr/local/bin</code>（需要管理员权限）：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> frps frpc /usr/local/bin/</span><br></pre></td></tr></table></figure>
+<h3 id="步骤5：检查运行"><a href="#步骤5：检查运行" class="headerlink" title="步骤5：检查运行"></a>步骤5：检查运行</h3><p>在命令行中运行<code>frps -v</code>和<code>frpc -v</code>来检查二进制文件是否正确无误：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">frps -v</span><br><span class="line">frpc -v</span><br></pre></td></tr></table></figure>
+<p>  这将显示frp的版本信息，确认安装成功。</p>
+<h2 id="示例用法"><a href="#示例用法" class="headerlink" title="示例用法"></a>示例用法</h2><p>frp的使用涉及两个主要组件：<code>frps</code>（服务器端）和<code>frpc</code>（客户端）。以下是一些基本的示例用法，帮助你快速开始使用frp。</p>
+<h3 id="1-通过SSH访问内网计算机"><a href="#1-通过SSH访问内网计算机" class="headerlink" title="1. 通过SSH访问内网计算机"></a>1. 通过SSH访问内网计算机</h3><h4 id="服务端（frps）配置和启动："><a href="#服务端（frps）配置和启动：" class="headerlink" title="服务端（frps）配置和启动："></a>服务端（frps）配置和启动：</h4><ol>
+<li>在拥有公网IP的服务器上配置<code>frps.toml</code>：</li>
+</ol>
+  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.toml</span></span><br><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>启动<code>frps</code>：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.toml</span><br></pre></td></tr></table></figure>
+<h4 id="客户端（frpc）配置和启动："><a href="#客户端（frpc）配置和启动：" class="headerlink" title="客户端（frpc）配置和启动："></a>客户端（frpc）配置和启动：</h4><ol start="3">
+<li>在内网计算机上配置<code>frpc.toml</code>：</li>
+</ol>
+  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.toml</span></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">&quot;x.x.x.x&quot;</span>  <span class="comment"># 服务端公网IP</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;ssh&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;tcp&quot;</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">6000</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启动<code>frpc</code>：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.toml</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>通过SSH访问内网计算机：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 6000 用户名@服务端公网IP</span><br></pre></td></tr></table></figure>
+<h3 id="2-使用自定义域名访问内网Web服务"><a href="#2-使用自定义域名访问内网Web服务" class="headerlink" title="2. 使用自定义域名访问内网Web服务"></a>2. 使用自定义域名访问内网Web服务</h3><h4 id="服务端（frps）配置和启动：-1"><a href="#服务端（frps）配置和启动：-1" class="headerlink" title="服务端（frps）配置和启动："></a>服务端（frps）配置和启动：</h4><ol>
+<li>配置<code>frps.toml</code>：</li>
+</ol>
+  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.toml</span></span><br><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>启动<code>frps</code>：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.toml</span><br></pre></td></tr></table></figure>
+<h4 id="客户端（frpc）配置和启动：-1"><a href="#客户端（frpc）配置和启动：-1" class="headerlink" title="客户端（frpc）配置和启动："></a>客户端（frpc）配置和启动：</h4><ol start="3">
+<li>配置<code>frpc.toml</code>：</li>
+</ol>
+  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.toml</span></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">&quot;x.x.x.x&quot;</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;web&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;http&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">80</span></span><br><span class="line"><span class="attr">customDomains</span> = [<span class="string">&quot;www.example.com&quot;</span>]</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启动<code>frpc</code>：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.toml</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>配置域名解析：<br>  将<code>www.example.com</code>的A记录指向<code>frps</code>服务器的公网IP。</p>
+</li>
+<li><p>访问Web服务：<br>  通过浏览器访问<code>http://www.example.com:8080</code>。</p>
+</li>
+</ol>
+<p>这些示例仅展示了frp的一小部分功能。frp的灵活性和强大的功能使其成为内网穿透的有力工具。你可以根据具体需求调整配置，实现更复杂的网络穿透和代理需求。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1190,93 +1334,6 @@
 <p><img src="/images/pasted-70.png" alt="upload successful"></p>
 <p>再次执行相关命令，此时控制台理应能够正常显示内容。</p>
 <p><img src="/images/pasted-71.png" alt="upload successful"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/29/RDPWrap%EF%BC%9A%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E7%A5%9E%E5%99%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/29/RDPWrap%EF%BC%9A%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E7%A5%9E%E5%99%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">RDPWrap：远程桌面优化神器的技术解析与应用指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-06-29 14:02:22" itemprop="dateCreated datePublished" datetime="2024-06-29T14:02:22+08:00">2024-06-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>是一个开源项目，用于破解和优化Windows系统上的Remote Desktop Protocol（远程桌面协议）。它允许你在没有官方许可的情况下，实现多用户的并发远程访问，这对于IT管理员、开发者或者需要频繁远程控制电脑的用户来说，是一个非常实用的工具。</p>
-<h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>RDPWrap的主要功能是绕过Windows系统的限制，使得单个安装了RDP服务的计算机可以同时接受多个远程桌面连接，而无需购买额外的授权。该项目由Stas’M Sajewicz创建并维护，社区也在持续贡献和支持。</p>
-<h3 id="技术分析"><a href="#技术分析" class="headerlink" title="技术分析"></a>技术分析</h3><p>RDPWrap的工作原理是通过对Windows的Remote Desktop Services（RDS）服务进行钩子处理，改变其内部的行为模式。它提供了一个配置工具，用于检测当前系统的支持情况，并更新本地的bypass.dll文件以启用多会话模式。此外，RDPWrap还包含一个实时更新的服务端口数据库，帮助用户跟踪最新的系统版本兼容性。</p>
-<p>需要注意的是，由于涉及到系统底层操作，RDPWrap可能需要管理员权限运行，且在安装和配置过程中应谨慎操作，避免对系统稳定性产生影响。</p>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
-<li>节省成本 - 对于拥有大量Windows设备但预算有限的企业，RDPWrap可以帮助他们避免购买昂贵的多用户许可证。 </li>
-<li>远程教育与培训 - 教师或教练可以同时监控多个学生的学习进度，提供即时反馈。 </li>
-<li>多用户共享 - 在家庭环境中，家庭成员可以在各自的设备上同时远程访问一台高性能主机进行游戏或计算任务。 </li>
-<li>服务器管理 - IT专业人员可以更方便地同时管理多台服务器，无需来回切换登录。</li>
-</ol>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>开源免费 - 开源意味着代码公开，用户可以自由查看，学习甚至改进。</li>
-<li>跨平台支持 - 支持多种Windows操作系统版本，从XP到最新的Windows 10。</li>
-<li>简单易用 - 提供直观的配置工具，即使是对技术不太了解的用户也能轻松设置。</li>
-<li>持续更新 - 社区活跃，不断跟进新的Windows更新，确保兼容性。</li>
-</ul>
-<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>在使用RDPWrap之前，请确保已理解其工作方式并做好数据备份，因为任何对系统核心组件的操作都可能存在风险。另外，尊重他人的版权，合法使用远程桌面服务，切勿用于非法目的。</p>
-<p>总结来说，RDPWrap是一个强大且实用的工具，尤其适合需要高效远程管理Windows系统的用户。只要合理使用，它就能为你带来极大的便利。希望这篇介绍能够帮助你更好地理解和利用RDPWrap，享受更灵活的远程桌面体验。</p>
-<p>项目地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXNjb3JwL3JkcHdyYXA=">https://github.com/stascorp/rdpwrap<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>

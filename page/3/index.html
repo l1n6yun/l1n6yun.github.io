@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">332</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">116</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">332</span>
+        <span class="site-state-item-count">334</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/29/RDPWrap%EF%BC%9A%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E7%A5%9E%E5%99%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/29/RDPWrap%EF%BC%9A%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E7%A5%9E%E5%99%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">RDPWrap：远程桌面优化神器的技术解析与应用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-29 14:02:22" itemprop="dateCreated datePublished" datetime="2024-06-29T14:02:22+08:00">2024-06-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>是一个开源项目，用于破解和优化Windows系统上的Remote Desktop Protocol（远程桌面协议）。它允许你在没有官方许可的情况下，实现多用户的并发远程访问，这对于IT管理员、开发者或者需要频繁远程控制电脑的用户来说，是一个非常实用的工具。</p>
+<h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>RDPWrap的主要功能是绕过Windows系统的限制，使得单个安装了RDP服务的计算机可以同时接受多个远程桌面连接，而无需购买额外的授权。该项目由Stas’M Sajewicz创建并维护，社区也在持续贡献和支持。</p>
+<h3 id="技术分析"><a href="#技术分析" class="headerlink" title="技术分析"></a>技术分析</h3><p>RDPWrap的工作原理是通过对Windows的Remote Desktop Services（RDS）服务进行钩子处理，改变其内部的行为模式。它提供了一个配置工具，用于检测当前系统的支持情况，并更新本地的bypass.dll文件以启用多会话模式。此外，RDPWrap还包含一个实时更新的服务端口数据库，帮助用户跟踪最新的系统版本兼容性。</p>
+<p>需要注意的是，由于涉及到系统底层操作，RDPWrap可能需要管理员权限运行，且在安装和配置过程中应谨慎操作，避免对系统稳定性产生影响。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol>
+<li>节省成本 - 对于拥有大量Windows设备但预算有限的企业，RDPWrap可以帮助他们避免购买昂贵的多用户许可证。 </li>
+<li>远程教育与培训 - 教师或教练可以同时监控多个学生的学习进度，提供即时反馈。 </li>
+<li>多用户共享 - 在家庭环境中，家庭成员可以在各自的设备上同时远程访问一台高性能主机进行游戏或计算任务。 </li>
+<li>服务器管理 - IT专业人员可以更方便地同时管理多台服务器，无需来回切换登录。</li>
+</ol>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>开源免费 - 开源意味着代码公开，用户可以自由查看，学习甚至改进。</li>
+<li>跨平台支持 - 支持多种Windows操作系统版本，从XP到最新的Windows 10。</li>
+<li>简单易用 - 提供直观的配置工具，即使是对技术不太了解的用户也能轻松设置。</li>
+<li>持续更新 - 社区活跃，不断跟进新的Windows更新，确保兼容性。</li>
+</ul>
+<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>在使用RDPWrap之前，请确保已理解其工作方式并做好数据备份，因为任何对系统核心组件的操作都可能存在风险。另外，尊重他人的版权，合法使用远程桌面服务，切勿用于非法目的。</p>
+<p>总结来说，RDPWrap是一个强大且实用的工具，尤其适合需要高效远程管理Windows系统的用户。只要合理使用，它就能为你带来极大的便利。希望这篇介绍能够帮助你更好地理解和利用RDPWrap，享受更灵活的远程桌面体验。</p>
+<p>项目地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXNjb3JwL3JkcHdyYXA=">https://github.com/stascorp/rdpwrap<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -963,106 +1050,6 @@
 <p>点击 Apply，刷新网站，就可以清除全文阅读限制了</p>
 <p>实现原理很简单：隐藏关注元素，清除文章内容元素的高度限制。</p>
 <p>注：此方法只能用于前端限制，后端限制是不行的。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/28/php-cs-fixer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/28/php-cs-fixer/" class="post-title-link" itemprop="url">php-cs-fixer</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-28 23:52:41" itemprop="dateCreated datePublished" datetime="2022-09-28T23:52:41+08:00">2022-09-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>PHP CS Fixer (PHP Coding Standards Fixer)是一款通过编码标准来修复代码的工具。它支持 PSR 编码规范和其他社区驱动（如 Symfony），还可以根据自己（团队）的风格进行自定义配置。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装 PHP CS Fixer 推荐使用 Composer 来进行安装。可以进行全局安装或者直接安装到项目中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">全局安装</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">composer global require friendsofphp/php-cs-fixer</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">为项目安装</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">composer require --dev friendsofphp/php-cs-fixer</span> </span><br></pre></td></tr></table></figure>
-
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="describe-查看规则规则集"><a href="#describe-查看规则规则集" class="headerlink" title="describe 查看规则规则集"></a>describe 查看规则规则集</h3><p><img src="/images/pasted-30.png" alt="upload successful"></p>
-<h3 id="fix-修复一个文件或者目录"><a href="#fix-修复一个文件或者目录" class="headerlink" title="fix 修复一个文件或者目录"></a>fix 修复一个文件或者目录</h3><p>使用 <code>fix</code> 命令可以对文件或者目录进行修复</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix /path/to/dir</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix /path/to/file</span></span><br></pre></td></tr></table></figure>
-
-<p><code>--path-mode</code> 输出格式选项，支持 txt、json、xml、checkstyle、junit 和 gitlab。（默认txt）</p>
-<p><code>--quiet</code> 不输出任何信息。</p>
-<p><code>-v --verbose</code> 选项将显示应用的规则。<br><code>-vv</code> 啰嗦<br><code>-vvv</code> 调试</p>
-<p><img src="/images/pasted-32.png" alt="upload successful"></p>
-<p>出现“修复后 linting 期间报告的错误”，可以使用它来更详细地进行调试</p>
-<p><img src="/images/pasted-31.png" alt="upload successful"></p>
-<p><code>--rules</code> 指定修复规则</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix ./ --rules=@PSR12</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix ./ --rules=line_ending,full_opening_tag,indentation_type</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix ./ --rules=-full_opening_tag,-indentation_type</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix ./ --rules=@Symfony,-@PSR1,-blank_line_before_statement,strict_comparison</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php-cs-fixer fix ./ --rules=<span class="string">&#x27;&#123;&quot;concat_space&quot;: &#123;&quot;spacing&quot;: &quot;none&quot;&#125;&#125;&#x27;</span></span></span><br></pre></td></tr></table></figure>
-
-<p><code>--dry-run</code> 运行修复程序但不修改文件</p>
-<p><code>--diff</code> 以 udiff 格式输出修改内容</p>
-<p><code>--allow-risky</code> 是否运行有风险的修改，传入参数（yes or no）</p>
-<p><code>--stop-on-violation</code> 修复一个文件后停止执行</p>
-<p><code>--show-progress</code> 显示处理进度</p>
-<h3 id="退出代码"><a href="#退出代码" class="headerlink" title="退出代码"></a>退出代码</h3><p>退出代码 fix命令是使用以下位标志构建的：</p>
-<ul>
-<li>0 - 好的。</li>
-<li>1 - 一般错误（或 PHP 最低要求不匹配）。</li>
-<li>4 - 某些文件的语法无效（仅在试运行模式下）。</li>
-<li>8 - 某些文件需要修复（仅在试运行模式下）。</li>
-<li>16 - 应用程序的配置错误。</li>
-<li>32 - Fixer 的配置错误。</li>
-<li>64 - 应用程序中出现异常。</li>
-</ul>
 
       
     </div>
