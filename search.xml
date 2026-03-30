@@ -6608,12 +6608,12 @@ x86 则表示32位的
 <td>前面的成功了才执行后面的</td>
 </tr>
 <tr>
-<td>&#96;</td>
-<td></td>
+<td><code>||</code></td>
+<td>前面的失败了才执行后面的</td>
 </tr>
 <tr>
-<td>&#96;</td>
-<td>&#96;</td>
+<td><code>|</code></td>
+<td>管道，前面输出给后面</td>
 </tr>
 <tr>
 <td><code>&amp;</code></td>
