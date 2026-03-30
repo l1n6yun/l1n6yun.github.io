@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">334</span>
+        <span class="site-state-item-count">352</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -230,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/24/localResizeIMG-js/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/23/PHP-Redis-%E7%A7%92%E6%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -248,7 +248,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/08/24/localResizeIMG-js/" class="post-title-link" itemprop="url">localResizeIMG.js</a>
+          <a href="/2018/11/23/PHP-Redis-%E7%A7%92%E6%9D%80/" class="post-title-link" itemprop="url">PHP Redis 秒杀</a>
         </h2>
 
         <div class="post-meta-container">
@@ -259,7 +259,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-08-24 17:10:45" itemprop="dateCreated datePublished" datetime="2017-08-24T17:10:45+08:00">2017-08-24</time>
+      <time title="创建时间：2018-11-23 09:39:00" itemprop="dateCreated datePublished" datetime="2018-11-23T09:39:00+08:00">2018-11-23</time>
     </span>
 
   
@@ -272,80 +272,999 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://travis-ci.org/think2011/localResizeIMG"><img src="https://travis-ci.org/think2011/localResizeIMG.svg?branch=master" alt="Build Status"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/lrz"><img src="https://img.shields.io/npm/v/lrz.svg" alt="npm version"></a><br><a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
-<h1 id="🚨重要"><a href="#🚨重要" class="headerlink" title="🚨重要!!"></a>🚨重要!!</h1><p>很抱歉，这个项目已不再维护了，可能很长一段时间都不会更新了。<br>如果真的需要，请使用之前请一定留意 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM/cT1pczppc3N1ZStpczpvcGVuK2xhYmVsOmJ1Zw==">Issues<i class="fa fa-external-link-alt"></i></span> 里已知的问题</p>
-<h1 id="演示一下"><a href="#演示一下" class="headerlink" title="演示一下"></a>演示一下</h1><p><img src="http://think2011.github.io/localResizeIMG/test/demo.gif"></p>
-<h1 id="自己试试"><a href="#自己试试" class="headerlink" title="自己试试"></a>自己试试</h1><p><img src="https://raw.github.com/think2011/localResizeIMG/master/test/qrcode.png"></p>
-<p><span class="exturl" data-url="aHR0cDovL3RoaW5rMjAxMS5naXRodWIuaW8vbG9jYWxSZXNpemVJTUcvdGVzdC8=">点我直接进入演示页面<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用。</p>
-<h1 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h1><ol>
-<li><p>已踩过很多坑，经过几个版本迭代，以及很多很多网友的反馈帮助、机型测试</p>
-<ul>
-<li>图片扭曲、某些设备不自动旋转图片方向，没有jpeg压缩算法..</li>
-<li>不支持new Blob,formData构造的文件size为0..</li>
-<li>还有某些机型和浏览器（例如QQX5浏览器）莫名其妙的BUG..</li>
-</ul>
+          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Redis 初始化</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $number 商品数量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initRedis</span>(<span class="params"><span class="variable">$goodsId</span>, <span class="variable">$number</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$storeKey</span> = <span class="string">&quot;goods_<span class="subst">&#123;$goodsId&#125;</span>_store&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> <span class="title function_ invoke__">redis</span>();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">del</span>(<span class="variable">$storeKey</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$number</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">lpush</span>(<span class="variable">$storeKey</span>, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 秒杀入口</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $goodsId 商品ID</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kills</span>(<span class="params"><span class="variable">$goodsId</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$storeKey</span> = <span class="string">&quot;goods_<span class="subst">&#123;$goodsId&#125;</span>_store&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$redis</span> = <span class="keyword">new</span> <span class="title function_ invoke__">redis</span>();</span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$count</span> = <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">lpop</span>(<span class="variable">$storeKey</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$count</span>) &#123;</span><br><span class="line">        <span class="variable">$data</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="variable">$data</span>[<span class="string">&quot;order_sn&quot;</span>] = <span class="title function_ invoke__">rand</span>(<span class="number">1000</span>, <span class="number">9999</span>);	<span class="comment">// 测试订单号</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 直接进行数据库操作</span></span><br><span class="line">        <span class="variable">$orderModel</span> = <span class="keyword">new</span> <span class="title function_ invoke__">orderModel</span>();</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$orderModel</span>-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$data</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span> !== <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">lpush</span>(<span class="variable">$storeKey</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 添加队列后继操作</span></span><br><span class="line">        <span class="title class_">Queue</span>::<span class="title function_ invoke__">push</span>(<span class="variable">$job</span>, <span class="variable">$data</span>, <span class="string">&#x27;seckill&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/05/CURL%E8%AF%81%E4%B9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/07/05/CURL%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">CURL证书</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-05 16:19:00" itemprop="dateCreated datePublished" datetime="2018-07-05T16:19:00+08:00">2018-07-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>curl: (60) SSL certificate : unable to get local issuer certificate</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/07/05/CURL%E8%AF%81%E4%B9%A6/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/06/19/win10-%E4%B8%8B-git-%E8%BF%90%E8%A1%8C%E5%87%BA%E7%8E%B0-fatal-open-dev-null-or-dup-failed-No-such-file-or-directory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/06/19/win10-%E4%B8%8B-git-%E8%BF%90%E8%A1%8C%E5%87%BA%E7%8E%B0-fatal-open-dev-null-or-dup-failed-No-such-file-or-directory/" class="post-title-link" itemprop="url">win10 下 git 运行出现 fatal: open /dev/null or dup failed: No such file or directory</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-06-19 15:51:56" itemprop="dateCreated datePublished" datetime="2018-06-19T15:51:56+08:00">2018-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/19/win10-%E4%B8%8B-git-%E8%BF%90%E8%A1%8C%E5%87%BA%E7%8E%B0-fatal-open-dev-null-or-dup-failed-No-such-file-or-directory/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/04/11/phpstorm%E8%BF%9E%E6%8E%A5mysql%E5%87%BA%E9%94%99/" class="post-title-link" itemprop="url">phpstorm连接mysql出错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-11 14:47:00" itemprop="dateCreated datePublished" datetime="2018-04-11T14:47:00+08:00">2018-04-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>错误代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">java.lang.RuntimeException: com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value &#x27;ÖÐ¹ú±ê×¼Ê±¼ä&#x27; is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.</span><br><span class="line">  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)</span><br><span class="line">  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)</span><br><span class="line">  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)</span><br><span class="line">  at java.lang.reflect.Constructor.newInstance(Constructor.java:423)</span><br><span class="line">  at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)</span><br><span class="line">  at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)</span><br><span class="line">  at com.mysql.cj.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:132)</span><br><span class="line">  at com.mysql.cj.protocol.a.NativeProtocol.configureTimezone(NativeProtocol.java:2241)</span><br><span class="line">  at com.mysql.cj.protocol.a.NativeProtocol.initServerSession(NativeProtocol.java:2265)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:1319)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:868)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:830)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.&amp;lt;init&amp;gt;(ConnectionImpl.java:455)</span><br><span class="line">  at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)</span><br><span class="line">  at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)</span><br><span class="line">  at com.intellij.database.remote.jdbc.impl.RemoteDriverImpl.connect(RemoteDriverImpl.java:41)</span><br><span class="line">  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">  at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">  at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:357)</span><br><span class="line">  at sun.rmi.transport.Transport$1.run(Transport.java:200)</span><br><span class="line">  at sun.rmi.transport.Transport$1.run(Transport.java:197)</span><br><span class="line">  at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">  at sun.rmi.transport.Transport.serviceCall(Transport.java:196)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:573)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:834)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:688)</span><br><span class="line">  at java.security.AccessController.doPrivileged(Native Method)</span><br><span class="line">  at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:687)</span><br><span class="line">  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)</span><br><span class="line">  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)</span><br><span class="line">  at java.lang.Thread.run(Thread.java:748) (no stack trace).</span><br><span class="line">com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value &#x27;ÖÐ¹ú±ê×¼Ê±¼ä&#x27; is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法</p>
+<p>在 <code>advanced</code> 选项中找到 <code>serverTimezone</code> 设置为 <code>UTC</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/" class="post-title-link" itemprop="url">PHP Curl Class: HTTP requests made easy</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-16 12:47:18" itemprop="dateCreated datePublished" datetime="2018-03-16T12:47:18+08:00">2018-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs https://www.phpcurlclass.com/</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/03/16/PHP-Curl-Class-HTTP-requests-made-easy/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/15/%E8%AE%BE%E7%BD%AE%E8%8E%B7%E5%8F%96cookie%EF%BC%8CsetCookie%EF%BC%8CgetCookie/" class="post-title-link" itemprop="url">设置获取cookie，setCookie，getCookie</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-15 21:34:14" itemprop="dateCreated datePublished" datetime="2018-03-15T21:34:14+08:00">2018-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setCookie</span>(<span class="params">name,value</span>) </span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Days</span> = <span class="number">30</span>; </span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="title class_">Date</span>(); </span><br><span class="line">    exp.<span class="title function_">setTime</span>(exp.<span class="title function_">getTime</span>() + <span class="title class_">Days</span>*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>); </span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">cookie</span> = name + <span class="string">&quot;=&quot;</span>+ <span class="built_in">escape</span> (value) + <span class="string">&quot;;expires=&quot;</span> + exp.<span class="title function_">toGMTString</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取cookie"><a href="#读取cookie" class="headerlink" title="读取cookie"></a>读取cookie</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getCookie</span>(<span class="params">name</span>) </span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">var</span> arr,reg=<span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;(^| )&quot;</span>+name+<span class="string">&quot;=([^;]*)(;|$)&quot;</span>); </span><br><span class="line">　　 <span class="keyword">return</span> (arr=<span class="variable language_">document</span>.<span class="property">cookie</span>.<span class="title function_">match</span>(reg))?<span class="built_in">unescape</span>(arr[<span class="number">2</span>]):<span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除cookie（将cookie设置过期即可）"><a href="#删除cookie（将cookie设置过期即可）" class="headerlink" title="删除cookie（将cookie设置过期即可）"></a>删除cookie（将cookie设置过期即可）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delCookie</span>(<span class="params">name</span>) </span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="title class_">Date</span>(); </span><br><span class="line">    exp.<span class="title function_">setTime</span>(exp.<span class="title function_">getTime</span>() - <span class="number">1</span>); </span><br><span class="line">    <span class="keyword">var</span> cval=<span class="title function_">getCookie</span>(name); </span><br><span class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>) </span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">cookie</span>= name + <span class="string">&quot;=&quot;</span>+cval+<span class="string">&quot;;expires=&quot;</span>+exp.<span class="title function_">toGMTString</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>escape(string) 函数可对字符串进行编码，这样就可以在所有的计算机上读取该字符串。<br>unescape(string) 函数可对通过 escape() 编码的字符串进行解码。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/03/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">正则表达式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-10 22:25:00" itemprop="dateCreated datePublished" datetime="2018-03-10T22:25:00+08:00">2018-03-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>正则表达式(Regular Expression)是一种文本模式，包含普通字符（列如，a 到 z 之间的字母）和特殊字符（元字符）。</p>
+<p>正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。</p>
+<h2 id="正则表达式-语法"><a href="#正则表达式-语法" class="headerlink" title="正则表达式 - 语法"></a>正则表达式 - 语法</h2><h3 id="普通字符串"><a href="#普通字符串" class="headerlink" title="普通字符串"></a>普通字符串</h3><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[ABC]</td>
+<td>匹配 <code>[...]</code> 中的所有字符。例如用 <code>/[lny]/g</code> 来匹配字符串 “l1n6yun”,可以匹配到 <code>l,n,y,n</code> 。</td>
+</tr>
+<tr>
+<td>[!ABC]</td>
+<td>匹配除了 <code>[!...]</code> 中的所有字符。例如 <code>/[^lny]/g</code> 来匹配字符串 “l1n6yun”,可以匹配到 <code>1,6,u</code> 。</td>
+</tr>
+<tr>
+<td>[A-Z] [a-z]</td>
+<td><code>[A-Z]</code> 表示一个区间，匹配所有大写字母。<code>[a-z]</code> 表示匹配所有小写字母。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除换行符 ( <code>\r</code>、<code>\n</code>) 之外的任何单字符，相当于 <code>[^\r\n]</code></td>
+</tr>
+<tr>
+<td>[\s\S]</td>
+<td>匹配所有。<code>\s</code> 是匹配所有空白符，包含换行，<code>\S</code> 非空白符，不包含换行</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母、数字、下划线。等价于 <code>[A-Za-z0-9_]</code></td>
+</tr>
+</tbody></table>
+<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\cx</td>
+<td>匹配由x指明的控制字符。例如， <code>\cM</code> 匹配一个 Control-M 或回车符。<code>x</code> 的值必须为 <code>A-Z</code> 或 <code>a-z</code> 之一。否则，将 <code>c</code> 视为一个原义的 ‘c’ 字符。</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符。等价于 <code>\x0c</code> 和 <code>\cL</code>。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符。等价于 <code>\x0a</code> 和 <code>\cJ</code>。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符。等价于 <code>\x0d</code> 和 <code>\cM</code>。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <code>[\f\n\r\t\v]</code>。注意 Unicode 正则表达式会匹配全角空格符。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白字符。等价于 <code>[^ \f\n\r\t\v]</code>。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符。等价于 <code>\x09</code> 和 <code>\cI</code>。</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符。等价于 <code>\x0b</code> 和 <code>\cK</code>。</td>
+</tr>
+<tr>
+<td>\xn</td>
+<td>匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ‘\x04’ &amp; “1”。正则表达式中可以使用 ASCII 编码。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。</td>
+</tr>
+<tr>
+<td>\nm</td>
+<td>标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。</td>
+</tr>
+<tr>
+<td>\nml</td>
+<td>如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。</td>
+</tr>
+<tr>
+<td>\un</td>
+<td>匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</td>
+</tr>
+</tbody></table>
+<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><table>
+<thead>
+<tr>
+<th align="left">特别字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 ‘\n’ 或 ‘\r’。要匹配 $ 字符本身，请使用 $。</td>
+</tr>
+<tr>
+<td align="left">( )</td>
+<td align="left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td align="left">匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</td>
+</tr>
+<tr>
+<td align="left">[</td>
+<td align="left">标记一个中括号表达式的开始。要匹配 [，请使用 [。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 ^。</td>
+</tr>
+<tr>
+<td align="left">{</td>
+<td align="left">标记限定符表达式的开始。要匹配 {，请使用 {。</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">指明两项之间的一个选择。要匹配 |，请使用 |。</td>
+</tr>
+</tbody></table>
+<h3 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h3><table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*</td>
+<td align="left">匹配前面的子表达式零次或多次。***** 等价于 <strong>{0,}</strong>。</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配前面的子表达式一次或多次。<strong>+</strong> 等价于 <strong>{1,}</strong>。</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配前面的子表达式零次或一次。<strong>?</strong> 等价于 <strong>{0,1}</strong>。</td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">n 是一个非负整数。匹配确定的 <strong>n</strong> 次。</td>
+</tr>
+<tr>
+<td align="left">{n,}</td>
+<td align="left">n 是一个非负整数。至少匹配n 次。</td>
+</tr>
+<tr>
+<td align="left">{n,m}</td>
+<td align="left">m 和 n 均为非负整数，其中 n &lt;&#x3D; m。</td>
+</tr>
+</tbody></table>
+<p><code>*</code>  和 <code>+</code> 限定符都是贪婪的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个 <code>?</code> 就可以实现非贪婪或最小的匹配。</p>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>定位符使您能够将正则表达式固定到行首或行尾。他们还使您能够创建这样的正则表达式，这些正则表达式出现在一个单词内、在一个单词的开头或者一个单词的结尾。</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^</td>
+<td align="left">匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与 \n 或 \r 之后的位置匹配。</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td align="left">匹配一个单词边界，即字与空格间的位置。例如”Hello World”，结果”\dHello\d \dWorld\d”</td>
+</tr>
+<tr>
+<td align="left">\B</td>
+<td align="left">非单词边界匹配。例如”Hello World”，结果”H\Be\Bl\Bl\Bo W\Bo\Br\Bl\Bd”</td>
+</tr>
+</tbody></table>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>用圆括号 <code>()</code> 将所有选择项括起来，相邻的选择项之间用 <code>|</code> 分割。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/([1-9])([a-z]+)/g</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>exp1(?&#x3D;exp2)</td>
+<td>查找 exp2 前面的 exp1</td>
+</tr>
+<tr>
+<td>(?&lt;&#x3D;exp2)exp1</td>
+<td>查找 exp2 后面的 exp1</td>
+</tr>
+<tr>
+<td>exp1(?!exp2)</td>
+<td>查找后面不是 exp2 的 exp1</td>
+</tr>
+<tr>
+<td>(?&lt;!exp2)exp1</td>
+<td>查找前面不是 exp2 的 exp1</td>
+</tr>
+</tbody></table>
+<h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p>对一个正则表达式模式或部分模式两边添加圆括号将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左到右出现的顺序存储。缓冲区编号从 1 开始，最多可存储 99 个捕获的子表达式。每个缓冲区都可以使用 <strong>\n</strong> 访问，其中 n 为一个标识特定缓冲区的一位或两位十进制数。</p>
+<p>可以使用非捕获元字符 <strong>?:</strong>、<strong>?&#x3D;</strong> 或 <strong>?!</strong> 来重写捕获，忽略对相关匹配的保存。</p>
+<p>反向引用的最简单的、最有用的应用之一，是提供查找文本中两个相同的相邻单词的匹配项的能力。以下面的句子为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Is is the cost of of gasoline going up up?</span><br></pre></td></tr></table></figure>
+
+<p>上面的句子很显然有多个重复的单词。如果能设计一种方法定位该句子，而不必查找每个单词的重复出现，那该有多好。下面的正则表达式使用单个子表达式来实现这一点：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;Is is the cost of of gasoline going up up&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> patt1 = <span class="regexp">/\b([a-z]+) \1\b/igm</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(str.<span class="title function_">match</span>(patt1));</span><br></pre></td></tr></table></figure>
+
+<p>捕获的表达式，正如 <strong>[a-z]+</strong> 指定的，包括一个或多个字母。正则表达式的第二部分是对以前捕获的子匹配项的引用，即，单词的第二个匹配项正好由括号表达式匹配。<strong>\1</strong> 指定第一个子匹配项。</p>
+<p>单词边界元字符确保只检测整个单词。否则，诸如 “is issued” 或 “this is” 之类的词组将不能正确地被此表达式识别。</p>
+<p>正则表达式后面的全局标记 <strong>g</strong> 指定将该表达式应用到输入字符串中能够查找到的尽可能多的匹配。</p>
+<p>表达式的结尾处的不区分大小写 <strong>i</strong> 标记指定不区分大小写。</p>
+<p>多行标记 <strong>m</strong> 指定换行符的两边可能出现潜在的匹配。</p>
+<h2 id="正则表达式-修饰符"><a href="#正则表达式-修饰符" class="headerlink" title="正则表达式 - 修饰符"></a>正则表达式 - 修饰符</h2><p>标记也称为修饰符，正则表达式的标记用于指定额外的匹配策略。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pattern/flags</span><br></pre></td></tr></table></figure>
+
+<p>下表列出了正则表达式常用的修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">含义</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i</td>
+<td align="left">ignore - 不区分大小写</td>
+<td align="left">将匹配设置为不区分大小写，搜索时不区分大小写: A 和 a 没有区别。</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">global - 全局匹配</td>
+<td align="left">查找所有的匹配项。</td>
+</tr>
+<tr>
+<td align="left">m</td>
+<td align="left">multi line - 多行匹配</td>
+<td align="left">使边界字符 <strong>^</strong> 和 <strong>$</strong> 匹配每一行的开头和结尾，记住是多行，而不是整个字符串的开头和结尾。</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td align="left">特殊字符圆点 <strong>.</strong> 中包含换行符 <strong>\n</strong></td>
+<td align="left">默认情况下的圆点 <strong>.</strong> 是匹配除换行符 <strong>\n</strong> 之外的任何字符，加上 <strong>s</strong> 修饰符之后, <strong>.</strong> 中包含换行符 \n。</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/" class="post-title-link" itemprop="url">Git 提交空目录：3 种实用方案，轻松搞定目录跟踪难题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-01-20 03:06:12" itemprop="dateCreated datePublished" datetime="2018-01-20T03:06:12+08:00">2018-01-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用 Git 进行版本控制时，很多开发者都会遇到一个常见问题：<strong>空目录无法被 Git 直接跟踪和提交</strong>。这是因为 Git 的设计理念是跟踪文件的变更，而非目录本身 —— 如果一个目录下没有任何文件，Git 会默认忽略它，导致团队协作时目录结构无法同步。别担心，本文将分享 3 种经过实践验证的解决方案，帮你优雅解决空目录提交问题。</p>
+<h2 id="一、推荐方案：使用-gitkeep-文件（最通用）"><a href="#一、推荐方案：使用-gitkeep-文件（最通用）" class="headerlink" title="一、推荐方案：使用.gitkeep 文件（最通用）"></a>一、推荐方案：使用.gitkeep 文件（最通用）</h2><p>这是开发中最常用的方法，虽然<code>.gitkeep</code>并非 Git 官方定义的标准文件，但已被 Laravel、Vue 等主流框架广泛采用，成为行业惯例。</p>
+<h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h3><p>Git 会跟踪包含文件的目录结构。通过在空目录中创建一个名为<code>.gitkeep</code>的占位文件，就能强制 Git 识别并保留该目录，且不会影响目录的后续使用。</p>
+<h3 id="操作步骤（含示例）"><a href="#操作步骤（含示例）" class="headerlink" title="操作步骤（含示例）"></a>操作步骤（含示例）</h3><ol>
+<li><p><strong>创建空目录及占位文件</strong></p>
+<p>无论是单个空目录还是多级空目录，都可以通过简单命令创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建单个空目录并添加.gitkeep</span><br><span class="line">mkdir -p project/logs/</span><br><span class="line">touch project/logs/.gitkeep</span><br><span class="line"></span><br><span class="line"># 创建多级空目录并添加.gitkeep</span><br><span class="line">mkdir -p src/utils/temp/</span><br><span class="line">touch src/utils/temp/.gitkeep</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>按需加载（会根据对应设备自动异步载入JS文件，节省不必要带宽）</p>
+<li><p><strong>提交到 Git 仓库</strong></p>
+<p>常规的<code>add</code>和<code>commit</code>操作即可完成跟踪：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add project/logs/.gitkeep</span><br><span class="line">git commit -m &quot;Track logs directory with .gitkeep&quot;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>原生JS编写，不依赖例如<code>jquery</code>等第三方库，支持AMD or CMD规范。</p>
+<li><p><strong>批量处理所有空目录（高效技巧）</strong></p>
+<p>如果项目中有多个空目录，手动创建太繁琐，可通过<code>find</code>命令批量处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -empty -exec touch &#123;&#125;/.gitkeep \;</span><br></pre></td></tr></table></figure>
+
+<p>这条命令会自动查找项目中所有空目录，并在每个目录下创建<code>.gitkeep</code>文件。</p>
 </li>
 </ol>
-<blockquote>
-<p>尽管如此，在某些 <code>Android</code> 下依然有莫名其妙的问题，在您使用前，请一定大致浏览下 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM=">issues<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h1 id="如何获取"><a href="#如何获取" class="headerlink" title="如何获取"></a>如何获取</h1><p>通过以下方式都可以下载：</p>
+<h3 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>命名直观：看到<code>.gitkeep</code>就知道是用于保留目录的占位文件</li>
+<li>无副作用：仅作为占位符，不影响目录后续文件的添加和跟踪</li>
+<li>兼容性强：所有 Git 版本均支持，团队协作无门槛</li>
+</ul>
+<h2 id="二、灵活方案：-gitignore-反向配置"><a href="#二、灵活方案：-gitignore-反向配置" class="headerlink" title="二、灵活方案：.gitignore 反向配置"></a>二、灵活方案：.gitignore 反向配置</h2><p>如果你的空目录未来需要添加文件，但又想提前保留目录结构，同时避免误跟踪无关文件，这种方法再合适不过。</p>
+<h3 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h3><p>利用<code>.gitignore</code>的忽略规则：先配置忽略目录内所有文件（<code>*</code>），再通过反向规则（<code>!.gitignore</code>）排除自身，让 Git 仅跟踪<code>.gitignore</code>文件，从而间接保留目录结构。</p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p><strong>创建特殊配置的.gitignore 文件</strong></p>
+<p>在需要跟踪的空目录下创建<code>.gitignore</code>，并写入以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 忽略当前目录下所有文件</span><br><span class="line">*</span><br><span class="line"># 不忽略.gitignore文件本身</span><br><span class="line">!.gitignore</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交配置文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/.gitignore</span><br><span class="line">git commit -m &quot;Track empty directory via .gitignore&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>目录未来会添加文件，但需要明确忽略规则（如日志目录、缓存目录）</li>
+<li>避免团队成员误提交目录内的临时文件</li>
+</ul>
+<h3 id="核心优势-1"><a href="#核心优势-1" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>规则清晰：通过配置文件明确目录的忽略策略</li>
+<li>一劳永逸：后续添加符合规则的文件时，无需修改配置</li>
+</ul>
+<h2 id="三、语义化方案：添加-README-文档"><a href="#三、语义化方案：添加-README-文档" class="headerlink" title="三、语义化方案：添加 README 文档"></a>三、语义化方案：添加 README 文档</h2><p>如果空目录的用途需要向团队说明（比如 “预留目录”“临时文件目录”），这种方法既能保留目录，又能提供文档价值，一举两得。</p>
+<h3 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h3><p>在空目录中放置<code>README.md</code>文件，Git 会跟踪该文档，从而保留目录结构。同时，README 文件可以详细说明目录的用途、使用规范等，提升项目可维护性。</p>
+<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p><strong>创建带说明的 README 文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 写入目录说明（可根据实际需求修改内容）</span><br><span class="line">echo &quot;This directory is reserved for future cache files. Do not delete it.&quot; &gt; path/to/empty_dir/README.md</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交文档文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/README.md</span><br><span class="line">git commit -m &quot;Add README to explain empty directory purpose&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>开源项目中的预留目录（需向贡献者说明用途）</li>
+<li>团队协作中需要明确目录职责的场景</li>
+<li>需长期保留且用途固定的空目录</li>
+</ul>
+<h3 id="核心优势-2"><a href="#核心优势-2" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
+<li>语义化强：通过文档直接说明目录用途，减少沟通成本</li>
+<li>附加价值：提升项目文档完整性，便于新人快速上手</li>
+</ul>
+<h2 id="三种方案对比：怎么选？"><a href="#三种方案对比：怎么选？" class="headerlink" title="三种方案对比：怎么选？"></a>三种方案对比：怎么选？</h2><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">核心文件</th>
+<th align="center">适用场景</th>
+<th align="center">核心优点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>.gitkeep</code>占位文件</td>
+<td align="center"><code>.gitkeep</code></td>
+<td align="center">通用场景、快速保留目录</td>
+<td align="center">操作简单、兼容性强、无副作用</td>
+</tr>
+<tr>
+<td align="center"><code>.gitignore</code>反向配置</td>
+<td align="center"><code>.gitignore</code></td>
+<td align="center">需忽略未来文件的目录</td>
+<td align="center">规则明确、一劳永逸</td>
+</tr>
+<tr>
+<td align="center"><code>README</code>文档</td>
+<td align="center"><code>README.md</code></td>
+<td align="center">需说明用途的目录</td>
+<td align="center">语义化清晰、提供文档价值</td>
+</tr>
+</tbody></table>
+<h2 id="注意事项（避坑指南）"><a href="#注意事项（避坑指南）" class="headerlink" title="注意事项（避坑指南）"></a>注意事项（避坑指南）</h2><ol>
+<li><strong>命名规范</strong>：<code>.gitkeep</code>是行业惯例，不建议自定义名称（如<code>.keep</code>），避免团队认知不一致</li>
+<li><strong>前缀禁忌</strong>：除<code>.gitignore</code>外，不要使用<code>.git</code>前缀命名文件（Git 会默认忽略此类文件，导致配置失效）</li>
+<li><strong>目录删除</strong>：如果后续需要删除已跟踪的空目录，需先删除目录内的占位文件（.gitkeep&#x2F;.gitignore&#x2F;README），再删除目录并提交</li>
+<li><strong>批量处理</strong>：使用<code>find</code>命令批量创建<code>.gitkeep</code>时，注意目录权限（避免无写入权限导致命令执行失败）</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Git 不直接支持空目录跟踪，但通过 “添加占位文件” 的核心思路，我们可以根据实际需求选择不同方案：</p>
+<ul>
+<li>快速解决、通用场景：优先选<code>.gitkeep</code></li>
+<li>需忽略规则、未来加文件：选<code>.gitignore</code>反向配置</li>
+<li>需说明用途、提升可维护性：选<code>README</code>文档</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/" class="post-title-link" itemprop="url">Apache优化：修改最大并发连接数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-12-19 16:24:00" itemprop="dateCreated datePublished" datetime="2017-12-19T16:24:00+08:00">2017-12-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>MPM(多路处理模块)</p>
+<p>常见:</p>
 <ol>
-<li>执行<code>npm i lrz</code>（推荐）</li>
-<li>执行<code>bower install lrz</code></li>
+<li>perfork 预处理进程方式</li>
+<li>worker 工作者模式</li>
+<li>winnt 在windows使用</li>
 </ol>
-<p>接着在页面中引入</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./dist/lrz.bundle.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>案例:把apache的最大并发数配置成1000个</p>
+<h2 id="首先确认apache的mpm方式"><a href="#首先确认apache的mpm方式" class="headerlink" title="首先确认apache的mpm方式"></a>首先确认apache的mpm方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd&gt;httpd.exe -l #可以看到是什么模式了</span><br></pre></td></tr></table></figure>
 
-<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1:"></a>方式1:</h3><p>如果您的图片来自用户拍摄或者上传的，您需要一个<code>input file</code>来获取图片。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里就看 <code>mpm_xxx.c</code> 这个 <code>xxx</code> 就是那个了</p>
+<h2 id="修改httpd-conf文件"><a href="#修改httpd-conf文件" class="headerlink" title="修改httpd.conf文件"></a>修改httpd.conf文件</h2><p>搜索 <code>mpm</code> ,找到 <code>Server-pool management(MPM specific)</code></p>
+<p>去掉 <code># Include conf/extra/httpd-mpm.conf</code></p>
+<h2 id="修改-conf-extra-httpd-mpm-conf-文件"><a href="#修改-conf-extra-httpd-mpm-conf-文件" class="headerlink" title="修改 conf/extra/httpd-mpm.conf 文件"></a>修改 <code>conf/extra/httpd-mpm.conf</code> 文件</h2><h3 id="prefork模式就修改这里"><a href="#prefork模式就修改这里" class="headerlink" title="prefork模式就修改这里"></a>prefork模式就修改这里</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先开启的进程</span><br><span class="line">	MinSpareServers 5 # 最小预留5个</span><br><span class="line">	MaxSpareServers 10 # 最大留10</span><br><span class="line">	MaxClients 150 # 最多并发多少个 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多请求多少次 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>接着通过change事件可以得到用户选择的图片</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#file&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">	<span class="title function_">lrz</span>(<span class="variable language_">this</span>.<span class="property">files</span>[<span class="number">0</span>])</span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">rst</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(rst);</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">always</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="winnt模式"><a href="#winnt模式" class="headerlink" title="winnt模式"></a>winnt模式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_winnt_module</span>&gt;</span></span><br><span class="line">	ThreadsPerChild 150 # 最大并发数 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多处理多少次请求 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="方式2："><a href="#方式2：" class="headerlink" title="方式2："></a>方式2：</h3><p>如果您的图片不是来自用户上传的，那么也可以直接传入图片路径。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">lrz</span>(<span class="string">&#x27;./xxx/xx/x.png&#x27;</span>)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">rst</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>)&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">always</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>修改后面有*的那个字段的数值然后重新启动 <code>apache</code></p>
+<p>说明:配置到多大,不一定就可能支撑这么大的并发,考虑到本身 <code>apache</code> 所在的机器硬件性能(如:内存,CPU,硬盘IO)</p>
+<p>系统是 <code>linux/unix</code> ,配置 <code>perfork</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10</span><br><span class="line">	MaxClients 150 *#并发量</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="后端处理"><a href="#后端处理" class="headerlink" title="后端处理"></a>后端处理</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtp">后端处理请查看WIKI。<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtp">具体参数说明请查看WIKI。<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h1><p>IE10以上及大部分非IE浏览器（chrome、微信什么的）</p>
-<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM=">有疑问请直接在 issues 中提问<i class="fa fa-external-link-alt"></i></span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请一定记得附上以下内容：💡</span><br><span class="line">请一定记得附上以下内容：🙈</span><br><span class="line">请一定记得附上以下内容：💡</span><br><span class="line"></span><br><span class="line">平台：微信..</span><br><span class="line">设备：iPhone5 IOS7..</span><br><span class="line">问题：问题描述呗..</span><br></pre></td></tr></table></figure>
+<p>给大家一个合理的建议配置,对大部份网站,中型网站配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先启动</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10 # 最大空闲进程</span><br><span class="line">	ServerLimit 1500 *# 用于修改apache编程参数</span><br><span class="line">	MaxClients 1000 *# 最大并发数</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>Q：能否提供完整的一套UI?</p>
-</li>
-<li><p>A：暂时定位是作为纯粹的处理插件，或许会考虑开发一整套UI。</p>
-</li>
-<li><p>Q：有时拍摄完照片后，页面自动刷新或闪退了。</p>
-</li>
-<li><p>A：虽然已作了优化处理，但内存似乎还是爆掉了，常见于低配android手机，建议每次只处理一张图片。</p>
-</li>
-<li><p>Q: 怎么批量上传图片?</p>
-</li>
-<li><p>A: 您可以自己写个循环来传入用户多选的图片，但在移动端上请谨慎处理，原因同上。</p>
-</li>
-<li><p>Q: 直接传入图片路径的无法生成图片</p>
-</li>
-<li><p>A: 可能是跨域的问题，具体请看<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSFRNTC9DT1JTX2VuYWJsZWRfaW1hZ2U=">CORS_enabled_image<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p>Q: 想要商用可以吗？</p>
-</li>
-<li><p>A: 没问题，但请留意issue里已知的问题。</p>
-</li>
-</ul>
-<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtpLzMuLSVFNiVCQSU5MCVFNyVBMCU4MSVFOSU4MCVCQiVFOCVCRSU5MQ==">想要参与 or 自己定制 or 了解源码请点击这里，逻辑和说明<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
-<li>@dwandw</li>
-<li>@yourlin</li>
-<li>@wxt2005</li>
-</ul>
-<p>以上在之前的版本帮忙参与维护的朋友，以及提出问题的朋友们，真的真的很感谢你们。：D</p>
+<p>注:apache2.2以后才有的ServerLimit这个参数,其中ServerLimit数值大于MaxClients数值</p>
+<p>如果网站的pv值百万</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerLimit 2500 *# 用于修改apache编程参数</span><br><span class="line">MaxClients 2000 *# 最大并发数</span><br></pre></td></tr></table></figure>
+
+<p>注:调到这就是极限了,要是网站访问还是大,哪就要增加apache服务器了</p>
 
       
     </div>
@@ -372,7 +1291,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/12/oh-my-zsh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -390,7 +1309,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/" class="post-title-link" itemprop="url">PHP获取curl传输进度</a>
+          <a href="/2017/12/12/oh-my-zsh/" class="post-title-link" itemprop="url">oh-my-zsh</a>
         </h2>
 
         <div class="post-meta-container">
@@ -401,7 +1320,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-21T00:00:00+08:00">2017-07-21</time>
+      <time title="创建时间：2017-12-12 13:16:38" itemprop="dateCreated datePublished" datetime="2017-12-12T13:16:38+08:00">2017-12-12</time>
     </span>
 
   
@@ -414,702 +1333,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>curl上传或者下载，有以下2个选项：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CURLOPT_NOPROGRESS =&gt; <span class="literal">false</span>,</span><br><span class="line">CURLOPT_PROGRESSFUNCTION =&gt; <span class="string">&#x27;callback&#x27;</span>,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>CURLOPT_NOPROGRESS：是否关闭传输进度，默认是true。</li>
-<li>CURLOPT_PROGRESSFUNCTION：回调函数，curl传输过程中，会每隔一段时间自动调用该函数。我测试过，间隔不到1秒，具体不知道。官方的注释是这样：设置一个回调函数，有五个参数，第一个是cURL的资源句柄，第二个是预计要下载的总字节（bytes）数。第三个是目前下载的字节数，第四个是预计传输中总上传字节数，第五个是目前上传的字节数。（注意回调函数的命名空间。如：CURLOPT_PROGRESSFUNCTION &#x3D;&gt; ‘namespace_xxx\callback’）</li>
-</ul>
-<p>设置完成后，需要定义回调函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"><span class="variable">$resource</span>, <span class="variable">$downloadSize</span> = <span class="number">0</span>, <span class="variable">$downloaded</span> = <span class="number">0</span>, <span class="variable">$uploadSize</span> = <span class="number">0</span>, <span class="variable">$uploaded</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// php5.5之前的参数是不同的，所以要考虑到兼容性</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">version_compare</span>(PHP_VERSION, <span class="string">&#x27;5.5.0&#x27;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="variable">$downloadSize</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploaded</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">S</span>(<span class="string">&#x27;file_upload_&#x27;</span> . <span class="title function_ invoke__">session</span>(<span class="string">&#x27;user_auth.uid&#x27;</span>), <span class="variable">$info</span>, <span class="number">300</span>); <span class="comment">// 可以将结果存放到缓存（这里是ThinkPHP例子）</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<p>重要：<br>在curl发起请求时，如果开启了 session，会独占 session ，阻塞其他的请求。所以如果框架默认启用了 session ，在 curl 之前可以用session_write_close() 函数关闭 session 阻塞。<br>参考：<span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9za2lsbENvZGluZy9hcmNoaXZlLzIwMTIvMDQvMDkvMjQzOTI5Ni5odG1s">http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html<i class="fa fa-external-link-alt"></i></span></p>
-<p>最后：在进行传输时，可以每隔1秒通过ajax来获取缓存信息，从而显示传输进度。</p>
-<p>补充：<br>传送大文件时，php会超时，注意设置 php-fpm.conf 中的 request_terminate_timeout 值，我设了1000（秒）。<br>还有个 max_children（进程数） ，进程不够用可改大。<br>在程序中，可以使用 set_time_limit() 临时增加 php 响应时间。<br>php.ini中还有 max_execution_time 设置，看攻略说是跟 set_time_limit 累加的，如果攻略是对的，那么这个不用管。</p>
-<p>原文链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2J1ZXIyMjAyL2FydGljbGUvZGV0YWlscy83NTM2NDkzOQ==">https://blog.csdn.net/buer2202/article/details/75364939<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/" class="post-title-link" itemprop="url">当script中的type等于text/html时，我们可以做很多事件！</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-07-15 19:47:30" itemprop="dateCreated datePublished" datetime="2017-07-15T19:47:30+08:00">2017-07-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们可以在 <code>&lt;script&gt;</code> 片断中定义一个被JS调用的代码，但代码又不在页面上显示，这时，我们可以使用下面的方法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;commentTemplate&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;photo&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;[UserImg]&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>[UserName]：<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span>[CreateDate]<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clear&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;comment_ul_2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;addFun&quot;</span> <span class="attr">value</span>=<span class="string">&quot;click me&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;\\[([^\\[\\]]*?)\\]&quot;</span>, <span class="string">&#x27;igm&#x27;</span>); <span class="comment">//i g m是指分别用于指定区分大小写的匹配、全局匹配和多行匹配。</span></span></span><br><span class="line"><span class="language-javascript">    $(<span class="string">&quot;#addFun&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> html = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;commentTemplate&quot;</span>).<span class="property">innerHTML</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> source = html.<span class="title function_">replace</span>(reg, <span class="keyword">function</span> (<span class="params">node, key</span>) &#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;UserImg&#x27;</span>: <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;UserName&#x27;</span>: <span class="string">&#x27;zhang&#x27;</span>, <span class="string">&#x27;CreateDate&#x27;</span>: <span class="string">&#x27;2011-1-1&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#comment_ul_2&quot;</span>).<span class="title function_">append</span>(source);</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> zzl = <span class="string">&quot;name:[name]&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    zzl = zzl.<span class="title function_">replace</span>(reg, <span class="keyword">function</span> (<span class="params">node, key</span>) &#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;占占&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(zzl);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>OK，这个意思是说，当你单击按钮时，可以把 <code>commentTemplate</code> 的内容追到 <code>comment_ul_2</code> 里，这很有意思吧，呵呵！</p>
-<p>而其中有一个 <code>replace</code> ，也很有意思，向在替换时，可以接受一个 json 字符串，然后根据 json 的 <code>key</code> 来对比 js 模块里的 <code>key</code> ，进行赋值！</p>
-<p>真的很有意思！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">一款开源指纹识别工具</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-07-07 17:00:22" itemprop="dateCreated datePublished" datetime="2017-07-07T17:00:22+08:00">2017-07-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一款开源指纹识别工具。</p>
-<hr>
-<hr>
-<p> 开源工具使用说明：<br>      -u 一个域名或IP,如果输入更多域名或IP使用‘,’分隔；<br>      -r  读取本地域名或IP文件地址；<br>      -t  输入一个线程数量，默认线程为50；<br>      -p  设置一个请求端口，默认端口为80；<br>      -s  设置一个请求协议，默认请求协议为http.(http、https)；<br>      -h  查看使用帮助；<br>      -o  输出识别结果到本地文件；<br>      -m  选择一个常规识别模式，默认使用模式为1；（1：快速识别一条指纹 2：获取命中率高的指纹 3：得到所有匹配的指纹）<br>      –http-request 设置一个自定义请求URL；<br>      –http-response 设置一个自定义关键字符。(支持正则表达式字符，自定义枚举指纹字符)<br>      注：自定义识别模式参数为 –http-request &#x2F;robots.txt –http-response discuz；不能和-m 常规识别模式一起使用。-u和-r参数不能同时使用。<br>	<br>	  1. 使用-m参数选择常规识别模式，有3种可选模式。下面具体说明：<br>	     -m 1：快速识别一条指纹，请求设置的url，获取相应识别方式的响应信息，进行数据库指纹遍历匹配，匹配到一条则跳出程序，显示识别结果。（速度较快）<br>		 -m 2: 获取命中率高的指纹，例如请求url,进行指纹库全部遍历匹配，比如一个网址，命中了1个dedecms，2个 phpcms，1个discuz，那么显示的识别结果为phpcms程序。<br>		 -m 3: 获取匹配识别所有的指纹信息，请求url获取响应信息，进行指纹库全部遍历匹配，最后获取指纹识别所有结果。（速度较慢、数据最全）<br>	  2. 使用–http-request、–http-response参数自定义识别模式，下面具体说明：<br>	     使用自定义识别模式应同时使用–http-request、–http-response两个参数，第一个参数设置为请求路径，第二个参数设置响应信息关键字符（支持正则表达式、不过注意大小写问题）<br>	<br>	  例：java -jar Dayu.jar -r d:\1.txt -t 100 –http-request &#x2F; –http-response tomcat<br>	      java -jar Dayu.jar -u <span class="exturl" data-url="aHR0cDovL3d3dy5kaXNjdXoubmV0LHd3dy5kZWRlY21zLmNvbS8=">www.discuz.net,www.dedecms.com<i class="fa fa-external-link-alt"></i></span> -o d:\result.txt<br>		  java -jar Dayu.jar -u cn.wordpress.org -s https -p 443  -m 3<br>		<br> Dayu.jar程序说明：<br>      Feature.json指纹文件放到D盘根目录(d:\Feature.json),如无D磁盘，请自行下载源码更改org.secbug.conf下Context.java文件中的currpath常量。<br>	<br> 在此说明：<br>      指纹识别离不开指纹库的强大。希望用户多多在我们平台 <span class="exturl" data-url="aHR0cDovL3d3dy5zZWNidWcub3JnOjgwODAv">http://www.secbug.org:8080/<i class="fa fa-external-link-alt"></i></span> 提交指纹，我们一起进步。<br>	<br>	  ☆☆ 本版本为第二版，第一版基于数据库sql文件，可保存指纹识别结果。如有需要，请联系QQ212125278所取。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01zMHgwL0RheXUx">https://github.com/Ms0x0/Dayu1<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/wget%E5%91%BD%E4%BB%A4%E6%95%B4%E7%AB%99%E4%B8%8B%E8%BD%BD%E5%81%9A%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/07/wget%E5%91%BD%E4%BB%A4%E6%95%B4%E7%AB%99%E4%B8%8B%E8%BD%BD%E5%81%9A%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">wget命令整站下载做网站镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-07-07 16:57:15" itemprop="dateCreated datePublished" datetime="2017-07-07T16:57:15+08:00">2017-07-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在 linux 下完整的用 wget 命令整站采集网站做镜像的命令是：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -m -e robots=off -U &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&quot; &quot;http://www.example.com/&quot;</span><br></pre></td></tr></table></figure>
-
-<p>wget命令参数注释：</p>
-<p><code>-e robots=off</code> #让 wget 耍流氓无视 robots.txt 协议</p>
-<p><code>-U &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&quot;</code>	#伪造 agent 信息</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/07/04/WebSocket%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">WebSocket协议</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-07-04 15:48:33" itemprop="dateCreated datePublished" datetime="2017-07-04T15:48:33+08:00">2017-07-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WS</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$master</span>;  <span class="comment">// 连接 server 的 client</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$sockets</span> = <span class="keyword">array</span>(); <span class="comment">// 不同状态的 socket 管理</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$handshake</span> = <span class="literal">false</span>; <span class="comment">// 判断是否握手</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$address</span>, <span class="variable">$port</span></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 建立一个 socket 套接字</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;master = <span class="title function_ invoke__">socket_create</span>(AF_INET, SOCK_STREAM, SOL_TCP)   </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_create() failed&quot;</span>);</span><br><span class="line">        <span class="title function_ invoke__">socket_set_option</span>(<span class="variable">$this</span>-&gt;master, SOL_SOCKET, SO_REUSEADDR, <span class="number">1</span>)  </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_option() failed&quot;</span>);</span><br><span class="line">        <span class="title function_ invoke__">socket_bind</span>(<span class="variable">$this</span>-&gt;master, <span class="variable">$address</span>, <span class="variable">$port</span>)                    </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_bind() failed&quot;</span>);</span><br><span class="line">        <span class="title function_ invoke__">socket_listen</span>(<span class="variable">$this</span>-&gt;master, <span class="number">2</span>)                               </span><br><span class="line">            <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;socket_listen() failed&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;sockets[] = <span class="variable language_">$this</span>-&gt;master;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// debug</span></span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">&quot;Master socket  : &quot;</span>.<span class="variable language_">$this</span>-&gt;master.<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">//自动选择来消息的 socket 如果是握手 自动选择主机</span></span><br><span class="line">            <span class="variable">$write</span> = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="variable">$except</span> = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="title function_ invoke__">socket_select</span>(<span class="variable">$this</span>-&gt;sockets, <span class="variable">$write</span>, <span class="variable">$except</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable language_">$this</span>-&gt;sockets <span class="keyword">as</span> <span class="variable">$socket</span>) &#123;</span><br><span class="line">                <span class="comment">//连接主机的 client </span></span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$socket</span> == <span class="variable language_">$this</span>-&gt;master)&#123;</span><br><span class="line">                    <span class="variable">$client</span> = <span class="title function_ invoke__">socket_accept</span>(<span class="variable">$this</span>-&gt;master);</span><br><span class="line">                    <span class="keyword">if</span> (<span class="variable">$client</span> &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// debug</span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;socket_accept() failed&quot;</span>;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//connect($client);</span></span><br><span class="line">                        <span class="title function_ invoke__">array_push</span>(<span class="variable">$this</span>-&gt;sockets, <span class="variable">$client</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;connect client\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="variable">$bytes</span> = @<span class="title function_ invoke__">socket_recv</span>(<span class="variable">$socket</span>,<span class="variable">$buffer</span>,<span class="number">2048</span>,<span class="number">0</span>);</span><br><span class="line">                    <span class="title function_ invoke__">print_r</span>(<span class="variable">$buffer</span>);</span><br><span class="line">                    <span class="keyword">if</span>(<span class="variable">$bytes</span> == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">                    <span class="keyword">if</span> (!<span class="variable language_">$this</span>-&gt;handshake) &#123;</span><br><span class="line">                        <span class="comment">// 如果没有握手，先握手回应</span></span><br><span class="line">                        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">doHandShake</span>(<span class="variable">$socket</span>, <span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;shakeHands\n&quot;</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    </span><br><span class="line">                        <span class="comment">// 如果已经握手，直接接受数据，并处理</span></span><br><span class="line">                        <span class="variable">$buffer</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">decode</span>(<span class="variable">$buffer</span>);</span><br><span class="line">                        <span class="comment">//process($socket, $buffer); </span></span><br><span class="line">                        <span class="keyword">echo</span> <span class="string">&quot;send file\n&quot;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dohandshake</span>(<span class="params"><span class="variable">$socket</span>, <span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 获取加密key</span></span><br><span class="line">        <span class="variable">$acceptKey</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">encry</span>(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$upgrade</span> = <span class="string">&quot;HTTP/1.1 101 Switching Protocols\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Upgrade: websocket\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Connection: Upgrade\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;Sec-WebSocket-Accept: &quot;</span> . <span class="variable">$acceptKey</span> . <span class="string">&quot;\r\n&quot;</span> .</span><br><span class="line">                   <span class="string">&quot;\r\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;dohandshake &quot;</span>.<span class="variable">$upgrade</span>.<span class="title function_ invoke__">chr</span>(<span class="number">0</span>);           </span><br><span class="line">        <span class="comment">// 写入socket</span></span><br><span class="line">        <span class="title function_ invoke__">socket_write</span>(<span class="variable">$socket</span>,<span class="variable">$upgrade</span>.<span class="title function_ invoke__">chr</span>(<span class="number">0</span>), <span class="title function_ invoke__">strlen</span>(<span class="variable">$upgrade</span>.<span class="title function_ invoke__">chr</span>(<span class="number">0</span>)));</span><br><span class="line">        <span class="comment">// 标记握手已经成功，下次接受数据采用数据帧格式</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;handshake = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">encry</span>(<span class="params"><span class="variable">$req</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getKey</span>(<span class="variable">$req</span>);</span><br><span class="line">        <span class="variable">$mask</span> = <span class="string">&quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">sha1</span>(<span class="variable">$key</span> . <span class="string">&#x27;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&#x27;</span>, <span class="literal">true</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"><span class="variable">$req</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$key</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/Sec-WebSocket-Key: (.*)\r\n/&quot;</span>, <span class="variable">$req</span>, <span class="variable">$match</span>)) &#123; </span><br><span class="line">            <span class="variable">$key</span> = <span class="variable">$match</span>[<span class="number">1</span>]; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$key</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 解析数据帧</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">decode</span>(<span class="params"><span class="variable">$buffer</span></span>)  </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$len</span> = <span class="variable">$masks</span> = <span class="variable">$data</span> = <span class="variable">$decoded</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="variable">$len</span> = <span class="title function_ invoke__">ord</span>(<span class="variable">$buffer</span>[<span class="number">1</span>]) &amp; <span class="number">127</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">126</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">8</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$len</span> === <span class="number">127</span>)  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">10</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">14</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="variable">$masks</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">            <span class="variable">$data</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$buffer</span>, <span class="number">6</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$index</span> = <span class="number">0</span>; <span class="variable">$index</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$data</span>); <span class="variable">$index</span>++) &#123;</span><br><span class="line">            <span class="variable">$decoded</span> .= <span class="variable">$data</span>[<span class="variable">$index</span>] ^ <span class="variable">$masks</span>[<span class="variable">$index</span> % <span class="number">4</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$decoded</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回帧信息处理</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">frame</span>(<span class="params"><span class="variable">$s</span></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = <span class="title function_ invoke__">str_split</span>(<span class="variable">$s</span>, <span class="number">125</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">count</span>(<span class="variable">$a</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;\x81&quot;</span> . <span class="title function_ invoke__">chr</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>[<span class="number">0</span>])) . <span class="variable">$a</span>[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$ns</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$o</span>) &#123;</span><br><span class="line">            <span class="variable">$ns</span> .= <span class="string">&quot;\x81&quot;</span> . <span class="title function_ invoke__">chr</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$o</span>)) . <span class="variable">$o</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$ns</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回数据</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"><span class="variable">$client</span>, <span class="variable">$msg</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">frame</span>(<span class="variable">$msg</span>);</span><br><span class="line">        <span class="title function_ invoke__">socket_write</span>(<span class="variable">$client</span>, <span class="variable">$msg</span>, <span class="title function_ invoke__">strlen</span>(<span class="variable">$msg</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试    </span></span><br><span class="line"><span class="variable">$ws</span> = <span class="keyword">new</span> <span class="title function_ invoke__">WS</span>(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/06/12/%E7%BA%AA%E5%BF%B5%E7%A2%91%E8%B0%B72%EF%BC%9A%E7%8E%B0%E8%B1%A1%E7%BA%A7%E7%A5%9E%E4%BD%9C%E8%83%8C%E5%90%8E%E6%9C%89%E7%9D%80%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/06/12/%E7%BA%AA%E5%BF%B5%E7%A2%91%E8%B0%B72%EF%BC%9A%E7%8E%B0%E8%B1%A1%E7%BA%A7%E7%A5%9E%E4%BD%9C%E8%83%8C%E5%90%8E%E6%9C%89%E7%9D%80%E6%80%8E%E6%A0%B7%E7%9A%84%E6%95%85%E4%BA%8B%EF%BC%9F/" class="post-title-link" itemprop="url">纪念碑谷2：现象级神作背后有着怎样的故事？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-06-12 23:04:34" itemprop="dateCreated datePublished" datetime="2017-06-12T23:04:34+08:00">2017-06-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>纪念碑谷 2 上线 App Store 过去一天了，有不少朋友也已经迫不及待地下载并通关了。当然，其中也包括了 AppSo。</p>
-<p>前天，AppSo（微信号 AppSo）简单地介绍了纪念碑谷 2，那么今天我们就为大家带来背后团队的采访和详细的评测吧。</p>
-<h3 id="它仍是我们喜欢的纪念碑谷"><a href="#它仍是我们喜欢的纪念碑谷" class="headerlink" title="它仍是我们喜欢的纪念碑谷"></a>它仍是我们喜欢的纪念碑谷</h3><p>纪念碑谷原来的设计师 Ken Wong 已经离开了团队，回到了澳洲，所以这次的设计团队也是一个完全不一样的团队，有不少人担心它的游戏内核会不会发生变化。</p>
-<p>纪念碑谷 2 延续了纪念碑谷 1 的玩法，你需要利用视错觉让主角走出迷宫。设计依旧以艺术家埃舍尔的创作为基础，利用了「潘洛斯三角」、「凹凸错觉」「二维三维的扭转变换」……画风延续之余，但剧情发生了较大的变化。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/monument-valley-2.jpg"></p>
-<p>相信大家都记得第一代的纪念碑谷有着相对阴郁的剧情，它的主题是「宽恕」。而纪念碑谷 2 的基调就变得轻快起来——它探讨的是一个「亲子关系」的故事。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/jinianbeigu.gif"></p>
-<p>继前作的「艾达公主」之后，此次带领我们踏上旅程的是「罗尔」和她的孩子。在旅途中，你将帮助主角罗尔教导她的小孩。</p>
-<p>极富想象力的场景，和无论色调、元素单一或复杂都至臻完美的画面，带来视听享受的同时，令我们倍感熟悉。</p>
-<p>不同的是，这趟旅途少了孤单，多了陪伴。目的也不再是寻觅，而是互相扶持着携手并进。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/Monument-Valley-24.jpg"></p>
-<p>孩子奔跑、跌倒，无力遥望坠落的母亲时，我们不免揪心。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/jinianbeigu-02.gif"></p>
-<p>当两人终于跨过险阻冲向终点时，我们深深感动。</p>
-<p>剧情已经足够丰富，「纪念碑谷 2」却未就此停下。</p>
-<p>关卡不断推进，冷静质朴的文字揭示了更为残忍的事实——孩子终将长大成人，伴随他们度过人生旅程的父母也将回归孤独，再度独自踏上旅程。</p>
-<blockquote>
-<p>顺逆相随，让她羽翼自丰。<br>面对生命进程，我们不乏勇气，而是放手的决心。<br>你，终将继续完成属于自己的旅程。</p>
-</blockquote>
-<p>这种安排无疑会令玩家怅然若失，却也成就了纪念碑谷 2 的超高人气。</p>
-<h3 id="然而，为什么会选择这样的故事？"><a href="#然而，为什么会选择这样的故事？" class="headerlink" title="然而，为什么会选择这样的故事？"></a>然而，为什么会选择这样的故事？</h3><p>见纪念碑谷团队的时候，是在一个布置温馨的小房间，游戏总监 Dan Gray 脸上带着轻松的笑容——纪念碑谷 2 如期成功上线，在 WWDC 上进行了一次短暂的亮相。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/cover.jpg"></p>
-<p>在采访前，我已经到达了第五章，而游戏总监 Dan Gray 看到则说：</p>
-<blockquote>
-<p>Aha, you go far.</p>
-</blockquote>
-<p>纪念碑谷 2 一共有 14 个关卡，耗费 15 个月完成，比起纪念碑谷少了 4 个关卡。而不少通关的朋友也表示，相对于纪念碑谷，纪念碑谷 2 的难度有所降低，但依旧精美。</p>
-<blockquote>
-<p>纪念碑谷艾达的故事已经完结了，它是一个完整的故事。</p>
-</blockquote>
-<p>纪念碑谷游戏制作人 Adrienne Law 告诉 AppSo（微信号 AppSo），团队不想为了续作而去专门设计情节去承接实际上已经完整的故事，而且有大约 1&#x2F;3 的新人加入团队，对故事充满了激情，有很多新想法，需要一个全新剧本去承载。</p>
-<p>而 Dan Gray 也补充，希望通过开启一个新故事，让没有玩过纪念碑谷 1 的朋友，直接上手纪念碑谷 2 的时候，不会觉得错过了剧情。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/Monument-Valley-23.jpg"></p>
-<p>但其实纪念碑谷 1 和 2 之间有很微妙的连通，只是藏得比较深，需要玩家仔细留意。</p>
-<p>至于为什么选择了「亲子关系」这个主题，他们是这样看的：</p>
-<blockquote>
-<p>很少有游戏触及母子关系的主题，纪念碑谷的玩家也会长大，我们自己也为人子女，在长大的过程中对母亲的想法会有所改变，所以会尝试探索这个话题。随着孩子不断成长，母亲和孩子的关系会不断地变化。</p>
-</blockquote>
-<p>而我们在评测时也发现，这样的「探索」也反映在「双人关卡」的设计上。在部分关卡里，女儿会以母亲为「榜样」——我们控制罗尔移动，女儿也会进行相应的走位。需要两个人互相配合才能通关。</p>
-<blockquote>
-<p>纪念碑谷的成功能复制吗？</p>
-</blockquote>
-<p>像纪念碑谷这样现象级的独立游戏屈指可数，而能真正做到「叫好又叫座」的更是凤毛麟角。纪念碑谷的盈利模式很简单，就是单纯地买游戏，和国内靠卖装备卖金币真正赚钱的「氪金手游」不同。</p>
-<p>这种单纯卖游戏的商业模式，同样适用于别的独立应用&#x2F;游戏吗？</p>
-<p>Dan Gray 给出了这样的回答：</p>
-<blockquote>
-<p>看目标是什么。有很多小公司其实能一直以这样的方式做下去。如果保持公司现有的规模，则能维持经营。不过，一旦公司做大了，就不得不选择其他商业模式保持运营。</p>
-</blockquote>
-<p>当然，纪念碑谷团队也会希望更多中国玩家接触这款游戏，同时让纪念碑谷这个 IP 有更多可能性的发展，他们选择了腾讯作为代理。</p>
-<p>腾讯游戏是国内最大的移动游戏平台，而且有庞大的社区和用户群体。因此无论是用户量还是游戏 IP 的包装，我们可以期待纪念碑谷能有更多新的可能：</p>
-<blockquote>
-<p>我们是个付费游戏，让更多的人知道我们，需要腾讯这样的公司来代理，扩大影响力。</p>
-</blockquote>
-<p>无论选择什么代理公司，也不会影响它作为独立游戏的本质。初次开启时你可选择微信或 QQ 登录，这能让你分享图片到朋友圈等平台。当然你也可以选择游客模式，这不会对后续的关卡造成任何影响。</p>
-<p>除此之外，纪念碑谷也会出自己的周边产品，让大家更立体地体验游戏世界。</p>
-<p><img src="http://ifanr-cdn.b0.upaiyun.com/wp-content/uploads/2017/06/01-1.jpg"></p>
-<p>目前，纪念碑谷 2 已上线各区 App Store，售价 30 元，而 Android 平台暂时未有上线计划。</p>
-<p>因为大部分独立开发者都是开发付费游戏，而 iTunes 上付费 app 的推广效果最好。为了保持营收，所以大部分独立游戏都会先上 iOS 版本，或者干脆只有 iOS 版本。</p>
-<p>不同人的选择不同，而 iOS 用户更倾向为高质量的游戏付费。除此之外，苹果也会提供更好的支持（纪念碑谷 2 已经横扫 App Store 推广位了），所以也是纪念碑谷团队选择 iOS 平台原因。</p>
-<p>AppSo 当然知道，有很多愿意为优质 app 付费的 Android 用户，也有很多不愿意花钱的 iOS 用户，但平台给创作者的回馈不同，创作者自然会予以相应的选择。</p>
-<p>这也是为什么 AppSo 一直倡导正版的原因：</p>
-<blockquote>
-<p>你花的每一分钱，都在为你想要的世界买单。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/27/Highlight.js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/27/Highlight.js/" class="post-title-link" itemprop="url">Highlight.js</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-05-27 20:10:09" itemprop="dateCreated datePublished" datetime="2017-05-27T20:10:09+08:00">2017-05-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Highlight-js"><a href="#Highlight-js" class="headerlink" title="Highlight.js"></a>Highlight.js</h1><p><a target="_blank" rel="noopener" href="https://travis-ci.org/isagalaev/highlight.js"><img src="https://travis-ci.org/isagalaev/highlight.js.svg?branch=master" alt="Build Status"></a></p>
-<p>Highlight.js is a syntax highlighter written in JavaScript. It works in<br>the browser as well as on the server. It works with pretty much any<br>markup, doesn’t depend on any framework and has automatic language<br>detection.</p>
-<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>The bare minimum for using highlight.js on a web page is linking to the<br>library along with one of the styles and calling<br><a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a>:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/styles/default.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/path/to/highlight.pack.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>hljs.initHighlightingOnLoad();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This will find and highlight code inside of <code>&lt;pre&gt;&lt;code&gt;</code> tags; it tries<br>to detect the language automatically. If automatic detection doesn’t<br>work for you, you can specify the language in the <code>class</code> attribute:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;html&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>The list of supported language classes is available in the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html">class<br>reference</a>.  Classes can also be prefixed with either <code>language-</code> or<br><code>lang-</code>.</p>
-<p>To disable highlighting altogether use the <code>nohighlight</code> class:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">code</span> <span class="attr">class</span>=<span class="string">&quot;nohighlight&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Custom-Initialization"><a href="#Custom-Initialization" class="headerlink" title="Custom Initialization"></a>Custom Initialization</h2><p>When you need a bit more control over the initialization of<br>highlight.js, you can use the <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#highlightblock-block"><code>highlightBlock</code></a> and <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a><br>functions. This allows you to control <em>what</em> to highlight and <em>when</em>.</p>
-<p>Here’s an equivalent way to calling <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#inithighlightingonload"><code>initHighlightingOnLoad</code></a> using<br>jQuery:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  $(<span class="string">&#x27;pre code&#x27;</span>).<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">i, block</span>) &#123;</span><br><span class="line">    hljs.<span class="title function_">highlightBlock</span>(block);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>You can use any tags instead of <code>&lt;pre&gt;&lt;code&gt;</code> to mark up your code. If<br>you don’t use a container that preserve line breaks you will need to<br>configure highlight.js to use the <code>&lt;br&gt;</code> tag:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hljs.<span class="title function_">configure</span>(&#123;<span class="attr">useBR</span>: <span class="literal">true</span>&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;div.code&#x27;</span>).<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">i, block</span>) &#123;</span><br><span class="line">  hljs.<span class="title function_">highlightBlock</span>(block);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>For other options refer to the documentation for <a target="_blank" rel="noopener" href="http://highlightjs.readthedocs.io/en/latest/api.html#configure-options"><code>configure</code></a>.</p>
-<h2 id="Web-Workers"><a href="#Web-Workers" class="headerlink" title="Web Workers"></a>Web Workers</h2><p>You can run highlighting inside a web worker to avoid freezing the browser<br>window while dealing with very big chunks of code.</p>
-<p>In your main script:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> code = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#code&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> worker = <span class="keyword">new</span> <span class="title class_">Worker</span>(<span class="string">&#x27;worker.js&#x27;</span>);</span><br><span class="line">  worker.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123; code.<span class="property">innerHTML</span> = event.<span class="property">data</span>; &#125;</span><br><span class="line">  worker.<span class="title function_">postMessage</span>(code.<span class="property">textContent</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>In worker.js:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="title function_">importScripts</span>(<span class="string">&#x27;&lt;path&gt;/highlight.pack.js&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> result = self.<span class="property">hljs</span>.<span class="title function_">highlightAuto</span>(event.<span class="property">data</span>);</span><br><span class="line">  <span class="title function_">postMessage</span>(result.<span class="property">value</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Getting-the-Library"><a href="#Getting-the-Library" class="headerlink" title="Getting the Library"></a>Getting the Library</h2><p>You can get highlight.js as a hosted, or custom-build, browser script or<br>as a server module. Right out of the box the browser script supports<br>both AMD and CommonJS, so if you wish you can use RequireJS or<br>Browserify without having to build from source. The server module also<br>works perfectly fine with Browserify, but there is the option to use a<br>build specific to browsers rather than something meant for a server.<br>Head over to the <span class="exturl" data-url="aHR0cHM6Ly9oaWdobGlnaHRqcy5vcmcvZG93bmxvYWQv">download page<i class="fa fa-external-link-alt"></i></span> for all the options.</p>
-<p><strong>Don’t link to GitHub directly.</strong> The library is not supposed to work straight<br>from the source, it requires building. If none of the pre-packaged options<br>work for you refer to the <span class="exturl" data-url="aHR0cDovL2hpZ2hsaWdodGpzLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9idWlsZGluZy10ZXN0aW5nLmh0bWw=">building documentation<i class="fa fa-external-link-alt"></i></span>.</p>
-<p><strong>The CDN-hosted package doesn’t have all the languages.</strong> Otherwise it’d be<br>too big. If you don’t see the language you need in the <span class="exturl" data-url="aHR0cHM6Ly9oaWdobGlnaHRqcy5vcmcvZG93bmxvYWQv">“Common” section<i class="fa fa-external-link-alt"></i></span>,<br>it can be added manually:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>On Almond.</strong> You need to use the optimizer to give the module a name. For<br>example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.js -o name=hljs paths.hljs=/path/to/highlight out=highlight.js</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>Highlight.js is released under the BSD License. See <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lzYWdhbGFldi9oaWdobGlnaHQuanMvYmxvYi9tYXN0ZXIvTElDRU5TRQ==">LICENSE<i class="fa fa-external-link-alt"></i></span> file<br>for details.</p>
-<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p>The official site for the library is at <span class="exturl" data-url="aHR0cHM6Ly9oaWdobGlnaHRqcy5vcmcv">https://highlightjs.org/<i class="fa fa-external-link-alt"></i></span>.</p>
-<p>Further in-depth documentation for the API and other topics is at<br><span class="exturl" data-url="aHR0cDovL2hpZ2hsaWdodGpzLnJlYWR0aGVkb2NzLmlvLw==">http://highlightjs.readthedocs.io/<i class="fa fa-external-link-alt"></i></span>.</p>
-<p>Authors and contributors are listed in the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lzYWdhbGFldi9oaWdobGlnaHQuanMvYmxvYi9tYXN0ZXIvQVVUSE9SUy5lbi50eHQ=">AUTHORS.en.txt<i class="fa fa-external-link-alt"></i></span> file.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/22/CSS%E6%94%B9%E5%8F%98png%E5%9B%BE%E7%89%87%E9%A2%9C%E8%89%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/22/CSS%E6%94%B9%E5%8F%98png%E5%9B%BE%E7%89%87%E9%A2%9C%E8%89%B2/" class="post-title-link" itemprop="url">CSS改变png图片颜色</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-05-22 22:30:00" itemprop="dateCreated datePublished" datetime="2017-05-22T22:30:00+08:00">2017-05-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-class">.icon</span>&#123;<span class="attribute">height</span>:<span class="number">20px</span>;<span class="attribute">width</span>:<span class="number">20px</span>;<span class="attribute">overflow</span>: hidden;&#125;</span><br><span class="line"><span class="selector-class">.icon</span> <span class="selector-class">.icon</span>&#123;<span class="attribute">width</span>: <span class="number">20px</span>;<span class="attribute">height</span>: <span class="number">20px</span>;<span class="attribute">display</span>:block;<span class="attribute">position</span>: relative;<span class="attribute">left</span>: -<span class="number">20px</span>;<span class="attribute">border-right</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">img/icon.png</span>) no-repeat;-webkit-<span class="attribute">filter</span>: <span class="built_in">drop-shadow</span>(<span class="number">#000</span> <span class="number">20px</span> <span class="number">0</span>);<span class="attribute">filter</span>: <span class="built_in">drop-shadow</span>(<span class="number">#000</span> <span class="number">20px</span> <span class="number">0</span>);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;icon&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&#x27;icon&#x27;</span> <span class="attr">id</span>=<span class="string">&#x27;icon&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;color&quot;</span> <span class="attr">id</span>=<span class="string">&#x27;color&#x27;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;color&#x27;</span>).<span class="property">onchange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> c = <span class="variable language_">this</span>.<span class="property">value</span>;</span><br><span class="line">	<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;icon&#x27;</span>).<span class="property">style</span>.<span class="property">webkitFilter</span> = <span class="string">&#x27;drop-shadow(&#x27;</span>+c+<span class="string">&#x27; 20px 0)&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在谷歌、火狐手机端、都是可以用的，使用的技术是 css 里滤镜里的投影。</p>
-<p>我要睡到下一个世界大战</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/22/HTML5%E6%BB%9A%E5%B1%8F%E7%89%B9%E6%95%88/" class="post-title-link" itemprop="url">HTML5滚屏特效</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-05-22 00:04:02" itemprop="dateCreated datePublished" datetime="2017-05-22T00:04:02+08:00">2017-05-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">*&#123;<span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">padding</span>: <span class="number">0px</span>;&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">overflow</span>: hidden;&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-wrap</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; <span class="attribute">overflow</span>: visible;<span class="attribute">transition</span>:transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);-webkit-<span class="attribute">transition</span>:-webkit-transform <span class="number">1s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.86</span>,<span class="number">0</span>,<span class="number">0.03</span>,<span class="number">1</span>);&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-wrap</span> <span class="selector-class">.section</span>&#123;<span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-1</span>&#123;<span class="attribute">background</span>: <span class="number">#0f0</span>&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-2</span>&#123;<span class="attribute">background</span>: <span class="number">#FF0</span>&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.put-section-1</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(<span class="number">0</span>);&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.put-section-2</span>&#123; <span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);-webkit-<span class="attribute">transform</span>:<span class="built_in">translateY</span>(-<span class="number">100%</span>);&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-btn</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">position</span>:fixed;<span class="attribute">right</span>:<span class="number">4%</span>;<span class="attribute">top</span>:<span class="number">50%</span>;&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span>&#123; <span class="attribute">width</span>:<span class="number">14px</span>;<span class="attribute">height</span>:<span class="number">14px</span>;<span class="attribute">cursor</span>:pointer;<span class="attribute">text-indent</span>:-<span class="number">9999px</span>;<span class="attribute">border-radius</span>:<span class="number">50%</span>;-webkit-<span class="attribute">border-radius</span>:<span class="number">50%</span>;<span class="attribute">margin-bottom</span>:<span class="number">12px</span>; <span class="attribute">background</span>:<span class="number">#BD362F</span>;<span class="attribute">text-align</span>:center; <span class="attribute">color</span>:<span class="number">#fff</span>; onsor:pointer;&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.section-btn</span> <span class="selector-tag">li</span><span class="selector-class">.on</span>&#123; <span class="attribute">background</span>:<span class="number">#fff</span>&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&#x27;section-wrap put-section-1&#x27;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-1&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;section section-2&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;title&#x27;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;tit&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;section-btn&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;on&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&#x27;jiaoben3135/js/jquery.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">$(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> i=<span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> $btn = $(<span class="string">&#x27;.section-btn li&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">		$wrap = $(<span class="string">&#x27;.section-wrap&#x27;</span>),</span></span><br><span class="line"><span class="language-javascript">		$arrow = $(<span class="string">&#x27;.arrow&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">/*当前页面赋值*/</span></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">up</span>(<span class="params"></span>)&#123;i++;<span class="keyword">if</span>(i&gt;$btn.<span class="property">length</span>)&#123;i=<span class="number">1</span>&#125;;&#125;</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">down</span>(<span class="params"></span>)&#123;i--;<span class="keyword">if</span>(i&lt;<span class="number">1</span>)&#123;i=$btn.<span class="property">length</span>&#125;;&#125;</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// /*页面滑动*/</span></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">run</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		$btn.<span class="title function_">eq</span>(i-<span class="number">1</span>).<span class="title function_">addClass</span>(<span class="string">&#x27;on&#x27;</span>).<span class="title function_">siblings</span>().<span class="title function_">removeClass</span>(<span class="string">&#x27;on&#x27;</span>);	</span></span><br><span class="line"><span class="language-javascript">		$wrap.<span class="title function_">attr</span>(<span class="string">&quot;class&quot;</span>,<span class="string">&quot;section-wrap&quot;</span>).<span class="title function_">addClass</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="keyword">return</span> <span class="string">&quot;put-section-&quot;</span>+i; &#125;).<span class="title function_">find</span>(<span class="string">&#x27;.section&#x27;</span>).<span class="title function_">eq</span>(i).<span class="title function_">find</span>(<span class="string">&#x27;.title&#x27;</span>).<span class="title function_">addClass</span>(<span class="string">&#x27;active&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">	&#125;;</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// /*右侧按钮点击*/</span></span></span><br><span class="line"><span class="language-javascript">	$btn.<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">index</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">		$(<span class="variable language_">this</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">			i=index+<span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">run</span>();</span></span><br><span class="line"><span class="language-javascript">		&#125;)</span></span><br><span class="line"><span class="language-javascript">	&#125;);</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// /*翻页按钮点击*/</span></span></span><br><span class="line"><span class="language-javascript">	$arrow.<span class="title function_">one</span>(<span class="string">&#x27;click&#x27;</span>,go);</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">go</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">up</span>();<span class="title function_">run</span>();	</span></span><br><span class="line"><span class="language-javascript">		<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;$arrow.<span class="title function_">one</span>(<span class="string">&#x27;click&#x27;</span>,go)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="language-javascript">	&#125;;</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// /*响应鼠标*/</span></span></span><br><span class="line"><span class="language-javascript">	$wrap.<span class="title function_">one</span>(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_);</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">mouse_</span>(<span class="params">event</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">if</span>(event.<span class="property">deltaY</span>&lt;<span class="number">0</span>) &#123;<span class="title function_">up</span>()&#125;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">else</span>&#123;<span class="title function_">down</span>()&#125;</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">run</span>();</span></span><br><span class="line"><span class="language-javascript">		<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;$wrap.<span class="title function_">one</span>(<span class="string">&#x27;mousewheel&#x27;</span>,mouse_)&#125;,<span class="number">1000</span>)</span></span><br><span class="line"><span class="language-javascript">	&#125;;</span></span><br><span class="line"><span class="language-javascript">	</span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// /*响应键盘上下键*/</span></span></span><br><span class="line"><span class="language-javascript">	$(<span class="variable language_">document</span>).<span class="title function_">one</span>(<span class="string">&#x27;keydown&#x27;</span>,k);</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">function</span> <span class="title function_">k</span>(<span class="params">event</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">var</span> e=event||<span class="variable language_">window</span>.<span class="property">event</span>;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">var</span> key=e.<span class="property">keyCode</span>||e.<span class="property">which</span>||e.<span class="property">charCode</span>;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">switch</span>(key)	&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">case</span> <span class="number">38</span>: <span class="title function_">down</span>();<span class="title function_">run</span>();	</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">case</span> <span class="number">40</span>: <span class="title function_">up</span>();<span class="title function_">run</span>();	</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">		&#125;;</span></span><br><span class="line"><span class="language-javascript">		<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;$(<span class="variable language_">document</span>).<span class="title function_">one</span>(<span class="string">&#x27;keydown&#x27;</span>,k)&#125;,<span class="number">1000</span>);</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+          <p>Oh My Zsh is an open source, community-driven framework for managing your [zsh](http://www.zsh.org/) configuration.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/12/12/oh-my-zsh/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1128,7 +1360,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

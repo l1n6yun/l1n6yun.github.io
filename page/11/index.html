@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">334</span>
+        <span class="site-state-item-count">352</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -230,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -248,7 +248,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-title-link" itemprop="url">用js判断是否是微信浏览器</a>
+          <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">mathjax数学公式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -259,7 +259,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-04-24 10:47:00" itemprop="dateCreated datePublished" datetime="2017-04-24T10:47:00+08:00">2017-04-24</time>
+      <time title="创建时间：2017-11-22 16:16:00" itemprop="dateCreated datePublished" datetime="2017-11-22T16:16:00+08:00">2017-11-22</time>
     </span>
 
   
@@ -272,160 +272,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/24/%E7%94%A8js%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%98%AF%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <p>有时候，我们还需要一些高级功能，比如在网页上显示数学公式。</p>
+<p>新建一个文件themes&#x2F;pacman&#x2F;layout&#x2F;_partial&#x2F;mathjax.ejs，找到mathjax的调用代码复制到文件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- mathjax config similar to math.stackexchange --></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">inlineMath</span>: [ [<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">processEscapes</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">skipTags</span>: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Queue</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> all = <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title function_">getAllJax</span>(), i;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.<span class="property">length</span>; i += <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            all[i].<span class="title class_">SourceElement</span>().<span class="property">parentNode</span>.<span class="property">className</span> += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    
-    
-    
+<p>在themes&#x2F;pacman&#x2F;layout&#x2F;_partial&#x2F;after_footer.ejs 的最后一行，增加对mathjax的引用，详细内容请查看源代码。</p>
+<p>我们修改文章：source&#x2F;_posts&#x2F;新的开始.md</p>
+<p>增加公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 公式</span><br><span class="line">$$J\_\alpha(x)=\sum _&#123;m=0&#125;^\infty \frac&#123;(-1)^ m&#125;&#123;m! \, \Gamma (m + \alpha + 1)&#125;&#123;\left(&#123;\frac&#123;x&#125;&#123;2&#125;&#125;\right)&#125;^&#123;2 m + \alpha &#125;$$</span><br></pre></td></tr></table></figure>
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/14/ThinkPHP%E8%BF%9E%E6%8E%A5SQLite/" class="post-title-link" itemprop="url">ThinkPHP连接SQLite</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-14 21:14:34" itemprop="dateCreated datePublished" datetime="2017-04-14T21:14:34+08:00">2017-04-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>配置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;DB_TYPE&#x27;</span> =&gt; <span class="string">&#x27;sqlite&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;DB_NAME&#x27;</span> =&gt; DATA_PATH.<span class="string">&#x27;/test.db&#x27;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>文件：\Library\Think\Db\Driver\Sqlite.class.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title class_">Think</span>\<span class="title class_">Db</span>\<span class="title class_">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Db</span>\<span class="title">Driver</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sqlite数据库驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sqlite</span> <span class="keyword">extends</span> <span class="title">Driver</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解析pdo连接的dsn信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array $config 连接信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseDsn</span>(<span class="params"><span class="variable">$config</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$dsn</span> = <span class="string">&#x27;sqlite:&#x27;</span> . <span class="variable">$config</span>[<span class="string">&#x27;database&#x27;</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$dsn</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据表的字段信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFields</span>(<span class="params"><span class="variable">$tableName</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">list</span>(<span class="variable">$tableName</span>) = <span class="title function_ invoke__">explode</span>(<span class="string">&#x27; &#x27;</span>, <span class="variable">$tableName</span>);</span><br><span class="line">        <span class="variable">$result</span>          = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&#x27;PRAGMA table_info( &#x27;</span> . <span class="variable">$tableName</span> . <span class="string">&#x27; )&#x27;</span>);</span><br><span class="line">        <span class="variable">$info</span>            = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">                <span class="variable">$info</span>[<span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>]] = <span class="keyword">array</span>(</span><br><span class="line">                    <span class="string">&#x27;name&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;name&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;type&#x27;</span>    =&gt; <span class="variable">$val</span>[<span class="string">&#x27;type&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;notnull&#x27;</span> =&gt; (<span class="keyword">bool</span>) (<span class="number">1</span> === <span class="variable">$val</span>[<span class="string">&#x27;notnull&#x27;</span>]),</span><br><span class="line">                    <span class="string">&#x27;default&#x27;</span> =&gt; <span class="variable">$val</span>[<span class="string">&#x27;dflt_value&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;primary&#x27;</span> =&gt; <span class="string">&#x27;1&#x27;</span> == <span class="variable">$val</span>[<span class="string">&#x27;pk&#x27;</span>],</span><br><span class="line">                    <span class="string">&#x27;autoinc&#x27;</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取得数据库的表信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTables</span>(<span class="params"><span class="variable">$dbName</span> = <span class="string">&#x27;&#x27;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;SELECT name FROM sqlite_master WHERE type=&#x27;table&#x27; &quot;</span></span><br><span class="line">            . <span class="string">&quot;UNION ALL SELECT name FROM sqlite_temp_master &quot;</span></span><br><span class="line">            . <span class="string">&quot;WHERE type=&#x27;table&#x27; ORDER BY name&quot;</span>);</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>();</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$result</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">            <span class="variable">$info</span>[<span class="variable">$key</span>] = <span class="title function_ invoke__">current</span>(<span class="variable">$val</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$info</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * SQL指令安全过滤</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $str  SQL指令</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">escapeString</span>(<span class="params"><span class="variable">$str</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">str_ireplace</span>(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;&#x27;&#x27;&quot;</span>, <span class="variable">$str</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * limit</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">parseLimit</span>(<span class="params"><span class="variable">$limit</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$limitStr</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$limit</span>)) &#123;</span><br><span class="line">            <span class="variable">$limit</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$limit</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">count</span>(<span class="variable">$limit</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">1</span>] . <span class="string">&#x27; OFFSET &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$limitStr</span> .= <span class="string">&#x27; LIMIT &#x27;</span> . <span class="variable">$limit</span>[<span class="number">0</span>] . <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$limitStr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 随机排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">parseRand</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;RANDOM()&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/11/%E4%B8%80%E9%94%AE%E6%89%B9%E9%87%8Fping%E4%BB%BB%E6%84%8Fip%E6%AE%B5%E7%9A%84%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/" class="post-title-link" itemprop="url">一键批量ping任意ip段的存活主机</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-11 22:45:00" itemprop="dateCreated datePublished" datetime="2017-04-11T22:45:00+08:00">2017-04-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>先来看下面写好的批处理代码，有木有眼花缭乱的感觉，不要害怕哦，其实核心代码只有一行而已！准确的说应该是将一些最基本的DOS命令组合在了一起。</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">color</span> e</span><br><span class="line"><span class="built_in">title</span> 批处理扫网段主机</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line">@<span class="keyword">for</span> /f &quot;tokens=<span class="number">1</span>-<span class="number">4</span> delims=.&quot; <span class="variable">%%i</span> <span class="keyword">in</span> (ip.txt) <span class="keyword">do</span> (@<span class="keyword">for</span> /l <span class="variable">%%n</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">255</span>) <span class="keyword">do</span> @<span class="built_in">ping</span> -w <span class="number">600</span> -n <span class="number">1</span> -l <span class="number">1</span> <span class="variable">%%i</span>.<span class="variable">%%j</span>.<span class="variable">%%k</span>.<span class="variable">%%n</span>|<span class="built_in">find</span>  /i &quot;ttl&quot;)</span><br><span class="line"><span class="built_in">echo</span>.&amp;<span class="built_in">echo</span> 扫描完毕,按任意键退出...&amp;<span class="built_in">pause</span>&gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
-
-<p>复制以上代码粘贴到记事本文档里，然后另存为 <code>批量ping.bat</code> ，再新建一个空白的文本文档，重命名为 <code>ip.txt</code> 。一切准备完事儿，就可以将你要批量扫描的ip段的地址放入 <code>ip.txt</code> 里（比如要扫自己对应的内网IP段就可以在 <code>ip.txt</code> 里输入 <code>192.168.0.1</code> 后保存），然后双击一键运行 <code>批量ping.bat</code> 批处理脚本就可以看到返回的结果了。格式类似于：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">来自 192.168.0.1 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.101 的回复: 字节=1 时间=31ms TTL=64</span><br><span class="line">来自 192.168.0.103 的回复: 字节=1 时间=326ms TTL=64</span><br><span class="line">来自 192.168.0.104 的回复: 字节=1 时间=26ms TTL=64</span><br><span class="line">来自 192.168.0.108 的回复: 字节=1 时间&lt;1ms TTL=64</span><br><span class="line">来自 192.168.0.162 的回复: 字节=1 时间&lt;1ms TTL=128</span><br><span class="line">……此处省略余下的所有可能的结果……</span><br></pre></td></tr></table></figure>
-<p>下面我就来解读一下介个看起来有点儿吃力的批处理命令吧。我们分拆来看一下，<code>ping -w 600 -n 1  -l 1</code> 表示对指定ip地址ping一次，等待超时的时间为600毫秒；<code>|find  /i &quot;ttl&quot;</code> 指的是仅显示ping返回结果中带“ttl”字符串的结果，也就是将指定网段内不存活的主机过滤掉了。而前面的 <code>@for /f &quot;tokens=1-4 delims=.&quot; %%i in (ip.txt)</code>  意思是将“ip.txt”里的字符串（也就是我们要查找的ip段的地址）以“.”为界分割为四部分，分别赋予后面的变量 %%i、%%j、%%k 。最后剩下的 <code>@for /l %%n in (1,1,255)</code> 则表示从1开始循环+1递增一直到255停止，然后赋予变量 %%n 。不知道这样说同学能否看懂呢？看不懂滴可以在cmd窗口里输入 <code>for /?</code> 查看一下命令详解吧。</p>
+<p>查看效果:</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$$J_\alpha(x)&#x3D;\sum _{m&#x3D;0}^\infty \frac{(-1)^ m}{m! , \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
 
       
     </div>
@@ -452,7 +309,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -470,7 +327,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/" class="post-title-link" itemprop="url">js简单实现60秒倒计时</a>
+          <a href="/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="post-title-link" itemprop="url">PHP生成excel表格文件并下载</a>
         </h2>
 
         <div class="post-meta-container">
@@ -481,7 +338,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-04-11 14:15:00" itemprop="dateCreated datePublished" datetime="2017-04-11T14:15:00+08:00">2017-04-11</time>
+      <time title="创建时间：2017-10-26 11:46:34" itemprop="dateCreated datePublished" datetime="2017-10-26T11:46:34+08:00">2017-10-26</time>
     </span>
 
   
@@ -494,93 +351,584 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/11/js%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B060%E7%A7%92%E5%80%92%E8%AE%A1%E6%97%B6/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <p>利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$strexport</span>=<span class="string">&quot;编号\t姓名\t性别\t年龄\r&quot;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;sex&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>].<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
+<p>基于这个我们可以将方法封装一下:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建(导出)Excel数据表格</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $list 要导出的数组格式的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $filename 导出的Excel表格数据表的文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $header Excel表格的表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $index $list数组中与Excel表格表头$header中每个项目对应的字段的名字(key值)</span></span><br><span class="line"><span class="comment"> * 比如: $header = array(&#x27;编号&#x27;,&#x27;姓名&#x27;,&#x27;性别&#x27;,&#x27;年龄&#x27;);</span></span><br><span class="line"><span class="comment"> *       $index = array(&#x27;id&#x27;,&#x27;username&#x27;,&#x27;sex&#x27;,&#x27;age&#x27;);</span></span><br><span class="line"><span class="comment"> *       $list = array(array(&#x27;id&#x27;=&gt;1,&#x27;username&#x27;=&gt;&#x27;YQJ&#x27;,&#x27;sex&#x27;=&gt;&#x27;男&#x27;,&#x27;age&#x27;=&gt;24));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> [array] [数组]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>=<span class="keyword">array</span>(<span class="params"></span>),<span class="variable">$index</span> = <span class="keyword">array</span>(<span class="params"></span>)</span>)</span>&#123;</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line">	<span class="variable">$teble_header</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&quot;\t&quot;</span>,<span class="variable">$header</span>);</span><br><span class="line">	<span class="variable">$strexport</span> = <span class="variable">$teble_header</span>.<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	<span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">		<span class="keyword">foreach</span>(<span class="variable">$index</span> <span class="keyword">as</span> <span class="variable">$val</span>)&#123;</span><br><span class="line">			<span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="variable">$val</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$strexport</span>.=<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">	<span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+<p>方法调用:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="string">&#x27;提现记录&#x27;</span>.<span class="title function_ invoke__">date</span>(<span class="string">&#x27;YmdHis&#x27;</span>);  </span><br><span class="line"><span class="variable">$header</span> = <span class="keyword">array</span>(<span class="string">&#x27;会员&#x27;</span>,<span class="string">&#x27;编号&#x27;</span>,<span class="string">&#x27;联系电话&#x27;</span>,<span class="string">&#x27;开户名&#x27;</span>,<span class="string">&#x27;开户行&#x27;</span>,<span class="string">&#x27;申请金额&#x27;</span>,<span class="string">&#x27;手续费&#x27;</span>,<span class="string">&#x27;实际金额&#x27;</span>,<span class="string">&#x27;申请时间&#x27;</span>);  </span><br><span class="line"><span class="variable">$index</span> = <span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;vipnum&#x27;</span>,<span class="string">&#x27;mobile&#x27;</span>,<span class="string">&#x27;checkname&#x27;</span>,<span class="string">&#x27;bank&#x27;</span>,<span class="string">&#x27;money&#x27;</span>,<span class="string">&#x27;handling_charge&#x27;</span>,<span class="string">&#x27;real_money&#x27;</span>,<span class="string">&#x27;applytime&#x27;</span>);  </span><br><span class="line"><span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createtable</span>(<span class="variable">$cash</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>,<span class="variable">$index</span>);  </span><br></pre></td></tr></table></figure>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/03/12/%E4%B9%A6%E7%AD%BE%E8%84%9A%E6%9C%AC-%E7%AE%80%E5%8D%95%E7%BC%96%E8%BE%91Cookie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/03/12/%E4%B9%A6%E7%AD%BE%E8%84%9A%E6%9C%AC-%E7%AE%80%E5%8D%95%E7%BC%96%E8%BE%91Cookie/" class="post-title-link" itemprop="url">书签脚本 - 简单编辑Cookie</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-03-12 18:13:00" itemprop="dateCreated datePublished" datetime="2017-03-12T18:13:00+08:00">2017-03-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li>将一下代码保存为浏览器书签</li>
+<p>这种方式生成Excel文件,生成速度很快,但是有缺点是:</p>
+<ol>
+<li>单纯的生成Excel文件,生成的文件没有样式,单元格属性(填充色,宽度,高度,边框颜色…)不能自定义。</li>
+<li>生成的文件虽然可以打开,但是兼容性很差,每次打开,都会报一个警告。</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">javascript</span>:<span class="variable language_">document</span>.<span class="property">cookie</span>=<span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;Linx Edit cookie:&quot;</span>,<span class="variable language_">document</span>.<span class="property">cookie</span>);<span class="title function_">void</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>打开需要查询或编辑的网站</li>
-<li>点击书签即可对Cookie进行操作</li>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/" class="post-title-link" itemprop="url">搭建服务器上的GIT并实现自动同步到站点目录（www）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-17 17:07:45" itemprop="dateCreated datePublished" datetime="2017-10-17T17:07:45+08:00">2017-10-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<blockquote>
+<p>前言：当我们想要实现几个小伙伴合作开发同一个项目，或者建立一个资源分享平台的时候，GIT就是一个很好的选择。当然，既然是一个共有平台，那么把这个平台放到个人计算机上明显是不合适的，因此就要在服务器上搭建GIT了。另一个需求是，我们在本地开发，然后推送到服务器上，并且自动同步到web站点目录，这样就可以直接看到网页效果了，这就要实现自动同步。下面我带领大家实现这么一个功能。</p>
+</blockquote>
+</blockquote>
+<p>如果条件允许的话，大家可以跟着做的（注：我的服务器是centos 7，lamp环境）。</p>
+<p>一、在服务器上安装git:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//yum安装</span><br><span class="line">yum install -y git</span><br></pre></td></tr></table></figure>
+
+<p>在安装完之后你可以运行git进行测试，看看是否安装成功。</p>
+<p>二、在服务器上创建裸版本库：</p>
+<p>ps：远程仓库通常只是一个裸仓库（bare repository） — 即一个没有当前工作目录的仓库。因为该仓库只是一个合作媒介，所以不需要从硬盘上取出最新版本的快照；仓库里存放的仅仅是 Git 的数据。简单地说，裸仓库就是你工作目录中 .git 子目录内的内容</p>
+<p>我们就在 &#x2F;home&#x2F;testgit&#x2F; 下创建一个叫 sample.git的裸仓库吧：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/testgit</span><br><span class="line">cd /home/testgit</span><br><span class="line">git init --bare sample.git</span><br><span class="line">//这里 git init 是初始化空仓库的意思，而参数 --bare 是代表创建裸仓库，这个参数一定记得带上</span><br></pre></td></tr></table></figure>
+
+<p>当运行完上面的最后一句命令时，会有提示：Initialized empty Git repository in &#x2F;home&#x2F;testgit&#x2F;sample.git&#x2F;<br>如果你得不到该结果，可能就要回头检查哪一步出问题了</p>
+<p>三、创建web站点目录www</p>
+<p>现在我的 web 站点目录在 &#x2F;home&#x2F;www</p>
+<p>四、在本地克隆服务器上的裸仓库：</p>
+<p>前提：本地已安装git </p>
+<p>打开 git bash ，我打算在我的D盘下创建一个名为 lsgogit 的版本库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /d</span><br><span class="line">git clone git@115.159.146.94:/home/testgit/sample.git lsgogit</span><br></pre></td></tr></table></figure>
+
+<p>在这里如果没有配置公钥的话，会提示输入密码，但是我们可能并不知道密码，那就配置公钥咯：<br>1、查看自己计算机的公钥：</p>
+<p>&#x2F;&#x2F;查看是否有了ssh密钥，如果没有密钥则不会有此文件夹<br>cd ~&#x2F;.ssh<br>ls -al<br>&#x2F;&#x2F;如果列出了authorized_keys2 id_dsa known_hosts config id_dsa.pub 则证明你拥有公钥。</p>
+<p>我们需要寻找一对以 id_dsa 或 id_rsa 命名的文件，其中一个带有 .pub 扩展名。 .pub 文件是你的公钥，另一个则是私钥。 如果找不到这样的文件（或者根本没有 .ssh 目录），你可以通过运行 ssh-keygen 程序来创建它们。在 Linux&#x2F;Mac 系统中，ssh-keygen 随 SSH 软件包提供；在 Windows 上，该程序包含于 MSysGit 软件包中。</p>
+<p>首先 ssh-keygen 会确认密钥的存储位置（默认是 .ssh&#x2F;id_rsa），然后它会要求你输入两次密钥口令。如果你不想在使用密钥时输入口令，将其留空即可。</p>
+<p>现在，进行了上述操作的用户需要将各自的公钥发送给任意一个 Git 服务器管理员（假设服务器正在使用基于公钥的 SSH 验证设置）。 他们所要做的就是复制各自的 .pub 文件内容，并将其通过邮件发送。 公钥看起来是这样的：</p>
+<p>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@zhongjin</p>
+<p>现在我们回到服务器管理员的身份</p>
+<p>由于前面安装git的时候，centos会默认创建一个git用户（其他系统貌似需要手动创建），我们进入&#x2F;home&#x2F;git&#x2F;.ssh，里面有一个名为 authorized_keys 的文件，我们分别将其他开发者的公钥（全选、复制、不能更改！）添加到该文件去，一个开发者的公钥分一行。</p>
+<p>现在我们看看有两个开发者(个人电脑分别是zhongjin 和 jinjinzhong)的authorized_keys文件：</p>
+<p>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@zhongjin<br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@jinjinzhong</p>
+<p>至此，我们就可以实现不用输密码克隆远程仓库了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /d</span><br><span class="line">git clone git@115.159.146.94:/home/testgit/sample.git lsgogit</span><br></pre></td></tr></table></figure>
+
+<p>命令运行完后，lsgogit现在就是一个空的仓库了，现在我们可以在该仓库下添加文件，然后push到远程仓库了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd lsgogit</span><br><span class="line">touch index.php</span><br><span class="line">git add index.php</span><br><span class="line">git commit -m &quot;test commit&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>如果在这里推送失败了，极有可能是因为服务器的权限问题，就比如之前我们建的 testgit 文件夹，在这里我的解决方法是：</p>
+<p>chown -R git:git testgit</p>
+<p>将testgit文件夹以及下面的子文件夹都赋给了git,这样就保证了推送成功。</p>
+<p>第一次push可能会有一些提示，因为裸版本库还什么都没有，你可能需要 git push origin master写全命令，之后就没必要了，直接 git push 就可以了。</p>
+<p>到目前为止，我们完成了第一个任务，实现了一个共享平台，既可拉取数据，又可以推送数据。</p>
+<p>四、实现自动同步到站点目录（www）</p>
+<p>就比如刚才我们往远程仓库推送了index.php文件，虽然提示推送成功，但是我们现在在服务器端还看不到效果，心理总是不爽。又比如我写了个html页面，我想在站点中马上看到，那自动同步就派上用场了。</p>
+<p>自动同步功能用到的是 git 的钩子功能，</p>
+<p>服务器端：进入裸仓库：&#x2F;home&#x2F;testgit&#x2F;sample.git</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /home/testgit/sample.git</span><br><span class="line">cd hooks</span><br><span class="line">//这里我们创建post-receive文件</span><br><span class="line">vim post-receive</span><br><span class="line">//在该文件里输入以下内容</span><br><span class="line">#!/bin/bash</span><br><span class="line">git --work-tree=/home/www checkout -f</span><br><span class="line">//保存退出后，将该文件用户及用户组都设置成git</span><br><span class="line">chown git:git post-receive</span><br><span class="line">//由于该文件其实就是一个shell文件，我们还应该为其设置可执行权限</span><br><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以在本地计算机中修改index.php文件，或者添加一个新文件，提交到远程仓库，然后到&#x2F;home&#x2F;www下面，看看有没有我们刚才提交的文件。</p>
+<p>如果你在Git推送的工程中发现推送成功 但是在www目录下并没有自己的代码，这时候你可要注意了：这是由于文件夹的权限的原因造成的！ 假设你的www目录的所属的用户组为root，你可以将你的git用户加入这个组;并给git添加写入权限，或者其他解决方法，反正你要服务器上的git用户有权限进入www文件夹。</p>
+<p>之前的项目都是”包工头“文乔学长完成这个过程，现在终于掌握了，有点小高兴。。。</p>
+<p>本文章参考了</p>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FpZGFuRGFpL2hlbGxvLXdvcmxkL2Jsb2IvbWFzdGVyLzQtJTIwJUU2JTlDJThEJUU1JThBJUExJUU1JTk5JUE4JUU0JUI4JThBJUU3JTlBJTg0JTIwR2l0Lm1k">AiDandai 服务器上的 Git.md<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL215Lm9zY2hpbmEubmV0L2N4ejAwMS9ibG9nLzE5NDE5Nj9mcm9tZXJyPXRreHI0UXlh">git推送到服务器自动同步到站点目录<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">windows下安装php真正的多线程扩展pthreads教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-16 17:44:51" itemprop="dateCreated datePublished" datetime="2017-10-16T17:44:51+08:00">2017-10-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>扩展地址：<span class="exturl" data-url="aHR0cDovL2RvY3MucGhwLm5ldC9tYW51YWwvemgvYm9vay5wdGhyZWFkcy5waHA=">http://docs.php.net/manual/zh/book.pthreads.php<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>php5.3 或以上，且为线程安全版本。apache 和 php 使用的编译器必须一致。</p>
+<p>通过 <code>phpinfo()</code> 查看 <code>Thread Safety</code> 为 <code>enabled</code> 则为线程安全版。</p>
+<p>通过 <code>phpinfo()</code> 查看 <code>Compiler</code> 项可以知道使用的编译器。本人的为：MSVC9 (Visual C++ 2008)。</p>
+<h2 id="本人使用环境"><a href="#本人使用环境" class="headerlink" title="本人使用环境"></a>本人使用环境</h2><p>32位 windows xp sp3 ，wampserver2.2d（php5.3.10-vc9 + apache2.2.21-vc9）。</p>
+<h2 id="下载-pthreads-扩展"><a href="#下载-pthreads-扩展" class="headerlink" title="下载 pthreads 扩展"></a>下载 pthreads 扩展</h2><p>下载地址：<span class="exturl" data-url="aHR0cDovL3dpbmRvd3MucGhwLm5ldC9kb3dubG9hZHMvcGVjbC9yZWxlYXNlcy9wdGhyZWFkcw==">http://windows.php.net/downloads/pecl/releases/pthreads<i class="fa fa-external-link-alt"></i></span></p>
+<p>根据本人环境，我下载的是 pthreads-2.0.8-5.3-ts-vc9-x86 。</p>
+<pre><code>2.0.8 代表 pthreads 的版本。
+5.3 代表 php 的版本。
+ts 表示 php 要线程安全版本的。
+vc9 表示 php 要 Visual C++ 2008 编译器编译的。
+x86 则表示32位的
+</code></pre>
+<h2 id="安装-pthreads-扩展"><a href="#安装-pthreads-扩展" class="headerlink" title="安装 pthreads 扩展"></a>安装 pthreads 扩展</h2><p>复制 <code>php_pthreads.dll</code> 到目录 <code>bin\php\ext\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10\ext）</p>
+<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>bin\php\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10）</p>
+<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>C:\windows\system32</code> 下面。</p>
+<p>打开 php 配置文件 <code>php.ini</code>。在后面加上 <code>extension=php_pthreads.dll</code></p>
+<p>提示！Windows系统需要将 <code>pthreadVC2.dll</code> 所在路径加入到 <code>PATH</code> 环境变量中。</p>
+<p>我的电脑—&gt;鼠标右键—&gt;属性—&gt;高级—&gt;环境变量—&gt;系统变量—&gt;找到名称为 Path 的—&gt;编辑—&gt;在变量值最后面加上 pthreadVC2.dll 的完整路径（本人的为C:\WINDOWS\system32\pthreadVC2.dll）。</p>
+<h2 id="测试-pthreads-扩展"><a href="#测试-pthreads-扩展" class="headerlink" title="测试 pthreads 扩展"></a>测试 pthreads 扩展</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncOperation</span> <span class="keyword">extends</span> \<span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;arg = <span class="variable">$arg</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;arg)&#123;</span><br><span class="line">            <span class="title function_ invoke__">printf</span>(<span class="string">&quot;Hello %s\n&quot;</span>, <span class="variable">$this</span>-&gt;arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$thread</span> = <span class="keyword">new</span> <span class="title class_">AsyncOperation</span>(<span class="string">&quot;World&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$thread</span>-&gt;<span class="title function_ invoke__">start</span>())</span><br><span class="line">    <span class="variable">$thread</span>-&gt;<span class="title function_ invoke__">join</span>();</span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码出现 Hello World ，说明 pthreads 扩展安装成功！ </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">Low Orbit Ion Cannon (LOIC)：网络攻击工具解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-04T00:00:00+08:00">2017-10-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在网络世界中，安全与攻击技术总是并存的。今天，我们将深入探讨一个名为Low Orbit Ion Cannon（LOIC）的网络攻击工具，它是一种开源的压力测试和拒绝服务（DoS或DDoS）攻击应用程序，用C#编写。本文将详细介绍LOIC的起源、功能、使用方法以及相关的法律风险。</p>
+<h2 id="LOIC简介"><a href="#LOIC简介" class="headerlink" title="LOIC简介"></a>LOIC简介</h2><p>LOIC 最初由 Praetox Technologies 开发，并后来被发布到公共领域。其源代码现在可以自由获取，并且可以在多个开源平台上下载。LOIC能够执行基本的TCP、UDP或HTTP DoS攻击，当多个用户联合使用时，可以形成DDoS攻击。它的流行部分原因是因为有一个版本与Anonymous组织有关，通过IRC控制通道，允许人们加入自愿的僵尸网络并攻击单一目标。</p>
+<p><img src="/images/pasted-73.png" alt="upload successful"></p>
+<h2 id="LOIC的工作原理与使用"><a href="#LOIC的工作原理与使用" class="headerlink" title="LOIC的工作原理与使用"></a>LOIC的工作原理与使用</h2><p>LOIC 的操作相对简单。用户只需填写目标系统的URL或IP地址，选择攻击方法和端口，然后点击“IMMA CHARGIN MAH LAZER”按钮即可。以下是详细的使用步骤：</p>
+<ol>
+<li>运行工具。</li>
+<li>在相关字段中输入网站的URL或IP，并点击“Lock On”。</li>
+<li>如果你是高级用户，可以更改参数；否则，保持默认设置。</li>
+<li>点击标有“IMMA CHARGIN MAH LAZER”的大按钮。</li>
+<li>攻击开始，你可以在工具中看到攻击状态（例如发送的数据包数量）。</li>
+</ol>
+<h2 id="LOIC是否为病毒？"><a href="#LOIC是否为病毒？" class="headerlink" title="LOIC是否为病毒？"></a>LOIC是否为病毒？</h2><p>虽然LOIC不是病毒，但许多杀毒软件会将其检测为病毒（类似于trojan.agent&#x2F;gen-msil flooder），因为它通常被用于恶意目的，并且许多用户在不知情的情况下安装了它。</p>
+<h2 id="LOIC的法律风险"><a href="#LOIC的法律风险" class="headerlink" title="LOIC的法律风险"></a>LOIC的法律风险</h2><p>使用LOIC进行DoS或DDoS攻击在大多数国家是非法的。因此，我们强烈建议仅在你有权限访问的网络或进行压力测试时使用此工具，以展示DoS攻击的力量。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/" class="post-title-link" itemprop="url">clipboard.js 一键复制到剪切板</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-08-29 10:58:20" itemprop="dateCreated datePublished" datetime="2017-08-29T10:58:20+08:00">2017-08-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>Copying text to the clipboard shouldn’t be hard. It shouldn’t require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn’t depend on Flash or any bloated framework.</p>
+<p>That’s why clipboard.js exists.</p>
+<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>You can get it on npm.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install clipboard --save</span><br></pre></td></tr></table></figure>
+
+<p>Or if you’re not into package management, just <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYXJjaGl2ZS9tYXN0ZXIuemlw">download a ZIP<i class="fa fa-external-link-alt"></i></span> file.</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>First, include the script located on the <code>dist</code> folder or load it from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvd2lraS9DRE4tUHJvdmlkZXJz">a third-party CDN provider<i class="fa fa-external-link-alt"></i></span>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;dist/clipboard.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, you need to instantiate it by <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1zZWxlY3Rvci5odG1sI0wxOA==">passing a DOM selector<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1ub2RlLmh0bWwjTDE2LUwxNw==">HTML element<i class="fa fa-external-link-alt"></i></span>, or <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1ub2RlbGlzdC5odG1sI0wxOC1MMTk=">list of HTML elements<i class="fa fa-external-link-alt"></i></span>.</p>
+<p>Internally, we need to fetch all elements that matches with your selector and attach event listeners for each one. But guess what? If you have hundreds of matches, this operation can consume a lot of memory.</p>
+<p>For this reason we use <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTY4NzI5Ni93aGF0LWlzLWRvbS1ldmVudC1kZWxlZ2F0aW9u">event delegation<i class="fa fa-external-link-alt"></i></span> which replaces multiple event listeners with just a single listener. After all, <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9oYXNodGFnL3BlcmZtYXR0ZXJz">#perfmatters<i class="fa fa-external-link-alt"></i></span>.</p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>We’re living a declarative renaissance, that’s why we decided to take advantage of <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvR3VpZGUvSFRNTC9Vc2luZ19kYXRhX2F0dHJpYnV0ZXM=">HTML5 data attributes<i class="fa fa-external-link-alt"></i></span> for better usability.</p>
+<h2 id="Copy-text-from-another-element"><a href="#Copy-text-from-another-element" class="headerlink" title="Copy text from another element"></a>Copy text from another element</h2><p>A pretty common use case is to copy content from another element. You can do that by adding a <code>data-clipboard-target</code> attribute in your trigger element.</p>
+<p>The value you include on this attribute needs to match another’s element selector.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Target --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;foo&quot;</span> <span class="attr">value</span>=<span class="string">&quot;https://github.com/zenorocha/clipboard.js.git&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#foo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;assets/clippy.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Copy to clipboard&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Cut-text-from-another-element"><a href="#Cut-text-from-another-element" class="headerlink" title="Cut text from another element"></a>Cut text from another element</h2><p>Additionally, you can define a <code>data-clipboard-action</code> attribute to specify if you want to either <code>copy</code> or <code>cut</code> content.</p>
+<p>If you omit this attribute, <code>copy</code> will be used by default.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Target --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;bar&quot;</span>&gt;</span>Mussum ipsum cacilds...<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-action</span>=<span class="string">&quot;cut&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#bar&quot;</span>&gt;</span></span><br><span class="line">    Cut to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you may expect, the <code>cut</code> action only works on <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> elements.</p>
+<h2 id="Copy-text-from-attribute"><a href="#Copy-text-from-attribute" class="headerlink" title="Copy text from attribute"></a>Copy text from attribute</h2><p>Truth is, you don’t even need another element to copy its content from. You can just include a <code>data-clipboard-text</code> attribute in your trigger element.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-text</span>=<span class="string">&quot;Just because you can doesn&#x27;t mean you should — clipboard.js&quot;</span>&gt;</span></span><br><span class="line">    Copy to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h1><p>There are cases where you’d like to show some user feedback or capture what has been selected after a copy&#x2F;cut operation.</p>
+<p>That’s why we fire custom events such as <code>success</code> and <code>error</code> for you to listen and implement your custom logic.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">clipboard.<span class="title function_">on</span>(<span class="string">&#x27;success&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Action:&#x27;</span>, e.<span class="property">action</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Text:&#x27;</span>, e.<span class="property">text</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Trigger:&#x27;</span>, e.<span class="property">trigger</span>);</span><br><span class="line"></span><br><span class="line">    e.<span class="title function_">clearSelection</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">clipboard.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Action:&#x27;</span>, e.<span class="property">action</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Trigger:&#x27;</span>, e.<span class="property">trigger</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Tooltips"><a href="#Tooltips" class="headerlink" title="Tooltips"></a>Tooltips</h1><p>Each application has different design needs, that’s why clipboard.js does not include any CSS or built-in tooltip solution.</p>
+<p>The tooltips you see on this demo site were built using <span class="exturl" data-url="aHR0cDovL3ByaW1lcmNzcy5pby90b29sdGlwcy8=">GitHub’s Primer<i class="fa fa-external-link-alt"></i></span> . You may want to check that out if you’re looking for a similar look and feel.</p>
+<h1 id="Advanced-Usage"><a href="#Advanced-Usage" class="headerlink" title="Advanced Usage"></a>Advanced Usage</h1><p>If you don’t want to modify your HTML, there’s a pretty handy imperative API for you to use. All you need to do is declare a function, do your thing, and return a value.</p>
+<p>For instance, if you want to dynamically set a <code>target</code>, you’ll need to return a Node.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">target</span>: <span class="keyword">function</span>(<span class="params">trigger</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.<span class="property">nextElementSibling</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>If you want to dynamically set a <code>text</code>, you’ll return a String.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="keyword">function</span>(<span class="params">trigger</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.<span class="title function_">getAttribute</span>(<span class="string">&#x27;aria-label&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>For use in Bootstrap Modals or with any other library that changes the focus you’ll want to set the focused element as the <code>container</code> value.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">container</span>: <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;modal&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Also, if you are working with single page apps, you may want to manage the lifecycle of the DOM more precisely. Here’s how you clean up the events and objects that we create.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">clipboard.<span class="title function_">destroy</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="Browser-Support"><a href="#Browser-Support" class="headerlink" title="Browser Support"></a>Browser Support</h1><p>This library relies on both <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL1NlbGVjdGlvbg==">Selection<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL0RvY3VtZW50L2V4ZWNDb21tYW5k">execCommand<i class="fa fa-external-link-alt"></i></span> APIs. The first one is <span class="exturl" data-url="aHR0cDovL2Nhbml1c2UuY29tLyNzZWFyY2g9c2VsZWN0aW9u">supported by all browsers<i class="fa fa-external-link-alt"></i></span> while the second one is supported in the following browsers.</p>
+<ul>
+<li>Chrome 42+</li>
+<li>Edge 12+</li>
+<li>Firefox 41+</li>
+<li>IE 9+</li>
+<li>Opera 29+</li>
+<li>Safari 10+</li>
+</ul>
+<p>The good news is that clipboard.js gracefully degrades if you need to support older browsers. All you have to do is show a tooltip saying <code>Copied!</code> when <code>success</code> event is called and <code>Press Ctrl+C to copy</code> when <code>error</code> event is called because the text is already selected.</p>
+<p>You can also check if clipboard.js is supported or not by running <code>Clipboard.isSupported()</code>, that way you can hide copy&#x2F;cut buttons from the UI.</p>
+<h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>A browser extension that adds a “copy to clipboard” button to every code block on <em>GitHub, MDN, Gist, StackOverflow, StackExchange, npm, and even Medium</em>.</p>
+<p>Install for <span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvY29kZWNvcHkvZmtiZmVia2NvZWxham1oYW5vY2dwcGFuZm9vamNkbWc=">Chrome<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9hZGRvbnMubW96aWxsYS5vcmcvZW4tVVMvZmlyZWZveC9hZGRvbi9jb2RlY29weS8=">Firefox<i class="fa fa-external-link-alt"></i></span>.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/24/localResizeIMG-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/08/24/localResizeIMG-js/" class="post-title-link" itemprop="url">localResizeIMG.js</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-08-24 17:10:45" itemprop="dateCreated datePublished" datetime="2017-08-24T17:10:45+08:00">2017-08-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://travis-ci.org/think2011/localResizeIMG"><img src="https://travis-ci.org/think2011/localResizeIMG.svg?branch=master" alt="Build Status"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/lrz"><img src="https://img.shields.io/npm/v/lrz.svg" alt="npm version"></a><br><a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+<h1 id="🚨重要"><a href="#🚨重要" class="headerlink" title="🚨重要!!"></a>🚨重要!!</h1><p>很抱歉，这个项目已不再维护了，可能很长一段时间都不会更新了。<br>如果真的需要，请使用之前请一定留意 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM/cT1pczppc3N1ZStpczpvcGVuK2xhYmVsOmJ1Zw==">Issues<i class="fa fa-external-link-alt"></i></span> 里已知的问题</p>
+<h1 id="演示一下"><a href="#演示一下" class="headerlink" title="演示一下"></a>演示一下</h1><p><img src="http://think2011.github.io/localResizeIMG/test/demo.gif"></p>
+<h1 id="自己试试"><a href="#自己试试" class="headerlink" title="自己试试"></a>自己试试</h1><p><img src="https://raw.github.com/think2011/localResizeIMG/master/test/qrcode.png"></p>
+<p><span class="exturl" data-url="aHR0cDovL3RoaW5rMjAxMS5naXRodWIuaW8vbG9jYWxSZXNpemVJTUcvdGVzdC8=">点我直接进入演示页面<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>在客户端压缩好要上传的图片可以节省带宽更快的发送给后端，特别适合在移动设备上使用。</p>
+<h1 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h1><ol>
+<li><p>已踩过很多坑，经过几个版本迭代，以及很多很多网友的反馈帮助、机型测试</p>
+<ul>
+<li>图片扭曲、某些设备不自动旋转图片方向，没有jpeg压缩算法..</li>
+<li>不支持new Blob,formData构造的文件size为0..</li>
+<li>还有某些机型和浏览器（例如QQX5浏览器）莫名其妙的BUG..</li>
+</ul>
+</li>
+<li><p>按需加载（会根据对应设备自动异步载入JS文件，节省不必要带宽）</p>
+</li>
+<li><p>原生JS编写，不依赖例如<code>jquery</code>等第三方库，支持AMD or CMD规范。</p>
+</li>
 </ol>
 <blockquote>
-<p>Linx 是作者的名称</p>
+<p>尽管如此，在某些 <code>Android</code> 下依然有莫名其妙的问题，在您使用前，请一定大致浏览下 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM=">issues<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
+<h1 id="如何获取"><a href="#如何获取" class="headerlink" title="如何获取"></a>如何获取</h1><p>通过以下方式都可以下载：</p>
+<ol>
+<li>执行<code>npm i lrz</code>（推荐）</li>
+<li>执行<code>bower install lrz</code></li>
+</ol>
+<p>接着在页面中引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./dist/lrz.bundle.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h1><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1:"></a>方式1:</h3><p>如果您的图片来自用户拍摄或者上传的，您需要一个<code>input file</code>来获取图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接着通过change事件可以得到用户选择的图片</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#file&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">	<span class="title function_">lrz</span>(<span class="variable language_">this</span>.<span class="property">files</span>[<span class="number">0</span>])</span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">rst</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(rst);</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">always</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式2："><a href="#方式2：" class="headerlink" title="方式2："></a>方式2：</h3><p>如果您的图片不是来自用户上传的，那么也可以直接传入图片路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">lrz</span>(<span class="string">&#x27;./xxx/xx/x.png&#x27;</span>)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">rst</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理成功会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">err</span>)&#123;</span><br><span class="line">            <span class="comment">// 处理失败会执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">always</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="后端处理"><a href="#后端处理" class="headerlink" title="后端处理"></a>后端处理</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtp">后端处理请查看WIKI。<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtp">具体参数说明请查看WIKI。<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h1><p>IE10以上及大部分非IE浏览器（chrome、微信什么的）</p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy9pc3N1ZXM=">有疑问请直接在 issues 中提问<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">请一定记得附上以下内容：💡</span><br><span class="line">请一定记得附上以下内容：🙈</span><br><span class="line">请一定记得附上以下内容：💡</span><br><span class="line"></span><br><span class="line">平台：微信..</span><br><span class="line">设备：iPhone5 IOS7..</span><br><span class="line">问题：问题描述呗..</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Q：能否提供完整的一套UI?</p>
+</li>
+<li><p>A：暂时定位是作为纯粹的处理插件，或许会考虑开发一整套UI。</p>
+</li>
+<li><p>Q：有时拍摄完照片后，页面自动刷新或闪退了。</p>
+</li>
+<li><p>A：虽然已作了优化处理，但内存似乎还是爆掉了，常见于低配android手机，建议每次只处理一张图片。</p>
+</li>
+<li><p>Q: 怎么批量上传图片?</p>
+</li>
+<li><p>A: 您可以自己写个循环来传入用户多选的图片，但在移动端上请谨慎处理，原因同上。</p>
+</li>
+<li><p>Q: 直接传入图片路径的无法生成图片</p>
+</li>
+<li><p>A: 可能是跨域的问题，具体请看<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSFRNTC9DT1JTX2VuYWJsZWRfaW1hZ2U=">CORS_enabled_image<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>Q: 想要商用可以吗？</p>
+</li>
+<li><p>A: 没问题，但请留意issue里已知的问题。</p>
+</li>
+</ul>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoaW5rMjAxMS9sb2NhbFJlc2l6ZUlNRy93aWtpLzMuLSVFNiVCQSU5MCVFNyVBMCU4MSVFOSU4MCVCQiVFOCVCRSU5MQ==">想要参与 or 自己定制 or 了解源码请点击这里，逻辑和说明<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
+<li>@dwandw</li>
+<li>@yourlin</li>
+<li>@wxt2005</li>
+</ul>
+<p>以上在之前的版本帮忙参与维护的朋友，以及提出问题的朋友们，真的真的很感谢你们。：D</p>
 
       
     </div>
@@ -607,7 +955,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -625,7 +973,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/07/windows%20mysql%20%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">windows mysql 自动备份的几种方法</a>
+          <a href="/2017/07/21/PHP%E8%8E%B7%E5%8F%96curl%E4%BC%A0%E8%BE%93%E8%BF%9B%E5%BA%A6/" class="post-title-link" itemprop="url">PHP获取curl传输进度</a>
         </h2>
 
         <div class="post-meta-container">
@@ -636,7 +984,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-02-07 15:13:29" itemprop="dateCreated datePublished" datetime="2017-02-07T15:13:29+08:00">2017-02-07</time>
+      <time title="创建时间：2017-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-21T00:00:00+08:00">2017-07-21</time>
     </span>
 
   
@@ -649,31 +997,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>基于之前的文章方法，加入批处理命令即可实现自动备份。只是由于批处理命令中对于备份文件的名字按照时间命名比较特别，所以特别整理一文。</p>
-</blockquote>
-<h3 id="复制date文件夹备份"><a href="#复制date文件夹备份" class="headerlink" title="复制date文件夹备份"></a>复制date文件夹备份</h3><p>假想环境：<br>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>数据库备份目的地：C:\db_bak\</p>
-<p>新建db_bak.bat，写入以下代码</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="built_in">xcopy</span> c:\mysql\data\bbs\*.* c:\db_bak\bbs\<span class="variable">%date:~0,10%</span>\ /S /I</span><br><span class="line"><span class="built_in">net</span> <span class="built_in">start</span> mysql</span><br></pre></td></tr></table></figure>
+          <p>curl上传或者下载，有以下2个选项：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CURLOPT_NOPROGRESS =&gt; <span class="literal">false</span>,</span><br><span class="line">CURLOPT_PROGRESSFUNCTION =&gt; <span class="string">&#x27;callback&#x27;</span>,</span><br></pre></td></tr></table></figure>
 
-<p>然后使用Windows的“计划任务”定时执行该批处理脚本即可。（例如：每天凌晨3点执行back_db.bat）</p>
-<p>解释：备份和恢复的操作都比较简单，完整性比较高，控制备份周期比较灵活，例如，用%date:<del>0,10%。此方法适合有独立主机但对mysql没有管理经验的用户。缺点是占用空间比较多，备份期间mysql会短时间断开（例如：针对30M左右的数据库耗时5s左右）,针对%date:</del>0,10%的用法参考           。</p>
-<h3 id="mysqldump备份成sql文件"><a href="#mysqldump备份成sql文件" class="headerlink" title="mysqldump备份成sql文件"></a>mysqldump备份成sql文件</h3><p>假想环境：</p>
-<p>MySQL   安装位置：C:\MySQL<br>论坛数据库名称为：bbs<br>MySQL root   密码：123456<br>数据库备份目的地：D:\db_backup\</p>
-<p>脚本：</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> &quot;Ymd=<span class="variable">%date:~,4%</span><span class="variable">%date:~5,2%</span><span class="variable">%date:~8,2%</span>&quot;</span><br><span class="line"><span class="function">C:\<span class="title">MySQL</span>\<span class="title">bin</span>\<span class="title">mysqldump</span> --<span class="title">opt</span> -<span class="title">u</span> <span class="title">root</span> --<span class="title">password</span>=123456 <span class="title">bbs</span> &gt; <span class="title">D</span>:\<span class="title">db_backup</span>\<span class="title">bbs_</span>%<span class="title">Ymd</span>%.<span class="title">sql</span></span></span><br><span class="line"><span class="function">@<span class="title">echo</span> <span class="title">on</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>CURLOPT_NOPROGRESS：是否关闭传输进度，默认是true。</li>
+<li>CURLOPT_PROGRESSFUNCTION：回调函数，curl传输过程中，会每隔一段时间自动调用该函数。我测试过，间隔不到1秒，具体不知道。官方的注释是这样：设置一个回调函数，有五个参数，第一个是cURL的资源句柄，第二个是预计要下载的总字节（bytes）数。第三个是目前下载的字节数，第四个是预计传输中总上传字节数，第五个是目前上传的字节数。（注意回调函数的命名空间。如：CURLOPT_PROGRESSFUNCTION &#x3D;&gt; ‘namespace_xxx\callback’）</li>
+</ul>
+<p>设置完成后，需要定义回调函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"><span class="variable">$resource</span>, <span class="variable">$downloadSize</span> = <span class="number">0</span>, <span class="variable">$downloaded</span> = <span class="number">0</span>, <span class="variable">$uploadSize</span> = <span class="number">0</span>, <span class="variable">$uploaded</span> = <span class="number">0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// php5.5之前的参数是不同的，所以要考虑到兼容性</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">version_compare</span>(PHP_VERSION, <span class="string">&#x27;5.5.0&#x27;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="variable">$downloadSize</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploaded</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$info</span> = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&#x27;downloadSize&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;downloaded&#x27;</span>   =&gt; <span class="number">0</span>,</span><br><span class="line">            <span class="string">&#x27;uploadSize&#x27;</span>   =&gt; <span class="variable">$downloaded</span>,</span><br><span class="line">            <span class="string">&#x27;uploaded&#x27;</span>     =&gt; <span class="variable">$uploadSize</span>,</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">S</span>(<span class="string">&#x27;file_upload_&#x27;</span> . <span class="title function_ invoke__">session</span>(<span class="string">&#x27;user_auth.uid&#x27;</span>), <span class="variable">$info</span>, <span class="number">300</span>); <span class="comment">// 可以将结果存放到缓存（这里是ThinkPHP例子）</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
-<p>将以上代码保存为backup_db.bat</p>
-<p>然后使用Windows的“计划任务”定时执行该脚本即可。（例如：每天凌晨5点执行back_db.bat）</p>
-<p>说明：此方法可以不用关闭数据库，并且可以按每一天的时间来名称备份文件。</p>
-<p>通过%date:<del>5,2%来组合得出当前日期，组合的效果为yyyymmdd,date命令得到的日期格式默认为yyyy-mm-dd(**如果不是此格式可以通过pause命令来暂停命令行窗口看通过%date:</del>,20%得到的当前计算机日期格式**)，所以通过%date:<del>5,2%即可得到日期中的第五个字符开始的两个字符，例如今天为2009-02-05,通过%date:</del>5,2%则可以得到02。（日期的字符串的下标是从0开始的）</p>
-<h3 id="利用WinRAR对MySQL数据库进行定时备份。"><a href="#利用WinRAR对MySQL数据库进行定时备份。" class="headerlink" title="利用WinRAR对MySQL数据库进行定时备份。"></a>利用WinRAR对MySQL数据库进行定时备份。</h3><p>对于MySQL的备份，最好的方法就是直接备份MySQL数据库的Data目录。下面提供了一个利用WinRAR来对Data目录进行定时备份的方法。</p>
-<p>首先当然要把WinRAR安装到计算机上。</p>
-<p>将下面的命令写入到一个文本文件里</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">net</span> stop mysql</span><br><span class="line"><span class="function">c:\<span class="title">progra</span>~1\<span class="title">winrar</span>\<span class="title">winrar</span> <span class="title">a</span> -<span class="title">ag</span> -<span class="title">k</span> -<span class="title">r</span> -<span class="title">s</span> <span class="title">d</span>:\<span class="title">mysql.rar</span> <span class="title">d</span>:\<span class="title">mysql</span>\<span class="title">data</span></span></span><br><span class="line"><span class="function"><span class="title">net</span> <span class="title">start</span> <span class="title">mysql</span></span></span><br></pre></td></tr></table></figure>
-
-<p>保存，然后将文本文件的扩展名修改成CMD。进入控制面版，打开计划任务，双击“添加计划任务”。在计划任务向导中找到刚才的CMD文件，接着为这个任务指定一个运行时间和运行时使用的账号密码就可以了。</p>
-<p>这种方法缺点是占用时间比较多，备份期间压缩需要时间，mysql断开比第一种方法更多的时间，但是对于文件命名很好。</p>
+<p>重要：<br>在curl发起请求时，如果开启了 session，会独占 session ，阻塞其他的请求。所以如果框架默认启用了 session ，在 curl 之前可以用session_write_close() 函数关闭 session 阻塞。<br>参考：<span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9za2lsbENvZGluZy9hcmNoaXZlLzIwMTIvMDQvMDkvMjQzOTI5Ni5odG1s">http://www.cnblogs.com/skillCoding/archive/2012/04/09/2439296.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>最后：在进行传输时，可以每隔1秒通过ajax来获取缓存信息，从而显示传输进度。</p>
+<p>补充：<br>传送大文件时，php会超时，注意设置 php-fpm.conf 中的 request_terminate_timeout 值，我设了1000（秒）。<br>还有个 max_children（进程数） ，进程不够用可改大。<br>在程序中，可以使用 set_time_limit() 临时增加 php 响应时间。<br>php.ini中还有 max_execution_time 设置，看攻略说是跟 set_time_limit 累加的，如果攻略是对的，那么这个不用管。</p>
+<p>原文链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2J1ZXIyMjAyL2FydGljbGUvZGV0YWlscy83NTM2NDkzOQ==">https://blog.csdn.net/buer2202/article/details/75364939<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -700,7 +1037,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -718,7 +1055,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/01/11/%E5%8E%BB%E9%99%A4%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%B0%8F%E7%AE%AD%E5%A4%B4/" class="post-title-link" itemprop="url">去除快捷方式上面的小箭头</a>
+          <a href="/2017/07/15/%E5%BD%93script%E4%B8%AD%E7%9A%84type%E7%AD%89%E4%BA%8Etext_html%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B%E4%BB%B6%EF%BC%81/" class="post-title-link" itemprop="url">当script中的type等于text/html时，我们可以做很多事件！</a>
         </h2>
 
         <div class="post-meta-container">
@@ -729,7 +1066,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-01-11 23:11:00" itemprop="dateCreated datePublished" datetime="2017-01-11T23:11:00+08:00">2017-01-11</time>
+      <time title="创建时间：2017-07-15 19:47:30" itemprop="dateCreated datePublished" datetime="2017-07-15T19:47:30+08:00">2017-07-15</time>
     </span>
 
   
@@ -742,8 +1079,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>一些代码保存为 <code>清除桌面快捷方式小箭头.reg</code> 文件运行后，重启 <code>explorer.exe</code> 进程</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons]</span><br><span class="line">&quot;29&quot;=&quot;&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>我们可以在 <code>&lt;script&gt;</code> 片断中定义一个被JS调用的代码，但代码又不在页面上显示，这时，我们可以使用下面的方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;commentTemplate&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;photo&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;[UserImg]&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>[UserName]：<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span>[CreateDate]<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clear&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;comment_ul_2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;addFun&quot;</span> <span class="attr">value</span>=<span class="string">&quot;click me&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;\\[([^\\[\\]]*?)\\]&quot;</span>, <span class="string">&#x27;igm&#x27;</span>); <span class="comment">//i g m是指分别用于指定区分大小写的匹配、全局匹配和多行匹配。</span></span></span><br><span class="line"><span class="language-javascript">    $(<span class="string">&quot;#addFun&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> html = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;commentTemplate&quot;</span>).<span class="property">innerHTML</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> source = html.<span class="title function_">replace</span>(reg, <span class="keyword">function</span> (<span class="params">node, key</span>) &#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;UserImg&#x27;</span>: <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;UserName&#x27;</span>: <span class="string">&#x27;zhang&#x27;</span>, <span class="string">&#x27;CreateDate&#x27;</span>: <span class="string">&#x27;2011-1-1&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#comment_ul_2&quot;</span>).<span class="title function_">append</span>(source);</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> zzl = <span class="string">&quot;name:[name]&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    zzl = zzl.<span class="title function_">replace</span>(reg, <span class="keyword">function</span> (<span class="params">node, key</span>) &#123; <span class="keyword">return</span> &#123; <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;占占&#x27;</span>&#125;[key]; &#125;);</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(zzl);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>OK，这个意思是说，当你单击按钮时，可以把 <code>commentTemplate</code> 的内容追到 <code>comment_ul_2</code> 里，这很有意思吧，呵呵！</p>
+<p>而其中有一个 <code>replace</code> ，也很有意思，向在替换时，可以接受一个 json 字符串，然后根据 json 的 <code>key</code> 来对比 js 模块里的 <code>key</code> ，进行赋值！</p>
+<p>真的很有意思！</p>
 
       
     </div>
@@ -770,7 +1113,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -788,7 +1131,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/23/js%E4%BA%BA%E6%B0%91%E5%B8%81%E8%BD%AC%E6%8D%A2%E5%A4%A7%E5%86%99/" class="post-title-link" itemprop="url">js人民币转换大写</a>
+          <a href="/2017/07/07/%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">一款开源指纹识别工具</a>
         </h2>
 
         <div class="post-meta-container">
@@ -799,7 +1142,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2016-12-23 00:00:00" itemprop="dateCreated datePublished" datetime="2016-12-23T00:00:00+08:00">2016-12-23</time>
+      <time title="创建时间：2017-07-07 17:00:22" itemprop="dateCreated datePublished" datetime="2017-07-07T17:00:22+08:00">2017-07-07</time>
     </span>
 
   
@@ -812,266 +1155,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">     Copyright (c) 2004, Laser Lu      </span></span><br><span class="line"><span class="comment">          http://www.idow.net           </span></span><br><span class="line"><span class="comment"> *****************************************/</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">convertCurrency</span>(<span class="params">currencyDigits</span>) &#123;</span><br><span class="line"><span class="comment">// Constants:</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">MAXIMUM_NUMBER</span> = <span class="number">99999999999.99</span>;</span><br><span class="line">    <span class="comment">// Predefine the radix characters and currency symbols for output:</span></span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_ZERO</span> = <span class="string">&quot;零&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_ONE</span> = <span class="string">&quot;壹&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TWO</span> = <span class="string">&quot;贰&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_THREE</span> = <span class="string">&quot;叁&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_FOUR</span> = <span class="string">&quot;肆&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_FIVE</span> = <span class="string">&quot;伍&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SIX</span> = <span class="string">&quot;陆&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SEVEN</span> = <span class="string">&quot;柒&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_EIGHT</span> = <span class="string">&quot;捌&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_NINE</span> = <span class="string">&quot;玖&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN</span> = <span class="string">&quot;拾&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_HUNDRED</span> = <span class="string">&quot;佰&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_THOUSAND</span> = <span class="string">&quot;仟&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN_THOUSAND</span> = <span class="string">&quot;万&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_HUNDRED_MILLION</span> = <span class="string">&quot;亿&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_SYMBOL</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_DOLLAR</span> = <span class="string">&quot;元&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_TEN_CENT</span> = <span class="string">&quot;角&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_CENT</span> = <span class="string">&quot;分&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable constant_">CN_INTEGER</span> = <span class="string">&quot;整&quot;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Variables:</span></span><br><span class="line">    <span class="keyword">var</span> integral;    <span class="comment">// Represent integral part of digit number.</span></span><br><span class="line">    <span class="keyword">var</span> decimal;    <span class="comment">// Represent decimal part of digit number.</span></span><br><span class="line">    <span class="keyword">var</span> outputCharacters;    <span class="comment">// The output result.</span></span><br><span class="line">    <span class="keyword">var</span> parts;</span><br><span class="line">    <span class="keyword">var</span> digits, radices, bigRadices, decimals;</span><br><span class="line">    <span class="keyword">var</span> zeroCount;</span><br><span class="line">    <span class="keyword">var</span> i, p, d;</span><br><span class="line">    <span class="keyword">var</span> quotient, modulus;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Validate input string:</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span> (currencyDigits == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;不能为空。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (currencyDigits.<span class="title function_">match</span>(<span class="regexp">/[^,.\d]/</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;请输入数字。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ((currencyDigits).<span class="title function_">match</span>(<span class="regexp">/^((\d&#123;1,3&#125;(,\d&#123;3&#125;)*(.((\d&#123;3&#125;,)*\d&#123;1,3&#125;))?)|(\d+(.\d+)?))$/</span>) == <span class="literal">null</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;请输入正确数字。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Normalize the format of input digits:</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">replace</span>(<span class="regexp">/,/g</span>, <span class="string">&quot;&quot;</span>);    <span class="comment">// Remove comma delimiters.</span></span><br><span class="line">    currencyDigits = currencyDigits.<span class="title function_">replace</span>(<span class="regexp">/^0+/</span>, <span class="string">&quot;&quot;</span>);    <span class="comment">// Trim zeros at the beginning.</span></span><br><span class="line">    <span class="comment">// Assert the number is not greater than the maximum number.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Number</span>(currencyDigits) &gt; <span class="variable constant_">MAXIMUM_NUMBER</span>) &#123;</span><br><span class="line">		<span class="variable constant_">PUT</span>.<span class="title function_">alert</span>(<span class="string">&quot;超出了最大数字转换。&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// Process the coversion from currency digits to characters:</span></span><br><span class="line">    <span class="comment">// Separate integral and decimal parts before processing coversion:</span></span><br><span class="line">    parts = currencyDigits.<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (parts.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        integral = parts[<span class="number">0</span>];</span><br><span class="line">        decimal = parts[<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// Cut down redundant decimal digits that are after the second.</span></span><br><span class="line">        decimal = decimal.<span class="title function_">substr</span>(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        integral = parts[<span class="number">0</span>];</span><br><span class="line">        decimal = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Prepare the characters corresponding to the digits:</span></span><br><span class="line">    digits = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="variable constant_">CN_ZERO</span>, <span class="variable constant_">CN_ONE</span>, <span class="variable constant_">CN_TWO</span>, <span class="variable constant_">CN_THREE</span>, <span class="variable constant_">CN_FOUR</span>, <span class="variable constant_">CN_FIVE</span>, <span class="variable constant_">CN_SIX</span>, <span class="variable constant_">CN_SEVEN</span>, <span class="variable constant_">CN_EIGHT</span>, <span class="variable constant_">CN_NINE</span>);</span><br><span class="line">    radices = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;&quot;</span>, <span class="variable constant_">CN_TEN</span>, <span class="variable constant_">CN_HUNDRED</span>, <span class="variable constant_">CN_THOUSAND</span>);</span><br><span class="line">    bigRadices = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="string">&quot;&quot;</span>, <span class="variable constant_">CN_TEN_THOUSAND</span>, <span class="variable constant_">CN_HUNDRED_MILLION</span>);</span><br><span class="line">    decimals = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="variable constant_">CN_TEN_CENT</span>, <span class="variable constant_">CN_CENT</span>);</span><br><span class="line">    <span class="comment">// Start processing:</span></span><br><span class="line">    outputCharacters = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">// Process integral part if it is larger than 0:</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Number</span>(integral) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        zeroCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; integral.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            p = integral.<span class="property">length</span> - i - <span class="number">1</span>;</span><br><span class="line">            d = integral.<span class="title function_">substr</span>(i, <span class="number">1</span>);</span><br><span class="line">            quotient = p / <span class="number">4</span>;</span><br><span class="line">            modulus = p % <span class="number">4</span>;</span><br><span class="line">            <span class="keyword">if</span> (d == <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">                zeroCount++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (zeroCount &gt; <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    outputCharacters += digits[<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                zeroCount = <span class="number">0</span>;</span><br><span class="line">                outputCharacters += digits[<span class="title class_">Number</span>(d)] + radices[modulus];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (modulus == <span class="number">0</span> &amp;&amp; zeroCount &lt; <span class="number">4</span>) &#123;</span><br><span class="line">                outputCharacters += bigRadices[quotient];</span><br><span class="line">                zeroCount = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        outputCharacters += <span class="variable constant_">CN_DOLLAR</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Process decimal part if there is:</span></span><br><span class="line">    <span class="keyword">if</span> (decimal != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; decimal.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            d = decimal.<span class="title function_">substr</span>(i, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (d != <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">                outputCharacters += digits[<span class="title class_">Number</span>(d)] + decimals[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Confirm and return the final output string:</span></span><br><span class="line">    <span class="keyword">if</span> (outputCharacters == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        outputCharacters = <span class="variable constant_">CN_ZERO</span> + <span class="variable constant_">CN_DOLLAR</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (decimal == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        outputCharacters += <span class="variable constant_">CN_INTEGER</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    outputCharacters = <span class="variable constant_">CN_SYMBOL</span> + outputCharacters;</span><br><span class="line">    <span class="keyword">return</span> outputCharacters;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用方法:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123.45</span>)</span><br><span class="line"><span class="string">&quot;壹佰贰拾叁元肆角伍分&quot;</span></span><br><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123000.45</span>)</span><br><span class="line"><span class="string">&quot;壹拾贰万叁仟元肆角伍分&quot;</span></span><br><span class="line"><span class="title function_">convertCurrency</span>(<span class="number">123456.78</span>)</span><br><span class="line"><span class="string">&quot;壹拾贰万叁仟肆佰伍拾陆元柒角捌分&quot;</span> </span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/17/php%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/17/php%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81/" class="post-title-link" itemprop="url">php 最简单的验证码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-12-17 16:18:55" itemprop="dateCreated datePublished" datetime="2016-12-17T16:18:55+08:00">2016-12-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>create_code.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="comment">//生成验证码图片</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type: image/png&quot;</span>);</span><br><span class="line"><span class="comment">// 全数字</span></span><br><span class="line"><span class="variable">$str</span> = <span class="string">&quot;1,2,3,4,5,6,7,8,9,a,b,c,d,f,g&quot;</span>;      <span class="comment">//要显示的字符，可自己进行增删</span></span><br><span class="line"><span class="variable">$list</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&quot;,&quot;</span>, <span class="variable">$str</span>);</span><br><span class="line"><span class="variable">$cmax</span> = <span class="title function_ invoke__">count</span>(<span class="variable">$list</span>) - <span class="number">1</span>;</span><br><span class="line"><span class="variable">$verifyCode</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span> ( <span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">5</span>; <span class="variable">$i</span>++ )&#123;</span><br><span class="line">      <span class="variable">$randnum</span> = <span class="title function_ invoke__">mt_rand</span>(<span class="number">0</span>, <span class="variable">$cmax</span>);</span><br><span class="line">      <span class="variable">$verifyCode</span> .= <span class="variable">$list</span>[<span class="variable">$randnum</span>];           <span class="comment">//取出字符，组合成为我们要的验证码字符</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;code&#x27;</span>] = <span class="variable">$verifyCode</span>;        <span class="comment">//将字符放入SESSION中</span></span><br><span class="line">  </span><br><span class="line"><span class="variable">$im</span> = <span class="title function_ invoke__">imagecreate</span>(<span class="number">58</span>,<span class="number">28</span>);    <span class="comment">//生成图片</span></span><br><span class="line"><span class="variable">$black</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$im</span>, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);     <span class="comment">//此条及以下三条为设置的颜色</span></span><br><span class="line"><span class="variable">$white</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$im</span>, <span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>);</span><br><span class="line"><span class="variable">$gray</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$im</span>, <span class="number">200</span>,<span class="number">200</span>,<span class="number">200</span>);</span><br><span class="line"><span class="variable">$red</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$im</span>, <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">imagefill</span>(<span class="variable">$im</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="variable">$white</span>);     <span class="comment">//给图片填充颜色</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//将验证码绘入图片</span></span><br><span class="line"><span class="title function_ invoke__">imagestring</span>(<span class="variable">$im</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="variable">$verifyCode</span>, <span class="variable">$black</span>);    <span class="comment">//将验证码写入到图片中</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">50</span>;<span class="variable">$i</span>++)  <span class="comment">//加入干扰象素</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$im</span>, <span class="title function_ invoke__">rand</span>()p , <span class="title function_ invoke__">rand</span>()<span class="number">0</span> , <span class="variable">$black</span>);    <span class="comment">//加入点状干扰素</span></span><br><span class="line">     <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$im</span>, <span class="title function_ invoke__">rand</span>()p , <span class="title function_ invoke__">rand</span>()<span class="number">0</span> , <span class="variable">$red</span>);</span><br><span class="line">     <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$im</span>, <span class="title function_ invoke__">rand</span>()p , <span class="title function_ invoke__">rand</span>()<span class="number">0</span> , <span class="variable">$gray</span>);</span><br><span class="line">     <span class="comment">//imagearc($im, rand()p, rand()p, 20, 20, 75, 170, $black);    //加入弧线状干扰素</span></span><br><span class="line">     <span class="comment">//imageline($im, rand()p, rand()p, rand()p, rand()p, $red);    //加入线条状干扰素</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$im</span>);</span><br><span class="line"><span class="title function_ invoke__">imagedestroy</span>(<span class="variable">$im</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>引用<br>demo.html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd" --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;act.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;code&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;code&quot;</span> <span class="attr">src</span>=<span class="string">&quot;create_code.php&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;看不清楚，换一张&quot;</span> <span class="attr">style</span>=<span class="string">&quot;cursor: pointer; vertical-align:middle;&quot;</span> <span class="attr">onClick</span>=<span class="string">&quot;create_code()&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment"><!--<button type="button" onClick="create_code()">更换</button>--></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">create_code</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;code&#x27;</span>).<span class="property">src</span> = <span class="string">&#x27;create_code.php?&#x27;</span>+<span class="title class_">Math</span>.<span class="title function_">random</span>()*<span class="number">10000</span>;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>&#x2F;&#x2F;处理，判断是否输入正确<br>act.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;code&#x27;</span>] == <span class="variable">$_SESSION</span>[<span class="string">&#x27;code&#x27;</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;ok&#x27;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;no&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/12/16/CSS3%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%20-webkit-scrollbar/" class="post-title-link" itemprop="url">CSS3自定义滚动条样式 -webkit-scrollbar</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-12-16 15:39:00" itemprop="dateCreated datePublished" datetime="2016-12-16T15:39:00+08:00">2016-12-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>有没有觉得浏览器自带的原始滚动条很不美观,同时也有看到很多网站的自定义滚动条显得高端,就连 <code>chrome32.0</code> 开发板都抛弃了原始的滚动条,美观多了。那 ** webkit浏览器 ** 是如何自定义滚动条的呢？</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webkit</code> 支持拥有 <code>overflow</code> 属性的区域,列表框,下拉菜单,<code>textarea</code> 的滚动条自定义样式,所以用处还是挺大的。当然,兼容所有浏览器的滚动条样式目前是不存在的。</p>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>来看看这2个滚动条demo： <span class="exturl" data-url="aHR0cDovL3d3dy54dWFuZmVuZ2dlLmNvbS9kZW1vLzIwMTMxMS9zY3JvbGwvaW5kZXguaHRtbA==">demo1(图片版)<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL3d3dy54dWFuZmVuZ2dlLmNvbS9kZW1vLzIwMTMxMS9zY3JvbGwvY3NzMy1zY3JvbGwuaHRtbA==">demo2(纯CSS3版)<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="滚动条组成"><a href="#滚动条组成" class="headerlink" title="滚动条组成"></a>滚动条组成</h2><table>
-<thead>
-<tr>
-<th>样式名</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>::-webkit-scrollbar</code></td>
-<td>滚动条整体部分</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-thumb</code></td>
-<td>滚动条里面的小方块,能向上向下移动(或往左往右移动,取决于是垂直滚动条还是水平滚动条)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track</code></td>
-<td>滚动条的轨道(里面装有<code>Thumb</code>)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-button</code></td>
-<td>滚动条的轨道的两端按钮,允许通过点击微调小方块的位置。</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track-piece</code></td>
-<td>内层轨道,滚动条中间部分(除去)</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-corner</code></td>
-<td>边角,即两个滚动条的交汇处</td>
-</tr>
-<tr>
-<td><code>::-webkit-resizer</code></td>
-<td>两个滚动条的交汇处上用于通过拖动调整元素大小的小控件</td>
-</tr>
-</tbody></table>
-<h2 id="简洁版"><a href="#简洁版" class="headerlink" title="简洁版"></a>简洁版</h2><p>这里就不贴出详细代码了, demo 里面可以通过查看源码寻找具体样式的设置。来看看 demo2 中第二个滚动条的样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/</span>  </span><br><span class="line">::-webkit-scrollbar  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="attribute">width</span>: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">height</span>: <span class="number">16px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滚动条轨道 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-track  </span><br><span class="line">&#123;  </span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>);  </span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#F5F5F5</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*定义滑块 内阴影+圆角*/</span>  </span><br><span class="line">::-webkit-scrollbar-thumb  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;  </span><br><span class="line">    -webkit-<span class="attribute">box-shadow</span>: inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);  </span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#555</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><p>定义滚动条就是利用伪元素与伪类,那什么是伪元素和伪类呢？</p>
-<p>伪类大家应该很熟悉 <code>:link</code> , <code>:focus</code> , <code>:hover</code> ,此外 <span class="exturl" data-url="aHR0cDovL2xpYi5jc2RuLm5ldC9iYXNlL2NzczM=">CSS3<i class="fa fa-external-link-alt"></i></span> 中又增加了许多伪类选择器,如 <code>:nth-child</code> , <code>:last-child</code> , <code>:nth-last-of-type()</code> 等。</p>
-<p><code>CSS</code> 中的伪元素大家以前看过： <code>:first-line</code> , <code>:first-letter</code> , <code>:before</code> , <code>:after</code> 。那么在 <code>CSS3</code> 中,伪元素进行了调整,在以前的基础上增加了一个 <code>:</code> 也就是现在变成了” <code>::first-letter</code> , <code>::first-line</code> , <code>::before</code> , <code>::after</code> “,另外 <code>CSS3</code> 还增加了一个 <code>::selection</code> 。两个 <code>::</code> 和一个 <code>:</code> 在 <code>CSS3</code> 中主要用来区分伪类和伪元素。</p>
-<p>webkit的伪类和伪元素的实现很强,可以把滚动条当成一个页面元素来定义,再结合一些高级的 <code>CSS3</code> 属性,比如渐变、圆角、RGBa等等。然后如果有些地方要用图片,可以把图片也可以转换成 <code>Base64</code> ,不然每次都得加载那个多个图片,增加请求数。</p>
-<p>任何对象都可以设置：边框、阴影、背景图片等等,创建的滚动条任然会按照<span class="exturl" data-url="aHR0cDovL2xpYi5jc2RuLm5ldC9iYXNlL29wZXJhdGluZ3N5c3RlbQ==">操作系统<i class="fa fa-external-link-alt"></i></span>本身的设置来完成其交互的行为。下面的伪类可以应用到上面的伪元素中。有点小复杂,具体怎么写可以看第一个 demo ,那里也有注释。</p>
-<table>
-<thead>
-<tr>
-<th>样式名</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>:horizontal</code></td>
-<td><code>horizontal</code> 伪类适用于任何水平方向上的滚动条</td>
-</tr>
-<tr>
-<td><code>:vertical</code></td>
-<td><code>vertical</code> 伪类适用于任何垂直方向的滚动条</td>
-</tr>
-<tr>
-<td><code>:decrement</code></td>
-<td><code>decrement</code> 伪类适用于按钮和轨道碎片。表示递减的按钮或轨道碎片,例如可以使区域向上或者向右移动的区域和按钮</td>
-</tr>
-<tr>
-<td><code>:increment</code></td>
-<td><code>increment</code> 伪类适用于按钮和轨道碎片。表示递增的按钮或轨道碎片,例如可以使区域向下或者向左移动的区域和按钮</td>
-</tr>
-<tr>
-<td><code>:start</code></td>
-<td><code>start</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的前面</td>
-</tr>
-<tr>
-<td><code>:end</code></td>
-<td><code>end</code> 伪类适用于按钮和轨道碎片。表示对象(按钮 轨道碎片)是否放在滑块的后面</td>
-</tr>
-<tr>
-<td><code>:double-button</code></td>
-<td><code>double-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。</td>
-</tr>
-<tr>
-<td><code>:single-button</code></td>
-<td><code>single-button</code> 伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。</td>
-</tr>
-<tr>
-<td><code>:no-button</code></td>
-<td><code>no-button</code> 伪类表示轨道结束的位置没有按钮。</td>
-</tr>
-<tr>
-<td><code>:corner-present</code></td>
-<td><code>corner-present</code> 伪类表示滚动条的角落是否存在。</td>
-</tr>
-<tr>
-<td><code>:window-inactive</code></td>
-<td>适用于所有滚动条,表示包含滚动条的区域,焦点不在该窗口的时候。</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-track-piece:start</code></td>
-<td>滚动条上半边或左半边</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-thumb:window-inactive</code></td>
-<td>当焦点不在当前区域滑块的状态</td>
-</tr>
-<tr>
-<td><code>::-webkit-scrollbar-button:horizontal:decrement:hover</code></td>
-<td>当鼠标在水平滚动条下面的按钮上的状态</td>
-</tr>
-</tbody></table>
+          <p>一款开源指纹识别工具。</p>
+<hr>
+<hr>
+<p> 开源工具使用说明：<br>      -u 一个域名或IP,如果输入更多域名或IP使用‘,’分隔；<br>      -r  读取本地域名或IP文件地址；<br>      -t  输入一个线程数量，默认线程为50；<br>      -p  设置一个请求端口，默认端口为80；<br>      -s  设置一个请求协议，默认请求协议为http.(http、https)；<br>      -h  查看使用帮助；<br>      -o  输出识别结果到本地文件；<br>      -m  选择一个常规识别模式，默认使用模式为1；（1：快速识别一条指纹 2：获取命中率高的指纹 3：得到所有匹配的指纹）<br>      –http-request 设置一个自定义请求URL；<br>      –http-response 设置一个自定义关键字符。(支持正则表达式字符，自定义枚举指纹字符)<br>      注：自定义识别模式参数为 –http-request &#x2F;robots.txt –http-response discuz；不能和-m 常规识别模式一起使用。-u和-r参数不能同时使用。<br>	<br>	  1. 使用-m参数选择常规识别模式，有3种可选模式。下面具体说明：<br>	     -m 1：快速识别一条指纹，请求设置的url，获取相应识别方式的响应信息，进行数据库指纹遍历匹配，匹配到一条则跳出程序，显示识别结果。（速度较快）<br>		 -m 2: 获取命中率高的指纹，例如请求url,进行指纹库全部遍历匹配，比如一个网址，命中了1个dedecms，2个 phpcms，1个discuz，那么显示的识别结果为phpcms程序。<br>		 -m 3: 获取匹配识别所有的指纹信息，请求url获取响应信息，进行指纹库全部遍历匹配，最后获取指纹识别所有结果。（速度较慢、数据最全）<br>	  2. 使用–http-request、–http-response参数自定义识别模式，下面具体说明：<br>	     使用自定义识别模式应同时使用–http-request、–http-response两个参数，第一个参数设置为请求路径，第二个参数设置响应信息关键字符（支持正则表达式、不过注意大小写问题）<br>	<br>	  例：java -jar Dayu.jar -r d:\1.txt -t 100 –http-request &#x2F; –http-response tomcat<br>	      java -jar Dayu.jar -u <span class="exturl" data-url="aHR0cDovL3d3dy5kaXNjdXoubmV0LHd3dy5kZWRlY21zLmNvbS8=">www.discuz.net,www.dedecms.com<i class="fa fa-external-link-alt"></i></span> -o d:\result.txt<br>		  java -jar Dayu.jar -u cn.wordpress.org -s https -p 443  -m 3<br>		<br> Dayu.jar程序说明：<br>      Feature.json指纹文件放到D盘根目录(d:\Feature.json),如无D磁盘，请自行下载源码更改org.secbug.conf下Context.java文件中的currpath常量。<br>	<br> 在此说明：<br>      指纹识别离不开指纹库的强大。希望用户多多在我们平台 <span class="exturl" data-url="aHR0cDovL3d3dy5zZWNidWcub3JnOjgwODAv">http://www.secbug.org:8080/<i class="fa fa-external-link-alt"></i></span> 提交指纹，我们一起进步。<br>	<br>	  ☆☆ 本版本为第二版，第一版基于数据库sql文件，可保存指纹识别结果。如有需要，请联系QQ212125278所取。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01zMHgwL0RheXUx">https://github.com/Ms0x0/Dayu1<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
@@ -1091,7 +1179,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

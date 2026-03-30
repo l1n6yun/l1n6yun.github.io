@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">334</span>
+        <span class="site-state-item-count">352</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,88 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/30/%E5%B7%A7%E7%94%A8-Dark-Reader-%E7%A0%B4%E8%A7%A3%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87/" class="post-title-link" itemprop="url">巧用 Dark Reader 破解阅读全文</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-30 23:53:00" itemprop="dateCreated datePublished" datetime="2022-09-30T23:53:00+08:00">2022-09-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在阅读一些网站文章时，时常会遇到文章内容只展示一部分，用户需要 关注博主、或者关注公众号 的一系列障碍。</p>
+<p><img src="/images/pasted-33.png" alt="upload successful"></p>
+<p><img src="/images/pasted-34.png" alt="upload successful"></p>
+<p>于是使用“开发者工具”分析了一下前端代码发现。大多数实现逻辑基本上都是将文章内容元素设置一个较小高度，超出的部分隐藏掉。再在后追加一个“查看全文”的元素。</p>
+<p>想起 Dark Reader （暗黑）插件的自定义CSS功能，因为在使用通用暗黑方案后不能满足所有网站，所以要对一些不能完美适配的网站添加亿点自定义代码。在这正好派到了用场。（当然你也可以使用其他插件）</p>
+<p>打开 Dark Reader 插件，点击开发者工具</p>
+<p><img src="/images/pasted-35.png" alt="upload successful"></p>
+<p>在 主题编辑器 中添加一下代码：（这里用了IT屋和CSDN做演示）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">================================</span><br><span class="line"></span><br><span class="line">it1352<span class="selector-class">.com</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.arc-body-main-more</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.arc-body-main</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">================================</span><br><span class="line"></span><br><span class="line">blog<span class="selector-class">.csdn</span><span class="selector-class">.net</span></span><br><span class="line"></span><br><span class="line">CSS</span><br><span class="line"><span class="selector-class">.article_content</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: auto <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-class">.hide-article-box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-36.png" alt="upload successful"></p>
+<p>点击 Apply，刷新网站，就可以清除全文阅读限制了</p>
+<p>实现原理很简单：隐藏关注元素，清除文章内容元素的高度限制。</p>
+<p>注：此方法只能用于前端限制，后端限制是不行的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1422,141 +1504,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/09/%E4%BD%BF%E7%94%A8-Snipaste-%E6%8F%90%E9%AB%98%E6%82%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/" class="post-title-link" itemprop="url">使用 Snipaste 提高您的工作效率</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-09 23:25:00" itemprop="dateCreated datePublished" datetime="2022-02-09T23:25:00+08:00">2022-02-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Boost-your-productivity-with-Snipaste"><a href="#Boost-your-productivity-with-Snipaste" class="headerlink" title="Boost your productivity with Snipaste"></a>Boost your productivity with Snipaste</h2><p>Snipaste is a simple but powerful snipping tool, and also<br>allows you to pin the screenshot back onto the screen.<br>Download and start the application, press <kbd>F1</kbd> to start snipping,<br>then press <kbd>F3</kbd> to paste it as a floating window. That’s it!</p>
-<p>You can also convert text or color info in the clipboard into a floating image window.<br>Such windows can be zoomed, rotated, flipped, made translucent, and even made click-through!<br>If you are a programmer, a designer or whoever works much time before the computer,<br>you will be surprised how it can help you get your work done more efficiently!</p>
-<p>Snipaste is easy and intuitive to use,<br>but there are also many hidden features that can make your life even more efficient.<br>Read the <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNuaXBhc3RlLmNvbQ==">manual<i class="fa fa-external-link-alt"></i></span><br>if you are interested.</p>
-<h3 id="Intuitive-snipping"><a href="#Intuitive-snipping" class="headerlink" title="Intuitive snipping"></a>Intuitive snipping</h3><p><img src="/images/pasted-8.png" alt="upload successful"></p>
-<ul>
-<li>Auto detect UI elements</li>
-<li>Pixel-level control</li>
-<li>Color picker (try <code>F1</code>, <code>C</code>, <code>F3</code>)</li>
-<li><strong>History play back</strong> (<code>,</code>&#x2F;<code>.</code>)</li>
-<li>Multi-screen support</li>
-<li>HiDPI (retina display) support</li>
-</ul>
-<h3 id="Paste-images-as-topmost-floating-windows"><a href="#Paste-images-as-topmost-floating-windows" class="headerlink" title="Paste images as topmost floating windows"></a>Paste images as topmost floating windows</h3><p><img src="/images/pasted-9.png" alt="upload successful"></p>
-<ul>
-<li>The source (in the clipboard) could be                            <ul>
-<li>Image</li>
-<li>Plain text</li>
-<li>HTML text</li>
-<li>Color info text</li>
-<li>Image files: PNG, JPG, BMP, TGA, ICO, TIFF and <strong>GIF</strong></li>
-</ul>
-</li>
-<li>Supported operations<ul>
-<li>Zoom (<code>mouse scroll</code> or <code>+</code>&#x2F;<code>-</code>) or set speed for GIF </li>
-<li>Rotate (<code>1</code>&#x2F;<code>2</code>) or jump to previous&#x2F;next frame for GIF</li>
-<li>Flip (<code>3</code>&#x2F;<code>4</code>)</li>
-<li>Set transparency (<code>Ctrl</code> + <code>mouse scroll</code> or <code>Ctrl</code> + <code>+</code>&#x2F;<code>-</code>)</li>
-<li>Mouse click-through (<code>X</code>, and use <code>F4</code> to cancel)</li>
-<li>Image editing (<code>Space</code>)</li>
-<li>Thumbnail mode (<code>Shift</code> + <code>Double click</code>)</li>
-<li>Hide (<code>Double click</code>)</li>
-<li>…</li>
-</ul>
-</li>
-<li>Color picker (<code>Alt</code>)</li>
-<li>Drag &amp; drop</li>
-<li><strong>Grouping</strong></li>
-<li><strong>Auto backup &amp; restore</strong></li>
-</ul>
-<h3 id="Easy-image-annotation"><a href="#Easy-image-annotation" class="headerlink" title="Easy image annotation"></a>Easy image annotation</h3><p><img src="/images/pasted-10.png" alt="upload successful"></p>
-<ul>
-<li>Rich shapes                            <ul>
-<li>Rectangle</li>
-<li>Ellipse</li>
-<li>Linestrip</li>
-<li>Arrow</li>
-<li>Pencil</li>
-<li>Marker pen</li>
-<li>Text</li>
-</ul>
-</li>
-<li>Advanced annotation tools                            <ul>
-<li>Mosaic</li>
-<li>Gaussian blur</li>
-<li>Eraser</li>
-</ul>
-</li>
-<li>Undo &amp; redo</li>
-</ul>
-<h3 id="Customization"><a href="#Customization" class="headerlink" title="Customization"></a>Customization</h3><p><img src="/images/pasted-11.png" alt="upload successful"></p>
-<ul>
-<li>Theme color, interface font, tray icon, and more</li>
-<li>Hot keys</li>
-<li>Detailed functionality options</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

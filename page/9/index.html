@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">334</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">117</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">334</span>
+        <span class="site-state-item-count">352</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -230,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/03/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -248,7 +248,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/03/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">正则表达式</a>
+          <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" class="post-title-link" itemprop="url">编写模块化的CSS:命名空间</a>
         </h2>
 
         <div class="post-meta-container">
@@ -259,7 +259,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-03-10 22:25:00" itemprop="dateCreated datePublished" datetime="2018-03-10T22:25:00+08:00">2018-03-10</time>
+      <time title="创建时间：2019-08-29 16:41:00" itemprop="dateCreated datePublished" datetime="2019-08-29T16:41:00+08:00">2019-08-29</time>
     </span>
 
   
@@ -272,621 +272,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>正则表达式(Regular Expression)是一种文本模式，包含普通字符（列如，a 到 z 之间的字母）和特殊字符（元字符）。</p>
-<p>正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。</p>
-<h2 id="正则表达式-语法"><a href="#正则表达式-语法" class="headerlink" title="正则表达式 - 语法"></a>正则表达式 - 语法</h2><h3 id="普通字符串"><a href="#普通字符串" class="headerlink" title="普通字符串"></a>普通字符串</h3><table>
-<thead>
-<tr>
-<th>字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[ABC]</td>
-<td>匹配 <code>[...]</code> 中的所有字符。例如用 <code>/[lny]/g</code> 来匹配字符串 “l1n6yun”,可以匹配到 <code>l,n,y,n</code> 。</td>
-</tr>
-<tr>
-<td>[!ABC]</td>
-<td>匹配除了 <code>[!...]</code> 中的所有字符。例如 <code>/[^lny]/g</code> 来匹配字符串 “l1n6yun”,可以匹配到 <code>1,6,u</code> 。</td>
-</tr>
-<tr>
-<td>[A-Z] [a-z]</td>
-<td><code>[A-Z]</code> 表示一个区间，匹配所有大写字母。<code>[a-z]</code> 表示匹配所有小写字母。</td>
-</tr>
-<tr>
-<td>.</td>
-<td>匹配除换行符 ( <code>\r</code>、<code>\n</code>) 之外的任何单字符，相当于 <code>[^\r\n]</code></td>
-</tr>
-<tr>
-<td>[\s\S]</td>
-<td>匹配所有。<code>\s</code> 是匹配所有空白符，包含换行，<code>\S</code> 非空白符，不包含换行</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配字母、数字、下划线。等价于 <code>[A-Za-z0-9_]</code></td>
-</tr>
-</tbody></table>
-<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><table>
-<thead>
-<tr>
-<th>字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\cx</td>
-<td>匹配由x指明的控制字符。例如， <code>\cM</code> 匹配一个 Control-M 或回车符。<code>x</code> 的值必须为 <code>A-Z</code> 或 <code>a-z</code> 之一。否则，将 <code>c</code> 视为一个原义的 ‘c’ 字符。</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>匹配一个换页符。等价于 <code>\x0c</code> 和 <code>\cL</code>。</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>匹配一个换行符。等价于 <code>\x0a</code> 和 <code>\cJ</code>。</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>匹配一个回车符。等价于 <code>\x0d</code> 和 <code>\cM</code>。</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <code>[\f\n\r\t\v]</code>。注意 Unicode 正则表达式会匹配全角空格符。</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任何非空白字符。等价于 <code>[^ \f\n\r\t\v]</code>。</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>匹配一个制表符。等价于 <code>\x09</code> 和 <code>\cI</code>。</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>匹配一个垂直制表符。等价于 <code>\x0b</code> 和 <code>\cK</code>。</td>
-</tr>
-<tr>
-<td>\xn</td>
-<td>匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ‘\x04’ &amp; “1”。正则表达式中可以使用 ASCII 编码。</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。</td>
-</tr>
-<tr>
-<td>\nm</td>
-<td>标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。</td>
-</tr>
-<tr>
-<td>\nml</td>
-<td>如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。</td>
-</tr>
-<tr>
-<td>\un</td>
-<td>匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</td>
-</tr>
-</tbody></table>
-<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><table>
-<thead>
-<tr>
-<th align="left">特别字符</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">$</td>
-<td align="left">匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 ‘\n’ 或 ‘\r’。要匹配 $ 字符本身，请使用 $。</td>
-</tr>
-<tr>
-<td align="left">( )</td>
-<td align="left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
-</tr>
-<tr>
-<td align="left">*</td>
-<td align="left">匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</td>
-</tr>
-<tr>
-<td align="left">+</td>
-<td align="left">匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</td>
-</tr>
-<tr>
-<td align="left">.</td>
-<td align="left">匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</td>
-</tr>
-<tr>
-<td align="left">[</td>
-<td align="left">标记一个中括号表达式的开始。要匹配 [，请使用 [。</td>
-</tr>
-<tr>
-<td align="left">?</td>
-<td align="left">匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</td>
-</tr>
-<tr>
-<td align="left">\</td>
-<td align="left">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。</td>
-</tr>
-<tr>
-<td align="left">^</td>
-<td align="left">匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 ^。</td>
-</tr>
-<tr>
-<td align="left">{</td>
-<td align="left">标记限定符表达式的开始。要匹配 {，请使用 {。</td>
-</tr>
-<tr>
-<td align="left">|</td>
-<td align="left">指明两项之间的一个选择。要匹配 |，请使用 |。</td>
-</tr>
-</tbody></table>
-<h3 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h3><table>
-<thead>
-<tr>
-<th align="left">字符</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">*</td>
-<td align="left">匹配前面的子表达式零次或多次。***** 等价于 <strong>{0,}</strong>。</td>
-</tr>
-<tr>
-<td align="left">+</td>
-<td align="left">匹配前面的子表达式一次或多次。<strong>+</strong> 等价于 <strong>{1,}</strong>。</td>
-</tr>
-<tr>
-<td align="left">?</td>
-<td align="left">匹配前面的子表达式零次或一次。<strong>?</strong> 等价于 <strong>{0,1}</strong>。</td>
-</tr>
-<tr>
-<td align="left">{n}</td>
-<td align="left">n 是一个非负整数。匹配确定的 <strong>n</strong> 次。</td>
-</tr>
-<tr>
-<td align="left">{n,}</td>
-<td align="left">n 是一个非负整数。至少匹配n 次。</td>
-</tr>
-<tr>
-<td align="left">{n,m}</td>
-<td align="left">m 和 n 均为非负整数，其中 n &lt;&#x3D; m。</td>
-</tr>
-</tbody></table>
-<p><code>*</code>  和 <code>+</code> 限定符都是贪婪的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个 <code>?</code> 就可以实现非贪婪或最小的匹配。</p>
-<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>定位符使您能够将正则表达式固定到行首或行尾。他们还使您能够创建这样的正则表达式，这些正则表达式出现在一个单词内、在一个单词的开头或者一个单词的结尾。</p>
-<table>
-<thead>
-<tr>
-<th align="left">字符</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">^</td>
-<td align="left">匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与 \n 或 \r 之后的位置匹配。</td>
-</tr>
-<tr>
-<td align="left">$</td>
-<td align="left">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
-</tr>
-<tr>
-<td align="left">\b</td>
-<td align="left">匹配一个单词边界，即字与空格间的位置。例如”Hello World”，结果”\dHello\d \dWorld\d”</td>
-</tr>
-<tr>
-<td align="left">\B</td>
-<td align="left">非单词边界匹配。例如”Hello World”，结果”H\Be\Bl\Bl\Bo W\Bo\Br\Bl\Bd”</td>
-</tr>
-</tbody></table>
-<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>用圆括号 <code>()</code> 将所有选择项括起来，相邻的选择项之间用 <code>|</code> 分割。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/([1-9])([a-z]+)/g</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>exp1(?&#x3D;exp2)</td>
-<td>查找 exp2 前面的 exp1</td>
-</tr>
-<tr>
-<td>(?&lt;&#x3D;exp2)exp1</td>
-<td>查找 exp2 后面的 exp1</td>
-</tr>
-<tr>
-<td>exp1(?!exp2)</td>
-<td>查找后面不是 exp2 的 exp1</td>
-</tr>
-<tr>
-<td>(?&lt;!exp2)exp1</td>
-<td>查找前面不是 exp2 的 exp1</td>
-</tr>
-</tbody></table>
-<h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p>对一个正则表达式模式或部分模式两边添加圆括号将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左到右出现的顺序存储。缓冲区编号从 1 开始，最多可存储 99 个捕获的子表达式。每个缓冲区都可以使用 <strong>\n</strong> 访问，其中 n 为一个标识特定缓冲区的一位或两位十进制数。</p>
-<p>可以使用非捕获元字符 <strong>?:</strong>、<strong>?&#x3D;</strong> 或 <strong>?!</strong> 来重写捕获，忽略对相关匹配的保存。</p>
-<p>反向引用的最简单的、最有用的应用之一，是提供查找文本中两个相同的相邻单词的匹配项的能力。以下面的句子为例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Is is the cost of of gasoline going up up?</span><br></pre></td></tr></table></figure>
-
-<p>上面的句子很显然有多个重复的单词。如果能设计一种方法定位该句子，而不必查找每个单词的重复出现，那该有多好。下面的正则表达式使用单个子表达式来实现这一点：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;Is is the cost of of gasoline going up up&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> patt1 = <span class="regexp">/\b([a-z]+) \1\b/igm</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(str.<span class="title function_">match</span>(patt1));</span><br></pre></td></tr></table></figure>
-
-<p>捕获的表达式，正如 <strong>[a-z]+</strong> 指定的，包括一个或多个字母。正则表达式的第二部分是对以前捕获的子匹配项的引用，即，单词的第二个匹配项正好由括号表达式匹配。<strong>\1</strong> 指定第一个子匹配项。</p>
-<p>单词边界元字符确保只检测整个单词。否则，诸如 “is issued” 或 “this is” 之类的词组将不能正确地被此表达式识别。</p>
-<p>正则表达式后面的全局标记 <strong>g</strong> 指定将该表达式应用到输入字符串中能够查找到的尽可能多的匹配。</p>
-<p>表达式的结尾处的不区分大小写 <strong>i</strong> 标记指定不区分大小写。</p>
-<p>多行标记 <strong>m</strong> 指定换行符的两边可能出现潜在的匹配。</p>
-<h2 id="正则表达式-修饰符"><a href="#正则表达式-修饰符" class="headerlink" title="正则表达式 - 修饰符"></a>正则表达式 - 修饰符</h2><p>标记也称为修饰符，正则表达式的标记用于指定额外的匹配策略。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pattern/flags</span><br></pre></td></tr></table></figure>
-
-<p>下表列出了正则表达式常用的修饰符</p>
-<table>
-<thead>
-<tr>
-<th align="left">修饰符</th>
-<th align="left">含义</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">i</td>
-<td align="left">ignore - 不区分大小写</td>
-<td align="left">将匹配设置为不区分大小写，搜索时不区分大小写: A 和 a 没有区别。</td>
-</tr>
-<tr>
-<td align="left">g</td>
-<td align="left">global - 全局匹配</td>
-<td align="left">查找所有的匹配项。</td>
-</tr>
-<tr>
-<td align="left">m</td>
-<td align="left">multi line - 多行匹配</td>
-<td align="left">使边界字符 <strong>^</strong> 和 <strong>$</strong> 匹配每一行的开头和结尾，记住是多行，而不是整个字符串的开头和结尾。</td>
-</tr>
-<tr>
-<td align="left">s</td>
-<td align="left">特殊字符圆点 <strong>.</strong> 中包含换行符 <strong>\n</strong></td>
-<td align="left">默认情况下的圆点 <strong>.</strong> 是匹配除换行符 <strong>\n</strong> 之外的任何字符，加上 <strong>s</strong> 修饰符之后, <strong>.</strong> 中包含换行符 \n。</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/20/Git-%E6%8F%90%E4%BA%A4%E7%A9%BA%E7%9B%AE%E5%BD%95%EF%BC%9A3-%E7%A7%8D%E5%AE%9E%E7%94%A8%E6%96%B9%E6%A1%88%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A%E7%9B%AE%E5%BD%95%E8%B7%9F%E8%B8%AA%E9%9A%BE%E9%A2%98/" class="post-title-link" itemprop="url">Git 提交空目录：3 种实用方案，轻松搞定目录跟踪难题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-01-20 03:06:12" itemprop="dateCreated datePublished" datetime="2018-01-20T03:06:12+08:00">2018-01-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在使用 Git 进行版本控制时，很多开发者都会遇到一个常见问题：<strong>空目录无法被 Git 直接跟踪和提交</strong>。这是因为 Git 的设计理念是跟踪文件的变更，而非目录本身 —— 如果一个目录下没有任何文件，Git 会默认忽略它，导致团队协作时目录结构无法同步。别担心，本文将分享 3 种经过实践验证的解决方案，帮你优雅解决空目录提交问题。</p>
-<h2 id="一、推荐方案：使用-gitkeep-文件（最通用）"><a href="#一、推荐方案：使用-gitkeep-文件（最通用）" class="headerlink" title="一、推荐方案：使用.gitkeep 文件（最通用）"></a>一、推荐方案：使用.gitkeep 文件（最通用）</h2><p>这是开发中最常用的方法，虽然<code>.gitkeep</code>并非 Git 官方定义的标准文件，但已被 Laravel、Vue 等主流框架广泛采用，成为行业惯例。</p>
-<h3 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h3><p>Git 会跟踪包含文件的目录结构。通过在空目录中创建一个名为<code>.gitkeep</code>的占位文件，就能强制 Git 识别并保留该目录，且不会影响目录的后续使用。</p>
-<h3 id="操作步骤（含示例）"><a href="#操作步骤（含示例）" class="headerlink" title="操作步骤（含示例）"></a>操作步骤（含示例）</h3><ol>
-<li><p><strong>创建空目录及占位文件</strong></p>
-<p>无论是单个空目录还是多级空目录，都可以通过简单命令创建：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建单个空目录并添加.gitkeep</span><br><span class="line">mkdir -p project/logs/</span><br><span class="line">touch project/logs/.gitkeep</span><br><span class="line"></span><br><span class="line"># 创建多级空目录并添加.gitkeep</span><br><span class="line">mkdir -p src/utils/temp/</span><br><span class="line">touch src/utils/temp/.gitkeep</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>提交到 Git 仓库</strong></p>
-<p>常规的<code>add</code>和<code>commit</code>操作即可完成跟踪：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add project/logs/.gitkeep</span><br><span class="line">git commit -m &quot;Track logs directory with .gitkeep&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>批量处理所有空目录（高效技巧）</strong></p>
-<p>如果项目中有多个空目录，手动创建太繁琐，可通过<code>find</code>命令批量处理：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -empty -exec touch &#123;&#125;/.gitkeep \;</span><br></pre></td></tr></table></figure>
-
-<p>这条命令会自动查找项目中所有空目录，并在每个目录下创建<code>.gitkeep</code>文件。</p>
-</li>
-</ol>
-<h3 id="核心优势"><a href="#核心优势" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
-<li>命名直观：看到<code>.gitkeep</code>就知道是用于保留目录的占位文件</li>
-<li>无副作用：仅作为占位符，不影响目录后续文件的添加和跟踪</li>
-<li>兼容性强：所有 Git 版本均支持，团队协作无门槛</li>
-</ul>
-<h2 id="二、灵活方案：-gitignore-反向配置"><a href="#二、灵活方案：-gitignore-反向配置" class="headerlink" title="二、灵活方案：.gitignore 反向配置"></a>二、灵活方案：.gitignore 反向配置</h2><p>如果你的空目录未来需要添加文件，但又想提前保留目录结构，同时避免误跟踪无关文件，这种方法再合适不过。</p>
-<h3 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a>核心原理</h3><p>利用<code>.gitignore</code>的忽略规则：先配置忽略目录内所有文件（<code>*</code>），再通过反向规则（<code>!.gitignore</code>）排除自身，让 Git 仅跟踪<code>.gitignore</code>文件，从而间接保留目录结构。</p>
-<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
-<li><p><strong>创建特殊配置的.gitignore 文件</strong></p>
-<p>在需要跟踪的空目录下创建<code>.gitignore</code>，并写入以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 忽略当前目录下所有文件</span><br><span class="line">*</span><br><span class="line"># 不忽略.gitignore文件本身</span><br><span class="line">!.gitignore</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>提交配置文件</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/.gitignore</span><br><span class="line">git commit -m &quot;Track empty directory via .gitignore&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>目录未来会添加文件，但需要明确忽略规则（如日志目录、缓存目录）</li>
-<li>避免团队成员误提交目录内的临时文件</li>
-</ul>
-<h3 id="核心优势-1"><a href="#核心优势-1" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
-<li>规则清晰：通过配置文件明确目录的忽略策略</li>
-<li>一劳永逸：后续添加符合规则的文件时，无需修改配置</li>
-</ul>
-<h2 id="三、语义化方案：添加-README-文档"><a href="#三、语义化方案：添加-README-文档" class="headerlink" title="三、语义化方案：添加 README 文档"></a>三、语义化方案：添加 README 文档</h2><p>如果空目录的用途需要向团队说明（比如 “预留目录”“临时文件目录”），这种方法既能保留目录，又能提供文档价值，一举两得。</p>
-<h3 id="核心原理-2"><a href="#核心原理-2" class="headerlink" title="核心原理"></a>核心原理</h3><p>在空目录中放置<code>README.md</code>文件，Git 会跟踪该文档，从而保留目录结构。同时，README 文件可以详细说明目录的用途、使用规范等，提升项目可维护性。</p>
-<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
-<li><p><strong>创建带说明的 README 文件</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 写入目录说明（可根据实际需求修改内容）</span><br><span class="line">echo &quot;This directory is reserved for future cache files. Do not delete it.&quot; &gt; path/to/empty_dir/README.md</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>提交文档文件</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add path/to/empty_dir/README.md</span><br><span class="line">git commit -m &quot;Add README to explain empty directory purpose&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>开源项目中的预留目录（需向贡献者说明用途）</li>
-<li>团队协作中需要明确目录职责的场景</li>
-<li>需长期保留且用途固定的空目录</li>
-</ul>
-<h3 id="核心优势-2"><a href="#核心优势-2" class="headerlink" title="核心优势"></a>核心优势</h3><ul>
-<li>语义化强：通过文档直接说明目录用途，减少沟通成本</li>
-<li>附加价值：提升项目文档完整性，便于新人快速上手</li>
-</ul>
-<h2 id="三种方案对比：怎么选？"><a href="#三种方案对比：怎么选？" class="headerlink" title="三种方案对比：怎么选？"></a>三种方案对比：怎么选？</h2><table>
-<thead>
-<tr>
-<th align="center">方法</th>
-<th align="center">核心文件</th>
-<th align="center">适用场景</th>
-<th align="center">核心优点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>.gitkeep</code>占位文件</td>
-<td align="center"><code>.gitkeep</code></td>
-<td align="center">通用场景、快速保留目录</td>
-<td align="center">操作简单、兼容性强、无副作用</td>
-</tr>
-<tr>
-<td align="center"><code>.gitignore</code>反向配置</td>
-<td align="center"><code>.gitignore</code></td>
-<td align="center">需忽略未来文件的目录</td>
-<td align="center">规则明确、一劳永逸</td>
-</tr>
-<tr>
-<td align="center"><code>README</code>文档</td>
-<td align="center"><code>README.md</code></td>
-<td align="center">需说明用途的目录</td>
-<td align="center">语义化清晰、提供文档价值</td>
-</tr>
-</tbody></table>
-<h2 id="注意事项（避坑指南）"><a href="#注意事项（避坑指南）" class="headerlink" title="注意事项（避坑指南）"></a>注意事项（避坑指南）</h2><ol>
-<li><strong>命名规范</strong>：<code>.gitkeep</code>是行业惯例，不建议自定义名称（如<code>.keep</code>），避免团队认知不一致</li>
-<li><strong>前缀禁忌</strong>：除<code>.gitignore</code>外，不要使用<code>.git</code>前缀命名文件（Git 会默认忽略此类文件，导致配置失效）</li>
-<li><strong>目录删除</strong>：如果后续需要删除已跟踪的空目录，需先删除目录内的占位文件（.gitkeep&#x2F;.gitignore&#x2F;README），再删除目录并提交</li>
-<li><strong>批量处理</strong>：使用<code>find</code>命令批量创建<code>.gitkeep</code>时，注意目录权限（避免无写入权限导致命令执行失败）</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Git 不直接支持空目录跟踪，但通过 “添加占位文件” 的核心思路，我们可以根据实际需求选择不同方案：</p>
-<ul>
-<li>快速解决、通用场景：优先选<code>.gitkeep</code></li>
-<li>需忽略规则、未来加文件：选<code>.gitignore</code>反向配置</li>
-<li>需说明用途、提升可维护性：选<code>README</code>文档</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/19/Apache%E4%BC%98%E5%8C%96%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%80%E5%A4%A7%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0/" class="post-title-link" itemprop="url">Apache优化：修改最大并发连接数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-12-19 16:24:00" itemprop="dateCreated datePublished" datetime="2017-12-19T16:24:00+08:00">2017-12-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>MPM(多路处理模块)</p>
-<p>常见:</p>
-<ol>
-<li>perfork 预处理进程方式</li>
-<li>worker 工作者模式</li>
-<li>winnt 在windows使用</li>
-</ol>
-<p>案例:把apache的最大并发数配置成1000个</p>
-<h2 id="首先确认apache的mpm方式"><a href="#首先确认apache的mpm方式" class="headerlink" title="首先确认apache的mpm方式"></a>首先确认apache的mpm方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd&gt;httpd.exe -l #可以看到是什么模式了</span><br></pre></td></tr></table></figure>
-
-<p>这里就看 <code>mpm_xxx.c</code> 这个 <code>xxx</code> 就是那个了</p>
-<h2 id="修改httpd-conf文件"><a href="#修改httpd-conf文件" class="headerlink" title="修改httpd.conf文件"></a>修改httpd.conf文件</h2><p>搜索 <code>mpm</code> ,找到 <code>Server-pool management(MPM specific)</code></p>
-<p>去掉 <code># Include conf/extra/httpd-mpm.conf</code></p>
-<h2 id="修改-conf-extra-httpd-mpm-conf-文件"><a href="#修改-conf-extra-httpd-mpm-conf-文件" class="headerlink" title="修改 conf/extra/httpd-mpm.conf 文件"></a>修改 <code>conf/extra/httpd-mpm.conf</code> 文件</h2><h3 id="prefork模式就修改这里"><a href="#prefork模式就修改这里" class="headerlink" title="prefork模式就修改这里"></a>prefork模式就修改这里</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先开启的进程</span><br><span class="line">	MinSpareServers 5 # 最小预留5个</span><br><span class="line">	MaxSpareServers 10 # 最大留10</span><br><span class="line">	MaxClients 150 # 最多并发多少个 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多请求多少次 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="winnt模式"><a href="#winnt模式" class="headerlink" title="winnt模式"></a>winnt模式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_winnt_module</span>&gt;</span></span><br><span class="line">	ThreadsPerChild 150 # 最大并发数 *</span><br><span class="line">	MaxRequestsPerChild 0 # 最多处理多少次请求 0不限制</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>修改后面有*的那个字段的数值然后重新启动 <code>apache</code></p>
-<p>说明:配置到多大,不一定就可能支撑这么大的并发,考虑到本身 <code>apache</code> 所在的机器硬件性能(如:内存,CPU,硬盘IO)</p>
-<p>系统是 <code>linux/unix</code> ,配置 <code>perfork</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10</span><br><span class="line">	MaxClients 150 *#并发量</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>给大家一个合理的建议配置,对大部份网站,中型网站配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_prefork_module</span>&gt;</span></span><br><span class="line">	StartServers 5 # 预先启动</span><br><span class="line">	MinSpareServers 5</span><br><span class="line">	MaxSpareServers 10 # 最大空闲进程</span><br><span class="line">	ServerLimit 1500 *# 用于修改apache编程参数</span><br><span class="line">	MaxClients 1000 *# 最大并发数</span><br><span class="line">	MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注:apache2.2以后才有的ServerLimit这个参数,其中ServerLimit数值大于MaxClients数值</p>
-<p>如果网站的pv值百万</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerLimit 2500 *# 用于修改apache编程参数</span><br><span class="line">MaxClients 2000 *# 最大并发数</span><br></pre></td></tr></table></figure>
-
-<p>注:调到这就是极限了,要是网站访问还是大,哪就要增加apache服务器了</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/12/oh-my-zsh/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/12/oh-my-zsh/" class="post-title-link" itemprop="url">oh-my-zsh</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-12-12 13:16:38" itemprop="dateCreated datePublished" datetime="2017-12-12T13:16:38+08:00">2017-12-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Oh My Zsh is an open source, community-driven framework for managing your [zsh](http://www.zsh.org/) configuration.</p>
+          <p>上周，我分享了如何使用BEM创建一个合理的CSS架构。 虽然BEM很棒，但它只是解决方案的一部分。 还有另一部分我还没有提到 —— 命名空间。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/12/12/oh-my-zsh/">
+              <a class="btn" href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84CSS-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -917,7 +306,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -935,7 +324,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/11/22/mathjax%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">mathjax数学公式</a>
+          <a href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/" class="post-title-link" itemprop="url">编写模块化CSS：BEM</a>
         </h2>
 
         <div class="post-meta-container">
@@ -946,7 +335,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-11-22 16:16:00" itemprop="dateCreated datePublished" datetime="2017-11-22T16:16:00+08:00">2017-11-22</time>
+      <time title="创建时间：2019-08-29 16:22:46" itemprop="dateCreated datePublished" datetime="2019-08-29T16:22:46+08:00">2019-08-29</time>
     </span>
 
   
@@ -959,18 +348,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>有时候，我们还需要一些高级功能，比如在网页上显示数学公式。</p>
-<p>新建一个文件themes&#x2F;pacman&#x2F;layout&#x2F;_partial&#x2F;mathjax.ejs，找到mathjax的调用代码复制到文件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- mathjax config similar to math.stackexchange --></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">inlineMath</span>: [ [<span class="string">&#x27;$&#x27;</span>,<span class="string">&#x27;$&#x27;</span>], [<span class="string">&quot;\\(&quot;</span>,<span class="string">&quot;\\)&quot;</span>] ],</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">processEscapes</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">tex2jax</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">skipTags</span>: [<span class="string">&#x27;script&#x27;</span>, <span class="string">&#x27;noscript&#x27;</span>, <span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;textarea&#x27;</span>, <span class="string">&#x27;pre&#x27;</span>, <span class="string">&#x27;code&#x27;</span>]</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title class_">Queue</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> all = <span class="title class_">MathJax</span>.<span class="property">Hub</span>.<span class="title function_">getAllJax</span>(), i;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; all.<span class="property">length</span>; i += <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            all[i].<span class="title class_">SourceElement</span>().<span class="property">parentNode</span>.<span class="property">className</span> += <span class="string">&#x27; has-jax&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在themes&#x2F;pacman&#x2F;layout&#x2F;_partial&#x2F;after_footer.ejs 的最后一行，增加对mathjax的引用，详细内容请查看源代码。</p>
-<p>我们修改文章：source&#x2F;_posts&#x2F;新的开始.md</p>
-<p>增加公式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 公式</span><br><span class="line">$$J\_\alpha(x)=\sum _&#123;m=0&#125;^\infty \frac&#123;(-1)^ m&#125;&#123;m! \, \Gamma (m + \alpha + 1)&#125;&#123;\left(&#123;\frac&#123;x&#125;&#123;2&#125;&#125;\right)&#125;^&#123;2 m + \alpha &#125;$$</span><br></pre></td></tr></table></figure>
-
-<p>查看效果:</p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$$J_\alpha(x)&#x3D;\sum _{m&#x3D;0}^\infty \frac{(-1)^ m}{m! , \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
-
+          <p>你是否做过多页面的大型网站或者其中一部分？如果你做过，你可能会意识到 CSS 架构不够强大所带来的恐惧。你可能还会研究如何编写可维护的 CSS。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/29/%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97%E5%8C%96CSS%EF%BC%9ABEM/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -996,7 +382,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1014,7 +400,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/10/26/PHP%E7%94%9F%E6%88%90excel%E8%A1%A8%E6%A0%BC%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="post-title-link" itemprop="url">PHP生成excel表格文件并下载</a>
+          <a href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/" class="post-title-link" itemprop="url">win10下右键菜单添加“打开cmd”</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1025,7 +411,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-10-26 11:46:34" itemprop="dateCreated datePublished" datetime="2017-10-26T11:46:34+08:00">2017-10-26</time>
+      <time title="创建时间：2019-08-08 12:31:00" itemprop="dateCreated datePublished" datetime="2019-08-08T12:31:00+08:00">2019-08-08</time>
     </span>
 
   
@@ -1038,20 +424,113 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>利用php导出excel我们大多会直接生成.xls文件，这种方便快捷。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$strexport</span>=<span class="string">&quot;编号\t姓名\t性别\t年龄\r&quot;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;id&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;sex&#x27;</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">        <span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="string">&#x27;age&#x27;</span>].<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>最近使用cmd比较多，就想在某个文件夹下右键打开cmd，这样不用每次都在默认情况下切换目录。无奈win10 1703版本下shift+右键不能打开cmd，只能打开powershell。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/08/win10%E4%B8%8B%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E6%B7%BB%E5%8A%A0%E2%80%9C%E6%89%93%E5%BC%80cmd%E2%80%9D/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>基于这个我们可以将方法封装一下:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建(导出)Excel数据表格</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $list 要导出的数组格式的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string  $filename 导出的Excel表格数据表的文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $header Excel表格的表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  array   $index $list数组中与Excel表格表头$header中每个项目对应的字段的名字(key值)</span></span><br><span class="line"><span class="comment"> * 比如: $header = array(&#x27;编号&#x27;,&#x27;姓名&#x27;,&#x27;性别&#x27;,&#x27;年龄&#x27;);</span></span><br><span class="line"><span class="comment"> *       $index = array(&#x27;id&#x27;,&#x27;username&#x27;,&#x27;sex&#x27;,&#x27;age&#x27;);</span></span><br><span class="line"><span class="comment"> *       $list = array(array(&#x27;id&#x27;=&gt;1,&#x27;username&#x27;=&gt;&#x27;YQJ&#x27;,&#x27;sex&#x27;=&gt;&#x27;男&#x27;,&#x27;age&#x27;=&gt;24));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> [array] [数组]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">createtable</span>(<span class="params"><span class="variable">$list</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>=<span class="keyword">array</span>(<span class="params"></span>),<span class="variable">$index</span> = <span class="keyword">array</span>(<span class="params"></span>)</span>)</span>&#123;</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:application/vnd.ms-excel&quot;</span>);</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition:filename=&quot;</span>.<span class="variable">$filename</span>.<span class="string">&quot;.xls&quot;</span>);</span><br><span class="line">	<span class="variable">$teble_header</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&quot;\t&quot;</span>,<span class="variable">$header</span>);</span><br><span class="line">	<span class="variable">$strexport</span> = <span class="variable">$teble_header</span>.<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	<span class="keyword">foreach</span> (<span class="variable">$list</span> <span class="keyword">as</span> <span class="variable">$row</span>)&#123;</span><br><span class="line">		<span class="keyword">foreach</span>(<span class="variable">$index</span> <span class="keyword">as</span> <span class="variable">$val</span>)&#123;</span><br><span class="line">			<span class="variable">$strexport</span>.=<span class="variable">$row</span>[<span class="variable">$val</span>].<span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$strexport</span>.=<span class="string">&quot;\r&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable">$strexport</span>=<span class="title function_ invoke__">iconv</span>(<span class="string">&#x27;UTF-8&#x27;</span>,<span class="string">&quot;GB2312//IGNORE&quot;</span>,<span class="variable">$strexport</span>);</span><br><span class="line">	<span class="keyword">exit</span>(<span class="variable">$strexport</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    
+    
 
-<p>方法调用:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="string">&#x27;提现记录&#x27;</span>.<span class="title function_ invoke__">date</span>(<span class="string">&#x27;YmdHis&#x27;</span>);  </span><br><span class="line"><span class="variable">$header</span> = <span class="keyword">array</span>(<span class="string">&#x27;会员&#x27;</span>,<span class="string">&#x27;编号&#x27;</span>,<span class="string">&#x27;联系电话&#x27;</span>,<span class="string">&#x27;开户名&#x27;</span>,<span class="string">&#x27;开户行&#x27;</span>,<span class="string">&#x27;申请金额&#x27;</span>,<span class="string">&#x27;手续费&#x27;</span>,<span class="string">&#x27;实际金额&#x27;</span>,<span class="string">&#x27;申请时间&#x27;</span>);  </span><br><span class="line"><span class="variable">$index</span> = <span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span>,<span class="string">&#x27;vipnum&#x27;</span>,<span class="string">&#x27;mobile&#x27;</span>,<span class="string">&#x27;checkname&#x27;</span>,<span class="string">&#x27;bank&#x27;</span>,<span class="string">&#x27;money&#x27;</span>,<span class="string">&#x27;handling_charge&#x27;</span>,<span class="string">&#x27;real_money&#x27;</span>,<span class="string">&#x27;applytime&#x27;</span>);  </span><br><span class="line"><span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">createtable</span>(<span class="variable">$cash</span>,<span class="variable">$filename</span>,<span class="variable">$header</span>,<span class="variable">$index</span>);  </span><br></pre></td></tr></table></figure>
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
 
-<p>这种方式生成Excel文件,生成速度很快,但是有缺点是:</p>
-<ol>
-<li>单纯的生成Excel文件,生成的文件没有样式,单元格属性(填充色,宽度,高度,边框颜色…)不能自定义。</li>
-<li>生成的文件虽然可以打开,但是兼容性很差,每次打开,都会报一个警告。</li>
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/08/04/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B/" class="post-title-link" itemprop="url">清除浮动的方法有哪些</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-04 15:19:43" itemprop="dateCreated datePublished" datetime="2019-08-04T15:19:43+08:00">2019-08-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在我们写代码的时候，有时因为使用了float浮动元素而导致页面中某些元素不能正确的显示，接下来在文章中将为大家详细介绍几种清除浮动的方法，具有一定的参考价值，希望对大家有所帮助。</p>
+<h2 id="浮动导致的后果"><a href="#浮动导致的后果" class="headerlink" title="浮动导致的后果"></a>浮动导致的后果</h2><ol>
+<li>由于浮动元素脱离了文档流，所以父元素的高度无法被撑开，影响了与父元素同级的元素</li>
+<li>与浮动元素同级的非浮动元素会跟随其后，因为浮动元素脱离文档流不占据原来的位置</li>
+<li>如果该浮动元素不是第一个浮动元素，则该元素之前的元素也需要浮动，否则容易影响页面的结构显示</li>
 </ol>
+<h2 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h2><ol>
+<li>使用 <code>clear:both</code> 清除浮动</li>
+</ol>
+<p>在代码中在放一个空的div标签，然后给这个标签设置 <code>clear:both</code> 来清除浮动对页面的影响。它的优点是简单，方便兼容性好，但是一般情况下不建议使用该方法，因为会造成结构混乱，不利于后期维护</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear: both&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>利用伪元素 <code>clearfix</code> 来清除浮动</li>
+</ol>
+<p>给父级元素添加了一个 <code>:after</code> 伪元素，通过清除伪元素的浮动，达到撑起父元素高度的目的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">visibility</span>:hidden;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>overflow</code> 方法的使用</li>
+</ol>
+<p>当给父元素设置了 <code>overflow</code> 样式，不管是 <code>overflow:hidden</code> 或 <code>overflow:auto</code> 都可以清除浮动只要它的值不为 <code>visible</code> 就可以了，它的本质就是建构了一个BFC，这样使得达到撑起父元素高度的效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: auto</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>双伪元素方法的使用</li>
+</ol>
+<p>通过给父元素设置双伪元素来达到清除浮动的效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结：以上就是本篇文章的全部内容了，希望通过这篇文章能够让大家对清除浮动的方法有所了解</p>
 
       
     </div>
@@ -1078,7 +557,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/06/21/Code-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1096,7 +575,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/10/17/%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84GIT%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5%E5%88%B0%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95%EF%BC%88www%EF%BC%89/" class="post-title-link" itemprop="url">搭建服务器上的GIT并实现自动同步到站点目录（www）</a>
+          <a href="/2019/06/21/Code-Guide/" class="post-title-link" itemprop="url">Code Guide</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1107,7 +586,368 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-10-17 17:07:45" itemprop="dateCreated datePublished" datetime="2017-10-17T17:07:45+08:00">2017-10-17</time>
+      <time title="创建时间：2019-06-21 13:31:02" itemprop="dateCreated datePublished" datetime="2019-06-21T13:31:02+08:00">2019-06-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>编写一致、灵活和可持续的 HTML 和 CSS 代码的规范。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/06/21/Code-Guide/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/22/MAC%E4%B8%8B%E5%AE%89%E8%A3%85sqlmap%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/04/22/MAC%E4%B8%8B%E5%AE%89%E8%A3%85sqlmap%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">MAC下安装sqlmap及环境配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-22 10:27:14" itemprop="dateCreated datePublished" datetime="2019-04-22T10:27:14+08:00">2019-04-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/22/MAC%E4%B8%8B%E5%AE%89%E8%A3%85sqlmap%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/" class="post-title-link" itemprop="url">layer打开自动最大化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-12 13:09:55" itemprop="dateCreated datePublished" datetime="2019-04-12T13:09:55+08:00">2019-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用layer时候 想在弹出层 在打开的时候默认就是最大值</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/12/layer%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9C%80%E5%A4%A7%E5%8C%96/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/12/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%A5%9E%E5%99%A8Crypto-js%EF%BC%9A%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/03/12/%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%A5%9E%E5%99%A8Crypto-js%EF%BC%9A%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">前端加密神器Crypto.js：从入门到实战</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-12 15:11:00" itemprop="dateCreated datePublished" datetime="2019-03-12T15:11:00+08:00">2019-03-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="引言：走进-Crypto-js-的加密世界"><a href="#引言：走进-Crypto-js-的加密世界" class="headerlink" title="引言：走进 Crypto.js 的加密世界"></a>引言：走进 Crypto.js 的加密世界</h2><p>在当今数字化时代，数据安全至关重要。无论是个人隐私信息，还是企业的商业机密，都面临着被窃取或篡改的风险。在前端开发中，保护数据在传输和存储过程中的安全是我们不可忽视的任务。而 Crypto.js，正是一款强大的 JavaScript 加密库，它为前端开发者提供了丰富的加密算法和工具，帮助我们轻松实现数据的加密和解密，在客户端层面为数据安全筑起一道坚实的防线。接下来，就让我们一起深入探索 Crypto.js 的使用方法。</p>
+<h2 id="Crypto-js-初相识"><a href="#Crypto-js-初相识" class="headerlink" title="Crypto.js 初相识"></a>Crypto.js 初相识</h2><p>Crypto.js 是一个用纯 JavaScript 编写的加密库，它提供了一系列丰富的加密算法和工具，涵盖了哈希算法（如 MD5、SHA-1、SHA-256 等）、对称加密算法（如 AES、DES ）、非对称加密算法（如 RSA ）以及消息认证码（HMAC ）等。这些算法在前端开发中有着广泛的应用，比如当用户在网页上输入密码时，在将密码发送到服务器之前，可以使用 Crypto.js 进行加密，确保密码在传输过程中的安全性；又或者在前端对一些敏感的用户信息进行加密存储，防止数据被窃取。 它就像是一个加密工具箱，开发者可以根据不同的安全需求，从这个工具箱中选择合适的工具来保障数据的安全。 而且，由于它是纯 JavaScript 实现，所以既可以在浏览器环境中使用，也能在 Node.js 服务器端运行，具备出色的跨平台性。</p>
+<h2 id="快速上手-Crypto-js"><a href="#快速上手-Crypto-js" class="headerlink" title="快速上手 Crypto.js"></a>快速上手 Crypto.js</h2><h3 id="（一）安装与引入"><a href="#（一）安装与引入" class="headerlink" title="（一）安装与引入"></a>（一）安装与引入</h3><p>在开始使用 Crypto.js 之前，我们需要先将其安装到项目中，并引入到我们的代码文件里。如果是在 Node.js 项目中，我们可以借助 npm（Node 包管理器）来完成安装。首先，确保你已经安装了 Node.js 和 npm，打开终端，进入你的项目目录，然后执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install crypto-js</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，在需要使用 Crypto.js 的 JavaScript 文件中，使用<code>require</code>语句引入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用的是 ES6 的模块系统，也可以这样引入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&#x27;crypto-js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>对于在 HTML 页面中直接使用的情况，有多种引入方式。可以通过 CDN 链接来引入，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样在页面的 JavaScript 代码中就可以直接使用<code>CryptoJS</code>对象了。你还可以从 Crypto.js 的 GitHub 仓库下载源码，将下载的<code>crypto-js.js</code>文件放置在你的项目文件夹中，例如<code>my-project/libs/crypto-js/</code>，然后在 HTML 文件中这样引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;libs/crypto-js/crypto-js.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="（二）基本加密示例"><a href="#（二）基本加密示例" class="headerlink" title="（二）基本加密示例"></a>（二）基本加密示例</h3><p>下面我们通过一个简单的字符串加密示例，来初步感受一下 Crypto.js 的使用。这里我们使用 AES（高级加密标准）对称加密算法，它是一种被广泛应用的加密算法，具有较高的安全性和效率。假设我们有一个需要加密的字符串<code>message</code>和一个密钥<code>secretKey</code> ，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入CryptoJS库</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br><span class="line"><span class="comment">// 待加密的字符串</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="string">&#x27;Hello, Crypto.js!&#x27;</span>;</span><br><span class="line"><span class="comment">// 加密密钥，实际应用中请妥善保管</span></span><br><span class="line"><span class="keyword">const</span> secretKey =<span class="string">&#x27;mySecretKey12345&#x27;</span>;</span><br><span class="line"><span class="comment">// 使用AES算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> encryptedMessage = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(message, secretKey).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;加密后的密文:&#x27;</span>, encryptedMessage);</span><br><span class="line"><span class="comment">// 使用相同的密钥进行解密</span></span><br><span class="line"><span class="keyword">const</span> bytes = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(encryptedMessage, secretKey);</span><br><span class="line"><span class="keyword">const</span> decryptedMessage = bytes.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;解密后的明文:&#x27;</span>, decryptedMessage);</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，我们首先引入了 Crypto.js 库。接着定义了要加密的字符串<code>message</code>和加密密钥<code>secretKey</code> 。然后使用<code>CryptoJS.AES.encrypt</code>方法对<code>message</code>进行加密，该方法接受两个参数，第一个是要加密的字符串，第二个是加密密钥，加密后的结果通过<code>toString()</code>方法转换为字符串形式进行存储或传输。在解密时，使用<code>CryptoJS.AES.decrypt</code>方法，传入加密后的密文和相同的密钥，解密后的结果是一个<code>WordArray</code>对象，再通过<code>toString(CryptoJS.enc.Utf8)</code>方法将其转换为 UTF - 8 编码的字符串，这样就得到了原始的明文。运行这段代码，你会在控制台看到加密后的密文和解密后的明文，明文与原始的<code>message</code>字符串一致，这表明我们成功地完成了一次加密和解密操作。</p>
+<h2 id="深入探究常用加密算法"><a href="#深入探究常用加密算法" class="headerlink" title="深入探究常用加密算法"></a>深入探究常用加密算法</h2><p>在 Crypto.js 中，涵盖了多种类型的加密算法，每种算法都有其独特的特点和适用场景。下面我们将深入探究哈希算法和对称加密算法这两类常用算法在 Crypto.js 中的使用方法。</p>
+<h3 id="（一）哈希算法"><a href="#（一）哈希算法" class="headerlink" title="（一）哈希算法"></a>（一）哈希算法</h3><p>哈希算法，也被称为散列算法或摘要算法，它能够将任意长度的数据转换为固定长度的哈希值。哈希值就像是数据的 “指纹”，具有唯一性和不可逆性，即从哈希值几乎无法反推出原始数据。不同的哈希算法在哈希值长度、安全性和计算效率等方面存在差异，适用于不同的应用场景。</p>
+<h4 id="1-MD5"><a href="#1-MD5" class="headerlink" title="1. MD5"></a>1. MD5</h4><p>MD5（Message - Digest Algorithm 5）是一种经典的哈希算法，生成 128 位（16 字节）的哈希值，通常以 32 位十六进制字符串的形式呈现。它具有计算速度极快的特点，在早期被广泛应用于文件校验和数字签名等场景 。例如，在文件传输过程中，发送方可以计算文件的 MD5 值并随文件一同发送，接收方在收到文件后重新计算文件的 MD5 值，若两者一致，则说明文件在传输过程中未被篡改。在一些低安全性要求的系统中，也会使用 MD5 对用户密码进行简单加密存储。然而，MD5 存在安全漏洞，研究人员已能够找到不同的输入产生相同的 MD5 哈希值，即存在碰撞现象，这使得它在安全性要求较高的场景中不再适用，如数字签名和加密证书等领域已逐渐弃用 MD5。</p>
+<p>在 Crypto.js 中使用 MD5 进行加密非常简单，示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br><span class="line"><span class="comment">// 待加密的字符串</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="string">&#x27;Hello, MD5!&#x27;</span>;</span><br><span class="line"><span class="comment">// 使用MD5算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> hash = <span class="title class_">CryptoJS</span>.<span class="title class_">MD5</span>(message).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;MD5加密后的哈希值:&#x27;</span>, hash);</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，控制台将输出类似<code>5d41402abc4b2a76b9719d911017c592</code>的 MD5 哈希值。这里<code>CryptoJS.MD5(message)</code>计算出<code>message</code>的 MD5 哈希值，它返回的是一个<code>WordArray</code>对象，通过<code>toString()</code>方法将其转换为十六进制字符串形式以便展示和存储。</p>
+<h4 id="2-SHA-系列"><a href="#2-SHA-系列" class="headerlink" title="2. SHA 系列"></a>2. SHA 系列</h4><p>SHA（Secure Hash Algorithm）系列是美国国家安全局（NSA）设计的一组加密哈希函数，在数据完整性和身份验证方面发挥着至关重要的作用。SHA 系列包括 SHA - 1、SHA - 224、SHA - 256、SHA - 384、SHA - 512 等多个版本 ，不同版本生成的哈希值长度不同，安全性和计算复杂度也有所差异。</p>
+<p><strong>SHA - 1</strong>：生成 160 位（20 字节）的哈希值 。它曾经在数字签名、证书等领域广泛应用，计算速度较快，适用于低性能设备。但由于存在碰撞漏洞，攻击者能够找到两个不同的输入产生相同的哈希值，因此已被认为不再安全，近年来在密码学上逐渐被淘汰，特别是在 TLS、SSL 和加密证书中，已逐步被更安全的哈希算法所取代。</p>
+<p><strong>SHA - 256</strong>：属于 SHA - 2 家族，生成 256 位（32 字节）的哈希值，是目前最常用的哈希算法之一。它具有高安全性，抗碰撞能力强，计算复杂度较高，已被广泛应用和审计，不易被破解。在区块链领域，比特币等数字货币就使用 SHA - 256 算法来生成交易数据的加密哈希，从而创建安全且不可更改的交易记录，确保区块链系统的可信度；在数字签名、文件完整性校验等场景中也有广泛应用，例如在软件下载网站，会提供软件文件的 SHA - 256 哈希值，用户下载后可以通过计算文件的 SHA - 256 哈希值来验证文件是否完整、未被篡改。</p>
+<p><strong>SHA - 512</strong>：同样是 SHA - 2 家族的一部分，生成 512 位（64 字节）的哈希值。它的安全性更高，生成的哈希值更长，更难以受到碰撞攻击。对于 64 位系统，在处理较长输入时，SHA - 512 的性能可能优于 SHA - 256 。不过，由于其输出的哈希值较长，会占用更多存储空间，并且计算速度比 SHA - 256 稍慢，尤其在 32 位系统上性能表现较差。因此，SHA - 512 适用于对数据完整性和安全性要求极高的场景，如一些对安全性要求苛刻的密码学应用，但在大多数普通应用中，SHA - 256 已足够满足需求，所以 SHA - 512 的使用相对较少。</p>
+<p>在 Crypto.js 中使用 SHA 系列算法的示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br><span class="line"><span class="comment">// 待加密的字符串</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="string">&#x27;Hello, SHA!&#x27;</span>;</span><br><span class="line"><span class="comment">// 使用SHA - 1算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> sha1Hash = <span class="title class_">CryptoJS</span>.<span class="title class_">SHA1</span>(message).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;SHA - 1加密后的哈希值:&#x27;</span>, sha1Hash);</span><br><span class="line"><span class="comment">// 使用SHA - 256算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> sha256Hash = <span class="title class_">CryptoJS</span>.<span class="title class_">SHA256</span>(message).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;SHA - 256加密后的哈希值:&#x27;</span>, sha256Hash);</span><br><span class="line"><span class="comment">// 使用SHA - 512算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> sha512Hash = <span class="title class_">CryptoJS</span>.<span class="title class_">SHA512</span>(message).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;SHA - 512加密后的哈希值:&#x27;</span>, sha512Hash);</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，控制台会分别输出<code>message</code>的 SHA - 1、SHA - 256 和 SHA - 512 哈希值。这里<code>CryptoJS.SHA1(message)</code>、<code>CryptoJS.SHA256(message)</code>和<code>CryptoJS.SHA512(message)</code>分别计算出对应算法的哈希值，再通过<code>toString()</code>方法转换为十六进制字符串展示。</p>
+<h3 id="（二）对称加密算法"><a href="#（二）对称加密算法" class="headerlink" title="（二）对称加密算法"></a>（二）对称加密算法</h3><p>对称加密算法是指加密和解密使用相同密钥的加密方式。发送方使用密钥对明文进行加密，生成密文，接收方使用相同的密钥对密文进行解密，还原出明文。这种加密方式的优点是加密和解密速度快，效率高，适用于对大量数据进行加密处理；缺点是密钥的管理和分发比较困难，因为通信双方需要安全地共享同一个密钥，如果密钥在传输过程中被窃取，那么数据的安全性就无法得到保障。</p>
+<h4 id="1-AES"><a href="#1-AES" class="headerlink" title="1. AES"></a>1. AES</h4><p>AES（Advanced Encryption Standard）即高级加密标准，是一种被广泛应用的对称加密算法。它的原理基于置换和代替操作，将明文按照固定大小（通常为 128 位，即 16 字节）进行分组，然后对每一分组进行多轮加密。每一轮加密都包含 SubBytes（字节替换）、ShiftRows（行移位）、MixColumns（列混淆）和 AddRoundKey（轮密钥加）这四种操作，通过这些操作对数据进行充分混淆和扩散，从而实现高效且安全的加密。AES 支持三种密钥长度：128 比特、192 比特和 256 比特 ，对于不同长度的密钥，加密轮数也不同，128 比特密钥对应 10 轮加密，192 比特密钥对应 12 轮加密，256 比特密钥对应 14 轮加密。</p>
+<p>在使用 AES 加密时，涉及到一些重要参数：</p>
+<p><strong>密钥（Key）</strong>：用于加密和解密的关键信息，长度可以是 128 位、192 位或 256 位，密钥的安全性直接影响加密的安全性，务必妥善保管。</p>
+<p><strong>初始向量（Initialization Vector，IV）</strong>：在某些加密模式（如 CBC 模式）下需要使用初始向量，它是一个随机值，与密钥一起用于加密过程，目的是增加加密的随机性和安全性，防止相同的明文加密后产生相同的密文。</p>
+<p><strong>加密模式（Mode）</strong>：AES 支持多种加密模式，常见的有 ECB（电子密码本模式）、CBC（密码块链模式）、CTR（计数器模式）等。不同的加密模式具有不同的特点和适用场景。例如，ECB 模式简单直接，每个明文块独立加密，但如果明文存在重复块，加密后的密文也会有重复，容易被攻击者分析，适用于对安全性要求不高且数据块之间独立性较强的场景；CBC 模式引入了初始向量，使得每个密文块的生成不仅依赖于当前明文块和密钥，还依赖于前一个密文块，增强了安全性，适用于一般的加密场景；CTR 模式将加密转换为流密码，通过计数器生成密钥流与明文异或，加密和解密速度快，且可以并行处理，适用于对速度要求较高的场景。</p>
+<p><strong>填充方式（Padding）</strong>：当明文长度不是分组长度（128 位，16 字节）的整数倍时，需要进行填充。常见的填充方式有 PKCS7（在 JavaScript 中对应 PKCS5，两者在填充逻辑上对于 AES - 128 是一致的）、ZeroPadding 等。PKCS7 填充是在明文末尾填充一定数量的字节，填充字节的值等于需要填充的字节数，例如，如果需要填充 5 个字节，则填充的字节都是 0x05；ZeroPadding 则是在明文末尾填充 0 字节，使其满足分组长度要求。</p>
+<p>下面通过一个详细的代码示例展示 AES 在 Crypto.js 中的加密和解密过程，使用 CBC 模式和 PKCS7 填充方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br><span class="line"><span class="comment">// 待加密的字符串</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="string">&#x27;Hello, AES!&#x27;</span>;</span><br><span class="line"><span class="comment">// 加密密钥，长度必须是16字节（128位）、24字节（192位）或32字节（256位）</span></span><br><span class="line"><span class="keyword">const</span> secretKey = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&#x27;mySecretKey123456&#x27;</span>);</span><br><span class="line"><span class="comment">// 初始向量，长度必须是16字节</span></span><br><span class="line"><span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&#x27;1234567890123456&#x27;</span>);</span><br><span class="line"><span class="comment">// 使用AES - CBC模式和PKCS7填充方式进行加密</span></span><br><span class="line"><span class="keyword">const</span> encryptedMessage = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(message, secretKey, &#123;</span><br><span class="line">     <span class="attr">iv</span>: iv,</span><br><span class="line">     <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">     <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">&#125;).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;加密后的密文:&#x27;</span>, encryptedMessage);</span><br><span class="line"><span class="comment">// 使用相同的密钥和初始向量进行解密</span></span><br><span class="line"><span class="keyword">const</span> bytes = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(encryptedMessage, secretKey, &#123;</span><br><span class="line">     <span class="attr">iv</span>: iv,</span><br><span class="line">     <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">     <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> decryptedMessage = bytes.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;解密后的明文:&#x27;</span>, decryptedMessage);</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，首先定义了待加密的字符串<code>message</code>、加密密钥<code>secretKey</code>和初始向量<code>iv</code> 。然后使用<code>CryptoJS.AES.encrypt</code>方法进行加密，传入三个参数：要加密的字符串<code>message</code>、加密密钥<code>secretKey</code>以及一个配置对象，在配置对象中指定了初始向量<code>iv</code>、加密模式<code>CryptoJS.mode.CBC</code>和填充方式<code>CryptoJS.pad.Pkcs7</code> ，加密后的结果通过<code>toString()</code>方法转换为字符串形式。在解密时，使用<code>CryptoJS.AES.decrypt</code>方法，传入加密后的密文<code>encryptedMessage</code>、相同的密钥<code>secretKey</code>和配置对象，解密后的结果是一个<code>WordArray</code>对象，再通过<code>toString(CryptoJS.enc.Utf8)</code>方法将其转换为 UTF - 8 编码的字符串，得到原始的明文。运行代码后，控制台将输出加密后的密文和解密后的明文，明文应与原始的<code>message</code>字符串一致。</p>
+<h4 id="2-DES"><a href="#2-DES" class="headerlink" title="2. DES"></a>2. DES</h4><p>DES（Data Encryption Standard）是一种早期的对称加密算法，它将 64 位的明文块加密成 64 位的密文块 。DES 的特点是加密和解密过程相对简单，计算速度较快，在早期的计算机系统和网络通信中得到了广泛应用。然而，随着计算机技术的发展，DES 逐渐暴露出一些缺点。由于其密钥长度较短，只有 56 位（实际使用 64 位密钥，但其中 8 位用于奇偶校验），在现代计算机的计算能力下，已经可以通过暴力破解的方式在较短时间内找到密钥，安全性较低。相比之下，AES 具有更强大的安全性，支持更长的密钥长度（128 位、192 位、256 位），加密轮数更多，加密过程更加复杂，能够有效抵御各种攻击，因此在大多数场景下，AES 已经取代了 DES 成为更常用的对称加密算法。</p>
+<p>在 Crypto.js 中使用 DES 进行加密和解密的代码示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">CryptoJS</span> = <span class="built_in">require</span>(<span class="string">&#x27;crypto-js&#x27;</span>);</span><br><span class="line"><span class="comment">// 待加密的字符串</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="string">&#x27;Hello, DES!&#x27;</span>;</span><br><span class="line"><span class="comment">// 加密密钥，长度必须是8字节（64位，实际有效位56位）</span></span><br><span class="line"><span class="keyword">const</span> secretKey = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&#x27;12345678&#x27;</span>);</span><br><span class="line"><span class="comment">// 使用DES算法进行加密</span></span><br><span class="line"><span class="keyword">const</span> encryptedMessage = <span class="title class_">CryptoJS</span>.<span class="property">DES</span>.<span class="title function_">encrypt</span>(message, secretKey, &#123;</span><br><span class="line">     <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">ECB</span>,</span><br><span class="line">     <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">&#125;).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DES加密后的密文:&#x27;</span>, encryptedMessage);</span><br><span class="line"><span class="comment">// 使用相同的密钥进行解密</span></span><br><span class="line"><span class="keyword">const</span> bytes = <span class="title class_">CryptoJS</span>.<span class="property">DES</span>.<span class="title function_">decrypt</span>(encryptedMessage, secretKey, &#123;</span><br><span class="line">     <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">ECB</span>,</span><br><span class="line">     <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> decryptedMessage = bytes.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;DES解密后的明文:&#x27;</span>, decryptedMessage);</span><br></pre></td></tr></table></figure>
+
+<p>上述代码定义了待加密字符串<code>message</code>和 8 字节的加密密钥<code>secretKey</code> 。使用<code>CryptoJS.DES.encrypt</code>方法进行加密，采用 ECB 模式和 PKCS7 填充方式，加密结果转换为字符串。解密时使用<code>CryptoJS.DES.decrypt</code>方法，传入密文、相同密钥和配置对象，最后将解密结果转换为 UTF - 8 编码字符串输出。运行代码后，可在控制台看到加密和解密的结果。不过，由于 DES 的安全性问题，在实际应用中，若非特殊需求，应优先选择更安全的 AES 等加密算法。</p>
+<h2 id="实际应用案例剖析"><a href="#实际应用案例剖析" class="headerlink" title="实际应用案例剖析"></a>实际应用案例剖析</h2><h3 id="（一）数据传输加密"><a href="#（一）数据传输加密" class="headerlink" title="（一）数据传输加密"></a>（一）数据传输加密</h3><p>在 Web 应用开发中，前端向后端发送敏感数据的场景极为常见。例如，在一个在线银行系统中，用户进行转账操作时，需要将转账金额、收款账号等敏感信息发送到后端服务器进行处理。如果这些数据在传输过程中未加密，一旦被黑客截获，后果不堪设想。</p>
+<p>我们可以使用 Crypto.js 中的 AES 加密算法来保障数据传输的安全。假设我们的前端使用 Vue 框架开发，代码示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">form</span> @<span class="attr">submit.prevent</span>=<span class="string">&quot;sendData&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;amount&quot;</span>&gt;</span>转账金额:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">id</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;recipientAccount&quot;</span>&gt;</span>收款账号:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;recipientAccount&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;recipientAccount&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&#x27;crypto-js&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">amount</span>: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">recipientAccount</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">     &#125;;</span></span><br><span class="line"><span class="language-javascript">   &#125;,</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="title function_">sendData</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">// 模拟后端的公钥，实际应用中应从服务器获取</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">const</span> publicKey = <span class="string">&#x27;publicKey12345&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">const</span> data = &#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="attr">amount</span>: <span class="variable language_">this</span>.<span class="property">amount</span>,</span></span><br><span class="line"><span class="language-javascript">         <span class="attr">recipientAccount</span>: <span class="variable language_">this</span>.<span class="property">recipientAccount</span></span></span><br><span class="line"><span class="language-javascript">       &#125;;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">// 使用AES加密数据</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">const</span> encryptedData = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data), publicKey).<span class="title function_">toString</span>();</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">// 发送加密后的数据到后端</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title function_">fetch</span>(<span class="string">&#x27;/transfer&#x27;</span>, &#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">         <span class="attr">headers</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span></span><br><span class="line"><span class="language-javascript">         &#125;,</span></span><br><span class="line"><span class="language-javascript">         <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; encryptedData &#125;)</span></span><br><span class="line"><span class="language-javascript">       &#125;)</span></span><br><span class="line"><span class="language-javascript">       .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">       .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;后端返回结果:&#x27;</span>, result);</span></span><br><span class="line"><span class="language-javascript">         &#125;)</span></span><br><span class="line"><span class="language-javascript">       .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;请求出错:&#x27;</span>, error);</span></span><br><span class="line"><span class="language-javascript">         &#125;);</span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，当用户在表单中输入转账金额和收款账号并点击提交按钮时，<code>sendData</code>方法被触发。该方法首先定义了一个模拟的后端公钥（实际应用中，应通过安全的方式从服务器获取公钥），然后将用户输入的数据对象转换为 JSON 字符串，使用 AES 算法和公钥对其进行加密，得到加密后的密文。最后，通过<code>fetch</code> API 将加密后的密文发送到后端的<code>/transfer</code>接口。在后端接收到加密数据后，使用相应的私钥进行解密，从而确保数据在传输过程中的安全性，有效防止数据被窃取或篡改。</p>
+<h3 id="（二）用户密码加密"><a href="#（二）用户密码加密" class="headerlink" title="（二）用户密码加密"></a>（二）用户密码加密</h3><p>在用户注册和登录功能中，用户密码的安全存储至关重要。如果将用户密码以明文形式存储在数据库中，一旦数据库泄露，用户的账号安全将受到严重威胁。利用 Crypto.js 对用户密码进行加密存储是一种有效的解决方案。</p>
+<p>以 React 应用为例，在用户注册页面，当用户输入密码并提交注册信息时，我们可以使用 Crypto.js 对密码进行哈希处理，然后将哈希值存储到数据库中。代码示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span><span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&#x27;crypto-js&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Register</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">   <span class="keyword">const</span> [username, setUsername] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">   <span class="keyword">const</span> [password, setPassword] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">   <span class="keyword">const</span> <span class="title function_">handleSubmit</span> = (<span class="params">e</span>) =&gt; &#123;</span><br><span class="line">     e.<span class="title function_">preventDefault</span>();</span><br><span class="line">     <span class="comment">// 使用SHA - 256算法对密码进行哈希处理</span></span><br><span class="line">     <span class="keyword">const</span> hashedPassword = <span class="title class_">CryptoJS</span>.<span class="title class_">SHA256</span>(password).<span class="title function_">toString</span>();</span><br><span class="line">     <span class="comment">// 模拟将用户名和哈希后的密码发送到后端进行注册</span></span><br><span class="line">     <span class="keyword">const</span> registerData = &#123;</span><br><span class="line">       username,</span><br><span class="line">       <span class="attr">password</span>: hashedPassword</span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="comment">// 这里可以使用fetch或其他HTTP库将registerData发送到后端</span></span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;注册数据:&#x27;</span>, registerData);</span><br><span class="line">   &#125;;</span><br><span class="line">   <span class="keyword">return</span> (</span><br><span class="line">     <span class="language-xml"><span class="tag">&lt;<span class="name">form</span> <span class="attr">onSubmit</span>=<span class="string">&#123;handleSubmit&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;<span class="name">label</span>&gt;</span>用户名:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">value</span>=<span class="string">&#123;username&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">onChange</span>=<span class="string">&#123;(e)</span> =&gt;</span> setUsername(e.target.value)&#125;</span></span><br><span class="line"><span class="language-xml">       /&gt;</span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;<span class="name">label</span>&gt;</span>密码:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;<span class="name">input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">type</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">value</span>=<span class="string">&#123;password&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">onChange</span>=<span class="string">&#123;(e)</span> =&gt;</span> setPassword(e.target.value)&#125;</span></span><br><span class="line"><span class="language-xml">       /&gt;</span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line">   );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Register</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，当用户在注册表单中输入用户名和密码并点击注册按钮时，<code>handleSubmit</code>函数被调用。该函数使用<code>CryptoJS.SHA256</code>方法对用户输入的密码进行哈希处理，得到密码的哈希值。然后将用户名和哈希后的密码组成一个对象<code>registerData</code>，模拟将其发送到后端进行注册操作（实际应用中，应使用<code>fetch</code>或其他 HTTP 库将数据发送到后端服务器）。在用户登录时，同样对用户输入的密码进行哈希处理，然后将哈希值与数据库中存储的哈希值进行比对，如果一致，则验证用户身份成功，这样就避免了密码明文存储带来的安全风险，极大地提高了用户账号的安全性。</p>
+<h2 id="使用技巧与注意事项"><a href="#使用技巧与注意事项" class="headerlink" title="使用技巧与注意事项"></a>使用技巧与注意事项</h2><h3 id="（一）密钥管理"><a href="#（一）密钥管理" class="headerlink" title="（一）密钥管理"></a>（一）密钥管理</h3><p>密钥是加密和解密过程中的核心要素，其安全性直接决定了加密数据的安全性。在使用 Crypto.js 时，务必高度重视密钥的管理。首先，密钥的生成应采用安全可靠的方式，避免使用简单易猜测的字符串作为密钥，比如不要使用生日、电话号码等常见信息。对于对称加密算法，如 AES，建议使用足够长度的密钥，以增强加密的强度。例如，AES 支持 128 位、192 位和 256 位的密钥长度，在安全性要求较高的场景中，应优先选择 256 位的密钥。可以借助 Crypto.js 提供的工具函数来生成随机的高强度密钥，如<code>CryptoJS.lib.WordArray.random(256 / 8)</code>可以生成一个 256 位的随机密钥。其次，密钥的存储也至关重要，绝不能将密钥以明文形式存储在客户端或服务器端易被访问的位置。一种常见的做法是将密钥存储在安全的密钥管理系统中，或者使用硬件安全模块（HSM）来保护密钥。在前端应用中，也可以考虑将密钥与用户的某些唯一标识（如指纹、面部识别等生物特征，需在合法合规且用户授权的前提下）相结合，进一步提高密钥的安全性。总之，妥善管理密钥是保障数据加密安全的基础，任何疏忽都可能导致加密体系的崩溃，使数据面临被破解的风险。</p>
+<h3 id="（二）加密模式与填充方式选择"><a href="#（二）加密模式与填充方式选择" class="headerlink" title="（二）加密模式与填充方式选择"></a>（二）加密模式与填充方式选择</h3><p>不同的加密模式和填充方式在加密效果和安全性上存在差异，开发者需要根据具体的应用需求来合理选择。在加密模式方面，以 AES 加密算法为例，常见的加密模式有 ECB（电子密码本模式）、CBC（密码块链模式）、CTR（计数器模式）等。ECB 模式简单直接，每个明文块独立加密，加密速度相对较快，但如果明文存在重复块，加密后的密文也会有重复，容易被攻击者分析和利用，因此它适用于对安全性要求不高且数据块之间独立性较强的场景，比如一些对数据保密性要求较低的内部测试数据加密。CBC 模式引入了初始向量（IV），每个密文块的生成不仅依赖于当前明文块和密钥，还依赖于前一个密文块，这使得加密后的密文具有更好的随机性和扩散性，安全性较高，适用于一般的加密场景，如用户敏感信息的传输加密。CTR 模式将加密转换为流密码，通过计数器生成密钥流与明文异或，具有加密和解密速度快、可以并行处理的优点，适用于对速度要求较高的场景，像实时视频流加密传输。在填充方式上，当明文长度不是加密算法分组长度的整数倍时，就需要进行填充。常见的填充方式有 PKCS7（在 JavaScript 中对应 PKCS5，两者在填充逻辑上对于 AES - 128 是一致的）、ZeroPadding 等。PKCS7 填充是在明文末尾填充一定数量的字节，填充字节的值等于需要填充的字节数，这种填充方式应用广泛，能够保证加密数据的完整性和正确性；ZeroPadding 则是在明文末尾填充 0 字节，虽然简单，但在某些情况下可能会导致安全性问题，比如当解密时无法准确判断填充的 0 是原始数据中的 0 还是填充的 0，所以在选择填充方式时，应优先考虑 PKCS7 填充方式，除非有特殊的需求。</p>
+<h3 id="（三）兼容性问题"><a href="#（三）兼容性问题" class="headerlink" title="（三）兼容性问题"></a>（三）兼容性问题</h3><p>在不同的环境中使用 Crypto.js，可能会遇到一些兼容性问题。在浏览器环境中，不同浏览器对 JavaScript 的支持存在差异，可能会导致 Crypto.js 的某些功能无法正常运行。例如，一些旧版本的浏览器可能不支持某些加密算法或特性，在使用之前，需要通过特性检测来判断浏览器是否支持所需的功能。可以使用<code>if (&#39;CryptoJS&#39; in window)</code>来检测浏览器是否已经成功引入了 Crypto.js 库。对于不支持的浏览器，可以考虑提供降级方案，比如提示用户升级浏览器，或者使用其他兼容的加密方式。在 Node.js 环境中，不同的 Node.js 版本对 Crypto.js 的兼容性也可能不同。随着 Node.js 的不断更新，一些底层的加密模块和 API 可能会发生变化，这可能会影响 Crypto.js 的运行。在使用时，要确保所使用的 Node.js 版本与 Crypto.js 库兼容，可以查看 Crypto.js 的官方文档或社区论坛，了解其支持的 Node.js 版本范围。如果遇到兼容性问题，可以尝试升级或降级 Node.js 版本，或者查找相关的解决方案和补丁。此外，在一些特殊的环境中，如 Web Workers、React Native 等，使用 Crypto.js 也可能会遇到一些问题，需要根据具体的环境特点进行针对性的调整和配置，以确保 Crypto.js 能够正常工作，保障数据加密功能的稳定运行。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/25/VUE%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/01/25/VUE%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Vue - 创建项目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-25 22:38:00" itemprop="dateCreated datePublished" datetime="2019-01-25T22:38:00+08:00">2019-01-25</time>
     </span>
 
   
@@ -1121,64 +961,16 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<blockquote>
-<p>前言：当我们想要实现几个小伙伴合作开发同一个项目，或者建立一个资源分享平台的时候，GIT就是一个很好的选择。当然，既然是一个共有平台，那么把这个平台放到个人计算机上明显是不合适的，因此就要在服务器上搭建GIT了。另一个需求是，我们在本地开发，然后推送到服务器上，并且自动同步到web站点目录，这样就可以直接看到网页效果了，这就要实现自动同步。下面我带领大家实现这么一个功能。</p>
+<p>Vue 提供了一个官方的 CLI，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 <code>lint</code> 校验，以及生产环境可用的构建版本</p>
 </blockquote>
-</blockquote>
-<p>如果条件允许的话，大家可以跟着做的（注：我的服务器是centos 7，lamp环境）。</p>
-<p>一、在服务器上安装git:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//yum安装</span><br><span class="line">yum install -y git</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限才能执行这些操作</span></span><br><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">yarn global add @vue/cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否安装成功</span></span><br><span class="line">vue --version</span><br></pre></td></tr></table></figure>
 
-<p>在安装完之后你可以运行git进行测试，看看是否安装成功。</p>
-<p>二、在服务器上创建裸版本库：</p>
-<p>ps：远程仓库通常只是一个裸仓库（bare repository） — 即一个没有当前工作目录的仓库。因为该仓库只是一个合作媒介，所以不需要从硬盘上取出最新版本的快照；仓库里存放的仅仅是 Git 的数据。简单地说，裸仓库就是你工作目录中 .git 子目录内的内容</p>
-<p>我们就在 &#x2F;home&#x2F;testgit&#x2F; 下创建一个叫 sample.git的裸仓库吧：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/testgit</span><br><span class="line">cd /home/testgit</span><br><span class="line">git init --bare sample.git</span><br><span class="line">//这里 git init 是初始化空仓库的意思，而参数 --bare 是代表创建裸仓库，这个参数一定记得带上</span><br></pre></td></tr></table></figure>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择预设</span></span><br><span class="line">Vue CLI v4.5.15</span><br><span class="line">? Please pick a preset:</span><br><span class="line">&gt; Default ([Vue 2] babel, eslint)</span><br><span class="line">  Default (Vue 3) ([Vue 3] babel, eslint)</span><br><span class="line">  Manually <span class="keyword">select</span> features</span><br></pre></td></tr></table></figure>
 
-<p>当运行完上面的最后一句命令时，会有提示：Initialized empty Git repository in &#x2F;home&#x2F;testgit&#x2F;sample.git&#x2F;<br>如果你得不到该结果，可能就要回头检查哪一步出问题了</p>
-<p>三、创建web站点目录www</p>
-<p>现在我的 web 站点目录在 &#x2F;home&#x2F;www</p>
-<p>四、在本地克隆服务器上的裸仓库：</p>
-<p>前提：本地已安装git </p>
-<p>打开 git bash ，我打算在我的D盘下创建一个名为 lsgogit 的版本库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /d</span><br><span class="line">git clone git@115.159.146.94:/home/testgit/sample.git lsgogit</span><br></pre></td></tr></table></figure>
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> hello-word</span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
 
-<p>在这里如果没有配置公钥的话，会提示输入密码，但是我们可能并不知道密码，那就配置公钥咯：<br>1、查看自己计算机的公钥：</p>
-<p>&#x2F;&#x2F;查看是否有了ssh密钥，如果没有密钥则不会有此文件夹<br>cd ~&#x2F;.ssh<br>ls -al<br>&#x2F;&#x2F;如果列出了authorized_keys2 id_dsa known_hosts config id_dsa.pub 则证明你拥有公钥。</p>
-<p>我们需要寻找一对以 id_dsa 或 id_rsa 命名的文件，其中一个带有 .pub 扩展名。 .pub 文件是你的公钥，另一个则是私钥。 如果找不到这样的文件（或者根本没有 .ssh 目录），你可以通过运行 ssh-keygen 程序来创建它们。在 Linux&#x2F;Mac 系统中，ssh-keygen 随 SSH 软件包提供；在 Windows 上，该程序包含于 MSysGit 软件包中。</p>
-<p>首先 ssh-keygen 会确认密钥的存储位置（默认是 .ssh&#x2F;id_rsa），然后它会要求你输入两次密钥口令。如果你不想在使用密钥时输入口令，将其留空即可。</p>
-<p>现在，进行了上述操作的用户需要将各自的公钥发送给任意一个 Git 服务器管理员（假设服务器正在使用基于公钥的 SSH 验证设置）。 他们所要做的就是复制各自的 .pub 文件内容，并将其通过邮件发送。 公钥看起来是这样的：</p>
-<p>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@zhongjin</p>
-<p>现在我们回到服务器管理员的身份</p>
-<p>由于前面安装git的时候，centos会默认创建一个git用户（其他系统貌似需要手动创建），我们进入&#x2F;home&#x2F;git&#x2F;.ssh，里面有一个名为 authorized_keys 的文件，我们分别将其他开发者的公钥（全选、复制、不能更改！）添加到该文件去，一个开发者的公钥分一行。</p>
-<p>现在我们看看有两个开发者(个人电脑分别是zhongjin 和 jinjinzhong)的authorized_keys文件：</p>
-<p>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@zhongjin<br>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAcnTC3A++ginnxr2dvtQa881abjGIzk99KQVg&#x2F;sPpqvtT3espFKBs&#x2F;wqrJ9naIPtCswKDMg2tBVgJzg5FimDjI44O072qAftRcjU2EEySlGDDetREOvcDxqcXzf6cAdhnKlYcPk8s46oC+SxhK0zAFZCZNc7z9GcEPOC+ESIettycDw&#x2F;Bo11WfxAWS0hky2F3rYh5CRr8j7BKRsAvEaAyKwzmM9X0XCRniC2pD0ObX0&#x2F;SjPwq9Q5&#x2F;Vjg03muiSo5Bm&#x2F;xmuHkwb4&#x2F;uQglBwnaSqEr6YkL9xLMoNsQaJ1TAvTrEaZLNhWzN8iaPyKZMJEzPLX1NgeEx9AEae39N+NsJ LSGO@jinjinzhong</p>
-<p>至此，我们就可以实现不用输密码克隆远程仓库了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /d</span><br><span class="line">git clone git@115.159.146.94:/home/testgit/sample.git lsgogit</span><br></pre></td></tr></table></figure>
-
-<p>命令运行完后，lsgogit现在就是一个空的仓库了，现在我们可以在该仓库下添加文件，然后push到远程仓库了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd lsgogit</span><br><span class="line">touch index.php</span><br><span class="line">git add index.php</span><br><span class="line">git commit -m &quot;test commit&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-
-<p>如果在这里推送失败了，极有可能是因为服务器的权限问题，就比如之前我们建的 testgit 文件夹，在这里我的解决方法是：</p>
-<p>chown -R git:git testgit</p>
-<p>将testgit文件夹以及下面的子文件夹都赋给了git,这样就保证了推送成功。</p>
-<p>第一次push可能会有一些提示，因为裸版本库还什么都没有，你可能需要 git push origin master写全命令，之后就没必要了，直接 git push 就可以了。</p>
-<p>到目前为止，我们完成了第一个任务，实现了一个共享平台，既可拉取数据，又可以推送数据。</p>
-<p>四、实现自动同步到站点目录（www）</p>
-<p>就比如刚才我们往远程仓库推送了index.php文件，虽然提示推送成功，但是我们现在在服务器端还看不到效果，心理总是不爽。又比如我写了个html页面，我想在站点中马上看到，那自动同步就派上用场了。</p>
-<p>自动同步功能用到的是 git 的钩子功能，</p>
-<p>服务器端：进入裸仓库：&#x2F;home&#x2F;testgit&#x2F;sample.git</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /home/testgit/sample.git</span><br><span class="line">cd hooks</span><br><span class="line">//这里我们创建post-receive文件</span><br><span class="line">vim post-receive</span><br><span class="line">//在该文件里输入以下内容</span><br><span class="line">#!/bin/bash</span><br><span class="line">git --work-tree=/home/www checkout -f</span><br><span class="line">//保存退出后，将该文件用户及用户组都设置成git</span><br><span class="line">chown git:git post-receive</span><br><span class="line">//由于该文件其实就是一个shell文件，我们还应该为其设置可执行权限</span><br><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
-
-<p>现在我们可以在本地计算机中修改index.php文件，或者添加一个新文件，提交到远程仓库，然后到&#x2F;home&#x2F;www下面，看看有没有我们刚才提交的文件。</p>
-<p>如果你在Git推送的工程中发现推送成功 但是在www目录下并没有自己的代码，这时候你可要注意了：这是由于文件夹的权限的原因造成的！ 假设你的www目录的所属的用户组为root，你可以将你的git用户加入这个组;并给git添加写入权限，或者其他解决方法，反正你要服务器上的git用户有权限进入www文件夹。</p>
-<p>之前的项目都是”包工头“文乔学长完成这个过程，现在终于掌握了，有点小高兴。。。</p>
-<p>本文章参考了</p>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FpZGFuRGFpL2hlbGxvLXdvcmxkL2Jsb2IvbWFzdGVyLzQtJTIwJUU2JTlDJThEJUU1JThBJUExJUU1JTk5JUE4JUU0JUI4JThBJUU3JTlBJTg0JTIwR2l0Lm1k">AiDandai 服务器上的 Git.md<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cDovL215Lm9zY2hpbmEubmV0L2N4ejAwMS9ibG9nLzE5NDE5Nj9mcm9tZXJyPXRreHI0UXlh">git推送到服务器自动同步到站点目录<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-
+<p>启动成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DONE  Compiled successfully <span class="keyword">in</span> 2244ms                         下午10:20:26</span><br><span class="line"></span><br><span class="line"> App running at:</span><br><span class="line"> - Local:   http://localhost:8080/</span><br><span class="line"> - Network: http://192.168.0.104:8080/</span><br><span class="line"></span><br><span class="line"> Note that the development build is not optimized.</span><br><span class="line"> To create a production build, run npm run build.</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1204,7 +996,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1222,7 +1014,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/10/16/windows%E4%B8%8B%E5%AE%89%E8%A3%85php%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A9%E5%B1%95pthreads%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">windows下安装php真正的多线程扩展pthreads教程</a>
+          <a href="/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">PHP 接受命令行参数的三种方式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1233,7 +1025,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-10-16 17:44:51" itemprop="dateCreated datePublished" datetime="2017-10-16T17:44:51+08:00">2017-10-16</time>
+      <time title="创建时间：2018-12-29 23:02:00" itemprop="dateCreated datePublished" datetime="2018-12-29T23:02:00+08:00">2018-12-29</time>
     </span>
 
   
@@ -1246,235 +1038,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>扩展地址：<span class="exturl" data-url="aHR0cDovL2RvY3MucGhwLm5ldC9tYW51YWwvemgvYm9vay5wdGhyZWFkcy5waHA=">http://docs.php.net/manual/zh/book.pthreads.php<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>php5.3 或以上，且为线程安全版本。apache 和 php 使用的编译器必须一致。</p>
-<p>通过 <code>phpinfo()</code> 查看 <code>Thread Safety</code> 为 <code>enabled</code> 则为线程安全版。</p>
-<p>通过 <code>phpinfo()</code> 查看 <code>Compiler</code> 项可以知道使用的编译器。本人的为：MSVC9 (Visual C++ 2008)。</p>
-<h2 id="本人使用环境"><a href="#本人使用环境" class="headerlink" title="本人使用环境"></a>本人使用环境</h2><p>32位 windows xp sp3 ，wampserver2.2d（php5.3.10-vc9 + apache2.2.21-vc9）。</p>
-<h2 id="下载-pthreads-扩展"><a href="#下载-pthreads-扩展" class="headerlink" title="下载 pthreads 扩展"></a>下载 pthreads 扩展</h2><p>下载地址：<span class="exturl" data-url="aHR0cDovL3dpbmRvd3MucGhwLm5ldC9kb3dubG9hZHMvcGVjbC9yZWxlYXNlcy9wdGhyZWFkcw==">http://windows.php.net/downloads/pecl/releases/pthreads<i class="fa fa-external-link-alt"></i></span></p>
-<p>根据本人环境，我下载的是 pthreads-2.0.8-5.3-ts-vc9-x86 。</p>
-<pre><code>2.0.8 代表 pthreads 的版本。
-5.3 代表 php 的版本。
-ts 表示 php 要线程安全版本的。
-vc9 表示 php 要 Visual C++ 2008 编译器编译的。
-x86 则表示32位的
-</code></pre>
-<h2 id="安装-pthreads-扩展"><a href="#安装-pthreads-扩展" class="headerlink" title="安装 pthreads 扩展"></a>安装 pthreads 扩展</h2><p>复制 <code>php_pthreads.dll</code> 到目录 <code>bin\php\ext\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10\ext）</p>
-<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>bin\php\</code> 下面。（本人路径D:\wamp\bin\php\php5.3.10）</p>
-<p>复制 <code>pthreadVC2.dll</code> 到目录 <code>C:\windows\system32</code> 下面。</p>
-<p>打开 php 配置文件 <code>php.ini</code>。在后面加上 <code>extension=php_pthreads.dll</code></p>
-<p>提示！Windows系统需要将 <code>pthreadVC2.dll</code> 所在路径加入到 <code>PATH</code> 环境变量中。</p>
-<p>我的电脑—&gt;鼠标右键—&gt;属性—&gt;高级—&gt;环境变量—&gt;系统变量—&gt;找到名称为 Path 的—&gt;编辑—&gt;在变量值最后面加上 pthreadVC2.dll 的完整路径（本人的为C:\WINDOWS\system32\pthreadVC2.dll）。</p>
-<h2 id="测试-pthreads-扩展"><a href="#测试-pthreads-扩展" class="headerlink" title="测试 pthreads 扩展"></a>测试 pthreads 扩展</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncOperation</span> <span class="keyword">extends</span> \<span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$arg</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;arg = <span class="variable">$arg</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;arg)&#123;</span><br><span class="line">            <span class="title function_ invoke__">printf</span>(<span class="string">&quot;Hello %s\n&quot;</span>, <span class="variable">$this</span>-&gt;arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$thread</span> = <span class="keyword">new</span> <span class="title class_">AsyncOperation</span>(<span class="string">&quot;World&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$thread</span>-&gt;<span class="title function_ invoke__">start</span>())</span><br><span class="line">    <span class="variable">$thread</span>-&gt;<span class="title function_ invoke__">join</span>();</span><br></pre></td></tr></table></figure>
-
-<p>运行以上代码出现 Hello World ，说明 pthreads 扩展安装成功！ </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/10/04/Low-Orbit-Ion-Cannon-LOIC-%EF%BC%9A%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">Low Orbit Ion Cannon (LOIC)：网络攻击工具解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-10-04 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-04T00:00:00+08:00">2017-10-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在网络世界中，安全与攻击技术总是并存的。今天，我们将深入探讨一个名为Low Orbit Ion Cannon（LOIC）的网络攻击工具，它是一种开源的压力测试和拒绝服务（DoS或DDoS）攻击应用程序，用C#编写。本文将详细介绍LOIC的起源、功能、使用方法以及相关的法律风险。</p>
-<h2 id="LOIC简介"><a href="#LOIC简介" class="headerlink" title="LOIC简介"></a>LOIC简介</h2><p>LOIC 最初由 Praetox Technologies 开发，并后来被发布到公共领域。其源代码现在可以自由获取，并且可以在多个开源平台上下载。LOIC能够执行基本的TCP、UDP或HTTP DoS攻击，当多个用户联合使用时，可以形成DDoS攻击。它的流行部分原因是因为有一个版本与Anonymous组织有关，通过IRC控制通道，允许人们加入自愿的僵尸网络并攻击单一目标。</p>
-<p><img src="/images/pasted-73.png" alt="upload successful"></p>
-<h2 id="LOIC的工作原理与使用"><a href="#LOIC的工作原理与使用" class="headerlink" title="LOIC的工作原理与使用"></a>LOIC的工作原理与使用</h2><p>LOIC 的操作相对简单。用户只需填写目标系统的URL或IP地址，选择攻击方法和端口，然后点击“IMMA CHARGIN MAH LAZER”按钮即可。以下是详细的使用步骤：</p>
-<ol>
-<li>运行工具。</li>
-<li>在相关字段中输入网站的URL或IP，并点击“Lock On”。</li>
-<li>如果你是高级用户，可以更改参数；否则，保持默认设置。</li>
-<li>点击标有“IMMA CHARGIN MAH LAZER”的大按钮。</li>
-<li>攻击开始，你可以在工具中看到攻击状态（例如发送的数据包数量）。</li>
-</ol>
-<h2 id="LOIC是否为病毒？"><a href="#LOIC是否为病毒？" class="headerlink" title="LOIC是否为病毒？"></a>LOIC是否为病毒？</h2><p>虽然LOIC不是病毒，但许多杀毒软件会将其检测为病毒（类似于trojan.agent&#x2F;gen-msil flooder），因为它通常被用于恶意目的，并且许多用户在不知情的情况下安装了它。</p>
-<h2 id="LOIC的法律风险"><a href="#LOIC的法律风险" class="headerlink" title="LOIC的法律风险"></a>LOIC的法律风险</h2><p>使用LOIC进行DoS或DDoS攻击在大多数国家是非法的。因此，我们强烈建议仅在你有权限访问的网络或进行压力测试时使用此工具，以展示DoS攻击的力量。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/08/29/clipboard-js-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/" class="post-title-link" itemprop="url">clipboard.js 一键复制到剪切板</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-08-29 10:58:20" itemprop="dateCreated datePublished" datetime="2017-08-29T10:58:20+08:00">2017-08-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>Copying text to the clipboard shouldn’t be hard. It shouldn’t require dozens of steps to configure or hundreds of KBs to load. But most of all, it shouldn’t depend on Flash or any bloated framework.</p>
-<p>That’s why clipboard.js exists.</p>
-<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>You can get it on npm.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install clipboard --save</span><br></pre></td></tr></table></figure>
-
-<p>Or if you’re not into package management, just <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYXJjaGl2ZS9tYXN0ZXIuemlw">download a ZIP<i class="fa fa-external-link-alt"></i></span> file.</p>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>First, include the script located on the <code>dist</code> folder or load it from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvd2lraS9DRE4tUHJvdmlkZXJz">a third-party CDN provider<i class="fa fa-external-link-alt"></i></span>.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;dist/clipboard.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Now, you need to instantiate it by <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1zZWxlY3Rvci5odG1sI0wxOA==">passing a DOM selector<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1ub2RlLmh0bWwjTDE2LUwxNw==">HTML element<i class="fa fa-external-link-alt"></i></span>, or <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plbm9yb2NoYS9jbGlwYm9hcmQuanMvYmxvYi9tYXN0ZXIvZGVtby9jb25zdHJ1Y3Rvci1ub2RlbGlzdC5odG1sI0wxOC1MMTk=">list of HTML elements<i class="fa fa-external-link-alt"></i></span>.</p>
-<p>Internally, we need to fetch all elements that matches with your selector and attach event listeners for each one. But guess what? If you have hundreds of matches, this operation can consume a lot of memory.</p>
-<p>For this reason we use <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTY4NzI5Ni93aGF0LWlzLWRvbS1ldmVudC1kZWxlZ2F0aW9u">event delegation<i class="fa fa-external-link-alt"></i></span> which replaces multiple event listeners with just a single listener. After all, <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9oYXNodGFnL3BlcmZtYXR0ZXJz">#perfmatters<i class="fa fa-external-link-alt"></i></span>.</p>
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>We’re living a declarative renaissance, that’s why we decided to take advantage of <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvR3VpZGUvSFRNTC9Vc2luZ19kYXRhX2F0dHJpYnV0ZXM=">HTML5 data attributes<i class="fa fa-external-link-alt"></i></span> for better usability.</p>
-<h2 id="Copy-text-from-another-element"><a href="#Copy-text-from-another-element" class="headerlink" title="Copy text from another element"></a>Copy text from another element</h2><p>A pretty common use case is to copy content from another element. You can do that by adding a <code>data-clipboard-target</code> attribute in your trigger element.</p>
-<p>The value you include on this attribute needs to match another’s element selector.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Target --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;foo&quot;</span> <span class="attr">value</span>=<span class="string">&quot;https://github.com/zenorocha/clipboard.js.git&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#foo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;assets/clippy.svg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Copy to clipboard&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Cut-text-from-another-element"><a href="#Cut-text-from-another-element" class="headerlink" title="Cut text from another element"></a>Cut text from another element</h2><p>Additionally, you can define a <code>data-clipboard-action</code> attribute to specify if you want to either <code>copy</code> or <code>cut</code> content.</p>
-<p>If you omit this attribute, <code>copy</code> will be used by default.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Target --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;bar&quot;</span>&gt;</span>Mussum ipsum cacilds...<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-action</span>=<span class="string">&quot;cut&quot;</span> <span class="attr">data-clipboard-target</span>=<span class="string">&quot;#bar&quot;</span>&gt;</span></span><br><span class="line">    Cut to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>As you may expect, the <code>cut</code> action only works on <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code> elements.</p>
-<h2 id="Copy-text-from-attribute"><a href="#Copy-text-from-attribute" class="headerlink" title="Copy text from attribute"></a>Copy text from attribute</h2><p>Truth is, you don’t even need another element to copy its content from. You can just include a <code>data-clipboard-text</code> attribute in your trigger element.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><!-- Trigger --></span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">data-clipboard-text</span>=<span class="string">&quot;Just because you can doesn&#x27;t mean you should — clipboard.js&quot;</span>&gt;</span></span><br><span class="line">    Copy to clipboard</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h1><p>There are cases where you’d like to show some user feedback or capture what has been selected after a copy&#x2F;cut operation.</p>
-<p>That’s why we fire custom events such as <code>success</code> and <code>error</code> for you to listen and implement your custom logic.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">clipboard.<span class="title function_">on</span>(<span class="string">&#x27;success&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Action:&#x27;</span>, e.<span class="property">action</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Text:&#x27;</span>, e.<span class="property">text</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Trigger:&#x27;</span>, e.<span class="property">trigger</span>);</span><br><span class="line"></span><br><span class="line">    e.<span class="title function_">clearSelection</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">clipboard.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Action:&#x27;</span>, e.<span class="property">action</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Trigger:&#x27;</span>, e.<span class="property">trigger</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="Tooltips"><a href="#Tooltips" class="headerlink" title="Tooltips"></a>Tooltips</h1><p>Each application has different design needs, that’s why clipboard.js does not include any CSS or built-in tooltip solution.</p>
-<p>The tooltips you see on this demo site were built using <span class="exturl" data-url="aHR0cDovL3ByaW1lcmNzcy5pby90b29sdGlwcy8=">GitHub’s Primer<i class="fa fa-external-link-alt"></i></span> . You may want to check that out if you’re looking for a similar look and feel.</p>
-<h1 id="Advanced-Usage"><a href="#Advanced-Usage" class="headerlink" title="Advanced Usage"></a>Advanced Usage</h1><p>If you don’t want to modify your HTML, there’s a pretty handy imperative API for you to use. All you need to do is declare a function, do your thing, and return a value.</p>
-<p>For instance, if you want to dynamically set a <code>target</code>, you’ll need to return a Node.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">target</span>: <span class="keyword">function</span>(<span class="params">trigger</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.<span class="property">nextElementSibling</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>If you want to dynamically set a <code>text</code>, you’ll return a String.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">text</span>: <span class="keyword">function</span>(<span class="params">trigger</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> trigger.<span class="title function_">getAttribute</span>(<span class="string">&#x27;aria-label&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>For use in Bootstrap Modals or with any other library that changes the focus you’ll want to set the focused element as the <code>container</code> value.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">container</span>: <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;modal&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Also, if you are working with single page apps, you may want to manage the lifecycle of the DOM more precisely. Here’s how you clean up the events and objects that we create.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clipboard = <span class="keyword">new</span> <span class="title class_">Clipboard</span>(<span class="string">&#x27;.btn&#x27;</span>);</span><br><span class="line">clipboard.<span class="title function_">destroy</span>();</span><br></pre></td></tr></table></figure>
-
-<h1 id="Browser-Support"><a href="#Browser-Support" class="headerlink" title="Browser Support"></a>Browser Support</h1><p>This library relies on both <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL1NlbGVjdGlvbg==">Selection<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvQVBJL0RvY3VtZW50L2V4ZWNDb21tYW5k">execCommand<i class="fa fa-external-link-alt"></i></span> APIs. The first one is <span class="exturl" data-url="aHR0cDovL2Nhbml1c2UuY29tLyNzZWFyY2g9c2VsZWN0aW9u">supported by all browsers<i class="fa fa-external-link-alt"></i></span> while the second one is supported in the following browsers.</p>
-<ul>
-<li>Chrome 42+</li>
-<li>Edge 12+</li>
-<li>Firefox 41+</li>
-<li>IE 9+</li>
-<li>Opera 29+</li>
-<li>Safari 10+</li>
-</ul>
-<p>The good news is that clipboard.js gracefully degrades if you need to support older browsers. All you have to do is show a tooltip saying <code>Copied!</code> when <code>success</code> event is called and <code>Press Ctrl+C to copy</code> when <code>error</code> event is called because the text is already selected.</p>
-<p>You can also check if clipboard.js is supported or not by running <code>Clipboard.isSupported()</code>, that way you can hide copy&#x2F;cut buttons from the UI.</p>
-<h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>A browser extension that adds a “copy to clipboard” button to every code block on <em>GitHub, MDN, Gist, StackOverflow, StackExchange, npm, and even Medium</em>.</p>
-<p>Install for <span class="exturl" data-url="aHR0cHM6Ly9jaHJvbWUuZ29vZ2xlLmNvbS93ZWJzdG9yZS9kZXRhaWwvY29kZWNvcHkvZmtiZmVia2NvZWxham1oYW5vY2dwcGFuZm9vamNkbWc=">Chrome<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9hZGRvbnMubW96aWxsYS5vcmcvZW4tVVMvZmlyZWZveC9hZGRvbi9jb2RlY29weS8=">Firefox<i class="fa fa-external-link-alt"></i></span>.</p>
-
+          <p>通常 PHP 都作为 HTTP 方式来请求，有些时候需要在 shell 命令写把 PHP 作为脚本来执行，比如定时任务。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/12/29/PHP-%E6%8E%A5%E5%8F%97%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1493,7 +1065,7 @@ x86 则表示32位的
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

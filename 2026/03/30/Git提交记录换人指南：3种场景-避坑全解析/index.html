@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="平时写代码有没有遇到过这种情况：刚提交完，发现用错账号了——公司项目用了个人邮箱，或者反过来。我就干过这事，提交完了才看到 git log 里邮箱是自己的 Gmail，尴尬得很。 Git 提交记录里的作者信息，一旦提交就写进历史了，改起来确实麻烦。但也不是不能改，今天就把几种场景的方法说清楚，遇到问题直接照抄命令就行。 先说几句注意事项，省得踩坑：  改提交记录会生成新的 commit hash，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git提交记录换人指南：3种场景+避坑全解析">
+<meta property="og:url" content="http://example.com/2026/03/30/Git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E6%8D%A2%E4%BA%BA%E6%8C%87%E5%8D%97%EF%BC%9A3%E7%A7%8D%E5%9C%BA%E6%99%AF-%E9%81%BF%E5%9D%91%E5%85%A8%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="平时写代码有没有遇到过这种情况：刚提交完，发现用错账号了——公司项目用了个人邮箱，或者反过来。我就干过这事，提交完了才看到 git log 里邮箱是自己的 Gmail，尴尬得很。 Git 提交记录里的作者信息，一旦提交就写进历史了，改起来确实麻烦。但也不是不能改，今天就把几种场景的方法说清楚，遇到问题直接照抄命令就行。 先说几句注意事项，省得踩坑：  改提交记录会生成新的 commit hash，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-29T23:10:02.081Z">
+<meta property="article:modified_time" content="2026-03-30T08:23:54.507Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="开发技巧">
+<meta property="article:tag" content="版本控制">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/30/Git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E6%8D%A2%E4%BA%BA%E6%8C%87%E5%8D%97%EF%BC%9A3%E7%A7%8D%E5%9C%BA%E6%99%AF-%E9%81%BF%E5%9D%91%E5%85%A8%E8%A7%A3%E6%9E%90/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2026/03/30/Git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E6%8D%A2%E4%BA%BA%E6%8C%87%E5%8D%97%EF%BC%9A3%E7%A7%8D%E5%9C%BA%E6%99%AF-%E9%81%BF%E5%9D%91%E5%85%A8%E8%A7%A3%E6%9E%90/","path":"2026/03/30/Git提交记录换人指南：3种场景-避坑全解析/","title":"Git提交记录换人指南：3种场景+避坑全解析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Git提交记录换人指南：3种场景+避坑全解析 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E7%9C%8B%E7%9C%8B%E5%BD%93%E5%89%8D%E6%8F%90%E4%BA%A4%E6%98%AF%E5%95%A5%E6%83%85%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">先看看当前提交是啥情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E5%88%9A%E6%8F%90%E4%BA%A4%E5%AE%8C%EF%BC%8C%E5%8F%91%E7%8E%B0%E7%94%A8%E9%94%99%E8%B4%A6%E5%8F%B7%E4%BA%86%EF%BC%88%E8%BF%98%E6%B2%A1-push%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">场景一：刚提交完，发现用错账号了（还没 push）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%9B%B4%E6%8E%A5%E6%8C%87%E5%AE%9A%E6%96%B0%E4%BD%9C%E8%80%85"><span class="nav-number">2.1.</span> <span class="nav-text">方法一：直接指定新作者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%85%88%E6%94%B9%E9%85%8D%E7%BD%AE%E5%86%8D%E5%90%8C%E6%AD%A5"><span class="nav-number">2.2.</span> <span class="nav-text">方法二：先改配置再同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A%E4%B9%8B%E5%89%8D%E6%9F%90%E6%AC%A1%E6%8F%90%E4%BA%A4%E5%86%99%E9%94%99%E4%BA%86%EF%BC%88%E8%BF%98%E6%B2%A1-push%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">场景二：之前某次提交写错了（还没 push）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E6%89%B9%E9%87%8F%E6%94%B9%EF%BC%8C%E4%BB%93%E5%BA%93%E9%87%8C%E5%A5%BD%E5%A4%9A%E6%8F%90%E4%BA%A4%E9%83%BD%E8%A6%81%E6%8D%A2%E4%BA%BA"><span class="nav-number">4.</span> <span class="nav-text">场景三：批量改，仓库里好多提交都要换人</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%BF%AB%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%9Agit-filter-repo"><span class="nav-number">4.1.</span> <span class="nav-text">更快的工具：git filter-repo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E7%BB%8F-push-%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">已经 push 了怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E4%B8%80%E4%B8%8B%E6%94%B9%E6%B2%A1%E6%94%B9%E5%AF%B9"><span class="nav-number">6.</span> <span class="nav-text">验证一下改没改对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">几个常见问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/30/Git%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E6%8D%A2%E4%BA%BA%E6%8C%87%E5%8D%97%EF%BC%9A3%E7%A7%8D%E5%9C%BA%E6%99%AF-%E9%81%BF%E5%9D%91%E5%85%A8%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Git提交记录换人指南：3种场景+避坑全解析 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git提交记录换人指南：3种场景+避坑全解析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-30 07:10:02" itemprop="dateCreated datePublished" datetime="2026-03-30T07:10:02+08:00">2026-03-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>平时写代码有没有遇到过这种情况：刚提交完，发现用错账号了——公司项目用了个人邮箱，或者反过来。我就干过这事，提交完了才看到 git log 里邮箱是自己的 Gmail，尴尬得很。</p>
+<p>Git 提交记录里的作者信息，一旦提交就写进历史了，改起来确实麻烦。但也不是不能改，今天就把几种场景的方法说清楚，遇到问题直接照抄命令就行。</p>
+<p>先说几句注意事项，省得踩坑：</p>
+<ul>
+<li>改提交记录会生成新的 commit hash，相当于重写历史</li>
+<li>如果已经 push 到远程了，改完得强制推送，会覆盖远程历史</li>
+<li>团队协作的话，改之前一定要通知大家，让人家先备份一下</li>
+</ul>
+<h2 id="先看看当前提交是啥情况"><a href="#先看看当前提交是啥情况" class="headerlink" title="先看看当前提交是啥情况"></a>先看看当前提交是啥情况</h2><p>改之前先确认一下现在的提交信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看最近5条提交的作者、邮箱</span></span><br><span class="line">git <span class="built_in">log</span> --pretty=format:<span class="string">&quot;%h %an &lt;%ae&gt; %s&quot;</span> -5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看当前仓库的 git 配置</span></span><br><span class="line">git config --list --<span class="built_in">local</span> | grep user</span><br><span class="line"><span class="comment"># 看全局配置</span></span><br><span class="line">git config --list --global | grep user</span><br></pre></td></tr></table></figure>
+
+<p>这样能快速定位要改的是哪条提交。</p>
+<h2 id="场景一：刚提交完，发现用错账号了（还没-push）"><a href="#场景一：刚提交完，发现用错账号了（还没-push）" class="headerlink" title="场景一：刚提交完，发现用错账号了（还没 push）"></a>场景一：刚提交完，发现用错账号了（还没 push）</h2><p>这是最常见的情况，刚 commit 完，还没 push，发现作者信息错了。这种情况最简单，一条命令搞定。</p>
+<h3 id="方法一：直接指定新作者"><a href="#方法一：直接指定新作者" class="headerlink" title="方法一：直接指定新作者"></a>方法一：直接指定新作者</h3><p>不用改配置，直接改这次提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 换成你的名字和邮箱</span></span><br><span class="line">git commit --amend --author=<span class="string">&quot;张三 &lt;zhangsan@company.com&gt;&quot;</span> --no-edit</span><br></pre></td></tr></table></figure>
+
+<p><code>--no-edit</code> 的意思是不改提交信息，只改作者。</p>
+<h3 id="方法二：先改配置再同步"><a href="#方法二：先改配置再同步" class="headerlink" title="方法二：先改配置再同步"></a>方法二：先改配置再同步</h3><p>如果你要长期用新账号，可以先把配置改了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只对当前仓库生效（推荐，不影响其他项目）</span></span><br><span class="line">git config user.name <span class="string">&quot;张三&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;zhangsan@company.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果所有项目都要用这个账号，加 --global</span></span><br><span class="line"><span class="comment"># git config --global user.name &quot;张三&quot;</span></span><br><span class="line"><span class="comment"># git config --global user.email &quot;zhangsan@company.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后把最近一次提交的作者更新一下</span></span><br><span class="line">git commit --amend --reset-author --no-edit</span><br></pre></td></tr></table></figure>
+
+<p>改完再看 git log，作者信息已经变了。</p>
+<h2 id="场景二：之前某次提交写错了（还没-push）"><a href="#场景二：之前某次提交写错了（还没-push）" class="headerlink" title="场景二：之前某次提交写错了（还没 push）"></a>场景二：之前某次提交写错了（还没 push）</h2><p>错的不一定是最近一次，可能是之前某一条。这种情况要用交互式变基，精准定位那条提交。</p>
+<p>假设要改最近 3 条提交里的某一条：</p>
+<p><strong>第一步：启动变基</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看最近3条提交</span></span><br><span class="line">git rebase -i HEAD~3</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二步：标记要改的提交</strong></p>
+<p>执行后会弹出编辑器（默认 vim），显示类似这样的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick abc1234 第一次提交</span><br><span class="line">pick def5678 第二次提交</span><br><span class="line">pick ghi9012 第三次提交</span><br></pre></td></tr></table></figure>
+
+<p>每条前面是 <code>pick</code>，表示保留这条提交。把要改的那条前面的 <code>pick</code> 改成 <code>edit</code>（或者简写 <code>e</code>），然后保存退出（vim 里按 Esc，输入 <code>:wq</code> 回车）。</p>
+<p><strong>第三步：修改作者</strong></p>
+<p>Git 会停在你标记的那条提交上，提示你可以修改了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend --author=<span class="string">&quot;张三 &lt;zhangsan@company.com&gt;&quot;</span> --no-edit</span><br></pre></td></tr></table></figure>
+
+<p><strong>第四步：继续变基</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要改多条，会一条条停让你改，重复步骤三四就行。</p>
+<p>如果变基过程中冲突了，先解决冲突，然后 <code>git add .</code>，再 <code>git rebase --continue</code>。</p>
+<h2 id="场景三：批量改，仓库里好多提交都要换人"><a href="#场景三：批量改，仓库里好多提交都要换人" class="headerlink" title="场景三：批量改，仓库里好多提交都要换人"></a>场景三：批量改，仓库里好多提交都要换人</h2><p>如果是离职员工的提交要统一改掉，或者换企业邮箱后要批量更新，一条条改太累了。这种情况用 <code>git filter-branch</code> 批量处理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把旧邮箱的所有提交都改成新的作者信息</span></span><br><span class="line">git filter-branch --env-filter <span class="string">&#x27;</span></span><br><span class="line"><span class="string">  OLD_EMAIL=&quot;old@example.com&quot;</span></span><br><span class="line"><span class="string">  CORRECT_NAME=&quot;张三&quot;</span></span><br><span class="line"><span class="string">  CORRECT_EMAIL=&quot;zhangsan@company.com&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  # 改提交者</span></span><br><span class="line"><span class="string">  if [ &quot;$GIT_COMMITTER_EMAIL&quot; = &quot;$OLD_EMAIL&quot; ]; then</span></span><br><span class="line"><span class="string">    export GIT_COMMITTER_NAME=&quot;$CORRECT_NAME&quot;</span></span><br><span class="line"><span class="string">    export GIT_COMMITTER_EMAIL=&quot;$CORRECT_EMAIL&quot;</span></span><br><span class="line"><span class="string">  fi</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  # 改作者</span></span><br><span class="line"><span class="string">  if [ &quot;$GIT_AUTHOR_EMAIL&quot; = &quot;$OLD_EMAIL&quot; ]; then</span></span><br><span class="line"><span class="string">    export GIT_AUTHOR_NAME=&quot;$CORRECT_NAME&quot;</span></span><br><span class="line"><span class="string">    export GIT_AUTHOR_EMAIL=&quot;$CORRECT_EMAIL&quot;</span></span><br><span class="line"><span class="string">  fi</span></span><br><span class="line"><span class="string">&#x27;</span> -f --tag-name-filter <span class="built_in">cat</span> -- --branches --tags</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>--env-filter</code>：通过环境变量过滤修改</li>
+<li><code>-f</code>：强制覆盖之前的备份</li>
+<li><code>--tag-name-filter cat</code>：同步更新标签</li>
+<li><code>--branches --tags</code>：处理所有分支和标签</li>
+</ul>
+<h3 id="更快的工具：git-filter-repo"><a href="#更快的工具：git-filter-repo" class="headerlink" title="更快的工具：git filter-repo"></a>更快的工具：git filter-repo</h3><p><code>git filter-branch</code> 处理大仓库比较慢，官方推荐用 <code>git filter-repo</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先安装</span></span><br><span class="line">pip install git-filter-repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量替换</span></span><br><span class="line">git filter-repo --commit-callback <span class="string">&#x27;</span></span><br><span class="line"><span class="string">  if commit.author_email == b&quot;old@example.com&quot;:</span></span><br><span class="line"><span class="string">    commit.author_name = b&quot;张三&quot;</span></span><br><span class="line"><span class="string">    commit.author_email = b&quot;zhangsan@company.com&quot;</span></span><br><span class="line"><span class="string">  if commit.committer_email == b&quot;old@example.com&quot;:</span></span><br><span class="line"><span class="string">    commit.committer_name = b&quot;张三&quot;</span></span><br><span class="line"><span class="string">    commit.committer_email = b&quot;zhangsan@company.com&quot;</span></span><br><span class="line"><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="已经-push-了怎么办？"><a href="#已经-push-了怎么办？" class="headerlink" title="已经 push 了怎么办？"></a>已经 push 了怎么办？</h2><p>前面说的都是没 push 的情况。如果已经 push 到远程了，改完本地历史后必须强制推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推单个分支</span></span><br><span class="line">git push origin main --force</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推所有分支（慎用）</span></span><br><span class="line">git push origin --force --all</span><br></pre></td></tr></table></figure>
+
+<p>强制推送会覆盖远程历史，团队协作的话一定要提前通知，让人家先 <code>git pull --rebase</code> 同步一下。</p>
+<h2 id="验证一下改没改对"><a href="#验证一下改没改对" class="headerlink" title="验证一下改没改对"></a>验证一下改没改对</h2><p>改完确认一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看最近几条提交</span></span><br><span class="line">git <span class="built_in">log</span> --pretty=format:<span class="string">&quot;%h %an &lt;%ae&gt; %s&quot;</span> -5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比本地和远程</span></span><br><span class="line">git fetch origin</span><br><span class="line">git <span class="built_in">log</span> --oneline HEAD..origin/main</span><br></pre></td></tr></table></figure>
+
+<p>没输出就说明同步好了。</p>
+<h2 id="几个常见问题"><a href="#几个常见问题" class="headerlink" title="几个常见问题"></a>几个常见问题</h2><p><strong>Q: vim 编辑器不会用怎么办？</strong></p>
+<p>vim 操作：按 <code>i</code> 进入编辑模式，改完按 <code>Esc</code>，输入 <code>:wq</code> 回车保存退出。</p>
+<p>想换成记事本的话：<code>git config --global core.editor notepad</code></p>
+<p><strong>Q: 强制推送后同事拉代码报错？</strong></p>
+<p>让同事执行：<code>git pull --rebase origin main</code>，有冲突解决冲突，然后 <code>git add .</code>，再 <code>git rebase --continue</code>。</p>
+<p><strong>Q: 改完 commit hash 变了？</strong></p>
+<p>正常的，hash 是根据提交内容、作者、时间算出来的，改了作者 hash 肯定变。不影响功能，让大家同步一下就行。</p>
+<p><strong>Q: 能只改名字不改邮箱吗？</strong></p>
+<p>可以：<code>git commit --amend --author=&quot;新名字 &lt;旧邮箱&gt;&quot; --no-edit</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>改 Git 提交作者，记住几个场景：</p>
+<ul>
+<li>刚提交还没 push：<code>git commit --amend</code>，最简单</li>
+<li>之前某条提交要改：<code>git rebase -i</code>，精准定位</li>
+<li>批量改：<code>git filter-branch</code> 或 <code>git filter-repo</code></li>
+</ul>
+<p>核心原则：没 push 的随便改，push 过的要谨慎，改完记得通知团队成员同步。</p>
+<p>以后再遇到用错账号的情况，照着上面的命令抄就行，不用慌。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+              <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 版本控制</a>
+              <a href="/tags/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/" rel="tag"><i class="fa fa-tag"></i> 开发技巧</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/27/SonarQube%EF%BC%9A%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86%E5%88%A9%E5%99%A8/" rel="prev" title="SonarQube：代码质量管理利器">
+                  <i class="fa fa-angle-left"></i> SonarQube：代码质量管理利器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="漏洞简介JavaScript 攻击这关比较特殊，目标是提交 “success” 这个词来通关。每个级别有不同的保护机制，需要分析前端 JS 代码绕过去。 JavaScript 运行在客户端，用户能看、能改、能调试，所以前端做的任何验证都不能算真正的安全。 Low 级别看页面源码，JS 直接嵌在页面里： 1234function generate_token() &#123;    var phra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA JavaScript JavaScript攻击通关教程">
+<meta property="og:url" content="http://example.com/2021/02/23/DVWA-JavaScript-JavaScript%E6%94%BB%E5%87%BB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="漏洞简介JavaScript 攻击这关比较特殊，目标是提交 “success” 这个词来通关。每个级别有不同的保护机制，需要分析前端 JS 代码绕过去。 JavaScript 运行在客户端，用户能看、能改、能调试，所以前端做的任何验证都不能算真正的安全。 Low 级别看页面源码，JS 直接嵌在页面里： 1234function generate_token() &#123;    var phra">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/pasted-114.png">
+<meta property="og:image" content="http://example.com/images/pasted-115.png">
+<meta property="article:published_time" content="2021-02-23T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-30T08:13:14.884Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="DVWA">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/pasted-114.png">
+
+
+<link rel="canonical" href="http://example.com/2021/02/23/DVWA-JavaScript-JavaScript%E6%94%BB%E5%87%BB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/02/23/DVWA-JavaScript-JavaScript%E6%94%BB%E5%87%BB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/","path":"2021/02/23/DVWA-JavaScript-JavaScript攻击通关教程/","title":"DVWA JavaScript JavaScript攻击通关教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DVWA JavaScript JavaScript攻击通关教程 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">漏洞简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-%E7%BA%A7%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">Low 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Medium-%E7%BA%A7%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">Medium 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-1"><span class="nav-number">3.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-%E7%BA%A7%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">High 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-2"><span class="nav-number">4.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Impossible-%E7%BA%A7%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">Impossible 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">正确的做法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/23/DVWA-JavaScript-JavaScript%E6%94%BB%E5%87%BB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="DVWA JavaScript JavaScript攻击通关教程 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DVWA JavaScript JavaScript攻击通关教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-23 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-23T10:00:00+08:00">2021-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>JavaScript 攻击这关比较特殊，目标是提交 “success” 这个词来通关。每个级别有不同的保护机制，需要分析前端 JS 代码绕过去。</p>
+<p>JavaScript 运行在客户端，用户能看、能改、能调试，所以前端做的任何验证都不能算真正的安全。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看页面源码，JS 直接嵌在页面里：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">generate_token</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> phrase = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;phrase&quot;</span>).<span class="property">value</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;token&quot;</span>).<span class="property">value</span> = <span class="title function_">md5</span>(<span class="title function_">rot13</span>(phrase));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑很简单：</p>
+<ol>
+<li>拿 phrase 输入框的值</li>
+<li>rot13 编码</li>
+<li>md5 哈希</li>
+<li>填进 token 隐藏字段</li>
+</ol>
+<p>页面上默认 phrase 是 “ChangeMe”，我们要改成 “success”。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>打开控制台，两行搞定：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;phrase&quot;</span>).<span class="property">value</span> = <span class="string">&quot;success&quot;</span>;</span><br><span class="line"><span class="title function_">generate_token</span>();</span><br></pre></td></tr></table></figure>
+
+<p>然后点提交，通关。代码都摆在你面前了，想怎么改都行。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 把 JS 移到外部文件了，还压缩了一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/vulnerabilities/javascript/source/medium.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p><strong>方法一：直接看 JS 文件</strong></p>
+<p>开发者工具 Sources 面板或者 Network 面板都能看到这个 JS 文件的内容。</p>
+<p><strong>方法二：格式化压缩代码</strong></p>
+<p>Chrome 和 Firefox 都有 Pretty Print 功能，点那个 <code>{}</code> 按钮，压缩的代码就格式化好了。</p>
+<p><img data-src="/images/pasted-114.png" alt="upload successful"></p>
+<p>分析一下发现有个 <code>setTimeout</code> 延迟调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">do_elsesomething</span>(<span class="string">&#x27;XX&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">300</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法三：直接调函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;phrase&quot;</span>).<span class="property">value</span> = <span class="string">&quot;success&quot;</span>;</span><br><span class="line"><span class="title function_">do_elsesomething</span>(<span class="string">&quot;XX&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>压缩只是让人读起来费劲，不是真正的安全措施。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 用了代码混淆，两个工具一起上：</p>
+<ol>
+<li>Dan’s Tools（打包）</li>
+<li>JavaScript Obfuscator Tool（混淆）</li>
+</ol>
+<p>混淆后的代码看着就像乱码，但不是不能读。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p><strong>方法一：在线反混淆</strong></p>
+<p>把混淆的代码丢到反混淆工具里，比如 deobfuscatejavascript.com。</p>
+<p><img data-src="/images/pasted-115.png" alt="upload successful"></p>
+<p>反混淆后的代码就清晰多了。</p>
+<p><strong>方法二：断点调试</strong></p>
+<p>在 Sources 面板设置断点，一步步执行，观察变量变化，搞清楚执行流程。</p>
+<p>分析完发现有三个函数要按顺序调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">token_part_3</span>(<span class="params">t, y = <span class="string">&quot;ZZ&quot;</span></span>) &#123;&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">token_part_2</span>(<span class="params">e = <span class="string">&quot;YY&quot;</span></span>) &#123;&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">token_part_1</span>(<span class="params">a, b</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法三：控制台调用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;phrase&quot;</span>).<span class="property">value</span> = <span class="string">&quot;success&quot;</span>;</span><br><span class="line"><span class="title function_">token_part_1</span>(<span class="string">&#x27;ABCD&#x27;</span>, <span class="number">44</span>);</span><br><span class="line"><span class="title function_">token_part_2</span>(<span class="string">&#x27;XX&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>混淆增加了逆向难度，但不是不能逆。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>这关没有 Impossible 级别，官方说明是：</p>
+<blockquote>
+<p>You can never trust the user and have to assume that any code sent to the user can be manipulated or bypassed and so there is no impossible level.</p>
+</blockquote>
+<p>意思就是：</p>
+<ul>
+<li>发到客户端的代码都能被改</li>
+<li>前端验证本质上是不可靠的</li>
+<li>所以不存在 Impossible 级别</li>
+</ul>
+<h3 id="正确的做法"><a href="#正确的做法" class="headerlink" title="正确的做法"></a>正确的做法</h3><table>
+<thead>
+<tr>
+<th>实践</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务端验证</td>
+<td>关键验证必须在服务端做</td>
+</tr>
+<tr>
+<td>别暴露敏感信息</td>
+<td>密码密钥别放前端</td>
+</tr>
+<tr>
+<td>用 Session</td>
+<td>敏感操作服务端验证身份</td>
+</tr>
+<tr>
+<td>输入验证</td>
+<td>服务端严格过滤</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>前端 JavaScript 安全要点：</p>
+<ol>
+<li>所有安全验证必须在服务端完成</li>
+<li>敏感信息别放前端代码里</li>
+<li>代码混淆只是增加逆向难度，不是安全措施</li>
+<li>关键业务逻辑放服务端</li>
+<li>记住：用户能看到的一切都不安全</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/Web%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> Web安全</a>
+              <a href="/tags/DVWA/" rel="tag"><i class="fa fa-tag"></i> DVWA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/22/DVWA-CSP-Bypass%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E7%BB%95%E8%BF%87%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" rel="prev" title="DVWA CSP Bypass 内容安全策略绕过通关教程">
+                  <i class="fa fa-angle-left"></i> DVWA CSP Bypass 内容安全策略绕过通关教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/11/ARP%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7arpspoof%E7%9A%84%E7%94%A8%E6%B3%95/" rel="next" title="ARP欺骗工具arpspoof的用法">
+                  ARP欺骗工具arpspoof的用法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

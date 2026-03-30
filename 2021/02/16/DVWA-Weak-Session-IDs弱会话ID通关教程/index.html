@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="漏洞简介Session ID 是服务器识别用户身份的凭证，一般存在 Cookie 里。如果这个 ID 太简单、能猜出来，那攻击者就能冒充别的用户，这就是会话劫持。 这关主要学怎么分析和利用弱会话 ID。 Session 基础知识先搞清楚几个概念：    概念 说明    Session 服务器端存用户会话数据   Session ID 标识会话的唯一字符串   Cookie 浏览器存的小数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DVWA Weak Session IDs 弱会话ID通关教程">
+<meta property="og:url" content="http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="漏洞简介Session ID 是服务器识别用户身份的凭证，一般存在 Cookie 里。如果这个 ID 太简单、能猜出来，那攻击者就能冒充别的用户，这就是会话劫持。 这关主要学怎么分析和利用弱会话 ID。 Session 基础知识先搞清楚几个概念：    概念 说明    Session 服务器端存用户会话数据   Session ID 标识会话的唯一字符串   Cookie 浏览器存的小数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-16T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-30T08:10:33.202Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="DVWA">
+<meta property="article:tag" content="Session">
+<meta property="article:tag" content="Web安全">
+<meta property="article:tag" content="会话安全">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/","path":"2021/02/16/DVWA-Weak-Session-IDs弱会话ID通关教程/","title":"DVWA Weak Session IDs 弱会话ID通关教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DVWA Weak Session IDs 弱会话ID通关教程 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">漏洞简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">Session 基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-%E7%BA%A7%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">Low 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Medium-%E7%BA%A7%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">Medium 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-1"><span class="nav-number">4.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-%E7%BA%A7%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">High 级别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-2"><span class="nav-number">5.1.</span> <span class="nav-text">攻击方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Impossible-%E7%BA%A7%E5%88%AB"><span class="nav-number">6.</span> <span class="nav-text">Impossible 级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%9A%84-Session-ID-%E7%89%B9%E5%BE%81"><span class="nav-number">7.</span> <span class="nav-text">安全的 Session ID 特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-%E5%AE%89%E5%85%A8%E5%B1%9E%E6%80%A7"><span class="nav-number">8.</span> <span class="nav-text">Cookie 安全属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">9.</span> <span class="nav-text">小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="DVWA Weak Session IDs 弱会话ID通关教程 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DVWA Weak Session IDs 弱会话ID通关教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-16 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-16T10:00:00+08:00">2021-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Session ID 是服务器识别用户身份的凭证，一般存在 Cookie 里。如果这个 ID 太简单、能猜出来，那攻击者就能冒充别的用户，这就是会话劫持。</p>
+<p>这关主要学怎么分析和利用弱会话 ID。</p>
+<h2 id="Session-基础知识"><a href="#Session-基础知识" class="headerlink" title="Session 基础知识"></a>Session 基础知识</h2><p>先搞清楚几个概念：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Session</td>
+<td>服务器端存用户会话数据</td>
+</tr>
+<tr>
+<td>Session ID</td>
+<td>标识会话的唯一字符串</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>浏览器存的小数据</td>
+</tr>
+<tr>
+<td>Session Cookie</td>
+<td>Cookie 里存的 Session ID</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<p>好家伙，Session ID 直接用自增数字，从 1 开始。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>打开开发者工具看 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1</span><br><span class="line">dvwaSession=2</span><br><span class="line">dvwaSession=3</span><br></pre></td></tr></table></figure>
+
+<p>每次点一下就 +1，这也太好猜了。</p>
+<p>攻击者随便枚举就能猜到别人的 Session ID：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Cookie: dvwaSession=1&quot;</span> http://localhost:8080/...</span><br></pre></td></tr></table></figure>
+
+<p>这安全性跟没有一样。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 用时间戳当 Session ID：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">time</span>();</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>看 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1711683600</span><br><span class="line">dvwaSession=1711683605</span><br></pre></td></tr></table></figure>
+
+<p>看着挺长，其实就是 Unix 时间戳：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">timestamp = <span class="number">1711683600</span></span><br><span class="line"><span class="built_in">print</span>(datetime.datetime.fromtimestamp(timestamp))</span><br><span class="line"><span class="comment"># 2024-03-29 10:00:00</span></span><br></pre></td></tr></table></figure>
+
+<p>知道大概什么时候生成的，就能推算出 Session ID 范围，然后枚举。虽然比自增数字难搞一点，但还是能预测。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 用 <code>mt_rand()</code> 生成随机数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<p>范围是 0 到 9999999999，看着挺大，但 <code>mt_rand()</code> 是伪随机，知道种子就能推算出序列。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>收集一批 Session ID：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1234567890</span><br><span class="line">dvwaSession=9876543210</span><br><span class="line">dvwaSession=5555555555</span><br></pre></td></tr></table></figure>
+
+<p>用统计工具分析规律，或者直接暴力枚举常见值。虽然没那么容易，但理论上还是能搞。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用加密安全的随机数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">sha1</span>( <span class="title function_ invoke__">uniqid</span>( <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> ), <span class="literal">true</span> ) );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span>, <span class="title function_ invoke__">time</span>() + <span class="number">3600</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="literal">true</span>, <span class="literal">true</span> );</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ol>
+<li><code>uniqid()</code> 加随机数生成唯一 ID</li>
+<li><code>sha1()</code> 哈希增加熵</li>
+<li>设置了 <code>HttpOnly</code> 和 <code>Secure</code> 属性</li>
+</ol>
+<p>这才是正确做法。</p>
+<h2 id="安全的-Session-ID-特征"><a href="#安全的-Session-ID-特征" class="headerlink" title="安全的 Session ID 特征"></a>安全的 Session ID 特征</h2><table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>足够长</td>
+<td>至少 128 位</td>
+</tr>
+<tr>
+<td>随机</td>
+<td>用加密安全随机数生成器</td>
+</tr>
+<tr>
+<td>不可预测</td>
+<td>猜不出来下一个</td>
+</tr>
+<tr>
+<td>唯一</td>
+<td>不同会话不同 ID</td>
+</tr>
+<tr>
+<td>有有效期</td>
+<td>过期就失效</td>
+</tr>
+</tbody></table>
+<h2 id="Cookie-安全属性"><a href="#Cookie-安全属性" class="headerlink" title="Cookie 安全属性"></a>Cookie 安全属性</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HttpOnly</code></td>
+<td>JS 读不到，防 XSS 偷 Cookie</td>
+</tr>
+<tr>
+<td><code>Secure</code></td>
+<td>只走 HTTPS</td>
+</tr>
+<tr>
+<td><code>SameSite</code></td>
+<td>限制跨站带 Cookie</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td>限制作用路径</td>
+</tr>
+<tr>
+<td><code>Domain</code></td>
+<td>限制作用域名</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Session ID 安全要点：</p>
+<ol>
+<li>用加密安全的随机数生成器，别用自增和时间戳</li>
+<li>ID 要够长，128 位起步</li>
+<li>Cookie 设置 HttpOnly 和 Secure</li>
+<li>重要操作后重新生成 Session ID</li>
+<li>设置合理的过期时间</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Web%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> Web安全</a>
+              <a href="/tags/DVWA/" rel="tag"><i class="fa fa-tag"></i> DVWA</a>
+              <a href="/tags/%E4%BC%9A%E8%AF%9D%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 会话安全</a>
+              <a href="/tags/Session/" rel="tag"><i class="fa fa-tag"></i> Session</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/14/DVWA-SQL-Injection-Blind-SQL%E7%9B%B2%E6%B3%A8%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" rel="prev" title="DVWA SQL Injection Blind SQL盲注通关教程">
+                  <i class="fa fa-angle-left"></i> DVWA SQL Injection Blind SQL盲注通关教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/17/DVWA-XSS-DOM-DOM%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" rel="next" title="DVWA XSS DOM DOM型XSS通关教程">
+                  DVWA XSS DOM DOM型XSS通关教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
