@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-count">357</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,358 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/19/PHP-%E8%B0%83%E7%94%A8-MongoDB-%E5%85%A8%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/19/PHP-%E8%B0%83%E7%94%A8-MongoDB-%E5%85%A8%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">PHP 调用 MongoDB 全解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-19 11:22:00" itemprop="dateCreated datePublished" datetime="2024-10-19T11:22:00+08:00">2024-10-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="PHP-调用-MongoDB-全解析"><a href="#PHP-调用-MongoDB-全解析" class="headerlink" title="PHP 调用 MongoDB 全解析"></a>PHP 调用 MongoDB 全解析</h1><p>MongoDB 是一款流行的开源文档型数据库，它以 JSON 风格的文档形式存储数据，具有高性能、高可扩展性和灵活的数据模型等特点。而 PHP 作为一种广泛应用于 Web 开发的脚本语言，与 MongoDB 结合可以为开发者提供强大的数据存储和处理能力。本文将详细介绍如何使用 PHP 调用 MongoDB 进行数据的增删改查等操作。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>在使用 PHP 调用 MongoDB 之前，需要确保已经安装了 MongoDB 数据库和 PHP 的 MongoDB 扩展。可以使用 Composer 来安装 MongoDB 的 PHP 驱动，在项目根目录下创建一个<code>composer.json</code>文件，内容如下：</p>
+<p>json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;mongodb/mongodb&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.13&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在终端中执行<code>composer install</code>命令来安装依赖。</p>
+<h2 id="代码示例与解析"><a href="#代码示例与解析" class="headerlink" title="代码示例与解析"></a>代码示例与解析</h2><h3 id="连接-MongoDB"><a href="#连接-MongoDB" class="headerlink" title="连接 MongoDB"></a>连接 MongoDB</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> MongoDB\<span class="title function_ invoke__">Client</span>(<span class="string">&quot;mongodb://localhost:27017&quot;</span>);</span><br><span class="line"><span class="comment">//指定数据库</span></span><br><span class="line"><span class="variable">$db</span> = <span class="variable">$client</span>-&gt;<span class="title function_ invoke__">selectDatabase</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line"><span class="comment">//指定集合</span></span><br><span class="line"><span class="variable">$collection</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">selectCollection</span>(<span class="string">&#x27;users&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另一种指定合集的方式</span></span><br><span class="line"><span class="variable">$collection</span> = <span class="variable">$client</span>-&gt;test-&gt;users;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码首先通过<code>require &#39;vendor/autoload.php&#39;;</code>引入 Composer 的自动加载文件，然后使用<code>MongoDB\Client</code>类来连接本地的 MongoDB 服务器，端口为<code>27017</code>。接着指定了要使用的数据库<code>test</code>和集合<code>users</code>。</p>
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><h4 id="插入单条数据"><a href="#插入单条数据" class="headerlink" title="插入单条数据"></a>插入单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>insertOne</code>方法可以向集合中插入一条数据，数据以关联数组的形式传入。</p>
+<h4 id="指定-ID-插入数据"><a href="#指定-ID-插入数据" class="headerlink" title="指定 ID 插入数据"></a>指定 ID 插入数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertOne</span>([</span><br><span class="line">    <span class="string">&#x27;_id&#x27;</span> =&gt; <span class="keyword">new</span> MongoDB\BSON\<span class="title function_ invoke__">ObjectID</span>(<span class="string">&#x27;5e7b0b0b0b0b0b0b0b0b0b0b&#x27;</span>),</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span>,</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>在插入数据时，可以手动指定<code>_id</code>字段，使用<code>MongoDB\BSON\ObjectID</code>类来创建一个 ObjectID 对象。</p>
+<h4 id="插入多条数据"><a href="#插入多条数据" class="headerlink" title="插入多条数据"></a>插入多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertMany</span>([</span><br><span class="line">    [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;王五&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">        <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;赵六&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">        <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>insertMany</code>方法可以一次性插入多条数据，传入一个二维数组，每个子数组代表一条数据。</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><h4 id="查询单条数据"><a href="#查询单条数据" class="headerlink" title="查询单条数据"></a>查询单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$document</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>findOne</code>方法可以查询符合条件的第一条数据，返回一个文档对象，使用<code>json_encode</code>方法将其转换为 JSON 字符串并输出。</p>
+<h4 id="查询多条数据"><a href="#查询多条数据" class="headerlink" title="查询多条数据"></a>查询多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>find</code>方法可以查询符合条件的多条数据，返回一个游标对象，通过<code>foreach</code>循环遍历游标对象，输出每条数据。</p>
+<h4 id="查询指定数量的数据"><a href="#查询指定数量的数据" class="headerlink" title="查询指定数量的数据"></a>查询指定数量的数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;limit&#x27;</span> =&gt; <span class="number">2</span></span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>find</code>方法的第二个参数中，可以使用<code>limit</code>选项来指定查询结果的数量。</p>
+<h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询年龄大于18的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$gt&#x27;</span> =&gt; <span class="number">18</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询年龄小于18，名称等于张三的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$lt&#x27;</span> =&gt; <span class="number">19</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询性别为空的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$exists&#x27;</span> =&gt; <span class="literal">false</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在查询条件中，可以使用 MongoDB 的查询操作符，如<code>$gt</code>（大于）、<code>$lt</code>（小于）、<code>$exists</code>（是否存在）等。</p>
+<h4 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;sort&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">1</span>    // <span class="number">1</span>正序，-<span class="number">1</span>倒叙</span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>find</code>方法的第二个参数中，可以使用<code>sort</code>选项来对查询结果进行排序，<code>1</code>表示正序，<code>-1</code>表示倒序。</p>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><h4 id="查询并修改"><a href="#查询并修改" class="headerlink" title="查询并修改"></a>查询并修改</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOneAndUpdate</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$cursor</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>findOneAndUpdate</code>方法可以查询符合条件的第一条数据并进行修改，返回修改前的文档对象。</p>
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>updateOne</code>方法可以更新符合条件的第一条数据，使用<code>$set</code>操作符来指定要更新的字段和值。</p>
+<h4 id="查询并替换"><a href="#查询并替换" class="headerlink" title="查询并替换"></a>查询并替换</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOneAndReplace</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$cursor</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>findOneAndReplace</code>方法可以查询符合条件的第一条数据并进行替换，返回替换前的文档对象。</p>
+<h4 id="存在更新不存在插入"><a href="#存在更新不存在插入" class="headerlink" title="存在更新不存在插入"></a>存在更新不存在插入</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;upsert&#x27;</span> =&gt; <span class="literal">true</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>在<code>updateOne</code>方法的第三个参数中，使用<code>upsert</code>选项设置为<code>true</code>，可以实现如果符合条件的数据存在则更新，不存在则插入的功能。</p>
+<h4 id="更新多条数据"><a href="#更新多条数据" class="headerlink" title="更新多条数据"></a>更新多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateMany</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>updateMany</code>方法可以更新符合条件的多条数据。</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><h4 id="删除单条数据"><a href="#删除单条数据" class="headerlink" title="删除单条数据"></a>删除单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">deleteOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>deleteOne</code>方法可以删除符合条件的第一条数据。</p>
+<h4 id="删除多条数据"><a href="#删除多条数据" class="headerlink" title="删除多条数据"></a>删除多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">deleteMany</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>deleteMany</code>方法可以删除符合条件的多条数据。</p>
+<h3 id="删除集合和数据库"><a href="#删除集合和数据库" class="headerlink" title="删除集合和数据库"></a>删除集合和数据库</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除集合</span></span><br><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">drop</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除数据库</span></span><br><span class="line"><span class="variable">$db</span>-&gt;<span class="title function_ invoke__">drop</span>();</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>drop</code>方法可以删除集合和数据库。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">Linux 开启文件共享：使用 Samba 服务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-20 22:19:54" itemprop="dateCreated datePublished" datetime="2024-07-20T22:19:54+08:00">2024-07-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 Linux 系统中，Samba 是一个功能强大的服务，它允许 Linux 和 Windows 系统之间进行文件共享。通过 Samba，你可以轻松地在不同操作系统之间共享文件和打印机。本文将详细介绍如何在 Linux 上配置 Samba 服务，以实现文件共享。</p>
+<h2 id="安装-Samba"><a href="#安装-Samba" class="headerlink" title="安装 Samba"></a>安装 Samba</h2><p>首先，你需要确保你的 Linux 系统上安装了 Samba。在基于 Debian 的系统（如 Ubuntu）上，你可以使用以下命令来安装 Samba：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install samba</span><br></pre></td></tr></table></figure>
+
+<p>这将安装 Samba 服务及其依赖项。</p>
+<h2 id="配置-Samba"><a href="#配置-Samba" class="headerlink" title="配置 Samba"></a>配置 Samba</h2><p>安装完成后，你需要配置 Samba 以便它知道你想要共享哪些目录。这涉及到编辑 Samba 的配置文件 <code>smb.conf</code>。</p>
+<ol start="2">
+<li>使用文本编辑器打开 <code>smb.conf</code> 文件。这里我们使用 <code>vi</code> 编辑器，但你也可以使用 <code>nano</code> 或其他你喜欢的编辑器：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在 <code>smb.conf</code> 文件中，你可以定义多个共享部分，每个部分对应一个共享目录。以下是两个示例共享部分的配置：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mnt-rw]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-Write Mount Point</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  force <span class="attr">user</span> = root</span><br><span class="line">  create <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  directory <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">No</span></span><br><span class="line"></span><br><span class="line"><span class="section">[onecloud-share]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-<span class="literal">On</span>ly <span class="literal">On</span>eCloud Share</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>[mnt-rw]</code> 部分定义了一个名为 <code>mnt-rw</code> 的共享，它指向 <code>/mnt</code> 目录。这个共享允许读写访问，并且对所有用户（包括匿名用户）开放。</li>
+<li><code>[onecloud-share]</code> 部分定义了另一个共享，它同样指向 <code>/mnt</code> 目录，但这个共享只允许读访问。</li>
+</ul>
+<h3 id="配置选项解释"><a href="#配置选项解释" class="headerlink" title="配置选项解释"></a>配置选项解释</h3><ul>
+<li><code>browseable = yes</code>：这个选项使得共享在网络浏览器中可见。</li>
+<li><code>path = /mnt</code>：指定共享的文件系统路径。</li>
+<li><code>force user = root</code>：强制所有连接到此共享的用户以 root 用户身份访问。</li>
+<li><code>create mask = 0775</code> 和 <code>directory mask = 0775</code>：设置文件和目录的默认权限。</li>
+<li><code>guest ok = Yes</code>：允许匿名访问。</li>
+<li><code>read only = No</code>：对于 <code>[mnt-rw]</code> 共享，这个选项允许写入操作；对于 <code>[onecloud-share]</code> 共享，这个选项设置为 <code>yes</code>，表示只读。</li>
+</ul>
+<h2 id="启动-Samba-服务"><a href="#启动-Samba-服务" class="headerlink" title="启动 Samba 服务"></a>启动 Samba 服务</h2><p>配置完成后，你需要启动 Samba 服务以使更改生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service smbd start</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将启动 Samba 守护进程，使你的共享目录在网络上可用。</p>
+<h2 id="测试共享"><a href="#测试共享" class="headerlink" title="测试共享"></a>测试共享</h2><p>在 Windows 系统上，你可以通过网络邻居访问这些共享，或者在文件资源管理器中输入共享的网络路径（例如 <code>\\&lt;Linux-Server-IP&gt;\mnt-rw</code>）来访问。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">自签名ssl证书</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-13 22:24:00" itemprop="dateCreated datePublished" datetime="2024-07-13T22:24:00+08:00">2024-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>使用 OpenSSL 工具生成自签名 SSL 证书，为内网环境中的网站安全保驾护航</strong></p>
+<p>在内网环境中，使用 OpenSSL 工具进行自签名 SSL 证书的创建，能够为您的网站提供有效的安全保障。</p>
+<p><strong>自签证书流程</strong>：</p>
+<ol>
+<li>创建 ca 私钥。</li>
+<li>基于 ca 私钥生成 ca 根证书。</li>
+<li>构建 ssl 私钥。</li>
+<li>生成 ssl 证书 csr。</li>
+<li>运用 ca 根证书签署以获得 ssl 证书。</li>
+</ol>
+<p><strong>操作方法</strong></p>
+<ol>
+<li>创建 ca 私钥（强烈建议设置密码以增强安全性）：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl genrsa -des3 -out root.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">..............................................................+++</span><br><span class="line">................+++</span><br><span class="line">e is 65537 (0x010001)</span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">Verifying - Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>生成 ca 证书，自签 20 年有效期，并将此 ca 证书导入需要访问的 PC 的“受信任的根证书颁发机构”中，后续用此 ca 签署的证书均可正常使用：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl req -x509 -new -nodes -key root.key -sha256 -days 7300 -out root.crt</span></span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN    # 国家</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan   # 省份</span><br><span class="line">Locality Name (eg, city) []:ChengDu   # 城市</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD  # 组织</span><br><span class="line">Organizational Unit Name (eg, section) []: # 部门</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD # 公司</span><br><span class="line">Email Address []: # 邮箱</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>完成上述步骤后，创建 ssl 证书私钥：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl genrsa -out server.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">...................................................................................+++</span><br><span class="line">..........+++</span><br><span class="line">e is 65537 (0x010001)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>随后创建 ssl 证书 csr：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl req -new -key server.key -out server.csr</span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan</span><br><span class="line">Locality Name (eg, city) []:ChengDu</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Organizational Unit Name (eg, section) []:</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Email Address []:</span><br><span class="line"></span><br><span class="line">Please enter the following &#x27;extra&#x27; attributes</span><br><span class="line">to be sent with your certificate request</span><br><span class="line">A challenge password []:</span><br><span class="line">An optional company name []:</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>创建域名附加配置信息，新建一个文件，通过 vim cert.ext ，将以下代码粘贴后保存：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = localhost</span><br><span class="line">IP.2 = 192.168.0.10</span><br><span class="line">IP.3 = 192.168.1.200</span><br><span class="line">DNS.4 = xa.it.com</span><br><span class="line">DNS.5 = xiykj.com</span><br><span class="line">DNS.6 = *.xa.com</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，IP.2 &#x3D; 192.168.11.100 表示 https 要访问的 IP 地址，IP.3 同理也是 IP 地址，ssl 证书允许自签多个 IP 地址，这便是自签 IP 的证书。而 DNS.4 &#x3D; <span class="exturl" data-url="aHR0cHM6Ly94YS5pdC5jb20v">https://xa.it.com/<i class="fa fa-external-link-alt"></i></span> 则表示 https 要访问的域名，DNS.5、DNS.6 同理均为域名，ssl 证书也支持自签多个域名，此为自签域名的证书。</p>
+<ol start="6">
+<li>使用CA根证书签署ssl证书，自签ssl证书有效期20年：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl x509 -req -<span class="keyword">in</span> server.csr -out server.crt -days 7300 -CAcreateserial -CA root.crt -CAkey root.key -CAserial serial -extfile cert.ext</span></span><br><span class="line">Signature ok</span><br><span class="line">subject=C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">Getting CA Private Key</span><br><span class="line">Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>查看文件，通过执行“ls -al”命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -al</span></span><br><span class="line">cert.ext          #ssl证书附加配置信息</span><br><span class="line">serial            #证书序列号</span><br><span class="line">server.crt        #ssl证书文件，包含公钥信息</span><br><span class="line">server.csr        #ssl证书签名文件</span><br><span class="line">server.key        #ssl证书私钥</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>查看签署的证书信息：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl x509 -<span class="keyword">in</span> server.crt -noout -text</span></span><br><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: 3 (0x2)</span><br><span class="line">        Serial Number:</span><br><span class="line">            cd:ae:a9:3e:b7:bb:93:e1</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Jul 18 06:26:05 2024 GMT</span><br><span class="line">            Not After : Jul 13 06:26:05 2044 GMT</span><br><span class="line">        Subject: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">                Public-Key: (2048 bit)</span><br><span class="line">                Modulus:</span><br><span class="line">                    00:aa:4e:ca:f5:0d:51:e7:b4:ba:3c:0b:6e:a5:4a:</span><br><span class="line">                    d8:b4:0d:ad:19:54:3d:11:02:14:29:41:45:76:fc:</span><br><span class="line">                    4a:b0:6c:5c:76:46:91:ff:8d:89:7a:f2:a8:62:73:</span><br><span class="line">                    1d:c4:3a:96:8c:74:82:0a:e9:58:55:73:4a:4e:ec:</span><br><span class="line">                    17:23:43:90:39:69:0e:aa:ac:ec:71:3e:60:e5:6b:</span><br><span class="line">                    0c:e7:7b:f9:8f:93:db:a8:45:ae:d9:43:6f:f1:a1:</span><br><span class="line">                    1c:01:0a:14:33:ce:4f:8c:81:f0:34:b5:cc:7c:81:</span><br><span class="line">                    f6:91:1a:69:31:dc:8a:d1:c1:cc:34:6f:96:71:e0:</span><br><span class="line">                    c2:86:79:37:47:a7:e4:c8:71:3f:44:82:38:7e:11:</span><br><span class="line">                    4d:05:96:fd:01:d8:8c:8b:75:0b:bc:6e:ad:37:1d:</span><br><span class="line">                    77:94:0b:2a:15:1a:43:3c:f6:59:61:eb:ea:8a:73:</span><br><span class="line">                    54:06:b0:ed:70:11:77:42:57:59:e1:80:df:eb:0b:</span><br><span class="line">                    36:d7:7b:d6:c8:53:20:e7:3a:cb:7c:95:67:ea:ff:</span><br><span class="line">                    25:06:80:e9:93:b2:1d:a0:58:9f:ec:60:65:76:e8:</span><br><span class="line">                    24:2c:14:9d:86:47:83:3b:b9:66:59:7d:69:b5:bd:</span><br><span class="line">                    46:af:4f:15:a7:21:45:d1:8c:a1:9b:8b:73:20:94:</span><br><span class="line">                    17:0e:1b:da:d2:e3:93:fb:98:d8:db:13:2b:ed:ff:</span><br><span class="line">                    f5:95</span><br><span class="line">                Exponent: 65537 (0x10001)</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Authority Key Identifier:</span><br><span class="line">                keyid:8D:FB:23:BD:1D:AA:3B:C0:12:62:2A:15:8F:27:BF:81:EB:94:15:42</span><br><span class="line"></span><br><span class="line">            X509v3 Basic Constraints:</span><br><span class="line">                CA:FALSE</span><br><span class="line">            X509v3 Key Usage:</span><br><span class="line">                Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment</span><br><span class="line">            X509v3 Subject Alternative Name:</span><br><span class="line">                DNS:localhost, IP Address:192.168.11.100, IP Address:192.168.10.200, DNS:xa.it.com, DNS:xiykj.com, DNS:*.xa.com</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">         74:0f:a7:56:97:66:e1:8d:7a:5e:4e:7b:6f:b0:da:26:31:5c:</span><br><span class="line">         a3:77:9d:7f:25:19:1c:e2:cd:6a:ee:b3:9e:1f:55:3e:ea:8c:</span><br><span class="line">         05:5b:0f:9e:ac:f7:0f:72:8b:4c:6e:eb:20:4c:c3:d4:7b:d1:</span><br><span class="line">         63:79:54:dc:8d:46:f5:2e:73:fe:4f:5e:8f:d2:3c:54:47:90:</span><br><span class="line">         ae:cd:20:28:31:19:88:26:ec:46:86:1c:1e:ab:8b:67:77:d6:</span><br><span class="line">         81:1d:62:1b:59:7c:d6:4d:52:fe:44:b7:18:ce:6d:47:d3:34:</span><br><span class="line">         48:c8:59:c9:f9:3a:2a:41:9a:7c:50:c0:43:b0:6a:f4:3c:b1:</span><br><span class="line">         d5:49:f1:be:21:ae:b9:d8:72:48:19:f8:20:8c:3b:03:c5:c7:</span><br><span class="line">         26:0d:27:08:4d:0b:9e:27:ea:3c:bf:c3:09:07:fe:b0:68:9c:</span><br><span class="line">         76:1a:3f:49:44:af:67:9f:47:af:88:9f:50:25:1c:f4:a3:05:</span><br><span class="line">         b6:fb:1c:04:16:3d:6d:d3:ac:99:92:73:05:2f:c8:08:9a:e4:</span><br><span class="line">         88:e4:12:4d:f3:d0:aa:47:3c:eb:cf:9b:20:3a:88:e5:33:1b:</span><br><span class="line">         32:65:14:78:1d:c4:24:e8:63:e7:8e:18:b3:2b:bb:e2:94:38:</span><br><span class="line">         1d:dd:1f:f5:13:a2:db:ef:65:bc:12:a9:66:4f:48:15:57:e8:</span><br><span class="line">         82:79:24:a0</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>使用 CA 验证 ssl 证书状态，若显示“OK”则表示通过验证：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl verify -CAfile root.crt server.crt</span></span><br><span class="line">server.crt: OK</span><br></pre></td></tr></table></figure>
+
+<p>最后，将 root.crt 导入到需要访问的客户端 PC 的“受信任的根证书颁发机构”中，同时将 server.crt、server.key 文件部署在服务器上即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -808,243 +1160,6 @@
 <li>hexo主题配置文件（\themes\next_config.yml），修改local_search的enable为true：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Local Search</span><br><span class="line"># Dependencies: https://github.com/theme-next/hexo-generator-searchdb</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # If auto, trigger search by changing input.</span><br><span class="line">  # If manual, trigger search by pressing enter key or search button.</span><br><span class="line">  trigger: auto</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/29/Navicat-Premium-16-%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/29/Navicat-Premium-16-%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Navicat Premium 16 永久激活工具</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-01-29 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-29T00:00:00+08:00">2023-01-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
-<li>打开破解工具</li>
-<li>选择 Navicat 安装目录，勾选 HOSTS 和 RSA key，点击 <strong>Patch</strong></li>
-<li>打开 Navicat Premium 输入许可证，点击 <strong>激活</strong> 按钮</li>
-</ol>
-<p> <img src="/images/pasted-52.png" alt="upload successful"></p>
-<ol start="4">
-<li>等待弹出服务器不可用窗口，点击 <strong>手动激活</strong> 按钮</li>
-</ol>
-<p> <img src="/images/pasted-53.png" alt="upload successful"></p>
-<ol start="5">
-<li><p>将 <strong>请求码</strong> 复制到激活工具中的 <strong>Request Code</strong> 输入框中</p>
-</li>
-<li><p>点击 <strong>Generate Activation Code!</strong> 按钮，生成激活码</p>
-</li>
-<li><p>生成好的 <strong>激活码</strong> 复制到 <strong>Navicat Premium</strong> 中，点击激活按钮</p>
-</li>
-</ol>
-<p> <img src="/images/pasted-54.png" alt="upload successful"></p>
-<p> <img src="/images/pasted-56.png" alt="upload successful"></p>
-<ol start="8">
-<li>预览一下破解结果</li>
-</ol>
-<p><img src="/images/pasted-55.png" alt="upload successful"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYWxpeXVuZHJpdmUuY29tLw==">阿里云盘<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">使用 ffmpeg 下载 m3u8 视频</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-05 16:29:36" itemprop="dateCreated datePublished" datetime="2022-10-05T16:29:36+08:00">2022-10-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>下载视频，并将m3u8格式转为mp4格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 playlist.mp4</span><br><span class="line">或者</span><br><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy playlist.mp4</span><br></pre></td></tr></table></figure>
-
-<p>下载中。。。由于视频很大，下载需要很长长长时间(1个G的视频可能需下载几小时…)。<br> 可以通过如下指令进行下载提速（下载速度大约能提升到几到十几分钟，很棒了哦，起码比百度云快）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy -bsf:a aac_adtstoasc playlist_1.mp4</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/03/ffmpeg-%E5%90%88%E5%B9%B6%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">ffmpeg 合并视频</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-03 22:49:47" itemprop="dateCreated datePublished" datetime="2022-10-03T22:49:47+08:00">2022-10-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f concat -i filelist.txt -c copy -y FBF73ED7.mp4</span><br></pre></td></tr></table></figure>
-
-<p>filelist.txt</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">file &#x27;FBF73ED7.p701.1.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.2.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.3.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.4.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.5.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.6.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.7.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.8.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.9.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.10.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.11.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.12.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.13.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.14.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.15.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.16.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.17.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.18.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.19.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.20.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.21.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.22.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.23.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.24.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.25.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.26.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.27.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.28.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.29.mp4&#x27;</span><br><span class="line">file &#x27;FBF73ED7.p701.30.mp4&#x27;</span><br></pre></td></tr></table></figure>
-
       
     </div>
 

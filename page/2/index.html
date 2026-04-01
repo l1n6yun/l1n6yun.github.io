@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-count">357</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,270 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/10/%E8%A7%A3%E9%94%81-MySQL-%E6%A0%91%E5%BD%A2%E6%9F%A5%E8%AF%A2%E6%96%B0%E5%A7%BF%E5%8A%BF%EF%BC%9A%E9%80%92%E5%BD%92-CTE-%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/05/10/%E8%A7%A3%E9%94%81-MySQL-%E6%A0%91%E5%BD%A2%E6%9F%A5%E8%AF%A2%E6%96%B0%E5%A7%BF%E5%8A%BF%EF%BC%9A%E9%80%92%E5%BD%92-CTE-%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">解锁 MySQL 树形查询新姿势：递归 CTE 实战指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-10 10:10:34" itemprop="dateCreated datePublished" datetime="2025-05-10T10:10:34+08:00">2025-05-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="MySQL-递归-CTE-基础概念"><a href="#MySQL-递归-CTE-基础概念" class="headerlink" title="MySQL 递归 CTE 基础概念"></a>MySQL 递归 CTE 基础概念</h2><h3 id="1-什么是递归-CTE？"><a href="#1-什么是递归-CTE？" class="headerlink" title="1 什么是递归 CTE？"></a>1 什么是递归 CTE？</h3><p>递归公用表表达式（Recursive CTE）是 MySQL 8.0 引入的高级特性，通过<code>WITH RECURSIVE</code>语法定义，允许在 CTE 内部递归引用自身，专门用于处理具有层级关系的树形数据，如组织架构、分类目录、文件系统等。其核心思想是通过锚成员（初始查询）和递归成员（迭代查询）的结合，逐层扩展结果集，直至满足终止条件（递归成员返回空集）。</p>
+<h3 id="2-适用场景"><a href="#2-适用场景" class="headerlink" title="2 适用场景"></a>2 适用场景</h3><p><strong>组织架构管理</strong>：查询某个部门的所有上下级节点。</p>
+<p><strong>分类目录遍历</strong>：获取商品分类的全层级路径。</p>
+<p><strong>树状结构分析</strong>：查找节点的所有祖先或后代，替代传统自连接或存储过程的复杂逻辑。</p>
+<h2 id="递归-CTE-语法解析与执行逻辑"><a href="#递归-CTE-语法解析与执行逻辑" class="headerlink" title="递归 CTE 语法解析与执行逻辑"></a>递归 CTE 语法解析与执行逻辑</h2><h3 id="1-核心语法结构"><a href="#1-核心语法结构" class="headerlink" title="1 核心语法结构"></a>1 核心语法结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> cte_name (column_list) <span class="keyword">AS</span> (</span><br><span class="line">    <span class="comment">-- 锚成员：定义递归初始条件，返回基础结果集</span></span><br><span class="line">    initial_query    </span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span>  <span class="comment">-- 必须使用UNION ALL，确保递归过程高效合并结果</span></span><br><span class="line">    <span class="comment">-- 递归成员：引用CTE名称，定义迭代规则</span></span><br><span class="line">    recursive_query   </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 最终查询：基于CTE结果集进行筛选或关联</span></span><br><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> cte_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-执行流程详解"><a href="#2-执行流程详解" class="headerlink" title="2 执行流程详解"></a>2 执行流程详解</h3><p><strong>锚成员执行</strong>：生成初始结果集（R0），如指定节点的基础信息。</p>
+<p><strong>递归迭代</strong>：将上一次结果集（Ri）作为输入，通过<code>UNION ALL</code>合并新生成的结果集（Ri+1），直到递归成员返回空集。</p>
+<p><strong>终止条件</strong>：隐式终止于递归成员无数据返回，或显式通过条件（如<code>WHERE n &lt; 100</code>）限制递归深度。</p>
+<h3 id="3-递归成员限制"><a href="#3-递归成员限制" class="headerlink" title="3 递归成员限制"></a>3 递归成员限制</h3><p>禁止使用聚合函数（如<code>SUM</code>&#x2F;<code>COUNT</code>）、<code>GROUP BY</code>、<code>ORDER BY</code>、<code>LIMIT</code>、<code>DISTINCT</code>（<code>UNION DISTINCT</code>除外）。</p>
+<p>仅能引用 CTE 名称，不能嵌套子查询。</p>
+<h2 id="典型场景与实战案例"><a href="#典型场景与实战案例" class="headerlink" title="典型场景与实战案例"></a>典型场景与实战案例</h2><h3 id="1-查询节点所有父节点（向上递归）"><a href="#1-查询节点所有父节点（向上递归）" class="headerlink" title="1 查询节点所有父节点（向上递归）"></a>1 查询节点所有父节点（向上递归）</h3><p><strong>场景</strong>：从子节点出发，逐层查找所有上级节点（如员工查询其所有管理层级）。<strong>表结构</strong>：<code>club(id, name, pid)</code>，<code>pid</code>为父节点 ID，根节点<code>pid</code>为<code>NULL</code>。<strong>SQL 示例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> parent_path <span class="keyword">AS</span> (</span><br><span class="line">    <span class="comment">-- 锚成员：初始节点（如id=5的子节点）</span></span><br><span class="line">    <span class="keyword">SELECT</span> id, name, pid <span class="keyword">FROM</span> club <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">5</span>    </span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span>    </span><br><span class="line">    <span class="comment">-- 递归成员：通过pid关联，获取父节点</span></span><br><span class="line">    <span class="keyword">SELECT</span> p.id, p.name, p.pid <span class="keyword">FROM</span> club p <span class="keyword">JOIN</span> parent_path pp <span class="keyword">ON</span> p.id <span class="operator">=</span> pp.pid    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> parent_path;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析</strong>：从 id&#x3D;5 开始，每次递归通过<code>pid</code>找到父节点，直至无更高层级节点。</p>
+<h3 id="2-查询节点所有子节点（向下递归）"><a href="#2-查询节点所有子节点（向下递归）" class="headerlink" title="2 查询节点所有子节点（向下递归）"></a>2 查询节点所有子节点（向下递归）</h3><p><strong>场景</strong>：从父节点出发，获取其所有直接及间接子节点（如部门主管查询下属团队）。<strong>SQL 示例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> child_path <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> id, name, pid <span class="keyword">FROM</span> club <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">3</span>  <span class="comment">-- 锚成员：初始父节点</span></span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span>    </span><br><span class="line">    <span class="comment">-- 递归成员：通过子节点pid关联父节点id</span></span><br><span class="line">    <span class="keyword">SELECT</span> c.id, c.name, c.pid <span class="keyword">FROM</span> club c <span class="keyword">JOIN</span> child_path cp <span class="keyword">ON</span> c.pid <span class="operator">=</span> cp.id    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> child_path;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析</strong>：以 id&#x3D;3 为起点，逐层匹配<code>pid=当前id</code>的子节点，实现无限层级遍历。</p>
+<h3 id="3-添加层级标识（Level-字段）"><a href="#3-添加层级标识（Level-字段）" class="headerlink" title="3 添加层级标识（Level 字段）"></a>3 添加层级标识（Level 字段）</h3><p><strong>场景</strong>：在查询结果中显式节点层级，方便分页或排序（如目录树展示）。<strong>SQL 示例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> level_tree <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> id, name, pid, <span class="number">1</span> <span class="keyword">AS</span> level <span class="keyword">FROM</span> club <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span>  <span class="comment">-- 根节点层级为1</span></span><br><span class="line">    <span class="keyword">UNION</span> <span class="keyword">ALL</span>    </span><br><span class="line">    <span class="keyword">SELECT</span> c.id, c.name, c.pid, ct.level <span class="operator">+</span> <span class="number">1</span> <span class="keyword">AS</span> level  <span class="comment">-- 子节点层级=父层级+1</span></span><br><span class="line">    <span class="keyword">FROM</span> club c <span class="keyword">JOIN</span> level_tree ct <span class="keyword">ON</span> c.pid <span class="operator">=</span> ct.id    </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 筛选层级&gt;3的深层子节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> id, name, pid, level <span class="keyword">FROM</span> level_tree <span class="keyword">WHERE</span> level <span class="operator">&gt;</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解析</strong>：通过<code>level</code>字段量化层级深度，避免表设计时预存层级的冗余问题。</p>
+<h3 id="4-实战优化：业务层与-SQL-层解耦"><a href="#4-实战优化：业务层与-SQL-层解耦" class="headerlink" title="4 实战优化：业务层与 SQL 层解耦"></a>4 实战优化：业务层与 SQL 层解耦</h3><p><strong>场景</strong>：传统 Java&#x2F;Python 代码中，递归遍历组织架构易导致性能瓶颈，改用递归 CTE 后可在数据库层高效完成。<strong>MyBatis 映射示例</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> DeptTree <span class="keyword">AS</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> id_ <span class="keyword">FROM</span> org_group <span class="keyword">WHERE</span> id_ <span class="operator">=</span> #&#123;deptId&#125;  <span class="comment">-- 锚成员：目标部门</span></span><br><span class="line">  <span class="keyword">UNION</span> <span class="keyword">ALL</span>    </span><br><span class="line">  <span class="keyword">SELECT</span> og.id_ <span class="keyword">FROM</span> org_group og <span class="keyword">JOIN</span> DeptTree dt <span class="keyword">ON</span> og.parent_id_ <span class="operator">=</span> dt.id_  <span class="comment">-- 递归获取子部门</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> su.<span class="operator">*</span> <span class="keyword">FROM</span> sys_user su <span class="keyword">JOIN</span> DeptTree dt <span class="keyword">ON</span> su.dept_id <span class="operator">=</span> dt.id_</span><br></pre></td></tr></table></figure>
+
+<p><strong>优势</strong>：避免多次往返数据库，单条 SQL 完成层级查询，提升系统响应速度。</p>
+<h2 id="注意事项与最佳实践"><a href="#注意事项与最佳实践" class="headerlink" title="注意事项与最佳实践"></a>注意事项与最佳实践</h2><h3 id="1-MySQL-版本要求"><a href="#1-MySQL-版本要求" class="headerlink" title="1 MySQL 版本要求"></a>1 MySQL 版本要求</h3><p>仅支持 MySQL 8.0 及以上版本，低版本需使用存储过程或应用层递归实现。</p>
+<h3 id="2-避免死循环"><a href="#2-避免死循环" class="headerlink" title="2 避免死循环"></a>2 避免死循环</h3><p><strong>数据校验</strong>：确保层级数据无环（如 A→B→A），否则递归会因无法终止报错（默认最大递归深度 1000，可通过<code>SET @@cte_max_recursion_depth = N</code>调整）。</p>
+<p><strong>条件限制</strong>：在递归成员中添加合理过滤条件（如<code>WHERE level &lt; 50</code>），防止无限递归。</p>
+<h3 id="3-索引优化"><a href="#3-索引优化" class="headerlink" title="3 索引优化"></a>3 索引优化</h3><p>为<code>id</code>和<code>pid</code>字段添加索引，提升递归过程中 JOIN 操作的效率，尤其对大规模层级数据至关重要。</p>
+<h3 id="4-结果去重"><a href="#4-结果去重" class="headerlink" title="4 结果去重"></a>4 结果去重</h3><p>若数据存在重复关联，可在最终查询中使用<code>DISTINCT</code>去重，但需注意递归成员中禁止直接使用<code>DISTINCT</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>递归 CTE 是 MySQL 处理树形数据的 “瑞士军刀”，通过简洁的语法将复杂的层级查询转化为结构化的递归过程，显著提升开发效率与查询性能。无论是组织架构、分类目录还是其他层级场景，掌握递归 CTE 的锚成员定义、递归规则设计及终止条件把控，都能让你在数据处理中游刃有余。建议在实际项目中结合索引优化与数据校验，充分发挥其在层级查询中的优势。</p>
+<p><strong>动手实践</strong>：尝试在示例表<code>club</code>中插入多级数据，分别编写查询根节点、叶节点及全路径的递归 CTE 语句，观察结果差异与执行效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/30/grafana-%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89API%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/04/30/grafana-%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89API%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">grafana 通过自定义API获取数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-30 14:30:00" itemprop="dateCreated datePublished" datetime="2025-04-30T14:30:00+08:00">2025-04-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装infinity插件"><a href="#安装infinity插件" class="headerlink" title="安装infinity插件"></a>安装infinity插件</h2><p>在插件页面中搜索 <code>infinity</code>，进入 infinity 插件页面点击 <code>install</code>,等待安装完成。</p>
+<p><img src="/images/pasted-79.png" alt="安装infinity插件"></p>
+<h2 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源"></a>添加数据源</h2><p>进入数据源页面，点击 <code>Add new data source</code> 按钮，搜索 <code>infinity</code>。</p>
+<p><img src="/images/pasted-80.png" alt="搜索数据源"></p>
+<p>进入 infinity 数据源页面，输入 数据源 名称点击 <code>Save &amp; test</code></p>
+<p><img src="/images/pasted-81.png" alt="添加数据源"></p>
+<h2 id="使用数据源"><a href="#使用数据源" class="headerlink" title="使用数据源"></a>使用数据源</h2><p>在仪表板中添加可视化，在 <code>Data source</code> 选项中选择刚刚新增的数据源。</p>
+<p>在 <code>URL</code> 中填写你的接口地址。根据要求返回对应的格式即可呈现到面板上。</p>
+<p><img src="/images/pasted-82.png" alt="使用数据源"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/21/Burp-Suite-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/21/Burp-Suite-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Burp Suite 中文乱码解决</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-21 15:15:00" itemprop="dateCreated datePublished" datetime="2025-03-21T15:15:00+08:00">2025-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用 Burp Suite 进行 HTTP 请求或响应分析时，可能遇到请求参数、响应内容中的中文显示为乱码的情况，例如显示为乱码符号（如方框、问号等），影响数据查看和分析。</p>
+<p><img src="/images/pasted-76.png" alt="upload successful"></p>
+<p>Burp Suite 默认的字符编码或字体设置与中文不兼容，导致无法正确解析和显示中文字符。常见原因包括：<br>编码格式错误：未设置为 UTF-8（中文通用编码）。<br>字体不支持中文：默认字体无法渲染中文字符。</p>
+<p>解决步骤</p>
+<ol>
+<li><p>进入设置页面</p>
+<p> 打开 Burp Suite，点击顶部菜单栏的 Settings（设置），选择 User Interface（用户界面）。</p>
+</li>
+<li><p>修改消息编辑器的编码和字体</p>
+<p> 在左侧导航栏中选择 Message editor（消息编辑器）。</p>
+<p> 在右侧的 Character sets（字符编码）下拉菜单中，选择 UTF-8（确保与目标网站的编码一致）。<br> 更换支持中文的字体：</p>
+<p> 在 Font（字体）选项中，点击 Change font（选择字体），从列表中选择支持中文的字体（如 Microsoft YaHei、SimSun 或 黑体），调整字体大小至合适显示。</p>
+</li>
+</ol>
+<p><img src="/images/pasted-77.png" alt="upload successful"></p>
+<p>修改完成后，就可以正常查看中文字体了</p>
+<p><img src="/images/pasted-78.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1133,358 +1397,6 @@
 <h3 id="最新版本下载"><a href="#最新版本下载" class="headerlink" title="最新版本下载"></a>最新版本下载</h3><p>想要获取MarkText的最新版本，你可以直接访问其GitHub发布页面：</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hcmt0ZXh0L21hcmt0ZXh0L3JlbGVhc2VzL2xhdGVzdA==">MarkText GitHub Releases<i class="fa fa-external-link-alt"></i></span></p>
 <p>在这里，你可以找到适用于不同操作系统的安装包，选择适合你的版本进行下载和安装。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/19/PHP-%E8%B0%83%E7%94%A8-MongoDB-%E5%85%A8%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/10/19/PHP-%E8%B0%83%E7%94%A8-MongoDB-%E5%85%A8%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">PHP 调用 MongoDB 全解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-19 11:22:00" itemprop="dateCreated datePublished" datetime="2024-10-19T11:22:00+08:00">2024-10-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="PHP-调用-MongoDB-全解析"><a href="#PHP-调用-MongoDB-全解析" class="headerlink" title="PHP 调用 MongoDB 全解析"></a>PHP 调用 MongoDB 全解析</h1><p>MongoDB 是一款流行的开源文档型数据库，它以 JSON 风格的文档形式存储数据，具有高性能、高可扩展性和灵活的数据模型等特点。而 PHP 作为一种广泛应用于 Web 开发的脚本语言，与 MongoDB 结合可以为开发者提供强大的数据存储和处理能力。本文将详细介绍如何使用 PHP 调用 MongoDB 进行数据的增删改查等操作。</p>
-<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>在使用 PHP 调用 MongoDB 之前，需要确保已经安装了 MongoDB 数据库和 PHP 的 MongoDB 扩展。可以使用 Composer 来安装 MongoDB 的 PHP 驱动，在项目根目录下创建一个<code>composer.json</code>文件，内容如下：</p>
-<p>json</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;mongodb/mongodb&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.13&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在终端中执行<code>composer install</code>命令来安装依赖。</p>
-<h2 id="代码示例与解析"><a href="#代码示例与解析" class="headerlink" title="代码示例与解析"></a>代码示例与解析</h2><h3 id="连接-MongoDB"><a href="#连接-MongoDB" class="headerlink" title="连接 MongoDB"></a>连接 MongoDB</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> MongoDB\<span class="title function_ invoke__">Client</span>(<span class="string">&quot;mongodb://localhost:27017&quot;</span>);</span><br><span class="line"><span class="comment">//指定数据库</span></span><br><span class="line"><span class="variable">$db</span> = <span class="variable">$client</span>-&gt;<span class="title function_ invoke__">selectDatabase</span>(<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line"><span class="comment">//指定集合</span></span><br><span class="line"><span class="variable">$collection</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">selectCollection</span>(<span class="string">&#x27;users&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另一种指定合集的方式</span></span><br><span class="line"><span class="variable">$collection</span> = <span class="variable">$client</span>-&gt;test-&gt;users;</span><br></pre></td></tr></table></figure>
-
-<p>上述代码首先通过<code>require &#39;vendor/autoload.php&#39;;</code>引入 Composer 的自动加载文件，然后使用<code>MongoDB\Client</code>类来连接本地的 MongoDB 服务器，端口为<code>27017</code>。接着指定了要使用的数据库<code>test</code>和集合<code>users</code>。</p>
-<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><h4 id="插入单条数据"><a href="#插入单条数据" class="headerlink" title="插入单条数据"></a>插入单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>insertOne</code>方法可以向集合中插入一条数据，数据以关联数组的形式传入。</p>
-<h4 id="指定-ID-插入数据"><a href="#指定-ID-插入数据" class="headerlink" title="指定 ID 插入数据"></a>指定 ID 插入数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertOne</span>([</span><br><span class="line">    <span class="string">&#x27;_id&#x27;</span> =&gt; <span class="keyword">new</span> MongoDB\BSON\<span class="title function_ invoke__">ObjectID</span>(<span class="string">&#x27;5e7b0b0b0b0b0b0b0b0b0b0b&#x27;</span>),</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span>,</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>在插入数据时，可以手动指定<code>_id</code>字段，使用<code>MongoDB\BSON\ObjectID</code>类来创建一个 ObjectID 对象。</p>
-<h4 id="插入多条数据"><a href="#插入多条数据" class="headerlink" title="插入多条数据"></a>插入多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">insertMany</span>([</span><br><span class="line">    [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;王五&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">        <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;赵六&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">18</span>,</span><br><span class="line">        <span class="string">&#x27;sex&#x27;</span> =&gt; <span class="string">&#x27;男&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>insertMany</code>方法可以一次性插入多条数据，传入一个二维数组，每个子数组代表一条数据。</p>
-<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><h4 id="查询单条数据"><a href="#查询单条数据" class="headerlink" title="查询单条数据"></a>查询单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$document</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>findOne</code>方法可以查询符合条件的第一条数据，返回一个文档对象，使用<code>json_encode</code>方法将其转换为 JSON 字符串并输出。</p>
-<h4 id="查询多条数据"><a href="#查询多条数据" class="headerlink" title="查询多条数据"></a>查询多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>find</code>方法可以查询符合条件的多条数据，返回一个游标对象，通过<code>foreach</code>循环遍历游标对象，输出每条数据。</p>
-<h4 id="查询指定数量的数据"><a href="#查询指定数量的数据" class="headerlink" title="查询指定数量的数据"></a>查询指定数量的数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;limit&#x27;</span> =&gt; <span class="number">2</span></span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<code>find</code>方法的第二个参数中，可以使用<code>limit</code>选项来指定查询结果的数量。</p>
-<h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询年龄大于18的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$gt&#x27;</span> =&gt; <span class="number">18</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询年龄小于18，名称等于张三的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$lt&#x27;</span> =&gt; <span class="number">19</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询性别为空的数据</span></span><br><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;sex&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;$exists&#x27;</span> =&gt; <span class="literal">false</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在查询条件中，可以使用 MongoDB 的查询操作符，如<code>$gt</code>（大于）、<code>$lt</code>（小于）、<code>$exists</code>（是否存在）等。</p>
-<h4 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">find</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;sort&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">1</span>    // <span class="number">1</span>正序，-<span class="number">1</span>倒叙</span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$cursor</span> <span class="keyword">as</span> <span class="variable">$document</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$document</span>,  JSON_UNESCAPED_UNICODE));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<code>find</code>方法的第二个参数中，可以使用<code>sort</code>选项来对查询结果进行排序，<code>1</code>表示正序，<code>-1</code>表示倒序。</p>
-<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><h4 id="查询并修改"><a href="#查询并修改" class="headerlink" title="查询并修改"></a>查询并修改</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOneAndUpdate</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$cursor</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>findOneAndUpdate</code>方法可以查询符合条件的第一条数据并进行修改，返回修改前的文档对象。</p>
-<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>updateOne</code>方法可以更新符合条件的第一条数据，使用<code>$set</code>操作符来指定要更新的字段和值。</p>
-<h4 id="查询并替换"><a href="#查询并替换" class="headerlink" title="查询并替换"></a>查询并替换</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cursor</span> = <span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">findOneAndReplace</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;李四&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">]);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="title function_ invoke__">json_encode</span>(<span class="variable">$cursor</span>,  JSON_UNESCAPED_UNICODE));</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>findOneAndReplace</code>方法可以查询符合条件的第一条数据并进行替换，返回替换前的文档对象。</p>
-<h4 id="存在更新不存在插入"><a href="#存在更新不存在插入" class="headerlink" title="存在更新不存在插入"></a>存在更新不存在插入</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;upsert&#x27;</span> =&gt; <span class="literal">true</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>在<code>updateOne</code>方法的第三个参数中，使用<code>upsert</code>选项设置为<code>true</code>，可以实现如果符合条件的数据存在则更新，不存在则插入的功能。</p>
-<h4 id="更新多条数据"><a href="#更新多条数据" class="headerlink" title="更新多条数据"></a>更新多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">updateMany</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">], [</span><br><span class="line">    <span class="string">&#x27;$set&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;age&#x27;</span> =&gt; <span class="number">27</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>updateMany</code>方法可以更新符合条件的多条数据。</p>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><h4 id="删除单条数据"><a href="#删除单条数据" class="headerlink" title="删除单条数据"></a>删除单条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">deleteOne</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>deleteOne</code>方法可以删除符合条件的第一条数据。</p>
-<h4 id="删除多条数据"><a href="#删除多条数据" class="headerlink" title="删除多条数据"></a>删除多条数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">deleteMany</span>([</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;张三&#x27;</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>deleteMany</code>方法可以删除符合条件的多条数据。</p>
-<h3 id="删除集合和数据库"><a href="#删除集合和数据库" class="headerlink" title="删除集合和数据库"></a>删除集合和数据库</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除集合</span></span><br><span class="line"><span class="variable">$collection</span>-&gt;<span class="title function_ invoke__">drop</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除数据库</span></span><br><span class="line"><span class="variable">$db</span>-&gt;<span class="title function_ invoke__">drop</span>();</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>drop</code>方法可以删除集合和数据库。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/20/Linux-%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8-Samba-%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">Linux 开启文件共享：使用 Samba 服务</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-20 22:19:54" itemprop="dateCreated datePublished" datetime="2024-07-20T22:19:54+08:00">2024-07-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在 Linux 系统中，Samba 是一个功能强大的服务，它允许 Linux 和 Windows 系统之间进行文件共享。通过 Samba，你可以轻松地在不同操作系统之间共享文件和打印机。本文将详细介绍如何在 Linux 上配置 Samba 服务，以实现文件共享。</p>
-<h2 id="安装-Samba"><a href="#安装-Samba" class="headerlink" title="安装 Samba"></a>安装 Samba</h2><p>首先，你需要确保你的 Linux 系统上安装了 Samba。在基于 Debian 的系统（如 Ubuntu）上，你可以使用以下命令来安装 Samba：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install samba</span><br></pre></td></tr></table></figure>
-
-<p>这将安装 Samba 服务及其依赖项。</p>
-<h2 id="配置-Samba"><a href="#配置-Samba" class="headerlink" title="配置 Samba"></a>配置 Samba</h2><p>安装完成后，你需要配置 Samba 以便它知道你想要共享哪些目录。这涉及到编辑 Samba 的配置文件 <code>smb.conf</code>。</p>
-<ol start="2">
-<li>使用文本编辑器打开 <code>smb.conf</code> 文件。这里我们使用 <code>vi</code> 编辑器，但你也可以使用 <code>nano</code> 或其他你喜欢的编辑器：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>在 <code>smb.conf</code> 文件中，你可以定义多个共享部分，每个部分对应一个共享目录。以下是两个示例共享部分的配置：</li>
-</ol>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mnt-rw]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-Write Mount Point</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  force <span class="attr">user</span> = root</span><br><span class="line">  create <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  directory <span class="attr">mask</span> = <span class="number">0775</span></span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">No</span></span><br><span class="line"></span><br><span class="line"><span class="section">[onecloud-share]</span></span><br><span class="line">  <span class="attr">comment</span> = Read-<span class="literal">On</span>ly <span class="literal">On</span>eCloud Share</span><br><span class="line">  <span class="attr">browseable</span> = <span class="literal">yes</span></span><br><span class="line">  <span class="attr">path</span> = /mnt</span><br><span class="line">  guest <span class="attr">ok</span> = <span class="literal">Yes</span></span><br><span class="line">  read <span class="attr">only</span> = <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>[mnt-rw]</code> 部分定义了一个名为 <code>mnt-rw</code> 的共享，它指向 <code>/mnt</code> 目录。这个共享允许读写访问，并且对所有用户（包括匿名用户）开放。</li>
-<li><code>[onecloud-share]</code> 部分定义了另一个共享，它同样指向 <code>/mnt</code> 目录，但这个共享只允许读访问。</li>
-</ul>
-<h3 id="配置选项解释"><a href="#配置选项解释" class="headerlink" title="配置选项解释"></a>配置选项解释</h3><ul>
-<li><code>browseable = yes</code>：这个选项使得共享在网络浏览器中可见。</li>
-<li><code>path = /mnt</code>：指定共享的文件系统路径。</li>
-<li><code>force user = root</code>：强制所有连接到此共享的用户以 root 用户身份访问。</li>
-<li><code>create mask = 0775</code> 和 <code>directory mask = 0775</code>：设置文件和目录的默认权限。</li>
-<li><code>guest ok = Yes</code>：允许匿名访问。</li>
-<li><code>read only = No</code>：对于 <code>[mnt-rw]</code> 共享，这个选项允许写入操作；对于 <code>[onecloud-share]</code> 共享，这个选项设置为 <code>yes</code>，表示只读。</li>
-</ul>
-<h2 id="启动-Samba-服务"><a href="#启动-Samba-服务" class="headerlink" title="启动 Samba 服务"></a>启动 Samba 服务</h2><p>配置完成后，你需要启动 Samba 服务以使更改生效：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> service smbd start</span><br></pre></td></tr></table></figure>
-
-<p>这个命令将启动 Samba 守护进程，使你的共享目录在网络上可用。</p>
-<h2 id="测试共享"><a href="#测试共享" class="headerlink" title="测试共享"></a>测试共享</h2><p>在 Windows 系统上，你可以通过网络邻居访问这些共享，或者在文件资源管理器中输入共享的网络路径（例如 <code>\\&lt;Linux-Server-IP&gt;\mnt-rw</code>）来访问。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/13/%E8%87%AA%E7%AD%BE%E5%90%8Dssl%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">自签名ssl证书</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-13 22:24:00" itemprop="dateCreated datePublished" datetime="2024-07-13T22:24:00+08:00">2024-07-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>使用 OpenSSL 工具生成自签名 SSL 证书，为内网环境中的网站安全保驾护航</strong></p>
-<p>在内网环境中，使用 OpenSSL 工具进行自签名 SSL 证书的创建，能够为您的网站提供有效的安全保障。</p>
-<p><strong>自签证书流程</strong>：</p>
-<ol>
-<li>创建 ca 私钥。</li>
-<li>基于 ca 私钥生成 ca 根证书。</li>
-<li>构建 ssl 私钥。</li>
-<li>生成 ssl 证书 csr。</li>
-<li>运用 ca 根证书签署以获得 ssl 证书。</li>
-</ol>
-<p><strong>操作方法</strong></p>
-<ol>
-<li>创建 ca 私钥（强烈建议设置密码以增强安全性）：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl genrsa -des3 -out root.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">..............................................................+++</span><br><span class="line">................+++</span><br><span class="line">e is 65537 (0x010001)</span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">Verifying - Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>生成 ca 证书，自签 20 年有效期，并将此 ca 证书导入需要访问的 PC 的“受信任的根证书颁发机构”中，后续用此 ca 签署的证书均可正常使用：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl req -x509 -new -nodes -key root.key -sha256 -days 7300 -out root.crt</span></span><br><span class="line">Enter pass phrase for root.key:</span><br><span class="line"></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN    # 国家</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan   # 省份</span><br><span class="line">Locality Name (eg, city) []:ChengDu   # 城市</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD  # 组织</span><br><span class="line">Organizational Unit Name (eg, section) []: # 部门</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD # 公司</span><br><span class="line">Email Address []: # 邮箱</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>完成上述步骤后，创建 ssl 证书私钥：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl genrsa -out server.key 2048</span></span><br><span class="line">Generating RSA private key, 2048 bit long modulus</span><br><span class="line">...................................................................................+++</span><br><span class="line">..........+++</span><br><span class="line">e is 65537 (0x010001)</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>随后创建 ssl 证书 csr：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl req -new -key server.key -out server.csr</span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &#x27;.&#x27;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN</span><br><span class="line">State or Province Name (full name) [Some-State]:SiChuan</span><br><span class="line">Locality Name (eg, city) []:ChengDu</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Organizational Unit Name (eg, section) []:</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:Sichuan Lingyun Technology Co., LTD</span><br><span class="line">Email Address []:</span><br><span class="line"></span><br><span class="line">Please enter the following &#x27;extra&#x27; attributes</span><br><span class="line">to be sent with your certificate request</span><br><span class="line">A challenge password []:</span><br><span class="line">An optional company name []:</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>创建域名附加配置信息，新建一个文件，通过 vim cert.ext ，将以下代码粘贴后保存：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">authorityKeyIdentifier=keyid,issuer</span><br><span class="line">basicConstraints=CA:FALSE</span><br><span class="line">keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[alt_names]</span><br><span class="line">DNS.1 = localhost</span><br><span class="line">IP.2 = 192.168.0.10</span><br><span class="line">IP.3 = 192.168.1.200</span><br><span class="line">DNS.4 = xa.it.com</span><br><span class="line">DNS.5 = xiykj.com</span><br><span class="line">DNS.6 = *.xa.com</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，IP.2 &#x3D; 192.168.11.100 表示 https 要访问的 IP 地址，IP.3 同理也是 IP 地址，ssl 证书允许自签多个 IP 地址，这便是自签 IP 的证书。而 DNS.4 &#x3D; <span class="exturl" data-url="aHR0cHM6Ly94YS5pdC5jb20v">https://xa.it.com/<i class="fa fa-external-link-alt"></i></span> 则表示 https 要访问的域名，DNS.5、DNS.6 同理均为域名，ssl 证书也支持自签多个域名，此为自签域名的证书。</p>
-<ol start="6">
-<li>使用CA根证书签署ssl证书，自签ssl证书有效期20年：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl x509 -req -<span class="keyword">in</span> server.csr -out server.crt -days 7300 -CAcreateserial -CA root.crt -CAkey root.key -CAserial serial -extfile cert.ext</span></span><br><span class="line">Signature ok</span><br><span class="line">subject=C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">Getting CA Private Key</span><br><span class="line">Enter pass phrase for root.key:</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>查看文件，通过执行“ls -al”命令</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -al</span></span><br><span class="line">cert.ext          #ssl证书附加配置信息</span><br><span class="line">serial            #证书序列号</span><br><span class="line">server.crt        #ssl证书文件，包含公钥信息</span><br><span class="line">server.csr        #ssl证书签名文件</span><br><span class="line">server.key        #ssl证书私钥</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>查看签署的证书信息：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl x509 -<span class="keyword">in</span> server.crt -noout -text</span></span><br><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: 3 (0x2)</span><br><span class="line">        Serial Number:</span><br><span class="line">            cd:ae:a9:3e:b7:bb:93:e1</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Jul 18 06:26:05 2024 GMT</span><br><span class="line">            Not After : Jul 13 06:26:05 2044 GMT</span><br><span class="line">        Subject: C = CN, ST = SiChuan, L = ChengDu, O = &quot;Sichuan Lingyun Technology Co., LTD&quot;</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">                Public-Key: (2048 bit)</span><br><span class="line">                Modulus:</span><br><span class="line">                    00:aa:4e:ca:f5:0d:51:e7:b4:ba:3c:0b:6e:a5:4a:</span><br><span class="line">                    d8:b4:0d:ad:19:54:3d:11:02:14:29:41:45:76:fc:</span><br><span class="line">                    4a:b0:6c:5c:76:46:91:ff:8d:89:7a:f2:a8:62:73:</span><br><span class="line">                    1d:c4:3a:96:8c:74:82:0a:e9:58:55:73:4a:4e:ec:</span><br><span class="line">                    17:23:43:90:39:69:0e:aa:ac:ec:71:3e:60:e5:6b:</span><br><span class="line">                    0c:e7:7b:f9:8f:93:db:a8:45:ae:d9:43:6f:f1:a1:</span><br><span class="line">                    1c:01:0a:14:33:ce:4f:8c:81:f0:34:b5:cc:7c:81:</span><br><span class="line">                    f6:91:1a:69:31:dc:8a:d1:c1:cc:34:6f:96:71:e0:</span><br><span class="line">                    c2:86:79:37:47:a7:e4:c8:71:3f:44:82:38:7e:11:</span><br><span class="line">                    4d:05:96:fd:01:d8:8c:8b:75:0b:bc:6e:ad:37:1d:</span><br><span class="line">                    77:94:0b:2a:15:1a:43:3c:f6:59:61:eb:ea:8a:73:</span><br><span class="line">                    54:06:b0:ed:70:11:77:42:57:59:e1:80:df:eb:0b:</span><br><span class="line">                    36:d7:7b:d6:c8:53:20:e7:3a:cb:7c:95:67:ea:ff:</span><br><span class="line">                    25:06:80:e9:93:b2:1d:a0:58:9f:ec:60:65:76:e8:</span><br><span class="line">                    24:2c:14:9d:86:47:83:3b:b9:66:59:7d:69:b5:bd:</span><br><span class="line">                    46:af:4f:15:a7:21:45:d1:8c:a1:9b:8b:73:20:94:</span><br><span class="line">                    17:0e:1b:da:d2:e3:93:fb:98:d8:db:13:2b:ed:ff:</span><br><span class="line">                    f5:95</span><br><span class="line">                Exponent: 65537 (0x10001)</span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Authority Key Identifier:</span><br><span class="line">                keyid:8D:FB:23:BD:1D:AA:3B:C0:12:62:2A:15:8F:27:BF:81:EB:94:15:42</span><br><span class="line"></span><br><span class="line">            X509v3 Basic Constraints:</span><br><span class="line">                CA:FALSE</span><br><span class="line">            X509v3 Key Usage:</span><br><span class="line">                Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment</span><br><span class="line">            X509v3 Subject Alternative Name:</span><br><span class="line">                DNS:localhost, IP Address:192.168.11.100, IP Address:192.168.10.200, DNS:xa.it.com, DNS:xiykj.com, DNS:*.xa.com</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">         74:0f:a7:56:97:66:e1:8d:7a:5e:4e:7b:6f:b0:da:26:31:5c:</span><br><span class="line">         a3:77:9d:7f:25:19:1c:e2:cd:6a:ee:b3:9e:1f:55:3e:ea:8c:</span><br><span class="line">         05:5b:0f:9e:ac:f7:0f:72:8b:4c:6e:eb:20:4c:c3:d4:7b:d1:</span><br><span class="line">         63:79:54:dc:8d:46:f5:2e:73:fe:4f:5e:8f:d2:3c:54:47:90:</span><br><span class="line">         ae:cd:20:28:31:19:88:26:ec:46:86:1c:1e:ab:8b:67:77:d6:</span><br><span class="line">         81:1d:62:1b:59:7c:d6:4d:52:fe:44:b7:18:ce:6d:47:d3:34:</span><br><span class="line">         48:c8:59:c9:f9:3a:2a:41:9a:7c:50:c0:43:b0:6a:f4:3c:b1:</span><br><span class="line">         d5:49:f1:be:21:ae:b9:d8:72:48:19:f8:20:8c:3b:03:c5:c7:</span><br><span class="line">         26:0d:27:08:4d:0b:9e:27:ea:3c:bf:c3:09:07:fe:b0:68:9c:</span><br><span class="line">         76:1a:3f:49:44:af:67:9f:47:af:88:9f:50:25:1c:f4:a3:05:</span><br><span class="line">         b6:fb:1c:04:16:3d:6d:d3:ac:99:92:73:05:2f:c8:08:9a:e4:</span><br><span class="line">         88:e4:12:4d:f3:d0:aa:47:3c:eb:cf:9b:20:3a:88:e5:33:1b:</span><br><span class="line">         32:65:14:78:1d:c4:24:e8:63:e7:8e:18:b3:2b:bb:e2:94:38:</span><br><span class="line">         1d:dd:1f:f5:13:a2:db:ef:65:bc:12:a9:66:4f:48:15:57:e8:</span><br><span class="line">         82:79:24:a0</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>使用 CA 验证 ssl 证书状态，若显示“OK”则表示通过验证：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">openssl verify -CAfile root.crt server.crt</span></span><br><span class="line">server.crt: OK</span><br></pre></td></tr></table></figure>
-
-<p>最后，将 root.crt 导入到需要访问的客户端 PC 的“受信任的根证书颁发机构”中，同时将 server.crt、server.key 文件部署在服务器上即可。</p>
 
       
     </div>

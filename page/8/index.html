@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">352</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">352</span>
+        <span class="site-state-item-count">357</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,233 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/18/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">小程序之模型实现 </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-18 00:33:00" itemprop="dateCreated datePublished" datetime="2020-01-18T00:33:00+08:00">2020-01-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>model层就不用多说了，主要是把数据处理部分独立出来，便于统一服务和维护，这里重点强调下model内部的实现细节，这里有一个实现技巧可以用在其它别的地方。下面直接上代码部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一的接口地址，一般一个controller下面多个action是一致的</span></span><br><span class="line"><span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化请求参数，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> params 键值对对象,形如&#123;&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 格式化后的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatParams = <span class="keyword">function</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化返回结果，根据不同的接口自行处理</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> data 对象 数组等任何合法的JS数据类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 格式化后的数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> formatResult = <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 读取可用游戏业务列表</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@params</span> params 参数,本接口用不到</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> &#123;<span class="type">*</span>&#125; 返回 Promise 对象</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getList</span>(<span class="params">params</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果接口地址不一致，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> url = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的参数处理逻辑，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatParams = <span class="keyword">function</span>(<span class="params">params</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有特殊的格式处理，这里重写</span></span><br><span class="line">    <span class="keyword">let</span> formatResult = <span class="keyword">function</span>(<span class="params">result</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果需要自己先判断缓存或者别的处理，这里手动使用Promise封装一下即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> goods_list = cache.<span class="title function_">get</span>(<span class="string">&quot;goods_list&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">null</span> == goods_list) &#123;</span><br><span class="line">        <span class="title function_">resolve</span>(goods_list)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ajax.<span class="title function_">get</span>(&#123;</span><br><span class="line">          <span class="attr">url</span>: url,</span><br><span class="line">          <span class="attr">data</span>: <span class="title function_">formatParams</span>(params),</span><br><span class="line">          <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> data = <span class="title function_">formatResult</span>(res.<span class="property">data</span>)</span><br><span class="line">          cache.<span class="title function_">set</span>(<span class="string">&quot;goods_list&quot;</span>, data, <span class="number">86400</span>)</span><br><span class="line">          <span class="title function_">resolve</span>(data);</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">reject</span>(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> goods <span class="keyword">from</span> <span class="string">&#x27;../../models/goods.js&#x27;</span></span><br><span class="line"></span><br><span class="line">goods.<span class="title function_">getList</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;成功&quot;</span>, res)</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;失败&quot;</span>, error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>把参数处理和返回结果处理拆出来放到单独的处理方法里，方法名称保持统一： <code>formatParams</code> ， <code>formatResult</code> </li>
+<li>同时最外层定义好默认的 <code>formatParams</code> ， <code>formatResult</code> ，如果不做特殊处理，直接使用默认即可（建议不处理也调用下默认方法，规范流程）</li>
+<li>还有一点，model里方法命令有统一规范都是已 <code>get</code> ， <code>add</code> ， <code>update</code> ， <code>del</code> 开头</li>
+</ol>
+<p>这个思路其实可以运用到任何场景，特别是在没有任何限定框架的场景，我们只需要按照这个模式去实现，代码一样很清晰漂亮。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%BC%93%E5%AD%98%E7%B1%BB/" class="post-title-link" itemprop="url">小程序之缓存类 </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-17 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-17T00:33:03+08:00">2020-01-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>其实，小程序自带了缓存接口，有同步 <code>wx.setStorageSync</code> ，异步 <code>wx.setStorage</code> 的方法，但是实际在使用缓存的场景里，我们一般都是需要设置缓存有效时间的，本cache工具就是对小程序缓存接口的封装，实现了对缓存有效期的支持。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">test</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">setStorageSync</span>(<span class="string">&quot;JDC_TEST&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">      wx.<span class="title function_">removeStorageSync</span>(<span class="string">&quot;JDC_TEST&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&quot;提示&quot;</span>,</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&quot;小程序缓存出现问题,请稍后使用&quot;</span>,</span><br><span class="line">        <span class="attr">showCancel</span>: !<span class="number">1</span>,</span><br><span class="line">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span>(e.<span class="property">confirm</span>)&#123;</span><br><span class="line">              <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;用户点击确定&quot;</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">set</span>: <span class="keyword">function</span>(<span class="params">name, value, expire</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expire == <span class="string">&quot;number&quot;</span>) &#123;</span><br><span class="line">      expire = expire * <span class="number">1e3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      expire = <span class="number">2592e5</span></span><br><span class="line">    &#125;</span><br><span class="line">    wx.<span class="title function_">removeStorageSync</span>(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">setStorageSync</span>(name, &#123;</span><br><span class="line">        <span class="attr">_value</span>: value,</span><br><span class="line">        <span class="attr">_time</span>: time,</span><br><span class="line">        <span class="attr">_age</span>: time + expire</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">get</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> data = <span class="variable language_">this</span>.<span class="title function_">_isExpire</span>(name);</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data.<span class="property">_value</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">del</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      wx.<span class="title function_">removeStorageSync</span>(name);</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="keyword">return</span> !<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">_isExpire</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> data = wx.<span class="title function_">getStorageSync</span>(name);</span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">    <span class="keyword">if</span> (data &amp;&amp; time &lt; data.<span class="property">_age</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cache <span class="keyword">from</span> <span class="string">&#x27;../utils/cache.js&#x27;</span></span><br><span class="line"></span><br><span class="line">cache.<span class="title function_">set</span>(<span class="string">&quot;key&quot;</span>,<span class="string">&quot;value&quot;</span>,<span class="number">7200</span>);</span><br><span class="line">cache.<span class="title function_">get</span>(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">cache.<span class="title function_">del</span>(<span class="string">&quot;key&quot;</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">小程序之封装请求 </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-16 00:33:03" itemprop="dateCreated datePublished" datetime="2020-01-16T00:33:03+08:00">2020-01-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>实现了 promise 的封装，支持GET、POST、PUT 和DELELE这里设计的时候就确定为仅满足单项目通用即可，所以实现的时候融入了部分业务层面的逻辑：</p>
+<ul>
+<li>接口首次格式化，兼容标准的json和var形式接口（内部有大量var形式的接口）</li>
+<li>直判断返回值在逻辑上是成功还是失败</li>
+<li>针对返回未登录的情况，自动跳转登录流程</li>
+</ul>
+<p>所以省去了业务调用侧的反复判断处理通用逻辑，使用更简洁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> host = <span class="string">&quot;http://www.baidu.com&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> showLoading = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">HOST</span>: host,</span><br><span class="line">  <span class="attr">API_ROOT</span>: host + <span class="string">&#x27;/api/&#x27;</span>,</span><br><span class="line">  <span class="attr">API_VERSION</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;GET&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">post</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;POST&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">delete</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;DELETE&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">put</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    options.<span class="property">method</span> = <span class="string">&#x27;PUT&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(options);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">request</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="variable language_">this</span></span><br><span class="line">    <span class="keyword">var</span> apiRoot = <span class="variable language_">this</span>.<span class="property">API_ROOT</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> token = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      token = wx.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> requireLogin = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.<span class="property">login</span> == <span class="string">&#x27;undefined&#x27;</span> || options.<span class="property">login</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">      requireLogin = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      requireLogin = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> options.<span class="property">loading</span> != <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; options.<span class="property">loading</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">      showLoading = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&quot;加载中&quot;</span>,</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&quot;loading&quot;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">1e4</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">500</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.<span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: apiRoot + options.<span class="property">url</span>,</span><br><span class="line">        <span class="attr">data</span>: options.<span class="property">data</span>,</span><br><span class="line">        <span class="attr">method</span>: options.<span class="property">method</span> ? options.<span class="property">method</span> : <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;Cache-Control&#x27;</span>: <span class="string">&#x27;no-cache&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Token&#x27;</span>: token,</span><br><span class="line">          <span class="string">&#x27;XX-Device-Type&#x27;</span>: <span class="string">&#x27;wxapp&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;XX-Api-Version&#x27;</span>: that.<span class="property">API_VERSION</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.<span class="title function_">hideToast</span>()</span><br><span class="line">          <span class="keyword">if</span> (res.<span class="property">data</span>.<span class="property">code</span> == <span class="number">10001</span> &amp;&amp; requireLogin) &#123;</span><br><span class="line">            <span class="comment">// 执行登陆</span></span><br><span class="line">            <span class="keyword">let</span> currentPages = <span class="title function_">getCurrentPages</span>();</span><br><span class="line">            <span class="keyword">let</span> currentRoute = currentPages.<span class="title function_">pop</span>()[<span class="string">&#x27;__route__&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span> (currentRoute != <span class="string">&#x27;pages/login/login&#x27;</span>) &#123;</span><br><span class="line">              wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">resolve</span>(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">clearTimeout</span>(showLoading)</span><br><span class="line">          wx.<span class="title function_">hideToast</span>()</span><br><span class="line">          <span class="title function_">reject</span>(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ajax <span class="keyword">from</span> <span class="string">&#x27;../utils/ajax.js&#x27;</span></span><br><span class="line"></span><br><span class="line">ajax.<span class="title function_">get</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: url,</span><br><span class="line">  <span class="attr">login</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">loading</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -878,244 +1105,6 @@
 <li>官方主页: <span class="exturl" data-url="aHR0cHM6Ly93d3cua2FsaS5vcmcv">https://www.kali.org/<i class="fa fa-external-link-alt"></i></span></li>
 <li>文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cua2FsaS5vcmcvZG9jcy8=">https://www.kali.org/docs/<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/12/%E5%88%A9%E7%94%A8WebHook%E5%AE%9E%E7%8E%B0PHP%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2GIT%E4%BB%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/12/%E5%88%A9%E7%94%A8WebHook%E5%AE%9E%E7%8E%B0PHP%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2GIT%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">利用WebHook实现PHP自动部署git代码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-11-12 10:18:00" itemprop="dateCreated datePublished" datetime="2019-11-12T10:18:00+08:00">2019-11-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>生成公钥</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www ssh-keygen -t rsa</span><br><span class="line">sudo cat /var/www/.ssh/id_rsa.pub </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改GIT配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www git config --global user.name &quot;l1n6yun&quot;</span><br><span class="line">sudo -Hu www git config --global user.email &quot;l1n6yun@gmail.com&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -Hu www git clone git@github.com:you/project.git /www/wwwroot/project --depth=1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加钩子文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$target</span> = <span class="string">&#x27;/www/wwwroot/project&#x27;</span>;</span><br><span class="line"><span class="variable">$token</span> = <span class="string">&#x27;Your hook token&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$json</span> = <span class="title function_ invoke__">json_decode</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>), <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$json</span>[<span class="string">&#x27;token&#x27;</span>]) || <span class="variable">$json</span>[<span class="string">&#x27;token&#x27;</span>] !== <span class="variable">$token</span>) &#123;</span><br><span class="line">	<span class="keyword">exit</span>(<span class="string">&#x27;error request&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&quot;sudo -Hu www cd <span class="subst">$target</span> &amp;&amp; git pull&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">shell_exec</span>(<span class="variable">$cmd</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在托管平台上添加 <code>hook</code></p>
-</li>
-<li><p>测试</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;test hook&quot; --allow-empty</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<p> OK，稍微一几秒，正常的话你在代码里配置的目标目录里就会有你的项目文件了。</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/11/HTML-5-Desktop-Notification/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/11/HTML-5-Desktop-Notification/" class="post-title-link" itemprop="url">HTML 5 Desktop Notification</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-11-11 14:34:00" itemprop="dateCreated datePublished" datetime="2019-11-11T14:34:00+08:00">2019-11-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>生命在于折腾，又把博客折腾到Hexo了。给Hexo点赞。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/11/HTML-5-Desktop-Notification/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">windows 10 界面优化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-09-19 10:52:00" itemprop="dateCreated datePublished" datetime="2019-09-19T10:52:00+08:00">2019-09-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="字体修改软件-noMeiryoUI"><a href="#字体修改软件-noMeiryoUI" class="headerlink" title="字体修改软件 - noMeiryoUI"></a>字体修改软件 - noMeiryoUI</h2><p>noMeiryoUI 官方版是Windows 7&#x2F;8&#x2F;8.1&#x2F;10中画面的各部分的字体设定工具。<br>何故Windows 7&#x2F;8&#x2F;8.1&#x2F;10上标准的画面的各部分的字体的设定是不行的事，所以作成了这个。<br>软件只是对主题字体风格设置进行修改，而不是对系统字体本身的渲染、修改，所以无风险，无占用。<br>软件可以修改不同的字体，辅助 win 10 第三方主题文件应用字体。</p>
-<h2 id="字体渲染软件-MacType"><a href="#字体渲染软件-MacType" class="headerlink" title="字体渲染软件 - MacType"></a>字体渲染软件 - MacType</h2><p>MacType 是一个开源项目，能接管Windows系统的 GDI 字体渲染功能，实现比Mac系统更华丽的字体渲染效果！ MacType 支持 WinXP 、Win7 、Win8 、Win10 等操作系统。安装过程十分简单，到最后，它才会让我们在四种加载方式之间进行选择，对于一般用户来说，最好选择 MacTray 方式加载（ MacTray 也有两种方式，建议采用独立加载模式）。这种方式会在系统托盘中显示一个控制图标，方便配置。</p>
-<h2 id="开始菜单程序-StartIsBack"><a href="#开始菜单程序-StartIsBack" class="headerlink" title="开始菜单程序 - StartIsBack"></a>开始菜单程序 - StartIsBack</h2><p>StartIsBack 是一款 Win8 和 Win10 开始菜单辅助工具,可以让 Win8 和 Win10 能够使用跟 Win7 中一样的经典开始菜单，此款软件小巧且不需要繁琐的设置，在同类软件中应该是最好的，推荐大家使用。</p>
-<h2 id="个性化桌面定制工具-Rainmeter"><a href="#个性化桌面定制工具-Rainmeter" class="headerlink" title="个性化桌面定制工具 - Rainmeter"></a>个性化桌面定制工具 - Rainmeter</h2><p>Rainmeter 可以在你的桌面上显示包含内存，电池，RSS，天气等信息的可定制皮肤,许多皮肤还具有一定的功能：它们能帮你记录下你即将要做的事，把你的微博发布出去，控制媒体播放器等。它还能美化你的桌面，你可以完全按照自己的意愿去定制一款你想要皮肤，让你的桌面与众不同。 Rainmeter 是一款能够发挥你想象力和创新力的工具.</p>
-<h2 id="资源管理器调整工具-OldNewExplorer"><a href="#资源管理器调整工具-OldNewExplorer" class="headerlink" title="资源管理器调整工具 - OldNewExplorer"></a>资源管理器调整工具 - OldNewExplorer</h2><p>OldNewExplorer 是一款资源管理器调整工具，可以在系统中调整资源管理器的软件，使用这款软件用户可以隐藏“这台电脑”中的菜单，按钮或文件夹。</p>
 
       
     </div>
