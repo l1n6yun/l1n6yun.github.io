@@ -8382,4 +8382,140 @@ x86 则表示32位的
         <tag>Vite</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Composer 钩子脚本实操：让你的项目模板开箱即用</title>
+    <url>/2026/04/07/composer-hooks-guide/</url>
+    <content><![CDATA[<p>做 PHP 开发，<code>composer install</code> 和 <code>composer require</code> 基本是日常，但 Composer 的钩子脚本，估计不少同学都没怎么用过。</p>
+<p>最近想弄一个项目模板，让其他人可以通过 <code>composer create-project</code> 一键安装，安装完自动把 <code>.env.example</code> 复制成 <code>.env</code>、生成密钥、提示下一步操作。折腾了一番，踩了不少坑，今天把经验整理出来，希望能帮到有同样需求的同学。</p>
+<h2 id="先把坑填上：type-必须是-project"><a href="#先把坑填上：type-必须是-project" class="headerlink" title="先把坑填上：type 必须是 project"></a>先把坑填上：type 必须是 project</h2><p>这个坑我踩得很惨——模板写好了，<code>composer create-project</code> 却死活装不了。</p>
+<p>问题出在 <code>composer.json</code> 的 <code>type</code> 字段。想用 <code>create-project</code> 安装，这个字段必须是 <code>project</code>，填 <code>library</code> 的话只能 <code>composer require</code>。</p>
+<p>建模板其实很简单：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my-project-template &amp;&amp; <span class="built_in">cd</span> my-project-template</span><br><span class="line">composer init</span><br></pre></td></tr></table></figure>
+
+<p><code>composer init</code> 的时候注意两点：一是 <code>Package name</code> 要用「作者名&#x2F;包名」的格式，比如 <code>l1n6yun/my-project-template</code>；二是 <code>Project type</code> 填 <code>project</code>。</p>
+<p>生成的 <code>composer.json</code> 最小结构：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;l1n6yun/my-project-template&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;project&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;php&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&gt;=7.4&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在模板里放好 <code>.env.example</code>、<code>index.php</code> 这些基础文件，一个能被 <code>create-project</code> 识别的模板就有了。</p>
+<h2 id="三个钩子的区别，搞清楚就够用了"><a href="#三个钩子的区别，搞清楚就够用了" class="headerlink" title="三个钩子的区别，搞清楚就够用了"></a>三个钩子的区别，搞清楚就够用了</h2><p>Composer 钩子有好几个，但做项目模板主要用这三个：<code>post-root-package-install</code>、<code>post-autoload-dump</code>、<code>post-create-project-cmd</code>。</p>
+<h3 id="post-root-package-install：模板刚下载完"><a href="#post-root-package-install：模板刚下载完" class="headerlink" title="post-root-package-install：模板刚下载完"></a>post-root-package-install：模板刚下载完</h3><p>用户执行 <code>composer create-project</code>，Composer 把你的模板下载下来，还没开始装依赖（此时 vendor 目录还不存在），这个钩子就触发了。</p>
+<p>最适合干的事：复制 <code>.env.example</code> 到 <code>.env</code>。</p>
+<p>为什么？因为这时候模板文件刚到位，<code>.env</code> 还不存在，是复制的最佳时机，而且不用依赖任何包，执行最快。Laravel 官方也是这么干的。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;post-root-package-install&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php -r \&quot;file_exists(&#x27;.env&#x27;) || copy(&#x27;.env.example&#x27;, &#x27;.env&#x27;);\&quot;&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>用 PHP 的 <code>copy()</code> 函数，Windows、Linux、Mac 通用，不用管系统命令的差异。</p>
+<h3 id="post-autoload-dump：vendor-autoload-php-生成后"><a href="#post-autoload-dump：vendor-autoload-php-生成后" class="headerlink" title="post-autoload-dump：vendor&#x2F;autoload.php 生成后"></a>post-autoload-dump：vendor&#x2F;autoload.php 生成后</h3><p>触发时机：<code>composer install</code>、<code>composer update</code>、<code>composer dump-autoload</code>，以及 <code>create-project</code> 安装依赖完成后。</p>
+<p>简单说，依赖装好了，需要用到 vendor 里的类了，这个钩子就派上用场了。</p>
+<p>常见用途：框架的插件自动发现、生成缓存、初始化需要加载类的操作。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;post-autoload-dump&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php artisan package:discover --ansi&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：别用这个钩子复制 <code>.env</code>，这时候依赖都装完了，再复制环境文件可能会出问题。</p>
+<h3 id="post-create-project-cmd：全部搞定，最后一步"><a href="#post-create-project-cmd：全部搞定，最后一步" class="headerlink" title="post-create-project-cmd：全部搞定，最后一步"></a>post-create-project-cmd：全部搞定，最后一步</h3><p><code>create-project</code> 流程全部结束后触发，依赖装好了、自动加载器也生成了，项目完全就绪。</p>
+<p>最适合做的事：给用户友好提示、执行最终初始化操作。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;post-create-project-cmd&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@php artisan key:generate --ansi&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;echo 项目安装成功！执行 php artisan serve 启动服务~&quot;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一套完整配置，直接拿去用"><a href="#一套完整配置，直接拿去用" class="headerlink" title="一套完整配置，直接拿去用"></a>一套完整配置，直接拿去用</h2><p>把三个钩子组合起来，就是一套完整的脚本配置：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;l1n6yun/my-project-template&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;project&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;php&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&gt;=7.4&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;post-root-package-install&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php -r \&quot;file_exists(&#x27;.env&#x27;) || copy(&#x27;.env.example&#x27;, &#x27;.env&#x27;);\&quot;&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;post-autoload-dump&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php artisan package:discover --ansi&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;post-create-project-cmd&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;@php artisan key:generate --ansi&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;echo 项目安装成功！&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="最后说几个注意点"><a href="#最后说几个注意点" class="headerlink" title="最后说几个注意点"></a>最后说几个注意点</h2><ol>
+<li><p><strong>执行顺序</strong>：<code>post-root-package-install</code> → <code>post-autoload-dump</code> → <code>post-create-project-cmd</code>，顺序不能乱，否则依赖找不到、文件生成失败都会出现。</p>
+</li>
+<li><p><strong>复制 .env</strong>：用 <code>post-root-package-install</code>，这是官方推荐的做法。</p>
+</li>
+<li><p><strong>@php 是什么</strong>：Composer 的内置命令，表示用当前项目的 PHP 解释器，避免系统 PHP 版本和项目要求不一致。</p>
+</li>
+<li><p><strong>本地测试</strong>：模板建好后，执行 <code>composer create-project ./my-project-template test-project</code>，看 <code>.env</code> 是否自动生成、提示信息是否正常显示。</p>
+</li>
+<li><p><strong>包还没发布怎么办</strong>：如果模板还在开发阶段，没有发布到 Packagist，可以用 <code>--repository-url</code> 参数指定仓库地址。比如你的模板托管在 GitHub，可以这样安装：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer create-project l1n6yun/my-project-template my-app --repository-url=https://github.com/l1n6yun/my-project-template.git</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这样就能直接从 Git 仓库拉取安装，不用先发布包。本地测试也可以用这个方式，把地址换成本地路径就行。</p>
+<p>Composer 的钩子其实不难理解，关键是搞清楚每个钩子的触发时机，按需分配操作就行。掌握这三个，项目模板的自动化初始化就搞定了，用户的安装体验也能上一个台阶。</p>
+<p>有问题欢迎评论区交流~</p>
+]]></content>
+      <categories>
+        <category>开发笔记</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Composer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP 发邮件踩坑记：PHPMailer 从入门到避坑</title>
+    <url>/2026/02/19/phpmailer-guide/</url>
+    <content><![CDATA[<p>最近做项目要发邮件，什么注册确认、密码重置、订单通知，一堆功能都离不开邮件。PHP 自带的 <code>mail()</code> 函数？说实话，用过的都知道有多坑——配置麻烦、兼容性差、容易被当垃圾邮件。最后还是老老实实用 PHPMailer，踩了一些坑，今天把经验整理一下。</p>
+<h2 id="为什么是-PHPMailer"><a href="#为什么是-PHPMailer" class="headerlink" title="为什么是 PHPMailer"></a>为什么是 PHPMailer</h2><p>PHPMailer 是 PHP 里最老牌的邮件发送库，功能齐全：</p>
+<ul>
+<li>支持 SMTP 认证，TLS&#x2F;SSL 加密</li>
+<li>HTML 邮件、附件、嵌入式图片都能搞定</li>
+<li>抄送、密送、回复地址这些不在话下</li>
+</ul>
+<p>环境要求：PHP 5.5 ~ 8.3，需要开启 <code>mbstring</code> 和 <code>openssl</code> 扩展。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐用 Composer，省心：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require phpmailer/phpmailer</span><br></pre></td></tr></table></figure>
+
+<p>不想用 Composer 也行，去 GitHub 下载源码，手动引入文件。但都 2026 年了，还是 Composer 吧。</p>
+<h2 id="邮箱服务器配置"><a href="#邮箱服务器配置" class="headerlink" title="邮箱服务器配置"></a>邮箱服务器配置</h2><p>发邮件得有 SMTP 服务器，常用的 163 和 QQ 邮箱配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>邮箱</th>
+<th>SMTP 服务器</th>
+<th>SSL 端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>163</td>
+<td>smtp.163.com</td>
+<td>465 或 994</td>
+</tr>
+<tr>
+<td>QQ</td>
+<td>smtp.qq.com</td>
+<td>465 或 587</td>
+</tr>
+</tbody></table>
+<p><strong>重要提醒</strong>：163、QQ 这些邮箱默认关闭 SMTP 服务，得去邮箱设置里手动开启，然后生成一个「授权码」。后面代码里的密码填的是授权码，不是你的登录密码！</p>
+<h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>直接上代码，能跑的才是好教程：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 服务器配置</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;        <span class="comment">// 发件邮箱</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;授权码&#x27;</span>;               <span class="comment">// 授权码，不是密码！</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收发件人</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;发件人名字&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>, <span class="string">&#x27;收件人名字&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 邮件内容</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;邮件标题&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;这是 HTML 邮件内容&lt;/h1&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="发送附件"><a href="#发送附件" class="headerlink" title="发送附件"></a>发送附件</h2><p>加附件一行代码的事：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/file.zip&#x27;</span>);           <span class="comment">// 普通附件</span></span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/image.jpg&#x27;</span>, <span class="string">&#x27;图片.jpg&#x27;</span>); <span class="comment">// 重命名附件</span></span><br></pre></td></tr></table></figure>
+
+<p>注意路径要写对，相对路径、绝对路径都行，但要确保文件存在。</p>
+<h2 id="嵌入图片到邮件正文"><a href="#嵌入图片到邮件正文" class="headerlink" title="嵌入图片到邮件正文"></a>嵌入图片到邮件正文</h2><p>想在邮件正文里显示图片，有两种方式：一种是用 <code>&lt;img src=&quot;cid:图片id&quot;&gt;</code> 配合 <code>addEmbeddedImage</code>，另一种是直接 base64 编码嵌入。推荐前者：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;你好&lt;/h1&gt;&lt;img src=&quot;cid:logo&quot;&gt;&#x27;</span>;</span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addEmbeddedImage</span>(<span class="string">&#x27;images/logo.png&#x27;</span>, <span class="string">&#x27;logo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见坑和解决方案"><a href="#常见坑和解决方案" class="headerlink" title="常见坑和解决方案"></a>常见坑和解决方案</h2><h3 id="1-SMTP-connect-failed"><a href="#1-SMTP-connect-failed" class="headerlink" title="1. SMTP connect failed"></a>1. SMTP connect failed</h3><p>最常见的错误。原因可能是：</p>
+<ul>
+<li>SMTP 服务没开启（去邮箱设置里开）</li>
+<li>端口被防火墙拦截（换个端口试试：25、465、587）</li>
+<li>服务器地址写错了</li>
+</ul>
+<h3 id="2-认证失败"><a href="#2-认证失败" class="headerlink" title="2. 认证失败"></a>2. 认证失败</h3><p>大概率是密码填错了。163、QQ 邮箱要用授权码，不是登录密码。授权码在邮箱设置里生成。</p>
+<h3 id="3-中文乱码"><a href="#3-中文乱码" class="headerlink" title="3. 中文乱码"></a>3. 中文乱码</h3><p>编码问题，加上这句：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-SSL-连接失败"><a href="#4-SSL-连接失败" class="headerlink" title="4. SSL 连接失败"></a>4. SSL 连接失败</h3><p>检查 PHP 有没有开启 <code>openssl</code> 扩展，<code>php.ini</code> 里把 <code>extension=openssl</code> 前面的分号去掉，重启服务。</p>
+<h3 id="5-邮件进了垃圾箱"><a href="#5-邮件进了垃圾箱" class="headerlink" title="5. 邮件进了垃圾箱"></a>5. 邮件进了垃圾箱</h3><p>原因很多：发件人和 SMTP 认证邮箱不一致、邮件内容太像广告、域名没有配置 SPF 记录。生产环境建议用专业邮件服务，比如 SendGrid、Mailgun，比自己搭 SMTP 靠谱。</p>
+<h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>开发阶段遇到问题，打开调试模式：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">2</span>;  <span class="comment">// 级别 0-4，数字越大越详细</span></span><br></pre></td></tr></table></figure>
+
+<p>调试完记得关掉，生产环境开调试会暴露敏感信息。</p>
+<h2 id="一个完整的例子"><a href="#一个完整的例子" class="headerlink" title="一个完整的例子"></a>一个完整的例子</h2><p>把上面的拼起来：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">0</span>;  <span class="comment">// 生产环境用 0</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;your-authorization-code&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;l1n6yun&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addReplyTo</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;Reply&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 附件</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;files/report.pdf&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;测试邮件&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h2&gt;邮件发送成功！&lt;/h2&gt;&lt;p&gt;这是一封测试邮件。&lt;/p&gt;&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;AltBody = <span class="string">&#x27;邮件发送成功！这是一封测试邮件。&#x27;</span>;  <span class="comment">// 纯文本备用</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;邮件发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;邮件发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PHPMailer 用起来其实不难，主要是 SMTP 配置容易踩坑。记住几个要点：授权码、端口、编码、调试模式，基本就能搞定大部分场景了。</p>
+<p>有问题欢迎评论区交流~</p>
+]]></content>
+      <categories>
+        <category>开发笔记</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>PHPMailer</tag>
+        <tag>邮件发送</tag>
+      </tags>
+  </entry>
 </search>
