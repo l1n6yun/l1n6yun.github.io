@@ -8256,7 +8256,7 @@ x86 则表示32位的
   </entry>
   <entry>
     <title>Vue 去掉 el-dropdown 悬浮时出现的边框</title>
-    <url>/2026/03/30/vue-el-dropdown-remove-outline/</url>
+    <url>/2026/03/13/vue-el-dropdown-remove-outline/</url>
     <content><![CDATA[<p>最近在写项目的时候用到了 Element Plus 的下拉菜单组件 <code>el-dropdown</code>，本来挺好用的，但是每次鼠标悬浮或者点击的时候，总会冒出来一个黑色的边框，看着特别别扭。</p>
 <p>这个边框其实是浏览器自带的焦点样式，就是那种 tab 切换时候会显示的轮廓线。虽然从可访问性的角度来说这是个好东西，但有时候跟设计稿对不上，还是得把它干掉。</p>
 <h2 id="怎么解决呢？"><a href="#怎么解决呢？" class="headerlink" title="怎么解决呢？"></a>怎么解决呢？</h2><p>其实很简单，就是用 CSS 把 <code>outline</code> 去掉就行。但是因为 <code>el-dropdown</code> 内部的样式是 scoped 的，所以得用样式穿透才能生效。</p>
@@ -8331,7 +8331,7 @@ x86 则表示32位的
   </entry>
   <entry>
     <title>Vue3 + Vite 项目 ESLint 配置指南</title>
-    <url>/2026/04/01/Vue3-Vite-%E9%A1%B9%E7%9B%AE-ESLint-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/</url>
+    <url>/2026/03/21/Vue3-Vite-%E9%A1%B9%E7%9B%AE-ESLint-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<p>最近在搞一个 Vue3 + Vite 的项目，想着给项目加上 ESLint，结果发现 ESLint 现在推荐用新的 flat config 格式了，跟之前那种 <code>.eslintrc.js</code> 的写法完全不一样。折腾了一阵子终于搞定，记录一下配置过程，希望能帮到同样遇到这个问题的小伙伴。</p>
 <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>首先当然是装 ESLint 和相关插件啦：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D eslint @eslint/js eslint-plugin-vue</span><br></pre></td></tr></table></figure>
@@ -8516,6 +8516,63 @@ x86 则表示32位的
         <tag>PHP</tag>
         <tag>PHPMailer</tag>
         <tag>邮件发送</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>QQ空间自动点赞脚本</title>
+    <url>/2016/11/12/QQ%E7%A9%BA%E9%97%B4%E8%87%AA%E5%8A%A8%E7%82%B9%E8%B5%9E%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p>最近逛 QQ 空间的时候，看到好友动态多了起来，一个个点赞太累了。想着能不能搞个脚本自动点赞，省得手动操作。</p>
+<p>研究了一下 QQ 空间页面的 DOM 结构，发现点赞按钮有个特征属性 <code>data-clicklog=&#39;like&#39;</code>，利用这个就能定位到所有点赞按钮。</p>
+<h2 id="脚本代码"><a href="#脚本代码" class="headerlink" title="脚本代码"></a>脚本代码</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">jQuery</span>(<span class="string">&quot;a.qz_like_btn_v3[data-clicklog=&#x27;like&#x27;]&quot;</span>).<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">index, item</span>) &#123;</span><br><span class="line">    <span class="title function_">jQuery</span>(item).<span class="title function_">trigger</span>(<span class="string">&#x27;click&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">jQuery</span>(<span class="variable language_">window</span>).<span class="title function_">scroll</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">jQuery</span>(<span class="string">&quot;a.qz_like_btn_v3[data-clicklog=&#x27;like&#x27;]&quot;</span>).<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">index, item</span>) &#123;</span><br><span class="line">        <span class="title function_">jQuery</span>(item).<span class="title function_">trigger</span>(<span class="string">&#x27;click&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>这段代码可以保存成书签（Bookmarklet），使用方法很简单：</p>
+<ol>
+<li>创建一个新的书签，名称随便起，比如「QQ空间一键点赞」</li>
+<li>把 URL 填成 <code>javascript:</code> 加上上面的代码（压缩成一行）</li>
+<li>打开 QQ 空间好友动态页面</li>
+<li>点击这个书签，当前页面的动态就会自动点赞</li>
+<li>向下滑动加载更多动态，脚本会自动给新出现的动态点赞</li>
+</ol>
+<h2 id="完整书签代码"><a href="#完整书签代码" class="headerlink" title="完整书签代码"></a>完整书签代码</h2><p>把下面这段复制到书签 URL 里就行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">javascript:jQuery(&quot;a.qz_like_btn_v3[data-clicklog=&#x27;like&#x27;]&quot;).each(function(index, item) &#123;jQuery(item).trigger(&#x27;click&#x27;);&#125;);jQuery(window).scroll(function() &#123;jQuery(&quot;a.qz_like_btn_v3[data-clicklog=&#x27;like&#x27;]&quot;).each(function(index, item) &#123;jQuery(item).trigger(&#x27;click&#x27;);&#125;);return true;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个小程序虽然简单，但还挺实用的，分享给有需要的朋友。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Bookmarklet</tag>
+        <tag>QQ空间</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个简单的Cookie编辑器</title>
+    <url>/2016/11/17/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Cookie%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<p>前两天调试 Web 应用的时候，需要改一下 cookie 值来测试不同用户状态。打开开发者工具找 Application 面板、再展开 Cookies 找到对应的域名，操作起来有点繁琐。</p>
+<p>想了想，能不能搞个简单的书签脚本，一键查看和修改 cookie？</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">cookie</span> = <span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;COOKIE编辑器&quot;</span>, <span class="variable language_">document</span>.<span class="property">cookie</span>);<span class="title function_">void</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>就这么几行，简洁得不行。</p>
+<h2 id="原理说明"><a href="#原理说明" class="headerlink" title="原理说明"></a>原理说明</h2><ol>
+<li><code>document.cookie</code> 读取当前页面的所有 cookie</li>
+<li><code>window.prompt()</code> 弹出一个输入框，第一个参数是提示文字，第二个参数是输入框的默认值</li>
+<li>用户编辑后点击确定，返回值赋给 <code>document.cookie</code>，完成修改</li>
+<li><code>void(0)</code> 防止书签跳转页面</li>
+</ol>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>把下面这段存成书签的 URL：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">javascript:document.cookie=window.prompt(&quot;COOKIE编辑器&quot;,document.cookie);void(0);</span><br></pre></td></tr></table></figure>
+
+<p>在任意页面点击这个书签，就能看到当前站点的 cookie，改完点确定就生效了。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Cookie</tag>
+        <tag>Bookmarklet</tag>
       </tags>
   </entry>
 </search>
