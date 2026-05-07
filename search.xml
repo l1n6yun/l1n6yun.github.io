@@ -8575,4 +8575,224 @@ x86 则表示32位的
         <tag>Bookmarklet</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Windows命令行快速打开资源管理器的小技巧</title>
+    <url>/2023/03/18/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>最近在命令行里折腾东西的时候，经常需要在当前目录下做一些文件操作，比如拖个文件进去、看下文件属性啥的。每次都要手动打开资源管理器，再一层层点进去，真的挺烦的…</p>
+<p>后来在网上搜了一下，才知道原来有个超简单的命令：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">start</span> .</span><br></pre></td></tr></table></figure>
+
+<p>就这么几个字符，当前目录立马在资源管理器里打开，清爽！</p>
+<h2 id="几个常用的变体"><a href="#几个常用的变体" class="headerlink" title="几个常用的变体"></a>几个常用的变体</h2><p>用顺手之后发现还有几个好用的变体：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">start</span> ..        # 打开上级目录</span><br><span class="line"><span class="built_in">start</span> D:\work   # 打开指定路径</span><br><span class="line">explorer .      # 效果一样，不过敲的字多一点</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><code>start</code> 命令本质上是用系统关联的程序打开指定的文件或目录。给个目录路径，它就自动调用资源管理器；给个 <code>.txt</code> 文件，就用记事本打开；给个 <code>.html</code> 文件，就用浏览器打开…</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">start</span> readme.<span class="built_in">md</span>     # 用默认编辑器打开</span><br><span class="line"><span class="built_in">start</span> index.html    # 用默认浏览器打开</span><br><span class="line"><span class="built_in">start</span> https://baidu.com  # 直接打开网页</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>虽然是很小的一个技巧，但每天不知道要用多少次，效率提升还是很明显的。特别是那种经常要在命令行和图形界面之间切换的场景，简直不要太方便。</p>
+<p>希望这个小技巧能帮到同样被繁琐操作困扰的小伙伴们～</p>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>命令行</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用 PHP 控制浏览器？chrome-php 真香</title>
+    <url>/2026/02/07/chrome-php-browser-automation/</url>
+    <content><![CDATA[<p>最近有个需求，要定时截取几个网页的页面截图，还得把动态加载的内容也截进去。一开始用 PHP 的 <code>file_get_contents</code> 和 cURL 抓，结果发现那些内容是 JavaScript 渲染出来的，抓回来全是空白。折腾半天，最后找到了 chrome-php 这个库，用 PHP 直接控制 Chrome 浏览器，问题迎刃而解。</p>
+<span id="more"></span>
+
+<h2 id="它是干嘛的？"><a href="#它是干嘛的？" class="headerlink" title="它是干嘛的？"></a>它是干嘛的？</h2><p>简单说，chrome-php 让你能用 PHP 代码控制 Chrome 或 Chromium 浏览器的无头模式（Headless）。无头模式就是浏览器不显示界面，在后台默默运行，特别适合做自动化任务。</p>
+<p>能干的事情还挺多的：打开网页、截图、生成 PDF、执行 JavaScript、模拟点击输入、抓取动态内容……基本你能用浏览器干的事，它都能用代码实现。</p>
+<h2 id="装上试试"><a href="#装上试试" class="headerlink" title="装上试试"></a>装上试试</h2><p>Composer 一把梭：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require chrome-php/chrome</span><br></pre></td></tr></table></figure>
+
+<p>注意你的环境得有 Chrome 或 Chromium 浏览器，版本 65 以上就行。PHP 版本要求 7.4+，现在应该都能满足。</p>
+<h2 id="最简单的例子"><a href="#最简单的例子" class="headerlink" title="最简单的例子"></a>最简单的例子</h2><p>先来个截图压压惊：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">HeadlessChromium</span>\<span class="title">BrowserFactory</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$browser</span> = <span class="title class_">BrowserFactory</span>::<span class="title function_ invoke__">createBrowser</span>();</span><br><span class="line"><span class="variable">$page</span> = <span class="variable">$browser</span>-&gt;<span class="title function_ invoke__">createPage</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">screenshot</span>()-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;baidu.png&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$browser</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br></pre></td></tr></table></figure>
+
+<p>几行代码，百度的首页截图就到手了。<code>waitForNavigation()</code> 是等待页面加载完成，不然截图可能还是空白。</p>
+<h2 id="抓动态内容"><a href="#抓动态内容" class="headerlink" title="抓动态内容"></a>抓动态内容</h2><p>这个才是我当初找这个库的原因。有些网站的内容是 JS 渲染的，普通的 HTTP 请求拿不到，但用这个库就能轻松解决：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://example.com/spa-page&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行 JS 获取渲染后的内容</span></span><br><span class="line"><span class="variable">$html</span> = <span class="variable">$page</span>-&gt;<span class="title function_ invoke__">evaluate</span>(<span class="string">&#x27;document.body.innerHTML&#x27;</span>)-&gt;<span class="title function_ invoke__">getReturnValue</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$html</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>evaluate()</code> 方法可以执行任意 JavaScript 代码，返回值用 <code>getReturnValue()</code> 拿到。想爬什么数据，直接写 JS 选择器提取就行。</p>
+<h2 id="模拟用户操作"><a href="#模拟用户操作" class="headerlink" title="模拟用户操作"></a>模拟用户操作</h2><p>有些网站需要登录才能看内容，这个库也支持模拟点击和输入：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://example.com/login&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 填用户名密码</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;input[name=&quot;username&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">sendKeys</span>(<span class="string">&#x27;my_username&#x27;</span>);</span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;input[name=&quot;password&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">sendKeys</span>(<span class="string">&#x27;my_password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击登录</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;button[type=&quot;submit&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">click</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待页面跳转</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">waitForReload</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在可以操作登录后的页面了</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">screenshot</span>()-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;after_login.png&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>find()</code> 方法支持 CSS 选择器，找元素很方便。</p>
+<h2 id="生成-PDF"><a href="#生成-PDF" class="headerlink" title="生成 PDF"></a>生成 PDF</h2><p>顺便提一下，它还能把网页导出成 PDF：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">pdf</span>([</span><br><span class="line">    <span class="string">&#x27;printBackground&#x27;</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&#x27;paperWidth&#x27;</span> =&gt; <span class="number">210</span>,</span><br><span class="line">    <span class="string">&#x27;paperHeight&#x27;</span> =&gt; <span class="number">297</span></span><br><span class="line">])-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;report.pdf&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>做个网页版的报表导出功能，这个就够用了。</p>
+<h2 id="调试小技巧"><a href="#调试小技巧" class="headerlink" title="调试小技巧"></a>调试小技巧</h2><p>开发的时候如果想知道浏览器到底在干嘛，可以把 <code>headless</code> 关掉，让浏览器窗口显示出来：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$browserFactory</span> = <span class="keyword">new</span> <span class="title class_">BrowserFactory</span>();</span><br><span class="line"><span class="variable">$browser</span> = <span class="variable">$browserFactory</span>-&gt;<span class="title function_ invoke__">createBrowser</span>([</span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span> =&gt; <span class="literal">false</span>,  // 显示浏览器窗口</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>这样就能看到每一步操作的效果了，调试完再改回 <code>true</code> 就行。</p>
+<h2 id="还有很多功能"><a href="#还有很多功能" class="headerlink" title="还有很多功能"></a>还有很多功能</h2><p>Cookie 管理、代理设置、自定义 User-Agent、鼠标移动模拟……功能还挺多的。我就不一一列举了，感兴趣的可以去看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nocm9tZS1waHAvY2hyb21l">https://github.com/chrome-php/chrome<i class="fa fa-external-link-alt"></i></span></p>
+<p>README 写得很详细，安装配置、API 文档、常见问题都有，基本上看一遍就能上手。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>如果你的项目里有需要浏览器自动化的场景，chrome-php 绝对值得一试。之前我还试过 Selenium 和 Puppeteer，要么配置麻烦要么得切语言，这个库直接在 PHP 里搞定，对 PHP 项目来说方便太多了。</p>
+<p>以上就是我的一点使用心得，希望能帮到有同样需求的小伙伴。</p>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>浏览器自动化</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pip缓存那些事儿：清除、查看、换个位置</title>
+    <url>/2019/10/03/pip%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</url>
+    <content><![CDATA[<p>最近在折腾 Python 环境的时候，C盘空间告急，找了半天发现 pip 缓存居然占了好几个G… 想着顺便整理一下 pip 缓存相关的知识，分享给同样被磁盘空间折磨的小伙伴们。</p>
+<h2 id="pip缓存是个啥"><a href="#pip缓存是个啥" class="headerlink" title="pip缓存是个啥"></a>pip缓存是个啥</h2><p>简单来说，pip 下载安装包的时候，不会直接扔掉，而是存一份在本地缓存里。下次再装同样的包，直接从缓存拿，不用重新下载。</p>
+<p>听起来挺贴心的对吧？但时间久了，这个缓存可能会膨胀到好几G，尤其是你经常折腾各种包、各种版本的时候。</p>
+<h2 id="先看看缓存在哪"><a href="#先看看缓存在哪" class="headerlink" title="先看看缓存在哪"></a>先看看缓存在哪</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip cache <span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>Windows 上一般是 <code>%LocalAppData%\pip\cache</code>，Linux&#x2F;macOS 则是 <code>~/.cache/pip</code>。</p>
+<p>想知道缓存占了多少空间？可以直接去那个目录看，或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip cache info</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-116.png" alt="upload successful"></p>
+<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><p>如果磁盘空间紧张，或者安装包时遇到奇怪的校验错误，可以清除缓存：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清除全部缓存</span></span><br><span class="line">pip cache purge</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只清除某个包的缓存</span></span><br><span class="line">pip cache remove numpy</span><br></pre></td></tr></table></figure>
+
+<p>不过要注意，清除后下次安装相同的包需要重新下载，网速慢的话可能会有点痛苦。还有就是离线安装会失效，没网的时候之前装过的包就没法离线装了。</p>
+<p><strong>我的建议</strong>：平时不用管它，只有空间实在紧张或者遇到安装报错的时候再清。</p>
+<h2 id="换个缓存位置"><a href="#换个缓存位置" class="headerlink" title="换个缓存位置"></a>换个缓存位置</h2><p>如果C盘空间不够，可以把缓存挪到其他盘。</p>
+<p><strong>方法一：配置文件（推荐）</strong></p>
+<p>编辑 pip 配置文件，添加：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">cache-dir</span> = D:\pip_cache</span><br></pre></td></tr></table></figure>
+
+<p>配置文件位置：</p>
+<ul>
+<li>Windows: <code>%AppData%\pip\pip.ini</code></li>
+<li>Linux&#x2F;macOS: <code>~/.config/pip/pip.conf</code></li>
+</ul>
+<p>文件不存在的话直接创建就行。</p>
+<p><strong>方法二：环境变量</strong></p>
+<p>设置 <code>PIP_CACHE_DIR</code> 环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Windows PowerShell</span></span><br><span class="line"><span class="variable">$env</span>:PIP_CACHE_DIR = <span class="string">&quot;D:\pip_cache&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line"><span class="built_in">export</span> PIP_CACHE_DIR=/your/custom/path</span><br></pre></td></tr></table></figure>
+
+<p>想永久生效就加到系统环境变量里。</p>
+<p><strong>方法三：临时指定</strong></p>
+<p>单次安装时指定：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --cache-dir D:\pip_cache some-package</span><br></pre></td></tr></table></figure>
+
+<p>改完之后用 <code>pip cache dir</code> 验证一下是否生效。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>pip 缓存这东西平时不太起眼，但关键时刻可能帮你省不少下载时间。当然，如果空间紧张，清掉或者换个位置也行。希望这篇能帮到同样被磁盘空间困扰的小伙伴~</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网站镜像的两种方式：wget 与 HTTrack</title>
+    <url>/2018/02/03/%E7%BD%91%E7%AB%99%E9%95%9C%E5%83%8F%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F-wget%E4%B8%8EHTTrack/</url>
+    <content><![CDATA[<p>最近想离线浏览一个网站，发现 wget 和 HTTrack 这两个工具都挺好用的。一个命令行操作，一个图形界面，各有各的优势。</p>
+<h2 id="遇到的场景"><a href="#遇到的场景" class="headerlink" title="遇到的场景"></a>遇到的场景</h2><p>事情是这样的，某天看到一篇很棒的教程网站，内容特别丰富，但是那个网站偶尔会挂，而且有时候网速还特别慢。我就想着，要是能把它整个下载下来离线看就好了。</p>
+<h2 id="方式一：wget"><a href="#方式一：wget" class="headerlink" title="方式一：wget"></a>方式一：wget</h2><p>wget 是个命令行工具，Linux 系统基本都自带。之前一直知道它可以下载文件，没想到还能直接把整个网站”搬”到本地来。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>最简单的镜像命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --mirror https://example.com</span><br></pre></td></tr></table></figure>
+
+<p>不过这样下载下来的链接还是指向原网站的，点击就跳转走了，体验不太好。所以一般我会加几个参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --mirror --convert-links --adjust-extension --page-requisites --no-parent https://example.com</span><br></pre></td></tr></table></figure>
+
+<p>看着一长串参数有点吓人，其实就是告诉 wget：</p>
+<ul>
+<li><code>--mirror</code>：开启镜像模式，会递归下载</li>
+<li><code>--convert-links</code>：把链接转换成本地链接，这样点击就不会跳到原网站了</li>
+<li><code>--adjust-extension</code>：自动加上正确的文件后缀</li>
+<li><code>--page-requisites</code>：把 CSS、图片这些资源也一起下载</li>
+<li><code>--no-parent</code>：不要往上跑到父目录去</li>
+</ul>
+<p>有个简写的形式，好记多了：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -mkEpnp https://example.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h3><p>刚开始用的时候踩了几个坑：</p>
+<p><strong>下载太多层级</strong>。有些网站链接四通八达，不加限制的话可能会下载一大堆不需要的东西。可以用 <code>-l</code> 参数限制深度：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -r -l 2 https://example.com  <span class="comment"># 只下载2层</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>被服务器封 IP</strong>。wget 默认下载速度很快，有些服务器会认为是在攻击。所以最好加点延迟：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --mirror --<span class="built_in">wait</span>=2 --limit-rate=200k https://example.com</span><br></pre></td></tr></table></figure>
+
+<p>这样每次请求之间等 2 秒，速度限制在 200KB&#x2F;s，服务器就不会觉得你在搞事情了。</p>
+<h3 id="优点与局限"><a href="#优点与局限" class="headerlink" title="优点与局限"></a>优点与局限</h3><p>wget 的优点是简单直接，一行命令搞定，Linux 系统自带不用安装。缺点是只有命令行，不熟悉终端的话上手有点门槛。</p>
+<p>另外，wget 对动态渲染的网站支持不太好。现在很多网站内容是通过 JavaScript 动态加载的，这种网站 wget 只能抓到空的 HTML 框架。</p>
+<h2 id="方式二：HTTrack"><a href="#方式二：HTTrack" class="headerlink" title="方式二：HTTrack"></a>方式二：HTTrack</h2><p>HTTrack 是一个专门做网站镜像的工具，有图形界面，用起来比 wget 友好很多。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>Windows：去官网下载安装包，一路下一步就行</li>
+<li>Linux：<code>sudo apt install httrack</code></li>
+<li>Mac：<code>brew install httrack</code></li>
+</ul>
+<h3 id="图形界面使用"><a href="#图形界面使用" class="headerlink" title="图形界面使用"></a>图形界面使用</h3><p>安装后打开 HTTrack，跟着向导走就行：</p>
+<ol>
+<li>新建项目，起个名字</li>
+<li>选择保存路径</li>
+<li>输入要镜像的网址</li>
+<li>点击开始，等待完成</li>
+</ol>
+<p>整个过程点点鼠标就搞定了，完全不需要记命令。</p>
+<h3 id="命令行使用"><a href="#命令行使用" class="headerlink" title="命令行使用"></a>命令行使用</h3><p>HTTrack 也支持命令行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">httrack https://example.com -O ./mirrored-site</span><br></pre></td></tr></table></figure>
+
+<p><code>-O</code> 参数指定保存目录。如果需要更多控制，可以加参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">httrack https://example.com -O ./mirrored-site -r2 -s0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-r2</code>：递归深度为 2</li>
+<li><code>-s0</code>：不跟随外部链接</li>
+</ul>
+<h3 id="优点与局限-1"><a href="#优点与局限-1" class="headerlink" title="优点与局限"></a>优点与局限</h3><p>HTTrack 的优点是有图形界面，操作直观，配置选项丰富，还可以暂停续传。缺点是体积比 wget 大，需要单独安装。</p>
+<p>和 wget 一样，HTTrack 对 JavaScript 渲染的内容也支持有限。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>两个工具各有千秋：</p>
+<ul>
+<li><strong>wget</strong>：命令行党首选，轻量、快速、Linux 自带</li>
+<li><strong>HTTrack</strong>：图形界面友好，适合不想折腾命令行的朋友</li>
+</ul>
+<p>对了，镜像网站的时候记得看看人家网站的 robots.txt 和使用条款，别给人家服务器造成太大压力，也不要拿去干不好的事情哈。</p>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>wget</tag>
+        <tag>HTTrack</tag>
+        <tag>linux</tag>
+        <tag>网站镜像</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>屏蔽迅雷广告的小技巧</title>
+    <url>/2026/05/06/%E5%B1%8F%E8%94%BD%E8%BF%85%E9%9B%B7%E5%B9%BF%E5%91%8A%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>最近迅雷的广告是越来越多了，每次打开都弹一堆窗口，烦都烦死了。特别是那个VIP广告，关都关不掉，真是服了。</p>
+<p>刚好之前学到一个简单粗暴的方法——直接在 hosts 文件里把广告域名”拉黑”。原理很简单，就是把广告域名指向一个无效的IP地址，让广告加载不出来。</p>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><p>找到系统的 hosts 文件，位置在：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure>
+
+<p>用记事本打开（需要管理员权限），在末尾添加以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 屏蔽迅雷广告</span><br><span class="line">1.2.3.4 xluser-ssl.xunlei.com</span><br><span class="line">1.2.3.4 xluser2-ssl.xunlei.com</span><br><span class="line">1.2.3.4 xluser3-ssl.xunlei.com</span><br></pre></td></tr></table></figure>
+
+<p>保存后重启迅雷，广告就没了。</p>
+<h2 id="可能的副作用"><a href="#可能的副作用" class="headerlink" title="可能的副作用"></a>可能的副作用</h2><p>不过这个方法有个小问题——可能会影响迅雷的登录功能。毕竟这几个域名看起来像是用户相关的服务域名。</p>
+<p>我测试了一下，不登录也能正常下载，所以对我来说问题不大。如果你需要登录账号的话，可以试试把其中某几行删掉，看看哪些是必须的。</p>
+<p>这个小技巧虽然简单，但确实管用，希望能帮到同样被广告困扰的小伙伴。</p>
+]]></content>
+      <categories>
+        <category>实用技巧</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>技巧</tag>
+      </tags>
+  </entry>
 </search>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"mac"},"fold":{"enable":true,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="最近有个需求，要定时截取几个网页的页面截图，还得把动态加载的内容也截进去。一开始用 PHP 的 file_get_contents 和 cURL 抓，结果发现那些内容是 JavaScript 渲染出来的，抓回来全是空白。折腾半天，最后找到了 chrome-php 这个库，用 PHP 直接控制 Chrome 浏览器，问题迎刃而解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 PHP 控制浏览器？chrome-php 真香">
+<meta property="og:url" content="http://example.com/2026/02/07/chrome-php-browser-automation/index.html">
+<meta property="og:site_name" content="l1n6yun&#39;s Blog">
+<meta property="og:description" content="最近有个需求，要定时截取几个网页的页面截图，还得把动态加载的内容也截进去。一开始用 PHP 的 file_get_contents 和 cURL 抓，结果发现那些内容是 JavaScript 渲染出来的，抓回来全是空白。折腾半天，最后找到了 chrome-php 这个库，用 PHP 直接控制 Chrome 浏览器，问题迎刃而解。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-07T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-10T08:49:29.898Z">
+<meta property="article:author" content="l1n6yun">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="浏览器自动化">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/02/07/chrome-php-browser-automation/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2026/02/07/chrome-php-browser-automation/","path":"2026/02/07/chrome-php-browser-automation/","title":"用 PHP 控制浏览器？chrome-php 真香"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>用 PHP 控制浏览器？chrome-php 真香 | l1n6yun's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">l1n6yun's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录学习的技能和遇到的问题</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">369</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">145</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%83%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">它是干嘛的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E4%B8%8A%E8%AF%95%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">装上试试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">最简单的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9"><span class="nav-number">4.</span> <span class="nav-text">抓动态内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">模拟用户操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90-PDF"><span class="nav-number">6.</span> <span class="nav-text">生成 PDF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">7.</span> <span class="nav-text">调试小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%98%E6%9C%89%E5%BE%88%E5%A4%9A%E5%8A%9F%E8%83%BD"><span class="nav-number">8.</span> <span class="nav-text">还有很多功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">9.</span> <span class="nav-text">最后</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="l1n6yun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">l1n6yun</p>
+  <div class="site-description" itemprop="description">chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">369</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2wxbjZ5dW4=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;l1n6yun"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmwxbjZ5dW5AZ21haWwuY29t" title="E-Mail → mailto:l1n6yun@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/07/chrome-php-browser-automation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="用 PHP 控制浏览器？chrome-php 真香 | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用 PHP 控制浏览器？chrome-php 真香
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-07 10:00:00" itemprop="dateCreated datePublished" datetime="2026-02-07T10:00:00+08:00">2026-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近有个需求，要定时截取几个网页的页面截图，还得把动态加载的内容也截进去。一开始用 PHP 的 <code>file_get_contents</code> 和 cURL 抓，结果发现那些内容是 JavaScript 渲染出来的，抓回来全是空白。折腾半天，最后找到了 chrome-php 这个库，用 PHP 直接控制 Chrome 浏览器，问题迎刃而解。</p>
+<span id="more"></span>
+
+<h2 id="它是干嘛的？"><a href="#它是干嘛的？" class="headerlink" title="它是干嘛的？"></a>它是干嘛的？</h2><p>简单说，chrome-php 让你能用 PHP 代码控制 Chrome 或 Chromium 浏览器的无头模式（Headless）。无头模式就是浏览器不显示界面，在后台默默运行，特别适合做自动化任务。</p>
+<p>能干的事情还挺多的：打开网页、截图、生成 PDF、执行 JavaScript、模拟点击输入、抓取动态内容……基本你能用浏览器干的事，它都能用代码实现。</p>
+<h2 id="装上试试"><a href="#装上试试" class="headerlink" title="装上试试"></a>装上试试</h2><p>Composer 一把梭：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require chrome-php/chrome</span><br></pre></td></tr></table></figure>
+
+<p>注意你的环境得有 Chrome 或 Chromium 浏览器，版本 65 以上就行。PHP 版本要求 7.4+，现在应该都能满足。</p>
+<h2 id="最简单的例子"><a href="#最简单的例子" class="headerlink" title="最简单的例子"></a>最简单的例子</h2><p>先来个截图压压惊：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">HeadlessChromium</span>\<span class="title">BrowserFactory</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$browser</span> = <span class="title class_">BrowserFactory</span>::<span class="title function_ invoke__">createBrowser</span>();</span><br><span class="line"><span class="variable">$page</span> = <span class="variable">$browser</span>-&gt;<span class="title function_ invoke__">createPage</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">screenshot</span>()-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;baidu.png&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$browser</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br></pre></td></tr></table></figure>
+
+<p>几行代码，百度的首页截图就到手了。<code>waitForNavigation()</code> 是等待页面加载完成，不然截图可能还是空白。</p>
+<h2 id="抓动态内容"><a href="#抓动态内容" class="headerlink" title="抓动态内容"></a>抓动态内容</h2><p>这个才是我当初找这个库的原因。有些网站的内容是 JS 渲染的，普通的 HTTP 请求拿不到，但用这个库就能轻松解决：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://example.com/spa-page&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行 JS 获取渲染后的内容</span></span><br><span class="line"><span class="variable">$html</span> = <span class="variable">$page</span>-&gt;<span class="title function_ invoke__">evaluate</span>(<span class="string">&#x27;document.body.innerHTML&#x27;</span>)-&gt;<span class="title function_ invoke__">getReturnValue</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$html</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>evaluate()</code> 方法可以执行任意 JavaScript 代码，返回值用 <code>getReturnValue()</code> 拿到。想爬什么数据，直接写 JS 选择器提取就行。</p>
+<h2 id="模拟用户操作"><a href="#模拟用户操作" class="headerlink" title="模拟用户操作"></a>模拟用户操作</h2><p>有些网站需要登录才能看内容，这个库也支持模拟点击和输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">navigate</span>(<span class="string">&#x27;https://example.com/login&#x27;</span>)-&gt;<span class="title function_ invoke__">waitForNavigation</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 填用户名密码</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;input[name=&quot;username&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">sendKeys</span>(<span class="string">&#x27;my_username&#x27;</span>);</span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;input[name=&quot;password&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">sendKeys</span>(<span class="string">&#x27;my_password&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击登录</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="string">&#x27;button[type=&quot;submit&quot;]&#x27;</span>)-&gt;<span class="title function_ invoke__">click</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等待页面跳转</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">waitForReload</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在可以操作登录后的页面了</span></span><br><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">screenshot</span>()-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;after_login.png&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>find()</code> 方法支持 CSS 选择器，找元素很方便。</p>
+<h2 id="生成-PDF"><a href="#生成-PDF" class="headerlink" title="生成 PDF"></a>生成 PDF</h2><p>顺便提一下，它还能把网页导出成 PDF：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$page</span>-&gt;<span class="title function_ invoke__">pdf</span>([</span><br><span class="line">    <span class="string">&#x27;printBackground&#x27;</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&#x27;paperWidth&#x27;</span> =&gt; <span class="number">210</span>,</span><br><span class="line">    <span class="string">&#x27;paperHeight&#x27;</span> =&gt; <span class="number">297</span></span><br><span class="line">])-&gt;<span class="title function_ invoke__">saveToFile</span>(<span class="string">&#x27;report.pdf&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>做个网页版的报表导出功能，这个就够用了。</p>
+<h2 id="调试小技巧"><a href="#调试小技巧" class="headerlink" title="调试小技巧"></a>调试小技巧</h2><p>开发的时候如果想知道浏览器到底在干嘛，可以把 <code>headless</code> 关掉，让浏览器窗口显示出来：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$browserFactory</span> = <span class="keyword">new</span> <span class="title class_">BrowserFactory</span>();</span><br><span class="line"><span class="variable">$browser</span> = <span class="variable">$browserFactory</span>-&gt;<span class="title function_ invoke__">createBrowser</span>([</span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span> =&gt; <span class="literal">false</span>,  // 显示浏览器窗口</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p>这样就能看到每一步操作的效果了，调试完再改回 <code>true</code> 就行。</p>
+<h2 id="还有很多功能"><a href="#还有很多功能" class="headerlink" title="还有很多功能"></a>还有很多功能</h2><p>Cookie 管理、代理设置、自定义 User-Agent、鼠标移动模拟……功能还挺多的。我就不一一列举了，感兴趣的可以去看官方文档：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nocm9tZS1waHAvY2hyb21l">https://github.com/chrome-php/chrome<i class="fa fa-external-link-alt"></i></span></p>
+<p>README 写得很详细，安装配置、API 文档、常见问题都有，基本上看一遍就能上手。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>如果你的项目里有需要浏览器自动化的场景，chrome-php 绝对值得一试。之前我还试过 Selenium 和 Puppeteer，要么配置麻烦要么得切语言，这个库直接在 PHP 里搞定，对 PHP 项目来说方便太多了。</p>
+<p>以上就是我的一点使用心得，希望能帮到有同样需求的小伙伴。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 浏览器自动化</a>
+              <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/10/30/%E5%91%8A%E5%88%AB%E8%BE%93%E5%85%A5%E6%B3%95%E5%88%87%E6%8D%A2%E7%84%A6%E8%99%91%EF%BC%81Smart-Input-Pro-%E8%AE%A9%E7%BC%96%E7%A0%81%E4%BD%93%E9%AA%8C%E4%B8%9D%E6%BB%91%E8%B5%B7%E9%A3%9E/" rel="prev" title="告别输入法切换焦虑！Smart Input Pro 让编码体验丝滑起飞">
+                  <i class="fa fa-angle-left"></i> 告别输入法切换焦虑！Smart Input Pro 让编码体验丝滑起飞
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/19/phpmailer-guide/" rel="next" title="PHP 发邮件踩坑记：PHPMailer 从入门到避坑">
+                  PHP 发邮件踩坑记：PHPMailer 从入门到避坑 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2015 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">l1n6yun</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
