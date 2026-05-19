@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">371</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">146</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">373</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">371</span>
+        <span class="site-state-item-count">373</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,147 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/19/phpmailer-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/19/phpmailer-guide/" class="post-title-link" itemprop="url">PHP 发邮件踩坑记：PHPMailer 从入门到避坑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2026-02-19T00:00:00+08:00">2026-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">开发笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近做项目要发邮件，什么注册确认、密码重置、订单通知，一堆功能都离不开邮件。PHP 自带的 <code>mail()</code> 函数？说实话，用过的都知道有多坑——配置麻烦、兼容性差、容易被当垃圾邮件。最后还是老老实实用 PHPMailer，踩了一些坑，今天把经验整理一下。</p>
+<h2 id="为什么是-PHPMailer"><a href="#为什么是-PHPMailer" class="headerlink" title="为什么是 PHPMailer"></a>为什么是 PHPMailer</h2><p>PHPMailer 是 PHP 里最老牌的邮件发送库，功能齐全：</p>
+<ul>
+<li>支持 SMTP 认证，TLS&#x2F;SSL 加密</li>
+<li>HTML 邮件、附件、嵌入式图片都能搞定</li>
+<li>抄送、密送、回复地址这些不在话下</li>
+</ul>
+<p>环境要求：PHP 5.5 ~ 8.3，需要开启 <code>mbstring</code> 和 <code>openssl</code> 扩展。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>推荐用 Composer，省心：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require phpmailer/phpmailer</span><br></pre></td></tr></table></figure>
+
+<p>不想用 Composer 也行，去 GitHub 下载源码，手动引入文件。但都 2026 年了，还是 Composer 吧。</p>
+<h2 id="邮箱服务器配置"><a href="#邮箱服务器配置" class="headerlink" title="邮箱服务器配置"></a>邮箱服务器配置</h2><p>发邮件得有 SMTP 服务器，常用的 163 和 QQ 邮箱配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>邮箱</th>
+<th>SMTP 服务器</th>
+<th>SSL 端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>163</td>
+<td>smtp.163.com</td>
+<td>465 或 994</td>
+</tr>
+<tr>
+<td>QQ</td>
+<td>smtp.qq.com</td>
+<td>465 或 587</td>
+</tr>
+</tbody></table>
+<p><strong>重要提醒</strong>：163、QQ 这些邮箱默认关闭 SMTP 服务，得去邮箱设置里手动开启，然后生成一个「授权码」。后面代码里的密码填的是授权码，不是你的登录密码！</p>
+<h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>直接上代码，能跑的才是好教程：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 服务器配置</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;        <span class="comment">// 发件邮箱</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;授权码&#x27;</span>;               <span class="comment">// 授权码，不是密码！</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收发件人</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;发件人名字&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>, <span class="string">&#x27;收件人名字&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 邮件内容</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;邮件标题&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;这是 HTML 邮件内容&lt;/h1&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="发送附件"><a href="#发送附件" class="headerlink" title="发送附件"></a>发送附件</h2><p>加附件一行代码的事：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/file.zip&#x27;</span>);           <span class="comment">// 普通附件</span></span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;/path/to/image.jpg&#x27;</span>, <span class="string">&#x27;图片.jpg&#x27;</span>); <span class="comment">// 重命名附件</span></span><br></pre></td></tr></table></figure>
+
+<p>注意路径要写对，相对路径、绝对路径都行，但要确保文件存在。</p>
+<h2 id="嵌入图片到邮件正文"><a href="#嵌入图片到邮件正文" class="headerlink" title="嵌入图片到邮件正文"></a>嵌入图片到邮件正文</h2><p>想在邮件正文里显示图片，有两种方式：一种是用 <code>&lt;img src=&quot;cid:图片id&quot;&gt;</code> 配合 <code>addEmbeddedImage</code>，另一种是直接 base64 编码嵌入。推荐前者：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h1&gt;你好&lt;/h1&gt;&lt;img src=&quot;cid:logo&quot;&gt;&#x27;</span>;</span><br><span class="line"><span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addEmbeddedImage</span>(<span class="string">&#x27;images/logo.png&#x27;</span>, <span class="string">&#x27;logo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见坑和解决方案"><a href="#常见坑和解决方案" class="headerlink" title="常见坑和解决方案"></a>常见坑和解决方案</h2><h3 id="1-SMTP-connect-failed"><a href="#1-SMTP-connect-failed" class="headerlink" title="1. SMTP connect failed"></a>1. SMTP connect failed</h3><p>最常见的错误。原因可能是：</p>
+<ul>
+<li>SMTP 服务没开启（去邮箱设置里开）</li>
+<li>端口被防火墙拦截（换个端口试试：25、465、587）</li>
+<li>服务器地址写错了</li>
+</ul>
+<h3 id="2-认证失败"><a href="#2-认证失败" class="headerlink" title="2. 认证失败"></a>2. 认证失败</h3><p>大概率是密码填错了。163、QQ 邮箱要用授权码，不是登录密码。授权码在邮箱设置里生成。</p>
+<h3 id="3-中文乱码"><a href="#3-中文乱码" class="headerlink" title="3. 中文乱码"></a>3. 中文乱码</h3><p>编码问题，加上这句：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-SSL-连接失败"><a href="#4-SSL-连接失败" class="headerlink" title="4. SSL 连接失败"></a>4. SSL 连接失败</h3><p>检查 PHP 有没有开启 <code>openssl</code> 扩展，<code>php.ini</code> 里把 <code>extension=openssl</code> 前面的分号去掉，重启服务。</p>
+<h3 id="5-邮件进了垃圾箱"><a href="#5-邮件进了垃圾箱" class="headerlink" title="5. 邮件进了垃圾箱"></a>5. 邮件进了垃圾箱</h3><p>原因很多：发件人和 SMTP 认证邮箱不一致、邮件内容太像广告、域名没有配置 SPF 记录。生产环境建议用专业邮件服务，比如 SendGrid、Mailgun，比自己搭 SMTP 靠谱。</p>
+<h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>开发阶段遇到问题，打开调试模式：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">2</span>;  <span class="comment">// 级别 0-4，数字越大越详细</span></span><br></pre></td></tr></table></figure>
+
+<p>调试完记得关掉，生产环境开调试会暴露敏感信息。</p>
+<h2 id="一个完整的例子"><a href="#一个完整的例子" class="headerlink" title="一个完整的例子"></a>一个完整的例子</h2><p>把上面的拼起来：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PHPMailer</span>\<span class="title">PHPMailer</span>\<span class="title">Exception</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$mail</span> = <span class="keyword">new</span> <span class="title class_">PHPMailer</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;CharSet = <span class="string">&quot;UTF-8&quot;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPDebug = <span class="number">0</span>;  <span class="comment">// 生产环境用 0</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isSMTP</span>();</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Host = <span class="string">&#x27;smtp.163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPAuth = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Username = <span class="string">&#x27;your@163.com&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Password = <span class="string">&#x27;your-authorization-code&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;SMTPSecure = <span class="string">&#x27;ssl&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Port = <span class="number">465</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">setFrom</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;l1n6yun&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAddress</span>(<span class="string">&#x27;receiver@example.com&#x27;</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addReplyTo</span>(<span class="string">&#x27;your@163.com&#x27;</span>, <span class="string">&#x27;Reply&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 附件</span></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">addAttachment</span>(<span class="string">&#x27;files/report.pdf&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">isHTML</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Subject = <span class="string">&#x27;测试邮件&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;Body = <span class="string">&#x27;&lt;h2&gt;邮件发送成功！&lt;/h2&gt;&lt;p&gt;这是一封测试邮件。&lt;/p&gt;&#x27;</span>;</span><br><span class="line">    <span class="variable">$mail</span>-&gt;AltBody = <span class="string">&#x27;邮件发送成功！这是一封测试邮件。&#x27;</span>;  <span class="comment">// 纯文本备用</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">$mail</span>-&gt;<span class="title function_ invoke__">send</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;邮件发送成功&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;邮件发送失败: <span class="subst">&#123;$mail-&gt;ErrorInfo&#125;</span>&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PHPMailer 用起来其实不难，主要是 SMTP 配置容易踩坑。记住几个要点：授权码、端口、编码、调试模式，基本就能搞定大部分场景了。</p>
+<p>有问题欢迎评论区交流~</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1391,150 +1532,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pyautogui</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设目标窗口的位置已知</span></span><br><span class="line">window_x, window_y = <span class="number">100</span>, <span class="number">100</span></span><br><span class="line"><span class="comment"># 点击目标窗口，使其获得焦点</span></span><br><span class="line">pyautogui.click(window_x, window_y)</span><br><span class="line"><span class="comment"># 进行键盘输入操作</span></span><br><span class="line">pyautogui.typewrite(<span class="string">&#x27;Hello, World!&#x27;</span>) </span><br></pre></td></tr></table></figure>
 
 <p>通过合理运用这些使用注意事项与技巧，可以让你在使用 PyAutoGUI 进行自动化任务时更加得心应手，提高脚本的稳定性和可靠性 。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/07/frp%EF%BC%9A%E4%B8%80%E6%AC%BE%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/07/frp%EF%BC%9A%E4%B8%80%E6%AC%BE%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">frp：一款强大的内网穿透代理工具</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-07 16:05:00" itemprop="dateCreated datePublished" datetime="2024-12-07T16:05:00+08:00">2024-12-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>frp（Fast Reverse Proxy）是一款开源的高性能内网穿透代理工具，它允许你将位于NAT或防火墙后面的本地服务器暴露到公网上。frp支持TCP、UDP、HTTP和HTTPS协议，使得内部服务可以通过域名被外部访问。此外，frp还提供了P2P连接模式，进一步增强了其灵活性和可用性。</p>
-</blockquote>
-<h2 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h2><p>frp以其简洁的设计和丰富的功能而闻名，以下是一些核心特性：</p>
-<ol>
-<li><strong>协议支持</strong>：支持TCP、UDP、HTTP和HTTPS协议，适用于多种网络环境。</li>
-<li><strong>P2P连接</strong>：提供P2P连接模式，实现客户端间的直接通信，无需经过服务器。</li>
-<li><strong>配置灵活</strong>：支持TOML、YAML和JSON格式的配置文件，方便不同用户的需求。</li>
-<li><strong>安全性</strong>：支持Token和OIDC认证，增强连接的安全性。</li>
-<li><strong>性能优化</strong>：提供TLS加密和数据压缩，保障数据传输的安全和效率。</li>
-<li><strong>监控与日志</strong>：集成Prometheus监控，支持实时监控代理状态和流量。</li>
-<li><strong>负载均衡</strong>：支持通过分组实现简单的负载均衡。</li>
-<li><strong>健康检查</strong>：提供TCP和HTTP健康检查，确保服务的高可用性。</li>
-<li><strong>自定义域名</strong>：支持自定义子域名，方便在共享服务器上区分不同用户的服务。</li>
-<li><strong>插件系统</strong>：支持客户端和服务器端的插件扩展，增加了功能的灵活性和多样性。</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="步骤1：访问GitHub-Releases页面"><a href="#步骤1：访问GitHub-Releases页面" class="headerlink" title="步骤1：访问GitHub Releases页面"></a>步骤1：访问GitHub Releases页面</h3><p>打开浏览器，访问frp的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhdGVkaWVyL2ZycC9yZWxlYXNlcw==">GitHub Releases页面<i class="fa fa-external-link-alt"></i></span>。<br>在页面中，找到最新发布的版本，这通常会被标记为“Latest”或有相应的版本号。</p>
-<h3 id="步骤2：下载二进制文件"><a href="#步骤2：下载二进制文件" class="headerlink" title="步骤2：下载二进制文件"></a>步骤2：下载二进制文件</h3><p>根据你的操作系统（Windows、Linux或macOS）和架构（如x86_64、arm等），选择相应的预编译二进制文件。</p>
-<ul>
-<li>对于Linux用户，你会找到以<code>linux_amd64</code>或<code>linux_arm64</code>等命名的压缩文件。</li>
-<li>对于macOS用户，文件名通常包含<code>darwin</code>。</li>
-<li>对于Windows用户，文件名会包含<code>windows_4.0</code>。<br>点击相应的文件名，下载到你的计算机上。</li>
-</ul>
-<h3 id="步骤3：解压缩文件"><a href="#步骤3：解压缩文件" class="headerlink" title="步骤3：解压缩文件"></a>步骤3：解压缩文件</h3><p>解压缩下载的文件。对于Linux和macOS用户，可以使用<code>tar</code>命令：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf frp_0.39.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
-<p>  对于Windows用户，可以使用文件资源管理器或第三方解压缩软件解压<code>.zip</code>文件。</p>
-<h3 id="步骤4：移动到合适的目录"><a href="#步骤4：移动到合适的目录" class="headerlink" title="步骤4：移动到合适的目录"></a>步骤4：移动到合适的目录</h3><p>在解压缩的目录中，你会找到<code>frps</code>和<code>frpc</code>两个可执行文件，分别对应服务器端和客户端。</p>
-<p>将<code>frps</code>和<code>frpc</code>移动到合适的目录，例如<code>/usr/local/bin</code>（需要管理员权限）：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> frps frpc /usr/local/bin/</span><br></pre></td></tr></table></figure>
-<h3 id="步骤5：检查运行"><a href="#步骤5：检查运行" class="headerlink" title="步骤5：检查运行"></a>步骤5：检查运行</h3><p>在命令行中运行<code>frps -v</code>和<code>frpc -v</code>来检查二进制文件是否正确无误：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">frps -v</span><br><span class="line">frpc -v</span><br></pre></td></tr></table></figure>
-<p>  这将显示frp的版本信息，确认安装成功。</p>
-<h2 id="示例用法"><a href="#示例用法" class="headerlink" title="示例用法"></a>示例用法</h2><p>frp的使用涉及两个主要组件：<code>frps</code>（服务器端）和<code>frpc</code>（客户端）。以下是一些基本的示例用法，帮助你快速开始使用frp。</p>
-<h3 id="1-通过SSH访问内网计算机"><a href="#1-通过SSH访问内网计算机" class="headerlink" title="1. 通过SSH访问内网计算机"></a>1. 通过SSH访问内网计算机</h3><h4 id="服务端（frps）配置和启动："><a href="#服务端（frps）配置和启动：" class="headerlink" title="服务端（frps）配置和启动："></a>服务端（frps）配置和启动：</h4><ol>
-<li>在拥有公网IP的服务器上配置<code>frps.toml</code>：</li>
-</ol>
-  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.toml</span></span><br><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>启动<code>frps</code>：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.toml</span><br></pre></td></tr></table></figure>
-<h4 id="客户端（frpc）配置和启动："><a href="#客户端（frpc）配置和启动：" class="headerlink" title="客户端（frpc）配置和启动："></a>客户端（frpc）配置和启动：</h4><ol start="3">
-<li>在内网计算机上配置<code>frpc.toml</code>：</li>
-</ol>
-  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.toml</span></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">&quot;x.x.x.x&quot;</span>  <span class="comment"># 服务端公网IP</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;ssh&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;tcp&quot;</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">6000</span></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>启动<code>frpc</code>：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.toml</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>通过SSH访问内网计算机：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 6000 用户名@服务端公网IP</span><br></pre></td></tr></table></figure>
-<h3 id="2-使用自定义域名访问内网Web服务"><a href="#2-使用自定义域名访问内网Web服务" class="headerlink" title="2. 使用自定义域名访问内网Web服务"></a>2. 使用自定义域名访问内网Web服务</h3><h4 id="服务端（frps）配置和启动：-1"><a href="#服务端（frps）配置和启动：-1" class="headerlink" title="服务端（frps）配置和启动："></a>服务端（frps）配置和启动：</h4><ol>
-<li>配置<code>frps.toml</code>：</li>
-</ol>
-  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.toml</span></span><br><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = <span class="number">8080</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>启动<code>frps</code>：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.toml</span><br></pre></td></tr></table></figure>
-<h4 id="客户端（frpc）配置和启动：-1"><a href="#客户端（frpc）配置和启动：-1" class="headerlink" title="客户端（frpc）配置和启动："></a>客户端（frpc）配置和启动：</h4><ol start="3">
-<li>配置<code>frpc.toml</code>：</li>
-</ol>
-  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.toml</span></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">&quot;x.x.x.x&quot;</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;web&quot;</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">&quot;http&quot;</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">80</span></span><br><span class="line"><span class="attr">customDomains</span> = [<span class="string">&quot;www.example.com&quot;</span>]</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>启动<code>frpc</code>：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.toml</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li><p>配置域名解析：<br>  将<code>www.example.com</code>的A记录指向<code>frps</code>服务器的公网IP。</p>
-</li>
-<li><p>访问Web服务：<br>  通过浏览器访问<code>http://www.example.com:8080</code>。</p>
-</li>
-</ol>
-<p>这些示例仅展示了frp的一小部分功能。frp的灵活性和强大的功能使其成为内网穿透的有力工具。你可以根据具体需求调整配置，实现更复杂的网络穿透和代理需求。</p>
 
       
     </div>

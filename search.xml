@@ -8873,4 +8873,42 @@ x86 则表示32位的
         <tag>运维</tag>
       </tags>
   </entry>
+  <entry>
+    <title>用 Xdebug Trace 追踪 PHP 函数调用</title>
+    <url>/2026/05/19/%E7%94%A8-Xdebug-Trace-%E8%BF%BD%E8%B8%AA-PHP-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/</url>
+    <content><![CDATA[<p>最近接手了一个老项目，代码层级嵌套得像套娃一样，改个 bug 光找入口都得半天。本来想用 var_dump 一路打点过去，结果发现这方法太原始了，打印出来一堆乱七八糟的东西，而且每次还要手动删代码。</p>
+<p>后来想起 Xdebug 有个 Trace 功能，可以直接记录整个请求过程中所有的函数调用，这不就是我要找的东西吗？</p>
+<h2 id="开启-Trace"><a href="#开启-Trace" class="headerlink" title="开启 Trace"></a>开启 Trace</h2><p>首先要确保 Xdebug 已经装好了，这个网上教程一堆就不多说了。关键是配置，要在 <code>php.ini</code> 里加上这几行：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">xdebug.mode</span> = trace</span><br><span class="line"><span class="attr">xdebug.use_compression</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">xdebug.trace_output_dir</span> = /tmp</span><br><span class="line"><span class="attr">xdebug.trace_output_name</span> = trace.%c</span><br></pre></td></tr></table></figure>
+
+<p>这里有个坑，默认情况下 Xdebug 会把追踪文件压缩成 <code>.xt.gz</code> 格式。虽说压缩是好事，但我只想直接看文本文件，不想每次都解压。把 <code>use_compression</code> 设成 <code>false</code> 就行了，输出的就是纯 <code>.xt</code> 文件。</p>
+<h2 id="手动控制追踪范围"><a href="#手动控制追踪范围" class="headerlink" title="手动控制追踪范围"></a>手动控制追踪范围</h2><p>最简单的方式是在代码里手动调用：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 开始追踪</span></span><br><span class="line"><span class="title function_ invoke__">xdebug_start_trace</span>(<span class="string">&#x27;/tmp/my_trace&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你的业务代码</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title function_ invoke__">getUser</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable">$orders</span> = <span class="title function_ invoke__">getOrders</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止追踪</span></span><br><span class="line"><span class="title function_ invoke__">xdebug_stop_trace</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这样只会记录这两个函数之间的调用过程，精准控制范围，不会产生一大堆无用的日志。</p>
+<h2 id="看看追踪结果"><a href="#看看追踪结果" class="headerlink" title="看看追踪结果"></a>看看追踪结果</h2><p>跑完之后打开 <code>/tmp/my_trace.xt</code>，大概长这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TRACE START [2026-05-19 10:30:00]</span><br><span class="line">    0.0001     397120   -&gt; &#123;main&#125;() /var/www/app.php:0</span><br><span class="line">    0.0002     397120     -&gt; getUser(1) /var/www/app.php:5</span><br><span class="line">    0.0003     397184       -&gt; Database-&gt;query(&#x27;SELECT * FROM users WHERE id = 1&#x27;) /var/www/app.php:12</span><br><span class="line">    0.0005     397184       &lt;- query() =&gt; [&#x27;id&#x27; =&gt; 1, &#x27;name&#x27; =&gt; &#x27;test&#x27;] /var/www/app.php:12</span><br><span class="line">    0.0006     397120     &lt;- getUser() =&gt; [&#x27;id&#x27; =&gt; 1, &#x27;name&#x27; =&gt; &#x27;test&#x27;] /var/www/app.php:5</span><br><span class="line">TRACE END   [2026-05-19 10:30:00]</span><br></pre></td></tr></table></figure>
+
+<p>左边是时间戳，中间是内存占用，箭头表示调用方向。<code>-&gt;</code> 是调用，<code>&lt;-</code> 是返回。一眼就能看出来代码执行的顺序，哪个函数耗时长、占用内存大，清清楚楚。</p>
+<h2 id="几个常用的参数"><a href="#几个常用的参数" class="headerlink" title="几个常用的参数"></a>几个常用的参数</h2><p><code>xdebug_start_trace()</code> 可以传第二个参数控制输出格式：</p>
+<ul>
+<li><code>XDEBUG_TRACE_APPEND</code> - 追加到现有文件，不会覆盖</li>
+<li><code>XDEBUG_TRACE_COMPUTERIZED</code> - 机器可读格式，方便写脚本分析</li>
+<li><code>XDEBUG_TRACE_HTML</code> - 输出成 HTML 格式，浏览器直接看</li>
+</ul>
+<p>我一般就用默认的，文本格式已经很清晰了。</p>
+<h2 id="一些小建议"><a href="#一些小建议" class="headerlink" title="一些小建议"></a>一些小建议</h2><p>追踪文件会很大，特别是那种框架项目，一个请求下来几百个函数调用很正常。所以尽量缩小追踪范围，只追踪关键代码段。</p>
+<p>另外，追踪对性能影响挺大的，生产环境千万别开，调试完记得关掉。本地开发环境用用就好。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Xdebug Trace 这个功能确实好用，特别是分析不熟悉的代码时，比到处加 var_dump 优雅多了。输出的文件虽然长了点，但信息量足够，能帮你快速理清代码的调用链路。</p>
+<p>希望这个小技巧能帮到同样在”看代码看到头秃”的小伙伴们。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Xdebug</tag>
+        <tag>调试</tag>
+      </tags>
+  </entry>
 </search>
