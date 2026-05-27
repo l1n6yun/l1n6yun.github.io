@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">373</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">147</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">375</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">148</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">373</span>
+        <span class="site-state-item-count">375</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/10/03/pip%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/10/03/pip%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" class="post-title-link" itemprop="url">pip缓存那些事儿：清除、查看、换个位置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-10-03 10:00:00" itemprop="dateCreated datePublished" datetime="2019-10-03T10:00:00+08:00">2019-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近在折腾 Python 环境的时候，C盘空间告急，找了半天发现 pip 缓存居然占了好几个G… 想着顺便整理一下 pip 缓存相关的知识，分享给同样被磁盘空间折磨的小伙伴们。</p>
+<h2 id="pip缓存是个啥"><a href="#pip缓存是个啥" class="headerlink" title="pip缓存是个啥"></a>pip缓存是个啥</h2><p>简单来说，pip 下载安装包的时候，不会直接扔掉，而是存一份在本地缓存里。下次再装同样的包，直接从缓存拿，不用重新下载。</p>
+<p>听起来挺贴心的对吧？但时间久了，这个缓存可能会膨胀到好几G，尤其是你经常折腾各种包、各种版本的时候。</p>
+<h2 id="先看看缓存在哪"><a href="#先看看缓存在哪" class="headerlink" title="先看看缓存在哪"></a>先看看缓存在哪</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip cache <span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>Windows 上一般是 <code>%LocalAppData%\pip\cache</code>，Linux&#x2F;macOS 则是 <code>~/.cache/pip</code>。</p>
+<p>想知道缓存占了多少空间？可以直接去那个目录看，或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip cache info</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/pasted-116.png" alt="upload successful"></p>
+<h2 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h2><p>如果磁盘空间紧张，或者安装包时遇到奇怪的校验错误，可以清除缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清除全部缓存</span></span><br><span class="line">pip cache purge</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只清除某个包的缓存</span></span><br><span class="line">pip cache remove numpy</span><br></pre></td></tr></table></figure>
+
+<p>不过要注意，清除后下次安装相同的包需要重新下载，网速慢的话可能会有点痛苦。还有就是离线安装会失效，没网的时候之前装过的包就没法离线装了。</p>
+<p><strong>我的建议</strong>：平时不用管它，只有空间实在紧张或者遇到安装报错的时候再清。</p>
+<h2 id="换个缓存位置"><a href="#换个缓存位置" class="headerlink" title="换个缓存位置"></a>换个缓存位置</h2><p>如果C盘空间不够，可以把缓存挪到其他盘。</p>
+<p><strong>方法一：配置文件（推荐）</strong></p>
+<p>编辑 pip 配置文件，添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">cache-dir</span> = D:\pip_cache</span><br></pre></td></tr></table></figure>
+
+<p>配置文件位置：</p>
+<ul>
+<li>Windows: <code>%AppData%\pip\pip.ini</code></li>
+<li>Linux&#x2F;macOS: <code>~/.config/pip/pip.conf</code></li>
+</ul>
+<p>文件不存在的话直接创建就行。</p>
+<p><strong>方法二：环境变量</strong></p>
+<p>设置 <code>PIP_CACHE_DIR</code> 环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows PowerShell</span></span><br><span class="line"><span class="variable">$env</span>:PIP_CACHE_DIR = <span class="string">&quot;D:\pip_cache&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line"><span class="built_in">export</span> PIP_CACHE_DIR=/your/custom/path</span><br></pre></td></tr></table></figure>
+
+<p>想永久生效就加到系统环境变量里。</p>
+<p><strong>方法三：临时指定</strong></p>
+<p>单次安装时指定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --cache-dir D:\pip_cache some-package</span><br></pre></td></tr></table></figure>
+
+<p>改完之后用 <code>pip cache dir</code> 验证一下是否生效。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>pip 缓存这东西平时不太起眼，但关键时刻可能帮你省不少下载时间。当然，如果空间紧张，清掉或者换个位置也行。希望这篇能帮到同样被磁盘空间困扰的小伙伴~</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -966,84 +1080,6 @@
 <h3 id="（二）加密模式与填充方式选择"><a href="#（二）加密模式与填充方式选择" class="headerlink" title="（二）加密模式与填充方式选择"></a>（二）加密模式与填充方式选择</h3><p>不同的加密模式和填充方式在加密效果和安全性上存在差异，开发者需要根据具体的应用需求来合理选择。在加密模式方面，以 AES 加密算法为例，常见的加密模式有 ECB（电子密码本模式）、CBC（密码块链模式）、CTR（计数器模式）等。ECB 模式简单直接，每个明文块独立加密，加密速度相对较快，但如果明文存在重复块，加密后的密文也会有重复，容易被攻击者分析和利用，因此它适用于对安全性要求不高且数据块之间独立性较强的场景，比如一些对数据保密性要求较低的内部测试数据加密。CBC 模式引入了初始向量（IV），每个密文块的生成不仅依赖于当前明文块和密钥，还依赖于前一个密文块，这使得加密后的密文具有更好的随机性和扩散性，安全性较高，适用于一般的加密场景，如用户敏感信息的传输加密。CTR 模式将加密转换为流密码，通过计数器生成密钥流与明文异或，具有加密和解密速度快、可以并行处理的优点，适用于对速度要求较高的场景，像实时视频流加密传输。在填充方式上，当明文长度不是加密算法分组长度的整数倍时，就需要进行填充。常见的填充方式有 PKCS7（在 JavaScript 中对应 PKCS5，两者在填充逻辑上对于 AES - 128 是一致的）、ZeroPadding 等。PKCS7 填充是在明文末尾填充一定数量的字节，填充字节的值等于需要填充的字节数，这种填充方式应用广泛，能够保证加密数据的完整性和正确性；ZeroPadding 则是在明文末尾填充 0 字节，虽然简单，但在某些情况下可能会导致安全性问题，比如当解密时无法准确判断填充的 0 是原始数据中的 0 还是填充的 0，所以在选择填充方式时，应优先考虑 PKCS7 填充方式，除非有特殊的需求。</p>
 <h3 id="（三）兼容性问题"><a href="#（三）兼容性问题" class="headerlink" title="（三）兼容性问题"></a>（三）兼容性问题</h3><p>在不同的环境中使用 Crypto.js，可能会遇到一些兼容性问题。在浏览器环境中，不同浏览器对 JavaScript 的支持存在差异，可能会导致 Crypto.js 的某些功能无法正常运行。例如，一些旧版本的浏览器可能不支持某些加密算法或特性，在使用之前，需要通过特性检测来判断浏览器是否支持所需的功能。可以使用<code>if (&#39;CryptoJS&#39; in window)</code>来检测浏览器是否已经成功引入了 Crypto.js 库。对于不支持的浏览器，可以考虑提供降级方案，比如提示用户升级浏览器，或者使用其他兼容的加密方式。在 Node.js 环境中，不同的 Node.js 版本对 Crypto.js 的兼容性也可能不同。随着 Node.js 的不断更新，一些底层的加密模块和 API 可能会发生变化，这可能会影响 Crypto.js 的运行。在使用时，要确保所使用的 Node.js 版本与 Crypto.js 库兼容，可以查看 Crypto.js 的官方文档或社区论坛，了解其支持的 Node.js 版本范围。如果遇到兼容性问题，可以尝试升级或降级 Node.js 版本，或者查找相关的解决方案和补丁。此外，在一些特殊的环境中，如 Web Workers、React Native 等，使用 Crypto.js 也可能会遇到一些问题，需要根据具体的环境特点进行针对性的调整和配置，以确保 Crypto.js 能够正常工作，保障数据加密功能的稳定运行。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/25/VUE%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/01/25/VUE%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Vue - 创建项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-01-25 22:38:00" itemprop="dateCreated datePublished" datetime="2019-01-25T22:38:00+08:00">2019-01-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>Vue 提供了一个官方的 CLI，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 <code>lint</code> 校验，以及生产环境可用的构建版本</p>
-</blockquote>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限才能执行这些操作</span></span><br><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">yarn global add @vue/cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否安装成功</span></span><br><span class="line">vue --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择预设</span></span><br><span class="line">Vue CLI v4.5.15</span><br><span class="line">? Please pick a preset:</span><br><span class="line">&gt; Default ([Vue 2] babel, eslint)</span><br><span class="line">  Default (Vue 3) ([Vue 3] babel, eslint)</span><br><span class="line">  Manually <span class="keyword">select</span> features</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> hello-word</span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
-
-<p>启动成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DONE  Compiled successfully <span class="keyword">in</span> 2244ms                         下午10:20:26</span><br><span class="line"></span><br><span class="line"> App running at:</span><br><span class="line"> - Local:   http://localhost:8080/</span><br><span class="line"> - Network: http://192.168.0.104:8080/</span><br><span class="line"></span><br><span class="line"> Note that the development build is not optimized.</span><br><span class="line"> To create a production build, run npm run build.</span><br></pre></td></tr></table></figure>
       
     </div>
 
