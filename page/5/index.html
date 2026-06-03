@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">375</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">148</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">376</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">149</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">375</span>
+        <span class="site-state-item-count">376</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,78 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/05/%E4%BD%BF%E7%94%A8-ffmpeg-%E4%B8%8B%E8%BD%BD-m3u8-%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">使用 ffmpeg 下载 m3u8 视频</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-05 16:29:36" itemprop="dateCreated datePublished" datetime="2022-10-05T16:29:36+08:00">2022-10-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>下载视频，并将m3u8格式转为mp4格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 playlist.mp4</span><br><span class="line">或者</span><br><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy playlist.mp4</span><br></pre></td></tr></table></figure>
+
+<p>下载中。。。由于视频很大，下载需要很长长长时间(1个G的视频可能需下载几小时…)。<br> 可以通过如下指令进行下载提速（下载速度大约能提升到几到十几分钟，很棒了哦，起码比百度云快）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8 -c copy -bsf:a aac_adtstoasc playlist_1.mp4</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1205,125 +1277,6 @@
 <h2 id="测试京东性能"><a href="#测试京东性能" class="headerlink" title="测试京东性能"></a>测试京东性能</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ab -c 10 -n 100 http://www.jd.com/</span></span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1874286 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking www.jd.com (be patient).....done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:        nginx</span><br><span class="line">Server Hostname:        www.jd.com</span><br><span class="line">Server Port:            80</span><br><span class="line"></span><br><span class="line">Document Path:          /</span><br><span class="line">Document Length:        138 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      10</span><br><span class="line">Time taken for tests:   1.734 seconds</span><br><span class="line">Complete requests:      100</span><br><span class="line">Failed requests:        0</span><br><span class="line">Non-2xx responses:      100</span><br><span class="line">Total transferred:      42300 bytes</span><br><span class="line">HTML transferred:       13800 bytes</span><br><span class="line">Requests per second:    57.66 [#/sec] (mean)</span><br><span class="line">Time per request:       173.433 [ms] (mean)</span><br><span class="line">Time per request:       17.343 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          23.82 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:       13   17   2.8     16      23</span><br><span class="line">Processing:    15  146  30.4    150     189</span><br><span class="line">Waiting:       15   88  44.5     91     182</span><br><span class="line">Total:         29  163  30.8    168     206</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line"><span class="meta prompt_">  50% </span><span class="language-bash">   168</span></span><br><span class="line"><span class="meta prompt_">  66% </span><span class="language-bash">   176</span></span><br><span class="line"><span class="meta prompt_">  75% </span><span class="language-bash">   179</span></span><br><span class="line"><span class="meta prompt_">  80% </span><span class="language-bash">   182</span></span><br><span class="line"><span class="meta prompt_">  90% </span><span class="language-bash">   189</span></span><br><span class="line"><span class="meta prompt_">  95% </span><span class="language-bash">   195</span></span><br><span class="line"><span class="meta prompt_">  98% </span><span class="language-bash">   204</span></span><br><span class="line"><span class="meta prompt_">  99% </span><span class="language-bash">   206</span></span><br><span class="line"><span class="meta prompt_"> 100% </span><span class="language-bash">   206 (longest request)</span></span><br></pre></td></tr></table></figure>
 
 <p>通过上图，测试结果也一目了然，京东测试出的吞吐率为：<code>Requests per second:57.66 [#/sec] (mean)</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/14/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-composer-%E5%8C%85/" class="post-title-link" itemprop="url">如何搭建自己的 composer 包</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-14 20:14:38" itemprop="dateCreated datePublished" datetime="2022-03-14T20:14:38+08:00">2022-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>composer 是 PHP 的依赖管理工具，本篇文章就来说明如何构建一个包，并提交到 Packagist ，这样别人就可以方便地通过 composer 使用你的包了。</p>
-</blockquote>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">composer init</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This command will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [l1n6yun/hello]: l1n6yun/hello</span><br><span class="line">Description []: This is a demo package</span><br><span class="line">Author [l1n6yun &lt;l1n6yun@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []: dev</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []: library</span><br><span class="line">License []: MIT</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dependencies (require) interactively [yes]? no</span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line">Add PSR-4 autoload mapping? Maps namespace &quot;L1n6yun\Hello&quot; to the entered relative path. [src/, n to skip]:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;l1n6yun/hello&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;This is a demo package&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;L1n6yun\\Hello\\&quot;: &quot;src/&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;l1n6yun&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;l1n6yun@gmail.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;minimum-stability&quot;: &quot;dev&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]?</span><br><span class="line">Generating autoload files</span><br><span class="line">Generated autoload files</span><br><span class="line">PSR-4 autoloading configured. Use &quot;namespace L1n6yun\Hello;&quot; in src/</span><br><span class="line">Include the Composer autoloader with: require &#x27;vendor/autoload.php&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Package-name"><a href="#Package-name" class="headerlink" title="Package name"></a>Package name</h3><p>包的名称。它是由供应商名称和项目名称组成，由 <code>/</code> 隔开。</p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>包的简短描述。用来告诉使用者这个包是干什么用的。</p>
-<h3 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h3><p>包的作者名。</p>
-<h3 id="Minimum-Stability"><a href="#Minimum-Stability" class="headerlink" title="Minimum Stability"></a>Minimum Stability</h3><p>最小稳定版本。越往下，稳定性越高，BUG越少。</p>
-<ul>
-<li>dev</li>
-<li>alpha</li>
-<li>beta</li>
-<li>RC（补丁）</li>
-<li>stable</li>
-</ul>
-<h3 id="Package-Type"><a href="#Package-Type" class="headerlink" title="Package Type"></a>Package Type</h3><p>包的类型。用于自定义安装逻辑。</p>
-<ul>
-<li><strong>library</strong>：这个是默认设置。它会将文件复制到 <code>vendor</code> 目录</li>
-<li><strong>project</strong>：项目。注意这里的项目不是库。</li>
-<li><strong>metapackage</strong>：一个包含需求的空包，会触发  他们的安装，但不包含文件，不会向  文件系统。 因此，它不需要 dist 或 source 键  可安装。 </li>
-<li><strong>composer-plugin</strong>：类型的包 <code>composer-plugin</code>可以提供一个  具有自定义类型的其他软件包的安装程序。</li>
-</ul>
-<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>包的许可证。  这可以是字符串或字符串数组。 </p>
-<p>最常见许可证</p>
-<ul>
-<li>Apache-2.0</li>
-<li>BSD-2-Clause</li>
-<li>BSD-3-Clause</li>
-<li>BSD-4-Clause</li>
-<li>GPL-2.0-only &#x2F; GPL-2.0-or-later</li>
-<li>GPL-3.0-only &#x2F; GPL-3.0-or-later</li>
-<li>LGPL-2.1-only &#x2F; LGPL-2.1-or-later</li>
-<li>LGPL-3.0-only &#x2F; LGPL-3.0-or-later</li>
-<li>MIT</li>
-</ul>
-<blockquote>
-<p>闭源项目可以使用 <code>proprietary</code></p>
-</blockquote>
-<h2 id="撸码"><a href="#撸码" class="headerlink" title="撸码"></a>撸码</h2><p>在项目的 <code>src</code> 目录下创建 <code>Tools</code> 类</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">L1n6yun</span>\<span class="title class_">Hello</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tools</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;Hello, World!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试一下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php -a</span></span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="keyword">require</span> <span class="string">&#x27;vendor/autoload.php&#x27;</span>;</span><br><span class="line">php &gt; <span class="title class_">L1n6yun\Hello\Tools</span>::<span class="title function_ invoke__">hello</span>();</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="上传代码"><a href="#上传代码" class="headerlink" title="上传代码"></a>上传代码</h3><p>添加 <code>.gitignore</code> 文件，来忽略不需要的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.idea/</span><br><span class="line">/vendor/</span><br><span class="line">composer.lock</span><br></pre></td></tr></table></figure>
-
-<p>自行上传到自己的 GitHub 上</p>
-<h3 id="提交包"><a href="#提交包" class="headerlink" title="提交包"></a>提交包</h3><p>Packagist 上的 <span class="exturl" data-url="aHR0cHM6Ly9wYWNrYWdpc3Qub3JnL3BhY2thZ2VzL3N1Ym1pdA==">提交页面<i class="fa fa-external-link-alt"></i></span> 填写自己的仓库地址，点击 <code>Check</code> ，然后点击 <code>Submit</code> 不出意外的话就发布成功了。</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
 
       
     </div>

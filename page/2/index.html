@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">375</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">148</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">376</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">149</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,18 +185,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">375</span>
+        <span class="site-state-item-count">376</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,123 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/21/Vue3-Vite-%E9%A1%B9%E7%9B%AE-ESLint-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/21/Vue3-Vite-%E9%A1%B9%E7%9B%AE-ESLint-%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Vue3 + Vite 项目 ESLint 配置指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-21 12:57:19" itemprop="dateCreated datePublished" datetime="2026-03-21T12:57:19+08:00">2026-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">前端开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近在搞一个 Vue3 + Vite 的项目，想着给项目加上 ESLint，结果发现 ESLint 现在推荐用新的 flat config 格式了，跟之前那种 <code>.eslintrc.js</code> 的写法完全不一样。折腾了一阵子终于搞定，记录一下配置过程，希望能帮到同样遇到这个问题的小伙伴。</p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>首先当然是装 ESLint 和相关插件啦：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D eslint @eslint/js eslint-plugin-vue</span><br></pre></td></tr></table></figure>
+
+<p>这里简单说一下装的几个包都是干啥的：</p>
+<ul>
+<li><code>eslint</code> - ESLint 核心，不用说</li>
+<li><code>eslint/js</code> - JavaScript 官方推荐的规则集</li>
+<li><code>eslint-plugin-vue</code> - Vue 官方的 ESLint 插件，专门检查 Vue 组件的</li>
+</ul>
+<h2 id="写配置文件"><a href="#写配置文件" class="headerlink" title="写配置文件"></a>写配置文件</h2><p>ESLint 现在推荐使用 flat config 格式，配置文件名是 <code>eslint.config.js</code>，写法跟以前差别挺大的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> js <span class="keyword">from</span> <span class="string">&#x27;@eslint/js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> pluginVue <span class="keyword">from</span> <span class="string">&#x27;eslint-plugin-vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;ignores&#x27;</span>,</span><br><span class="line">    <span class="attr">ignores</span>: [</span><br><span class="line">      <span class="string">&#x27;dist/**&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;node_modules/**&#x27;</span>,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  js.<span class="property">configs</span>.<span class="property">recommended</span>,</span><br><span class="line">  ...pluginVue.<span class="property">configs</span>[<span class="string">&#x27;flat/recommended&#x27;</span>],</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">languageOptions</span>: &#123;</span><br><span class="line">      <span class="attr">globals</span>: &#123;</span><br><span class="line">        <span class="attr">localStorage</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">sessionStorage</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">window</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">document</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">console</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">setTimeout</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">clearTimeout</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">setInterval</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">clearInterval</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">fetch</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">URL</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">        <span class="attr">process</span>: <span class="string">&#x27;readonly&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">rules</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;vue/multi-word-component-names&#x27;</span>: <span class="string">&#x27;off&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;vue/no-v-html&#x27;</span>: <span class="string">&#x27;warn&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;no-unused-vars&#x27;</span>: [<span class="string">&#x27;warn&#x27;</span>, &#123; <span class="attr">argsIgnorePattern</span>: <span class="string">&#x27;^_&#x27;</span> &#125;],</span><br><span class="line">      <span class="string">&#x27;no-console&#x27;</span>: <span class="string">&#x27;off&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;no-debugger&#x27;</span>: <span class="string">&#x27;warn&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>这里有几个坑说一下：</p>
+<p><strong>第一个坑</strong>：一定要在配置里声明浏览器全局变量！不然 ESLint 会报 <code>localStorage is not defined</code> 之类的错误。上面配置里的 <code>globals</code> 就是干这个的。</p>
+<p><strong>第二个坑</strong>：<code>ignores</code> 要放在第一个配置对象里单独写，不能跟其他配置混在一起。</p>
+<p><strong>自定义规则说明</strong>：</p>
+<ul>
+<li><code>vue/multi-word-component-names: &#39;off&#39;</code> - 这个规则要求组件名必须是多单词的，我习惯用单词组件名，干脆关掉了</li>
+<li><code>vue/no-v-html: &#39;warn&#39;</code> - 用 v-html 有 XSS 风险，改成 warn 提醒自己注意</li>
+<li><code>no-unused-vars</code> - 未使用变量改成警告，<code>argsIgnorePattern: &#39;^_&#39;</code> 表示以 <code>_</code> 开头的参数可以忽略（有时候回调函数的参数不用但又必须写在前面）</li>
+</ul>
+<h2 id="配置-npm-脚本"><a href="#配置-npm-脚本" class="headerlink" title="配置 npm 脚本"></a>配置 npm 脚本</h2><p>在 <code>package.json</code> 里加上：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;lint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint .&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;lint:fix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint . --fix&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就可以用 <code>npm run lint</code> 检查代码，用 <code>npm run lint:fix</code> 自动修复能修的问题。</p>
+<h2 id="集成到-Vite"><a href="#集成到-Vite" class="headerlink" title="集成到 Vite"></a>集成到 Vite</h2><p>光有命令行检查还不够，开发的时候能实时看到问题更方便。装个 vite-plugin-eslint：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D vite-plugin-eslint</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>vite.config.js</code> 里加上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> eslint <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-eslint&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title function_">vue</span>(),</span><br><span class="line">    <span class="title function_">eslint</span>(),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样 Vite 开发服务器启动后，代码有问题会直接在页面上弹出来，再也不用手动跑 lint 命令了。</p>
+<h2 id="一些常见问题"><a href="#一些常见问题" class="headerlink" title="一些常见问题"></a>一些常见问题</h2><h3 id="中文全角空格报错"><a href="#中文全角空格报错" class="headerlink" title="中文全角空格报错"></a>中文全角空格报错</h3><p>有时候复制代码会带上中文全角空格，ESLint 会报 <code>no-irregular-whitespace</code>。这个一般 IDE 能看出来，注意一下就行。</p>
+<h3 id="未使用的导入"><a href="#未使用的导入" class="headerlink" title="未使用的导入"></a>未使用的导入</h3><p><code>no-unused-vars</code> 这个规则经常会报，比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错：nextTick 未使用</span></span><br><span class="line"><span class="keyword">import</span> &#123; nextTick, ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成这样</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果有些变量确实暂时不用但想留着，可以在变量名前加个下划线 <code>_</code>，因为上面配置了 <code>argsIgnorePattern: &#39;^_&#39;</code>。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>ESLint 配置这东西，一开始看着挺麻烦的，配好之后真的能避免很多低级错误。尤其是多人协作的项目，统一代码风格太重要了。flat config 虽然写法变了，但配置逻辑其实更清晰了，习惯了就好。</p>
+<p>如果这篇对你有帮助，欢迎留言交流~</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1316,91 +1433,6 @@
 <h2 id="使用数据源"><a href="#使用数据源" class="headerlink" title="使用数据源"></a>使用数据源</h2><p>在仪表板中添加可视化，在 <code>Data source</code> 选项中选择刚刚新增的数据源。</p>
 <p>在 <code>URL</code> 中填写你的接口地址。根据要求返回对应的格式即可呈现到面板上。</p>
 <p><img src="/images/pasted-82.png" alt="使用数据源"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/21/Burp-Suite-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/21/Burp-Suite-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Burp Suite 中文乱码解决</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-21 15:15:00" itemprop="dateCreated datePublished" datetime="2025-03-21T15:15:00+08:00">2025-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在使用 Burp Suite 进行 HTTP 请求或响应分析时，可能遇到请求参数、响应内容中的中文显示为乱码的情况，例如显示为乱码符号（如方框、问号等），影响数据查看和分析。</p>
-<p><img src="/images/pasted-76.png" alt="upload successful"></p>
-<p>Burp Suite 默认的字符编码或字体设置与中文不兼容，导致无法正确解析和显示中文字符。常见原因包括：<br>编码格式错误：未设置为 UTF-8（中文通用编码）。<br>字体不支持中文：默认字体无法渲染中文字符。</p>
-<p>解决步骤</p>
-<ol>
-<li><p>进入设置页面</p>
-<p> 打开 Burp Suite，点击顶部菜单栏的 Settings（设置），选择 User Interface（用户界面）。</p>
-</li>
-<li><p>修改消息编辑器的编码和字体</p>
-<p> 在左侧导航栏中选择 Message editor（消息编辑器）。</p>
-<p> 在右侧的 Character sets（字符编码）下拉菜单中，选择 UTF-8（确保与目标网站的编码一致）。<br> 更换支持中文的字体：</p>
-<p> 在 Font（字体）选项中，点击 Change font（选择字体），从列表中选择支持中文的字体（如 Microsoft YaHei、SimSun 或 黑体），调整字体大小至合适显示。</p>
-</li>
-</ol>
-<p><img src="/images/pasted-77.png" alt="upload successful"></p>
-<p>修改完成后，就可以正常查看中文字体了</p>
-<p><img src="/images/pasted-78.png" alt="upload successful"></p>
 
       
     </div>
