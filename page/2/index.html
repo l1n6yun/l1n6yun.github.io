@@ -120,7 +120,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">376</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">149</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">378</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">150</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -185,7 +185,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">150</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">376</span>
+        <span class="site-state-item-count">378</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,6 +221,81 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/23/%E8%B0%83%E8%AF%95-Firefox-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E8%B5%B7%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="l1n6yun">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="l1n6yun's Blog">
+      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | l1n6yun's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/23/%E8%B0%83%E8%AF%95-Firefox-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E8%B5%B7%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" class="post-title-link" itemprop="url">调试 Firefox 浏览器发起的网络请求</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-23 06:02:24" itemprop="dateCreated datePublished" datetime="2026-03-23T06:02:24+08:00">2026-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li>在地址栏输入 <code>about:debugging</code></li>
+<li>点击 <code>This Firefox</code></li>
+<li>找到目标扩展 → 点击 <code>Inspect</code>（调试）</li>
+<li>在新打开的开发者工具中，切换到 Network 面板，即可看到该扩展发起的请求</li>
+</ol>
+<p><img data-src="/images/pasted-87.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1356,83 +1431,6 @@
 <h3 id="4-结果去重"><a href="#4-结果去重" class="headerlink" title="4 结果去重"></a>4 结果去重</h3><p>若数据存在重复关联，可在最终查询中使用<code>DISTINCT</code>去重，但需注意递归成员中禁止直接使用<code>DISTINCT</code>。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>递归 CTE 是 MySQL 处理树形数据的 “瑞士军刀”，通过简洁的语法将复杂的层级查询转化为结构化的递归过程，显著提升开发效率与查询性能。无论是组织架构、分类目录还是其他层级场景，掌握递归 CTE 的锚成员定义、递归规则设计及终止条件把控，都能让你在数据处理中游刃有余。建议在实际项目中结合索引优化与数据校验，充分发挥其在层级查询中的优势。</p>
 <p><strong>动手实践</strong>：尝试在示例表<code>club</code>中插入多级数据，分别编写查询根节点、叶节点及全路径的递归 CTE 语句，观察结果差异与执行效率。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/30/grafana-%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89API%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="l1n6yun">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="l1n6yun's Blog">
-      <meta itemprop="description" content="chitanda | 互联网 | 前端 | 宅 | 动漫 | 京阿尼">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | l1n6yun's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/04/30/grafana-%E9%80%9A%E8%BF%87%E8%87%AA%E5%AE%9A%E4%B9%89API%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">grafana 通过自定义API获取数据</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-30 14:30:00" itemprop="dateCreated datePublished" datetime="2025-04-30T14:30:00+08:00">2025-04-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装infinity插件"><a href="#安装infinity插件" class="headerlink" title="安装infinity插件"></a>安装infinity插件</h2><p>在插件页面中搜索 <code>infinity</code>，进入 infinity 插件页面点击 <code>install</code>,等待安装完成。</p>
-<p><img src="/images/pasted-79.png" alt="安装infinity插件"></p>
-<h2 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源"></a>添加数据源</h2><p>进入数据源页面，点击 <code>Add new data source</code> 按钮，搜索 <code>infinity</code>。</p>
-<p><img src="/images/pasted-80.png" alt="搜索数据源"></p>
-<p>进入 infinity 数据源页面，输入 数据源 名称点击 <code>Save &amp; test</code></p>
-<p><img src="/images/pasted-81.png" alt="添加数据源"></p>
-<h2 id="使用数据源"><a href="#使用数据源" class="headerlink" title="使用数据源"></a>使用数据源</h2><p>在仪表板中添加可视化，在 <code>Data source</code> 选项中选择刚刚新增的数据源。</p>
-<p>在 <code>URL</code> 中填写你的接口地址。根据要求返回对应的格式即可呈现到面板上。</p>
-<p><img src="/images/pasted-82.png" alt="使用数据源"></p>
 
       
     </div>
